@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
+  <!-- FAMILY:PRIVACY_META:START -->
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
+  <!-- FAMILY:PRIVACY_META:END -->
   <title>投资工作台</title>
   <style>
     :root {
@@ -82,8 +84,9 @@
     .money-amount { justify-self: end; font-size: clamp(47px, 8.2vw, 112px); font-weight: 640; line-height: .96; text-shadow: 0 1px 0 rgba(255,255,255,.95); }
     .asof { margin: clamp(18px, 2.5vh, 27px) 0 0; color: var(--muted); font: 11px var(--mono); letter-spacing: .015em; }
 
-    .portfolio-action { display: inline-flex; align-items: center; justify-content: center; min-width: min(330px, 100%); min-height: 54px; margin-top: 30px; padding: 12px 22px; border: 1px solid var(--navy); color: #fff; background: var(--navy); box-shadow: 0 8px 22px rgba(22,59,89,.12); font-size: 13px; font-weight: 800; letter-spacing: .025em; text-decoration: none; transition: background 140ms ease, border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease; }
-    .portfolio-action::after { content: "→"; margin-left: 13px; font-size: 17px; font-weight: 500; }
+    .portfolio-action { display: inline-grid; align-items: center; justify-items: center; grid-template-columns: 1fr auto 1fr; min-width: min(330px, 100%); min-height: 54px; margin-top: 30px; padding: 12px 22px; border: 1px solid var(--navy); color: #fff; background: var(--navy); box-shadow: 0 8px 22px rgba(22,59,89,.12); font-size: 13px; font-weight: 800; letter-spacing: .025em; text-decoration: none; transition: background 140ms ease, border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease; }
+    .portfolio-action-text { grid-column: 2; line-height: 1; }
+    .portfolio-action-arrow { grid-column: 3; justify-self: end; margin-right: 2px; font-size: 17px; font-weight: 500; }
     .portfolio-action:hover { border-color: var(--blue); background: var(--blue); box-shadow: 0 10px 24px rgba(47,111,159,.18); transform: translateY(-1px); }
     .portfolio-action:focus-visible { outline: 3px solid rgba(47,111,159,.22); outline-offset: 4px; }
     .history-link { display: block; width: max-content; margin: 19px auto 0; color: var(--muted); font-size: 11px; text-underline-offset: 4px; }
@@ -133,9 +136,9 @@
 <body>
   <div class="page">
     <header class="topbar">
-      <a class="brand" href="index.html" aria-label="投资工作台首页">
+      <a class="brand" href="index.html" aria-label="投资组合透明计划首页">
         <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-copy"><span class="brand-title">投资工作台</span><span class="brand-subtitle">FAMILY INVESTMENT WORKSPACE</span></span>
+        <span class="brand-copy"><span class="brand-title">投资组合透明计划</span><span class="brand-subtitle">PORTFOLIO TRANSPARENCY PROGRAM</span></span>
       </a>
       <div class="top-actions">
         <span class="archive-state" id="archiveState"><span class="state-dot" aria-hidden="true"></span><span>正在读取家庭快照</span></span>
@@ -146,17 +149,19 @@
     <main class="hero">
       <div class="hero-inner">
         <p class="eyebrow">Family Portfolio</p>
-        <h1>投资组合净值</h1>
+        <h1>IBKR 投资组合净值</h1>
         <div class="hero-money" id="portfolioNav" aria-live="polite"><span class="money-symbol">US$</span><span class="money-amount">—</span></div>
         <p class="asof" id="archiveTime">快照更新 · —</p>
-        <a class="portfolio-action" href="dashboard.html">查看投资组合概要</a>
+        <a class="portfolio-action" href="dashboard.html"><span class="portfolio-action-text">查看投资组合概要</span><span class="portfolio-action-arrow" aria-hidden="true">→</span></a>
+        <!-- FAMILY:INDEX_HISTORY_HERO:START --><!-- FAMILY:INDEX_HISTORY_HERO:END -->
         <p class="archive-note">页面显示一份经筛选的家庭版静态快照；不连接券商、本机数据库或任何实时账户接口。</p>
       </div>
     </main>
 
     <footer class="bottombar">
+      <!-- FAMILY:INDEX_BOTTOM_META:START -->
       <div class="bottom-meta"><span class="readonly">Public · Family · Read-only</span><span class="bottom-link">单一快照</span></div>
-      <span>研究与决策入口位于右上角菜单</span>
+      <!-- FAMILY:INDEX_BOTTOM_META:END -->
     </footer>
   </div>
 
@@ -166,10 +171,11 @@
       <p class="menu-section-title">已可使用</p>
       <nav class="menu-list" aria-label="已可使用页面">
         <a class="menu-item" href="dashboard.html"><span class="menu-item-name">投资组合概要</span><span class="menu-item-meta">进入 →</span></a>
+        <!-- FAMILY:INDEX_HISTORY_MENU:START --><!-- FAMILY:INDEX_HISTORY_MENU:END -->
+        <!-- FAMILY:INDEX_MARKET_MENU:START --><!-- FAMILY:INDEX_MARKET_MENU:END -->
       </nav>
       <p class="menu-section-title">研究与决策</p>
       <div class="menu-list">
-        <span class="menu-item" aria-disabled="true"><span class="menu-item-name">市场监控</span><span class="menu-item-meta">规划中</span></span>
         <span class="menu-item" aria-disabled="true"><span class="menu-item-name">证券研究</span><span class="menu-item-meta">下一阶段</span></span>
         <span class="menu-item" aria-disabled="true"><span class="menu-item-name">期权雷达</span><span class="menu-item-meta">规划中</span></span>
         <span class="menu-item" aria-disabled="true"><span class="menu-item-name">交易决策</span><span class="menu-item-meta">规划中</span></span>
@@ -178,7 +184,7 @@
     </aside>
   </div>
 
-  <script id="familyPortfolioSummary" type="application/json">{"netLiquidation":97701.0373,"currency":"USD","asOf":"2026-07-20T04:19:22Z"}</script>
+  <script id="familyPortfolioSummary" type="application/json">{"netLiquidation":97929.38,"currency":"USD","asOf":"2026-07-21T14:52:59.509000Z"}</script>
   <script>
     (function () {
       "use strict";
@@ -195,23 +201,25 @@
         return Number.isFinite(number) ? number : null;
       }
 
-      function renderSummary(summary, mode) {
-        var nav = asNumber(summary.netLiquidation);
-        if (nav == null) return false;
-        document.querySelector("#portfolioNav .money-symbol").textContent = summary.currency === "USD" || !summary.currency ? "US$" : String(summary.currency);
-        document.querySelector("#portfolioNav .money-amount").textContent = (nav < 0 ? "-" : "") + moneyFormatter.format(Math.abs(nav));
-        var asOf = summary.asOf || summary.fetchedAt;
-        var date = asOf ? new Date(asOf) : null;
-        var text = date && Number.isFinite(date.getTime()) ? date.toISOString().slice(0,16).replace("T", " ") + " UTC" : "时间待补充";
-        document.getElementById("archiveTime").textContent = "快照更新 · " + text;
-        document.getElementById("archiveState").querySelector("span:last-child").textContent = "家庭版静态快照";
-        return true;
-      }
+        function renderSummary(summary, mode) {
+          var nav = asNumber(summary.netLiquidation);
+          if (nav == null) return false;
+          document.querySelector("#portfolioNav .money-symbol").textContent = summary.currency === "USD" || !summary.currency ? "US$" : String(summary.currency);
+          document.querySelector("#portfolioNav .money-amount").textContent = (nav < 0 ? "-" : "") + moneyFormatter.format(Math.abs(nav));
+          var asOf = summary.asOf || summary.fetchedAt;
+          var date = asOf ? new Date(asOf) : null;
+          var text = date && Number.isFinite(date.getTime()) ? "UTC " + date.toISOString().slice(0,16).replace("T", " ") : "时间待补充";
+          document.getElementById("archiveTime").textContent = "快照更新 · " + text;
+          document.getElementById("archiveState").querySelector("span:last-child").textContent = "家庭版静态快照";
+          return true;
+        }
 
+      /* FAMILY:INDEX_LOADER:START */
       function loadSummary() {
         var embedded = JSON.parse(document.getElementById("familyPortfolioSummary").textContent);
         renderSummary(embedded, "family");
       }
+      /* FAMILY:INDEX_LOADER:END */
 
       menuButton.addEventListener("click", openMenu);
       closeMenuButton.addEventListener("click", closeMenu);
