@@ -1,0 +1,3515 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>家庭投资组合概况</title>
+  <style>
+    :root {
+      --page: #f4f6f8;
+      --card: #ffffff;
+      --surface-soft: #eef3f6;
+      --ink: #17212b;
+      --muted: #66717d;
+      --soft: #8d98a4;
+      --border: #dfe4e8;
+      --navy: #163b59;
+      --blue: #2f6f9f;
+      --blue-soft: #e8f1f7;
+      --gold: #bd8c28;
+      --green: #14804a;
+      --green-soft: #e8f5ed;
+      --red: #c7353b;
+      --red-soft: #fbeaec;
+      --shadow: 0 10px 30px rgba(21, 43, 62, 0.06);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--page); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--page);
+      font-family: var(--sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+    .mono, .number, td:not(:first-child), .kpi-value { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+    .accounting-money {
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      align-items: baseline;
+      width: 100%;
+      column-gap: 0.45em;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .accounting-symbol { justify-self: start; }
+    .accounting-amount { justify-self: end; }
+    .accounting-money.inline {
+      display: inline-grid;
+      width: auto;
+      min-width: 8.5em;
+      margin: 0 0.18em;
+      vertical-align: baseline;
+    }
+    .accounting-money.inline.compact { min-width: 6.6em; }
+
+    .shell {
+      width: min(1440px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 18px 0 48px;
+    }
+
+    .workspace-nav {
+      position: sticky;
+      top: 10px;
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 54px;
+      margin-bottom: 22px;
+      padding: 8px 10px 8px 14px;
+      border: 1px solid rgba(207,217,224,.94);
+      border-radius: 15px;
+      background: rgba(255,255,255,.93);
+      box-shadow: 0 8px 26px rgba(21,43,62,.075);
+      backdrop-filter: blur(14px);
+    }
+
+    .workspace-brand { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 10px; color: var(--navy); text-decoration: none; }
+    .workspace-brand-mark { position: relative; width: 30px; height: 30px; border-radius: 9px; background: var(--navy); }
+    .workspace-brand-mark::before, .workspace-brand-mark::after { content: ""; position: absolute; left: 7px; right: 7px; height: 2px; border-radius: 2px; background: #fff; transform-origin: left center; }
+    .workspace-brand-mark::before { top: 18px; transform: rotate(-28deg); }
+    .workspace-brand-mark::after { top: 12px; left: 16px; right: 6px; transform: rotate(35deg); }
+    .workspace-brand-text { display: grid; line-height: 1.08; }
+    .workspace-brand-title { font-size: 13px; font-weight: 800; }
+    .workspace-brand-subtitle { margin-top: 3px; color: var(--soft); font-size: 8px; font-weight: 750; letter-spacing: .12em; }
+    .workspace-nav-scroll { min-width: 0; flex: 1 1 auto; overflow-x: auto; scrollbar-width: none; }
+    .workspace-nav-scroll::-webkit-scrollbar { display: none; }
+    .workspace-nav-links { display: flex; align-items: center; justify-content: flex-end; gap: 3px; min-width: max-content; }
+    .workspace-nav-link { display: inline-flex; align-items: center; min-height: 36px; padding: 7px 10px; border-radius: 9px; color: #52616e; font-size: 12px; font-weight: 720; text-decoration: none; white-space: nowrap; }
+    .workspace-nav-link:hover, .workspace-nav-link:focus-visible { color: var(--navy); background: var(--blue-soft); outline: none; }
+    .workspace-nav-link[aria-current="page"] { color: var(--navy); background: var(--blue-soft); }
+    .workspace-nav-link[aria-disabled="true"] { color: #9aa4ad; cursor: default; }
+    .workspace-nav-link[aria-disabled="true"]:hover { color: #9aa4ad; background: transparent; }
+
+    .topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(27px, 3vw, 38px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      color: var(--navy);
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .status-cluster {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      min-width: 260px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .history-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 6px 11px;
+      border: 1px solid #cfdbe4;
+      border-radius: 999px;
+      color: var(--navy);
+      background: #fff;
+      font-size: 12px;
+      font-weight: 750;
+      text-decoration: none;
+      transition: border-color 100ms ease, background 100ms ease;
+    }
+
+    .history-link:hover,
+    .history-link:focus-visible {
+      border-color: #9fb6c8;
+      background: var(--blue-soft);
+      outline: none;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 32px;
+      padding: 6px 11px;
+      border: 1px solid #cfe0d6;
+      border-radius: 999px;
+      color: #0e6840;
+      background: #f2faf5;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(20, 128, 74, 0.12);
+    }
+
+    .asof {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      border: 1px solid #d8e3eb;
+      border-radius: 12px;
+      background: #f7fafc;
+      color: #465766;
+      font-size: 13px;
+    }
+
+    .notice strong { color: var(--navy); }
+    .notice-icon {
+      flex: 0 0 auto;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .kpi-card, .card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .kpi-card {
+      min-height: 136px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .kpi-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .kpi-value {
+      margin: 9px 0 5px;
+      font-size: clamp(24px, 2.4vw, 34px);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      white-space: nowrap;
+    }
+
+    .kpi-note {
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    .kpi-note-line {
+      display: block;
+      min-height: 20px;
+    }
+
+    .kpi-note-line + .kpi-note-line { margin-top: 1px; }
+
+    .positive { color: var(--green) !important; }
+    .negative { color: var(--red) !important; }
+    .neutral { color: var(--ink) !important; }
+
+    .section {
+      margin-top: 18px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 0 2px 10px;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--navy);
+      font-size: 18px;
+      letter-spacing: -0.015em;
+    }
+
+    .section-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .grid-allocation {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .allocation-donuts-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      width: min(100%, 1320px);
+      margin: 0 auto;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .card {
+      padding: 18px;
+      min-width: 0;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .card-title {
+      margin: 0;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .card-subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .periods {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding: 3px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #f7f8f9;
+    }
+
+    .period-btn {
+      min-width: 46px;
+      padding: 6px 8px;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .period-btn:hover { color: var(--ink); background: #fff; }
+    .period-btn[aria-pressed="true"] {
+      color: #fff;
+      background: var(--navy);
+      box-shadow: 0 2px 6px rgba(22, 59, 89, 0.18);
+    }
+
+    .benchmark-toggle {
+      display: inline-flex;
+      gap: 4px;
+      padding: 3px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #f7f8f9;
+    }
+
+    .benchmark-btn {
+      padding: 5px 8px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .benchmark-btn:hover { color: var(--ink); background: #fff; }
+    .benchmark-btn[aria-pressed="true"] { color: #fff; background: var(--gold); }
+
+    .chart-wrap {
+      position: relative;
+      min-height: 294px;
+      cursor: crosshair;
+    }
+
+    .chart {
+      display: block;
+      width: 100%;
+      height: 294px;
+      overflow: visible;
+    }
+
+    .chart text {
+      fill: var(--muted);
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .chart .grid-line { stroke: #e8ecef; stroke-width: 1; }
+    .chart .axis-line { stroke: #cfd6dc; stroke-width: 1; }
+    .chart .zero-line { stroke: #8d98a4; stroke-width: 1; stroke-dasharray: 4 4; }
+    .chart .series-line {
+      fill: none;
+      stroke-width: 2.25;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    .chart .focus-dot { stroke: #fff; stroke-width: 2; }
+    .chart .focus-line { stroke: #aeb8c0; stroke-width: 1; stroke-dasharray: 3 3; }
+    .chart:focus-visible { outline: 2px solid rgba(47, 111, 159, 0.35); outline-offset: 3px; border-radius: 8px; }
+    .chart-empty {
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chart-summary {
+      display: flex;
+      align-items: baseline;
+      gap: 9px;
+      margin-bottom: 4px;
+    }
+
+    .chart-summary-value {
+      font-family: var(--mono);
+      font-size: 23px;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+    }
+
+    #navValue { min-width: 172px; }
+
+    .chart-summary-label {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .comparison-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+      min-height: 24px;
+      margin: 2px 0 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .comparison-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .series-key {
+      width: 24px;
+      border-top: 2px solid var(--blue);
+    }
+
+    .series-key.benchmark {
+      border-top-color: var(--gold);
+      border-top-style: dashed;
+    }
+
+    .comparison-legend-value {
+      color: var(--ink);
+      font-family: var(--mono);
+      font-weight: 750;
+    }
+
+    .tooltip {
+      position: absolute;
+      z-index: 5;
+      width: max-content;
+      min-width: 188px;
+      max-width: none;
+      padding: 9px 10px;
+      border: 1px solid #cfd7dd;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 0 8px 22px rgba(20, 36, 50, 0.14);
+      pointer-events: none;
+      opacity: 0;
+      transform: none;
+      transition: opacity 90ms ease;
+      white-space: nowrap;
+    }
+
+    .tooltip.visible { opacity: 1; }
+    .tooltip-date { color: var(--muted); font-size: 11px; }
+    .tooltip-value {
+      margin-top: 2px;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .tooltip-comparison { display: grid; gap: 4px; margin-top: 5px; }
+    .tooltip-series-row {
+      display: grid;
+      grid-template-columns: 18px minmax(72px, 1fr) auto;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+    }
+    .tooltip-series-value { color: var(--ink); font-family: var(--mono); font-size: 12px; font-weight: 750; }
+    .tooltip-series-key { width: 16px; border-top: 2px solid var(--blue); }
+    .tooltip-series-key.benchmark { border-top-color: var(--gold); border-top-style: dashed; }
+    .tooltip-series-row.delta {
+      margin-top: 2px;
+      padding-top: 5px;
+      border-top: 1px solid #e6ebef;
+    }
+    .tooltip-delta-key {
+      display: inline-grid;
+      width: 16px;
+      height: 16px;
+      place-items: center;
+      border-radius: 50%;
+      background: #edf2f5;
+      color: #4d6575;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .allocation-mini-chart {
+      min-width: 0;
+      text-align: center;
+    }
+
+    .allocation-mini-title {
+      min-height: 32px;
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 720;
+      line-height: 1.35;
+    }
+
+    .donut-wrap {
+      position: relative;
+      width: min(100%, 250px);
+      aspect-ratio: 1;
+      margin: 0 auto;
+    }
+
+    .donut {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .donut path { cursor: help; transition: opacity 100ms ease; }
+    .donut:hover path { opacity: 0.55; }
+    .donut path:hover, .donut path:focus { opacity: 1; outline: none; }
+
+    .donut-center {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: 116px;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .donut-center-label { color: var(--muted); font-size: 11px; }
+    .donut-center-value {
+      margin-top: 3px;
+      color: var(--navy);
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 760;
+      letter-spacing: -0.035em;
+    }
+
+    .legend {
+      display: grid;
+      align-content: start;
+    }
+
+    .legend-row {
+      display: grid;
+      grid-template-columns: 10px minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid #f0f2f4;
+      font-size: 12px;
+    }
+
+    .legend-row:last-child { border-bottom: 0; }
+    .legend-swatch { width: 9px; height: 9px; border-radius: 2px; }
+    .legend-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #3d4954; }
+    .legend-value { color: var(--muted); font-family: var(--mono); white-space: nowrap; }
+
+    .allocation-mini-chart .donut-wrap { width: min(100%, 220px); }
+    .allocation-mini-chart .donut-center { width: 92px; }
+    .allocation-mini-chart .donut-center-label { font-size: 10px; }
+    .allocation-mini-chart .donut-center-value { font-size: 14px; }
+    .allocation-mini-chart .donut-center-value.is-detail {
+      display: grid;
+      gap: 1px;
+      margin-top: 2px;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+    .donut-center-amount { color: var(--navy); font-size: 10px; font-weight: 700; white-space: nowrap; }
+    .donut-center-percent { color: var(--ink); font-size: 13px; font-weight: 800; white-space: nowrap; }
+
+    .pnl-scroll {
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .pnl-table {
+      width: 100%;
+      min-width: 560px;
+      border-collapse: collapse;
+      table-layout: auto;
+    }
+
+    .pnl-table th, .pnl-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #edf0f2;
+      text-align: right;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .pnl-table th:first-child, .pnl-table td:first-child { text-align: left; }
+    .pnl-table th {
+      color: var(--muted);
+      font-family: var(--sans);
+      font-weight: 650;
+    }
+
+    .pnl-table td:first-child { color: var(--ink); font-family: var(--sans); font-weight: 700; }
+    .pnl-table th:first-child { width: 28%; }
+    .pnl-table th:not(:first-child) { width: 24%; }
+    .pnl-table tr:last-child td { border-bottom: 0; }
+
+    .summary-stack {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .summary-stack > .card { height: 100%; }
+
+    .method-note {
+      margin: 13px 0 0;
+      padding-top: 12px;
+      border-top: 1px solid #edf0f2;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .risk-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .risk-item {
+      padding-bottom: 13px;
+      border-bottom: 1px solid #edf0f2;
+    }
+    .risk-item:last-child { padding-bottom: 0; border-bottom: 0; }
+
+    .risk-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 7px;
+    }
+
+    .risk-label { color: var(--muted); font-size: 12px; }
+    .risk-value { color: var(--ink); font-family: var(--mono); font-size: 13px; font-weight: 750; }
+    .risk-bar { height: 7px; overflow: hidden; border-radius: 999px; background: #edf0f2; }
+    .risk-fill { height: 100%; border-radius: inherit; background: var(--blue); }
+    .risk-fill.gold { background: var(--gold); }
+    .risk-fill.green { background: var(--green); }
+    .risk-detail { margin-top: 6px; color: var(--soft); font-size: 11px; }
+
+    .table-card { padding: 0; overflow: hidden; }
+    .table-card .card-head { padding: 18px 18px 0; }
+    .table-scroll { overflow-x: auto; }
+
+    .data-table {
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+    }
+
+    .data-table th, .data-table td {
+      padding: 11px 14px;
+      border-top: 1px solid #edf0f2;
+      text-align: right;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    .data-table th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: var(--muted);
+      background: #fafbfc;
+      font-family: var(--sans);
+      font-weight: 650;
+    }
+
+    .data-table th.sortable-th { padding: 0; }
+    .table-sort-btn {
+      width: 100%;
+      padding: 11px 14px;
+      border: 0;
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 5px;
+      color: inherit;
+      font: inherit;
+      font-weight: inherit;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .table-sort-btn:hover { color: var(--navy); background: #f1f5f7; }
+    .table-sort-btn:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: -3px;
+    }
+    .sort-indicator {
+      min-width: 1em;
+      color: #9aa6af;
+      font-size: 10px;
+      text-align: center;
+    }
+    .table-sort-btn.active .sort-indicator { color: var(--navy); }
+
+    .data-table th:first-child, .data-table td:first-child { text-align: left; }
+    .data-table tbody tr:not(.category-row):hover td { background: #edf3f7; }
+    .data-table .category-row:hover { background: transparent; }
+    .category-row td {
+      padding: 9px 14px;
+      border-top: 1px solid #dbe3e8;
+      background: #f3f6f8;
+      text-align: left !important;
+      font-family: var(--sans) !important;
+    }
+    .category-summary {
+      position: sticky;
+      left: 14px;
+      z-index: 3;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px 18px;
+      box-sizing: border-box;
+      width: calc(var(--category-sticky-width, 100%) - 28px);
+      min-width: 0;
+      background: #f1f4f6;
+      transition: box-shadow 160ms ease, background 160ms ease;
+    }
+    .positions-scroll.is-scrolled-x .category-summary {
+      background: linear-gradient(90deg, #f1f4f6 0, #f1f4f6 calc(100% - 14px), rgba(228, 235, 240, 0.46) 100%);
+      box-shadow: 5px 0 10px -10px rgba(22, 59, 89, 0.48);
+    }
+    .category-name {
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 780;
+    }
+    .category-total {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .category-total .accounting-money.inline { min-width: 8.2em; color: var(--ink); }
+    .bond-section { margin-top: 18px; }
+    .bond-table { min-width: 1320px; }
+    .bond-table th.bond-yield-col,
+    .bond-table td.bond-yield-col {
+      background: #eaf5fb;
+      font-weight: 800;
+    }
+    .bond-table th.bond-result-col,
+    .bond-table td.bond-result-col {
+      background: #f2f6f9;
+      font-weight: 800;
+    }
+    .bond-table tbody tr:not(.category-row):hover td.bond-yield-col { background: #d3e9f4; }
+    .bond-table tbody tr:not(.category-row):hover td.bond-result-col { background: #e7eef3; }
+    .table-footnote {
+      margin: 0;
+      padding: 11px 14px 13px;
+      border-top: 1px solid #edf0f2;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .symbol {
+      color: var(--navy);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 780;
+    }
+    .position-category-inline {
+      display: inline-flex;
+      align-items: center;
+      min-height: 20px;
+      padding: 2px 7px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+    .positions-table {
+      --positions-label-width: 94px;
+      min-width: 1640px;
+    }
+    .positions-table th, .positions-table td { padding-inline: 9px; }
+    .positions-table .table-sort-btn { padding-inline: 9px; gap: 3px; }
+    .positions-table th:first-child, .positions-table td:first-child {
+      width: var(--positions-label-width);
+      min-width: var(--positions-label-width);
+      max-width: var(--positions-label-width);
+      padding-left: 10px;
+      padding-right: 4px;
+    }
+    .positions-table thead th:first-child,
+    .positions-table tbody tr:not(.category-row) td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 3;
+      background: var(--card);
+    }
+    .positions-table thead th:first-child {
+      z-index: 5;
+      background: #fafbfc;
+    }
+    .positions-table th:nth-child(2), .positions-table td:nth-child(2) {
+      position: sticky;
+      left: var(--positions-label-width);
+      z-index: 2;
+      width: 1%;
+      padding-left: 4px;
+      padding-right: 8px;
+      background: var(--card);
+      box-shadow: 1px 0 0 #dfe4e8, 8px 0 12px -12px rgba(30, 47, 61, 0.42);
+      text-align: left;
+    }
+    .positions-table th:nth-child(2) {
+      z-index: 4;
+      background: #fafbfc;
+    }
+    .positions-table th:nth-child(4), .positions-table td:nth-child(4),
+    .positions-table th:nth-child(10), .positions-table td:nth-child(10),
+    .positions-table th:nth-child(12), .positions-table td:nth-child(12) {
+      width: 1%;
+      padding-left: 2px;
+      padding-right: 5px;
+    }
+    .positions-table th:nth-child(11), .positions-table td:nth-child(11),
+    .positions-table th:nth-child(12), .positions-table td:nth-child(12) {
+      width: 1%;
+    }
+    .positions-table th:nth-child(11), .positions-table td:nth-child(11) {
+      padding-right: 3px;
+    }
+    .positions-table th:nth-child(11) .table-sort-btn { padding-right: 3px; }
+    .positions-table th:nth-child(12), .positions-table td:nth-child(12) {
+      padding-left: 2px;
+      padding-right: 5px;
+    }
+    .positions-table th:nth-child(12) .table-sort-btn {
+      padding-left: 2px;
+      padding-right: 5px;
+    }
+    .positions-table th.comprehensive-cost-col,
+    .positions-table td.comprehensive-cost-col {
+      background: #eaf5fb;
+      font-weight: 800;
+    }
+    .positions-table tbody tr:not(.category-row):hover td.comprehensive-cost-col { background: #d3e9f4; }
+    .positions-table th.unrealized-return-col,
+    .positions-table td.unrealized-return-col { font-weight: 800; }
+    .positions-table th:nth-child(n+9):nth-child(-n+12),
+    .positions-table td:nth-child(n+9):nth-child(-n+12),
+    .positions-table th:nth-child(15), .positions-table td:nth-child(15),
+    .positions-table th:nth-child(16), .positions-table td:nth-child(16) {
+      background: #f2f6f9;
+    }
+    .positions-table th:nth-child(15), .positions-table td:nth-child(15),
+    .positions-table th:nth-child(16), .positions-table td:nth-child(16) {
+      font-weight: 800;
+    }
+    .positions-table th:nth-child(n+9):nth-child(-n+12) .table-sort-btn:hover,
+    .positions-table th:nth-child(15) .table-sort-btn:hover,
+    .positions-table th:nth-child(16) .table-sort-btn:hover {
+      background: #f0f4f7;
+    }
+    .positions-table tbody tr:not(.category-row):hover td:nth-child(n+9):nth-child(-n+12),
+    .positions-table tbody tr:not(.category-row):hover td:nth-child(15),
+    .positions-table tbody tr:not(.category-row):hover td:nth-child(16) {
+      background: #f0f4f7;
+    }
+    .position-category-inline.healthcare { color: #397153; background: #e9f5ec; border-color: #cfe7d5; }
+    .position-category-inline.consumer { color: #80661b; background: #fff6cf; border-color: #eadb9a; }
+    .position-category-inline.financial { color: #76570c; background: #f7e8b6; border-color: #d8b950; }
+    .position-category-inline.technology { color: #2f638b; background: #e8f2fb; border-color: #c8deef; }
+    .position-category-inline.us-etf { color: #5e527e; background: #f0edf8; border-color: #d8d1e8; }
+    .position-category-inline.international-etf { color: #3d7069; background: #e8f4f1; border-color: #c8e1db; }
+    .position-category-inline.commodity-etf { color: #845843; background: #f7eee8; border-color: #e3cfc2; }
+    .position-category-inline.cash-etf { color: #5d6872; background: #eef1f3; border-color: #d7dde1; }
+    .position-category-inline.other { color: #5d6872; background: #f3f4f5; border-color: #dde1e4; }
+
+    .asset-chip, .order-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 23px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: #edf3f7;
+      color: #446277;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 750;
+    }
+
+    .order-chip.buy { background: var(--green-soft); color: var(--green); }
+    .order-chip.sell { background: var(--red-soft); color: var(--red); }
+    .order-chip.replaced { background: #fff4df; color: #886319; }
+
+    .empty-row {
+      padding: 26px !important;
+      color: var(--muted);
+      text-align: center !important;
+      font-family: var(--sans) !important;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 26px 2px 0;
+      border-top: 1px solid rgba(22,59,89,.16);
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .footer-head { margin-bottom: 16px; }
+    .footer-kicker {
+      margin: 0 0 3px;
+      color: var(--gold);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .footer-title { margin: 0; color: var(--navy); font-size: 15px; font-weight: 760; }
+    .footer-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid rgba(22,59,89,.10);
+      border-bottom: 1px solid rgba(22,59,89,.10);
+    }
+    .footer-meta-item {
+      min-width: 0;
+      padding: 13px 16px 14px 0;
+      border-right: 1px solid rgba(22,59,89,.10);
+    }
+    .footer-meta-item + .footer-meta-item { padding-left: 16px; }
+    .footer-meta-item:last-child { border-right: 0; padding-right: 0; }
+    .footer-meta-label { display: block; margin-bottom: 4px; color: var(--soft); font-size: 9px; letter-spacing: .08em; }
+    .footer-meta-value { display: block; color: #465563; font-size: 11px; font-weight: 650; line-height: 1.55; }
+    .footer-note { margin: 13px 0 0; color: var(--soft); line-height: 1.65; }
+    .footer-disclaimer { margin: 5px 0 0; color: #7a8792; line-height: 1.65; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1080px) {
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .summary-stack { grid-template-columns: 1fr; }
+      .allocation-donuts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 24px, 1440px); padding-top: 12px; }
+      .workspace-nav { top: 6px; gap: 10px; margin-bottom: 14px; padding-left: 10px; }
+      .workspace-brand-text { display: none; }
+      .workspace-nav-link { padding-inline: 9px; }
+      .topbar { flex-direction: column; gap: 14px; }
+      .status-cluster { align-items: flex-start; min-width: 0; }
+      .status-row { justify-content: flex-start; flex-wrap: wrap; }
+      .asof { text-align: left; }
+      .kpi-grid { grid-template-columns: 1fr; gap: 10px; }
+      .kpi-card { min-height: 116px; }
+      .card { padding: 15px; }
+      .card-head, .section-head { flex-direction: column; align-items: flex-start; }
+      .section-note { text-align: left; }
+      .periods { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); }
+      .period-btn { min-width: 0; padding-inline: 4px; }
+      .benchmark-toggle { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .footer-meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .footer-meta-item:nth-child(2) { border-right: 0; padding-right: 0; }
+      .footer-meta-item:nth-child(3), .footer-meta-item:nth-child(4) { border-top: 1px solid rgba(22,59,89,.10); }
+      .footer-meta-item:nth-child(3) { padding-left: 0; }
+    }
+
+    @media (max-width: 520px) {
+      .allocation-donuts-grid { grid-template-columns: 1fr; }
+      .allocation-mini-title { min-height: 0; }
+    }
+
+    /* v1.17 editorial light dashboard language */
+    body {
+      background:
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(22,59,89,.022) calc(100% - 1px)),
+        var(--page);
+      background-size: 25% 100%;
+    }
+
+    .shell {
+      width: min(1520px, 100%);
+      padding: 0 clamp(22px, 3.4vw, 52px) 64px;
+    }
+
+    .workspace-nav {
+      top: 0;
+      min-height: 78px;
+      margin: 0 0 26px;
+      padding: 14px 0;
+      border: 0;
+      border-bottom: 1px solid rgba(22,59,89,.12);
+      border-radius: 0;
+      background: rgba(243,245,246,.94);
+      box-shadow: none;
+    }
+
+    .workspace-brand { gap: 13px; }
+    .workspace-brand-mark {
+      width: 35px;
+      height: 35px;
+      border: 1px solid rgba(22,59,89,.72);
+      border-radius: 0;
+      background: rgba(255,255,255,.55);
+    }
+    .workspace-brand-mark::before,
+    .workspace-brand-mark::after {
+      left: 7px;
+      right: auto;
+      height: 2px;
+      background: var(--gold);
+    }
+    .workspace-brand-mark::before { width: 17px; top: 22px; transform: rotate(-31deg); }
+    .workspace-brand-mark::after { width: 10px; left: 19px; top: 14px; transform: rotate(37deg); }
+    .workspace-brand-subtitle { letter-spacing: .16em; }
+    .workspace-nav-links { gap: 0; }
+    .workspace-nav-link {
+      min-height: 40px;
+      padding: 9px 12px;
+      border-radius: 0;
+      color: #5e6b76;
+      transition: color 120ms ease, background 120ms ease, box-shadow 120ms ease;
+    }
+    .workspace-nav-link:hover,
+    .workspace-nav-link:focus-visible {
+      color: var(--navy);
+      background: rgba(255,255,255,.72);
+      box-shadow: inset 0 -2px 0 rgba(47,111,159,.45);
+      outline: none;
+    }
+    .workspace-nav-link[aria-current="page"] {
+      color: var(--navy);
+      background: rgba(255,255,255,.82);
+      box-shadow: inset 0 -2px 0 var(--gold);
+    }
+
+    .portfolio-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 330px);
+      align-items: start;
+      column-gap: 32px;
+      row-gap: 0;
+      margin: 0 0 18px;
+      padding: clamp(34px, 4.5vw, 58px) clamp(28px, 4vw, 54px) 0;
+      border: 1px solid rgba(22,59,89,.13);
+      background:
+        radial-gradient(circle at 38% 38%, rgba(255,255,255,.98) 0, rgba(255,255,255,.78) 38%, rgba(255,255,255,0) 70%),
+        linear-gradient(90deg, transparent 0, transparent calc(25% - 1px), rgba(22,59,89,.035) 25%, transparent calc(25% + 1px)),
+        var(--surface-soft, #eef3f6);
+    }
+    .portfolio-hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      right: clamp(28px, 5vw, 76px);
+      width: 1px;
+      height: 72%;
+      background: linear-gradient(rgba(189,140,40,.52), transparent);
+    }
+    .portfolio-intro {
+      grid-column: 1;
+      grid-row: 1;
+      min-width: 0;
+    }
+    .portfolio-hero .eyebrow { margin-bottom: 14px; letter-spacing: .17em; }
+    .portfolio-hero h1 {
+      color: var(--ink);
+      font-size: clamp(18px, 2vw, 25px);
+      font-weight: 590;
+      letter-spacing: .055em;
+    }
+    .portfolio-value-block {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      min-width: 0;
+      margin-top: clamp(17px, 2.6vw, 31px);
+    }
+    .portfolio-nav-value {
+      width: 100%;
+      max-width: none;
+      color: var(--navy);
+      font-family: var(--mono);
+      font-variant-numeric: tabular-nums;
+    }
+    .portfolio-nav-value .accounting-money {
+      grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr);
+      column-gap: clamp(12px, 2vw, 26px);
+      align-items: baseline;
+    }
+    .portfolio-nav-value .accounting-symbol {
+      grid-column: 1;
+      font-size: clamp(18px, 2.1vw, 30px);
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .portfolio-nav-value .accounting-amount {
+      grid-column: 2;
+      justify-self: center;
+      font-size: clamp(54px, 7.4vw, 108px);
+      font-weight: 650;
+      line-height: .95;
+      letter-spacing: -.06em;
+    }
+    .portfolio-nav-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 24px;
+      margin-top: 20px;
+      color: var(--soft);
+      font-size: 11px;
+    }
+    .portfolio-nav-note .kpi-note-line { min-height: 0; }
+    .portfolio-nav-note .accounting-money.inline { min-width: 8em; color: var(--muted); }
+
+    .portfolio-hero .status-cluster {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: start;
+      min-width: 0;
+      padding-top: 2px;
+    }
+    .portfolio-hero .status-pill {
+      min-height: 30px;
+      padding: 5px 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .portfolio-hero .asof {
+      max-width: 330px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      line-height: 1.7;
+    }
+
+    .portfolio-hero .kpi-grid {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      margin: clamp(32px, 4vw, 48px) calc(clamp(28px, 4vw, 54px) * -1) 0;
+      border-top: 1px solid rgba(22,59,89,.12);
+    }
+    .portfolio-hero .kpi-card {
+      min-height: 132px;
+      padding: 20px clamp(18px, 2.2vw, 30px);
+      border: 0;
+      border-right: 1px solid rgba(22,59,89,.10);
+      border-radius: 0;
+      background: rgba(255,255,255,.62);
+      box-shadow: none;
+    }
+    .portfolio-hero .kpi-card:last-child { border-right: 0; }
+    .portfolio-hero .kpi-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 760;
+      letter-spacing: .07em;
+    }
+    .portfolio-hero .kpi-value {
+      margin: 10px 0 7px;
+      font-size: clamp(20px, 2.2vw, 29px);
+      font-weight: 700;
+      letter-spacing: -.045em;
+    }
+    .kpi-value-pair {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .kpi-value-pair .kpi-value { min-width: 0; flex: 1 1 auto; }
+    .kpi-rate {
+      flex: 0 0 auto;
+      padding-left: 12px;
+      border-left: 1px solid var(--border);
+      font: 750 14px var(--mono);
+      white-space: nowrap;
+    }
+    .portfolio-hero .kpi-note { line-height: 1.55; }
+
+    .notice {
+      margin: 0 0 28px;
+      padding: 12px 14px;
+      border: 0;
+      border-left: 3px solid rgba(189,140,40,.68);
+      border-radius: 0;
+      background: rgba(255,255,255,.52);
+      color: #56636e;
+    }
+    .notice-icon { border-radius: 0; background: var(--blue-soft); }
+
+    .section { margin-top: 34px; }
+    .section-head {
+      align-items: flex-end;
+      margin: 0 0 14px;
+      padding: 0 2px 12px;
+      border-bottom: 1px solid rgba(22,59,89,.13);
+    }
+    .section-title { font-size: 21px; font-weight: 760; letter-spacing: -.025em; }
+    .kpi-card,
+    .card {
+      border-color: rgba(22,59,89,.13);
+      border-radius: 3px;
+      box-shadow: none;
+    }
+    .card { padding: 22px; }
+    .table-card { padding: 0; }
+    .table-card .card-head { padding: 22px 22px 0; }
+    .card-title { color: var(--navy); font-size: 16px; }
+    .periods,
+    .benchmark-toggle { border-radius: 2px; background: #f2f5f7; }
+    .period-btn,
+    .benchmark-btn { border-radius: 1px; }
+    .tooltip { border-radius: 3px; }
+    .category-row td { background: #f1f4f6; }
+    .data-table tbody tr:not(.category-row):hover td { background: #e5edf2; }
+    footer { margin-top: 34px; }
+
+    @media (max-width: 1080px) {
+      .portfolio-hero { grid-template-columns: minmax(0, 1fr) minmax(220px, 280px); }
+      .portfolio-hero .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .portfolio-hero .kpi-card:nth-child(2) { border-right: 0; }
+      .portfolio-hero .kpi-card:nth-child(-n+2) { border-bottom: 1px solid rgba(22,59,89,.10); }
+    }
+
+    @media (max-width: 720px) {
+      body { background-size: 50% 100%; }
+      .shell { width: 100%; padding: 0 12px 44px; }
+      .workspace-nav { top: 0; min-height: 68px; margin-bottom: 14px; padding-block: 10px; }
+      .workspace-nav-link { padding-inline: 9px; }
+      .workspace-nav-link[aria-disabled="true"] { display: none; }
+      .portfolio-hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 30px 22px 0;
+      }
+      .portfolio-intro { grid-column: 1; grid-row: 1; }
+      .portfolio-value-block { grid-column: 1; grid-row: 2; margin-top: 0; }
+      .portfolio-hero::after { right: 28px; }
+      .portfolio-nav-value .accounting-amount { font-size: clamp(42px, 13vw, 67px); }
+      .portfolio-nav-note { gap: 5px 16px; }
+      .portfolio-hero .status-cluster { grid-column: 1; grid-row: 3; align-items: flex-start; }
+      .portfolio-hero .asof { max-width: none; text-align: left; }
+      .portfolio-hero .kpi-grid {
+        grid-row: 4;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 10px -22px 0;
+      }
+      .portfolio-hero .kpi-card {
+        min-height: 118px;
+        padding: 17px 15px;
+      }
+      .portfolio-hero .kpi-card:nth-child(2) { border-right: 0; }
+      .portfolio-hero .kpi-card:nth-child(-n+2) { border-bottom: 1px solid rgba(22,59,89,.10); }
+      .portfolio-hero .kpi-value { font-size: clamp(18px, 5vw, 24px); }
+      .kpi-value-pair { display: block; }
+      .kpi-rate { display: block; margin-top: -2px; padding: 0; border: 0; font-size: 12px; }
+      .portfolio-hero .kpi-note-compact { font-size: 10px; letter-spacing: -.035em; white-space: nowrap; }
+      .notice { margin-bottom: 24px; font-size: 12px; }
+      .section { margin-top: 30px; }
+      .section-head { align-items: flex-start; }
+      .card { padding: 16px; }
+      .table-card { padding: 0; }
+      .table-card .card-head { padding: 16px 16px 0; }
+    }
+
+    @media (max-width: 390px) {
+      .portfolio-nav-value .accounting-amount { font-size: 41px; }
+      .portfolio-nav-value .accounting-symbol { font-size: 15px; }
+      .portfolio-hero .kpi-label { letter-spacing: .035em; }
+      .portfolio-hero .kpi-note-compact { font-size: 9px; letter-spacing: -.045em; }
+    }
+
+    @media (max-width: 360px) {
+      .portfolio-nav-value .accounting-amount { font-size: 37px; }
+      .portfolio-nav-value .accounting-symbol { font-size: 14px; }
+      .portfolio-hero .kpi-grid { grid-template-columns: 1fr; }
+      .portfolio-hero .kpi-card { border-right: 0; border-bottom: 1px solid rgba(22,59,89,.10); }
+      .portfolio-hero .kpi-card:last-child { border-bottom: 0; }
+      .portfolio-hero .kpi-note-compact { font-size: 10px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .shell { width: 100%; padding: 0; }
+      .kpi-card, .card { box-shadow: none; break-inside: avoid; }
+      .table-scroll { overflow: visible; }
+      .data-table { min-width: 0; }
+      .positions-table th:first-child, .positions-table td:first-child,
+      .positions-table th:nth-child(2), .positions-table td:nth-child(2) {
+        position: static;
+        box-shadow: none;
+      }
+      .periods, .notice { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="workspace-nav" aria-label="全局导航">
+      <a class="workspace-brand" href="index.html" aria-label="投资工作台首页">
+        <span class="workspace-brand-mark" aria-hidden="true"></span>
+        <span class="workspace-brand-text"><span class="workspace-brand-title">投资工作台</span><span class="workspace-brand-subtitle">FAMILY INVESTMENT WORKSPACE</span></span>
+      </a>
+      <div class="workspace-nav-scroll">
+        <div class="workspace-nav-links">
+          <a class="workspace-nav-link" href="index.html">首页</a>
+          <a class="workspace-nav-link" href="dashboard.html" aria-current="page">投资组合</a>
+          <span class="workspace-nav-link" aria-disabled="true">市场监控</span>
+          <span class="workspace-nav-link" aria-disabled="true">证券研究</span>
+          <span class="workspace-nav-link" aria-disabled="true">期权雷达</span>
+          <span class="workspace-nav-link" aria-disabled="true">交易决策</span>
+        </div>
+      </div>
+    </nav>
+
+    <header class="topbar portfolio-hero">
+      <div class="portfolio-intro">
+        <p class="eyebrow">家庭投资组合概况</p>
+        <h1>投资组合净值</h1>
+      </div>
+      <div class="portfolio-value-block">
+        <div class="portfolio-nav-value" id="kpiNav">—</div>
+        <div class="portfolio-nav-note" id="kpiNavNote">Net Liquidation Value</div>
+      </div>
+      <div class="status-cluster">
+        <div class="status-row">
+          <div class="status-pill"><span class="status-dot" aria-hidden="true"></span><span id="statusText">正在载入家庭快照</span></div>
+        </div>
+        <div class="asof" id="asOfText">—</div>
+      </div>
+      <section class="kpi-grid" aria-label="账户关键指标">
+      <article class="kpi-card">
+        <div class="kpi-label">现金</div>
+        <div class="kpi-value" id="kpiCash">—</div>
+        <div class="kpi-note" id="kpiCashNote">账户现金余额</div>
+      </article>
+      <article class="kpi-card">
+        <div class="kpi-label">现金等价物</div>
+        <div class="kpi-value" id="kpiCashEquivalent">—</div>
+        <div class="kpi-note" id="kpiCashEquivalentNote">仅包含 BOXX</div>
+      </article>
+      <article class="kpi-card">
+        <div class="kpi-label">未实现盈亏</div>
+        <div class="kpi-value" id="kpiUnrealizedPnl">—</div>
+        <div class="kpi-note">IBKR 账户 BASE 汇总</div>
+      </article>
+      <article class="kpi-card">
+        <div class="kpi-label">当日盈亏</div>
+        <div class="kpi-value-pair"><div class="kpi-value" id="kpiDailyPnl">—</div><div class="kpi-rate" id="kpiDailyPnlRate">—</div></div>
+        <div class="kpi-note kpi-note-compact">金额：daily P&amp;L｜百分比：1D TWR</div>
+      </article>
+      </section>
+    </header>
+
+    <aside class="notice" aria-label="数据模式说明">
+      <span class="notice-icon">i</span>
+      <div><strong>当前为家庭版静态仪表盘。</strong> 页面仅包含一份经筛选的只读快照，不连接券商、本机数据库或实时账户接口，也不保存浏览历史。</div>
+    </aside>
+
+    <section class="section" aria-labelledby="performanceTitle">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="performanceTitle">账户表现</h2>
+          <p class="section-note">区间按钮同时更新投资组合业绩与净值曲线</p>
+        </div>
+        <div class="periods" role="group" aria-label="表现区间">
+          <button class="period-btn" data-period="1M" aria-pressed="true">1M</button>
+          <button class="period-btn" data-period="3M" aria-pressed="false">3M</button>
+          <button class="period-btn" data-period="YTD" aria-pressed="false">YTD</button>
+          <button class="period-btn" data-period="1Y" aria-pressed="false">1Y</button>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <h3 class="card-title">IBKR 投资组合业绩</h3>
+              <p class="card-subtitle" id="returnSubtitle">账户 TWR；指数为价格回报，不含股息</p>
+            </div>
+            <div class="benchmark-toggle" role="group" aria-label="选择对比指数">
+              <button class="benchmark-btn" data-benchmark="SPX" aria-pressed="true">标普 500</button>
+              <button class="benchmark-btn" data-benchmark="NDX" aria-pressed="false">纳斯达克 100</button>
+              <button class="benchmark-btn" data-benchmark="ACWI" aria-pressed="false">MSCI ACWI</button>
+            </div>
+          </div>
+          <div class="chart-summary">
+            <span class="chart-summary-value" id="returnValue">—</span>
+            <span class="chart-summary-label" id="returnLabel">账户所选区间累计收益</span>
+          </div>
+          <div class="comparison-legend" aria-label="收益曲线图例">
+            <span class="comparison-legend-item"><span class="series-key"></span><span>账户</span><span class="comparison-legend-value" id="accountLegendValue">—</span></span>
+            <span class="comparison-legend-item"><span class="series-key benchmark"></span><span id="benchmarkLegendName">标普 500</span><span class="comparison-legend-value" id="benchmarkLegendValue">—</span></span>
+          </div>
+          <div class="chart-wrap" id="returnChartWrap">
+            <svg class="chart" id="returnChart" role="img" aria-label="IBKR 投资组合业绩与标普 500 累计收益对比曲线"></svg>
+            <div class="tooltip" id="returnTooltip">
+              <div class="tooltip-date"></div>
+              <div class="tooltip-comparison">
+                <div class="tooltip-series-row"><span class="tooltip-series-key"></span><span>账户</span><span class="tooltip-series-value" id="returnTooltipAccount"></span></div>
+                <div class="tooltip-series-row"><span class="tooltip-series-key benchmark"></span><span id="returnTooltipBenchmarkName">标普 500</span><span class="tooltip-series-value" id="returnTooltipBenchmark"></span></div>
+                <div class="tooltip-series-row delta"><span class="tooltip-delta-key">Δ</span><span id="returnTooltipDeltaName">相对 标普 500</span><span class="tooltip-series-value" id="returnTooltipDelta"></span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <h3 class="card-title">IBKR 投资组合净值</h3>
+              <p class="card-subtitle" id="navSubtitle">组合 NAV；家庭版仅保留当前静态快照</p>
+            </div>
+          </div>
+          <div class="chart-summary">
+            <span class="chart-summary-value" id="navValue">—</span>
+            <span class="chart-summary-label" id="navLabel">所选区间净资产变化</span>
+          </div>
+          <div class="chart-wrap" id="navChartWrap">
+            <svg class="chart" id="navChart" role="img" aria-label="IBKR 投资组合净值曲线"></svg>
+            <div class="tooltip" id="navTooltip"><div class="tooltip-date"></div><div class="tooltip-value"></div></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="allocationTitle">
+      <div class="section-head">
+        <h2 class="section-title" id="allocationTitle">资产配置概况</h2>
+        <p class="section-note">各持仓按市值计；国债合并展示，少量应计差额单列</p>
+      </div>
+
+      <div class="grid-allocation">
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <h3 class="card-title">配置比例</h3>
+              <p class="card-subtitle">将鼠标移至色块，可查看标的、市值及所占比例</p>
+            </div>
+          </div>
+          <div class="allocation-donuts-grid">
+            <div class="allocation-mini-chart">
+              <h4 class="allocation-mini-title">资产配置</h4>
+              <div class="donut-wrap">
+                <svg class="donut" id="allocationDonut" viewBox="0 0 220 220" role="img" aria-label="资产配置饼图"></svg>
+                <div class="donut-center">
+                  <div class="donut-center-label">净资产</div>
+                  <div class="donut-center-value" id="donutTotal">—</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="allocation-mini-chart">
+              <h4 class="allocation-mini-title">投资组合比例</h4>
+              <div class="donut-wrap">
+                <svg class="donut" id="portfolioAllocationDonut" viewBox="0 0 220 220" role="img" aria-label="投资组合分类比例饼图"></svg>
+                <div class="donut-center">
+                  <div class="donut-center-label">投资组合</div>
+                  <div class="donut-center-value" id="portfolioAllocationTotal">—</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="allocation-mini-chart">
+              <h4 class="allocation-mini-title">股票持仓比例</h4>
+              <div class="donut-wrap">
+                <svg class="donut" id="stockAllocationDonut" viewBox="0 0 220 220" role="img" aria-label="股票持仓比例饼图"></svg>
+                <div class="donut-center">
+                  <div class="donut-center-label">股票与 ETF</div>
+                  <div class="donut-center-value" id="stockAllocationTotal">—</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="allocation-mini-chart">
+              <h4 class="allocation-mini-title">股票持仓比例（排除 BOXX）</h4>
+              <div class="donut-wrap">
+                <svg class="donut" id="stockAllocationExBoxxDonut" viewBox="0 0 220 220" role="img" aria-label="排除 BOXX 的股票持仓比例饼图"></svg>
+                <div class="donut-center">
+                  <div class="donut-center-label">排除 BOXX</div>
+                  <div class="donut-center-value" id="stockAllocationExBoxxTotal">—</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="allocation-mini-chart">
+              <h4 class="allocation-mini-title">类别持仓比例（排除 BOXX）</h4>
+              <div class="donut-wrap">
+                <svg class="donut" id="categoryAllocationExBoxxDonut" viewBox="0 0 220 220" role="img" aria-label="按持仓类别汇总并排除 BOXX 的比例饼图"></svg>
+                <div class="donut-center">
+                  <div class="donut-center-label">分类汇总</div>
+                  <div class="donut-center-value" id="categoryAllocationExBoxxTotal">—</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="summary-stack">
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <h3 class="card-title">盈亏汇总</h3>
+                <p class="card-subtitle">已实现为年初至今；未实现为当前持仓</p>
+              </div>
+            </div>
+            <div class="pnl-scroll">
+              <table class="pnl-table">
+                <thead>
+                  <tr>
+                    <th scope="col">资产</th>
+                    <th scope="col">已实现</th>
+                    <th scope="col">未实现</th>
+                    <th scope="col">合计</th>
+                  </tr>
+                </thead>
+                <tbody id="pnlBody"></tbody>
+              </table>
+            </div>
+            <p class="method-note" id="pnlMethodNote">—</p>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <h3 class="card-title">风险监控</h3>
+                <p class="card-subtitle">风险资产集中度、保证金和待成交资金</p>
+              </div>
+            </div>
+            <div class="risk-grid" id="riskGrid"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="positionsTitle">
+      <div class="section-head">
+        <h2 class="section-title" id="positionsTitle">现时股票与 ETF 投资情况汇总</h2>
+        <p class="section-note" id="positionsNote">按参考表原始顺序排列</p>
+      </div>
+      <article class="card table-card">
+        <div class="table-scroll positions-scroll" id="positionsScroll">
+          <table class="data-table positions-table">
+            <caption class="sr-only">当前股票与 ETF 持仓明细</caption>
+            <thead>
+              <tr>
+                <th scope="col">标签</th>
+                <th scope="col">标的</th>
+                <th scope="col" class="sortable-th" data-position-sort-heading="marketValue" aria-sort="none">
+                  <button type="button" class="table-sort-btn" data-position-sort="marketValue" data-sort-label="净清算值" aria-label="按净清算值排序">
+                    <span>净清算值</span><span class="sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col">净清算值%</th>
+                <th scope="col">数量</th>
+                <th scope="col" class="comprehensive-cost-col" title="（当前成本基础－累计税后股息－累计已实现平仓盈亏）÷ 当前数量">综合成本</th>
+                <th scope="col">成本价</th>
+                <th scope="col">现价</th>
+                <th scope="col" class="sortable-th" data-position-sort-heading="dailyPnl" aria-sort="none">
+                  <button type="button" class="table-sort-btn" data-position-sort="dailyPnl" data-sort-label="当日盈亏" aria-label="按当日盈亏排序">
+                    <span>当日盈亏</span><span class="sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col" class="sortable-th" data-position-sort-heading="dailyPnlRate" aria-sort="none" title="IBKR 市场快照直接返回的一日涨跌百分比">
+                  <button type="button" class="table-sort-btn" data-position-sort="dailyPnlRate" data-sort-label="当日盈亏%" aria-label="按当日盈亏%排序">
+                    <span>当日盈亏%</span><span class="sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col" class="sortable-th" data-position-sort-heading="unrealizedPnl" aria-sort="none">
+                  <button type="button" class="table-sort-btn" data-position-sort="unrealizedPnl" data-sort-label="未实现盈亏" aria-label="按未实现盈亏排序">
+                    <span>未实现盈亏</span><span class="sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col" class="sortable-th unrealized-return-col" data-position-sort-heading="returnRate" aria-sort="none">
+                  <button type="button" class="table-sort-btn" data-position-sort="returnRate" data-sort-label="未实现盈亏%" aria-label="按未实现盈亏%排序">
+                    <span>未实现盈亏%</span><span class="sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col" class="sortable-th" data-position-sort-heading="dividendTotal" aria-sort="none" title="累计现金股息减代扣税后的净到账金额">
+                  <button type="button" class="table-sort-btn" data-position-sort="dividendTotal" data-sort-label="股息合计" aria-label="按股息合计排序">
+                    <span>股息合计</span><span class="sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col" class="sortable-th" data-position-sort-heading="realizedPnl" aria-sort="none" title="逐笔交易已实现盈亏的全生命周期合计">
+                  <button type="button" class="table-sort-btn" data-position-sort="realizedPnl" data-sort-label="平仓总计" aria-label="按平仓总计排序">
+                    <span>平仓总计</span><span class="sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col" class="sortable-th" data-position-sort-heading="aggregateReturn" aria-sort="none" title="未实现盈亏、税后股息与平仓总计的加总；不重复计入当日盈亏">
+                  <button type="button" class="table-sort-btn" data-position-sort="aggregateReturn" data-sort-label="归总收益" aria-label="按归总收益排序">
+                    <span>归总收益</span><span class="sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+                <th scope="col" class="sortable-th" data-position-sort-heading="annualizedTotalReturn" aria-sort="none" title="逐笔净现金流、税后股息与期末市值计算的年化 XIRR">
+                  <button type="button" class="table-sort-btn" data-position-sort="annualizedTotalReturn" data-sort-label="总回报率" aria-label="按总回报率排序">
+                    <span>总回报率</span><span class="sort-indicator" aria-hidden="true">↕</span>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="positionsBody"></tbody>
+          </table>
+        </div>
+        <p class="table-footnote">当日盈亏%直接取 IBKR 市场快照的 <code>cumulative_perf_1d.change_pct</code>，缺失时使用同一接口的 <code>change.change_pct</code>；接口未返回时显示「—」，不在页面内推算。综合成本＝（当前成本基础－累计税后股息－累计已实现平仓盈亏）÷当前数量；归总收益＝未实现盈亏＋股息合计＋平仓总计，不重复加入当日盈亏；总回报率为逐笔净现金流、税后股息与期末市值计算的年化 XIRR。当前成本基础与期末市值取 IBKR 2026-07-20 持仓快照；税后股息及平仓总计由覆盖 2024-11-12 至 2026-07-03 的 IBKR 活动报表逐笔汇总，Assets-20260719.xlsx 用于交叉核对并补齐报表截止日后的已知交易。IBKR 股票奖励含非现金变动，其年化回报为估算；分类仅用于仪表盘展示，不构成 IPS 或 Playbook 修订。</p>
+      </article>
+    </section>
+
+    <section class="section bond-section" aria-labelledby="bondsTitle">
+      <div class="section-head">
+        <h2 class="section-title" id="bondsTitle">现时债券投资情况汇总</h2>
+        <p class="section-note" id="bondsNote">附息国债与 STRIPS · 按到期日排列</p>
+      </div>
+      <article class="card table-card">
+        <div class="table-scroll">
+          <table class="data-table bond-table">
+            <caption class="sr-only">当前美国国债与 STRIPS 持仓明细</caption>
+            <thead>
+              <tr>
+                <th scope="col">债券</th>
+                <th scope="col">类型</th>
+                <th scope="col">面值</th>
+                <th scope="col">票息</th>
+                <th scope="col" class="bond-yield-col" title="买入时的到期收益率；来自 Assets 持仓息率">实际息率</th>
+                <th scope="col">购买日期</th>
+                <th scope="col">成本价</th>
+                <th scope="col">现价</th>
+                <th scope="col">净清算值</th>
+                <th scope="col" title="已实际派发的息票 / 从买入至到期的预计息票总额">已派利息</th>
+                <th scope="col" class="bond-result-col">净资产权重</th>
+                <th scope="col" class="bond-result-col">未实现盈亏</th>
+              </tr>
+            </thead>
+            <tbody id="bondsBody"></tbody>
+          </table>
+        </div>
+        <p class="table-footnote">直接美债与 STRIPS 按持有到期逻辑管理。实际息率为 Assets 的买入到期收益率；已派利息左侧为 IBKR 活动报表截至 2026-07-03 的实际息票合计，右侧为从购买日至到期日按半年付息计划计算的预计息票总额，不含本金；STRIPS 没有现金票息，其折价增值不列入利息。数量、价格、净清算值与盈亏以 IBKR 当前持仓为准。</p>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="ordersTitle">
+      <div class="section-head">
+        <h2 class="section-title" id="ordersTitle">当前挂单</h2>
+        <p class="section-note">REPLACED 且剩余数量大于零的订单按有效挂单展示；状态保留 IBKR 原值</p>
+      </div>
+      <article class="card table-card">
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="sr-only">当前有效挂单列表</caption>
+            <thead>
+              <tr>
+                <th scope="col">标的</th>
+                <th scope="col">方向</th>
+                <th scope="col">类型</th>
+                <th scope="col">限价</th>
+                <th scope="col">总数量</th>
+                <th scope="col">已成交</th>
+                <th scope="col">剩余</th>
+                <th scope="col">剩余名义金额</th>
+                <th scope="col">状态</th>
+                <th scope="col">下单时间 UTC</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <div class="footer-head">
+        <p class="footer-kicker">DATA &amp; METHOD</p>
+        <h2 class="footer-title">数据与口径</h2>
+      </div>
+      <div class="footer-meta-grid">
+        <div class="footer-meta-item">
+          <span class="footer-meta-label">账户数据</span>
+          <span class="footer-meta-value">IBKR 只读账户、持仓、有效挂单、PortfolioAnalyst 与行情快照</span>
+        </div>
+        <div class="footer-meta-item">
+          <span class="footer-meta-label">历史复核</span>
+          <span class="footer-meta-value" id="footerStatementHistory">—</span>
+        </div>
+        <div class="footer-meta-item">
+          <span class="footer-meta-label">收益率口径</span>
+          <span class="footer-meta-value" id="footerReturnMethod">—</span>
+        </div>
+        <div class="footer-meta-item">
+          <span class="footer-meta-label">参考资料</span>
+          <span class="footer-meta-value">Assets-20260719.xlsx · IPS v1.8 · Playbook</span>
+        </div>
+      </div>
+      <p class="footer-note">指数对比使用 IBKR 的 SPX、NDX 与 CBOE MSCI ACWI（MXACW）日线价格回报，不含股息；债券利息与股票生命周期收益以 IBKR 活动报表逐笔复核。</p>
+      <p class="footer-disclaimer">本页面为公开家庭版只读静态快照，不包含账户号、订单 ID、成交 ID、券商凭证或本机历史档案。行情及盈亏可能受订阅、交易时段与 IBKR 处理延迟影响；不构成交易建议。</p>
+    </footer>
+  </main>
+
+  <script id="ibkrLifecycleMetrics" type="application/json">
+    {
+      "asOf": "2026-07-20",
+      "statementThrough": "2026-07-03",
+      "excelAsOf": "2026-07-19",
+      "currency": "USD",
+      "metrics": {
+        "PFE": {"comprehensiveCost":20.9589658175,"dividendTotal":352.17,"realizedPnl":146.61757,"annualizedTotalReturn":0.1152049882},
+        "KO": {"comprehensiveCost":57.8357020689,"dividendTotal":98,"realizedPnl":274.972407,"annualizedTotalReturn":0.2941073945},
+        "MCD": {"comprehensiveCost":264.0775035,"dividendTotal":82.48,"realizedPnl":549.814595,"annualizedTotalReturn":0.0289734838},
+        "KHC": {"comprehensiveCost":25.6956714033,"dividendTotal":255.6,"realizedPnl":-88.159768,"annualizedTotalReturn":0.0040722653},
+        "IBKR": {"comprehensiveCost":69.1662251858,"dividendTotal":4.4,"realizedPnl":0,"annualizedTotalReturn":0.3347683645,"estimated":true,"note":"含 IBKR 股票奖励的非现金取得与返还；2026-07-03 后预扣股份缺少活动报表逐笔明细，因此 XIRR 为估算。"},
+        "BRK B": {"comprehensiveCost":468.11376667,"dividendTotal":0,"realizedPnl":0,"annualizedTotalReturn":0.4274132044},
+        "MSFT": {"comprehensiveCost":388.4128596333,"dividendTotal":20.47,"realizedPnl":9.009511,"annualizedTotalReturn":0.0641925945},
+        "NVDA": {"comprehensiveCost":31.9880078,"dividendTotal":1.79,"realizedPnl":930.914761,"annualizedTotalReturn":0.3592919475},
+        "VOO": {"comprehensiveCost":632.4004675136,"dividendTotal":15.02,"realizedPnl":0,"annualizedTotalReturn":0.185888174},
+        "EWJV": {"comprehensiveCost":35.8207566633,"dividendTotal":120.55,"realizedPnl":0,"annualizedTotalReturn":0.2984540641},
+        "SCHF": {"comprehensiveCost":22.07515,"dividendTotal":15.17,"realizedPnl":0,"annualizedTotalReturn":0.2645779238},
+        "VGK": {"comprehensiveCost":77.10965,"dividendTotal":21.24,"realizedPnl":0,"annualizedTotalReturn":0.1925108152},
+        "EWL": {"comprehensiveCost":54.05725,"dividendTotal":9.81,"realizedPnl":0,"annualizedTotalReturn":0.2387017759},
+        "GLDM": {"comprehensiveCost":82.602164,"dividendTotal":0,"realizedPnl":0,"annualizedTotalReturn":-0.0677276083},
+        "SIVR": {"comprehensiveCost":83.331849,"dividendTotal":0,"realizedPnl":41.01781,"annualizedTotalReturn":-0.5229046063},
+        "BOXX": {"comprehensiveCost":116.0425555377,"dividendTotal":0,"realizedPnl":180.683351,"annualizedTotalReturn":0.0384276289}
+      }
+    }
+  </script>
+
+  <script id="ibkrBenchmarkHistory" type="application/json">{"asOf":"2026-07-17","fetchedForSnapshot":"2026-07-20","source":"Interactive Brokers price history","returnType":"price-return-ex-dividends","delayedSeconds":900,"series":{"SPX":{"symbol":"SPX","label":"标普 500","exchange":"CBOE","dates":["20250717","20250718","20250721","20250722","20250723","20250724","20250725","20250728","20250729","20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251226","20251229","20251230","20251231","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717"],"closes":[6297.36,6296.79,6305.6,6309.62,6358.91,6363.35,6388.64,6389.77,6370.86,6362.9,6339.39,6238.01,6329.94,6299.19,6345.06,6340,6389.45,6373.45,6445.76,6466.58,6468.54,6449.8,6449.15,6411.37,6395.78,6370.17,6466.91,6439.32,6465.94,6481.4,6501.86,6460.26,6415.54,6448.26,6502.08,6481.5,6495.15,6512.61,6532.04,6587.47,6584.29,6615.28,6606.76,6600.35,6631.96,6664.36,6693.75,6656.92,6637.97,6604.72,6643.7,6661.21,6688.46,6711.2,6715.35,6715.79,6740.28,6714.59,6753.72,6735.11,6552.51,6654.72,6644.31,6671.06,6629.07,6664.01,6735.13,6735.35,6699.4,6738.44,6791.69,6875.16,6890.89,6890.59,6822.34,6840.2,6851.97,6771.55,6796.29,6720.32,6728.8,6832.43,6846.61,6850.92,6737.49,6734.11,6672.41,6617.32,6642.16,6538.76,6602.99,6705.12,6765.88,6812.61,6849.09,6812.63,6829.37,6849.72,6857.12,6870.4,6846.51,6840.51,6886.68,6901,6827.41,6816.51,6800.26,6721.43,6774.76,6834.5,6878.49,6909.79,6932.05,6929.94,6905.74,6896.24,6845.5,6858.47,6902.05,6944.82,6920.93,6921.46,6966.28,6977.27,6963.74,6926.6,6944.47,6940.01,6796.86,6875.62,6913.35,6915.61,6950.23,6978.6,6978.03,6969.01,6939.03,6976.44,6917.81,6882.72,6798.4,6932.3,6964.82,6941.81,6941.47,6832.76,6836.17,6843.22,6881.31,6861.89,6909.51,6837.75,6890.07,6946.13,6908.86,6878.88,6881.62,6816.63,6869.5,6830.71,6740.02,6795.99,6781.48,6775.8,6672.62,6632.19,6699.38,6716.09,6624.7,6606.49,6506.48,6581,6556.37,6591.9,6477.16,6368.85,6343.72,6528.52,6575.32,6582.69,6611.83,6616.85,6782.81,6824.66,6816.89,6886.24,6967.38,7022.95,7041.28,7126.06,7109.14,7064.01,7137.9,7108.4,7165.08,7173.91,7138.8,7135.95,7209.01,7230.12,7200.75,7259.22,7365.12,7337.11,7398.93,7412.84,7400.96,7444.25,7501.24,7408.5,7403.05,7353.61,7432.97,7445.72,7473.47,7519.12,7520.36,7563.63,7580.06,7599.96,7609.78,7553.68,7584.31,7383.74,7405.73,7386.65,7266.99,7394.3,7431.46,7554.29,7511.35,7420.1,7500.58,7472.79,7365.46,7358.22,7357.49,7354.02,7440.43,7499.36,7483.23,7483.24,7537.43,7503.85,7482.71,7543.64,7575.39,7515.34,7543.59,7572.4,7533.77,7457.69]},"NDX":{"symbol":"NDX","label":"纳斯达克 100","exchange":"NASDAQ","dates":["20250717","20250718","20250721","20250722","20250723","20250724","20250725","20250728","20250729","20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251226","20251229","20251230","20251231","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717"],"closes":[23081.05,23065.47,23180.06,23063.58,23162.41,23219.87,23272.25,23356.27,23308.3,23345.41,23218.12,22763.31,23188.61,23018.56,23315.04,23389.53,23611.27,23526.63,23839.2,23849.04,23832.44,23712.07,23713.76,23384.77,23249.57,23142.58,23498.12,23425.61,23525.29,23565.85,23703.45,23415.42,23231.11,23414.84,23633.01,23652.44,23762.3,23839.8,23849.27,23992.56,24092.19,24293.78,24274.25,24223.69,24454.89,24626.25,24761.07,24580.17,24503.57,24397.31,24503.85,24611.35,24679.99,24800.86,24892.76,24785.52,24978.56,24840.23,25136.62,25098.18,24221.75,24750.25,24579.32,24745.36,24657.24,24817.95,25141.02,25127.13,24879.01,25097.42,25358.16,25821.54,26012.16,26119.85,25734.81,25858.13,25972.94,25435.7,25620.03,25130.04,25059.81,25611.74,25533.49,25517.33,24993.46,25008.24,24799.92,24503.1,24640.52,24054.38,24239.57,24873.85,25018.36,25236.94,25434.89,25342.85,25555.86,25606.54,25581.7,25692.05,25627.95,25668.69,25776.44,25686.69,25196.73,25067.27,25132.94,24647.61,25019.37,25346.18,25461.7,25587.83,25656.15,25644.39,25525.56,25462.56,25249.85,25206.17,25401.32,25639.71,25653.9,25507.1,25766.26,25787.66,25741.95,25465.94,25547.07,25529.26,24987.57,25326.58,25518.35,25605.47,25713.21,25939.74,26022.79,25884.29,25552.39,25738.61,25338.62,24891.24,24548.69,25075.77,25268.14,25127.64,25201.26,24687.61,24732.73,24701.6,24898.87,24797.34,25012.62,24708.94,24977.04,25329.04,25034.37,24960.04,24992.6,24720.08,25093.68,25020.41,24643.02,24967.25,24956.47,24965.01,24533.58,24380.73,24655.34,24780.42,24425.09,24355.28,23898.15,24188.59,24002.45,24162.98,23586.99,23132.77,22953.38,23740.19,24019.99,24045.53,24192.17,24202.37,24903.17,25082.09,25116.34,25383.72,25842,26204.58,26333,26672.43,26590.34,26479.47,26937.28,26782.63,27303.67,27305.68,27029.01,27186.98,27452.12,27710.36,27651.82,28015.06,28599.17,28563.95,29234.99,29320.66,29064.8,29366.94,29580.3,29125.2,28994.37,28818.84,29297.7,29357.27,29481.64,30001.32,29973.57,30223.89,30333.18,30513.86,30660.6,30571.24,30407.81,28957.6,29414.26,29084.5,28508.03,29446.18,29635.95,30543.92,29968.13,29670.95,30406.19,30347.08,29347.27,29220.06,29440.32,29118.24,29774.75,30276.35,29809.13,29329.21,29697.87,29173.02,29252.56,29727.1,29825.11,29264.1,29586.29,29502.6,29025.77,28592.66]},"ACWI":{"symbol":"MXACW","label":"MSCI ACWI","exchange":"CBOE","dates":["20250623","20250624","20250625","20250626","20250627","20250630","20250701","20250702","20250703","20250707","20250708","20250709","20250710","20250711","20250714","20250715","20250716","20250717","20250718","20250721","20250722","20250723","20250724","20250725","20250728","20250729","20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251226","20251229","20251230","20251231","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717"],"closes":[486.45,493.53,493.06,497.19,500.07,501.81,501.57,503.29,506.63,503.07,502.73,505.48,506.57,504.57,505.07,503.34,503.81,506.65,507.6,508.52,508.61,513.84,514.96,514.93,513.9,511.95,511.16,508.62,501.94,508.02,507.37,510.64,511.92,514.71,513.45,518.39,521.66,521.11,521.25,520.87,519.05,517.92,516.18,523.2,521.93,521.74,521.93,523.76,521.18,517.68,519.5,522.69,523.6,525.35,526.92,528.65,532.3,532.7,535.2,535.33,535.13,536.67,538.09,539.95,538.34,536.75,533.61,535.52,537.71,540.07,542.17,543.37,544.75,546.34,544.19,546.38,544.95,533.34,538.2,536.68,540.6,540.05,539.79,546.26,545.8,543.57,545.95,549.41,555.53,556.14,556.59,551.55,552.15,552.97,546.78,547.9,544.53,544.08,551.75,553.87,555.29,548.6,546.52,542.13,536.01,536.5,531.56,533.11,539.46,544.55,549.58,552.08,549.66,551.19,552.99,554.45,555.32,553.92,553.02,556.66,557.8,554.43,553.83,551.09,546.71,550.29,554.25,558.23,561.01,562.08,562.23,561.19,560.84,557.85,560.62,565.37,569.12,567.02,566.04,569.05,570.85,570.75,570.06,571.03,571.03,562.01,565.68,570.05,570.66,574.06,579.21,578.53,578.14,574.38,574.5,574.21,571.97,564.73,573.65,579.82,580,581.09,574.71,573.75,574.41,577.26,576.36,579.56,575.91,579.15,584.49,582.99,581.77,578.14,567.14,568.23,566.05,560.27,559.53,564.05,563.28,555.21,550.54,555.49,558.23,554.07,548.43,540.82,542.83,543.34,548.71,539.99,532.76,529.97,539.99,549.8,547.91,550.42,550.67,568.9,569.83,571.12,573.98,582.01,585.57,587.34,593.25,591.79,588.8,591.5,589.35,592.09,593.65,590.35,589.59,594.92,596.51,595.59,598.97,609.9,609.58,610.98,612.54,609.82,613.16,616.95,607.62,607.31,603.78,609.25,612.22,615.38,620.35,620.84,622.24,625.62,626.19,628.92,625.32,626.17,612,609.35,610.72,601.66,608.65,615.75,626.32,624.69,620.73,624.34,623.52,612.72,611.56,613.84,610.6,615.88,620.6,619.24,619.74,625.15,621.21,617.22,621.66,624.2,618.85,621.46,625.13,621.56,614.39],"source":"IBKR CBOE MSCI ACWI Index daily price history"}}}</script>
+
+  <script id="ibkrPnlBreakdown" type="application/json">{"snapshotFetchedAt":"2026-07-20T04:19:22Z","source":"IBKR YEAR_TO_DATE trades classified by symbol; unrealized P&L from embedded positions","etfSymbols":["BIL","BOXX","COPX","EWJV","EWL","GLDM","SCHF","SCHG","SGOV","SHV","SIVR","TBIL","TFLO","USFR","VGK","VOO"],"equity":{"realizedYtd":2979.718159,"unrealized":594.57600187},"etf":{"realizedYtd":220.866172,"unrealized":663.7046465}}</script>
+  <script id="ibkrStatementHistory" type="application/json">[{"periodStart":"2024-11-12","periodEnd":"2024-12-31","startNav":0,"endNav":8953.700246795,"twr":0.04381921116,"source":"MULTI_20241112_20241231.csv"},{"periodStart":"2025-01-01","periodEnd":"2025-12-31","startNav":8953.700246795,"endNav":60442.842258076,"twr":0.14372297724,"source":"MULTI_20250101_20251231.csv"},{"periodStart":"2026-01-01","periodEnd":"2026-07-03","startNav":60442.842258076,"endNav":97992.071494939,"twr":0.05282596485,"source":"MULTI_20260101_20260703.csv"}]</script>
+
+  <script id="familySnapshot" type="application/json">{"schemaVersion":1,"sourceMode":"family-static-snapshot","fetchedAt":"2026-07-20T04:19:22Z","currency":"USD","returnMethod":"TWR","summary":{"netLiquidation":97701.0373,"cash":291.64,"availableFunds":75891.6,"buyingPower":303566.39,"initialMargin":21771.1,"maintenanceMargin":21771.1,"excessLiquidity":75929.04,"grossPositionValue":84484.61,"dailyPnl":30.524019139999993},"pnl":{"stock":{"realizedYtd":3200.5843309999996,"unrealized":1288.7942113899996},"option":{"realizedYtd":0,"unrealized":0},"other":{"realizedYtd":32.18,"unrealized":41.248675000000006},"accountUnrealized":1286.27,"positionUnrealized":1330.0428863899997},"reconciliation":{"positionsMarketValue":97415.04778639002,"cash":291.64,"netLiquidation":97701.0373,"residual":-5.6504863900190685},"positions":[{"name":"BOXX","quantity":325,"marketPrice":117.48000335,"marketValue":38181.00108875,"currency":"USD","averagePrice":116.59850431,"unrealizedPnl":286.48718875,"dailyPnl":-3.248217,"dailyPnlRate":0,"assetClass":"STK"},{"name":"BRK B","quantity":3,"marketPrice":491.019989,"marketValue":1473.059967,"currency":"USD","averagePrice":468.11376667,"unrealizedPnl":68.718667,"dailyPnl":0.329956,"dailyPnlRate":0.0004,"assetClass":"STK"},{"name":"EWJV","quantity":60,"marketPrice":44.88000105,"marketValue":2692.800063,"currency":"USD","averagePrice":37.82992333,"unrealizedPnl":423.004663,"dailyPnl":-0.0000011,"dailyPnlRate":0.0056,"assetClass":"STK"},{"name":"EWL","quantity":10,"marketPrice":63.1800003,"marketValue":631.800003,"currency":"USD","averagePrice":55.03825,"unrealizedPnl":81.417503,"dailyPnl":-5e-8,"dailyPnlRate":0.0006,"assetClass":"STK"},{"name":"GLDM","quantity":50,"marketPrice":79.6100006,"marketValue":3980.50003,"currency":"USD","averagePrice":82.602164,"unrealizedPnl":-149.60817,"dailyPnl":8.0001826,"dailyPnlRate":-0.0075,"assetClass":"STK"},{"name":"IBKR","quantity":12.9866,"marketPrice":90.5299988,"marketValue":1175.67688242,"currency":"USD","averagePrice":69.50503596,"unrealizedPnl":273.04278242,"dailyPnl":2.7e-7,"assetClass":"STK"},{"name":"KHC","quantity":120,"marketPrice":25.8600006,"marketValue":3103.200072,"currency":"USD","averagePrice":27.09100667,"unrealizedPnl":-147.720728,"dailyPnl":-2.3998273,"dailyPnlRate":-0.0008,"assetClass":"STK"},{"name":"KO","quantity":45,"marketPrice":81.69000245,"marketValue":3676.05011025,"currency":"USD","averagePrice":66.12397778,"unrealizedPnl":700.47111025,"dailyPnl":5.8502201,"dailyPnlRate":0.0031,"assetClass":"STK"},{"name":"MCD","quantity":30,"marketPrice":268.1300049,"marketValue":8043.900147,"currency":"USD","averagePrice":285.15399,"unrealizedPnl":-510.719553,"dailyPnl":12.60040335,"dailyPnlRate":0.0013,"assetClass":"STK"},{"name":"MSFT","quantity":30,"marketPrice":394.26000975,"marketValue":11827.8002925,"currency":"USD","averagePrice":389.39551,"unrealizedPnl":145.9349925,"dailyPnl":13.20007275,"dailyPnlRate":0.0021,"assetClass":"STK"},{"name":"NVDA","quantity":5,"marketPrice":203.3699951,"marketValue":1016.8499755,"currency":"USD","averagePrice":218.52896,"unrealizedPnl":-75.7948245,"dailyPnl":2.7999877,"dailyPnlRate":0.0046,"assetClass":"STK"},{"name":"PFE","quantity":160,"marketPrice":25.0699997,"marketValue":4011.199952,"currency":"USD","averagePrice":24.07638813,"unrealizedPnl":158.977852,"dailyPnl":3.20007405,"dailyPnlRate":0.002,"assetClass":"STK"},{"name":"SCHF","quantity":20,"marketPrice":27.01000025,"marketValue":540.200005,"currency":"USD","averagePrice":22.83365,"unrealizedPnl":83.527005,"dailyPnl":4e-7,"dailyPnlRate":0.005,"assetClass":"STK"},{"name":"SIVR","quantity":10,"marketPrice":54.09999845,"marketValue":540.9999845,"currency":"USD","averagePrice":87.43363,"unrealizedPnl":-333.3363155,"dailyPnl":7.2999952,"dailyPnlRate":0.0088,"assetClass":"STK"},{"name":"US Treasury 1.25% 2028-05-31","quantity":2,"marketPrice":94.77734375,"marketValue":1895.546875,"currency":"USD","averagePrice":94.59,"unrealizedPnl":3.746875,"dailyPnl":-0.546875,"assetClass":"BOND","familyBondKey":"ust-2028-05-31"},{"name":"US Treasury 2.75% 2029-05-31","quantity":5,"marketPrice":96.0859375,"marketValue":4804.296875,"currency":"USD","averagePrice":96.1196,"unrealizedPnl":-1.683125,"dailyPnl":-1.953125,"assetClass":"BOND","familyBondKey":"ust-2029-05-31"},{"name":"US Treasury 4.25% 2035-05-15","quantity":2,"marketPrice":98.125,"marketValue":1962.5,"currency":"USD","averagePrice":98.6255,"unrealizedPnl":-10.01,"dailyPnl":-1.25,"assetClass":"BOND","familyBondKey":"ust-2035-05-15"},{"name":"US Treasury STRIPS 2048-11-15","quantity":3,"marketPrice":31.36249925,"marketValue":940.8749775,"currency":"USD","averagePrice":31.79666667,"unrealizedPnl":-13.0250225,"dailyPnl":-3.9074703,"assetClass":"BOND","familyBondKey":"strips-2048-11-15"},{"name":"US Treasury STRIPS 2049-05-15","quantity":3,"marketPrice":30.5685005,"marketValue":917.055015,"currency":"USD","averagePrice":30.90966667,"unrealizedPnl":-10.234985,"dailyPnl":-3.3835035,"assetClass":"BOND","familyBondKey":"strips-2049-05-15"},{"name":"US Treasury STRIPS 2051-05-15","quantity":3,"marketPrice":27.5834999,"marketValue":827.504997,"currency":"USD","averagePrice":27.16666667,"unrealizedPnl":12.504997,"dailyPnl":-3.59762215,"assetClass":"BOND","familyBondKey":"strips-2051-05-15"},{"name":"US Treasury STRIPS 2040-05-15","quantity":3,"marketPrice":51.24699785,"marketValue":1537.4099355,"currency":"USD","averagePrice":49.24866667,"unrealizedPnl":59.9499355,"dailyPnl":-4.15935465,"assetClass":"BOND","familyBondKey":"strips-2040-05-15"},{"name":"VGK","quantity":10,"marketPrice":88.58999635,"marketValue":885.8999635,"currency":"USD","averagePrice":79.23365,"unrealizedPnl":93.5634635,"dailyPnl":1e-7,"dailyPnlRate":0.0009,"assetClass":"STK"},{"name":"VOO","quantity":4.0213,"marketPrice":683.59002685,"marketValue":2748.92057497,"currency":"USD","averagePrice":636.13557805,"unrealizedPnl":190.82857497,"dailyPnl":1.68912267,"dailyPnlRate":0.0043,"assetClass":"STK"}],"orders":[{"symbol":"KO","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":75.4,"totalQuantity":5,"filledQuantity":0,"remainingQuantity":5,"time":"2026-07-10T14:19:24Z"},{"symbol":"KO","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":70.4,"totalQuantity":10,"filledQuantity":0,"remainingQuantity":10,"time":"2026-07-10T14:19:02Z"},{"symbol":"NVDA","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":192,"totalQuantity":5,"filledQuantity":0,"remainingQuantity":5,"time":"2026-07-08T17:18:03Z"},{"symbol":"XLV","side":"BUY","type":"LIMIT","status":"REPLACED","limitPrice":146,"totalQuantity":10,"filledQuantity":0,"remainingQuantity":10,"time":"2026-06-14T02:40:45Z"},{"symbol":"XLF","side":"BUY","type":"LIMIT","status":"REPLACED","limitPrice":48,"totalQuantity":20,"filledQuantity":0,"remainingQuantity":20,"time":"2026-06-14T02:40:20Z"},{"symbol":"BRK B","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":452,"totalQuantity":3,"filledQuantity":0,"remainingQuantity":3,"time":"2026-06-13T12:17:15Z"},{"symbol":"BRK B","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":465,"totalQuantity":2,"filledQuantity":0,"remainingQuantity":2,"time":"2026-06-13T12:16:59Z"},{"symbol":"BRK B","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":476,"totalQuantity":2,"filledQuantity":0,"remainingQuantity":2,"time":"2026-06-13T12:16:39Z"}],"risk":{"effectiveOrderCount":8,"effectiveOrderNotional":7699},"performance":{"1D":{"dates":["20260719"],"returns":[-0.00013773],"nav":[97700.14447],"startNav":97713.60238801141,"startDate":"20260717","frequency":"D"},"7D":{"dates":["20260713","20260714","20260715","20260716","20260717","20260719"],"returns":[0.0003643,-0.00149967,0.00258627,0.0069087,0.00014093,0.00000318],"nav":[97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447],"startNav":97699.8339751162,"startDate":"20260710","frequency":"D"},"MTD":{"dates":["20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719"],"returns":[0.0058562,0.01528089,0.01509318,0.01342118,0.01480254,0.00947534,0.01068827,0.01206902,0.01243771,0.01055124,0.0146865,0.01906109,0.01221164,0.01207223],"nav":[97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447],"startNav":96534.7543332258,"startDate":"20260630","frequency":"D"},"1M":{"dates":["20260619","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719"],"returns":[0,-0.0058529,-0.00746143,-0.01009171,-0.01477921,-0.00473844,-0.00644532,-0.00636761,-0.0005487,0.00881597,0.00862946,0.0069681,0.00834067,0.00304739,0.0042526,0.00562455,0.0059909,0.00411645,0.00822537,0.01257211,0.00576627,0.00562775],"nav":[85221.03865627441,84722.2481138926,84585.16811212851,84361.0122530973,83961.538850095,96693.03432145421,96527.2043251261,96534.7543332258,97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447],"startNav":85221.03865769741,"startDate":"20260618","frequency":"D"},"YTD":{"dates":["20260101","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260119","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260216","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260403","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260525","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260619","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719"],"returns":[0,0.00316542,0.00471408,0.00670632,0.00770865,0.0108124,0.0154242,0.01476537,0.01371963,0.02000285,0.02196388,0.01585894,0.01585894,0.01034621,0.01481224,0.02018973,0.02536718,0.02922091,0.03520775,0.03016627,0.03298041,0.02957727,0.03152575,0.03394405,0.04218466,0.03277174,0.04812676,0.05500941,0.05751652,0.05966206,0.05157614,0.05325424,0.05325424,0.04683991,0.05066829,0.04845941,0.05368328,0.05243331,0.0551522,0.05799079,0.05049216,0.04534795,0.0466265,0.03380392,0.03676163,0.03047803,0.02471797,0.03314382,0.0352331,0.03165454,0.01836434,0.01119369,0.02095538,0.02206103,0.00857989,0.00087764,-0.01903995,-0.01113175,-0.01373627,-0.00186099,-0.02023265,-0.02921785,-0.02686486,-0.00054316,0.00368701,0.00525005,0.00525004,0.00661473,0.00349237,0.02013128,0.02220482,0.02207902,0.02542426,0.0326838,0.03690454,0.03890794,0.04588737,0.04276594,0.03518316,0.03671161,0.03320388,0.03800747,0.03749644,0.03610203,0.03579446,0.03764614,0.03550284,0.02718576,0.03032018,0.04180555,0.04218274,0.04261743,0.04295772,0.0426543,0.04324198,0.04345233,0.03873082,0.04097482,0.03815158,0.04327478,0.04456892,0.04522729,0.04522729,0.04632741,0.04780591,0.05133172,0.05443962,0.05442782,0.05264818,0.04650668,0.04785166,0.04415,0.04427986,0.04528497,0.03920461,0.04877717,0.04981232,0.05452393,0.05450409,0.04551542,0.04381844,0.04381844,0.03770907,0.03603007,0.03328452,0.02839163,0.03887237,0.03709069,0.03717181,0.04324569,0.05302071,0.05282603,0.05109187,0.05252459,0.04699937,0.04825738,0.04968946,0.05007186,0.04811526,0.05240424,0.05694144,0.04983738,0.04969279],"nav":[60442.8417281593,60634.1685520969,60727.77416219399,60848.190654136604,60908.774210131596,61096.3742100869,61375.1242099089,61335.3027198646,61272.0952056886,61651.870948814496,61770.400948790295,61401.400948873896,61401.4009488689,61068.19578285381,61338.1357828404,61663.1663688246,61976.106369247995,62209.0363694834,62570.5963698055,62265.8763695952,62435.970222627206,62230.2760253116,62348.047273194505,62494.215066154,70253.4379817209,69618.9147246878,70653.9935969229,71117.95133912709,71286.955025351,71431.5850255363,70886.5155356326,70999.6355356384,70999.6355355062,70567.2471785444,70825.3171782997,70676.4171782739,71028.5571782581,70944.2971783028,71127.57671408591,71318.9254420242,70813.4443780454,70466.6743780566,70552.8609128636,69688.4938698951,69887.8722969291,69464.2960848443,69076.0116557892,69643.9963018189,69784.83431274301,69543.60431259891,68647.7153335322,68164.3431764687,68822.3765355596,68896.9081215361,67988.1478643905,67468.9403497473,66126.3003495168,66659.3903496355,66483.8203496309,67284.33034955419,66045.9003494679,65440.2103493515,65598.8245814275,67373.16458156079,74959.08983372079,75075.82293559119,75075.8229264448,75177.7429264263,74944.5529264452,76187.20876961699,76342.0687695496,76332.6737915164,76582.5083114991,77124.6783115823,77439.8983115519,77589.5201745727,78110.7701746193,77877.6499175943,77311.3399175091,77425.4899174802,77163.5199174456,77522.2699174856,77484.1040764691,77379.96407644599,77356.9941373146,77495.2841379264,77335.2141378459,76714.0641378243,76948.154137706,77805.92413794491,77834.0941378729,77866.5588659329,77891.9724738501,77869.3120967865,77913.2020967376,77928.9120966482,77576.292096602,77743.8820965897,77533.03209654,77915.6520965627,78012.30303055039,78061.47303051219,78061.4730305573,78143.6340084903,78254.0540084668,78517.3740085114,78749.4840084918,78748.6027424282,78615.6921113924,78157.02211136889,78157.34211139049,77881.2421113496,77890.92814335541,77965.8975253231,77512.3742523011,78226.3742523901,78303.5842523539,78655.0143213415,78653.5343213277,77983.0860372888,85221.03865769741,85221.03865627441,84722.2481138926,84585.16811212851,84361.0122530973,83961.538850095,96693.03432145421,96527.2043251261,96534.7543332258,97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447],"startNav":60442.841728167405,"startDate":"20251231","frequency":"D"},"1Y":{"dates":["20250721","20250722","20250723","20250724","20250725","20250728","20250729","20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250901","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251127","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251225","20251226","20251229","20251230","20251231","20260101","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260119","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260216","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260403","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260525","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260619","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719"],"returns":[-0.00333248,0.01193829,0.01827908,0.01511242,0.01819988,0.00876436,-0.010629,-0.02317023,-0.03643051,-0.03876426,-0.03554944,-0.02555611,-0.02234196,-0.01656816,-0.01368175,-0.01496509,-0.01292737,-0.00537318,-0.00603469,-0.00495398,-0.00949377,-0.00101966,-0.00259248,-0.00206655,0.00847484,-0.00343099,-0.00624491,-0.00375364,-0.01017709,-0.00388307,-0.00388307,-0.0141969,-0.00876914,-0.01010294,-0.00448494,-0.00752198,-0.00744523,-0.00980836,-0.00463167,-0.0138547,-0.01658203,-0.01204444,-0.01394867,-0.0129984,-0.01531745,-0.0152434,-0.01228705,-0.01416743,-0.02409736,-0.01889755,-0.01620906,-0.00885932,0.00031956,0.00309962,0.00715141,-0.00215189,-0.00209165,-0.00487671,-0.00888275,-0.01281227,-0.00981926,-0.00549926,-0.00626992,-0.00260799,0.00157066,0.00640296,0.00898572,0.00708721,0.00355542,0.00427356,0.01083826,0.01752677,0.0110793,0.00811619,0.01103676,0.00654421,0.00101791,0.00445971,0.00115559,0.00742223,0.00928046,0.01933793,0.02133225,0.01811484,0.01335985,0.0072141,0.00798205,0.00343303,-0.00165802,0.01073506,0.01469319,0.02581935,0.02997116,0.02997116,0.034391,0.02531131,0.02355855,0.02846055,0.0306272,0.03186265,0.03006003,0.02667926,0.0323449,0.0337661,0.03440468,0.03791232,0.03459875,0.03281585,0.03600234,0.03445985,0.03486939,0.0329559,0.03666813,0.03666813,0.03668507,0.03374633,0.03446711,0.03053391,0.03053391,0.03379598,0.03539193,0.03744499,0.03847793,0.04167646,0.04642907,0.04575012,0.04467245,0.05114752,0.05316843,0.04687708,0.04687708,0.04119602,0.04579842,0.05134011,0.05667565,0.06064704,0.06681668,0.06162127,0.06452133,0.06101429,0.06302227,0.0655144,0.07400663,0.06430629,0.08013017,0.08722297,0.08980663,0.09201768,0.08368487,0.0854142,0.0854142,0.07880402,0.0827493,0.08047297,0.08585635,0.08456821,0.08737012,0.09029538,0.08256779,0.07726651,0.07858409,0.06536999,0.06841801,0.06194255,0.05600661,0.06468973,0.06684281,0.06315498,0.04945898,0.04206938,0.05212913,0.05326854,0.03937578,0.03143834,0.01091259,0.01906226,0.01637822,0.0286161,0.00968347,0.00042392,0.00284875,0.02997416,0.0343335,0.03594426,0.03594426,0.03735061,0.03413291,0.05127987,0.05341673,0.05328709,0.05673446,0.06421567,0.06856528,0.07062986,0.0778224,0.07460566,0.06679135,0.06836646,0.06475163,0.0697019,0.06917526,0.06773827,0.06742132,0.06932953,0.06712078,0.05854976,0.06177988,0.07361594,0.07400465,0.07445262,0.07480329,0.07449061,0.07509623,0.07531301,0.07044733,0.07275984,0.0698504,0.07513004,0.07646369,0.07714217,0.07714217,0.07827588,0.07979952,0.08343298,0.08663578,0.08662362,0.08478964,0.07846061,0.07984667,0.07603198,0.07616581,0.07720161,0.07093559,0.08080044,0.08186719,0.08672266,0.08670222,0.07743909,0.07569029,0.07569029,0.06939438,0.06766411,0.06483474,0.05979244,0.07059321,0.06875712,0.06884072,0.07510006,0.08517355,0.08497292,0.08318582,0.08466228,0.07896835,0.08026478,0.08174057,0.08213465,0.08011832,0.08453825,0.08921399,0.08189302,0.08174401],"nav":[33849.984410383295,34368.6279835116,34583.9815265343,34476.4315264473,34581.2915263317,34260.8315261737,33602.1716651856,33176.2316650049,32725.8704907915,32646.609125379102,32755.794647431503,33095.1996463428,33545.3333813833,33743.4433814226,35145.6736303182,35099.9439162438,35172.554361295806,30050.528164378702,30030.5421643948,28970.0661645366,27539.5701644394,27775.1801645838,27731.4501645777,26754.1501643843,27036.760164637497,26717.5701645022,26642.1301646578,26708.920164697796,26536.710164737604,26705.4501647025,26705.4501646836,32639.365072424,31779.412275499897,40240.792275432,40469.1722756424,40345.7122756397,40348.8322756794,40252.767478669,40463.207478714,40088.2774786793,39977.407478727095,40161.8674788951,40084.457478808,40123.0874786338,40028.8147816539,40031.8247817205,40152.0047817032,40075.5647814724,39671.898303292895,39883.278303361105,43984.4083034975,44313.00830362,51803.53671217601,51947.507638982395,52157.3376365102,51675.547630201196,51678.667629937605,51534.437629810105,51326.976932750404,51123.479061064805,51278.477628886394,51502.197628995804,51462.2876291195,51651.927629248894,51868.3276292277,52118.577629206906,52252.3311519904,52154.0132049846,51971.1125078809,52008.3025078432,52348.2684908551,52694.64647397339,52360.751298859395,52207.3006016355,52358.5481246552,52125.8924816128,51839.702481692504,52017.942481616294,51846.8324817839,52171.3624817161,52267.5948526189,52788.4408356213,52891.720835518005,52725.1008355658,52478.8540415569,52160.584041434005,52200.354041337,51964.7740410507,51701.124041038005,52342.9240412113,52547.9040411347,53124.0940412999,53339.104041221,53339.1040412406,53567.9940412306,53097.784041325795,53007.0140412838,53260.8740413886,53373.0784544128,53437.058454363905,53343.7061972946,53168.626197136204,53462.03262627989,53535.632626343504,53568.7026262923,53750.3526264017,53578.7526264895,60576.6825209652,60763.57627374011,60673.1062720006,60697.1262621192,60584.8962622649,60802.6262623207,60802.62626234231,60803.6194182429,60631.256485310296,60673.531728216694,60442.841728167405,60442.8417281593,60634.1685520969,60727.77416219399,60848.190654136604,60908.774210131596,61096.3742100869,61375.1242099089,61335.3027198646,61272.0952056886,61651.870948814496,61770.400948790295,61401.400948873896,61401.4009488689,61068.19578285381,61338.1357828404,61663.1663688246,61976.106369247995,62209.0363694834,62570.5963698055,62265.8763695952,62435.970222627206,62230.2760253116,62348.047273194505,62494.215066154,70253.4379817209,69618.9147246878,70653.9935969229,71117.95133912709,71286.955025351,71431.5850255363,70886.5155356326,70999.6355356384,70999.6355355062,70567.2471785444,70825.3171782997,70676.4171782739,71028.5571782581,70944.2971783028,71127.57671408591,71318.9254420242,70813.4443780454,70466.6743780566,70552.8609128636,69688.4938698951,69887.8722969291,69464.2960848443,69076.0116557892,69643.9963018189,69784.83431274301,69543.60431259891,68647.7153335322,68164.3431764687,68822.3765355596,68896.9081215361,67988.1478643905,67468.9403497473,66126.3003495168,66659.3903496355,66483.8203496309,67284.33034955419,66045.9003494679,65440.2103493515,65598.8245814275,67373.16458156079,74959.08983372079,75075.82293559119,75075.8229264448,75177.7429264263,74944.5529264452,76187.20876961699,76342.0687695496,76332.6737915164,76582.5083114991,77124.6783115823,77439.8983115519,77589.5201745727,78110.7701746193,77877.6499175943,77311.3399175091,77425.4899174802,77163.5199174456,77522.2699174856,77484.1040764691,77379.96407644599,77356.9941373146,77495.2841379264,77335.2141378459,76714.0641378243,76948.154137706,77805.92413794491,77834.0941378729,77866.5588659329,77891.9724738501,77869.3120967865,77913.2020967376,77928.9120966482,77576.292096602,77743.8820965897,77533.03209654,77915.6520965627,78012.30303055039,78061.47303051219,78061.4730305573,78143.6340084903,78254.0540084668,78517.3740085114,78749.4840084918,78748.6027424282,78615.6921113924,78157.02211136889,78157.34211139049,77881.2421113496,77890.92814335541,77965.8975253231,77512.3742523011,78226.3742523901,78303.5842523539,78655.0143213415,78653.5343213277,77983.0860372888,85221.03865769741,85221.03865627441,84722.2481138926,84585.16811212851,84361.0122530973,83961.538850095,96693.03432145421,96527.2043251261,96534.7543332258,97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447],"startNav":33963.1660141363,"startDate":"20250718","frequency":"D"}}}</script>
+  <script>
+    (function () {
+      "use strict";
+
+      var COLORS = [
+        "#163b59", "#2f6f9f", "#5f8eaa", "#86adbf", "#bd8c28",
+        "#d5aa52", "#7c8f61", "#9dae7b", "#b56f62", "#c98d82",
+        "#746b91", "#968dae", "#4f7f75", "#76a096", "#8a6f56",
+        "#aa8c6f", "#58718a", "#7e94a7", "#a5b2bd", "#c4ccd2"
+      ];
+      var STOCK_COLORS = {
+        PFE: "#4f8f74",
+        KO: "#d6ae44",
+        MCD: "#bd8c28",
+        KHC: "#e3c76b",
+        IBKR: "#b38a24",
+        "BRK B": "#8f6a17",
+        MSFT: "#2f6f9f",
+        NVDA: "#78a9cf",
+        VOO: "#746b91",
+        EWJV: "#4f7f75",
+        SCHF: "#76a096",
+        VGK: "#659187",
+        EWL: "#98b9b1",
+        GLDM: "#aa8c6f",
+        SIVR: "#a5b2bd",
+        BOXX: "#89939d"
+      };
+      var CATEGORY_COLORS = {
+        healthcare: "#4f8f74",
+        consumer: "#d6ae44",
+        financial: "#b38a24",
+        technology: "#2f6f9f",
+        "us-etf": "#746b91",
+        "international-etf": "#4f7f75",
+        "commodity-etf": "#aa8c6f",
+        other: "#a5b2bd"
+      };
+
+      var embedded = JSON.parse(document.getElementById("familySnapshot").textContent);
+      var holdingsSnapshot = null;
+      var lifecycleMetrics = JSON.parse(document.getElementById("ibkrLifecycleMetrics").textContent);
+      var benchmarkHistory = JSON.parse(document.getElementById("ibkrBenchmarkHistory").textContent);
+      var pnlBreakdown = JSON.parse(document.getElementById("ibkrPnlBreakdown").textContent);
+      var statementHistory = JSON.parse(document.getElementById("ibkrStatementHistory").textContent);
+      var state = {
+        data: null,
+        period: "1M",
+        benchmark: "SPX",
+        positionSort: null,
+        localHistory: [],
+        storageAvailable: true
+      };
+      var positionCategories = [
+        { name: "医疗", tag: "医疗", tagClass: "healthcare", symbols: ["PFE"] },
+        { name: "消费", tag: "消费", tagClass: "consumer", symbols: ["KO", "MCD", "KHC"] },
+        { name: "金融", tag: "金融", tagClass: "financial", symbols: ["IBKR", "BRK B"] },
+        { name: "科技", tag: "科技", tagClass: "technology", symbols: ["MSFT", "NVDA"] },
+        { name: "美国市场 ETF", tag: "美国市场 ETF", tagClass: "us-etf", symbols: ["VOO"] },
+        { name: "非美市场 ETF", tag: "非美市场 ETF", tagClass: "international-etf", symbols: ["EWJV", "SCHF", "VGK", "EWL"] },
+        { name: "大宗商品 ETF", tag: "大宗商品 ETF", tagClass: "commodity-etf", symbols: ["GLDM", "SIVR"] },
+        { name: "货币基金 ETF", tag: "货币基金 ETF", tagClass: "cash-etf", symbols: ["BOXX"], fixedLast: true }
+      ];
+      var positionSortLabels = {
+        marketValue: "净清算值",
+        dailyPnl: "当日盈亏",
+        dailyPnlRate: "当日盈亏%",
+        unrealizedPnl: "未实现盈亏",
+        returnRate: "未实现盈亏%",
+        dividendTotal: "股息合计",
+        realizedPnl: "平仓总计",
+        aggregateReturn: "归总收益",
+        annualizedTotalReturn: "总回报率"
+      };
+      var bondReference = {
+        "ust-2028-05-31": { name: "US Treasury 1.25% 2028-05-31", type: "附息国债", term: "short", coupon: 0.0125, actualYield: 0.03587, paidInterest: 25, purchaseDate: "2025-11-10", maturity: "2028-05-31" },
+        "ust-2029-05-31": { name: "US Treasury 2.75% 2029-05-31", type: "附息国债", term: "short", coupon: 0.0275, actualYield: 0.04203, paidInterest: 0, purchaseDate: "2026-06-18", maturity: "2029-05-31" },
+        "ust-2035-05-15": { name: "US Treasury 4.25% 2035-05-15", type: "附息国债", term: "long", coupon: 0.0425, actualYield: 0.04455, paidInterest: 85, purchaseDate: "2025-07-17", maturity: "2035-05-15" },
+        "strips-2040-05-15": { name: "US Treasury STRIPS 2040-05-15", type: "STRIPS", term: "long", coupon: 0, actualYield: 0.04862, paidInterest: 0, purchaseDate: "2025-07-15", maturity: "2040-05-15" },
+        "strips-2048-11-15": { name: "US Treasury STRIPS 2048-11-15", type: "STRIPS", term: "long", coupon: 0, actualYield: 0.05004, paidInterest: 0, purchaseDate: "2025-08-06", maturity: "2048-11-15" },
+        "strips-2049-05-15": { name: "US Treasury STRIPS 2049-05-15", type: "STRIPS", term: "long", coupon: 0, actualYield: 0.05024, paidInterest: 0, purchaseDate: "2025-08-06", maturity: "2049-05-15" },
+        "strips-2051-05-15": { name: "US Treasury STRIPS 2051-05-15", type: "STRIPS", term: "long", coupon: 0, actualYield: 0.05162, paidInterest: 0, purchaseDate: "2025-09-02", maturity: "2051-05-15" }
+      };
+
+      function n(value) {
+        var out = Number(value);
+        return Number.isFinite(out) ? out : 0;
+      }
+
+      function applyHoldingsSnapshot(data) {
+        if (!holdingsSnapshot || !Array.isArray(holdingsSnapshot.positions)) return data;
+        var dataAt = new Date(data.holdingsFetchedAt || data.fetchedAt || 0).getTime();
+        var holdingsAt = new Date(holdingsSnapshot.fetchedAt || 0).getTime();
+        if (Array.isArray(data.positions) && dataAt >= holdingsAt) return data;
+
+        var positions = holdingsSnapshot.positions.slice();
+        var positionsMarketValue = positions.reduce(function (sum, position) { return sum + n(position.marketValue); }, 0);
+        var positionUnrealized = positions.reduce(function (sum, position) { return sum + n(position.unrealizedPnl); }, 0);
+        var stockUnrealized = positions.filter(function (position) { return position.assetClass === "STK"; })
+          .reduce(function (sum, position) { return sum + n(position.unrealizedPnl); }, 0);
+        var bondUnrealized = positions.filter(function (position) { return position.assetClass === "BOND"; })
+          .reduce(function (sum, position) { return sum + n(position.unrealizedPnl); }, 0);
+        var dailyPnl = positions.reduce(function (sum, position) { return sum + n(position.dailyPnl); }, 0);
+
+        data.positions = positions;
+        data.holdingsFetchedAt = holdingsSnapshot.fetchedAt;
+        data.marketDataFetchedAt = holdingsSnapshot.marketDataFetchedAt;
+        data.dailyPnlRateSource = holdingsSnapshot.dailyPnlRateSource;
+        data.summary.netLiquidation = n(holdingsSnapshot.netLiquidation);
+        data.summary.cash = n(holdingsSnapshot.cash);
+        data.summary.grossPositionValue = n(holdingsSnapshot.stockMarketValue);
+        data.summary.dailyPnl = dailyPnl;
+        data.reconciliation.positionsMarketValue = positionsMarketValue;
+        data.reconciliation.cash = n(holdingsSnapshot.cash);
+        data.reconciliation.netLiquidation = n(holdingsSnapshot.netLiquidation);
+        data.reconciliation.residual = n(holdingsSnapshot.netLiquidation) - n(holdingsSnapshot.cash) - positionsMarketValue;
+        data.pnl.positionUnrealized = positionUnrealized;
+        data.pnl.accountUnrealized = n(holdingsSnapshot.accountUnrealized);
+        data.pnl.stock.unrealized = stockUnrealized;
+        data.pnl.other.unrealized = bondUnrealized;
+        return data;
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+      }
+
+      function currencyMark() {
+        var code = (state.data && state.data.currency) || embedded.currency || "USD";
+        return code === "USD" ? "US$" : code;
+      }
+
+      function amountNumber(value, options) {
+        var opts = options || {};
+        var valueNumber = n(value);
+        var d = opts.digits == null ? 2 : opts.digits;
+        var formatOptions = opts.compactK ? {
+          minimumFractionDigits: d,
+          maximumFractionDigits: d
+        } : opts.compact ? {
+          notation: "compact",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: opts.digits == null ? 1 : d
+        } : {
+          minimumFractionDigits: d,
+          maximumFractionDigits: d
+        };
+        var magnitude = opts.compactK ? Math.abs(valueNumber) / 1000 : Math.abs(valueNumber);
+        var formatted = new Intl.NumberFormat(opts.compactK ? "en-US" : "zh-CN", formatOptions).format(magnitude) + (opts.compactK ? "k" : "");
+        if (valueNumber < 0) return "-" + formatted;
+        if (opts.signed && valueNumber > 0) return "+" + formatted;
+        return formatted;
+      }
+
+      function moneyText(value, options) {
+        return currencyMark() + " " + amountNumber(value, options);
+      }
+
+      function currency(value, digits) {
+        return moneyText(value, { digits: digits == null ? 2 : digits });
+      }
+
+      function compactCurrency(value) {
+        return moneyText(value, { compactK: true, digits: 0 });
+      }
+
+      function accountingMoney(value, options) {
+        var opts = options || {};
+        var wrapper = document.createElement("span");
+        wrapper.className = "accounting-money" + (opts.inline ? " inline" : "") + (opts.compact || opts.compactK ? " compact" : "");
+        var symbol = document.createElement("span");
+        symbol.className = "accounting-symbol";
+        symbol.textContent = currencyMark();
+        var amount = document.createElement("span");
+        amount.className = "accounting-amount";
+        amount.textContent = amountNumber(value, opts);
+        wrapper.append(symbol, amount);
+        return wrapper;
+      }
+
+      function setAccountingMoney(element, value, options) {
+        element.replaceChildren(accountingMoney(value, options));
+      }
+
+      function appendAccountingMoney(element, value, options) {
+        var opts = Object.assign({}, options || {}, { inline: true });
+        element.appendChild(accountingMoney(value, opts));
+      }
+
+      function setAccountingProgress(element, completed, total, options) {
+        var opts = options || {};
+        var wrapper = document.createElement("span");
+        wrapper.className = "accounting-money";
+        var symbol = document.createElement("span");
+        symbol.className = "accounting-symbol";
+        symbol.textContent = currencyMark();
+        var amount = document.createElement("span");
+        amount.className = "accounting-amount";
+        amount.textContent = amountNumber(completed, opts) + " / " + amountNumber(total, opts);
+        wrapper.append(symbol, amount);
+        element.replaceChildren(wrapper);
+      }
+
+      function appendText(element, value) {
+        element.appendChild(document.createTextNode(value));
+      }
+
+      function number(value, digits) {
+        var d = digits == null ? 2 : digits;
+        return new Intl.NumberFormat("zh-CN", {
+          minimumFractionDigits: d,
+          maximumFractionDigits: d
+        }).format(n(value));
+      }
+
+      function percent(value, digits) {
+        var d = digits == null ? 2 : digits;
+        return new Intl.NumberFormat("zh-CN", {
+          style: "percent",
+          minimumFractionDigits: d,
+          maximumFractionDigits: d
+        }).format(n(value));
+      }
+
+      function signedCurrency(value) {
+        return moneyText(value, { signed: true, digits: 2 });
+      }
+
+      function signedPercent(value) {
+        var valueNumber = n(value);
+        var formatted = percent(Math.abs(valueNumber), 2);
+        if (valueNumber > 0) return "+" + formatted;
+        if (valueNumber < 0) return "-" + formatted;
+        return formatted;
+      }
+
+      function signedPercentagePoints(value) {
+        var valueNumber = n(value) * 100;
+        var formatted = number(Math.abs(valueNumber), 2) + " 个百分点";
+        if (valueNumber > 0) return "+" + formatted;
+        if (valueNumber < 0) return "-" + formatted;
+        return formatted;
+      }
+
+      function signClass(value) {
+        return n(value) > 0 ? "positive" : n(value) < 0 ? "negative" : "neutral";
+      }
+
+      function parseIbkrDate(raw) {
+        if (!raw || raw.length < 8) return new Date(NaN);
+        return new Date(Date.UTC(
+          Number(raw.slice(0, 4)),
+          Number(raw.slice(4, 6)) - 1,
+          Number(raw.slice(6, 8))
+        ));
+      }
+
+      function shortDate(raw) {
+        var date = typeof raw === "string" && /^\d{8}$/.test(raw) ? parseIbkrDate(raw) : new Date(raw);
+        if (Number.isNaN(date.getTime())) return String(raw || "—");
+        return new Intl.DateTimeFormat("zh-CN", { month: "numeric", day: "numeric", timeZone: "UTC" }).format(date);
+      }
+
+      function longDateTime(raw) {
+        var date = new Date(raw);
+        if (Number.isNaN(date.getTime())) return String(raw || "—");
+        return new Intl.DateTimeFormat("zh-CN", {
+          year: "numeric", month: "2-digit", day: "2-digit",
+          hour: "2-digit", minute: "2-digit", second: "2-digit",
+          hour12: false, timeZone: "UTC"
+        }).format(date).replace(/\//g, "-") + " UTC";
+      }
+
+      function setSignedText(element, value, formatter) {
+        element.textContent = formatter(value);
+        element.classList.remove("positive", "negative", "neutral");
+        element.classList.add(signClass(value));
+      }
+
+      function resolveSnapshot() {
+        return Promise.resolve(embedded);
+      }
+
+      function recordSnapshot(data) {
+        state.storageAvailable = false;
+        state.localHistory = [{
+          sourceAt: data.fetchedAt,
+          nav: n(data.summary.netLiquidation),
+          currency: data.currency
+        }];
+      }
+
+      function getPeriod(periodKey) {
+        var source;
+        if (periodKey === "3M") {
+          var oneYear = state.data.performance["1Y"];
+          if (!oneYear) return null;
+          var end = parseIbkrDate(oneYear.dates[oneYear.dates.length - 1]);
+          var cutoff = new Date(end.getTime());
+          cutoff.setUTCMonth(cutoff.getUTCMonth() - 3);
+          var allRows = oneYear.dates.map(function (date, index) {
+            return { date: date, ret: n(oneYear.returns[index]), nav: n(oneYear.nav[index]) };
+          });
+          var firstInside = allRows.findIndex(function (row) { return parseIbkrDate(row.date) >= cutoff; });
+          if (firstInside < 0) return null;
+          var anchorIndex = Math.max(0, firstInside - 1);
+          var rows = allRows.slice(anchorIndex);
+          if (!rows.length) return null;
+          var baseReturn = rows[0].ret;
+          return {
+            dates: rows.map(function (row) { return row.date; }),
+            returns: rows.map(function (row) { return (1 + row.ret) / (1 + baseReturn) - 1; }),
+            nav: rows.map(function (row) { return row.nav; }),
+            startNav: rows[0].nav,
+            startDate: rows[0].date,
+            derived: true
+          };
+        } else {
+          source = state.data.performance[periodKey];
+        }
+        if (!source) return null;
+        var directDates = source.dates.slice();
+        var directReturns = source.returns.map(n);
+        var directNav = source.nav.map(n);
+        if (source.startDate && n(source.startNav) > 0 && source.startDate !== directDates[0]) {
+          directDates.unshift(source.startDate);
+          directReturns.unshift(0);
+          directNav.unshift(n(source.startNav));
+        }
+        return {
+          dates: directDates,
+          returns: directReturns,
+          nav: directNav,
+          startNav: n(source.startNav) || n(directNav[0]),
+          startDate: source.startDate,
+          derived: false
+        };
+      }
+
+      function benchmarkForPeriod(period, benchmarkKey) {
+        var source = benchmarkHistory.series[benchmarkKey];
+        if (!source || !period || !period.dates.length) return null;
+
+        var sourceIndex = 0;
+        var latestClose = null;
+        var alignedCloses = period.dates.map(function (date) {
+          while (sourceIndex < source.dates.length && source.dates[sourceIndex] <= date) {
+            latestClose = n(source.closes[sourceIndex]);
+            sourceIndex += 1;
+          }
+          return latestClose;
+        });
+        var startClose = alignedCloses[0];
+        if (!(startClose > 0)) return null;
+
+        return {
+          key: benchmarkKey,
+          label: source.label,
+          returns: alignedCloses.map(function (close) {
+            return close == null ? 0 : close / startClose - 1;
+          })
+        };
+      }
+
+      function niceExtent(values, includeZero) {
+        var clean = values.map(n).filter(Number.isFinite);
+        if (!clean.length) return [0, 1];
+        var min = Math.min.apply(null, clean);
+        var max = Math.max.apply(null, clean);
+        if (includeZero) {
+          min = Math.min(min, 0);
+          max = Math.max(max, 0);
+        }
+        if (min === max) {
+          var padSame = Math.abs(min || 1) * 0.05;
+          return [min - padSame, max + padSame];
+        }
+        var pad = (max - min) * 0.12;
+        return [min - pad, max + pad];
+      }
+
+      function svgEl(name, attrs) {
+        var element = document.createElementNS("http://www.w3.org/2000/svg", name);
+        Object.keys(attrs || {}).forEach(function (key) {
+          element.setAttribute(key, attrs[key]);
+        });
+        return element;
+      }
+
+      function renderLineChart(config) {
+        var svg = config.svg;
+        var wrap = config.wrap;
+        var tooltip = config.tooltip;
+        var configuredSeries = Array.isArray(config.series) && config.series.length ? config.series : null;
+        var values = configuredSeries ? configuredSeries[0].values : (config.values || []);
+        var chartSeries = configuredSeries || [{
+          label: config.label || "",
+          values: values,
+          color: config.lineColor(values[values.length - 1]),
+          dash: ""
+        }];
+        var labels = config.labels || [];
+        svg.replaceChildren();
+        svg.removeAttribute("tabindex");
+        tooltip.classList.remove("visible");
+        wrap.onpointermove = null;
+        wrap.onpointerleave = null;
+        svg.onfocus = null;
+        svg.onblur = null;
+        svg.onkeydown = null;
+
+        if (!values.length) {
+          var text = svgEl("text", { x: "50%", y: "50%", "text-anchor": "middle" });
+          text.textContent = "暂无可用数据";
+          svg.appendChild(text);
+          return;
+        }
+
+        var width = Math.max(480, Math.round(svg.getBoundingClientRect().width || 640));
+        var height = 294;
+        var margin = { top: 18, right: 14, bottom: 34, left: 66 };
+        var innerW = width - margin.left - margin.right;
+        var innerH = height - margin.top - margin.bottom;
+        var extentValues = chartSeries.reduce(function (all, series) { return all.concat(series.values); }, []);
+        var extent = niceExtent(extentValues, config.includeZero);
+        var min = extent[0];
+        var max = extent[1];
+        var x = function (i) { return margin.left + (values.length === 1 ? innerW / 2 : i * innerW / (values.length - 1)); };
+        var y = function (value) { return margin.top + (max - n(value)) * innerH / (max - min); };
+
+        svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+
+        for (var tick = 0; tick < 4; tick++) {
+          var tValue = max - tick * (max - min) / 3;
+          var tY = y(tValue);
+          svg.appendChild(svgEl("line", {
+            x1: margin.left, y1: tY, x2: width - margin.right, y2: tY, class: "grid-line"
+          }));
+          if (config.accountingAxis) {
+            var currencyLabel = svgEl("text", { x: 4, y: tY + 4, "text-anchor": "start" });
+            currencyLabel.textContent = currencyMark();
+            svg.appendChild(currencyLabel);
+          }
+          var yLabel = svgEl("text", { x: margin.left - 10, y: tY + 4, "text-anchor": "end" });
+          yLabel.textContent = config.accountingAxis ? amountNumber(tValue, { compact: true, digits: 1 }) : config.axisFormat(tValue);
+          svg.appendChild(yLabel);
+        }
+
+        if (config.includeZero && min < 0 && max > 0) {
+          var zeroY = y(0);
+          svg.appendChild(svgEl("line", {
+            x1: margin.left, y1: zeroY, x2: width - margin.right, y2: zeroY, class: "zero-line"
+          }));
+        }
+
+        svg.appendChild(svgEl("line", {
+          x1: margin.left, y1: height - margin.bottom,
+          x2: width - margin.right, y2: height - margin.bottom,
+          class: "axis-line"
+        }));
+
+        var xIndexes = [0, Math.floor((values.length - 1) / 2), values.length - 1];
+        var seen = {};
+        xIndexes.forEach(function (index) {
+          if (seen[index]) return;
+          seen[index] = true;
+          var xLabel = svgEl("text", {
+            x: x(index), y: height - 10,
+            "text-anchor": index === 0 ? "start" : index === values.length - 1 ? "end" : "middle"
+          });
+          xLabel.textContent = shortDate(labels[index]);
+          svg.appendChild(xLabel);
+        });
+
+        chartSeries.forEach(function (series) {
+          var pathData = series.values.map(function (value, index) {
+            return (index === 0 ? "M " : "L ") + x(index).toFixed(2) + " " + y(value).toFixed(2);
+          }).join(" ");
+          svg.appendChild(svgEl("path", {
+            d: pathData,
+            class: "series-line",
+            stroke: series.color,
+            "stroke-dasharray": series.dash || ""
+          }));
+        });
+
+        var focusLine = svgEl("line", {
+          x1: 0, y1: margin.top, x2: 0, y2: height - margin.bottom,
+          class: "focus-line", visibility: "hidden"
+        });
+        svg.appendChild(focusLine);
+        var focusDots = chartSeries.map(function (series) {
+          var dot = svgEl("circle", {
+            cx: 0, cy: 0, r: 4.5, class: "focus-dot",
+            fill: series.color, visibility: "hidden"
+          });
+          svg.appendChild(dot);
+          return dot;
+        });
+
+        var activeIndex = values.length - 1;
+
+        function pointInsideRect(pointX, pointY, rect) {
+          return pointX >= rect.left && pointX <= rect.right && pointY >= rect.top && pointY <= rect.bottom;
+        }
+
+        function segmentIntersectsRect(x1, y1, x2, y2, rect) {
+          if (Math.max(x1, x2) < rect.left || Math.min(x1, x2) > rect.right ||
+              Math.max(y1, y2) < rect.top || Math.min(y1, y2) > rect.bottom) return false;
+          if (pointInsideRect(x1, y1, rect) || pointInsideRect(x2, y2, rect)) return true;
+
+          var dx = x2 - x1;
+          var dy = y2 - y1;
+          var verticalEdges = [rect.left, rect.right];
+          for (var verticalIndex = 0; verticalIndex < verticalEdges.length; verticalIndex++) {
+            if (!dx) break;
+            var verticalT = (verticalEdges[verticalIndex] - x1) / dx;
+            var verticalY = y1 + verticalT * dy;
+            if (verticalT >= 0 && verticalT <= 1 && verticalY >= rect.top && verticalY <= rect.bottom) return true;
+          }
+          var horizontalEdges = [rect.top, rect.bottom];
+          for (var horizontalIndex = 0; horizontalIndex < horizontalEdges.length; horizontalIndex++) {
+            if (!dy) break;
+            var horizontalT = (horizontalEdges[horizontalIndex] - y1) / dy;
+            var horizontalX = x1 + horizontalT * dx;
+            if (horizontalT >= 0 && horizontalT <= 1 && horizontalX >= rect.left && horizontalX <= rect.right) return true;
+          }
+          return false;
+        }
+
+        function showIndex(index) {
+          activeIndex = clamp(Math.round(index), 0, values.length - 1);
+          var activeValue = values[activeIndex];
+          focusLine.setAttribute("x1", x(activeIndex));
+          focusLine.setAttribute("x2", x(activeIndex));
+          focusLine.setAttribute("visibility", "visible");
+          focusDots.forEach(function (dot, seriesIndex) {
+            dot.setAttribute("cx", x(activeIndex));
+            dot.setAttribute("cy", y(chartSeries[seriesIndex].values[activeIndex]));
+            dot.setAttribute("visibility", "visible");
+          });
+          tooltip.querySelector(".tooltip-date").textContent = shortDate(labels[activeIndex]);
+          if (config.tooltipRenderer) {
+            config.tooltipRenderer(tooltip, activeIndex, chartSeries);
+          } else {
+            var tooltipValue = tooltip.querySelector(".tooltip-value");
+            if (config.accountingTooltip) setAccountingMoney(tooltipValue, activeValue, { digits: 2 });
+            else tooltipValue.textContent = config.tooltipFormat(activeValue);
+          }
+          var svgRect = svg.getBoundingClientRect();
+          var wrapRect = wrap.getBoundingClientRect();
+          var xScale = svgRect.width / width;
+          var yScale = svgRect.height / height;
+          var pointX = svgRect.left - wrapRect.left + x(activeIndex) * xScale;
+          var pointYs = chartSeries.map(function (series) {
+            return svgRect.top - wrapRect.top + y(series.values[activeIndex]) * yScale;
+          });
+          var pointTop = Math.min.apply(null, pointYs);
+          var pointBottom = Math.max.apply(null, pointYs);
+          var tooltipWidth = tooltip.offsetWidth;
+          var tooltipHeight = tooltip.offsetHeight;
+          var gap = 12;
+          var spaceRight = wrap.clientWidth - pointX - gap;
+          var spaceLeft = pointX - gap;
+          var preferredHorizontal = spaceRight >= tooltipWidth || spaceRight >= spaceLeft ? "right" : "left";
+          var horizontalOptions = ["right", "left"];
+          var verticalOptions = ["above", "below"];
+          var seriesPoints = chartSeries.map(function (series) {
+            return series.values.map(function (value, valueIndex) {
+              return {
+                x: svgRect.left - wrapRect.left + x(valueIndex) * xScale,
+                y: svgRect.top - wrapRect.top + y(value) * yScale
+              };
+            });
+          });
+
+          var candidates = [];
+          horizontalOptions.forEach(function (horizontal) {
+            var rawLeft = horizontal === "right" ? pointX + gap : pointX - gap - tooltipWidth;
+            var left = clamp(rawLeft, 8, Math.max(8, wrap.clientWidth - tooltipWidth - 8));
+            var neighborIndex = horizontal === "right"
+              ? Math.min(values.length - 1, activeIndex + 1)
+              : Math.max(0, activeIndex - 1);
+            if (neighborIndex === activeIndex) {
+              neighborIndex = horizontal === "right"
+                ? Math.max(0, activeIndex - 1)
+                : Math.min(values.length - 1, activeIndex + 1);
+            }
+            var neighborY = seriesPoints[0][neighborIndex].y;
+            var preferredVertical = neighborY < pointYs[0] ? "below" : "above";
+
+            verticalOptions.forEach(function (vertical) {
+              var rawTop = vertical === "above"
+                ? pointTop - tooltipHeight - gap
+                : pointBottom + gap;
+              var top = clamp(rawTop, 8, Math.max(8, wrap.clientHeight - tooltipHeight - 8));
+              var collisionRect = {
+                left: left - 3,
+                right: left + tooltipWidth + 3,
+                top: top - 3,
+                bottom: top + tooltipHeight + 3
+              };
+              var intersections = 0;
+              seriesPoints.forEach(function (points) {
+                for (var pointIndex = 1; pointIndex < points.length; pointIndex++) {
+                  if (segmentIntersectsRect(
+                    points[pointIndex - 1].x, points[pointIndex - 1].y,
+                    points[pointIndex].x, points[pointIndex].y,
+                    collisionRect
+                  )) intersections += 1;
+                }
+              });
+              candidates.push({
+                left: left,
+                top: top,
+                score: intersections * 10000 +
+                  (Math.abs(left - rawLeft) + Math.abs(top - rawTop)) * 4 +
+                  (horizontal === preferredHorizontal ? 0 : 12) +
+                  (vertical === preferredVertical ? 0 : 4)
+              });
+            });
+          });
+          candidates.sort(function (a, b) { return a.score - b.score; });
+          var placement = candidates[0];
+          tooltip.style.left = placement.left + "px";
+          tooltip.style.top = placement.top + "px";
+          tooltip.classList.add("visible");
+        }
+
+        function hideFocus() {
+          focusLine.setAttribute("visibility", "hidden");
+          focusDots.forEach(function (dot) { dot.setAttribute("visibility", "hidden"); });
+          tooltip.classList.remove("visible");
+        }
+
+        function indexFromClientX(clientX) {
+          var rect = svg.getBoundingClientRect();
+          if (!rect.width || values.length === 1) return 0;
+          var svgX = (clientX - rect.left) * width / rect.width;
+          return Math.round(clamp((svgX - margin.left) / innerW, 0, 1) * (values.length - 1));
+        }
+
+        wrap.onpointermove = function (event) { showIndex(indexFromClientX(event.clientX)); };
+        wrap.onpointerleave = hideFocus;
+
+        svg.setAttribute("tabindex", "0");
+        svg.onfocus = function () { showIndex(activeIndex); };
+        svg.onblur = hideFocus;
+        svg.onkeydown = function (event) {
+          var nextIndex = activeIndex;
+          if (event.key === "ArrowLeft") nextIndex -= 1;
+          else if (event.key === "ArrowRight") nextIndex += 1;
+          else if (event.key === "Home") nextIndex = 0;
+          else if (event.key === "End") nextIndex = values.length - 1;
+          else return;
+          event.preventDefault();
+          showIndex(nextIndex);
+        };
+      }
+
+      function polar(cx, cy, radius, angleDegrees) {
+        var radians = (angleDegrees - 90) * Math.PI / 180;
+        return { x: cx + radius * Math.cos(radians), y: cy + radius * Math.sin(radians) };
+      }
+
+      function arcPath(cx, cy, radius, startAngle, endAngle) {
+        var start = polar(cx, cy, radius, endAngle);
+        var end = polar(cx, cy, radius, startAngle);
+        var largeArc = endAngle - startAngle <= 180 ? "0" : "1";
+        return ["M", start.x, start.y, "A", radius, radius, 0, largeArc, 0, end.x, end.y].join(" ");
+      }
+
+      function buildAllocation() {
+        var stockRows = state.data.positions.filter(function (p) { return p.assetClass === "STK"; })
+          .map(function (p) { return { name: p.name, value: Math.max(0, n(p.marketValue)) }; });
+        var bonds = state.data.positions.filter(function (p) { return p.assetClass === "BOND"; })
+          .reduce(function (sum, p) { return sum + Math.max(0, n(p.marketValue)); }, 0);
+        var cash = Math.max(0, n(state.data.summary.cash));
+        var residual = Math.max(0, n(state.data.summary.netLiquidation) -
+          stockRows.reduce(function (sum, row) { return sum + row.value; }, 0) - bonds - cash);
+        var rows = stockRows;
+        if (bonds > 0) rows.push({ name: "美国国债", value: bonds });
+        if (cash > 0) rows.push({ name: "现金", value: cash });
+        if (residual > 0.005) rows.push({ name: "应计与其他", value: residual });
+        return rows.sort(function (a, b) { return b.value - a.value; });
+      }
+
+      function buildPortfolioAllocation() {
+        var moneyMarket = 0;
+        var equities = 0;
+        var shortTreasuries = 0;
+        var longTreasuries = 0;
+
+        state.data.positions.forEach(function (position) {
+          var value = Math.max(0, n(position.marketValue));
+          var symbol = String(position.name || "").toUpperCase();
+          if (position.assetClass === "STK") {
+            if (symbol === "BOXX") moneyMarket += value;
+            else equities += value;
+          } else if (position.assetClass === "BOND") {
+            var reference = bondReference[position.familyBondKey];
+            if (reference && reference.term === "short") shortTreasuries += value;
+            else longTreasuries += value;
+          }
+        });
+
+        return [
+          { name: "IBKR 现金", value: Math.max(0, n(state.data.summary.cash)), color: "#86adbf" },
+          { name: "IBKR 货币基金", value: moneyMarket, color: "#89939d" },
+          { name: "IBKR 短期国债", value: shortTreasuries, color: "#d5aa52" },
+          { name: "IBKR 长期国债", value: longTreasuries, color: "#8a6f56" },
+          { name: "IBKR 股票", value: equities, color: "#2f6f9f" }
+        ].filter(function (row) {
+          return row.value > 0;
+        });
+      }
+
+      function buildStockAllocation(excludeBoxx) {
+        return state.data.positions.filter(function (position) {
+          var symbol = String(position.name || "").toUpperCase();
+          return position.assetClass === "STK" && (!excludeBoxx || symbol !== "BOXX");
+        }).map(function (position) {
+          var symbol = String(position.name || "").toUpperCase();
+          return {
+            name: position.name,
+            value: Math.max(0, n(position.marketValue)),
+            color: STOCK_COLORS[symbol]
+          };
+        }).filter(function (row) {
+          return row.value > 0;
+        }).sort(function (a, b) {
+          return b.value - a.value;
+        });
+      }
+
+      function buildCategoryAllocationExBoxx() {
+        var categorizedSymbols = {};
+        var rows = positionCategories.filter(function (category) {
+          return !category.fixedLast;
+        }).map(function (category) {
+          var symbols = {};
+          category.symbols.forEach(function (symbol) {
+            symbols[symbol] = true;
+            categorizedSymbols[symbol] = true;
+          });
+          return {
+            name: category.name,
+            value: state.data.positions.filter(function (position) {
+              var symbol = String(position.name || "").toUpperCase();
+              return position.assetClass === "STK" && symbol !== "BOXX" && symbols[symbol];
+            }).reduce(function (sum, position) {
+              return sum + Math.max(0, n(position.marketValue));
+            }, 0),
+            color: CATEGORY_COLORS[category.tagClass]
+          };
+        }).filter(function (row) {
+          return row.value > 0;
+        });
+
+        var unmatched = state.data.positions.filter(function (position) {
+          var symbol = String(position.name || "").toUpperCase();
+          return position.assetClass === "STK" && symbol !== "BOXX" && !categorizedSymbols[symbol];
+        }).reduce(function (sum, position) {
+          return sum + Math.max(0, n(position.marketValue));
+        }, 0);
+        if (unmatched > 0) rows.push({ name: "其他", value: unmatched, color: CATEGORY_COLORS.other });
+
+        return rows.sort(function (a, b) {
+          return b.value - a.value;
+        });
+      }
+
+      function renderDonutChart(svgId, totalId, rows, total) {
+        var svg = document.getElementById(svgId);
+        var totalElement = document.getElementById(totalId);
+        var centerLabel = totalElement.parentElement.querySelector(".donut-center-label");
+        var defaultCenterLabel = centerLabel.textContent;
+        var start = 0;
+        svg.replaceChildren();
+
+        function restoreCenter() {
+          centerLabel.textContent = defaultCenterLabel;
+          totalElement.classList.remove("is-detail");
+          setAccountingMoney(totalElement, total, { compactK: true, digits: 0 });
+        }
+
+        function showCenterDetail(row, fraction) {
+          centerLabel.textContent = row.name;
+          totalElement.classList.add("is-detail");
+          var amountLine = document.createElement("span");
+          amountLine.className = "donut-center-amount";
+          amountLine.textContent = currency(row.value, 0);
+          var percentLine = document.createElement("span");
+          percentLine.className = "donut-center-percent";
+          percentLine.textContent = percent(fraction, 2);
+          totalElement.replaceChildren(amountLine, percentLine);
+        }
+
+        var background = svgEl("circle", { cx: 110, cy: 110, r: 78, fill: "none", stroke: "#edf0f2", "stroke-width": 34 });
+        svg.appendChild(background);
+
+        rows.forEach(function (row, index) {
+          var fraction = total > 0 ? row.value / total : 0;
+          var end = start + fraction * 359.7;
+          var color = row.color || COLORS[index % COLORS.length];
+          if (fraction > 0.0001) {
+            var hoverLabel = row.name + " · " + currency(row.value) + " · " + percent(fraction, 2);
+            var path = svgEl("path", {
+              d: arcPath(110, 110, 78, start, end),
+              fill: "none",
+              stroke: color,
+              "stroke-width": 34,
+              "stroke-linecap": "butt",
+              tabindex: "0",
+              "aria-label": hoverLabel
+            });
+            var title = svgEl("title");
+            title.textContent = hoverLabel;
+            path.appendChild(title);
+            path.onpointerenter = function () {
+              showCenterDetail(row, fraction);
+            };
+            path.onpointerleave = restoreCenter;
+            path.onfocus = path.onpointerenter;
+            path.onblur = restoreCenter;
+            svg.appendChild(path);
+          }
+          start = end;
+        });
+
+        restoreCenter();
+      }
+
+      function renderAllocation() {
+        var allocationRows = buildAllocation();
+        var portfolioRows = buildPortfolioAllocation();
+        var stockRows = buildStockAllocation(false);
+        var stockRowsExBoxx = buildStockAllocation(true);
+        var categoryRowsExBoxx = buildCategoryAllocationExBoxx();
+        var portfolioTotal = portfolioRows.reduce(function (sum, row) { return sum + row.value; }, 0);
+        var stockTotal = stockRows.reduce(function (sum, row) { return sum + row.value; }, 0);
+        var stockTotalExBoxx = stockRowsExBoxx.reduce(function (sum, row) { return sum + row.value; }, 0);
+        var categoryTotalExBoxx = categoryRowsExBoxx.reduce(function (sum, row) { return sum + row.value; }, 0);
+        renderDonutChart(
+          "allocationDonut",
+          "donutTotal",
+          allocationRows,
+          n(state.data.summary.netLiquidation)
+        );
+        renderDonutChart(
+          "portfolioAllocationDonut",
+          "portfolioAllocationTotal",
+          portfolioRows,
+          portfolioTotal
+        );
+        renderDonutChart(
+          "stockAllocationDonut",
+          "stockAllocationTotal",
+          stockRows,
+          stockTotal
+        );
+        renderDonutChart(
+          "stockAllocationExBoxxDonut",
+          "stockAllocationExBoxxTotal",
+          stockRowsExBoxx,
+          stockTotalExBoxx
+        );
+        renderDonutChart(
+          "categoryAllocationExBoxxDonut",
+          "categoryAllocationExBoxxTotal",
+          categoryRowsExBoxx,
+          categoryTotalExBoxx
+        );
+      }
+
+      function currentPnlBreakdown() {
+        var etfSymbols = pnlBreakdown.etfSymbols || [];
+        var etfUnrealized = state.data.positions.filter(function (position) {
+          return position.assetClass === "STK" && etfSymbols.indexOf(String(position.name || "").toUpperCase()) >= 0;
+        }).reduce(function (sum, position) {
+          return sum + n(position.unrealizedPnl);
+        }, 0);
+        var equityUnrealized = n(state.data.pnl.stock.unrealized) - etfUnrealized;
+        var matchesEmbeddedSnapshot = state.data.fetchedAt === pnlBreakdown.snapshotFetchedAt;
+        return {
+          equity: {
+            realizedYtd: matchesEmbeddedSnapshot ? pnlBreakdown.equity.realizedYtd : null,
+            unrealized: equityUnrealized
+          },
+          etf: {
+            realizedYtd: matchesEmbeddedSnapshot ? pnlBreakdown.etf.realizedYtd : null,
+            unrealized: etfUnrealized
+          },
+          realizedSplitAvailable: matchesEmbeddedSnapshot
+        };
+      }
+
+      function renderPnl() {
+        var split = currentPnlBreakdown();
+        var rows = [
+          { label: "股票", data: split.equity },
+          { label: "ETF", data: split.etf },
+          { label: "债券与其他", data: state.data.pnl.other }
+        ];
+        var body = document.getElementById("pnlBody");
+        body.replaceChildren();
+
+        rows.forEach(function (row) {
+          var total = row.data.realizedYtd == null ? null : n(row.data.realizedYtd) + n(row.data.unrealized);
+          var tr = document.createElement("tr");
+          var label = document.createElement("td");
+          label.textContent = row.label;
+          tr.appendChild(label);
+          [row.data.realizedYtd, row.data.unrealized, total].forEach(function (value) {
+            var td = document.createElement("td");
+            if (value == null) {
+              td.className = "neutral";
+              td.textContent = "—";
+            } else {
+              td.className = signClass(value);
+              setAccountingMoney(td, value, { signed: true, digits: 2 });
+            }
+            tr.appendChild(td);
+          });
+          body.appendChild(tr);
+        });
+
+        var difference = n(state.data.pnl.positionUnrealized) - n(state.data.pnl.accountUnrealized);
+        var note = document.getElementById("pnlMethodNote");
+        note.replaceChildren();
+        appendText(note, "持仓逐项未实现盈亏合计 ");
+        appendAccountingMoney(note, state.data.pnl.positionUnrealized, { signed: true, digits: 2 });
+        appendText(note, "；账户 BASE 汇总为 ");
+        appendAccountingMoney(note, state.data.pnl.accountUnrealized, { signed: true, digits: 2 });
+        appendText(note, "，差额 ");
+        appendAccountingMoney(note, difference, { signed: true, digits: 2 });
+        appendText(note, "，可能来自应计、估值时点或 IBKR 汇总口径。");
+        appendText(note, split.realizedSplitAvailable ?
+          " 股票与 ETF 的已实现盈亏按 IBKR 年初至今逐笔成交分类。" :
+          " 当前实时快照未附逐标的成交分类，因此股票与 ETF 的已实现盈亏暂不显示。");
+      }
+
+      function isCashEquivalentPosition(position) {
+        return String(position.name || "").trim().toUpperCase() === "BOXX";
+      }
+
+      function isDirectTreasuryPosition(position) {
+        var name = String(position.name || "").trim();
+        return position.assetClass === "BOND" && /(?:^US-T GOVT\b|TREASURY|UNITED STATES TREASURY)/i.test(name);
+      }
+
+      function isTopFiveRiskExcludedPosition(position) {
+        return isCashEquivalentPosition(position) || isDirectTreasuryPosition(position);
+      }
+
+      function renderRisk() {
+        var nav = n(state.data.summary.netLiquidation);
+        var sorted = state.data.positions.slice().sort(function (a, b) {
+          return Math.abs(n(b.marketValue)) - Math.abs(n(a.marketValue));
+        });
+        var riskSorted = state.data.positions.filter(function (position) {
+          return !isTopFiveRiskExcludedPosition(position);
+        }).sort(function (a, b) {
+          return Math.abs(n(b.marketValue)) - Math.abs(n(a.marketValue));
+        });
+        var largest = sorted[0] || { name: "—", marketValue: 0 };
+        var topFive = riskSorted.slice(0, 5).reduce(function (sum, p) { return sum + Math.abs(n(p.marketValue)); }, 0);
+        var cashEquivalentTotal = Math.max(0, n(state.data.summary.cash)) + state.data.positions
+          .filter(isCashEquivalentPosition)
+          .reduce(function (sum, position) { return sum + Math.max(0, n(position.marketValue)); }, 0);
+        var marginRatio = nav ? n(state.data.summary.initialMargin) / nav : 0;
+        var orderRatio = cashEquivalentTotal > 0 ? n(state.data.risk.effectiveOrderNotional) / cashEquivalentTotal : 0;
+        var availableRatio = nav ? n(state.data.summary.availableFunds) / nav : 0;
+        var items = [
+          {
+            label: "最大单一持仓（含现金等价物）",
+            value: largest.name + " · " + percent(Math.abs(n(largest.marketValue)) / nav, 1),
+            ratio: Math.abs(n(largest.marketValue)) / nav,
+            renderDetail: function (element) {
+              appendAccountingMoney(element, largest.marketValue, { digits: 2 });
+              appendText(element, "，以净资产为分母");
+            },
+            tone: ""
+          },
+          {
+            label: "前五大风险持仓集中度",
+            value: percent(topFive / nav, 1),
+            ratio: topFive / nav,
+            detail: riskSorted.slice(0, 5).map(function (p) { return p.name; }).join("、") + "；已排除 BOXX 与美国国债，国债不归类为现金等价物",
+            tone: "gold"
+          },
+          {
+            label: "初始保证金占净资产",
+            value: percent(marginRatio, 1),
+            ratio: marginRatio,
+            renderDetail: function (element) {
+              appendAccountingMoney(element, state.data.summary.initialMargin, { digits: 2 });
+              appendText(element, "；维持保证金 ");
+              appendAccountingMoney(element, state.data.summary.maintenanceMargin, { digits: 2 });
+            },
+            tone: ""
+          },
+          {
+            label: "有效挂单剩余名义金额",
+            valueAmount: state.data.risk.effectiveOrderNotional,
+            valueSuffix: percent(orderRatio, 1),
+            ratio: orderRatio,
+            renderDetail: function (element) {
+              appendText(element, state.data.risk.effectiveOrderCount + " 笔；分母为现金 + BOXX ");
+              appendAccountingMoney(element, cashEquivalentTotal, { digits: 2 });
+            },
+            tone: "gold"
+          },
+          {
+            label: "可用资金占净资产",
+            value: percent(availableRatio, 1),
+            ratio: availableRatio,
+            renderDetail: function (element) {
+              appendAccountingMoney(element, state.data.summary.availableFunds, { digits: 2 });
+              appendText(element, "；超额流动性 ");
+              appendAccountingMoney(element, state.data.summary.excessLiquidity, { digits: 2 });
+            },
+            tone: "green"
+          }
+        ];
+
+        var grid = document.getElementById("riskGrid");
+        grid.replaceChildren();
+        items.forEach(function (item) {
+          var block = document.createElement("div");
+          block.className = "risk-item";
+          var top = document.createElement("div");
+          top.className = "risk-top";
+          var label = document.createElement("span");
+          label.className = "risk-label";
+          label.textContent = item.label;
+          var value = document.createElement("span");
+          value.className = "risk-value";
+          if (item.valueAmount != null) {
+            appendAccountingMoney(value, item.valueAmount, { digits: 2 });
+            appendText(value, " · " + item.valueSuffix);
+          } else {
+            value.textContent = item.value;
+          }
+          top.append(label, value);
+          var bar = document.createElement("div");
+          bar.className = "risk-bar";
+          var fill = document.createElement("div");
+          fill.className = "risk-fill " + item.tone;
+          fill.style.width = clamp(item.ratio * 100, 0, 100) + "%";
+          bar.appendChild(fill);
+          var detail = document.createElement("div");
+          detail.className = "risk-detail";
+          if (item.renderDetail) item.renderDetail(detail);
+          else detail.textContent = item.detail;
+          block.append(top, bar, detail);
+          grid.appendChild(block);
+        });
+      }
+
+      function appendCategoryRow(body, label, total, nav, count, colSpan) {
+        var row = document.createElement("tr");
+        row.className = "category-row";
+        var cell = document.createElement("td");
+        cell.colSpan = colSpan;
+        var summary = document.createElement("div");
+        summary.className = "category-summary";
+        var name = document.createElement("span");
+        name.className = "category-name";
+        name.textContent = label;
+        var totalBlock = document.createElement("span");
+        totalBlock.className = "category-total";
+        appendText(totalBlock, "分类净清算值 ");
+        appendAccountingMoney(totalBlock, total, { digits: 2 });
+        appendText(totalBlock, " · " + percent(nav ? total / nav : 0, 2) + " NAV · " + count + " 个标的");
+        summary.append(name, totalBlock);
+        cell.appendChild(summary);
+        row.appendChild(cell);
+        body.appendChild(row);
+      }
+
+      function positionReturnRate(position) {
+        var costValue = n(position.averagePrice) * n(position.quantity);
+        return costValue ? n(position.unrealizedPnl) / Math.abs(costValue) : 0;
+      }
+
+      function positionDailyPnlRate(position) {
+        var value = Number(position.dailyPnlRate);
+        return Number.isFinite(value) ? value : null;
+      }
+
+      function positionAggregateReturn(position, lifecycle) {
+        if (!lifecycle) return null;
+        return n(position.unrealizedPnl) + n(lifecycle.dividendTotal) + n(lifecycle.realizedPnl);
+      }
+
+      function positionSortValue(position, key) {
+        if (key === "returnRate") return positionReturnRate(position);
+        if (key === "dailyPnlRate") {
+          var dailyRate = positionDailyPnlRate(position);
+          return dailyRate != null ? dailyRate : Number.NEGATIVE_INFINITY;
+        }
+        var lifecycle = lifecycleMetrics.metrics[String(position.name || "").toUpperCase()] || null;
+        if (key === "dividendTotal") return lifecycle ? n(lifecycle.dividendTotal) : 0;
+        if (key === "realizedPnl") return lifecycle ? n(lifecycle.realizedPnl) : 0;
+        if (key === "aggregateReturn") {
+          var aggregateReturn = positionAggregateReturn(position, lifecycle);
+          return aggregateReturn != null ? aggregateReturn : Number.NEGATIVE_INFINITY;
+        }
+        if (key === "annualizedTotalReturn") {
+          return lifecycle && lifecycle.annualizedTotalReturn != null
+            ? n(lifecycle.annualizedTotalReturn)
+            : Number.NEGATIVE_INFINITY;
+        }
+        return n(position[key]);
+      }
+
+      function syncPositionCategoryRows() {
+        var scroller = document.getElementById("positionsScroll");
+        if (!scroller) return;
+        var table = scroller.querySelector(".positions-table");
+        if (!table) return;
+        table.style.setProperty("--category-sticky-width", scroller.clientWidth + "px");
+        scroller.classList.toggle("is-scrolled-x", scroller.scrollLeft > 1);
+      }
+
+      function couponDateFromMaturity(maturity, periodsBack) {
+        var parts = String(maturity || "").split("-").map(Number);
+        if (parts.length !== 3 || parts.some(function (part) { return !Number.isFinite(part); })) return new Date(NaN);
+        var totalMonths = parts[0] * 12 + (parts[1] - 1) - periodsBack * 6;
+        var year = Math.floor(totalMonths / 12);
+        var month = totalMonths - year * 12;
+        var lastDay = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+        return new Date(Date.UTC(year, month, Math.min(parts[2], lastDay)));
+      }
+
+      function lifecycleCouponTotal(faceValue, reference) {
+        if (!reference || !reference.coupon) return 0;
+        var purchase = new Date(reference.purchaseDate + "T00:00:00Z");
+        if (Number.isNaN(purchase.getTime())) return 0;
+        var couponCount = 0;
+        for (var periodsBack = 0; periodsBack < 200; periodsBack += 1) {
+          var couponDate = couponDateFromMaturity(reference.maturity, periodsBack);
+          if (Number.isNaN(couponDate.getTime()) || couponDate <= purchase) break;
+          couponCount += 1;
+        }
+        return n(faceValue) * n(reference.coupon) / 2 * couponCount;
+      }
+
+      function renderPositionRow(body, position, categoryTag, categoryClass) {
+        var nav = n(state.data.summary.netLiquidation);
+        var returnRate = positionReturnRate(position);
+        var dailyPnlRate = positionDailyPnlRate(position);
+        var lifecycle = lifecycleMetrics.metrics[String(position.name || "").toUpperCase()] || null;
+        var aggregateReturn = positionAggregateReturn(position, lifecycle);
+        var comprehensiveCost = lifecycle && n(position.quantity)
+          ? (n(position.averagePrice) * n(position.quantity) - n(lifecycle.dividendTotal) - n(lifecycle.realizedPnl)) / n(position.quantity)
+          : n(position.averagePrice);
+        var cells = [
+          { value: categoryTag || "其他", tag: true, tagClass: categoryClass || "other" },
+          { value: position.name, className: "symbol" },
+          { amount: position.marketValue },
+          { value: percent(nav ? position.marketValue / nav : 0, 2) },
+          { value: number(position.quantity, Math.abs(position.quantity % 1) > 0 ? 4 : 0) },
+          { amount: comprehensiveCost, className: "comprehensive-cost-col" },
+          { amount: position.averagePrice },
+          { amount: position.marketPrice },
+          { amount: position.dailyPnl, signed: true, className: signClass(position.dailyPnl) },
+          {
+            value: dailyPnlRate != null ? signedPercent(dailyPnlRate) : "—",
+            className: dailyPnlRate != null ? signClass(dailyPnlRate) : "neutral",
+            title: dailyPnlRate != null
+              ? "IBKR 市场快照直接返回的一日涨跌百分比"
+              : "IBKR 市场快照未返回该字段；页面未使用本地公式推算"
+          },
+          { amount: position.unrealizedPnl, signed: true, className: signClass(position.unrealizedPnl) },
+          { value: signedPercent(returnRate), className: "unrealized-return-col " + signClass(returnRate) },
+          { amount: lifecycle ? lifecycle.dividendTotal : 0 },
+          { amount: lifecycle ? lifecycle.realizedPnl : 0, signed: true, className: signClass(lifecycle ? lifecycle.realizedPnl : 0) },
+          aggregateReturn != null
+            ? { amount: aggregateReturn, signed: true, className: signClass(aggregateReturn) }
+            : { value: "—", className: "neutral" },
+          {
+            value: lifecycle && lifecycle.annualizedTotalReturn != null ? signedPercent(lifecycle.annualizedTotalReturn) : "—",
+            className: lifecycle && lifecycle.annualizedTotalReturn != null ? signClass(lifecycle.annualizedTotalReturn) : "neutral",
+            title: lifecycle && lifecycle.note ? lifecycle.note : "按逐笔净现金流、税后股息与期末市值计算的年化 XIRR"
+          }
+        ];
+        var tr = document.createElement("tr");
+        cells.forEach(function (cell) {
+          var td = document.createElement("td");
+          if (cell.tag) {
+            var category = document.createElement("span");
+            category.className = "position-category-inline " + cell.tagClass;
+            category.textContent = cell.value;
+            td.appendChild(category);
+          } else if (cell.amount != null) setAccountingMoney(td, cell.amount, { signed: cell.signed, digits: 2 });
+          else td.textContent = cell.value;
+          if (cell.className) td.className = cell.className;
+          if (cell.title) td.title = cell.title;
+          tr.appendChild(td);
+        });
+        body.appendChild(tr);
+      }
+
+      function updatePositionSortHeaders() {
+        document.querySelectorAll("[data-position-sort]").forEach(function (button) {
+          var key = button.dataset.positionSort;
+          var active = state.positionSort && state.positionSort.key === key;
+          var direction = active ? state.positionSort.direction : null;
+          var heading = button.closest("th");
+          var indicator = button.querySelector(".sort-indicator");
+          var label = button.dataset.sortLabel;
+          button.classList.toggle("active", Boolean(active));
+          heading.setAttribute("aria-sort", active ? (direction === "asc" ? "ascending" : "descending") : "none");
+          indicator.textContent = active ? (direction === "asc" ? "▲" : "▼") : "↕";
+          button.setAttribute(
+            "aria-label",
+            active
+              ? "当前按" + label + (direction === "asc" ? "从小到大" : "从大到小") + "排列"
+              : "按" + label + "从大到小排列"
+          );
+        });
+      }
+
+      function renderPositions() {
+        var nav = n(state.data.summary.netLiquidation);
+        var stockRows = state.data.positions.filter(function (position) { return position.assetClass === "STK"; });
+        var stockBySymbol = {};
+        stockRows.forEach(function (position) {
+          stockBySymbol[String(position.name || "").toUpperCase()] = position;
+        });
+        var assigned = {};
+        var categories = positionCategories.map(function (category) {
+          var rows = category.symbols.map(function (symbol) {
+            var position = stockBySymbol[symbol];
+            if (position) assigned[symbol] = true;
+            return position;
+          }).filter(Boolean);
+          return {
+            name: category.name,
+            tag: category.tag,
+            tagClass: category.tagClass,
+            fixedLast: category.fixedLast,
+            rows: rows,
+            total: rows.reduce(function (sum, position) { return sum + n(position.marketValue); }, 0)
+          };
+        }).filter(function (category) { return category.rows.length; });
+        var unmatched = stockRows.filter(function (position) {
+          return !assigned[String(position.name || "").toUpperCase()];
+        });
+        if (unmatched.length) {
+          var otherCategory = {
+            name: "其他",
+            tag: "其他",
+            tagClass: "other",
+            fixedLast: false,
+            rows: unmatched,
+            total: unmatched.reduce(function (sum, position) { return sum + n(position.marketValue); }, 0)
+          };
+          var cashIndex = categories.findIndex(function (category) { return category.fixedLast; });
+          if (cashIndex >= 0) categories.splice(cashIndex, 0, otherCategory);
+          else categories.push(otherCategory);
+        }
+
+        var body = document.getElementById("positionsBody");
+        body.replaceChildren();
+        if (state.positionSort) {
+          var sortedRows = [];
+          categories.forEach(function (category) {
+            category.rows.forEach(function (position) {
+              sortedRows.push({
+                position: position,
+                categoryTag: category.tag,
+                categoryClass: category.tagClass,
+                defaultIndex: sortedRows.length
+              });
+            });
+          });
+          var direction = state.positionSort.direction === "asc" ? 1 : -1;
+          var key = state.positionSort.key;
+          sortedRows.sort(function (a, b) {
+            var aValue = positionSortValue(a.position, key);
+            var bValue = positionSortValue(b.position, key);
+            var aMissing = !Number.isFinite(aValue);
+            var bMissing = !Number.isFinite(bValue);
+            if (aMissing !== bMissing) return aMissing ? 1 : -1;
+            var difference = aValue - bValue;
+            return difference ? difference * direction : a.defaultIndex - b.defaultIndex;
+          });
+          sortedRows.forEach(function (item) {
+            renderPositionRow(body, item.position, item.categoryTag, item.categoryClass);
+          });
+          document.getElementById("positionsNote").textContent =
+            stockRows.length + " 个股票/ETF · 按" + positionSortLabels[key] +
+            (direction === 1 ? "从小到大" : "从大到小") + "排列 · 再次点击可切换或恢复参考表顺序";
+        } else {
+          categories.forEach(function (category) {
+            appendCategoryRow(body, category.name, category.total, nav, category.rows.length, 16);
+            category.rows.forEach(function (position) {
+              renderPositionRow(body, position, category.tag, category.tagClass);
+            });
+          });
+          document.getElementById("positionsNote").textContent =
+            stockRows.length + " 个股票/ETF · " + categories.length + " 类 · 按 Assets-20260719.xlsx 原始分组及标的顺序排列";
+        }
+        updatePositionSortHeaders();
+        window.requestAnimationFrame(syncPositionCategoryRows);
+      }
+
+      function renderBonds() {
+        var nav = n(state.data.summary.netLiquidation);
+        var rows = state.data.positions.filter(function (position) { return position.assetClass === "BOND"; })
+          .map(function (position) {
+            return { position: position, reference: bondReference[position.familyBondKey] || null };
+          }).sort(function (a, b) {
+            return String(a.reference ? a.reference.maturity : "9999-12-31")
+              .localeCompare(String(b.reference ? b.reference.maturity : "9999-12-31"));
+          });
+        var body = document.getElementById("bondsBody");
+        body.replaceChildren();
+
+        ["附息国债", "STRIPS"].forEach(function (type) {
+          var group = rows.filter(function (row) { return row.reference && row.reference.type === type; });
+          if (!group.length) return;
+          var total = group.reduce(function (sum, row) { return sum + n(row.position.marketValue); }, 0);
+          appendCategoryRow(body, type, total, nav, group.length, 12);
+          group.forEach(function (row) {
+            var position = row.position;
+            var reference = row.reference;
+            var tr = document.createElement("tr");
+            var name = document.createElement("td");
+            name.className = "symbol";
+            name.textContent = reference.name;
+            tr.appendChild(name);
+
+            var typeCell = document.createElement("td");
+            var typeChip = document.createElement("span");
+            typeChip.className = "asset-chip";
+            typeChip.textContent = reference.type;
+            typeCell.appendChild(typeChip);
+            tr.appendChild(typeCell);
+
+            var faceValue = document.createElement("td");
+            var faceAmount = n(position.quantity) * 1000;
+            setAccountingMoney(faceValue, faceAmount, { digits: 2 });
+            tr.appendChild(faceValue);
+
+            [
+              { value: percent(reference.coupon, 2) },
+              { value: percent(reference.actualYield, 3), className: "bond-yield-col", title: "购买时的到期收益率；来自 Assets-20260719.xlsx 持仓息率" },
+              { value: reference.purchaseDate },
+              { amount: position.averagePrice },
+              { amount: position.marketPrice },
+              { amount: position.marketValue }
+            ].forEach(function (cell) {
+              var td = document.createElement("td");
+              if (cell.amount != null) setAccountingMoney(td, cell.amount, { signed: cell.signed, digits: 2 });
+              else td.textContent = cell.value;
+              if (cell.className) td.className = cell.className;
+              if (cell.title) td.title = cell.title;
+              tr.appendChild(td);
+            });
+
+            var interest = document.createElement("td");
+            var totalInterest = lifecycleCouponTotal(faceAmount, reference);
+            setAccountingProgress(interest, reference.paidInterest, totalInterest, { digits: 2 });
+            interest.title = reference.type === "STRIPS"
+              ? "STRIPS 不派发现金票息；折价增值不计入本栏"
+              : "已派息票 / 从购买日至到期日预计息票总额；实际派息截至 2026-07-03";
+            tr.appendChild(interest);
+
+            [
+              { value: percent(nav ? position.marketValue / nav : 0, 2), className: "bond-result-col" },
+              { amount: position.unrealizedPnl, signed: true, className: "bond-result-col " + signClass(position.unrealizedPnl) }
+            ].forEach(function (cell) {
+              var td = document.createElement("td");
+              if (cell.amount != null) setAccountingMoney(td, cell.amount, { signed: cell.signed, digits: 2 });
+              else td.textContent = cell.value;
+              if (cell.className) td.className = cell.className;
+              tr.appendChild(td);
+            });
+            body.appendChild(tr);
+          });
+        });
+
+        var unmapped = rows.filter(function (row) { return !row.reference; });
+        if (unmapped.length) {
+          var unmappedTotal = unmapped.reduce(function (sum, row) { return sum + n(row.position.marketValue); }, 0);
+          appendCategoryRow(body, "待核对债券", unmappedTotal, nav, unmapped.length, 12);
+        }
+        document.getElementById("bondsNote").textContent =
+          rows.length + " 个直接美债/STRIPS · 按实际到期先后排列 · 快照采集 " + longDateTime(state.data.holdingsFetchedAt || state.data.fetchedAt);
+      }
+
+      function renderOrders() {
+        var body = document.getElementById("ordersBody");
+        body.replaceChildren();
+        var rows = state.data.orders.slice().sort(function (a, b) {
+          return new Date(b.time) - new Date(a.time);
+        });
+        if (!rows.length) {
+          var empty = document.createElement("tr");
+          var emptyCell = document.createElement("td");
+          emptyCell.colSpan = 10;
+          emptyCell.className = "empty-row";
+          emptyCell.textContent = "当前没有连接器返回的有效挂单";
+          empty.appendChild(emptyCell);
+          body.appendChild(empty);
+          return;
+        }
+
+        rows.forEach(function (order) {
+          var tr = document.createElement("tr");
+          var symbol = document.createElement("td");
+          symbol.className = "symbol";
+          symbol.textContent = order.symbol;
+          tr.appendChild(symbol);
+
+          var side = document.createElement("td");
+          var sideChip = document.createElement("span");
+          sideChip.className = "order-chip " + (order.side === "BUY" ? "buy" : "sell");
+          sideChip.textContent = order.side === "BUY" ? "买入" : "卖出";
+          side.appendChild(sideChip);
+          tr.appendChild(side);
+
+          var values = [
+            { value: order.type === "LIMIT" ? "限价" : order.type },
+            { amount: order.limitPrice },
+            { value: number(order.totalQuantity, 0) },
+            { value: number(order.filledQuantity, 0) },
+            { value: number(order.remainingQuantity, 0) },
+            { amount: order.remainingQuantity * order.limitPrice }
+          ];
+          values.forEach(function (item) {
+            var td = document.createElement("td");
+            if (item.amount != null) setAccountingMoney(td, item.amount, { digits: 2 });
+            else td.textContent = item.value;
+            tr.appendChild(td);
+          });
+
+          var status = document.createElement("td");
+          var statusChip = document.createElement("span");
+          statusChip.className = "order-chip " + (order.status === "REPLACED" ? "replaced" : "");
+          statusChip.textContent = order.status;
+          status.appendChild(statusChip);
+          tr.appendChild(status);
+
+          var time = document.createElement("td");
+          time.textContent = order.time ? longDateTime(order.time).replace(" UTC", "") : "—";
+          tr.appendChild(time);
+          body.appendChild(tr);
+        });
+      }
+
+      function renderKpis() {
+        var data = state.data;
+        setAccountingMoney(document.getElementById("kpiNav"), data.summary.netLiquidation, { digits: 2 });
+        setAccountingMoney(document.getElementById("kpiCash"), data.summary.cash, { digits: 2 });
+        var boxxValue = data.positions.filter(function (position) {
+          return String(position.name || "").trim().toUpperCase() === "BOXX";
+        }).reduce(function (sum, position) { return sum + n(position.marketValue); }, 0);
+        var cashEquivalent = boxxValue;
+        setAccountingMoney(document.getElementById("kpiCashEquivalent"), cashEquivalent, { digits: 2 });
+        var unrealizedPnl = document.getElementById("kpiUnrealizedPnl");
+        setAccountingMoney(unrealizedPnl, data.pnl.accountUnrealized, { signed: true, digits: 2 });
+        unrealizedPnl.classList.remove("positive", "negative", "neutral");
+        unrealizedPnl.classList.add(signClass(data.pnl.accountUnrealized));
+        var dailyPnl = document.getElementById("kpiDailyPnl");
+        setAccountingMoney(dailyPnl, data.summary.dailyPnl, { signed: true, digits: 2 });
+        dailyPnl.classList.remove("positive", "negative", "neutral");
+        dailyPnl.classList.add(signClass(data.summary.dailyPnl));
+        var dailyPnlRate = document.getElementById("kpiDailyPnlRate");
+        var oneDay = data.performance && data.performance["1D"];
+        var dailyReturn = oneDay && Array.isArray(oneDay.returns) && oneDay.returns.length
+          ? Number(oneDay.returns[oneDay.returns.length - 1]) : NaN;
+        if (Number.isFinite(dailyReturn)) setSignedText(dailyPnlRate, dailyReturn, signedPercent);
+        else {
+          dailyPnlRate.textContent = "—";
+          dailyPnlRate.classList.remove("positive", "negative", "neutral");
+        }
+        var navNote = document.getElementById("kpiNavNote");
+        navNote.replaceChildren();
+        var positionValueLine = document.createElement("span");
+        positionValueLine.className = "kpi-note-line";
+        appendText(positionValueLine, "持仓市值 ");
+        appendAccountingMoney(positionValueLine, data.reconciliation.positionsMarketValue, { digits: 2 });
+        var residualLine = document.createElement("span");
+        residualLine.className = "kpi-note-line";
+        appendText(residualLine, "应计差额 ");
+        appendAccountingMoney(residualLine, data.reconciliation.residual, { digits: 2 });
+        navNote.append(positionValueLine, residualLine);
+        document.getElementById("kpiCashNote").textContent =
+          "现金占净资产 " + percent(data.summary.cash / data.summary.netLiquidation, 2);
+        var cashEquivalentNote = document.getElementById("kpiCashEquivalentNote");
+        cashEquivalentNote.replaceChildren();
+        appendText(cashEquivalentNote, "BOXX；占净资产 " + percent(cashEquivalent / data.summary.netLiquidation, 2));
+      }
+
+      function renderPerformance() {
+        var period = getPeriod(state.period);
+        if (!period) return;
+        var benchmark = benchmarkForPeriod(period, state.benchmark);
+        var endingReturn = n(period.returns[period.returns.length - 1]);
+        var benchmarkEndingReturn = benchmark ? n(benchmark.returns[benchmark.returns.length - 1]) : null;
+        var startNav = n(period.startNav) || n(period.nav[0]);
+        var endNav = n(period.nav[period.nav.length - 1]);
+        var navChange = endNav - startNav;
+
+        setSignedText(document.getElementById("returnValue"), endingReturn, signedPercent);
+        document.getElementById("returnLabel").textContent =
+          "账户累计收益 · " + state.data.returnMethod +
+          (period.derived ? " · 从可用序列重算" : "");
+        setSignedText(document.getElementById("accountLegendValue"), endingReturn, signedPercent);
+        var benchmarkLegendName = document.getElementById("benchmarkLegendName");
+        var benchmarkTooltipName = document.getElementById("returnTooltipBenchmarkName");
+        var benchmarkLegendValue = document.getElementById("benchmarkLegendValue");
+        if (benchmark) {
+          benchmarkLegendName.textContent = benchmark.label;
+          benchmarkTooltipName.textContent = benchmark.label;
+          setSignedText(benchmarkLegendValue, benchmarkEndingReturn, signedPercent);
+        } else {
+          benchmarkLegendName.textContent = "指数";
+          benchmarkTooltipName.textContent = "指数";
+          benchmarkLegendValue.textContent = "暂无数据";
+          benchmarkLegendValue.classList.remove("positive", "negative", "neutral");
+        }
+        var navValue = document.getElementById("navValue");
+        setAccountingMoney(navValue, navChange, { signed: true, digits: 2 });
+        navValue.classList.remove("positive", "negative", "neutral");
+        navValue.classList.add(signClass(navChange));
+        var navLabel = document.getElementById("navLabel");
+        navLabel.replaceChildren();
+        appendText(navLabel, "从 ");
+        appendAccountingMoney(navLabel, startNav, { digits: 2 });
+        appendText(navLabel, " 至 ");
+        appendAccountingMoney(navLabel, endNav, { digits: 2 });
+
+        var returnChart = document.getElementById("returnChart");
+        returnChart.setAttribute("aria-label", "账户与" + (benchmark ? benchmark.label : "指数") + "累计收益对比曲线");
+        var returnSeries = [{
+          label: "账户",
+          values: period.returns,
+          color: "#2f6f9f",
+          dash: ""
+        }];
+        if (benchmark) {
+          returnSeries.push({
+            label: benchmark.label,
+            values: benchmark.returns,
+            color: "#bd8c28",
+            dash: "6 5"
+          });
+        }
+        renderLineChart({
+          svg: returnChart,
+          wrap: document.getElementById("returnChartWrap"),
+          tooltip: document.getElementById("returnTooltip"),
+          series: returnSeries,
+          labels: period.dates,
+          includeZero: true,
+          axisFormat: function (value) { return percent(value, 1); },
+          tooltipRenderer: function (tooltip, index, series) {
+            setSignedText(document.getElementById("returnTooltipAccount"), series[0].values[index], signedPercent);
+            var benchmarkValue = document.getElementById("returnTooltipBenchmark");
+            var deltaName = document.getElementById("returnTooltipDeltaName");
+            var deltaValue = document.getElementById("returnTooltipDelta");
+            if (series[1]) {
+              setSignedText(benchmarkValue, series[1].values[index], signedPercent);
+              deltaName.textContent = "相对 " + series[1].label;
+              setSignedText(deltaValue, series[0].values[index] - series[1].values[index], signedPercentagePoints);
+            }
+            else {
+              benchmarkValue.textContent = "暂无数据";
+              benchmarkValue.classList.remove("positive", "negative", "neutral");
+              deltaName.textContent = "相对指数";
+              deltaValue.textContent = "暂无数据";
+              deltaValue.classList.remove("positive", "negative", "neutral");
+            }
+          }
+        });
+
+        renderLineChart({
+          svg: document.getElementById("navChart"),
+          wrap: document.getElementById("navChartWrap"),
+          tooltip: document.getElementById("navTooltip"),
+          values: period.nav,
+          labels: period.dates,
+          includeZero: false,
+          axisFormat: compactCurrency,
+          accountingAxis: true,
+          tooltipFormat: currency,
+          accountingTooltip: true,
+          lineColor: function () { return "#2f6f9f"; }
+        });
+      }
+
+      function renderFooter() {
+        var modeText = "家庭版静态快照";
+        var collectedAt = state.data.holdingsFetchedAt || state.data.fetchedAt;
+        document.getElementById("statusText").textContent = modeText;
+        document.getElementById("asOfText").textContent = "本次采集：" + longDateTime(collectedAt);
+        document.getElementById("footerReturnMethod").textContent =
+          (state.data.returnMethod === "TWR" ? "TWR（时间加权收益率）" : state.data.returnMethod) + "；指数为价格回报，不含股息";
+        document.getElementById("footerStatementHistory").textContent =
+          "IBKR Activity · " + statementHistory[0].periodStart + "—" + statementHistory[statementHistory.length - 1].periodEnd;
+      }
+
+      function renderAll() {
+        renderKpis();
+        renderPerformance();
+        renderAllocation();
+        renderPnl();
+        renderRisk();
+        renderPositions();
+        renderBonds();
+        renderOrders();
+        renderFooter();
+      }
+
+      document.querySelectorAll(".period-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          state.period = button.dataset.period;
+          document.querySelectorAll(".period-btn").forEach(function (peer) {
+            peer.setAttribute("aria-pressed", String(peer === button));
+          });
+          renderPerformance();
+        });
+      });
+
+      document.querySelectorAll(".benchmark-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          state.benchmark = button.dataset.benchmark;
+          document.querySelectorAll(".benchmark-btn").forEach(function (peer) {
+            peer.setAttribute("aria-pressed", String(peer === button));
+          });
+          renderPerformance();
+        });
+      });
+
+      document.querySelectorAll("[data-position-sort]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          var key = button.dataset.positionSort;
+          if (!state.positionSort || state.positionSort.key !== key) {
+            state.positionSort = { key: key, direction: "desc" };
+          } else if (state.positionSort.direction === "desc") {
+            state.positionSort = { key: key, direction: "asc" };
+          } else {
+            state.positionSort = null;
+          }
+          renderPositions();
+        });
+      });
+
+      var positionsScroll = document.getElementById("positionsScroll");
+      if (positionsScroll) positionsScroll.addEventListener("scroll", syncPositionCategoryRows, { passive: true });
+
+      var resizeTimer;
+      window.addEventListener("resize", function () {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(function () {
+          renderPerformance();
+          syncPositionCategoryRows();
+        }, 120);
+      }, { passive: true });
+
+      resolveSnapshot().then(function (snapshot) {
+        state.data = applyHoldingsSnapshot(snapshot);
+        recordSnapshot(state.data);
+        renderAll();
+        window.IBKRDashboard = {
+          schemaVersion: 1,
+          getSnapshot: function () { return state.data; },
+          getBenchmarkHistory: function () { return benchmarkHistory; },
+          getPnlBreakdown: function () { return currentPnlBreakdown(); },
+          getStatementHistory: function () { return statementHistory.slice(); },
+          getLocalHistory: function () { return state.localHistory.slice(); },
+          rerender: renderAll
+        };
+      }).catch(function (error) {
+        console.error(error);
+        document.getElementById("statusText").textContent = "家庭快照载入失败";
+        document.querySelector(".status-dot").style.background = "#c7353b";
+      });
+    })();
+  </script>
+</body>
+</html>

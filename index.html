@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>投资工作台</title>
+  <style>
+    :root {
+      --page: #f3f5f6;
+      --surface: #ffffff;
+      --surface-soft: #eef3f6;
+      --ink: #17212b;
+      --ink-strong: #102f49;
+      --muted: #687580;
+      --soft: #8b98a3;
+      --line: #d9e0e4;
+      --navy: #163b59;
+      --blue: #2f6f9f;
+      --blue-soft: #e7f0f6;
+      --gold: #bd8c28;
+      --gold-soft: #f7efd9;
+      --gold-hover: #a67618;
+      --green: #14804a;
+      --red: #b8474d;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--page); }
+    body { margin: 0; min-width: 320px; color: var(--ink); background: var(--page); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    button, a { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+    [hidden] { display: none !important; }
+
+    .page {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(255,255,255,.96) 0, rgba(255,255,255,.82) 29%, rgba(255,255,255,0) 66%),
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(22,59,89,.035) calc(100% - 1px)),
+        var(--page);
+      background-size: 25% 100%;
+    }
+
+    .topbar { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; min-height: 82px; padding: 18px clamp(22px, 4vw, 58px); border-bottom: 1px solid rgba(22,59,89,.11); background: rgba(255,255,255,.72); backdrop-filter: blur(14px); }
+    .brand { display: inline-flex; align-items: center; gap: 13px; text-decoration: none; }
+    .brand-mark { position: relative; width: 35px; height: 35px; border: 1px solid rgba(22,59,89,.72); background: rgba(255,255,255,.55); }
+    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; left: 7px; height: 2px; border-radius: 2px; background: var(--gold); transform-origin: left center; }
+    .brand-mark::before { width: 17px; top: 22px; transform: rotate(-31deg); }
+    .brand-mark::after { width: 10px; left: 19px; top: 14px; transform: rotate(37deg); }
+    .brand-copy { display: grid; line-height: 1.08; }
+    .brand-title { color: var(--ink-strong); font-size: 13px; font-weight: 760; letter-spacing: .01em; }
+    .brand-subtitle { margin-top: 4px; color: var(--muted); font-size: 8px; font-weight: 700; letter-spacing: .16em; }
+
+    .top-actions { display: flex; align-items: center; gap: 24px; }
+    .archive-state { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; white-space: nowrap; }
+    .state-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(20,128,74,.09); }
+    .archive-state.offline .state-dot { background: var(--red); box-shadow: 0 0 0 4px rgba(184,71,77,.09); }
+    .menu-button { display: inline-flex; align-items: center; gap: 10px; min-height: 40px; padding: 6px 0 6px 8px; border: 0; background: transparent; cursor: pointer; font-size: 13px; font-weight: 680; }
+    .menu-lines { display: grid; gap: 5px; width: 21px; }
+    .menu-lines::before, .menu-lines::after { content: ""; display: block; width: 21px; height: 1px; background: currentColor; }
+    .menu-button:hover { color: var(--blue); }
+    .menu-button:focus-visible { color: var(--blue); outline: 3px solid rgba(47,111,159,.18); outline-offset: 5px; }
+
+    .hero { position: relative; display: grid; place-items: center; min-height: 570px; padding: clamp(56px, 9vh, 108px) 22px; text-align: center; }
+    .hero::before, .hero::after { content: ""; position: absolute; pointer-events: none; }
+    .hero::before { top: 11%; bottom: 11%; left: 50%; width: 1px; background: linear-gradient(transparent, rgba(22,59,89,.075), transparent); }
+    .hero::after { left: 7%; right: 7%; top: 50%; height: 1px; background: linear-gradient(90deg, transparent, rgba(22,59,89,.06), transparent); }
+    .hero-inner { position: relative; z-index: 1; width: min(1040px, 100%); }
+    .eyebrow { margin: 0 0 17px; color: var(--blue); font-size: 11px; font-weight: 760; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 0; color: var(--ink); font-size: clamp(17px, 2vw, 24px); font-weight: 560; letter-spacing: .06em; }
+
+    .hero-money { display: inline-grid; grid-template-columns: max-content minmax(0,1fr); align-items: baseline; gap: clamp(10px, 1.7vw, 23px); max-width: 100%; margin: clamp(18px, 3vh, 30px) auto 0; color: var(--ink-strong); font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: -.055em; white-space: nowrap; }
+    .money-symbol { justify-self: start; font-size: clamp(17px, 2.2vw, 30px); font-weight: 650; letter-spacing: 0; }
+    .money-amount { justify-self: end; font-size: clamp(47px, 8.2vw, 112px); font-weight: 640; line-height: .96; text-shadow: 0 1px 0 rgba(255,255,255,.95); }
+    .asof { margin: clamp(18px, 2.5vh, 27px) 0 0; color: var(--muted); font: 11px var(--mono); letter-spacing: .015em; }
+
+    .portfolio-action { display: inline-flex; align-items: center; justify-content: center; min-width: min(330px, 100%); min-height: 54px; margin-top: 30px; padding: 12px 22px; border: 1px solid var(--navy); color: #fff; background: var(--navy); box-shadow: 0 8px 22px rgba(22,59,89,.12); font-size: 13px; font-weight: 800; letter-spacing: .025em; text-decoration: none; transition: background 140ms ease, border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease; }
+    .portfolio-action::after { content: "→"; margin-left: 13px; font-size: 17px; font-weight: 500; }
+    .portfolio-action:hover { border-color: var(--blue); background: var(--blue); box-shadow: 0 10px 24px rgba(47,111,159,.18); transform: translateY(-1px); }
+    .portfolio-action:focus-visible { outline: 3px solid rgba(47,111,159,.22); outline-offset: 4px; }
+    .history-link { display: block; width: max-content; margin: 19px auto 0; color: var(--muted); font-size: 11px; text-underline-offset: 4px; }
+    .history-link:hover { color: var(--blue); }
+    .history-link:focus-visible { color: var(--blue); outline: 2px solid rgba(47,111,159,.18); outline-offset: 4px; }
+    .archive-note { max-width: 550px; margin: 22px auto 0; color: var(--soft); font-size: 9px; line-height: 1.6; }
+
+    .bottombar { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 70px; padding: 14px clamp(22px, 4vw, 58px); border-top: 1px solid rgba(22,59,89,.11); color: var(--muted); background: rgba(255,255,255,.54); font-size: 10px; }
+    .bottom-meta { display: flex; align-items: center; gap: 20px; }
+    .bottom-link { color: var(--ink); font-weight: 690; text-decoration: none; }
+    .bottom-link:hover { color: var(--blue); }
+    .bottom-link:focus-visible { color: var(--blue); outline: 2px solid rgba(47,111,159,.18); outline-offset: 4px; }
+    .readonly { letter-spacing: .08em; text-transform: uppercase; }
+
+    .menu-backdrop { position: fixed; inset: 0; z-index: 100; display: grid; justify-items: end; background: rgba(16,33,47,.28); backdrop-filter: blur(4px); }
+    .side-menu { width: min(440px, 92vw); height: 100%; overflow-y: auto; padding: 22px clamp(24px, 4vw, 42px) 36px; border-top: 5px solid var(--gold); border-left: 1px solid rgba(22,59,89,.14); background: var(--surface); box-shadow: -18px 0 42px rgba(16,47,73,.16); }
+    .menu-head { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+    .menu-title { margin: 0; font-size: 12px; font-weight: 760; letter-spacing: .14em; text-transform: uppercase; }
+    .close-button { width: 38px; height: 38px; border: 0; background: transparent; cursor: pointer; font-size: 25px; font-weight: 300; line-height: 1; }
+    .close-button:hover { color: var(--blue); }
+    .close-button:focus-visible { color: var(--blue); outline: 3px solid rgba(47,111,159,.18); outline-offset: 2px; }
+    .menu-section-title { margin: 27px 0 9px; color: var(--muted); font-size: 9px; font-weight: 760; letter-spacing: .14em; text-transform: uppercase; }
+    .menu-list { display: grid; }
+    .menu-item { display: grid; grid-template-columns: minmax(0,1fr) max-content; align-items: center; gap: 16px; min-height: 63px; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+    .menu-item:hover { color: var(--blue); background: linear-gradient(90deg, rgba(231,240,246,.72), transparent); }
+    .menu-item:focus-visible { color: var(--blue); outline: 3px solid rgba(47,111,159,.17); outline-offset: -3px; }
+    .menu-item[aria-disabled="true"] { color: var(--soft); cursor: default; }
+    .menu-item[aria-disabled="true"]:hover { color: var(--soft); background: transparent; }
+    .menu-item-name { font-size: 14px; font-weight: 650; }
+    .menu-item-meta { color: inherit; font: 9px var(--mono); letter-spacing: .04em; }
+    .family-note { margin: 30px 0 0; padding: 17px 0 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; line-height: 1.7; }
+
+    @media (max-width: 700px) {
+      .page { background-size: 50% 100%; }
+      .topbar { min-height: 70px; padding-block: 14px; }
+      .archive-state, .brand-copy { display: none; }
+      .hero { min-height: 520px; padding-block: 48px; }
+      .hero-money { gap: 9px; }
+      .money-amount { font-size: clamp(43px, 13vw, 72px); }
+      .bottombar { align-items: flex-start; flex-direction: column; gap: 7px; }
+      .bottom-meta { width: 100%; justify-content: space-between; }
+    }
+    @media (max-width: 400px) { .money-amount { font-size: 41px; } .money-symbol { font-size: 15px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="投资工作台首页">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-copy"><span class="brand-title">投资工作台</span><span class="brand-subtitle">FAMILY INVESTMENT WORKSPACE</span></span>
+      </a>
+      <div class="top-actions">
+        <span class="archive-state" id="archiveState"><span class="state-dot" aria-hidden="true"></span><span>正在读取家庭快照</span></span>
+        <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="sideMenu"><span class="menu-lines" aria-hidden="true"></span><span>菜单</span></button>
+      </div>
+    </header>
+
+    <main class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Family Portfolio</p>
+        <h1>投资组合净值</h1>
+        <div class="hero-money" id="portfolioNav" aria-live="polite"><span class="money-symbol">US$</span><span class="money-amount">—</span></div>
+        <p class="asof" id="archiveTime">快照更新 · —</p>
+        <a class="portfolio-action" href="dashboard.html">查看投资组合概要</a>
+        <p class="archive-note">页面显示一份经筛选的家庭版静态快照；不连接券商、本机数据库或任何实时账户接口。</p>
+      </div>
+    </main>
+
+    <footer class="bottombar">
+      <div class="bottom-meta"><span class="readonly">Public · Family · Read-only</span><span class="bottom-link">单一快照</span></div>
+      <span>研究与决策入口位于右上角菜单</span>
+    </footer>
+  </div>
+
+  <div class="menu-backdrop" id="menuBackdrop" hidden>
+    <aside class="side-menu" id="sideMenu" aria-labelledby="sideMenuTitle">
+      <div class="menu-head"><h2 class="menu-title" id="sideMenuTitle">工作台导航</h2><button class="close-button" id="closeMenuButton" type="button" aria-label="关闭菜单">×</button></div>
+      <p class="menu-section-title">已可使用</p>
+      <nav class="menu-list" aria-label="已可使用页面">
+        <a class="menu-item" href="dashboard.html"><span class="menu-item-name">投资组合概要</span><span class="menu-item-meta">进入 →</span></a>
+      </nav>
+      <p class="menu-section-title">研究与决策</p>
+      <div class="menu-list">
+        <span class="menu-item" aria-disabled="true"><span class="menu-item-name">市场监控</span><span class="menu-item-meta">规划中</span></span>
+        <span class="menu-item" aria-disabled="true"><span class="menu-item-name">证券研究</span><span class="menu-item-meta">下一阶段</span></span>
+        <span class="menu-item" aria-disabled="true"><span class="menu-item-name">期权雷达</span><span class="menu-item-meta">规划中</span></span>
+        <span class="menu-item" aria-disabled="true"><span class="menu-item-name">交易决策</span><span class="menu-item-meta">规划中</span></span>
+      </div>
+      <p class="family-note"><strong>家庭访问版本</strong><br>此 Sites 页面仅包含一份独立、经筛选的家庭静态快照；不包含本机历史档案、券商连接或私有接口。</p>
+    </aside>
+  </div>
+
+  <script id="familyPortfolioSummary" type="application/json">{"netLiquidation":97701.0373,"currency":"USD","asOf":"2026-07-20T04:19:22Z"}</script>
+  <script>
+    (function () {
+      "use strict";
+      var moneyFormatter = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      var menuButton = document.getElementById("menuButton");
+      var closeMenuButton = document.getElementById("closeMenuButton");
+      var menuBackdrop = document.getElementById("menuBackdrop");
+
+      function openMenu() { menuBackdrop.hidden = false; menuButton.setAttribute("aria-expanded", "true"); closeMenuButton.focus(); }
+      function closeMenu() { menuBackdrop.hidden = true; menuButton.setAttribute("aria-expanded", "false"); menuButton.focus(); }
+      function asNumber(value) {
+        if (value == null || value === "") return null;
+        var number = Number(value);
+        return Number.isFinite(number) ? number : null;
+      }
+
+      function renderSummary(summary, mode) {
+        var nav = asNumber(summary.netLiquidation);
+        if (nav == null) return false;
+        document.querySelector("#portfolioNav .money-symbol").textContent = summary.currency === "USD" || !summary.currency ? "US$" : String(summary.currency);
+        document.querySelector("#portfolioNav .money-amount").textContent = (nav < 0 ? "-" : "") + moneyFormatter.format(Math.abs(nav));
+        var asOf = summary.asOf || summary.fetchedAt;
+        var date = asOf ? new Date(asOf) : null;
+        var text = date && Number.isFinite(date.getTime()) ? date.toISOString().slice(0,16).replace("T", " ") + " UTC" : "时间待补充";
+        document.getElementById("archiveTime").textContent = "快照更新 · " + text;
+        document.getElementById("archiveState").querySelector("span:last-child").textContent = "家庭版静态快照";
+        return true;
+      }
+
+      function loadSummary() {
+        var embedded = JSON.parse(document.getElementById("familyPortfolioSummary").textContent);
+        renderSummary(embedded, "family");
+      }
+
+      menuButton.addEventListener("click", openMenu);
+      closeMenuButton.addEventListener("click", closeMenu);
+      menuBackdrop.addEventListener("click", function (event) { if (event.target === menuBackdrop) closeMenu(); });
+      document.addEventListener("keydown", function (event) { if (event.key === "Escape" && !menuBackdrop.hidden) closeMenu(); });
+      loadSummary();
+    }());
+  </script>
+</body>
+</html>
