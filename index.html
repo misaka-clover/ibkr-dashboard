@@ -8,7 +8,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
   <!-- FAMILY:PRIVACY_META:END -->
-  <title>投资工作台</title>
+  <title>投资组合透明计划</title>
   <style>
     :root {
       --page: #f3f5f6;
@@ -79,7 +79,7 @@
     .eyebrow { margin: 0 0 17px; color: var(--blue); font-size: 11px; font-weight: 760; letter-spacing: .18em; text-transform: uppercase; }
     h1 { margin: 0; color: var(--ink); font-size: clamp(17px, 2vw, 24px); font-weight: 560; letter-spacing: .06em; }
 
-    .hero-money { display: inline-grid; grid-template-columns: max-content minmax(0,1fr); align-items: baseline; gap: clamp(10px, 1.7vw, 23px); max-width: 100%; margin: clamp(18px, 3vh, 30px) auto 0; color: var(--ink-strong); font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: -.055em; white-space: nowrap; }
+    .hero-money { display: inline-grid; grid-template-columns: max-content minmax(0,1fr); align-items: baseline; column-gap: .45em; max-width: 100%; margin: clamp(18px, 3vh, 30px) auto 0; color: var(--ink-strong); font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: -.055em; white-space: nowrap; }
     .money-symbol { justify-self: start; font-size: clamp(17px, 2.2vw, 30px); font-weight: 650; letter-spacing: 0; }
     .money-amount { justify-self: end; font-size: clamp(47px, 8.2vw, 112px); font-weight: 640; line-height: .96; text-shadow: 0 1px 0 rgba(255,255,255,.95); }
     .asof { margin: clamp(18px, 2.5vh, 27px) 0 0; color: var(--muted); font: 11px var(--mono); letter-spacing: .015em; }
@@ -124,7 +124,6 @@
       .topbar { min-height: 70px; padding-block: 14px; }
       .archive-state, .brand-copy { display: none; }
       .hero { min-height: 520px; padding-block: 48px; }
-      .hero-money { gap: 9px; }
       .money-amount { font-size: clamp(43px, 13vw, 72px); }
       .bottombar { align-items: flex-start; flex-direction: column; gap: 7px; }
       .bottom-meta { width: 100%; justify-content: space-between; }
@@ -184,7 +183,7 @@
     </aside>
   </div>
 
-  <script id="familyPortfolioSummary" type="application/json">{"asOf":"2026-07-29T08:00:05.238372Z","currency":"USD","netLiquidation":98541.570398749}</script>
+  <script id="familyPortfolioSummary" type="application/json">{"netLiquidation":98541.570398749,"currency":"USD","asOf":"2026-07-29T08:00:05.238372Z"}</script>
   <script>
     (function () {
       "use strict";
@@ -200,11 +199,15 @@
         var number = Number(value);
         return Number.isFinite(number) ? number : null;
       }
+      function currencyMark(currency) {
+        var code = String(currency || "USD").toUpperCase();
+        return code === "USD" ? "US$" : code;
+      }
 
         function renderSummary(summary, mode) {
           var nav = asNumber(summary.netLiquidation);
           if (nav == null) return false;
-          document.querySelector("#portfolioNav .money-symbol").textContent = summary.currency === "USD" || !summary.currency ? "US$" : String(summary.currency);
+          document.querySelector("#portfolioNav .money-symbol").textContent = currencyMark(summary.currency);
           document.querySelector("#portfolioNav .money-amount").textContent = (nav < 0 ? "-" : "") + moneyFormatter.format(Math.abs(nav));
           var asOf = summary.asOf || summary.fetchedAt;
           var date = asOf ? new Date(asOf) : null;

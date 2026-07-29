@@ -1,0 +1,2415 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <!-- FAMILY:PRIVACY_META:START -->
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <!-- FAMILY:PRIVACY_META:END -->
+  <title>证券研究 · 投资组合透明计划</title>
+  <style id="editorialInstrumentPageTheme">
+    :root {
+      --page: #f4f6f8;
+      --card: #fff;
+      --ink: #17212b;
+      --muted: #66717d;
+      --border: #dfe4e8;
+      --navy: #163b59;
+      --blue: #2f6f9f;
+      --blue-soft: #e8f1f7;
+      --gold: #bd8c28;
+      --green: #14804a;
+      --green-soft: #e8f5ed;
+      --amber: #9a6a0a;
+      --amber-soft: #fff4d8;
+      --red: #c7353b;
+      --red-soft: #fff0f1;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(22,59,89,.022) calc(100% - 1px)),
+        var(--page);
+      background-size: 25% 100%;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.5;
+    }
+    button { font: inherit; }
+    a { color: inherit; }
+    .shell { width: min(1520px, 100%); margin: 0 auto; padding: 0 clamp(22px, 3.4vw, 52px) 64px; }
+    .workspace-nav {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 78px;
+      margin: 0 0 26px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(22,59,89,.12);
+      background: rgba(243,245,246,.94);
+      backdrop-filter: blur(14px);
+    }
+    .workspace-brand { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 13px; color: var(--navy); text-decoration: none; }
+    .workspace-brand-mark { position: relative; width: 35px; height: 35px; border: 1px solid rgba(22,59,89,.72); background: rgba(255,255,255,.55); }
+    .workspace-brand-mark::before, .workspace-brand-mark::after { content: ""; position: absolute; height: 2px; background: var(--gold); transform-origin: left center; }
+    .workspace-brand-mark::before { width: 17px; left: 7px; top: 22px; transform: rotate(-31deg); }
+    .workspace-brand-mark::after { width: 10px; left: 19px; top: 14px; transform: rotate(37deg); }
+    .workspace-brand-text { display: grid; line-height: 1.08; }
+    .workspace-brand-title { font-size: 13px; font-weight: 800; }
+    .workspace-brand-subtitle { margin-top: 3px; color: #8d98a4; font-size: 8px; font-weight: 750; letter-spacing: .16em; }
+    .workspace-nav-scroll { min-width: 0; flex: 1 1 auto; overflow-x: auto; scrollbar-width: none; }
+    .workspace-nav-scroll::-webkit-scrollbar { display: none; }
+    .workspace-nav-links { display: flex; align-items: center; justify-content: flex-end; min-width: max-content; }
+    .workspace-nav-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 9px 12px;
+      color: #5e6b76;
+      font-size: 12px;
+      font-weight: 720;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 120ms ease, background 120ms ease, box-shadow 120ms ease;
+    }
+    .workspace-nav-link:hover, .workspace-nav-link:focus-visible {
+      color: var(--navy);
+      background: rgba(255,255,255,.72);
+      box-shadow: inset 0 -2px 0 rgba(47,111,159,.45);
+      outline: none;
+    }
+    .workspace-nav-link[aria-current="page"] {
+      color: var(--navy);
+      background: rgba(255,255,255,.82);
+      box-shadow: inset 0 -2px 0 var(--gold);
+    }
+    .workspace-nav-link[aria-disabled="true"] { color: #9aa4ad; cursor: default; }
+    .workspace-nav-link[aria-disabled="true"]:hover { color: #9aa4ad; background: transparent; box-shadow: none; }
+    .instrument-hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(390px, .8fr);
+      gap: 32px;
+      padding: 18px 2px 28px;
+      border-bottom: 1px solid rgba(22,59,89,.13);
+    }
+    .instrument-hero::after {
+      content: "";
+      position: absolute;
+      right: 2px;
+      bottom: -1px;
+      width: min(220px, 24vw);
+      height: 2px;
+      background: var(--gold);
+    }
+    .eyebrow { margin: 0 0 7px; color: var(--blue); font-size: 11px; font-weight: 780; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 0; color: var(--navy); font-size: clamp(35px, 5vw, 66px); font-weight: 700; line-height: .98; letter-spacing: -.055em; }
+    .company-name { margin: 12px 0 0; color: #465866; font-size: clamp(16px, 2vw, 21px); }
+    .company-name-zh { margin-left: 10px; color: #75828c; font-size: .78em; }
+    .company-name-zh::before { content: "·"; margin-right: 10px; color: #a5afb7; }
+    .instrument-meta { display: flex; flex-wrap: wrap; gap: 7px 14px; margin-top: 17px; color: var(--muted); font: 11px var(--mono); }
+    .instrument-meta span + span::before { content: "·"; margin-right: 14px; color: #a5afb7; }
+    .hero-quote { align-self: end; display: grid; grid-template-columns: minmax(220px, 1fr) minmax(96px, auto); align-items: center; }
+    .hero-price { padding: 4px 24px 4px 26px; border-left: 1px solid rgba(22,59,89,.13); text-align: right; }
+    .hero-price-label { color: var(--muted); font-size: 11px; font-weight: 750; letter-spacing: .04em; }
+    .hero-price-value { margin-top: 8px; color: var(--navy); font: 750 clamp(34px, 4vw, 54px)/1 var(--mono); letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
+    .hero-price-note { margin-top: 9px; color: var(--muted); font-size: 11px; }
+    .hero-day-change { display: grid; grid-template-rows: repeat(2, 1fr); height: 54px; padding-left: 15px; border-left: 1px solid rgba(22,59,89,.13); }
+    .hero-change-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 10px; }
+    .hero-change-row + .hero-change-row { border-top: 1px solid rgba(22,59,89,.12); }
+    .hero-change-value { font: 730 12px var(--mono); font-variant-numeric: tabular-nums; }
+    .status-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 18px 0 28px;
+      padding: 12px 14px;
+      border-left: 3px solid rgba(189,140,40,.68);
+      background: rgba(255,255,255,.55);
+      color: #56636e;
+      font-size: 12px;
+    }
+    .status-line.error { border-left-color: var(--red); background: var(--red-soft); color: #8b252a; }
+    .status-dot { flex: 0 0 auto; width: 7px; height: 7px; margin-top: 5px; border-radius: 50%; background: var(--blue); }
+    .status-line.error .status-dot { background: var(--red); }
+    .metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid rgba(22,59,89,.13); background: rgba(255,255,255,.78); }
+    .metric { min-height: 126px; padding: 19px; border-right: 1px solid rgba(22,59,89,.11); }
+    .metric:last-child { border-right: 0; }
+    .metric-label { color: var(--muted); font-size: 10px; font-weight: 780; letter-spacing: .05em; }
+    .metric-value { margin-top: 8px; color: var(--navy); font: 760 clamp(19px, 2.3vw, 28px) var(--mono); letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+    .metric-value-pair { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .metric-value-pair .metric-value-primary { min-width: 0; flex: 1 1 auto; }
+    .metric-value-secondary {
+      flex: 0 0 auto;
+      padding-left: 12px;
+      border-left: 1px solid var(--border);
+      font: 750 14px var(--mono);
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+    .metric-note { margin-top: 7px; color: var(--muted); font-size: 10px; }
+    .fundamental-grid { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 1px; border: 1px solid rgba(22,59,89,.13); background: rgba(22,59,89,.11); }
+    .fundamental-item { min-width: 0; min-height: 76px; padding: 11px 12px; background: #fff; }
+    .fundamental-label { color: var(--muted); font-size: 9px; font-weight: 780; letter-spacing: .05em; }
+    .fundamental-value { margin-top: 5px; overflow: hidden; color: var(--navy); font: 740 16px var(--mono); font-variant-numeric: tabular-nums; text-overflow: ellipsis; white-space: nowrap; }
+    .fundamental-note { margin-top: 4px; overflow: hidden; color: var(--muted); font-size: 8px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+    .fundamental-item.note-wrap .fundamental-note { overflow: visible; text-overflow: clip; white-space: normal; }
+    .corporate-timeline { border: 1px solid rgba(22,59,89,.13); background: rgba(255,255,255,.91); }
+    .corporate-group + .corporate-group { border-top: 1px solid rgba(22,59,89,.12); }
+    .corporate-group-title { padding: 10px 16px; border-bottom: 1px solid #e4e9ec; background: #f7f9fa; color: var(--muted); font-size: 9px; font-weight: 780; letter-spacing: .08em; text-transform: uppercase; }
+    .corporate-event-row { position: relative; display: grid; grid-template-columns: 142px 80px minmax(0,1fr) minmax(130px,auto); gap: 14px; align-items: center; min-height: 82px; padding: 13px 16px 13px 22px; border-bottom: 1px solid #e7ebee; }
+    .corporate-event-row:last-child { border-bottom: 0; }
+    .corporate-event-row::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 1px; background: #d7e0e6; }
+    .corporate-event-row::after { content: ""; position: absolute; left: 4px; top: 50%; width: 7px; height: 7px; border: 1px solid var(--blue); border-radius: 50%; background: #fff; transform: translateY(-50%); }
+    .corporate-event-row.next { background: linear-gradient(90deg, rgba(232,241,247,.78), rgba(255,255,255,.94) 58%); }
+    .corporate-event-row.next::after { border-color: var(--gold); background: var(--gold); box-shadow: 0 0 0 3px rgba(189,140,40,.13); }
+    .corporate-date { color: var(--navy); font: 740 13px var(--mono); font-variant-numeric: tabular-nums; }
+    .corporate-weekday { margin-top: 3px; color: var(--muted); font: 10px var(--sans); }
+    .corporate-event-title { color: var(--navy); font-size: 13px; font-weight: 750; }
+    .corporate-event-description { margin-top: 4px; color: var(--muted); font-size: 10px; line-height: 1.45; }
+    .corporate-source { justify-self: end; color: #506575; font-size: 10px; text-decoration: none; }
+    .corporate-source:hover, .corporate-source:focus-visible { color: var(--blue); text-decoration: underline; outline: none; }
+    .corporate-history-details > summary { padding: 11px 16px; border-top: 1px solid #e4e9ec; color: #52636f; font-size: 10px; font-weight: 720; cursor: pointer; }
+    .corporate-history-details > summary:hover, .corporate-history-details > summary:focus-visible { background: var(--blue-soft); outline: none; }
+    .corporate-empty { padding: 22px; color: var(--muted); font-size: 11px; }
+    .positive { color: var(--green) !important; }
+    .negative { color: var(--red) !important; }
+    .event-kind-recurring { color: var(--blue); font-weight: 760; }
+    .section { margin-top: 38px; }
+    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 22px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(22,59,89,.14); }
+    .section-kicker { margin: 0 0 4px; color: var(--blue); font-size: 10px; font-weight: 780; letter-spacing: .14em; text-transform: uppercase; }
+    .section-title { margin: 0; color: var(--navy); font-size: 21px; font-weight: 740; letter-spacing: -.02em; }
+    .section-note { margin: 6px 0 0; color: var(--muted); font-size: 11px; }
+    .card { border: 1px solid rgba(22,59,89,.13); border-radius: 3px; background: rgba(255,255,255,.91); box-shadow: none; }
+    .card-body { padding: 22px; }
+    .chart-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; border-bottom: 1px solid rgba(22,59,89,.11); }
+    .chart-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+    .chart-control { display: inline-flex; align-items: center; gap: 7px; }
+    .chart-control-label { color: var(--muted); font-size: 9px; font-weight: 780; letter-spacing: .08em; text-transform: uppercase; }
+    .segmented { display: inline-flex; border: 1px solid #ccd7df; background: #f2f5f7; }
+    .segment-btn { min-height: 34px; padding: 7px 11px; border: 0; border-right: 1px solid #d7e0e6; background: transparent; color: #596773; font-size: 11px; font-weight: 750; cursor: pointer; }
+    .segment-btn:last-child { border-right: 0; }
+    .segment-btn:hover, .segment-btn:focus-visible { color: var(--navy); background: #fff; outline: none; }
+    .segment-btn[aria-pressed="true"] { color: var(--navy); background: #fff; box-shadow: inset 0 -2px 0 var(--gold); }
+    .segment-btn:disabled { color: #99a4ac; background: #edf1f3; cursor: not-allowed; }
+    .chart-frame { position: relative; min-height: 470px; padding: 12px 12px 4px; }
+    .chart-svg { display: block; width: 100%; height: 448px; overflow: visible; touch-action: none; }
+    .grid-line { stroke: #e2e7eb; stroke-width: 1; }
+    .axis-label { fill: #72808b; font: 10px var(--mono); }
+    .focus-line { stroke: #8797a3; stroke-width: 1; stroke-dasharray: 3 3; pointer-events: none; }
+    .chart-tooltip { position: absolute; z-index: 5; min-width: 248px; max-width: 286px; padding: 10px 11px; border: 1px solid #cbd5dc; border-radius: 3px; background: rgba(255,255,255,.98); box-shadow: 0 8px 22px rgba(20,36,50,.12); color: var(--ink); font-size: 10px; opacity: 0; pointer-events: none; transform: translateY(-50%); }
+    .chart-tooltip.visible { opacity: 1; }
+    .tooltip-date { padding-bottom: 6px; border-bottom: 1px solid #e1e6ea; color: var(--navy); font: 750 11px var(--mono); }
+    .tooltip-grid { display: grid; grid-template-columns: auto 62px auto 62px; gap: 4px 6px; justify-content: center; margin-top: 7px; align-items: baseline; }
+    .tooltip-label { color: var(--muted); white-space: nowrap; }
+    .tooltip-value { min-width: 0; overflow: hidden; text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; text-overflow: ellipsis; white-space: nowrap; }
+    .tooltip-events { display: grid; gap: 5px; margin-top: 8px; padding-top: 7px; border-top: 1px solid #e1e6ea; color: #455d6e; line-height: 1.45; }
+    .tooltip-event { display: grid; grid-template-columns: auto 1fr; gap: 6px; align-items: start; }
+    .tooltip-event-kind { color: var(--blue); font-weight: 780; white-space: nowrap; }
+    .chart-event-stem { stroke-width: 1; stroke-dasharray: 2 2; pointer-events: none; }
+    .chart-event-marker { stroke-width: 1; pointer-events: none; }
+    .chart-event-label { font: 750 8px var(--sans); letter-spacing: .02em; pointer-events: none; }
+    .chart-caption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding: 10px 18px 15px; border-top: 1px solid rgba(22,59,89,.09); color: var(--muted); font-size: 10px; }
+    .valuation-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 20px;
+      padding: 10px var(--valuation-legend-right-inset, 18px) 10px var(--valuation-legend-left-inset, 18px);
+      border-top: 1px solid rgba(22,59,89,.09);
+      background: #fafbfc;
+      color: #53616c;
+      font-size: 10px;
+    }
+    .valuation-legend-item { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .valuation-legend-mark { display: inline-block; width: 28px; height: 0; border-top: 2px solid #176b9b; }
+    .valuation-legend-mark.mean { border-top: 1px dashed #707d87; }
+    .valuation-legend-mark.band { height: 9px; border: 1px solid rgba(23,107,155,.24); background: rgba(23,107,155,.10); }
+    .valuation-comparator-note { margin-left: auto; color: var(--muted); }
+    .chart-control[hidden], .valuation-legend[hidden] { display: none; }
+    .asof-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; border: 1px solid rgba(22,59,89,.13); background: rgba(22,59,89,.11); }
+    .asof-item { min-height: 96px; padding: 15px; background: #fff; }
+    .asof-label { color: var(--muted); font-size: 10px; font-weight: 760; }
+    .asof-value { margin-top: 7px; color: var(--navy); font: 700 13px var(--mono); }
+    .asof-note { margin-top: 5px; color: var(--muted); font-size: 10px; }
+    .two-col { display: grid; grid-template-columns: minmax(0, 1.22fr) minmax(500px, .78fr); gap: 18px; align-items: stretch; }
+    .records-card { height: 442px; min-height: 0; overflow: hidden; }
+    .table-wrap { overflow-x: auto; }
+    .event-ledger-scroll { height: 100%; overflow-x: auto; }
+    .event-ledger-surface { min-width: 760px; }
+    .event-table-wrap { height: 392px; max-height: 392px; overflow-y: auto; scrollbar-gutter: stable; }
+    .event-table-wrap th { position: sticky; top: 0; z-index: 2; }
+    .event-table { table-layout: fixed; }
+    .event-table th, .event-table td { overflow: hidden; text-overflow: ellipsis; }
+    .event-col-date { width: 14%; }
+    .event-col-type { width: 22%; }
+    .event-col-side { width: 8%; }
+    .event-col-quantity { width: 8%; }
+    .event-col-price { width: 11%; }
+    .event-col-amount { width: 14%; }
+    .event-col-fee { width: 10%; }
+    .event-col-realized { width: 13%; }
+    table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid #e7ebee; text-align: left; white-space: nowrap; }
+    th { color: var(--muted); background: #f6f8f9; font-size: 9px; font-weight: 780; letter-spacing: .05em; }
+    th.number, td.number { text-align: right; }
+    td.number { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover td { background: #edf3f7; }
+    .empty { padding: 24px; color: var(--muted); font-size: 12px; }
+    .event-summary { display: grid; grid-template-columns: 14fr 22fr 8fr 8fr 11fr 14fr 10fr 13fr; min-height: 48px; border-top: 1px solid #dfe5e9; background: #fafbfc; }
+    .event-summary-item { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 3px; min-width: 0; padding: 7px 10px; border-left: 1px solid #e1e6ea; }
+    .event-summary-item.holding-total { grid-column: 4; }
+    .event-summary-item.fees-total { grid-column: 6 / 8; }
+    .event-summary-item.realized-total { grid-column: 8; }
+    .event-summary-label { overflow: hidden; max-width: 100%; color: var(--muted); font-size: 9px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
+    .event-summary-value { max-width: 100%; overflow: hidden; color: var(--navy); font: 730 12px var(--mono); font-variant-numeric: tabular-nums; text-align: right; text-overflow: ellipsis; white-space: nowrap; }
+    .account-kpi-grid { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 1px; margin: 0 0 18px; border: 1px solid #dfe5e9; background: #dfe5e9; }
+    .account-kpi { min-height: 74px; padding: 13px 14px; background: #fff; }
+    .account-kpi.wide { min-height: 74px; }
+    .account-kpi-label { color: var(--muted); font-size: 9px; font-weight: 760; }
+    .account-kpi-value { margin-top: 6px; color: var(--navy); font: 730 15px var(--mono); font-variant-numeric: tabular-nums; }
+    .account-kpi-note { margin-top: 4px; color: var(--muted); font-size: 9px; line-height: 1.35; }
+    .tax-lot-card { display: flex; }
+    .tax-lot-card .card-body { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; min-height: 0; padding-bottom: 0; }
+    .tax-lot-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+    .tax-lot-title { margin: 0; color: var(--navy); font-size: 17px; font-weight: 750; }
+    #taxLotsBody { display: flex; flex: 1 1 auto; min-height: 0; }
+    .tax-lot-scroll { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; min-height: 0; max-height: none; overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable; }
+    .tax-lot-table { flex: 0 0 auto; min-width: 0; table-layout: fixed; }
+    .tax-lot-table th { position: sticky; top: 0; z-index: 2; }
+    .tax-lot-table th.sortable-th { padding: 0; }
+    .tax-lot-sort-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      width: 100%;
+      padding: 10px 6px;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-weight: inherit;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .tax-lot-table th:first-child .tax-lot-sort-btn { justify-content: flex-start; }
+    .tax-lot-sort-btn:hover { color: var(--navy); background: #f1f5f7; }
+    .tax-lot-sort-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: -3px; }
+    .tax-lot-sort-indicator { min-width: 1em; color: #9aa6af; font-size: 9px; text-align: center; }
+    .tax-lot-sort-btn.active .tax-lot-sort-indicator { color: var(--navy); }
+    .tax-lot-table th:first-child, .tax-lot-table td:first-child { width: 22%; }
+    .tax-lot-table th:nth-child(2), .tax-lot-table td:nth-child(2) { width: 20%; }
+    .tax-lot-table th:nth-child(3), .tax-lot-table td:nth-child(3) { width: 16%; }
+    .tax-lot-table th:nth-child(4), .tax-lot-table td:nth-child(4) { width: 23%; }
+    .tax-lot-table th:nth-child(5), .tax-lot-table td:nth-child(5) { width: 19%; }
+    .tax-lot-summary { position: sticky; bottom: 0; z-index: 3; display: grid; flex: 0 0 auto; grid-template-columns: 22fr 20fr 16fr 23fr 19fr; min-width: 0; min-height: 52px; margin-top: auto; border-top: 1px solid #dfe5e9; background: #fafbfc; }
+    .tax-lot-summary-item { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 3px; min-width: 0; padding: 7px 6px; border-left: 1px solid #e1e6ea; }
+    .tax-lot-summary-item.cost-basis { grid-column: 2; }
+    .tax-lot-summary-item.quantity { grid-column: 3; }
+    .tax-lot-summary-item.pnl { grid-column: 4; }
+    .tax-lot-summary-item.pnl-rate { grid-column: 5; }
+    .tax-lot-summary-label { overflow: hidden; max-width: 100%; color: var(--muted); font-size: 9px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
+    .tax-lot-summary-value { overflow: hidden; max-width: 100%; color: var(--navy); font: 730 12px var(--mono); font-variant-numeric: tabular-nums; text-align: right; text-overflow: ellipsis; white-space: nowrap; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 7px; }
+    .badge { display: inline-flex; align-items: center; min-height: 26px; padding: 4px 8px; border: 1px solid #d8e3eb; background: var(--blue-soft); color: var(--blue); font-size: 10px; font-weight: 780; white-space: nowrap; }
+    .badge.good { border-color: #cce3d6; background: var(--green-soft); color: var(--green); }
+    .badge.warn { border-color: #ead9aa; background: var(--amber-soft); color: var(--amber); }
+    .badge.risk { border-color: #ecc6ca; background: var(--red-soft); color: var(--red); }
+    .research-summary { margin: 18px 0 0; color: #2c3d4b; font-size: 15px; line-height: 1.75; }
+    .research-hinge { margin-top: 18px; padding: 13px 14px; border-left: 3px solid var(--gold); background: #f7f8f9; color: #485966; font-size: 12px; }
+    .external-view { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 18px; margin-top: 18px; padding: 15px 16px; border: 1px solid #dce5eb; background: #f8fafb; }
+    .external-view-title { color: var(--navy); font-size: 12px; font-weight: 760; }
+    .external-view-facts { margin-top: 7px; color: #465866; font: 11px/1.65 var(--mono); }
+    .external-view-note { margin-top: 6px; color: var(--muted); font-size: 10px; line-height: 1.6; }
+    .external-view-link { align-self: center; padding: 8px 10px; border: 1px solid #cbd9e2; color: var(--blue); font-size: 10px; font-weight: 750; text-decoration: none; white-space: nowrap; }
+    .external-view-link:hover, .external-view-link:focus-visible { background: var(--blue-soft); outline: none; }
+    .research-stack { display: grid; gap: 18px; }
+    .research-subhead { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; padding: 17px 20px 14px; border-bottom: 1px solid #e0e6ea; }
+    .research-subtitle { margin: 0; color: var(--navy); font-size: 16px; font-weight: 750; }
+    .morningstar-overview { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: end; }
+    .morningstar-report-link { color: var(--blue); font-size: 13px; font-weight: 760; text-decoration: none; }
+    .morningstar-report-link:hover, .morningstar-report-link:focus-visible { text-decoration: underline; outline: none; }
+    .morningstar-analyst { margin-top: 8px; color: #465866; font-size: 11px; }
+    .morningstar-metrics { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 1px; margin-top: 18px; border: 1px solid #dfe5e9; background: #dfe5e9; }
+    .morningstar-metric { min-height: 92px; padding: 13px; background: #fff; }
+    .morningstar-metric-label { color: var(--muted); font-size: 9px; font-weight: 760; }
+    .morningstar-metric-value { margin-top: 7px; color: var(--navy); font: 740 17px var(--mono); font-variant-numeric: tabular-nums; }
+    .morningstar-stars { display: inline-flex; gap: 2px; color: #c6932d; font: 700 18px/1 system-ui, sans-serif; letter-spacing: .02em; filter: drop-shadow(0 1px 0 rgba(132,91,16,.12)); }
+    .morningstar-star.empty { color: #cbd3d9; }
+    .morningstar-gap { font-size: 11px; white-space: nowrap; }
+    .morningstar-metric-note { margin-top: 5px; color: var(--muted); font-size: 9px; line-height: 1.45; }
+    .research-interpretation { margin-top: 22px; }
+    .research-interpretation h4 { margin: 0 0 9px; color: var(--navy); font-size: 13px; }
+    .research-interpretation p { margin: 0; color: #344754; font-size: 13px; line-height: 1.9; }
+    .provider-section-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-top: 14px; }
+    .provider-section { padding: 14px; border: 1px solid #e0e6ea; background: #fbfcfd; }
+    .provider-section h4 { margin: 0; color: var(--navy); font-size: 12px; }
+    .provider-section ul { margin: 9px 0 0; padding-left: 18px; color: #52616d; font-size: 11px; line-height: 1.65; }
+    .provider-section li + li { margin-top: 5px; }
+    .case-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; margin-top: 20px; }
+    .case-card { padding: 16px; border: 1px solid #e0e6ea; background: #fbfcfd; }
+    .case-card h3 { margin: 0; color: var(--navy); font-size: 13px; }
+    .case-card ul, .missing-list { margin: 12px 0 0; padding-left: 18px; color: #52616d; font-size: 11px; }
+    .case-card li + li, .missing-list li + li { margin-top: 7px; }
+    .valuation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: 18px; border: 1px solid #dfe5e9; background: #dfe5e9; }
+    .valuation-item { padding: 14px; background: #fff; }
+    .valuation-name { color: var(--muted); font-size: 10px; }
+    .valuation-price { margin-top: 5px; color: var(--navy); font: 750 20px var(--mono); }
+    .valuation-assumptions { margin-top: 6px; color: var(--muted); font: 9px/1.5 var(--mono); }
+    .monitoring-list { display: grid; gap: 1px; margin-top: 18px; border: 1px solid #dfe5e9; background: #dfe5e9; }
+    .monitoring-item { display: grid; grid-template-columns: minmax(180px, .7fr) minmax(0, 1.3fr); gap: 18px; padding: 13px 14px; background: #fff; }
+    .monitoring-metric { color: var(--navy); font-size: 11px; font-weight: 750; }
+    .monitoring-baseline { margin-top: 4px; color: var(--muted); font: 9px var(--mono); }
+    .monitoring-signals { display: grid; gap: 4px; color: #53616d; font-size: 10px; }
+    .monitoring-signals strong { color: var(--muted); font-size: 9px; }
+    details.research-details { margin-top: 18px; border-top: 1px solid #e2e7ea; }
+    details.research-details summary { padding: 13px 0 0; color: var(--blue); font-size: 11px; font-weight: 750; cursor: pointer; }
+    .source-list { display: grid; gap: 7px; margin-top: 12px; }
+    .source-link { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 14px; padding: 9px 10px; border: 1px solid #e2e7ea; color: #455866; font-size: 10px; text-decoration: none; }
+    .source-link:hover, .source-link:focus-visible { border-color: #b9cbd8; background: var(--blue-soft); outline: none; }
+    .source-date { color: var(--muted); font-family: var(--mono); }
+    .quality-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 1px; border: 1px solid #dfe5e9; background: #dfe5e9; }
+    .quality-item { padding: 14px; background: #fff; }
+    .quality-domain { color: var(--muted); font-size: 10px; }
+    .quality-status { margin-top: 5px; color: var(--navy); font: 750 14px var(--mono); }
+    .quality-note { margin-top: 5px; color: var(--muted); font-size: 9px; }
+    footer { margin-top: 38px; padding-top: 18px; border-top: 1px solid rgba(22,59,89,.14); color: var(--muted); font-size: 10px; }
+    footer strong { color: var(--navy); }
+    @media (max-width: 1000px) {
+      .instrument-hero { grid-template-columns: 1fr; }
+      .hero-quote { border-top: 1px solid rgba(22,59,89,.12); padding-top: 18px; }
+      .hero-price { border-left: 0; padding: 0 24px 0 0; text-align: left; }
+      .metric-grid, .asof-grid, .quality-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .fundamental-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .metric:nth-child(2) { border-right: 0; }
+      .metric:nth-child(-n+2) { border-bottom: 1px solid rgba(22,59,89,.11); }
+      .two-col { grid-template-columns: 1fr; }
+      .account-kpi-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .corporate-event-row { grid-template-columns: 128px 78px minmax(0,1fr); }
+      .corporate-source { grid-column: 3; justify-self: start; }
+      .morningstar-metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .morningstar-metric:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    }
+    @media (max-width: 720px) {
+      .metric-value-pair { display: block; }
+      .metric-value-secondary { display: block; margin-top: -2px; padding: 0; border: 0; font-size: 12px; }
+    }
+    @media (max-width: 660px) {
+      body { background-size: 50% 100%; }
+      .shell { width: 100%; padding: 0 12px 44px; }
+      .workspace-nav { min-height: 68px; margin-bottom: 14px; padding-block: 10px; }
+      .workspace-brand-text { display: none; }
+      .workspace-nav-link { padding-inline: 9px; }
+      .workspace-nav-link[aria-disabled="true"] { display: none; }
+      .instrument-hero { padding-top: 10px; }
+      .metric-grid, .asof-grid, .quality-grid, .case-grid, .provider-section-grid { grid-template-columns: 1fr; }
+      .fundamental-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .metric { border-right: 0; border-bottom: 1px solid rgba(22,59,89,.11); }
+      .metric:last-child { border-bottom: 0; }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 10px; }
+      .chart-toolbar { align-items: flex-start; flex-direction: column; }
+      .chart-controls, .chart-control { align-items: flex-start; }
+      .chart-control { flex-direction: column; }
+      .valuation-comparator-note { flex-basis: 100%; margin-left: 0; }
+      .chart-frame { min-height: 390px; padding-inline: 2px; }
+      .chart-svg { height: 370px; }
+      .valuation-grid { grid-template-columns: 1fr; }
+      .monitoring-item { grid-template-columns: 1fr; gap: 8px; }
+      .hero-quote { grid-template-columns: minmax(0,1fr) auto; }
+      .external-view { grid-template-columns: 1fr; }
+      .external-view-link { justify-self: start; }
+      .corporate-event-row { grid-template-columns: 1fr auto; gap: 8px 12px; padding-left: 22px; }
+      .corporate-event-copy, .corporate-source { grid-column: 1 / -1; }
+      .corporate-source { justify-self: start; }
+      .morningstar-overview { grid-template-columns: 1fr; }
+      .morningstar-metrics { grid-template-columns: 1fr; }
+      .card-body { padding: 15px; }
+      .account-kpi-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .account-kpi.wide { grid-column: 1 / -1; }
+    }
+    @media (max-width: 560px) {
+      .tax-lot-scroll { overflow-x: auto; }
+      .tax-lot-table, .tax-lot-summary { min-width: 440px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="workspace-nav" aria-label="全局导航">
+      <a class="workspace-brand" href="index.html" aria-label="投资组合透明计划首页">
+        <span class="workspace-brand-mark" aria-hidden="true"></span>
+        <span class="workspace-brand-text"><span class="workspace-brand-title">投资组合透明计划</span><span class="workspace-brand-subtitle">PORTFOLIO TRANSPARENCY PROGRAM</span></span>
+      </a>
+      <div class="workspace-nav-scroll">
+        <div class="workspace-nav-links">
+          <a class="workspace-nav-link" href="index.html">首页</a>
+          <a class="workspace-nav-link" href="dashboard.html">投资组合</a>
+          <!-- FAMILY:INSTRUMENT_MARKET_NAV:START --><!-- FAMILY:INSTRUMENT_MARKET_NAV:END -->
+          <a class="workspace-nav-link" href="instrument.html" aria-current="page">证券研究</a>
+          <span class="workspace-nav-link" aria-disabled="true">期权雷达</span>
+          <span class="workspace-nav-link" aria-disabled="true">交易决策</span>
+          <!-- FAMILY:INSTRUMENT_HISTORY_NAV:START --><!-- FAMILY:INSTRUMENT_HISTORY_NAV:END -->
+        </div>
+      </div>
+    </nav>
+
+    <header class="instrument-hero">
+      <div>
+        <p class="eyebrow">Private Security Research</p>
+        <h1 id="instrumentSymbol">—</h1>
+        <p class="company-name"><span id="instrumentEnglishName">正在载入标的资料</span><span class="company-name-zh" id="instrumentChineseName" hidden></span></p>
+        <div class="instrument-meta">
+          <span id="instrumentAsset">—</span>
+          <span id="instrumentExchange">—</span>
+          <span id="instrumentCurrency">—</span>
+          <span id="instrumentStatus">—</span>
+        </div>
+      </div>
+      <div class="hero-quote">
+        <div class="hero-price">
+          <div class="hero-price-label" id="latestCloseLabel">最近市场完成收盘</div>
+          <div class="hero-price-value" id="latestClose">—</div>
+          <div class="hero-price-note" id="latestCloseNote">—</div>
+        </div>
+        <div class="hero-day-change" aria-label="上一交易日盈亏">
+          <div class="hero-change-row"><span>当日盈亏</span><span class="hero-change-value" id="dailyPnlAmount">—</span></div>
+          <div class="hero-change-row"><span>当日盈亏%</span><span class="hero-change-value" id="dailyPnlPct">—</span></div>
+        </div>
+      </div>
+    </header>
+
+    <aside class="status-line" id="serviceNotice">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span><strong>正在读取公开静态资料。</strong> 页面不连接券商、本机数据库或任何实时接口，也不能下单。</span>
+    </aside>
+
+    <section class="metric-grid" aria-label="标的关键指标">
+      <article class="metric"><div class="metric-label">平均成本</div><div class="metric-value" id="averageCost">—</div><div class="metric-note" id="averageCostNote">每股持仓成本</div></article>
+      <article class="metric"><div class="metric-label">当前数量</div><div class="metric-value" id="holdingQuantity">—</div><div class="metric-note" id="holdingQuantityNote">完成收盘数量</div></article>
+      <article class="metric"><div class="metric-label">成本基础</div><div class="metric-value" id="currentCost">—</div><div class="metric-note" id="currentCostNote">持仓成本基础合计</div></article>
+      <article class="metric"><div class="metric-label">未实现盈亏</div><div class="metric-value metric-value-pair"><span class="metric-value-primary" id="unrealizedPnl">—</span><span class="metric-value-secondary" id="unrealizedPnlPct">—</span></div><div class="metric-note" id="unrealizedPnlNote">—</div></article>
+    </section>
+
+    <section class="section" aria-labelledby="fundamentalsTitle">
+      <div class="section-head">
+        <div><p class="section-kicker" id="fundamentalsKicker">Company &amp; Valuation</p><h2 class="section-title" id="fundamentalsTitle">公司与估值概览</h2><p class="section-note" id="fundamentalsNote">公司事实与市场价格保留各自日期；无法可靠取得的字段不会估填。</p></div>
+        <span class="badge" id="fundamentalsBadge">资料载入中</span>
+      </div>
+      <div class="fundamental-grid" id="fundamentalGrid" aria-label="公司与估值基础数据"></div>
+    </section>
+
+    <section class="section" aria-labelledby="priceHistoryTitle">
+      <div class="section-head">
+        <div><p class="section-kicker">Market History &amp; Valuation</p><h2 class="section-title" id="priceHistoryTitle">市场价格与估值</h2><p class="section-note" id="marketHistoryNote">价格视图保留三套独立口径；长窗口只在图形层聚合，不改写底层日线。</p></div>
+        <span class="badge" id="marketQualityBadge">资料载入中</span>
+      </div>
+      <article class="card">
+        <div class="chart-toolbar">
+          <div class="chart-controls">
+            <div class="chart-control">
+              <span class="chart-control-label">视图</span>
+              <div class="segmented" aria-label="价格或估值视图">
+                <button class="segment-btn chart-view-btn" type="button" data-chart-view="price" aria-pressed="true">价格</button>
+                <button class="segment-btn chart-view-btn" type="button" data-chart-view="valuation" aria-pressed="false">估值</button>
+              </div>
+            </div>
+            <div class="chart-control" id="barTypeControl">
+              <span class="chart-control-label">价格口径</span>
+              <div class="segmented" aria-label="行情调整口径">
+                <button class="segment-btn bar-type-btn" type="button" data-bar-type="ADJUSTED_LAST" aria-pressed="true">股息调整价格</button>
+                <button class="segment-btn bar-type-btn" type="button" data-bar-type="TRADES" aria-pressed="false">股息未调整价格</button>
+                <button class="segment-btn bar-type-btn" type="button" data-bar-type="SPLIT_UNADJUSTED" aria-pressed="false">拆股未调整价格</button>
+              </div>
+            </div>
+          </div>
+          <div class="chart-control">
+            <span class="chart-control-label">范围</span>
+            <div class="segmented" aria-label="行情或估值时间范围">
+              <button class="segment-btn range-btn" type="button" data-range="1M" aria-pressed="false">1M</button>
+              <button class="segment-btn range-btn" type="button" data-range="3M" aria-pressed="false">3M</button>
+              <button class="segment-btn range-btn" type="button" data-range="6M" aria-pressed="true">6M</button>
+              <button class="segment-btn range-btn" type="button" data-range="1Y" aria-pressed="false">1Y</button>
+              <button class="segment-btn range-btn" type="button" data-range="5Y" aria-pressed="false">5Y</button>
+              <button class="segment-btn range-btn" type="button" data-range="10Y" aria-pressed="false">10Y</button>
+              <button class="segment-btn range-btn" type="button" data-range="20Y" aria-pressed="false">20Y</button>
+              <button class="segment-btn range-btn" type="button" data-range="30Y" aria-pressed="false">30Y</button>
+              <button class="segment-btn range-btn" type="button" data-range="MAX" aria-pressed="false">MAX</button>
+            </div>
+          </div>
+        </div>
+        <div class="chart-frame" id="chartFrame">
+          <svg class="chart-svg" id="instrumentChart" viewBox="0 0 1120 448" role="img" aria-label="标的市场价格与估值历史"></svg>
+          <div class="chart-tooltip" id="chartTooltip" aria-hidden="true">
+            <div class="tooltip-date"></div>
+            <div class="tooltip-grid"></div>
+            <div class="tooltip-events" hidden></div>
+          </div>
+        </div>
+        <div class="valuation-legend" id="valuationLegend" hidden>
+          <span class="valuation-legend-item"><span class="valuation-legend-mark" aria-hidden="true"></span>市盈率 TTM</span>
+          <span class="valuation-legend-item"><span class="valuation-legend-mark mean" aria-hidden="true"></span>十年缩尾均值</span>
+          <span class="valuation-legend-item"><span class="valuation-legend-mark band" aria-hidden="true"></span>历史估值常态带（P25–P75）</span>
+          <span class="valuation-comparator-note">IGV／SPX：合格历史估值来源尚未建立</span>
+        </div>
+        <div class="chart-caption"><span id="chartCoverage">—</span><span id="chartAggregation">—</span><span id="chartSource">—</span></div>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="dataDatesTitle">
+      <div class="section-head"><div><p class="section-kicker">Independent As-of Dates</p><h2 class="section-title" id="dataDatesTitle">资料日期口径</h2><p class="section-note">市场、账户、报表事件、挂单和研究各自保留真实日期。</p></div></div>
+      <div class="asof-grid">
+        <article class="asof-item"><div class="asof-label">投资组合完成收盘</div><div class="asof-value" id="asofPortfolio">—</div><div class="asof-note" id="asofPortfolioNote">—</div></article>
+        <article class="asof-item"><div class="asof-label">行情覆盖</div><div class="asof-value" id="asofMarket">—</div><div class="asof-note" id="asofMarketNote">—</div></article>
+        <article class="asof-item"><div class="asof-label">生命周期报表</div><div class="asof-value" id="asofLifecycle">—</div><div class="asof-note" id="asofLifecycleNote">—</div></article>
+        <article class="asof-item"><div class="asof-label">持仓批次 / 研究</div><div class="asof-value" id="asofLotsResearch">—</div><div class="asof-note" id="asofLotsResearchNote">—</div></article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="activityTitle">
+      <div class="section-head">
+        <div><p class="section-kicker">Trades &amp; Holdings</p><h2 class="section-title" id="activityTitle">交易与持仓</h2><p class="section-note" id="activitySubtitle">来自 IBKR Activity Flex 生命周期与完成收盘持仓档案。</p></div>
+        <span class="badge" id="activityCount">—</span>
+      </div>
+      <div class="account-kpi-grid" aria-label="标的账户收益">
+        <div class="account-kpi"><div class="account-kpi-label">成本基础</div><div class="account-kpi-value" id="positionCostBasis">—</div><div class="account-kpi-note" id="positionCostBasisWeight">—</div></div>
+        <div class="account-kpi"><div class="account-kpi-label">平仓合计</div><div class="account-kpi-value" id="closedPositionTotal">—</div></div>
+        <div class="account-kpi"><div class="account-kpi-label">股息合计</div><div class="account-kpi-value" id="dividendTotal">—</div></div>
+        <div class="account-kpi"><div class="account-kpi-label">归总收益</div><div class="account-kpi-value" id="aggregateReturn">—</div></div>
+        <div class="account-kpi wide"><div class="account-kpi-label">综合成本</div><div class="account-kpi-value" id="comprehensiveCost">—</div></div>
+        <div class="account-kpi"><div class="account-kpi-label">总回报率</div><div class="account-kpi-value" id="annualizedTotalReturn">—</div></div>
+      </div>
+      <div class="two-col">
+        <article class="card records-card">
+          <div class="event-ledger-scroll">
+            <div class="event-ledger-surface">
+              <div class="event-table-wrap">
+                <table class="event-table">
+                  <colgroup>
+                    <col class="event-col-date"><col class="event-col-type"><col class="event-col-side"><col class="event-col-quantity">
+                    <col class="event-col-price"><col class="event-col-amount"><col class="event-col-fee"><col class="event-col-realized">
+                  </colgroup>
+                  <thead><tr><th>日期</th><th>事件</th><th>方向</th><th class="number">数量</th><th class="number">价格</th><th class="number">金额</th><th class="number">费用</th><th class="number">已实现盈亏</th></tr></thead>
+                  <tbody id="eventRows"></tbody>
+                </table>
+              </div>
+              <div class="event-summary" aria-label="事件合计">
+                <div class="event-summary-item holding-total" title="最近完成收盘持股数量"><span class="event-summary-label">持股总计</span><span class="event-summary-value" id="eventHoldingTotal">—</span></div>
+                <div class="event-summary-item fees-total"><span class="event-summary-label">费用合计</span><span class="event-summary-value" id="eventFeesTotal">—</span></div>
+                <div class="event-summary-item realized-total"><span class="event-summary-label">已实现盈亏合计</span><span class="event-summary-value" id="eventRealizedTotal">—</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="card records-card tax-lot-card">
+          <div class="card-body">
+            <div class="tax-lot-head">
+              <div>
+                <h3 class="tax-lot-title">持仓计税单位</h3>
+                <p class="section-note" id="taxLotsAsOf">批次数据与完成收盘口径保持一致。</p>
+              </div>
+              <span class="badge" id="taxLotsStatusBadge">批次资料载入中</span>
+            </div>
+            <div id="taxLotsBody"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="researchTitle">
+      <div class="section-head">
+        <div><p class="section-kicker">Versioned Research</p><h2 class="section-title" id="researchTitle">研究评价</h2><p class="section-note">事实与判断分离；结论是只读研究记录，不是交易指令。</p></div>
+        <span class="badge" id="researchDateBadge">—</span>
+      </div>
+      <div class="research-stack">
+        <article class="card">
+          <div class="research-subhead"><div><p class="section-kicker">External Research</p><h3 class="research-subtitle">晨星研报</h3></div><span class="badge" id="morningstarFreshness">—</span></div>
+          <div class="card-body" id="providerResearchBody"><div class="empty">正在载入晨星研报。</div></div>
+        </article>
+        <article class="card">
+          <div class="research-subhead"><div><p class="section-kicker">Internal Analysis</p><h3 class="research-subtitle">研究分析</h3></div></div>
+          <div class="card-body" id="researchBody"><div class="empty">正在载入研究分析。</div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="corporateEventsTitle">
+      <div class="section-head">
+        <div><p class="section-kicker">Corporate Events Timeline</p><h2 class="section-title" id="corporateEventsTitle">公司行动与重要日期</h2><p class="section-note" id="corporateEventsNote">发行人公开事件与我们的账户流水相互独立；预估日期不会显示为已确认。</p></div>
+        <span class="badge" id="corporateEventsBadge">资料载入中</span>
+      </div>
+      <div class="corporate-timeline" id="corporateEventsTimeline" aria-live="polite">
+        <div class="corporate-empty">正在载入公司事件。</div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="qualityTitle">
+      <div class="section-head"><div><p class="section-kicker">Data Quality</p><h2 class="section-title" id="qualityTitle">覆盖质量</h2><p class="section-note">缺口、截断和日期不一致会在这里显式保留。</p></div><span class="badge" id="overallQualityBadge">—</span></div>
+      <div class="quality-grid" id="qualityGrid"></div>
+    </section>
+
+    <footer>
+      <strong>投资组合透明计划 · 公开家庭版只读页面</strong><br>
+      本页读取经字段级筛选的静态包；Flex、行情与研究保留独立更新时间，不连接券商、本机数据库或任何实时接口。
+    </footer>
+  </main>
+
+  <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:START -->
+  <script id="instrumentStaticConfig" type="application/json">{"mode":"public-static-v1","manifest":"data/instruments/manifest.json"}</script>
+  <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:END -->
+  <script>
+    (function () {
+      "use strict";
+
+      var state = {
+        securityId: null,
+        detail: null,
+        barType: "ADJUSTED_LAST",
+        chartView: "price",
+        priceRange: "6M",
+        valuationRange: "5Y",
+        lotSort: { key: "acquisitionDate", direction: "desc" },
+        requestToken: 0
+      };
+      var rangeSettings = {
+        "1M": { months: 1, maxPoints: 80 },
+        "3M": { months: 3, maxPoints: 160 },
+        "6M": { months: 6, maxPoints: 260 },
+        "1Y": { months: 12, maxPoints: 400 },
+        "5Y": { months: 60, maxPoints: 1600 },
+        "10Y": { months: 120, maxPoints: 3200 },
+        "20Y": { months: 240, maxPoints: 6000 },
+        "30Y": { months: 360, maxPoints: 9000 },
+        "MAX": { months: null, maxPoints: 15000 }
+      };
+      var eventLabels = {
+        trade: "交易",
+        dividend_entitlement: "股息权利确认（除息）",
+        dividend_payment: "股息到账（税后）",
+        cash_transaction: "现金交易",
+        dividend_accrual_change: "股息应计变动",
+        open_dividend_accrual: "未结股息应计",
+        corporate_action: "公司行动",
+        asset_transfer: "资产转入转出",
+        cash_transfer: "现金转入转出",
+        interest_accrual: "利息应计",
+        transaction_tax: "交易税"
+      };
+      var researchTranslation = {
+        "AI capital spending must convert into durable Azure and Copilot growth, stable cloud margins, and recovering free cash flow.": "AI 资本开支必须转化为可持续的 Azure 与 Copilot 增长、稳定的云业务利润率，以及恢复中的自由现金流。",
+        "Azure maintains roughly 40% constant-currency growth while capacity comes online.": "新增产能上线后，Azure 仍能维持约 40% 的固定汇率增长。",
+        "Copilot paid seats and ARPU accelerate through Microsoft's enterprise distribution.": "依托微软企业分销能力，Copilot 付费席位与 ARPU 同步加速。",
+        "Non-OpenAI RPO converts into durable revenue and cash flow.": "非 OpenAI 剩余履约义务转化为可持续收入与现金流。",
+        "Operating leverage and infrastructure efficiency offset depreciation and AI usage costs.": "经营杠杆与基础设施效率抵消折旧及 AI 使用成本。",
+        "AI capex proves predominantly growth investment rather than a permanent maintenance burden.": "AI 资本开支主要被证明是增长投资，而非永久性维护负担。",
+        "Calendar 2026 capex near $190B creates a long cash-conversion lag or structurally lower returns.": "2026 日历年接近 1,900 亿美元的资本开支造成漫长现金转化滞后，或结构性压低回报。",
+        "Microsoft Cloud gross margin falls below the 64% Q4 guide and does not stabilize in FY2027.": "Microsoft Cloud 毛利率低于第四季度约 64% 的指引，且在 FY2027 仍未企稳。",
+        "Headline RPO growth remains concentrated in OpenAI commitments and does not broaden.": "表面强劲的 RPO 增长仍集中于 OpenAI 承诺，未向更广泛客户需求扩散。",
+        "Copilot adoption grows without adequate ARPU or incremental margin.": "Copilot 使用量增长，但 ARPU 或增量利润率不足。",
+        "The apparent GAAP P/E discount is partly an artifact of volatile OpenAI investment accounting.": "表面的 GAAP 市盈率折价，部分来自波动较大的 OpenAI 投资会计处理。",
+        "Azure constant-currency growth": "Azure 固定汇率增长",
+        "Microsoft Cloud gross margin": "Microsoft Cloud 毛利率",
+        "M365 Copilot paid seats and ARPU": "M365 Copilot 付费席位与 ARPU",
+        "Capex and free-cash-flow conversion": "资本开支与自由现金流转化",
+        "Commercial RPO excluding OpenAI": "剔除 OpenAI 的商业 RPO",
+        "Portfolio concentration": "投资组合集中度"
+      };
+
+      function el(id) { return document.getElementById(id); }
+      function svgEl(name, attributes) {
+        var node = document.createElementNS("http://www.w3.org/2000/svg", name);
+        Object.keys(attributes || {}).forEach(function (key) { node.setAttribute(key, String(attributes[key])); });
+        return node;
+      }
+      function finite(value) {
+        if (value == null || value === "") return null;
+        var number = Number(value);
+        return Number.isFinite(number) ? number : null;
+      }
+      function primarySymbol(detail) {
+        var symbols = detail && detail.instrument && detail.instrument.symbols || [];
+        var primary = symbols.find(function (row) { return row.isPrimary; }) || symbols[0];
+        return primary && primary.symbol || "—";
+      }
+      function compactToIso(value) {
+        var raw = String(value || "");
+        return /^\d{8}$/.test(raw) ? raw.slice(0,4) + "-" + raw.slice(4,6) + "-" + raw.slice(6,8) : (raw || "—");
+      }
+      function weekdayLabel(value) {
+        var raw = String(value || "");
+        if (!/^\d{8}$/.test(raw)) return "星期未知";
+        var date = new Date(Date.UTC(Number(raw.slice(0,4)), Number(raw.slice(4,6)) - 1, Number(raw.slice(6,8))));
+        return ["周日", "周一", "周二", "周三", "周四", "周五", "周六"][date.getUTCDay()];
+      }
+      function utcDateTime(value) {
+        var date = new Date(value);
+        if (Number.isNaN(date.getTime())) return value || "—";
+        return "UTC " + new Intl.DateTimeFormat("zh-CN", {
+          year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit",
+          hour12: false, timeZone: "UTC"
+        }).format(date).replace(/\//g, "-");
+      }
+      function number(value, digits) {
+        var n = finite(value);
+        return n == null ? "—" : new Intl.NumberFormat("zh-CN", {
+          minimumFractionDigits: digits || 0, maximumFractionDigits: digits == null ? 2 : digits
+        }).format(n);
+      }
+      var CURRENCY_SEPARATOR = "\u202F";
+      function currencyMark(currency) {
+        var code = String(currency || "USD").toUpperCase();
+        return code === "USD" ? "US$" : code;
+      }
+      function moneyAmount(value, digits, signed) {
+        var n = finite(value);
+        if (n == null) return "—";
+        var d = digits == null ? 2 : digits;
+        var amount = new Intl.NumberFormat("en-US", {
+          minimumFractionDigits: d,
+          maximumFractionDigits: d
+        }).format(Math.abs(n));
+        if (n < 0) return "-" + amount;
+        if (signed && n > 0) return "+" + amount;
+        return amount;
+      }
+      function money(value, currency, digits) {
+        var n = finite(value);
+        if (n == null) return "—";
+        return currencyMark(currency) + CURRENCY_SEPARATOR + moneyAmount(n, digits, false);
+      }
+      function compactMoney(value, currency) {
+        var n = finite(value);
+        if (n == null) return "—";
+        var absolute = Math.abs(n), divisor = 1, suffix = "";
+        if (absolute >= 1e12) { divisor = 1e12; suffix = "T"; }
+        else if (absolute >= 1e9) { divisor = 1e9; suffix = "B"; }
+        else if (absolute >= 1e6) { divisor = 1e6; suffix = "M"; }
+        return money(n / divisor, currency, 2) + suffix;
+      }
+      function compactCount(value) {
+        var n = finite(value);
+        if (n == null) return "—";
+        var absolute = Math.abs(n), divisor = 1, suffix = "";
+        if (absolute >= 1e9) { divisor = 1e9; suffix = "B"; }
+        else if (absolute >= 1e6) { divisor = 1e6; suffix = "M"; }
+        else if (absolute >= 1e3) { divisor = 1e3; suffix = "K"; }
+        var scaled = n / divisor;
+        var digits = suffix ? (Math.abs(scaled) >= 100 ? 0 : (Math.abs(scaled) >= 10 ? 1 : 2)) : 0;
+        return number(scaled, digits) + suffix;
+      }
+      function quantityNumber(value) {
+        var n = finite(value);
+        if (n == null) return "—";
+        return new Intl.NumberFormat("zh-CN", {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: Number.isInteger(n) ? 0 : 4
+        }).format(n);
+      }
+      function signedMoney(value, currency) {
+        var n = finite(value);
+        if (n == null) return "—";
+        return currencyMark(currency) + CURRENCY_SEPARATOR + moneyAmount(n, 2, true);
+      }
+      function percent(value, digits) {
+        var n = finite(value);
+        return n == null ? "—" : number(n, digits == null ? 2 : digits) + "%";
+      }
+      function signedPercentRatio(value, digits) {
+        var n = finite(value);
+        return n == null ? "—" : (n > 0 ? "+" : "") + percent(n * 100, digits);
+      }
+      function qualityLabel(status) {
+        return { pass: "通过", warning: "需留意", unavailable: "尚不可用", not_available: "尚未建立", not_applicable: "无需" }[status] || String(status || "—");
+      }
+      function distributionCoverageLabel(market) {
+        var domain = market || {};
+        var status = domain.distributionReviewStatus;
+        if (status === "reviewed_complete" || status === "reviewed_no_distributions") return "已复核";
+        if (status === "reviewed_partial" && domain.distributionPageReadinessImpact === "advisory") {
+          return "部分覆盖 · 自 " + compactToIso(domain.distributionIssuerCoverageStart);
+        }
+        return "待复核";
+      }
+      function researchLabel(value) {
+        return {
+          preliminary: "初步评价", fair: "估值合理", hold: "持有",
+          watchlist: "观察名单", active: "当前版本", medium: "中等证据置信度",
+          low: "较低证据置信度", high: "较高证据置信度"
+        }[value] || value || "—";
+      }
+      function zh(value) { return researchTranslation[value] || value || "—"; }
+      function setClassBySign(element, value) {
+        element.classList.remove("positive", "negative");
+        var n = finite(value);
+        if (n > 0) element.classList.add("positive");
+        if (n < 0) element.classList.add("negative");
+      }
+      function rangeFromDate(range) {
+        var setting = rangeSettings[range];
+        if (!setting || setting.months == null) return null;
+        var date = new Date();
+        date.setUTCDate(date.getUTCDate() - 10);
+        date.setUTCMonth(date.getUTCMonth() - setting.months);
+        return date.toISOString().slice(0,10).replace(/-/g, "");
+      }
+      function activeRange() {
+        return state.chartView === "valuation" ? state.valuationRange : state.priceRange;
+      }
+      function activeBarType() {
+        if (state.chartView === "valuation") return "TRADES";
+        return state.barType === "SPLIT_UNADJUSTED" ? "TRADES" : state.barType;
+      }
+      function setActiveRange(range) {
+        if (state.chartView === "valuation") state.valuationRange = range;
+        else state.priceRange = range;
+      }
+      function syncChartControls() {
+        var isEtf = state.detail && state.detail.instrument.instrumentKind === "etf";
+        if (isEtf && state.chartView === "valuation") state.chartView = "price";
+        document.querySelectorAll(".chart-view-btn").forEach(function (button) {
+          var unavailable = isEtf && button.dataset.chartView === "valuation";
+          button.disabled = Boolean(unavailable);
+          button.title = unavailable ? "ETF 不套用单一公司的 TTM PE 估值口径" : "";
+          button.setAttribute("aria-pressed", String(button.dataset.chartView === state.chartView));
+        });
+        document.querySelectorAll(".range-btn").forEach(function (button) {
+          button.setAttribute("aria-pressed", String(button.dataset.range === activeRange()));
+        });
+        document.querySelectorAll(".bar-type-btn").forEach(function (button) {
+          button.setAttribute("aria-pressed", String(button.dataset.barType === state.barType));
+        });
+        el("barTypeControl").hidden = state.chartView === "valuation";
+        el("valuationLegend").hidden = state.chartView !== "valuation";
+        el("marketHistoryNote").textContent = state.chartView === "valuation"
+          ? "TTM PE 使用股息未调整完成日线与当时已申报生效的正数 diluted EPS；2010 年前仅按当时提交的 10-K 年报频率重建并显示警示，均值与常态带只代表十年历史参照，不是合理价值。"
+          : (
+            isEtf
+              ? "ETF 价格视图保留三套独立口径；基金不套用单一公司的 TTM PE，长窗口只在图形层聚合。"
+              : "价格视图保留三套独立口径；拆股未调整价格由审核拆股事件可逆推导，长窗口只在图形层聚合。"
+          );
+        el("instrumentChart").setAttribute(
+          "aria-label",
+          state.chartView === "valuation"
+            ? "标的历史 TTM 市盈率、十年缩尾均值与历史估值常态带"
+            : "标的历史 K 线和成交量"
+        );
+      }
+      function syncValuationLegendAlignment() {
+        var legend = el("valuationLegend");
+        if (!legend || legend.hidden) return;
+        var svg = el("instrumentChart");
+        var series = svg && svg.querySelector(".valuation-series-line");
+        if (!series) return;
+        var seriesRect = series.getBoundingClientRect();
+        var legendRect = legend.getBoundingClientRect();
+        legend.style.setProperty("--valuation-legend-left-inset", Math.max(0, seriesRect.left - legendRect.left).toFixed(2) + "px");
+        legend.style.setProperty("--valuation-legend-right-inset", Math.max(0, legendRect.right - seriesRect.right).toFixed(2) + "px");
+      }
+      function scheduleValuationLegendAlignment() {
+        requestAnimationFrame(syncValuationLegendAlignment);
+      }
+      async function fetchJson(url) {
+        var response = await fetch(url, { cache: "no-store" });
+        var payload = await response.json().catch(function () { return {}; });
+        if (!response.ok) throw new Error(payload.error || "HTTP " + response.status);
+        return payload;
+      }
+      var staticManifestPromise = null;
+      function staticConfig() {
+        var node = document.getElementById("instrumentStaticConfig");
+        if (!node) return null;
+        try {
+          var config = JSON.parse(node.textContent);
+          return config && config.mode === "public-static-v1" ? config : null;
+        } catch (_error) {
+          throw new Error("公开标的页静态配置无效。");
+        }
+      }
+      function staticManifest() {
+        var config = staticConfig();
+        if (!config) return Promise.resolve(null);
+        if (!staticManifestPromise) staticManifestPromise = fetchJson(config.manifest);
+        return staticManifestPromise;
+      }
+      function mergeStaticInstrumentDetail(flexPackage, marketPackage, researchPackage, symbol, from, maxPoints) {
+        var flex = flexPackage && flexPackage.instruments && flexPackage.instruments[symbol] || {};
+        var market = marketPackage && marketPackage.detail || {};
+        var research = researchPackage && researchPackage.detail || {};
+        var marketBars = Array.isArray(market.bars) ? market.bars : [];
+        var selectedBars = marketBars.filter(function (row) {
+          return (!from || String(row.date || "") >= from)
+            && (state.chartView !== "valuation" || row.barType === "TRADES");
+        });
+        var byType = {};
+        selectedBars.forEach(function (row) {
+          (byType[row.barType] || (byType[row.barType] = [])).push(row);
+        });
+        selectedBars = Object.keys(byType).sort().flatMap(function (barType) {
+          return byType[barType].slice(-maxPoints);
+        }).sort(function (left, right) {
+          return String(left.date).localeCompare(String(right.date))
+            || String(left.barType).localeCompare(String(right.barType));
+        });
+        var dataAsOf = Object.assign(
+          {},
+          market.dataAsOf || {},
+          flex.dataAsOf || {},
+          research.dataAsOf || {}
+        );
+        var summary = Object.assign(
+          {
+            isCurrentlyHeld: false,
+            barPoints: {},
+            lifecycle: { eventCount: 0, displayEventCount: 0 },
+            positionLots: { status: "not_collected", count: 0 },
+            research: { count: 0 },
+            corporateEvents: { count: 0, sourceCount: 0 }
+          },
+          market.summary || {},
+          flex.summary || {},
+          research.summary || {}
+        );
+        var domains = Object.assign(
+          {
+            market: { status: "unavailable" },
+            lifecycle: { status: "unavailable", ingestionWindows: 0 },
+            orders: { status: "unavailable" },
+            positionLots: { status: "not_available", count: 0 },
+            fundamentals: { status: "not_available" },
+            corporateEvents: { status: "not_available" },
+            research: { status: "not_available", count: 0 }
+          },
+          market.dataQuality && market.dataQuality.domains || {},
+          flex.dataQuality && flex.dataQuality.domains || {},
+          research.dataQuality && research.dataQuality.domains || {}
+        );
+        return {
+          schemaVersion: 8,
+          generatedAt: flexPackage.generatedAt || marketPackage.generatedAt || researchPackage.generatedAt,
+          instrument: market.instrument,
+          currentHolding: flex.currentHolding || null,
+          dataAsOf: dataAsOf,
+          summary: summary,
+          barSelection: market.barSelection || { series: [] },
+          bars: selectedBars,
+          coverage: market.coverage || [],
+          events: flex.events || [],
+          eventTimeline: flex.eventTimeline || [],
+          accountPerformance: flex.accountPerformance || {},
+          positionLots: flex.positionLots || { status: "not_collected", items: [], summary: {} },
+          orders: [],
+          ordersSnapshot: { status: "not_collected", asOf: null, stale: false },
+          fundamentals: market.fundamentals || { status: "not_available" },
+          fundProfile: market.fundProfile || { status: "not_available" },
+          valuationSeries: market.valuationSeries || [],
+          valuationAnalysis: market.valuationAnalysis || {},
+          corporateEvents: market.corporateEvents || { status: "not_available", items: [], sources: [] },
+          chartEvents: market.chartEvents || { items: [] },
+          providerResearch: research.providerResearch || [],
+          research: research.research || [],
+          historyProbes: [],
+          dataGaps: market.dataGaps || [],
+          dataQuality: {
+            status: Object.values(domains).some(function (row) {
+              return row && ["warning", "unavailable", "not_available"].includes(row.status);
+            }) ? "warning" : "pass",
+            domains: domains
+          },
+          publicStatic: true
+        };
+      }
+      async function loadStaticInstrument(symbol, from, maxPoints) {
+        var manifest = await staticManifest();
+        if (!manifest || manifest.schemaVersion !== 1) throw new Error("公开标的页清单版本不受支持。");
+        var record = manifest.instruments && manifest.instruments[symbol];
+        if (!record) throw new Error("公开标的目录中没有 " + symbol + "。");
+        var packages = await Promise.all([
+          fetchJson(manifest.packages.flex.path),
+          fetchJson(record.market.path),
+          fetchJson(record.research.path)
+        ]);
+        for (var index = 0; index < packages.length; index += 1) {
+          if (packages[index].schemaVersion !== 1) throw new Error("公开标的静态数据包版本不受支持。");
+        }
+        return mergeStaticInstrumentDetail(packages[0], packages[1], packages[2], symbol, from, maxPoints);
+      }
+      /* FAMILY:INSTRUMENT_DATA_SOURCE:START */
+      async function resolveSecurityId() {
+        var requestedSymbol = String(new URLSearchParams(location.search).get("symbol") || "MSFT").trim().toUpperCase();
+        var manifest = await staticManifest();
+        if (!manifest.instruments || !manifest.instruments[requestedSymbol]) {
+          throw new Error("公开标的目录中没有 " + requestedSymbol + "。");
+        }
+        return requestedSymbol;
+      }
+      async function loadDetail() {
+        var token = ++state.requestToken;
+        var range = activeRange();
+        var setting = rangeSettings[range];
+        var from = rangeFromDate(range);
+        var detail = await loadStaticInstrument(state.securityId, from, setting.maxPoints);
+        if (token !== state.requestToken) return;
+        if (detail.schemaVersion !== 8) throw new Error("公开标的静态资料版本不受支持。");
+        state.detail = detail;
+        syncChartControls();
+        renderAll();
+      }
+      /* FAMILY:INSTRUMENT_DATA_SOURCE:END */
+      function chartEventsForMode() {
+        var items = state.detail && state.detail.chartEvents && state.detail.chartEvents.items || [];
+        if (state.chartView !== "price") return [];
+        if (state.barType === "SPLIT_UNADJUSTED") {
+          return items.filter(function (row) { return row.eventType === "stock_split"; });
+        }
+        if (state.barType === "TRADES") {
+          return items.filter(function (row) { return row.eventType === "cash_dividend"; });
+        }
+        return [];
+      }
+      function splitUnadjustedBars(rows) {
+        var splits = (state.detail && state.detail.chartEvents && state.detail.chartEvents.items || [])
+          .filter(function (row) {
+            return row.eventType === "stock_split" && finite(row.factor) != null && finite(row.factor) > 0;
+          })
+          .sort(function (left, right) { return String(left.eventDate).localeCompare(String(right.eventDate)); });
+        return rows.map(function (row) {
+          var factor = splits.reduce(function (product, event) {
+            return String(row.date) < String(event.eventDate)
+              ? product * finite(event.factor)
+              : product;
+          }, 1);
+          return Object.assign({}, row, {
+            open: finite(row.open) == null ? null : finite(row.open) * factor,
+            high: finite(row.high) == null ? null : finite(row.high) * factor,
+            low: finite(row.low) == null ? null : finite(row.low) * factor,
+            close: finite(row.close) == null ? null : finite(row.close) * factor,
+            volume: finite(row.volume) == null ? null : finite(row.volume) / factor,
+            splitUnadjustedFactor: factor,
+            priceBasis: "reviewed_split_event_reversal"
+          });
+        });
+      }
+      function latestBars() {
+        var barType = activeBarType();
+        var rows = (state.detail && state.detail.bars || []).filter(function (row) { return row.barType === barType; });
+        if (state.chartView === "price" && state.barType === "SPLIT_UNADJUSTED") {
+          rows = splitUnadjustedBars(rows);
+        }
+        var eventsByDate = {};
+        chartEventsForMode().forEach(function (event) {
+          (eventsByDate[event.eventDate] || (eventsByDate[event.eventDate] = [])).push(event);
+        });
+        return rows.map(function (row) {
+          return Object.assign({}, row, { chartEvents: eventsByDate[row.date] || [] });
+        });
+      }
+      function aggregateBars(rows) {
+        var target = 170;
+        var bucketSize = Math.max(1, Math.ceil(rows.length / target));
+        if (bucketSize === 1) {
+          return {
+            rows: rows.map(function (row, index) {
+              return Object.assign({}, row, {
+                startDate: row.date,
+                previousClose: index > 0 ? finite(rows[index - 1].close) : null,
+                chartEvents: row.chartEvents || [],
+                points: 1
+              });
+            }),
+            bucketSize: 1
+          };
+        }
+        var result = [];
+        for (var index = 0; index < rows.length; index += bucketSize) {
+          var chunk = rows.slice(index, index + bucketSize);
+          result.push({
+            date: chunk[chunk.length - 1].date,
+            startDate: chunk[0].date,
+            open: finite(chunk[0].open),
+            high: Math.max.apply(null, chunk.map(function (row) { return finite(row.high); }).filter(Number.isFinite)),
+            low: Math.min.apply(null, chunk.map(function (row) { return finite(row.low); }).filter(Number.isFinite)),
+            close: finite(chunk[chunk.length - 1].close),
+            volume: chunk.reduce(function (sum, row) { return sum + (finite(row.volume) || 0); }, 0),
+            peTtm: finite(chunk[chunk.length - 1].peTtm),
+            peStatus: chunk[chunk.length - 1].peStatus,
+            peEpsTtm: finite(chunk[chunk.length - 1].peEpsTtm),
+            chartEvents: chunk.reduce(function (items, row) {
+              return items.concat(row.chartEvents || []);
+            }, []),
+            previousClose: null,
+            points: chunk.length
+          });
+        }
+        result.forEach(function (row, index) {
+          row.previousClose = index > 0 ? finite(result[index - 1].close) : null;
+        });
+        return { rows: result, bucketSize: bucketSize };
+      }
+      function compactRatio(value) {
+        var n = finite(value);
+        if (n == null) return "—";
+        return Math.abs(n - Math.round(n)) < 1e-9 ? number(Math.round(n), 0) : number(n, 3);
+      }
+      function dividendAmount(value) {
+        var n = finite(value);
+        return n == null ? "—" : new Intl.NumberFormat("zh-CN", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 4
+        }).format(n);
+      }
+      function peDisplayText(row) {
+        var status = row && (row.peStatus || row.peTtmStatus);
+        if (status === "negative_eps") return "PE 为负";
+        if (status === "zero_eps") return "PE 不适用（EPS 为 0）";
+        return finite(row && row.peTtm) == null
+          ? "—"
+          : number(row.peTtm, 2) + "×";
+      }
+      function splitEventText(event) {
+        var factor = finite(event.factor);
+        if (factor == null || factor <= 0) return "拆股比例未取得";
+        return factor > 1
+          ? "一股拆为 " + compactRatio(factor) + " 股"
+          : compactRatio(1 / factor) + " 股并为一股";
+      }
+      function splitEventLabel(event, expanded) {
+        var factor = finite(event && event.factor);
+        var reverse = factor != null && factor > 0 && factor < 1;
+        return reverse
+          ? (expanded ? "并股" : "并")
+          : (expanded ? "拆股" : "拆");
+      }
+      function chartEventDescription(event) {
+        if (event.eventType === "stock_split") {
+          return compactToIso(event.eventDate) + " · " + splitEventText(event);
+        }
+        var currency = String(event.currency || "");
+        if (event.distributionType === "capital_gain_distribution") {
+          var components = event.distributionComponents || {};
+          return compactToIso(event.eventDate) + " · 除息日 · 每份分配 " +
+            dividendAmount(event.amountPerShare) + " " + currency +
+            "（短期资本利得 " +
+            dividendAmount(components.shortTermCapitalGainPerShare) +
+            "，长期资本利得 " +
+            dividendAmount(components.longTermCapitalGainPerShare) + "）";
+        }
+        if (event.distributionType === "non_cash_distribution") {
+          var nonCash = event.nonCashDistribution || {};
+          return compactToIso(event.eventDate) + " · 非现金分派 · 每股获配 " +
+            compactRatio(nonCash.distributedSharesPerSourceShare) + " 股 " +
+            String(nonCash.distributedSecurity || "其他证券") +
+            "（获配证券每股税务成本基础 " +
+            money(nonCash.taxBasisPerDistributedShare, event.currency, 4) +
+            "）";
+        }
+        return compactToIso(event.eventDate) + " · 除息日 · 每股派息 " +
+          dividendAmount(event.amountPerShare) + " " + currency;
+      }
+      function renderTooltipEvents(container, events) {
+        container.replaceChildren();
+        container.hidden = !events.length;
+        events.forEach(function (event) {
+          var item = document.createElement("div");
+          item.className = "tooltip-event";
+          var kind = document.createElement("span");
+          kind.className = "tooltip-event-kind";
+          kind.textContent = event.eventType === "stock_split"
+            ? splitEventLabel(event, true)
+            : (event.distributionType === "non_cash_distribution"
+              ? "非现金分派"
+              : (event.distributionType === "capital_gain_distribution"
+              ? "基金分配"
+              : "分红派息"));
+          var description = document.createElement("span");
+          description.textContent = chartEventDescription(event);
+          item.append(kind, description);
+          container.appendChild(item);
+        });
+      }
+      function renderPriceChart() {
+        var sourceRows = latestBars();
+        var barType = activeBarType();
+        var svg = el("instrumentChart");
+        var tooltip = el("chartTooltip");
+        svg.replaceChildren();
+        tooltip.classList.remove("visible");
+        renderTooltipEvents(tooltip.querySelector(".tooltip-events"), []);
+        if (!sourceRows.length) {
+          var empty = svgEl("text", { x: 560, y: 220, "text-anchor": "middle", class: "axis-label" });
+          empty.textContent = "当前窗口没有可用日线";
+          svg.appendChild(empty);
+          return;
+        }
+        var aggregated = aggregateBars(sourceRows);
+        var rows = aggregated.rows;
+        var width = 1120, height = 448, left = 68, right = 20, top = 20, priceBottom = 320, volumeTop = 346, bottom = 412;
+        var plotWidth = width - left - right;
+        var priceHeight = priceBottom - top;
+        var lows = rows.map(function (row) { return finite(row.low); }).filter(Number.isFinite);
+        var highs = rows.map(function (row) { return finite(row.high); }).filter(Number.isFinite);
+        var minPrice = Math.min.apply(null, lows), maxPrice = Math.max.apply(null, highs);
+        var padding = Math.max((maxPrice - minPrice) * .06, maxPrice * .005);
+        minPrice = Math.max(0, minPrice - padding); maxPrice += padding;
+        var maxVolume = Math.max.apply(null, rows.map(function (row) { return finite(row.volume) || 0; })) || 1;
+        function x(index) { return left + (index + .5) * plotWidth / rows.length; }
+        function y(value) { return top + (maxPrice - value) / (maxPrice - minPrice || 1) * priceHeight; }
+        for (var grid = 0; grid <= 4; grid += 1) {
+          var gy = top + grid * priceHeight / 4;
+          svg.appendChild(svgEl("line", { x1: left, y1: gy, x2: width - right, y2: gy, class: "grid-line" }));
+          var label = svgEl("text", { x: left - 10, y: gy + 4, "text-anchor": "end", class: "axis-label" });
+          label.textContent = number(maxPrice - grid * (maxPrice - minPrice) / 4, 2);
+          svg.appendChild(label);
+        }
+        svg.appendChild(svgEl("line", { x1: left, y1: volumeTop - 9, x2: width - right, y2: volumeTop - 9, class: "grid-line" }));
+        var slot = plotWidth / rows.length;
+        var candleWidth = Math.max(1.6, Math.min(7, slot * .62));
+        rows.forEach(function (row, index) {
+          var open = finite(row.open), high = finite(row.high), low = finite(row.low), close = finite(row.close);
+          if ([open, high, low, close].some(function (value) { return value == null; })) return;
+          var color = close >= open ? "#14804a" : "#c7353b";
+          var cx = x(index);
+          svg.appendChild(svgEl("line", { x1: cx, y1: y(high), x2: cx, y2: y(low), stroke: color, "stroke-width": 1 }));
+          svg.appendChild(svgEl("rect", {
+            x: cx - candleWidth / 2, y: Math.min(y(open), y(close)),
+            width: candleWidth, height: Math.max(1.2, Math.abs(y(open) - y(close))),
+            fill: close >= open ? "#fff" : color, stroke: color, "stroke-width": 1
+          }));
+          var volumeHeight = (finite(row.volume) || 0) / maxVolume * (bottom - volumeTop);
+          svg.appendChild(svgEl("rect", {
+            x: cx - candleWidth / 2, y: bottom - volumeHeight,
+            width: candleWidth, height: Math.max(.5, volumeHeight), fill: color, opacity: .34
+          }));
+        });
+        var sourceIndexByDate = {};
+        sourceRows.forEach(function (row, index) { sourceIndexByDate[row.date] = index; });
+        var markerGroups = {};
+        var markerHitZones = [];
+        chartEventsForMode().forEach(function (event) {
+          if (sourceIndexByDate[event.eventDate] == null) return;
+          (markerGroups[event.eventDate] || (markerGroups[event.eventDate] = [])).push(event);
+        });
+        Object.keys(markerGroups).sort().forEach(function (eventDate) {
+          var events = markerGroups[eventDate];
+          var sourceIndex = sourceIndexByDate[eventDate];
+          var aggregateIndex = Math.min(rows.length - 1, Math.floor(sourceIndex / aggregated.bucketSize));
+          var row = rows[aggregateIndex];
+          var cx = left + (sourceIndex + .5) * plotWidth / sourceRows.length;
+          var markerText = events[0].eventType === "stock_split"
+            ? splitEventLabel(events[0], slot >= 30)
+            : (events[0].distributionType === "non_cash_distribution"
+              ? (slot >= 30 ? "非现金分派" : "派")
+              : (events[0].distributionType === "capital_gain_distribution"
+              ? (slot >= 30 ? "基金分配" : "配")
+              : (slot >= 30 ? "分红派息" : "息")));
+          if (events.length > 1) markerText += "×" + events.length;
+          var markerColor = events[0].eventType === "stock_split" ? "#176b9b" : "#a87316";
+          var markerFill = events[0].eventType === "stock_split" ? "#e8f1f7" : "#fbf3df";
+          var markerWidth = Math.max(16, markerText.length * 8 + 8);
+          var markerY = Math.max(top + 3, y(finite(row.high)) - 25);
+          markerHitZones.push({
+            x: cx,
+            halfWidth: markerWidth / 2 + 4,
+            aggregateIndex: aggregateIndex,
+            events: events
+          });
+          svg.appendChild(svgEl("line", {
+            x1: cx, y1: markerY + 15, x2: cx, y2: Math.max(markerY + 17, y(finite(row.high)) - 2),
+            class: "chart-event-stem", stroke: markerColor
+          }));
+          svg.appendChild(svgEl("rect", {
+            x: cx - markerWidth / 2, y: markerY, width: markerWidth, height: 15,
+            rx: 2, fill: markerFill, stroke: markerColor, class: "chart-event-marker"
+          }));
+          var eventLabel = svgEl("text", {
+            x: cx, y: markerY + 10.5, "text-anchor": "middle",
+            fill: markerColor, class: "chart-event-label"
+          });
+          eventLabel.textContent = markerText;
+          svg.appendChild(eventLabel);
+        });
+        var labelIndexes = [0, Math.floor((rows.length - 1) / 2), rows.length - 1];
+        labelIndexes.forEach(function (index) {
+          var label = svgEl("text", { x: x(index), y: 437, "text-anchor": index === 0 ? "start" : (index === rows.length - 1 ? "end" : "middle"), class: "axis-label" });
+          label.textContent = compactToIso(rows[index].date);
+          svg.appendChild(label);
+        });
+        var focus = svgEl("line", { x1: left, y1: top, x2: left, y2: bottom, class: "focus-line", visibility: "hidden" });
+        svg.appendChild(focus);
+        var interactionLeft = Math.max(0, left - slot / 2);
+        var interactionRight = Math.min(width, width - right + slot / 2);
+        var overlay = svgEl("rect", { x: interactionLeft, y: top, width: interactionRight - interactionLeft, height: bottom - top, fill: "transparent", tabindex: "0", "aria-label": "移动指针查看市场历史价格详情" });
+        function showAt(event) {
+          var interactionRect = overlay.getBoundingClientRect();
+          var ratio = interactionRect.width
+            ? (event.clientX - interactionRect.left) / interactionRect.width
+            : 0;
+          ratio = Math.max(0, Math.min(1, ratio));
+          var index = Math.max(0, Math.min(rows.length - 1, Math.round(ratio * rows.length - .5)));
+          var pointerSvgX = interactionLeft + ratio * (interactionRight - interactionLeft);
+          var markerHit = markerHitZones.reduce(function (nearest, candidate) {
+            var distance = Math.abs(pointerSvgX - candidate.x);
+            if (distance > candidate.halfWidth) return nearest;
+            return !nearest || distance < nearest.distance
+              ? { distance: distance, marker: candidate }
+              : nearest;
+          }, null);
+          if (markerHit) index = markerHit.marker.aggregateIndex;
+          var row = rows[index];
+          var fx = x(index);
+          focus.setAttribute("x1", fx); focus.setAttribute("x2", fx); focus.setAttribute("visibility", "visible");
+          tooltip.querySelector(".tooltip-date").textContent = row.points > 1
+            ? compactToIso(row.startDate) + " — " + compactToIso(row.date) + " · " + row.points + " 日"
+            : compactToIso(row.date);
+          var currentClose = finite(row.close);
+          var previousClose = finite(row.previousClose);
+          var candleChange = currentClose != null && previousClose != null
+            ? currentClose - previousClose
+            : null;
+          var candleChangeRatio = currentClose != null && previousClose != null && previousClose !== 0
+            ? currentClose / previousClose - 1
+            : null;
+          var labels = [
+            ["开", money(row.open, state.detail.instrument.currency, 2)],
+            ["最高", money(row.high, state.detail.instrument.currency, 2)],
+            ["收", money(row.close, state.detail.instrument.currency, 2)],
+            ["最低", money(row.low, state.detail.instrument.currency, 2)],
+            ["涨跌额", signedMoney(candleChange, state.detail.instrument.currency), candleChange],
+            ["涨跌幅", signedPercentRatio(candleChangeRatio, 2), candleChangeRatio],
+            ["量", compactCount(row.volume)],
+            ["市盈率 TTM", peDisplayText(row)]
+          ];
+          var grid = tooltip.querySelector(".tooltip-grid");
+          grid.replaceChildren();
+          labels.forEach(function (item) {
+            var key = document.createElement("span"), value = document.createElement("span");
+            key.className = "tooltip-label";
+            value.className = "tooltip-value";
+            key.textContent = item[0];
+            value.textContent = item[1];
+            if (item.length > 2) setClassBySign(value, item[2]);
+            grid.append(key, value);
+          });
+          renderTooltipEvents(
+            tooltip.querySelector(".tooltip-events"),
+            markerHit ? markerHit.marker.events : (row.chartEvents || [])
+          );
+          var frame = el("chartFrame").getBoundingClientRect();
+          var pointerX = event.clientX - frame.left;
+          var pointerY = event.clientY - frame.top;
+          var tooltipWidth = Math.min(268, Math.max(frame.width - 24, 248));
+          var tooltipLeft = pointerX + 14;
+          if (tooltipLeft + tooltipWidth > frame.width - 8) tooltipLeft = pointerX - tooltipWidth - 14;
+          tooltip.style.width = tooltipWidth + "px";
+          tooltip.style.left = Math.max(8, tooltipLeft) + "px";
+          tooltip.style.top = Math.min(Math.max(pointerY, 78), frame.height - 78) + "px";
+          tooltip.classList.add("visible");
+          tooltip.setAttribute("aria-hidden", "false");
+        }
+        overlay.addEventListener("pointermove", showAt);
+        overlay.addEventListener("pointerleave", function () {
+          focus.setAttribute("visibility", "hidden");
+          tooltip.classList.remove("visible");
+          tooltip.setAttribute("aria-hidden", "true");
+        });
+        svg.appendChild(overlay);
+        var selection = (state.detail.barSelection.series || []).find(function (row) { return row.barType === barType; }) || {};
+        el("chartCoverage").textContent = compactToIso(selection.returnedStart) + " — " + compactToIso(selection.returnedEnd) + " · " + number(selection.returnedPoints, 0) + " 根日线";
+        el("chartAggregation").textContent = aggregated.bucketSize > 1
+          ? "图形每根合并最多 " + aggregated.bucketSize + " 个连续交易日；底层日线未改变"
+          : "逐交易日绘制";
+        var splitBasis = selection.splitNormalizationStatus === "pass"
+          ? "拆股标准化至 " + compactToIso(selection.splitNormalizationAnchorDate) + "；原始来源保留"
+          : (selection.splitNormalizationStatus === "required" ? "拆股派生层待建立" : "无审核拆股事件");
+        var modeDescription = state.barType === "SPLIT_UNADJUSTED"
+          ? "拆股未调整派生；按已审核拆股事件还原当时名义股价"
+          : (barType === "TRADES"
+            ? "股息未调整；分红标记仅覆盖已核验可用期间"
+            : "股息调整");
+        el("chartSource").textContent = (sourceRows[0].sourceName || "IBKR Historical Bars") + " · " + modeDescription + " · " + splitBasis + " · PE 统一按股息未调整实际收盘计算";
+      }
+      function renderValuationChart() {
+        var valuationSeries = state.detail && state.detail.valuationSeries || {};
+        var sourceRows = (valuationSeries.items || []).filter(function (row) {
+          var pe = finite(row.peTtm);
+          return row.status === "available" && pe != null && pe > 0;
+        }).map(function (row) {
+          return Object.assign({}, row, {
+            peEpsEffectiveDate: row.epsEffectiveDate,
+            peEpsEvidenceLabel: row.epsEvidenceLabel,
+            peEpsSplitFactorApplied: row.epsSplitFactorApplied
+          });
+        });
+        var analysis = state.detail && state.detail.valuationAnalysis || {};
+        var statistics = analysis.statistics || {};
+        var normalBand = statistics.normalBand || {};
+        var mean = finite(statistics.winsorizedMean);
+        var bandLow = finite(normalBand.lowerValue);
+        var bandHigh = finite(normalBand.upperValue);
+        var svg = el("instrumentChart");
+        var tooltip = el("chartTooltip");
+        svg.replaceChildren();
+        tooltip.classList.remove("visible");
+        tooltip.setAttribute("aria-hidden", "true");
+        renderTooltipEvents(tooltip.querySelector(".tooltip-events"), []);
+        if (!sourceRows.length || mean == null || bandLow == null || bandHigh == null) {
+          var empty = svgEl("text", { x: 560, y: 215, "text-anchor": "middle", class: "axis-label" });
+          empty.textContent = analysis.message || "当前窗口没有可用的申报生效 TTM 市盈率";
+          svg.appendChild(empty);
+          el("chartCoverage").textContent = "估值资料尚不可用";
+          el("chartAggregation").textContent = "仅正数、申报生效 TTM diluted EPS 可进入估值视图";
+          el("chartSource").textContent = "未使用估填值";
+          return;
+        }
+
+        var rows = sourceRows;
+        var width = 1120, height = 448, left = 68, right = 20, top = 24, bottom = 405;
+        var plotWidth = width - left - right;
+        var plotHeight = bottom - top;
+        var values = rows.map(function (row) { return finite(row.peTtm); }).filter(Number.isFinite);
+        values.push(mean, bandLow, bandHigh);
+        var minValue = Math.min.apply(null, values);
+        var maxValue = Math.max.apply(null, values);
+        var padding = Math.max((maxValue - minValue) * .09, maxValue * .025, .5);
+        minValue = Math.max(0, minValue - padding);
+        maxValue += padding;
+        function x(index) { return left + (index + .5) * plotWidth / rows.length; }
+        function y(value) { return top + (maxValue - value) / (maxValue - minValue || 1) * plotHeight; }
+
+        for (var grid = 0; grid <= 5; grid += 1) {
+          var gy = top + grid * plotHeight / 5;
+          svg.appendChild(svgEl("line", { x1: left, y1: gy, x2: width - right, y2: gy, class: "grid-line" }));
+          var label = svgEl("text", { x: left - 10, y: gy + 4, "text-anchor": "end", class: "axis-label" });
+          label.textContent = number(maxValue - grid * (maxValue - minValue) / 5, 1) + "×";
+          svg.appendChild(label);
+        }
+
+        svg.appendChild(svgEl("rect", {
+          x: left,
+          y: Math.min(y(bandHigh), y(bandLow)),
+          width: plotWidth,
+          height: Math.max(1, Math.abs(y(bandLow) - y(bandHigh))),
+          fill: "rgba(23,107,155,.10)",
+          stroke: "rgba(23,107,155,.24)",
+          "stroke-width": 1
+        }));
+        svg.appendChild(svgEl("line", {
+          x1: left, y1: y(mean), x2: width - right, y2: y(mean),
+          stroke: "#707d87", "stroke-width": 1, "stroke-dasharray": "6 5"
+        }));
+        var path = rows.map(function (row, index) {
+          return (index ? "L" : "M") + x(index).toFixed(2) + " " + y(finite(row.peTtm)).toFixed(2);
+        }).join(" ");
+        svg.appendChild(svgEl("path", {
+          d: path,
+          class: "valuation-series-line",
+          fill: "none",
+          stroke: "#176b9b",
+          "stroke-width": 2,
+          "stroke-linejoin": "round",
+          "stroke-linecap": "round"
+        }));
+
+        var labelIndexes = [0, Math.floor((rows.length - 1) / 2), rows.length - 1];
+        labelIndexes.forEach(function (index) {
+          var label = svgEl("text", {
+            x: x(index),
+            y: 433,
+            "text-anchor": index === 0 ? "start" : (index === rows.length - 1 ? "end" : "middle"),
+            class: "axis-label"
+          });
+          label.textContent = compactToIso(rows[index].date);
+          svg.appendChild(label);
+        });
+
+        var focus = svgEl("line", {
+          x1: left, y1: top, x2: left, y2: bottom,
+          class: "focus-line", visibility: "hidden"
+        });
+        var focusPoint = svgEl("circle", {
+          cx: left, cy: top, r: 4, fill: "#fff", stroke: "#176b9b",
+          "stroke-width": 2, visibility: "hidden", "pointer-events": "none"
+        });
+        svg.append(focus, focusPoint);
+        var slot = plotWidth / rows.length;
+        var interactionLeft = Math.max(0, left - slot / 2);
+        var interactionRight = Math.min(width, width - right + slot / 2);
+        var overlay = svgEl("rect", {
+          x: interactionLeft, y: top, width: interactionRight - interactionLeft,
+          height: bottom - top, fill: "transparent", tabindex: "0",
+          "aria-label": "移动指针或使用方向键查看历史估值详情"
+        });
+        var focusedIndex = rows.length - 1;
+        function hideTooltip() {
+          focus.setAttribute("visibility", "hidden");
+          focusPoint.setAttribute("visibility", "hidden");
+          tooltip.classList.remove("visible");
+          tooltip.setAttribute("aria-hidden", "true");
+        }
+        function showIndex(index, pointerX, pointerY) {
+          focusedIndex = Math.max(0, Math.min(rows.length - 1, index));
+          var row = rows[focusedIndex];
+          var fx = x(focusedIndex), fy = y(finite(row.peTtm));
+          focus.setAttribute("x1", fx); focus.setAttribute("x2", fx); focus.setAttribute("visibility", "visible");
+          focusPoint.setAttribute("cx", fx); focusPoint.setAttribute("cy", fy); focusPoint.setAttribute("visibility", "visible");
+          tooltip.querySelector(".tooltip-date").textContent = compactToIso(row.date);
+          var epsSplitFactor = finite(row.peEpsSplitFactorApplied) || 1;
+          var labels = [
+            ["市盈率 TTM", number(row.peTtm, 2) + "×"],
+            ["十年缩尾均值", number(mean, 2) + "×"],
+            ["常态带 P25", number(bandLow, 2) + "×"],
+            ["常态带 P75", number(bandHigh, 2) + "×"],
+            ["股息未调整收盘", money(row.close, state.detail.instrument.currency, 2)],
+            ["EPS 口径", (row.peEpsEvidenceLabel === "annual_diluted_eps" ? "⚠️ 年报频率重建" : "申报日生效") + (epsSplitFactor > 1 ? " · 拆股桥接×" + number(epsSplitFactor, 0) : "")]
+          ];
+          var grid = tooltip.querySelector(".tooltip-grid");
+          grid.replaceChildren();
+          labels.forEach(function (item) {
+            var key = document.createElement("span"), value = document.createElement("span");
+            key.className = "tooltip-label";
+            value.className = "tooltip-value";
+            key.textContent = item[0];
+            value.textContent = item[1];
+            grid.append(key, value);
+          });
+          renderTooltipEvents(tooltip.querySelector(".tooltip-events"), []);
+          var frame = el("chartFrame").getBoundingClientRect();
+          var resolvedX = pointerX == null ? fx / width * frame.width : pointerX;
+          var resolvedY = pointerY == null ? fy / height * frame.height : pointerY;
+          var tooltipWidth = Math.min(268, Math.max(frame.width - 24, 248));
+          var tooltipLeft = resolvedX + 14;
+          if (tooltipLeft + tooltipWidth > frame.width - 8) tooltipLeft = resolvedX - tooltipWidth - 14;
+          tooltip.style.width = tooltipWidth + "px";
+          tooltip.style.left = Math.max(8, tooltipLeft) + "px";
+          tooltip.style.top = Math.min(Math.max(resolvedY, 78), frame.height - 78) + "px";
+          tooltip.classList.add("visible");
+          tooltip.setAttribute("aria-hidden", "false");
+        }
+        overlay.addEventListener("pointermove", function (event) {
+          var interactionRect = overlay.getBoundingClientRect();
+          var ratio = interactionRect.width
+            ? (event.clientX - interactionRect.left) / interactionRect.width
+            : 0;
+          ratio = Math.max(0, Math.min(1, ratio));
+          var index = Math.max(0, Math.min(rows.length - 1, Math.round(ratio * rows.length - .5)));
+          var frame = el("chartFrame").getBoundingClientRect();
+          showIndex(index, event.clientX - frame.left, event.clientY - frame.top);
+        });
+        overlay.addEventListener("pointerleave", hideTooltip);
+        overlay.addEventListener("focus", function () { showIndex(focusedIndex); });
+        overlay.addEventListener("blur", hideTooltip);
+        overlay.addEventListener("keydown", function (event) {
+          var next = focusedIndex;
+          if (event.key === "ArrowLeft") next -= 1;
+          else if (event.key === "ArrowRight") next += 1;
+          else if (event.key === "Home") next = 0;
+          else if (event.key === "End") next = rows.length - 1;
+          else return;
+          event.preventDefault();
+          showIndex(next);
+        });
+        svg.appendChild(overlay);
+
+        var referenceWindow = analysis.referenceWindow || {};
+        var hasAnnualReconstruction = rows.some(function (row) {
+          return row.peEpsEvidenceLabel === "annual_diluted_eps";
+        });
+        el("chartCoverage").textContent = compactToIso(rows[0].date) + " — " + compactToIso(rows[rows.length - 1].date) + " · " + number(rows.length, 0) + " 个 PE 观察";
+        var valuationSummary = valuationSeries.summary || {};
+        var gapNotes = [];
+        if (finite(valuationSummary.negativeEpsPoints) > 0) {
+          gapNotes.push(number(valuationSummary.negativeEpsPoints, 0) + " 个交易日 PE 为负并留空");
+        }
+        if (finite(valuationSummary.zeroEpsPoints) > 0) {
+          gapNotes.push(number(valuationSummary.zeroEpsPoints, 0) + " 个交易日 EPS 为 0 并留空");
+        }
+        el("chartAggregation").textContent = "十年参考 " + compactToIso(referenceWindow.startDate) + " — " + compactToIso(referenceWindow.endDate) + " · " + number(referenceWindow.observations, 0) + " 个交易日" + (hasAnnualReconstruction ? " · ⚠️ 2010 年前为年报频率" : "") + (gapNotes.length ? " · " + gapNotes.join(" · ") : "");
+        el("chartSource").textContent = "IBKR TRADES 当日实际收盘 + SEC 申报文件／Company Facts · 三种价格视图共用同日 PE · EPS 自申报日起生效";
+      }
+      function renderChart() {
+        syncChartControls();
+        if (state.chartView === "valuation") renderValuationChart();
+        else renderPriceChart();
+        scheduleValuationLegendAlignment();
+      }
+      function renderHero() {
+        var detail = state.detail, instrument = detail.instrument, symbol = primarySymbol(detail);
+        document.title = symbol + " 证券研究 · 投资组合透明计划";
+        el("instrumentSymbol").textContent = symbol;
+        el("instrumentEnglishName").textContent = instrument.englishName || instrument.displayName || symbol;
+        var chineseName = el("instrumentChineseName");
+        chineseName.textContent = instrument.chineseName || "";
+        chineseName.hidden = !instrument.chineseName;
+        el("instrumentAsset").textContent = instrument.assetClass === "STK" ? "股票" : instrument.assetClass;
+        el("instrumentExchange").textContent = instrument.primaryExchange || "交易所未登记";
+        el("instrumentCurrency").textContent = instrument.currency || "—";
+        el("instrumentStatus").textContent = instrument.status === "active" ? "有效标的" : instrument.status;
+        var holding = detail.currentHolding;
+        var trades = (detail.bars || []).filter(function (row) { return row.barType === "TRADES"; });
+        var latest = trades[trades.length - 1] || (detail.bars || [])[detail.bars.length - 1];
+        var closePrice = holding && finite(holding.closePrice);
+        el("latestCloseLabel").textContent = holding ? "持仓完成收盘价格" : "最近市场完成收盘";
+        el("latestClose").textContent = closePrice != null
+          ? money(closePrice, holding.currency, 2)
+          : (latest ? money(latest.close, instrument.currency, 2) : "—");
+        el("latestCloseNote").textContent = holding
+          ? compactToIso(holding.valuationDate) + " · " + (holding.status === "official" ? "官方日结" : holding.status)
+          : (latest ? compactToIso(latest.date) + " · 完成日线" : "当前窗口没有行情");
+        el("dailyPnlAmount").textContent = holding ? signedMoney(holding.dailyPnl, holding.currency) : "—";
+        el("dailyPnlPct").textContent = holding && finite(holding.dailyPnlPct) != null
+          ? (holding.dailyPnlPct > 0 ? "+" : "") + percent(holding.dailyPnlPct, 2)
+          : "—";
+        setClassBySign(el("dailyPnlAmount"), holding && holding.dailyPnl);
+        setClassBySign(el("dailyPnlPct"), holding && holding.dailyPnlPct);
+        var performance = detail.accountPerformance || {};
+        var holdingQuantity = holding ? finite(holding.quantity) : null;
+        var averageCost = holdingQuantity && finite(performance.currentCost) != null
+          ? finite(performance.currentCost) / holdingQuantity
+          : null;
+        el("averageCost").textContent = holding ? money(averageCost, holding.currency, 2) : "—";
+        el("averageCostNote").textContent = holding ? "每股 · " + compactToIso(holding.valuationDate) + " 完成收盘持仓" : "当前未持有";
+        el("currentCost").textContent = holding ? money(performance.currentCost, holding.currency, 2) : "—";
+        el("currentCostNote").textContent = holding
+          ? "投资组合权重 " + percent(holding.portfolioWeightPct, 2) + " · 同日市值 ÷ 同日 NAV"
+          : "当前未持有";
+        el("unrealizedPnl").textContent = holding ? signedMoney(holding.unrealizedPnl, holding.currency) : "—";
+        setClassBySign(el("unrealizedPnl"), holding && holding.unrealizedPnl);
+        var unrealizedPnlRatio = holding
+          && finite(performance.currentCost) != null
+          && finite(performance.currentCost) > 0
+          && finite(holding.unrealizedPnl) != null
+          ? finite(holding.unrealizedPnl) / finite(performance.currentCost)
+          : null;
+        el("unrealizedPnlPct").textContent = unrealizedPnlRatio == null
+          ? "—"
+          : signedPercentRatio(unrealizedPnlRatio, 2);
+        setClassBySign(el("unrealizedPnlPct"), unrealizedPnlRatio);
+        el("unrealizedPnlNote").textContent = holding ? compactToIso(holding.valuationDate) + " 完成收盘" : "没有当前持仓";
+        el("holdingQuantity").textContent = holding ? number(holding.quantity, Math.abs(holding.quantity % 1) > 0 ? 4 : 0) : "0";
+        el("holdingQuantityNote").textContent = holding ? compactToIso(holding.valuationDate) + " 完成收盘数量" : "当前未持有";
+      }
+      function renderFundamentals() {
+        var facts = state.detail.fundamentals || {}, metrics = facts.metrics || {}, dates = facts.metricDates || {};
+        var beta = facts.betaMethodology || {};
+        var currency = state.detail.instrument.currency || "USD";
+        var isEtf = state.detail.instrument.instrumentKind === "etf";
+        var fund = state.detail.fundProfile || {};
+        var factDate = function (metric, fallback) {
+          var row = dates[metric];
+          return row ? "申报期 " + compactToIso(row.periodEnd) : fallback;
+        };
+        var entries = isEtf ? [
+          ["52 周最高", money(metrics.high52Week, currency, 2), "日内高点 · 截至 " + compactToIso(facts.asOfDate)],
+          ["52 周最低", money(metrics.low52Week, currency, 2), "日内低点 · 截至 " + compactToIso(facts.asOfDate)],
+          [
+            "费用率",
+            finite(fund.expenseRatioPct) == null ? "—" : percent(fund.expenseRatioPct, 2),
+            fund.expenseRatioAsOf ? "发行人资料 · 更新 " + compactToIso(fund.expenseRatioAsOf) : "尚未取得发行人费率"
+          ],
+          ["成立日期", compactToIso(fund.inceptionDate), "基金份额类别成立日"],
+          [
+            "管理方式",
+            fund.isIndex && fund.isEtf ? "Index ETF" : (fund.managementStyle || "—"),
+            fund.isIndex ? "指数化管理 · 交易所交易基金" : "发行人审核的非指数基金／信托结构"
+          ],
+          ["发行人", fund.issuerName || "—", "发行人官方基金资料"],
+          ["跟踪基准", fund.benchmarkName || "—", "接入合同审核的主要基准"],
+          ["Beta（5 年）", finite(metrics.beta) == null ? "未获取到" : number(metrics.beta, 2), finite(metrics.beta) == null ? "完整月度历史不足或 SPX 不可用" : number(beta.returnObservations, 0) + " 个完整月 · 相对 SPX · 截至 " + String(beta.endMonth || "").replace(/^(\d{4})(\d{2})$/, "$1-$2")]
+        ] : [
+          ["52 周最高", money(metrics.high52Week, currency, 2), "日内高点 · 截至 " + compactToIso(facts.asOfDate)],
+          ["52 周最低", money(metrics.low52Week, currency, 2), "日内低点 · 截至 " + compactToIso(facts.asOfDate)],
+          ["公司市值", compactMoney(metrics.marketCap, currency), factDate("shares_outstanding", "股本事实未获取到")],
+          [
+            "市盈率 TTM",
+            peDisplayText({ peTtm: metrics.peTtm, peTtmStatus: metrics.peTtmStatus }),
+            metrics.peTtmStatus === "negative_eps"
+              ? "EPS TTM 为负 · 不进入估值统计 · " + factDate("eps_ttm", "TTM EPS 未获取到")
+              : (metrics.peTtmStatus === "zero_eps"
+                ? "EPS TTM 为 0 · 不适用 · " + factDate("eps_ttm", "TTM EPS 未获取到")
+                : factDate("eps_ttm", "TTM EPS 未获取到"))
+          ],
+          ["市净率", finite(metrics.priceToBook) == null ? "—" : number(metrics.priceToBook, 2) + "×", factDate("stockholders_equity", "股东权益事实未获取到")],
+          ["Beta（5 年）", finite(metrics.beta) == null ? "未获取到" : number(metrics.beta, 2), finite(metrics.beta) == null ? "完整月度历史不足或 SPX 不可用" : number(beta.returnObservations, 0) + " 个完整月 · 相对 SPX · 截至 " + String(beta.endMonth || "").replace(/^(\d{4})(\d{2})$/, "$1-$2")],
+          ["股息 TTM", money(metrics.dividendTtm, currency, 2) + " / 股", factDate("dividend_ttm", "每股股息事实未获取到")],
+          ["股息率 TTM", finite(metrics.dividendYieldTtmPct) == null ? "—" : percent(metrics.dividendYieldTtmPct, 2), "TTM 股息 ÷ 收盘价 · " + compactToIso(facts.asOfDate), "note-wrap"]
+        ];
+        var grid = el("fundamentalGrid");
+        grid.replaceChildren();
+        entries.forEach(function (entry) {
+          var item = document.createElement("article"); item.className = "fundamental-item" + (entry[3] ? " " + entry[3] : "");
+          var label = document.createElement("div"); label.className = "fundamental-label"; label.textContent = entry[0];
+          var value = document.createElement("div"); value.className = "fundamental-value"; value.textContent = entry[1];
+          var note = document.createElement("div"); note.className = "fundamental-note"; note.textContent = entry[2];
+          item.title = entry[2];
+          item.append(label, value, note); grid.appendChild(item);
+        });
+        var badge = el("fundamentalsBadge");
+        var missing = (facts.unavailable || []).filter(function (metric) { return metric !== "forwardPe"; });
+        if (isEtf) {
+          el("fundamentalsKicker").textContent = "Fund Profile & Market";
+          el("fundamentalsTitle").textContent = "基金与市场概览";
+          el("fundamentalGrid").setAttribute("aria-label", "基金与市场基础数据");
+          badge.className = "badge " + (fund.status === "pass" ? "good" : "warn");
+          badge.textContent = fund.status === "pass" ? "发行人资料已核验" : "基金资料待补";
+          el("fundamentalsNote").textContent = fund.methodology || fund.message || "ETF 不套用普通股 Company Facts。";
+        } else {
+          el("fundamentalsKicker").textContent = "Company & Valuation";
+          el("fundamentalsTitle").textContent = "公司与估值概览";
+          el("fundamentalGrid").setAttribute("aria-label", "公司与估值基础数据");
+          badge.className = "badge " + (facts.status === "unavailable" ? "" : (missing.length ? "warn" : "good"));
+          badge.textContent = facts.status === "unavailable"
+            ? "尚无公司事实"
+            : (8 - missing.length) + " / 8 项可用";
+          el("fundamentalsNote").textContent = facts.methodology || "公司事实与市场价格保留各自日期；无法可靠取得的字段不会估填。";
+        }
+      }
+      function corporateStatusLabel(status) {
+        return {
+          estimated: "预估", announced: "已宣布", confirmed: "已确认",
+          occurred: "已发生", reconciled: "已核对", cancelled: "已取消"
+        }[status] || status || "—";
+      }
+      function corporateEventTypeOrder(eventType) {
+        return {
+          earnings_release: 10,
+          dividend_declaration: 20,
+          ex_dividend: 21,
+          dividend_record: 22,
+          dividend_payment: 23,
+          shareholder_meeting: 30,
+          regulatory_filing: 40,
+          stock_split: 50
+        }[eventType] || 99;
+      }
+      function corporateEventRow(event, isNext) {
+        var row = document.createElement("article");
+        row.className = "corporate-event-row" + (isNext ? " next" : "");
+        var date = document.createElement("div");
+        var dateValue = document.createElement("time"); dateValue.className = "corporate-date";
+        dateValue.dateTime = compactToIso(event.eventDate); dateValue.textContent = compactToIso(event.eventDate);
+        var weekday = document.createElement("div"); weekday.className = "corporate-weekday";
+        weekday.textContent = weekdayLabel(event.eventDate) + (event.eventTime ? " · " + event.eventTime + " " + (event.eventTimezone || "") : "");
+        date.append(dateValue, weekday);
+        var status = document.createElement("span");
+        status.className = "badge " + (
+          event.status === "confirmed" || event.status === "reconciled" ? "good"
+          : (event.status === "estimated" || event.status === "announced" ? "warn" : "")
+        );
+        status.textContent = corporateStatusLabel(event.status);
+        var copy = document.createElement("div"); copy.className = "corporate-event-copy";
+        var title = document.createElement("div"); title.className = "corporate-event-title"; title.textContent = event.title || "公司事件";
+        var description = document.createElement("div"); description.className = "corporate-event-description";
+        description.textContent = event.description || "没有额外说明。";
+        copy.append(title, description);
+        var source = document.createElement("a"); source.className = "corporate-source";
+        source.href = event.sourceUrl; source.target = "_blank"; source.rel = "noreferrer";
+        source.textContent = (event.sourceName || "来源") + " ↗";
+        row.append(date, status, copy, source);
+        return row;
+      }
+      function corporateGroup(titleText, events, nextEventKey) {
+        var group = document.createElement("section"); group.className = "corporate-group";
+        if (titleText) {
+          var title = document.createElement("div"); title.className = "corporate-group-title"; title.textContent = titleText;
+          group.appendChild(title);
+        }
+        events.forEach(function (event) {
+          group.appendChild(corporateEventRow(event, (event.publicKey || event.eventKey) === nextEventKey));
+        });
+        return group;
+      }
+      function renderCorporateEvents() {
+        var payload = state.detail.corporateEvents || {}, events = Array.isArray(payload.items) ? payload.items.slice() : [];
+        var timeline = el("corporateEventsTimeline"); timeline.replaceChildren();
+        var badge = el("corporateEventsBadge");
+        badge.className = "badge " + (payload.status === "pass" ? "good" : (payload.status === "warning" ? "warn" : ""));
+        badge.textContent = payload.updatedAt
+          ? (payload.stale ? "资料需复核" : "已核验 " + compactToIso(String(payload.updatedAt).slice(0,10).replace(/-/g, "")))
+          : "尚未建立";
+        el("corporateEventsNote").textContent = payload.warning
+          || "发行人公开事件与我们的账户流水相互独立；预估日期不会显示为已确认。";
+        if (!events.length) {
+          var empty = document.createElement("div"); empty.className = "corporate-empty";
+          empty.textContent = "尚未取得该标的经过核验的公司事件。";
+          timeline.appendChild(empty);
+          return;
+        }
+        var upcoming = events.filter(function (event) {
+          return ["estimated", "announced", "confirmed"].includes(event.status);
+        }).sort(function (left, right) {
+          return String(left.eventDate).localeCompare(String(right.eventDate))
+            || corporateEventTypeOrder(left.eventType) - corporateEventTypeOrder(right.eventType);
+        });
+        var history = events.filter(function (event) {
+          return !["estimated", "announced", "confirmed"].includes(event.status);
+        }).sort(function (left, right) {
+          return String(right.eventDate).localeCompare(String(left.eventDate))
+            || corporateEventTypeOrder(left.eventType) - corporateEventTypeOrder(right.eventType);
+        });
+        if (upcoming.length) {
+          timeline.appendChild(corporateGroup("即将发生", upcoming, upcoming[0].publicKey || upcoming[0].eventKey));
+        } else {
+          var futureGap = document.createElement("div"); futureGap.className = "corporate-empty";
+          futureGap.textContent = "尚未取得经过核验的未来事件；这不表示发行人或基金没有即将发生的事项。";
+          timeline.appendChild(futureGap);
+        }
+        if (history.length) {
+          var details = document.createElement("details"); details.className = "corporate-history-details";
+          var summary = document.createElement("summary"); summary.textContent = "最近记录（" + number(history.length, 0) + " 条）";
+          details.append(summary, corporateGroup("", history, null));
+          timeline.appendChild(details);
+        }
+      }
+      function renderDates() {
+        var dates = state.detail.dataAsOf || {};
+        var portfolio = dates.portfolioClose;
+        el("asofPortfolio").textContent = portfolio ? compactToIso(portfolio.valuationDate) : "没有持仓";
+        el("asofPortfolioNote").textContent = portfolio ? (portfolio.status === "official" ? "IBKR 官方日结" : portfolio.status) + " · 采集 " + utcDateTime(portfolio.sourceAt) : "不影响历史行情与研究";
+        var market = dates.market && dates.market[activeBarType()];
+        el("asofMarket").textContent = market ? compactToIso(market.coverageEnd) : "—";
+        el("asofMarketNote").textContent = market ? "全量覆盖始于 " + compactToIso(market.coverageStart) : "当前口径没有行情";
+        var lifecycle = dates.lifecycle || {};
+        el("asofLifecycle").textContent = compactToIso(lifecycle.statementThrough);
+        el("asofLifecycleNote").textContent = "报表始于 " + compactToIso(lifecycle.statementCoverageStart) + " · 最近事件 " + compactToIso(lifecycle.latestEventDate);
+        var lots = dates.positionLots || {}, research = dates.research || {};
+        el("asofLotsResearch").textContent = lots.asOf ? compactToIso(lots.asOf) : "批次尚不可用";
+        el("asofLotsResearchNote").textContent =
+          "自主研究 " + compactToIso(research.latestAsOfDate) +
+          " · 晨星发布 " + compactToIso(research.providerPublishedDate) +
+          (lots.status === "manual_reconciled"
+            ? " · 批次由门户人工核验"
+            : (lots.status === "not_collected" ? " · 批次粒度尚未取得" : ""));
+      }
+      function lifecycleCodeTokens(value) {
+        return String(value || "")
+          .toUpperCase()
+          .split(/[^A-Z0-9]+/)
+          .filter(Boolean);
+      }
+      function isRecurringInvestment(event) {
+        var details = event && event.details || {};
+        var metadata = details.metadata || {};
+        return event && event.eventType === "trade" && (
+          event.recurringInvestment === true
+          || lifecycleCodeTokens(metadata.code).includes("RI")
+        );
+      }
+      function renderEvents() {
+        var events = state.detail.eventTimeline || state.detail.events || [];
+        var rows = el("eventRows");
+        rows.replaceChildren();
+        events.forEach(function (event) {
+          var details = event.details || {}, metadata = details.metadata || {};
+          var recurringInvestment = isRecurringInvestment(event);
+          var tr = document.createElement("tr");
+          var values = [
+            compactToIso(event.tradeDate),
+            recurringInvestment
+              ? "定期投资"
+              : (eventLabels[event.eventType] || event.eventType),
+            metadata.buySell === "BUY" ? "买入" : (metadata.buySell === "SELL" ? "卖出" : "—"),
+            quantityNumber(event.quantity),
+            money(details.price, event.currency, 2),
+            signedMoney(event.amount, event.currency),
+            signedMoney(details.commission, event.currency),
+            signedMoney(details.realizedPnl, event.currency)
+          ];
+          values.forEach(function (value, index) {
+            var td = document.createElement("td");
+            td.textContent = value;
+            if (index >= 3) td.className = "number";
+            if (index === 1 && recurringInvestment) {
+              td.classList.add("event-kind-recurring");
+            }
+            tr.appendChild(td);
+          });
+          rows.appendChild(tr);
+        });
+        if (!events.length) {
+          var tr = document.createElement("tr"), td = document.createElement("td");
+          td.colSpan = 8; td.className = "empty"; td.textContent = "尚未关联到该标的的生命周期事件。";
+          tr.appendChild(td); rows.appendChild(tr);
+        }
+        el("activityCount").textContent = state.detail.publicStatic
+          ? number(state.detail.summary.lifecycle.displayEventCount, 0) + " 条公开事件"
+          : (
+            number(state.detail.summary.lifecycle.displayEventCount, 0) + " 条归并事件 · " +
+            number(state.detail.summary.lifecycle.eventCount, 0) + " 条原始记录"
+          );
+        el("activitySubtitle").textContent =
+          compactToIso(state.detail.summary.lifecycle.earliestTradeDate) + " — " +
+          compactToIso(state.detail.summary.lifecycle.latestTradeDate) + " · Activity Flex 生命周期档案";
+        var performance = state.detail.accountPerformance || {};
+        var holding = state.detail.currentHolding || {};
+        el("eventHoldingTotal").textContent = quantityNumber(holding.quantity == null ? 0 : holding.quantity);
+        el("eventFeesTotal").textContent = signedMoney(performance.feeTotal, performance.currency || state.detail.instrument.currency);
+        el("eventRealizedTotal").textContent = signedMoney(performance.realizedPnl, performance.currency || state.detail.instrument.currency);
+        setClassBySign(el("eventFeesTotal"), performance.feeTotal);
+        setClassBySign(el("eventRealizedTotal"), performance.realizedPnl);
+      }
+      function sortedPositionLots(rows) {
+        var sort = state.lotSort;
+        if (!sort) return rows.slice();
+        return rows.map(function (row, index) {
+          return { row: row, index: index };
+        }).sort(function (leftItem, rightItem) {
+          var left = sort.key === "acquisitionDate"
+            ? String(leftItem.row.acquisitionDate || "")
+            : finite(leftItem.row[sort.key]);
+          var right = sort.key === "acquisitionDate"
+            ? String(rightItem.row.acquisitionDate || "")
+            : finite(rightItem.row[sort.key]);
+          if (left == null || left === "") return right == null || right === "" ? leftItem.index - rightItem.index : 1;
+          if (right == null || right === "") return -1;
+          var comparison = typeof left === "string" ? left.localeCompare(right) : left - right;
+          if (comparison === 0) return leftItem.index - rightItem.index;
+          return sort.direction === "asc" ? comparison : -comparison;
+        }).map(function (item) {
+          return item.row;
+        });
+      }
+      function updatePositionLotSortHeaders(table) {
+        table.querySelectorAll("[data-lot-sort]").forEach(function (button) {
+          var key = button.dataset.lotSort;
+          var active = state.lotSort && state.lotSort.key === key;
+          var direction = active ? state.lotSort.direction : null;
+          var heading = button.closest("th");
+          var indicator = button.querySelector(".tax-lot-sort-indicator");
+          var label = button.dataset.sortLabel;
+          button.classList.toggle("active", Boolean(active));
+          heading.setAttribute("aria-sort", active ? (direction === "asc" ? "ascending" : "descending") : "none");
+          indicator.textContent = active ? (direction === "asc" ? "▲" : "▼") : "↕";
+          button.setAttribute(
+            "aria-label",
+            active
+              ? "当前按" + label + (direction === "asc" ? "从小到大" : "从大到小") + "排列"
+              : "按" + label + "从大到小排列"
+          );
+        });
+      }
+      function renderPositionLots() {
+        var lots = state.detail.positionLots || {}, rows = lots.items || [];
+        var performance = state.detail.accountPerformance || {};
+        var currency = performance.currency || state.detail.instrument.currency;
+        var holding = state.detail.currentHolding || {};
+        el("positionCostBasis").textContent = money(performance.currentCost, currency, 2);
+        el("positionCostBasisWeight").textContent =
+          "投资组合权重 " + percent(holding.portfolioWeightPct, 2);
+        [
+          ["closedPositionTotal", performance.closedPositionTotal, true],
+          ["dividendTotal", performance.dividendTotal, false],
+          ["aggregateReturn", performance.aggregateReturn, true]
+        ].forEach(function (entry) {
+          el(entry[0]).textContent = entry[2] ? signedMoney(entry[1], currency) : money(entry[1], currency, 2);
+          setClassBySign(el(entry[0]), entry[1]);
+        });
+        el("annualizedTotalReturn").textContent = signedPercentRatio(performance.annualizedTotalReturn, 2);
+        setClassBySign(el("annualizedTotalReturn"), performance.annualizedTotalReturn);
+        el("annualizedTotalReturn").title = performance.methodology || "";
+        el("comprehensiveCost").textContent = money(performance.comprehensiveCost, currency, 2) + " / 股";
+        var badge = el("taxLotsStatusBadge");
+        badge.className = "badge " + (
+          lots.status === "complete" ? "good"
+            : (lots.status === "manual_rejected" ? "risk"
+              : (lots.status === "manual_reconciled" || lots.status === "not_collected" ? "warn" : ""))
+        );
+        badge.textContent = lots.status === "complete"
+          ? "官方日结批次"
+          : (lots.status === "manual_reconciled"
+            ? "门户核验 · 收盘重估"
+            : (lots.status === "manual_rejected"
+              ? "人工批次已失配"
+              : (lots.status === "not_applicable" ? "当前没有持仓" : "尚未接入批次粒度")));
+        el("taxLotsAsOf").textContent = lots.status === "complete"
+          ? "完成收盘：" + compactToIso(lots.asOf) + " · 批次不含账户或券商标识。"
+          : (lots.status === "manual_reconciled"
+            ? "批次结构核验：" + utcDateTime(lots.sourceAt) + " · 盈亏按 " + compactToIso(lots.asOf) + " 完成收盘重估。" +
+              (finite(lots.summary && lots.summary.costBasisRoundingResidual) && Math.abs(lots.summary.costBasisRoundingResidual) >= .005
+                ? " 逐批次成本与汇总持仓存在 " + money(Math.abs(lots.summary.costBasisRoundingResidual), currency, 2) + " 来源舍入差。"
+                : "")
+          : (lots.status === "not_applicable"
+            ? "当前完成收盘没有该标的持仓，因此没有存续批次。"
+            : (lots.message || "当前 Activity Flex 仍是 Summary 粒度；不会以交易流水推算计税单位。")));
+        var body = el("taxLotsBody");
+        body.replaceChildren();
+        if (!rows.length) {
+          var empty = document.createElement("div");
+          empty.className = "empty";
+          empty.textContent = lots.status === "not_applicable"
+            ? "没有仍然存在的持仓批次。"
+            : "尚未取得经过校验的 IBKR 官方 Lot 粒度日结，不能解释为零批次。";
+          body.appendChild(empty);
+          return;
+        }
+        var scroll = document.createElement("div");
+        scroll.className = "tax-lot-scroll";
+        var table = document.createElement("table");
+        table.className = "tax-lot-table";
+        var thead = document.createElement("thead");
+        var headingRow = document.createElement("tr");
+        [
+          ["acquisitionDate", "获得日期", false],
+          ["averagePrice", "平均价格", true],
+          ["quantity", "数量", true],
+          ["totalPnl", "合计盈亏", true],
+          [null, "合计盈亏%", true]
+        ].forEach(function (entry) {
+          var th = document.createElement("th");
+          if (entry[2]) th.classList.add("number");
+          if (entry[0]) {
+            th.classList.add("sortable-th");
+            th.setAttribute("scope", "col");
+            th.setAttribute("aria-sort", "none");
+            var button = document.createElement("button");
+            button.type = "button";
+            button.className = "tax-lot-sort-btn";
+            button.dataset.lotSort = entry[0];
+            button.dataset.sortLabel = entry[1];
+            var label = document.createElement("span");
+            label.textContent = entry[1];
+            var indicator = document.createElement("span");
+            indicator.className = "tax-lot-sort-indicator";
+            indicator.setAttribute("aria-hidden", "true");
+            indicator.textContent = "↕";
+            button.append(label, indicator);
+            button.addEventListener("click", function () {
+              var key = button.dataset.lotSort;
+              if (!state.lotSort || state.lotSort.key !== key) {
+                state.lotSort = { key: key, direction: "desc" };
+              } else if (state.lotSort.direction === "desc") {
+                state.lotSort = { key: key, direction: "asc" };
+              } else {
+                state.lotSort = null;
+              }
+              renderPositionLots();
+            });
+            th.appendChild(button);
+          } else {
+            th.textContent = entry[1];
+          }
+          headingRow.appendChild(th);
+        });
+        thead.appendChild(headingRow);
+        table.appendChild(thead);
+        var tbody = document.createElement("tbody");
+        sortedPositionLots(rows).forEach(function (row) {
+          var tr = document.createElement("tr");
+          [
+            compactToIso(row.acquisitionDate),
+            money(row.averagePrice, row.currency || state.detail.instrument.currency, 2),
+            quantityNumber(row.quantity),
+            signedMoney(row.totalPnl, row.pnlCurrency || currency),
+            signedPercentRatio(row.totalPnlPct, 2)
+          ].forEach(function (value, index) {
+            var td = document.createElement("td");
+            td.textContent = value || "—";
+            if (index > 0) td.className = "number";
+            if (index >= 3) setClassBySign(td, index === 3 ? row.totalPnl : row.totalPnlPct);
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        updatePositionLotSortHeaders(table);
+        var summary = lots.summary || {};
+        var summaryQuantity = finite(summary.quantity);
+        var summaryAverageCost = summaryQuantity && finite(summary.costBasis) != null
+          ? finite(summary.costBasis) / summaryQuantity
+          : null;
+        var summaryBar = document.createElement("div");
+        summaryBar.className = "tax-lot-summary";
+        [
+          ["cost-basis", "平均成本", money(summaryAverageCost, currency, 2), null],
+          ["quantity", "持股总计", quantityNumber(summary.quantity), null],
+          ["pnl", "合计盈亏", signedMoney(summary.totalPnl, currency), summary.totalPnl],
+          ["pnl-rate", "合计盈亏%", signedPercentRatio(summary.totalPnlPct, 2), summary.totalPnlPct]
+        ].forEach(function (entry) {
+          var item = document.createElement("div");
+          item.className = "tax-lot-summary-item " + entry[0];
+          var label = document.createElement("span");
+          label.className = "tax-lot-summary-label";
+          label.textContent = entry[1];
+          var value = document.createElement("span");
+          value.className = "tax-lot-summary-value";
+          value.textContent = entry[2];
+          if (entry[3] != null) setClassBySign(value, entry[3]);
+          item.append(label, value);
+          summaryBar.appendChild(item);
+        });
+        scroll.append(table, summaryBar);
+        body.appendChild(scroll);
+      }
+      function renderList(items) {
+        var ul = document.createElement("ul");
+        (items || []).forEach(function (item) { var li = document.createElement("li"); li.textContent = zh(item); ul.appendChild(li); });
+        return ul;
+      }
+      function updateResearchDateBadge() {
+        var assessment = state.detail.research && state.detail.research[0];
+        var provider = (state.detail.providerResearch || []).find(function (row) {
+          return String(row.provider || "").toLowerCase() === "morningstar";
+        });
+        var labels = [];
+        if (provider) labels.push("晨星 " + compactToIso(provider.publishedDate));
+        if (assessment) labels.push("分析 " + compactToIso(assessment.asOfDate));
+        el("researchDateBadge").textContent = labels.length ? labels.join(" · ") : "尚未建立";
+      }
+      function renderProviderResearch() {
+        var body = el("providerResearchBody");
+        body.replaceChildren();
+        var provider = (state.detail.providerResearch || []).find(function (row) {
+          return String(row.provider || "").toLowerCase() === "morningstar";
+        });
+        var freshnessBadge = el("morningstarFreshness");
+        if (!provider) {
+          var empty = document.createElement("div"); empty.className = "empty";
+          empty.textContent = "尚未建立经过核验的 Morningstar 研报摘要。";
+          body.appendChild(empty);
+          freshnessBadge.className = "badge";
+          freshnessBadge.textContent = "尚未建立";
+          updateResearchDateBadge();
+          return;
+        }
+        var metrics = provider.metrics || {}, analyst = provider.analyst || {};
+        var freshness = provider.freshness || {};
+        freshnessBadge.className = "badge " + (freshness.status === "stale" ? "warn" : "good");
+        freshnessBadge.textContent = freshness.status === "stale" ? "超过 7 天未核验" : "7 天内已核验";
+        var overview = document.createElement("div"); overview.className = "morningstar-overview";
+        var copy = document.createElement("div");
+        var reportLink = document.createElement("a"); reportLink.className = "morningstar-report-link";
+        reportLink.href = provider.sourceUrl; reportLink.target = "_blank"; reportLink.rel = "noreferrer";
+        reportLink.textContent = "研报速览 ↗";
+        var reportTitle = document.createElement("div"); reportTitle.className = "section-note";
+        reportTitle.textContent = provider.title;
+        var analystLine = document.createElement("div"); analystLine.className = "morningstar-analyst";
+        analystLine.textContent = "分析师 " + (analyst.name || "未标注") + (analyst.role ? " · " + analyst.role : "");
+        copy.append(reportLink, reportTitle, analystLine);
+        var dateBlock = document.createElement("div"); dateBlock.className = "section-note";
+        dateBlock.textContent = "公开报告发布 " + compactToIso(provider.publishedDate) + " · 本地核验 " + utcDateTime(provider.verifiedAt);
+        overview.append(copy, dateBlock); body.appendChild(overview);
+
+        var currentPrice = finite(state.detail.fundamentals && state.detail.fundamentals.price);
+        var fairValue = finite(metrics.fairValue);
+        var fairGap = fairValue != null && currentPrice ? (fairValue / currentPrice - 1) * 100 : null;
+        var moatLabels = { wide: "宽", narrow: "窄", none: "无" };
+        var uncertaintyLabels = { low: "低", medium: "中等", high: "高", very_high: "很高" };
+        var allocationLabels = { exemplary: "优秀", standard: "标准", poor: "较差" };
+        var metricRows = [
+          ["晨星评级", number(metrics.ratingStars, 0) + " 星", "更新 " + compactToIso(metrics.ratingUpdatedDate)],
+          ["公允价值", money(fairValue, metrics.fairValueCurrency || "USD", 0), "更新 " + compactToIso(metrics.fairValueUpdatedDate) + " · 较 " + compactToIso(state.detail.fundamentals && state.detail.fundamentals.asOfDate) + " 收盘", fairGap, fairGap == null ? "—" : (fairGap > 0 ? "+" : "") + percent(fairGap, 2)],
+          ["护城河", moatLabels[metrics.economicMoat] || metrics.economicMoat || "—", "Morningstar Economic Moat"],
+          ["不确定性", uncertaintyLabels[metrics.uncertainty] || metrics.uncertainty || "—", "Morningstar Uncertainty"],
+          ["资本分配", allocationLabels[metrics.capitalAllocation] || metrics.capitalAllocation || "—", "Morningstar Capital Allocation"]
+        ];
+        var metricGrid = document.createElement("div"); metricGrid.className = "morningstar-metrics";
+        metricRows.forEach(function (entry) {
+          var item = document.createElement("article"); item.className = "morningstar-metric";
+          var label = document.createElement("div"); label.className = "morningstar-metric-label"; label.textContent = entry[0];
+          var value = document.createElement("div"); value.className = "morningstar-metric-value";
+          if (entry[0] === "晨星评级") {
+            var starCount = Math.max(0, Math.min(5, Math.round(finite(metrics.ratingStars) || 0)));
+            var stars = document.createElement("span"); stars.className = "morningstar-stars";
+            stars.setAttribute("role", "img");
+            stars.setAttribute("aria-label", "晨星评级 " + starCount + " 星（满分 5 星）");
+            for (var starIndex = 1; starIndex <= 5; starIndex += 1) {
+              var star = document.createElement("span");
+              star.className = "morningstar-star" + (starIndex > starCount ? " empty" : "");
+              star.textContent = starIndex <= starCount ? "★" : "☆";
+              stars.appendChild(star);
+            }
+            value.appendChild(stars);
+          } else {
+            value.textContent = entry[1];
+          }
+          if (entry.length > 4) {
+            var gap = document.createElement("span"); gap.className = "morningstar-gap"; gap.textContent = " · " + entry[4];
+            setClassBySign(gap, entry[3]); value.appendChild(gap);
+          }
+          var note = document.createElement("div"); note.className = "morningstar-metric-note"; note.textContent = entry[2];
+          item.append(label, value, note); metricGrid.appendChild(item);
+        });
+        body.appendChild(metricGrid);
+        var interpretation = document.createElement("section"); interpretation.className = "research-interpretation";
+        var interpretationTitle = document.createElement("h4"); interpretationTitle.textContent = "研报解读";
+        var interpretationCopy = document.createElement("p"); interpretationCopy.textContent = provider.interpretation;
+        interpretation.append(interpretationTitle, interpretationCopy); body.appendChild(interpretation);
+
+        var details = document.createElement("details"); details.className = "research-details";
+        var summary = document.createElement("summary"); summary.textContent = "查看晨星各部分要点与来源登记";
+        details.appendChild(summary);
+        var sectionLabels = {
+          fairValue: "公允价值", economicMoat: "护城河", uncertainty: "不确定性",
+          capitalAllocation: "资本分配", bullish: "看好观点", bearish: "看淡观点",
+          financialHealth: "财务健康度", strategyOutlook: "企业战略与展望"
+        };
+        var sectionOrder = [
+          "fairValue", "economicMoat", "uncertainty", "capitalAllocation",
+          "bullish", "bearish", "financialHealth", "strategyOutlook"
+        ];
+        var sectionGrid = document.createElement("div"); sectionGrid.className = "provider-section-grid";
+        sectionOrder.filter(function (key) {
+          return Array.isArray((provider.sections || {})[key]) && provider.sections[key].length;
+        }).forEach(function (key) {
+          var card = document.createElement("article"); card.className = "provider-section";
+          var title = document.createElement("h4"); title.textContent = sectionLabels[key] || key;
+          card.append(title, renderList(provider.sections[key])); sectionGrid.appendChild(card);
+        });
+        details.appendChild(sectionGrid);
+        var sourceList = document.createElement("div"); sourceList.className = "source-list";
+        var source = document.createElement("a"); source.className = "source-link";
+        source.href = provider.sourceUrl; source.target = "_blank"; source.rel = "noreferrer";
+        var sourceName = document.createElement("span"); sourceName.textContent = "Morningstar 原始研报速览";
+        var sourceDate = document.createElement("span"); sourceDate.className = "source-date"; sourceDate.textContent = compactToIso(provider.publishedDate);
+        source.append(sourceName, sourceDate); sourceList.appendChild(source); details.appendChild(sourceList);
+        body.appendChild(details);
+        updateResearchDateBadge();
+      }
+      function renderResearch() {
+        var body = el("researchBody");
+        body.replaceChildren();
+        var assessment = state.detail.research && state.detail.research[0];
+        if (!assessment) {
+          var empty = document.createElement("div"); empty.className = "empty"; empty.textContent = "尚未为该标的建立版本化研究分析。";
+          body.appendChild(empty); updateResearchDateBadge(); return;
+        }
+        var result = assessment.result || {}, valuation = result.valuation || {}, dcf = valuation.dcf || {};
+        updateResearchDateBadge();
+        var badges = document.createElement("div"); badges.className = "badge-row";
+        [
+          result.researchMaturity || "preliminary", result.valuationState,
+          result.existingPositionAction, result.cashDecision, result.evidenceConfidence
+        ].filter(Boolean).forEach(function (value) {
+          var span = document.createElement("span"); span.className = "badge";
+          if (value === "fair" || value === "hold") span.classList.add("good");
+          if (value === "watchlist" || value === "preliminary") span.classList.add("warn");
+          span.textContent = researchLabel(value); badges.appendChild(span);
+        });
+        body.appendChild(badges);
+        var summary = document.createElement("p"); summary.className = "research-summary"; summary.textContent = assessment.summary || "—"; body.appendChild(summary);
+        var hinge = document.createElement("div"); hinge.className = "research-hinge"; hinge.innerHTML = "<strong>关键判断：</strong> " + zh(result.decisionHinge); body.appendChild(hinge);
+        var cases = document.createElement("div"); cases.className = "case-grid";
+        [["支持论据", result.bullCase], ["反方论据", result.bearCase]].forEach(function (entry) {
+          var card = document.createElement("article"); card.className = "case-card";
+          var title = document.createElement("h3"); title.textContent = entry[0]; card.appendChild(title); card.appendChild(renderList(entry[1])); cases.appendChild(card);
+        });
+        body.appendChild(cases);
+        if (Array.isArray(dcf.scenarios) && dcf.scenarios.length) {
+          var valuations = document.createElement("div"); valuations.className = "valuation-grid";
+          dcf.scenarios.forEach(function (scenario) {
+            var item = document.createElement("article"); item.className = "valuation-item";
+            var name = document.createElement("div"); name.className = "valuation-name"; name.textContent = { bear: "悲观情景", base: "基准情景", bull: "乐观情景" }[scenario.name] || scenario.name;
+            var price = document.createElement("div"); price.className = "valuation-price"; price.textContent = money(scenario.valuePerShareUsd, "USD", 2);
+            var assumptions = document.createElement("div"); assumptions.className = "valuation-assumptions";
+            assumptions.textContent = "WACC " + percent(scenario.waccPct, 1) + " · 永续 " + percent(scenario.terminalGrowthPct, 1) + " · 前五年 " + percent(scenario.years1to5GrowthPct, 1);
+            item.append(name, price, assumptions); valuations.appendChild(item);
+          });
+          body.appendChild(valuations);
+          var range = document.createElement("p"); range.className = "section-note";
+          range.textContent = "核心 DCF 敏感区间：" + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[0], "USD", 0) + " — " + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[1], "USD", 0) + "；当前行情完成收盘 " + money(valuation.priceUsd, "USD", 2) + "。";
+          body.appendChild(range);
+        }
+        if (Array.isArray(result.monitoring) && result.monitoring.length) {
+          var monitoring = document.createElement("div"); monitoring.className = "monitoring-list";
+          result.monitoring.forEach(function (row) {
+            var item = document.createElement("article"); item.className = "monitoring-item";
+            var left = document.createElement("div"); left.innerHTML = '<div class="monitoring-metric"></div><div class="monitoring-baseline"></div>';
+            left.querySelector(".monitoring-metric").textContent = zh(row.metric);
+            left.querySelector(".monitoring-baseline").textContent = row.baseline || "—";
+            var right = document.createElement("div"); right.className = "monitoring-signals";
+            var good = document.createElement("div"), bad = document.createElement("div");
+            good.innerHTML = "<strong>确认方向</strong> "; good.appendChild(document.createTextNode(row.confirmingDirection || "—"));
+            bad.innerHTML = "<strong>挑战方向</strong> "; bad.appendChild(document.createTextNode(row.challengingDirection || "—"));
+            right.append(good, bad); item.append(left, right); monitoring.appendChild(item);
+          });
+          body.appendChild(monitoring);
+        }
+        var details = document.createElement("details"); details.className = "research-details";
+        var detailsSummary = document.createElement("summary"); detailsSummary.textContent = "查看缺失证据与外部来源登记"; details.appendChild(detailsSummary);
+        var missingTitle = document.createElement("p"); missingTitle.className = "section-note"; missingTitle.textContent = "尚未取得或尚待更新的证据"; details.appendChild(missingTitle);
+        var missing = renderList(result.missingEvidence); missing.className = "missing-list"; details.appendChild(missing);
+        var sources = document.createElement("div"); sources.className = "source-list";
+        (result.sourceRegister || []).filter(function (source) { return source.url; }).forEach(function (source) {
+          var link = document.createElement("a"); link.className = "source-link"; link.href = source.url; link.target = "_blank"; link.rel = "noreferrer";
+          var label = document.createElement("span"); label.textContent = source.label;
+          var date = document.createElement("span"); date.className = "source-date"; date.textContent = compactToIso(source.publishedAt || source.asOf);
+          link.append(label, date); sources.appendChild(link);
+        });
+        details.appendChild(sources); body.appendChild(details);
+      }
+      function renderQuality() {
+        var domains = state.detail.dataQuality.domains || {};
+        var configurations = [
+          ["行情", domains.market, "缺口 " + number(domains.market && domains.market.openGaps, 0) + " · 日历差异 " + number(domains.market && domains.market.calendarMismatchPoints, 0) + " · 未解释调整 " + number(domains.market && domains.market.unexplainedAdjustmentDateCount, 0) + " · 派息史 " + distributionCoverageLabel(domains.market) + " · 拆股派生 " + qualityLabel(domains.market && domains.market.splitNormalization && domains.market.splitNormalization.TRADES ? domains.market.splitNormalization.TRADES.status : "warning")],
+          ["生命周期", domains.lifecycle, "回填窗口 " + number(domains.lifecycle && domains.lifecycle.ingestionWindows, 0)],
+          ["公司事件", domains.corporateEvents, domains.corporateEvents && domains.corporateEvents.updatedAt ? utcDateTime(domains.corporateEvents.updatedAt) : "尚无来源核验"],
+            ["持仓批次", domains.positionLots, domains.positionLots && domains.positionLots.asOf ? compactToIso(domains.positionLots.asOf) + " · " + number(domains.positionLots.count, 0) + " 个存续批次" : "尚未取得 Lot 粒度日结"],
+          ["研究", domains.research, "当前版本 " + number(domains.research && domains.research.count, 0)]
+        ];
+        var grid = el("qualityGrid"); grid.replaceChildren();
+        configurations.forEach(function (configuration) {
+          var item = document.createElement("article"); item.className = "quality-item";
+          item.innerHTML = '<div class="quality-domain"></div><div class="quality-status"></div><div class="quality-note"></div>';
+          item.querySelector(".quality-domain").textContent = configuration[0];
+          item.querySelector(".quality-status").textContent = qualityLabel(configuration[1] && configuration[1].status);
+          item.querySelector(".quality-note").textContent = configuration[2];
+          grid.appendChild(item);
+        });
+        var status = state.detail.dataQuality.status;
+        var badge = el("overallQualityBadge"); badge.className = "badge " + (status === "pass" ? "good" : "warn"); badge.textContent = "整体 " + qualityLabel(status);
+        var market = domains.market || {}, marketBadge = el("marketQualityBadge");
+        marketBadge.className = "badge " + (market.status === "pass" ? "good" : "warn");
+        marketBadge.textContent = "行情质量 " + qualityLabel(market.status);
+      }
+      function renderAll() {
+        renderHero(); renderFundamentals(); renderCorporateEvents(); renderChart(); renderDates(); renderEvents(); renderPositionLots(); renderProviderResearch(); renderResearch(); renderQuality();
+        el("serviceNotice").classList.remove("error");
+        el("serviceNotice").innerHTML = state.detail.publicStatic
+          ? '<span class="status-dot" aria-hidden="true"></span><span><strong>公开静态资料已载入。</strong> Flex、行情与研究保留各自更新时间；页面不连接券商或本机服务。</span>'
+          : '<span class="status-dot" aria-hidden="true"></span><span><strong>本机资料已载入。</strong> 所有账户事实均为只读完成收盘；持仓计税单位仅接受 IBKR 官方 Lot 粒度。</span>';
+      }
+      function showError(error) {
+        el("serviceNotice").classList.add("error");
+        el("serviceNotice").innerHTML = '<span class="status-dot" aria-hidden="true"></span><span><strong>标的资料载入失败。</strong> ' + String(error && error.message || error) + "</span>";
+      }
+      document.querySelectorAll(".bar-type-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          state.barType = button.dataset.barType;
+          document.querySelectorAll(".bar-type-btn").forEach(function (peer) { peer.setAttribute("aria-pressed", String(peer === button)); });
+          if (state.detail) { renderChart(); renderDates(); }
+        });
+      });
+      document.querySelectorAll(".chart-view-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          if (state.chartView === button.dataset.chartView) return;
+          state.chartView = button.dataset.chartView;
+          syncChartControls();
+          loadDetail().catch(showError);
+        });
+      });
+      document.querySelectorAll(".range-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          if (activeRange() === button.dataset.range) return;
+          setActiveRange(button.dataset.range);
+          syncChartControls();
+          loadDetail().catch(showError);
+        });
+      });
+      window.addEventListener("resize", scheduleValuationLegendAlignment);
+      syncChartControls();
+      resolveSecurityId().then(function (securityId) {
+        state.securityId = securityId;
+        return loadDetail();
+      }).catch(showError);
+    })();
+  </script>
+</body>
+</html>
