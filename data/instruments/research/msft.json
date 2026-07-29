@@ -3,21 +3,93 @@
     "dataAsOf": {
       "research": {
         "latestAsOfDate": "20260724",
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "providerPublishedDate": "20260722",
+        "providerVerifiedAt": "2026-07-24T13:51:50Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 1,
-          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
           "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Dan Romanoff, CPA",
+          "role": "Senior Equity Research Analyst, Technology"
+        },
+        "freshness": {
+          "ageDays": 4.906142984502315,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "晨星把微软视为由企业软件生态与 Azure 驱动的宽护城河公司，并以 600 美元公允价值和五星评级表达明显低估判断。其估值逻辑的核心不是短期硬件或 Windows 增长，而是 Azure、Microsoft 365、Dynamics、LinkedIn 与新兴 AI 商业化共同推动收入，规模效应再支持利润率温和扩张。护城河主要来自客户迁移成本，网络效应与成本优势居次；生产力与业务流程、智能云被视为宽护城河，而个人计算业务相对较弱。晨星认为资产负债表、收入增长、高且扩张的利润率和自由现金流共同构成优秀财务健康度，资本分配也维持优秀评价。主要上行证据是 Azure 在混合云和公有云中的领先位置、Microsoft 365 提价升级能力，以及既有软件入口对 AI 产品采用的放大作用。主要反方证据则是订阅迁移放缓、移动端缺位、Azure 与 Dynamics 并非各自市场第一，以及高额 AI 资本开支可能先压低利润率。近期需要重点核验 Azure 固定汇率增速能否达到 39%至 40%的指引、AI 投入能否转化为 Copilot 席位和其他可计费收入，以及折旧增长是否继续压低云业务毛利率和整体经营利润率；这些观察项比把 600 美元单点估值直接当作买入指令更重要。",
+        "metrics": {
+          "capitalAllocation": "exemplary",
+          "economicMoat": "wide",
+          "fairValue": 600,
+          "fairValueCurrency": "USD",
+          "fairValueUpdatedDate": "20260722",
+          "ratingStars": 5,
+          "ratingUpdatedDate": "20260722",
+          "uncertainty": "medium"
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260722",
+        "sections": {
+          "bearish": [
+            "Office 等产品的订阅迁移动能可能放缓。",
+            "微软缺少有意义的移动端平台地位。",
+            "Azure 与 Dynamics 并非各自主要增长市场中的第一名。"
+          ],
+          "bullish": [
+            "Azure 受益于企业从混合云向公有云迁移。",
+            "Microsoft 365 可通过安全与 Teams Phone 等高价功能继续升级客单价。",
+            "Windows 与 Office 等成熟业务可为 Azure 和 AI 投资提供现金流。"
+          ],
+          "capitalAllocation": [
+            "资本分配评级为优秀。",
+            "再投资优先，同时通过股息、回购和选择性收购回馈股东。",
+            "AI 与 Azure 的高额投入需要以收入增量和利润率表现持续验证。"
+          ],
+          "economicMoat": [
+            "整体为宽护城河，主要来源是企业客户的高迁移成本。",
+            "网络效应与成本优势是次要来源；Azure 是当前核心。",
+            "生产力与业务流程、智能云为宽护城河，个人计算业务仅为窄护城河。"
+          ],
+          "fairValue": [
+            "公允价值为 600 美元，五星评级表示相对当前价格存在显著折价。",
+            "五年收入复合增速假设约 13%，长期驱动来自 Azure、Microsoft 365、Dynamics、LinkedIn 与 AI。",
+            "经营利润率假设由 2024 财年的约 45%温和升至 2029 财年的约 46%。"
+          ],
+          "financialHealth": [
+            "晨星评价其财务健康度优秀，依据是强资产负债表、增长与高利润率。",
+            "截至 2025 年 6 月，现金及等价物约 950 亿美元、债务约 430 亿美元。",
+            "过去三年自由现金流率接近 30%，基准情景预计长期改善。"
+          ],
+          "strategyOutlook": [
+            "Azure 是未来十年最重要的收入驱动，混合云能力是关键差异化。",
+            "Office 365、Dynamics 365、LinkedIn 与 AI 采用共同构成增长组合。",
+            "个人计算业务预计仅略高于 GDP 增长，Surface 与 Bing 不被视为护城河来源。"
+          ],
+          "uncertainty": [
+            "不确定性为中等。",
+            "传统客户端—服务器高利润收入仍面临云迁移与产品替代风险。",
+            "AI 资本开支、数据中心安全、人才竞争与大型并购执行是主要风险。"
+          ]
+        },
+        "sourceUrl": "https://global.morningstar.com/en-gb/stocks/going-into-earnings-is-microsoft-stock-buy-sell-or-fairly-valued-5",
+        "title": "Going Into Earnings, Is Microsoft Stock a Buy, a Sell, or Fairly Valued?",
+        "verifiedAt": "2026-07-24T13:51:50Z",
+        "version": 2
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
         "asOfDate": "20260724",
@@ -171,11 +243,13 @@
     ],
     "summary": {
       "research": {
-        "count": 1
+        "count": 2,
+        "internalCount": 1,
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-29T11:36:37.876367Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "MSFT"

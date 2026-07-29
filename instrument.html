@@ -1435,7 +1435,10 @@
           : (barType === "TRADES"
             ? "股息未调整；分红标记仅覆盖已核验可用期间"
             : "股息调整");
-        el("chartSource").textContent = (sourceRows[0].sourceName || "IBKR Historical Bars") + " · " + modeDescription + " · " + splitBasis + " · PE 统一按股息未调整实际收盘计算";
+        var sourcePrefix = state.detail && state.detail.publicStatic
+          ? ""
+          : (sourceRows[0].sourceName || "IBKR Historical Bars") + " · ";
+        el("chartSource").textContent = sourcePrefix + modeDescription + " · " + splitBasis + " · PE 统一按股息未调整实际收盘计算";
       }
       function renderValuationChart() {
         var valuationSeries = state.detail && state.detail.valuationSeries || {};
