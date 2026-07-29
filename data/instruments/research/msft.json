@@ -1,0 +1,182 @@
+{
+  "detail": {
+    "dataAsOf": {
+      "research": {
+        "latestAsOfDate": "20260724",
+        "providerPublishedDate": null,
+        "providerVerifiedAt": null
+      }
+    },
+    "dataQuality": {
+      "domains": {
+        "research": {
+          "count": 1,
+          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "status": "pass"
+        }
+      }
+    },
+    "providerResearch": [],
+    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "research": [
+      {
+        "asOfDate": "20260724",
+        "assessmentType": "long_only_equity_review",
+        "frameworkVersion": "equity-research-strategy-v1",
+        "result": {
+          "bearCase": [
+            "Calendar 2026 capex near $190B creates a long cash-conversion lag or structurally lower returns.",
+            "Microsoft Cloud gross margin falls below the 64% Q4 guide and does not stabilize in FY2027.",
+            "Headline RPO growth remains concentrated in OpenAI commitments and does not broaden.",
+            "Copilot adoption grows without adequate ARPU or incremental margin.",
+            "The apparent GAAP P/E discount is partly an artifact of volatile OpenAI investment accounting."
+          ],
+          "bullCase": [
+            "Azure maintains roughly 40% constant-currency growth while capacity comes online.",
+            "Copilot paid seats and ARPU accelerate through Microsoft's enterprise distribution.",
+            "Non-OpenAI RPO converts into durable revenue and cash flow.",
+            "Operating leverage and infrastructure efficiency offset depreciation and AI usage costs.",
+            "AI capex proves predominantly growth investment rather than a permanent maintenance burden."
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "AI capital spending must convert into durable Azure and Copilot growth, stable cloud margins, and recovering free cash flow.",
+          "evidenceConfidence": "medium",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "A reproducible, same-date distribution of current sell-side ratings and price targets.",
+            "A direct Morningstar update after FY2026 Q3; the available item is dated 2026-01-22.",
+            "A complete company split of maintenance versus growth capex across GPUs, CPUs, buildings, land, and infrastructure.",
+            "FY2026 Q4, full-year FY2026, and formal FY2027 results, which are scheduled for 2026-07-29.",
+            "A peer valuation set normalized for accounting, growth, capex, stock compensation, and net cash."
+          ],
+          "monitoring": [
+            {
+              "baseline": "FY2026 Q3 39%; Q4 guide 39%-40%",
+              "challengingDirection": "Material miss without a supply constraint explanation.",
+              "confirmingDirection": "Sustained around 40% with stable non-AI workloads.",
+              "metric": "Azure constant-currency growth",
+              "nextReview": "20260729"
+            },
+            {
+              "baseline": "FY2026 Q3 66%; Q4 guide about 64%",
+              "challengingDirection": "Continues to fall without efficiency offsets.",
+              "confirmingDirection": "Stabilizes or improves in FY2027.",
+              "metric": "Microsoft Cloud gross margin",
+              "nextReview": "20260729"
+            },
+            {
+              "baseline": "More than 20M paid seats at FY2026 Q3",
+              "challengingDirection": "Seat or ARPU growth stalls.",
+              "confirmingDirection": "Paid seats, net adds, and ARPU rise together.",
+              "metric": "M365 Copilot paid seats and ARPU",
+              "nextReview": "20260729"
+            },
+            {
+              "baseline": "Q4 capex guide above $40B; TTM free cash flow $72.916B",
+              "challengingDirection": "Capex remains elevated while free cash flow deteriorates.",
+              "confirmingDirection": "Revenue, operating income, and free cash flow catch up with capacity.",
+              "metric": "Capex and free-cash-flow conversion",
+              "nextReview": "20260729"
+            },
+            {
+              "baseline": "26% growth at FY2026 Q3",
+              "challengingDirection": "Growth is increasingly concentrated in a few long-duration commitments.",
+              "confirmingDirection": "Broad non-OpenAI growth and improved near-term conversion.",
+              "metric": "Commercial RPO excluding OpenAI",
+              "nextReview": "20260729"
+            },
+            {
+              "baseline": "11.98% at 2026-07-22 completed close",
+              "challengingDirection": "Reaches 15% or 20%, or opportunity cost rises.",
+              "confirmingDirection": "Remains below the 15% attention line with improved risk-reward.",
+              "metric": "Portfolio concentration",
+              "nextReview": "each_completed_close"
+            }
+          ],
+          "sourceRegister": [
+            {
+              "label": "Microsoft FY2026 Q3 earnings release",
+              "publishedAt": "20260429",
+              "url": "https://www.microsoft.com/en-us/investor/earnings/FY-2026-Q3/press-release-webcast"
+            },
+            {
+              "label": "Microsoft FY2026 Q3 earnings call and outlook",
+              "publishedAt": "20260429",
+              "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3"
+            },
+            {
+              "label": "Microsoft FY2025 annual financial statements",
+              "publishedAt": "20250730",
+              "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2025-Q4/income-statements"
+            },
+            {
+              "label": "Microsoft FY2023 annual financial statements",
+              "publishedAt": "20230725",
+              "url": "https://www.microsoft.com/en-us/investor/earnings/fy-2023-q4/income-statements"
+            },
+            {
+              "label": "Microsoft FY2026 Q4 earnings release date",
+              "publishedAt": "20260708",
+              "url": "https://news.microsoft.com/source/2026/07/08/microsoft-announces-quarterly-earnings-release-date-68/"
+            },
+            {
+              "label": "Morningstar Europe MSFT valuation and moat opinion",
+              "publishedAt": "20260122",
+              "url": "https://global.morningstar.com/en-eu/stocks/ahead-earnings-is-microsoft-stock-buy-sell-or-fairly-valued"
+            }
+          ],
+          "valuation": {
+            "dcf": {
+              "coreSensitivityRangeUsd": [
+                290,
+                498
+              ],
+              "scenarios": [
+                {
+                  "name": "bear",
+                  "terminalGrowthPct": 3.0,
+                  "valuePerShareUsd": 217.21,
+                  "waccPct": 9.5,
+                  "years1to5GrowthPct": 8.0,
+                  "years6to10GrowthPct": 6.0
+                },
+                {
+                  "name": "base",
+                  "terminalGrowthPct": 3.5,
+                  "valuePerShareUsd": 378.37,
+                  "waccPct": 8.5,
+                  "years1to5GrowthPct": 14.0,
+                  "years6to10GrowthPct": 8.0
+                },
+                {
+                  "name": "bull",
+                  "terminalGrowthPct": 4.0,
+                  "valuePerShareUsd": 675.79,
+                  "waccPct": 7.5,
+                  "years1to5GrowthPct": 18.0,
+                  "years6to10GrowthPct": 10.0
+                }
+              ]
+            },
+            "priceUsd": 381.58
+          },
+          "valuationState": "fair"
+        },
+        "sourceLabel": "MSFT private pre-earnings research review",
+        "sourceVersion": "2026-07-24-v1",
+        "status": "active",
+        "summary": "业务质量仍高；当前估值接近基准情景。现有持仓为 hold，等额现金为 watchlist，FY2026 Q4 后强制复核。",
+        "updatedAt": "2026-07-24T10:49:02.004090Z"
+      }
+    ],
+    "summary": {
+      "research": {
+        "count": 1
+      }
+    }
+  },
+  "generatedAt": "2026-07-29T06:09:07.528149Z",
+  "packageType": "research",
+  "schemaVersion": 1,
+  "symbol": "MSFT"
+}
