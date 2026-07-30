@@ -3174,7 +3174,7 @@
             var instrument = state.instrumentCatalogBySymbol[cell.instrumentSymbol];
             var link = document.createElement("a");
             link.className = "symbol-link";
-            link.href = "instrument.html?security=" + encodeURIComponent(instrument.securityId);
+            link.href = "instrument.html?symbol=" + encodeURIComponent(instrument.symbol);
             link.textContent = cell.value;
             link.setAttribute("aria-label", cell.value + " 证券详情");
             td.appendChild(link);

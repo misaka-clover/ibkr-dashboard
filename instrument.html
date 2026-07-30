@@ -1045,7 +1045,8 @@
       }
       /* FAMILY:INSTRUMENT_DATA_SOURCE:START */
       async function resolveSecurityId() {
-        var requestedSymbol = String(new URLSearchParams(location.search).get("symbol") || "MSFT").trim().toUpperCase();
+        var params = new URLSearchParams(location.search);
+        var requestedSymbol = String(params.get("symbol") || params.get("security") || "MSFT").trim().toUpperCase();
         var manifest = await staticManifest();
         if (!manifest.instruments || !manifest.instruments[requestedSymbol]) {
           throw new Error("公开标的目录中没有 " + requestedSymbol + "。");
