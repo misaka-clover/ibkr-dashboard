@@ -315,6 +315,7 @@
     .tax-lot-table th:nth-child(5), .tax-lot-table td:nth-child(5) { width: 19%; }
     .tax-lot-summary { position: sticky; bottom: 0; z-index: 3; display: grid; flex: 0 0 auto; grid-template-columns: 22fr 20fr 16fr 23fr 19fr; min-width: 0; min-height: 52px; margin-top: auto; border-top: 1px solid #dfe5e9; background: #fafbfc; }
     .tax-lot-summary-item { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 3px; min-width: 0; padding: 7px 6px; border-left: 1px solid #e1e6ea; }
+    .tax-lot-summary-item.total-cost-basis { grid-column: 1; border-left: 0; }
     .tax-lot-summary-item.cost-basis { grid-column: 2; }
     .tax-lot-summary-item.quantity { grid-column: 3; }
     .tax-lot-summary-item.pnl { grid-column: 4; }
@@ -345,8 +346,11 @@
     .morningstar-metric { min-height: 92px; padding: 13px; background: #fff; }
     .morningstar-metric-label { color: var(--muted); font-size: 9px; font-weight: 760; }
     .morningstar-metric-value { margin-top: 7px; color: var(--navy); font: 740 17px var(--mono); font-variant-numeric: tabular-nums; }
-    .morningstar-stars { display: inline-flex; gap: 2px; color: #c6932d; font: 700 18px/1 system-ui, sans-serif; letter-spacing: .02em; filter: drop-shadow(0 1px 0 rgba(132,91,16,.12)); }
-    .morningstar-star.empty { color: #cbd3d9; }
+    .morningstar-stars { display: inline-flex; align-items: center; gap: 2px; color: #c6932d; filter: drop-shadow(0 1px 0 rgba(132,91,16,.12)); }
+    .morningstar-star { display: block; flex: 0 0 18px; width: 18px; height: 18px; }
+    .morningstar-star path { fill: currentColor; stroke: currentColor; stroke-linejoin: round; }
+    .morningstar-star.unfilled { color: #cbd3d9; }
+    .morningstar-star.unfilled path { fill: none; stroke-width: 1.8; }
     .morningstar-gap { font-size: 11px; white-space: nowrap; }
     .morningstar-metric-note { margin-top: 5px; color: var(--muted); font-size: 9px; line-height: 1.45; }
     .research-interpretation { margin-top: 22px; }
@@ -375,6 +379,14 @@
     .monitoring-signals strong { color: var(--muted); font-size: 9px; }
     details.research-details { margin-top: 18px; border-top: 1px solid #e2e7ea; }
     details.research-details summary { padding: 13px 0 0; color: var(--blue); font-size: 11px; font-weight: 750; cursor: pointer; }
+    details.research-history { margin-top: 18px; border-top: 1px solid #d7e0e6; }
+    details.research-history > summary { padding: 14px 0 0; color: var(--blue); font-size: 11px; font-weight: 750; cursor: pointer; }
+    .research-history-list { display: grid; gap: 10px; margin-top: 13px; }
+    .research-history-card { padding: 14px; border: 1px solid #e0e6ea; background: #f9fafb; }
+    .research-history-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; color: var(--muted); font: 9px/1.5 var(--mono); }
+    .research-history-summary { margin: 9px 0 0; color: #425360; font-size: 11px; line-height: 1.7; }
+    .research-history-hinge { margin-top: 8px; color: #5a6873; font-size: 10px; line-height: 1.65; }
+    .research-history-reason { margin-top: 9px; color: var(--muted); font-size: 9px; line-height: 1.6; }
     .source-list { display: grid; gap: 7px; margin-top: 12px; }
     .source-link { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 14px; padding: 9px 10px; border: 1px solid #e2e7ea; color: #455866; font-size: 10px; text-decoration: none; }
     .source-link:hover, .source-link:focus-visible { border-color: #b9cbd8; background: var(--blue-soft); outline: none; }
@@ -582,12 +594,12 @@
         <span class="badge" id="activityCount">—</span>
       </div>
       <div class="account-kpi-grid" aria-label="标的账户收益">
-        <div class="account-kpi"><div class="account-kpi-label">成本基础</div><div class="account-kpi-value" id="positionCostBasis">—</div><div class="account-kpi-note" id="positionCostBasisWeight">—</div></div>
         <div class="account-kpi"><div class="account-kpi-label">平仓合计</div><div class="account-kpi-value" id="closedPositionTotal">—</div></div>
         <div class="account-kpi"><div class="account-kpi-label">股息合计</div><div class="account-kpi-value" id="dividendTotal">—</div></div>
         <div class="account-kpi"><div class="account-kpi-label">归总收益</div><div class="account-kpi-value" id="aggregateReturn">—</div></div>
         <div class="account-kpi wide"><div class="account-kpi-label">综合成本</div><div class="account-kpi-value" id="comprehensiveCost">—</div></div>
-        <div class="account-kpi"><div class="account-kpi-label">总回报率</div><div class="account-kpi-value" id="annualizedTotalReturn">—</div></div>
+        <div class="account-kpi"><div class="account-kpi-label">年化收益</div><div class="account-kpi-value" id="annualizedReturn">—</div><div class="account-kpi-note">资金加权 XIRR</div></div>
+        <div class="account-kpi"><div class="account-kpi-label">总回报率</div><div class="account-kpi-value" id="totalReturn">—</div><div class="account-kpi-note" id="totalReturnPeriod">非年化累计收益</div></div>
       </div>
       <div class="two-col">
         <article class="card records-card">
@@ -633,7 +645,7 @@
       </div>
       <div class="research-stack">
         <article class="card">
-          <div class="research-subhead"><div><p class="section-kicker">External Research</p><h3 class="research-subtitle">晨星研报</h3></div><span class="badge" id="morningstarFreshness">—</span></div>
+          <div class="research-subhead"><div><p class="section-kicker">External Research</p><h3 class="research-subtitle" id="morningstarResearchTitle">晨星研报</h3></div><span class="badge" id="morningstarFreshness">—</span></div>
           <div class="card-body" id="providerResearchBody"><div class="empty">正在载入晨星研报。</div></div>
         </article>
         <article class="card">
@@ -842,9 +854,35 @@
       }
       function researchLabel(value) {
         return {
-          preliminary: "初步评价", fair: "估值合理", hold: "持有",
-          watchlist: "观察名单", active: "当前版本", medium: "中等证据置信度",
-          low: "较低证据置信度", high: "较高证据置信度"
+          preliminary: "初步评价", fair: "估值合理", nav_aligned: "价格贴近 NAV", hold: "持有",
+          expensive: "估值偏贵", watchlist: "观察名单", active: "正式复核",
+          review_due: "待复核", superseded: "已被取代", current: "当前版本",
+          add_eligible: "符合增持研究条件", trim_review: "复核减持",
+          exit_review: "复核退出", wait_for_proof: "等待验证", pass: "暂不参与",
+          buy: "可买入研究状态", do_not_buy: "不宜新买"
+        }[value] || value || "—";
+      }
+      function evidenceQualityLabel(value) {
+        return {
+          high: "证据质量：较高",
+          medium: "证据质量：中等",
+          low: "证据质量：较低"
+        }[value] || value || "—";
+      }
+      function valuationConfidenceValue(result) {
+        if (result.valuationConfidence) return result.valuationConfidence;
+        var dcf = result.valuation && result.valuation.dcf;
+        var scenarios = dcf && Array.isArray(dcf.scenarios) ? dcf.scenarios : [];
+        var gaps = Array.isArray(result.missingEvidence) ? result.missingEvidence : [];
+        // Older assessments predate this explicit field. A scenario DCF with
+        // material disclosed gaps defaults to medium rather than implying precision.
+        return scenarios.length >= 3 && gaps.length ? "medium" : null;
+      }
+      function valuationConfidenceLabel(value) {
+        return {
+          high: "估值结论置信度：较高",
+          medium: "估值结论置信度：中等",
+          low: "估值结论置信度：较低"
         }[value] || value || "—";
       }
       function zh(value) { return researchTranslation[value] || value || "—"; }
@@ -1672,6 +1710,9 @@
         el("dailyPnlPct").textContent = holding && finite(holding.dailyPnlPct) != null
           ? (holding.dailyPnlPct > 0 ? "+" : "") + percent(holding.dailyPnlPct, 2)
           : "—";
+        el("dailyPnlPct").title = holding && holding.dailyPnlPctSource
+          ? holding.dailyPnlPctSource + (holding.dailyPnlPctAsOf ? " · " + compactToIso(holding.dailyPnlPctAsOf) : "")
+          : "";
         setClassBySign(el("dailyPnlAmount"), holding && holding.dailyPnl);
         setClassBySign(el("dailyPnlPct"), holding && holding.dailyPnlPct);
         var performance = detail.accountPerformance || {};
@@ -2004,10 +2045,6 @@
         var lots = state.detail.positionLots || {}, rows = lots.items || [];
         var performance = state.detail.accountPerformance || {};
         var currency = performance.currency || state.detail.instrument.currency;
-        var holding = state.detail.currentHolding || {};
-        el("positionCostBasis").textContent = money(performance.currentCost, currency, 2);
-        el("positionCostBasisWeight").textContent =
-          "投资组合权重 " + percent(holding.portfolioWeightPct, 2);
         [
           ["closedPositionTotal", performance.closedPositionTotal, true],
           ["dividendTotal", performance.dividendTotal, false],
@@ -2016,9 +2053,20 @@
           el(entry[0]).textContent = entry[2] ? signedMoney(entry[1], currency) : money(entry[1], currency, 2);
           setClassBySign(el(entry[0]), entry[1]);
         });
-        el("annualizedTotalReturn").textContent = signedPercentRatio(performance.annualizedTotalReturn, 2);
-        setClassBySign(el("annualizedTotalReturn"), performance.annualizedTotalReturn);
-        el("annualizedTotalReturn").title = performance.methodology || "";
+        el("annualizedReturn").textContent = signedPercentRatio(performance.annualizedTotalReturn, 2);
+        setClassBySign(el("annualizedReturn"), performance.annualizedTotalReturn);
+        el("annualizedReturn").title = performance.annualizedReturnMethodology || performance.methodology || "";
+        el("totalReturn").textContent = signedPercentRatio(performance.totalReturn, 2);
+        setClassBySign(el("totalReturn"), performance.totalReturn);
+        el("totalReturn").title = performance.totalReturnMethodology || performance.methodology || "";
+        el("totalReturnPeriod").textContent =
+          performance.holdingPeriodStartDate && finite(performance.holdingPeriodDays) != null
+            ? compactToIso(performance.holdingPeriodStartDate) + " 起 · 实际持仓 " +
+              number(performance.holdingPeriodDays, 0) + " 日" +
+              (finite(performance.excludedNoPositionDays) > 0
+                ? " · 排除空仓 " + number(performance.excludedNoPositionDays, 0) + " 日"
+                : "")
+            : "非年化累计收益";
         el("comprehensiveCost").textContent = money(performance.comprehensiveCost, currency, 2) + " / 股";
         var badge = el("taxLotsStatusBadge");
         badge.className = "badge " + (
@@ -2132,6 +2180,7 @@
         var summaryBar = document.createElement("div");
         summaryBar.className = "tax-lot-summary";
         [
+          ["total-cost-basis", "成本基础", money(summary.costBasis, currency, 2), null],
           ["cost-basis", "平均成本", money(summaryAverageCost, currency, 2), null],
           ["quantity", "持股总计", quantityNumber(summary.quantity), null],
           ["pnl", "合计盈亏", signedMoney(summary.totalPnl, currency), summary.totalPnl],
@@ -2163,18 +2212,25 @@
           return String(row.provider || "").toLowerCase() === "morningstar";
         });
         var labels = [];
-        if (provider) labels.push("晨星 " + compactToIso(provider.publishedDate));
+        if (provider) {
+          var providerReportDate = provider.metrics && provider.metrics.reportAsOf
+            ? String(provider.metrics.reportAsOf).slice(0, 10)
+            : compactToIso(provider.publishedDate);
+          labels.push("晨星 " + providerReportDate);
+        }
         if (assessment) labels.push("分析 " + compactToIso(assessment.asOfDate));
         el("researchDateBadge").textContent = labels.length ? labels.join(" · ") : "尚未建立";
       }
       function renderProviderResearch() {
         var body = el("providerResearchBody");
         body.replaceChildren();
+        var morningstarTitle = el("morningstarResearchTitle");
         var provider = (state.detail.providerResearch || []).find(function (row) {
           return String(row.provider || "").toLowerCase() === "morningstar";
         });
         var freshnessBadge = el("morningstarFreshness");
         if (!provider) {
+          morningstarTitle.textContent = "晨星研报";
           var empty = document.createElement("div"); empty.className = "empty";
           empty.textContent = "尚未建立经过核验的 Morningstar 研报摘要。";
           body.appendChild(empty);
@@ -2184,6 +2240,8 @@
           return;
         }
         var metrics = provider.metrics || {}, analyst = provider.analyst || {};
+        var isFundMedalist = metrics.researchType === "fund_medalist";
+        morningstarTitle.textContent = isFundMedalist ? "晨星基金研究" : "晨星研报";
         var freshness = provider.freshness || {};
         freshnessBadge.className = "badge " + (freshness.status === "stale" ? "warn" : "good");
         freshnessBadge.textContent = freshness.status === "stale" ? "超过 7 天未核验" : "7 天内已核验";
@@ -2191,43 +2249,80 @@
         var copy = document.createElement("div");
         var reportLink = document.createElement("a"); reportLink.className = "morningstar-report-link";
         reportLink.href = provider.sourceUrl; reportLink.target = "_blank"; reportLink.rel = "noreferrer";
-        reportLink.textContent = "研报速览 ↗";
+        reportLink.textContent = isFundMedalist ? "基金研究速览 ↗" : "研报速览 ↗";
         var reportTitle = document.createElement("div"); reportTitle.className = "section-note";
         reportTitle.textContent = provider.title;
         var analystLine = document.createElement("div"); analystLine.className = "morningstar-analyst";
-        analystLine.textContent = "分析师 " + (analyst.name || "未标注") + (analyst.role ? " · " + analyst.role : "");
+        analystLine.textContent = "分析师 "
+          + (analyst.name || "未标注") + (analyst.role ? " · " + analyst.role : "");
         copy.append(reportLink, reportTitle, analystLine);
         var dateBlock = document.createElement("div"); dateBlock.className = "section-note";
-        dateBlock.textContent = "公开报告发布 " + compactToIso(provider.publishedDate) + " · 本地核验 " + utcDateTime(provider.verifiedAt);
+        var reportAsOf = metrics.reportAsOf ? String(metrics.reportAsOf).slice(0, 10) : null;
+        dateBlock.textContent = isFundMedalist
+          ? "Medalist 发布 " + compactToIso(provider.publishedDate)
+            + (metrics.medalistRatedDate ? " · 评级日期 " + compactToIso(metrics.medalistRatedDate) : "")
+            + " · 本地核验 " + utcDateTime(provider.verifiedAt)
+          : "官网文章发布 " + compactToIso(provider.publishedDate)
+            + (reportAsOf ? " · 完整报告截止 " + reportAsOf : "")
+            + " · 本地核验 " + utcDateTime(provider.verifiedAt);
         overview.append(copy, dateBlock); body.appendChild(overview);
 
-        var currentPrice = finite(state.detail.fundamentals && state.detail.fundamentals.price);
-        var fairValue = finite(metrics.fairValue);
-        var fairGap = fairValue != null && currentPrice ? (fairValue / currentPrice - 1) * 100 : null;
-        var moatLabels = { wide: "宽", narrow: "窄", none: "无" };
-        var uncertaintyLabels = { low: "低", medium: "中等", high: "高", very_high: "很高" };
-        var allocationLabels = { exemplary: "优秀", standard: "标准", poor: "较差" };
-        var metricRows = [
-          ["晨星评级", number(metrics.ratingStars, 0) + " 星", "更新 " + compactToIso(metrics.ratingUpdatedDate)],
-          ["公允价值", money(fairValue, metrics.fairValueCurrency || "USD", 0), "更新 " + compactToIso(metrics.fairValueUpdatedDate) + " · 较 " + compactToIso(state.detail.fundamentals && state.detail.fundamentals.asOfDate) + " 收盘", fairGap, fairGap == null ? "—" : (fairGap > 0 ? "+" : "") + percent(fairGap, 2)],
-          ["护城河", moatLabels[metrics.economicMoat] || metrics.economicMoat || "—", "Morningstar Economic Moat"],
-          ["不确定性", uncertaintyLabels[metrics.uncertainty] || metrics.uncertainty || "—", "Morningstar Uncertainty"],
-          ["资本分配", allocationLabels[metrics.capitalAllocation] || metrics.capitalAllocation || "—", "Morningstar Capital Allocation"]
-        ];
+        var metricRows;
+        if (isFundMedalist) {
+          var medalistLabels = { gold: "金牌", silver: "银牌", bronze: "铜牌", neutral: "中性", negative: "负面" };
+          var medalistMethodLabels = { quantitatively_derived: "量化衍生", analyst_rated: "分析师评级" };
+          metricRows = [
+            ["晨星评级", number(metrics.historicalStarRating, 0) + " 星", "传统历史星级 · 截至 " + compactToIso(metrics.historicalStarRatingAsOf)],
+            ["Medalist Rating", medalistLabels[metrics.medalistRating] || metrics.medalistRating || "—", "量化衍生 · " + compactToIso(metrics.medalistRatedDate)],
+            ["晨星分类", metrics.morningstarCategory || "—", "基金类别，不是信用评级"],
+            ["评级方式", medalistMethodLabels[metrics.medalistMethod] || metrics.medalistMethod || "—", "Morningstar Automated Analysis"],
+            ["资产类别", metrics.morningstarAssetClass || "Fixed Income", "晨星专题口径"]
+          ];
+        } else {
+          var currentHolding = state.detail.currentHolding || {};
+          var currentPrice = finite(currentHolding.closePrice);
+          var currentPriceAsOf = currentHolding.valuationDate;
+          if (currentPrice == null) {
+            currentPrice = finite(state.detail.fundamentals && state.detail.fundamentals.price);
+            currentPriceAsOf = state.detail.fundamentals && state.detail.fundamentals.asOfDate;
+          }
+          var fairValue = finite(metrics.fairValue);
+          var fairGap = fairValue != null && currentPrice ? (fairValue / currentPrice - 1) * 100 : null;
+          var moatLabels = { wide: "宽", narrow: "窄", none: "无" };
+          var uncertaintyLabels = { low: "低", medium: "中等", high: "高", very_high: "很高" };
+          var allocationLabels = { exemplary: "优秀", standard: "标准", poor: "较差" };
+          metricRows = [
+            ["晨星评级", number(metrics.ratingStars, 0) + " 星", "更新 " + compactToIso(metrics.ratingUpdatedDate)],
+            ["公允价值", money(fairValue, metrics.fairValueCurrency || "USD", 0), "更新 " + compactToIso(metrics.fairValueUpdatedDate) + " · 较 " + compactToIso(currentPriceAsOf) + " 收盘", fairGap, fairGap == null ? "—" : (fairGap > 0 ? "+" : "") + percent(fairGap, 2)],
+            ["护城河", moatLabels[metrics.economicMoat] || metrics.economicMoat || "—", "Morningstar Economic Moat"],
+            ["不确定性", uncertaintyLabels[metrics.uncertainty] || metrics.uncertainty || "—", "Morningstar Uncertainty"],
+            ["资本分配", allocationLabels[metrics.capitalAllocation] || metrics.capitalAllocation || "—", "Morningstar Capital Allocation"]
+          ];
+        }
         var metricGrid = document.createElement("div"); metricGrid.className = "morningstar-metrics";
         metricRows.forEach(function (entry) {
           var item = document.createElement("article"); item.className = "morningstar-metric";
           var label = document.createElement("div"); label.className = "morningstar-metric-label"; label.textContent = entry[0];
           var value = document.createElement("div"); value.className = "morningstar-metric-value";
           if (entry[0] === "晨星评级") {
-            var starCount = Math.max(0, Math.min(5, Math.round(finite(metrics.ratingStars) || 0)));
+            var ratingStars = isFundMedalist ? metrics.historicalStarRating : metrics.ratingStars;
+            var starCount = Math.max(0, Math.min(5, Math.round(finite(ratingStars) || 0)));
             var stars = document.createElement("span"); stars.className = "morningstar-stars";
             stars.setAttribute("role", "img");
-            stars.setAttribute("aria-label", "晨星评级 " + starCount + " 星（满分 5 星）");
+            stars.setAttribute(
+              "aria-label",
+              (isFundMedalist ? "晨星传统历史评级 " : "晨星评级 ")
+                + starCount + " 星（满分 5 星）"
+            );
             for (var starIndex = 1; starIndex <= 5; starIndex += 1) {
-              var star = document.createElement("span");
-              star.className = "morningstar-star" + (starIndex > starCount ? " empty" : "");
-              star.textContent = starIndex <= starCount ? "★" : "☆";
+              var star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+              star.setAttribute("class", "morningstar-star" + (starIndex > starCount ? " unfilled" : ""));
+              star.setAttribute("viewBox", "0 0 24 24");
+              star.setAttribute("aria-hidden", "true");
+              star.setAttribute("focusable", "false");
+              var starPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+              starPath.setAttribute("d", "M12 2.75l2.78 5.63 6.22.9-4.5 4.39 1.06 6.2L12 16.94l-5.56 2.93 1.06-6.2L3 9.28l6.22-.9L12 2.75z");
+              star.appendChild(starPath);
               stars.appendChild(star);
             }
             value.appendChild(stars);
@@ -2243,22 +2338,29 @@
         });
         body.appendChild(metricGrid);
         var interpretation = document.createElement("section"); interpretation.className = "research-interpretation";
-        var interpretationTitle = document.createElement("h4"); interpretationTitle.textContent = "研报解读";
+        var interpretationTitle = document.createElement("h4"); interpretationTitle.textContent = isFundMedalist ? "研究解读" : "研报解读";
         var interpretationCopy = document.createElement("p"); interpretationCopy.textContent = provider.interpretation;
         interpretation.append(interpretationTitle, interpretationCopy); body.appendChild(interpretation);
 
         var details = document.createElement("details"); details.className = "research-details";
         var summary = document.createElement("summary"); summary.textContent = "查看晨星各部分要点与来源登记";
         details.appendChild(summary);
-        var sectionLabels = {
-          fairValue: "公允价值", economicMoat: "护城河", uncertainty: "不确定性",
-          capitalAllocation: "资本分配", bullish: "看好观点", bearish: "看淡观点",
-          financialHealth: "财务健康度", strategyOutlook: "企业战略与展望"
-        };
-        var sectionOrder = [
-          "fairValue", "economicMoat", "uncertainty", "capitalAllocation",
-          "bullish", "bearish", "financialHealth", "strategyOutlook"
-        ];
+        var sectionLabels = isFundMedalist
+          ? {
+              process: "投资流程", people: "团队", parent: "基金公司",
+              taxEfficiency: "税务效率", investmentMerit: "投资用途", risks: "主要风险"
+            }
+          : {
+              fairValue: "公允价值", economicMoat: "护城河", uncertainty: "不确定性",
+              capitalAllocation: "资本分配", bullish: "看好观点", bearish: "看淡观点",
+              financialHealth: "财务健康度", strategyOutlook: "企业战略与展望"
+            };
+        var sectionOrder = isFundMedalist
+          ? ["process", "people", "parent", "taxEfficiency", "investmentMerit", "risks"]
+          : [
+              "fairValue", "economicMoat", "uncertainty", "capitalAllocation",
+              "bullish", "bearish", "financialHealth", "strategyOutlook"
+            ];
         var sectionGrid = document.createElement("div"); sectionGrid.className = "provider-section-grid";
         sectionOrder.filter(function (key) {
           return Array.isArray((provider.sections || {})[key]) && provider.sections[key].length;
@@ -2271,9 +2373,18 @@
         var sourceList = document.createElement("div"); sourceList.className = "source-list";
         var source = document.createElement("a"); source.className = "source-link";
         source.href = provider.sourceUrl; source.target = "_blank"; source.rel = "noreferrer";
-        var sourceName = document.createElement("span"); sourceName.textContent = "Morningstar 原始研报速览";
+        var sourceName = document.createElement("span"); sourceName.textContent = isFundMedalist ? "Morningstar 基金分析" : "Morningstar 官网文章";
         var sourceDate = document.createElement("span"); sourceDate.className = "source-date"; sourceDate.textContent = compactToIso(provider.publishedDate);
         source.append(sourceName, sourceDate); sourceList.appendChild(source); details.appendChild(sourceList);
+        (Array.isArray(metrics.supportingSources) ? metrics.supportingSources : []).forEach(function (entry) {
+          if (!entry || !entry.url) return;
+          var link = document.createElement("a"); link.className = "source-link";
+          link.href = entry.url; link.target = "_blank"; link.rel = "noreferrer";
+          var label = document.createElement("span"); label.textContent = entry.label || "Morningstar 补充资料";
+          var date = document.createElement("span"); date.className = "source-date";
+          date.textContent = compactToIso(entry.publishedAt || entry.asOf);
+          link.append(label, date); sourceList.appendChild(link);
+        });
         body.appendChild(details);
         updateResearchDateBadge();
       }
@@ -2288,14 +2399,34 @@
         var result = assessment.result || {}, valuation = result.valuation || {}, dcf = valuation.dcf || {};
         updateResearchDateBadge();
         var badges = document.createElement("div"); badges.className = "badge-row";
-        [
-          result.researchMaturity || "preliminary", result.valuationState,
-          result.existingPositionAction, result.cashDecision, result.evidenceConfidence
-        ].filter(Boolean).forEach(function (value) {
+        var maturity = result.researchMaturity || result.underwritingStatus || "preliminary";
+        var badgeEntries = [
+          { value: assessment.reviewStatus },
+          maturity !== "active" ? { value: maturity } : null,
+          { value: result.valuationState },
+          { value: result.existingPositionAction },
+          { value: result.cashDecision },
+          result.evidenceConfidence
+            ? { value: result.evidenceConfidence, label: evidenceQualityLabel(result.evidenceConfidence) }
+            : null
+        ];
+        var valuationConfidence = valuationConfidenceValue(result);
+        if (valuationConfidence) {
+          badgeEntries.push({
+            value: valuationConfidence,
+            label: valuationConfidenceLabel(valuationConfidence)
+          });
+        }
+        var seenBadgeLabels = new Set();
+        badgeEntries.filter(Boolean).forEach(function (entry) {
+          var value = entry.value;
+          var label = entry.label || researchLabel(value);
+          if (seenBadgeLabels.has(label)) return;
+          seenBadgeLabels.add(label);
           var span = document.createElement("span"); span.className = "badge";
-          if (value === "fair" || value === "hold") span.classList.add("good");
-          if (value === "watchlist" || value === "preliminary") span.classList.add("warn");
-          span.textContent = researchLabel(value); badges.appendChild(span);
+          if (value === "fair" || value === "nav_aligned" || value === "hold") span.classList.add("good");
+          if (value === "watchlist" || value === "preliminary" || value === "expensive" || value === "review_due") span.classList.add("warn");
+          span.textContent = label; badges.appendChild(span);
         });
         body.appendChild(badges);
         var summary = document.createElement("p"); summary.className = "research-summary"; summary.textContent = assessment.summary || "—"; body.appendChild(summary);
@@ -2318,7 +2449,7 @@
           });
           body.appendChild(valuations);
           var range = document.createElement("p"); range.className = "section-note";
-          range.textContent = "核心 DCF 敏感区间：" + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[0], "USD", 0) + " — " + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[1], "USD", 0) + "；当前行情完成收盘 " + money(valuation.priceUsd, "USD", 2) + "。";
+          range.textContent = "核心 DCF 敏感区间：" + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[0], "USD", 0) + " — " + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[1], "USD", 0) + "；" + (valuation.priceContextLabel || "当前行情完成收盘") + " " + money(valuation.priceUsd, "USD", 2) + "。";
           body.appendChild(range);
         }
         if (Array.isArray(result.monitoring) && result.monitoring.length) {
@@ -2348,6 +2479,36 @@
           link.append(label, date); sources.appendChild(link);
         });
         details.appendChild(sources); body.appendChild(details);
+        var history = state.detail.researchHistory || [];
+        if (history.length) {
+          var historyDetails = document.createElement("details"); historyDetails.className = "research-history";
+          var historySummary = document.createElement("summary");
+          historySummary.textContent = "历史研究（" + number(history.length, 0) + " 个已被取代版本）";
+          historyDetails.appendChild(historySummary);
+          var historyList = document.createElement("div"); historyList.className = "research-history-list";
+          history.forEach(function (entry) {
+            var archivedResult = entry.result || {};
+            var card = document.createElement("article"); card.className = "research-history-card";
+            var meta = document.createElement("div"); meta.className = "research-history-meta";
+            [
+              "v" + number(entry.version, 0),
+              compactToIso(entry.asOfDate),
+              researchLabel(entry.status),
+              researchLabel(archivedResult.valuationState),
+              researchLabel(archivedResult.existingPositionAction)
+            ].filter(Boolean).forEach(function (label) {
+              var span = document.createElement("span"); span.textContent = label; meta.appendChild(span);
+            });
+            var archivedSummary = document.createElement("p"); archivedSummary.className = "research-history-summary";
+            archivedSummary.textContent = entry.summary || "—";
+            var archivedHinge = document.createElement("div"); archivedHinge.className = "research-history-hinge";
+            archivedHinge.textContent = "关键判断：" + zh(archivedResult.decisionHinge);
+            var reason = document.createElement("div"); reason.className = "research-history-reason";
+            reason.textContent = "替代于 " + utcDateTime(entry.supersededAt) + " · " + (entry.supersededReason || "新研究版本正式发布");
+            card.append(meta, archivedSummary, archivedHinge, reason); historyList.appendChild(card);
+          });
+          historyDetails.appendChild(historyList); body.appendChild(historyDetails);
+        }
       }
       function renderQuality() {
         var domains = state.detail.dataQuality.domains || {};
