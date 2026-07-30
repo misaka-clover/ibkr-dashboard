@@ -1861,14 +1861,24 @@
         row.append(date, status, copy, source);
         return row;
       }
-      function corporateGroup(titleText, events, nextEventKey) {
+      function corporateEventPublicKey(event) {
+        return event.publicKey || [
+          event.eventType || "",
+          event.eventDate || "",
+          event.title || ""
+        ].join("|");
+      }
+      function corporateGroup(titleText, events, nextPublicKey) {
         var group = document.createElement("section"); group.className = "corporate-group";
         if (titleText) {
           var title = document.createElement("div"); title.className = "corporate-group-title"; title.textContent = titleText;
           group.appendChild(title);
         }
         events.forEach(function (event) {
-          group.appendChild(corporateEventRow(event, (event.publicKey || event.eventKey) === nextEventKey));
+          group.appendChild(corporateEventRow(
+            event,
+            corporateEventPublicKey(event) === nextPublicKey
+          ));
         });
         return group;
       }
@@ -1901,7 +1911,11 @@
             || corporateEventTypeOrder(left.eventType) - corporateEventTypeOrder(right.eventType);
         });
         if (upcoming.length) {
-          timeline.appendChild(corporateGroup("即将发生", upcoming, upcoming[0].publicKey || upcoming[0].eventKey));
+          timeline.appendChild(corporateGroup(
+            "即将发生",
+            upcoming,
+            corporateEventPublicKey(upcoming[0])
+          ));
         } else {
           var futureGap = document.createElement("div"); futureGap.className = "corporate-empty";
           futureGap.textContent = "尚未取得经过核验的未来事件；这不表示发行人或基金没有即将发生的事项。";
