@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
+        "latestAsOfDate": "20260730",
         "providerPublishedDate": null,
         "providerVerifiedAt": null
       }
@@ -10,22 +10,160 @@
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 1,
+          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "status": "pass"
         }
       }
     },
     "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "research": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "broad_market_index_etf_review",
+        "frameworkVersion": "broad-market-index-etf-research-v1",
+        "result": {
+          "bearCase": [
+            "高起始估值、低静态盈利收益率与高长债收益率共同压低未来风险调整回报，即使企业盈利仍增长也可能经历多年估值压缩。",
+            "前十大 37.9%的集中度继续上升，少数半导体、平台与巨型成长公司同时受到资本开支、监管或竞争冲击。",
+            "浮动市值加权会在上涨过程中被动提高最昂贵公司的权重，且基金不会主动回避恶化的行业或估值。",
+            "美国大盘长期落后于小盘、国际市场或价值资产，VOO 的范围限制形成机会成本。",
+            "指数提供商更改资格、流通股或公司行动处理方法，或者基金在波动期出现异常跟踪误差、溢折价与申赎摩擦。",
+            "本账户继续同时增加直接美国个股和 VOO，使看似分散的组合实质上进一步集中于相同盈利与估值因子。"
+          ],
+          "bullCase": [
+            "美国大型企业的盈利、自由现金流和资本回报率继续高于全球同业，高估值由实际增长而非仅由倍数扩张消化。",
+            "AI、云、数字化与生产率提升扩散到更多行业，指数上涨不再只依赖少数巨型科技公司。",
+            "Vanguard 继续以 0.03%费用、低换手和全复制维持约费用水平的跟踪差异。",
+            "指数委员会和季度再平衡持续剔除衰退企业、纳入具备盈利和流动性的领先公司，使指数具有缓慢自我更新能力。",
+            "市场回撤或盈利增长降低组合 PE，而基本面没有同步恶化，形成更好的长期加仓窗口。"
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "VOO 是否值得继续承担美国权益核心角色，取决于低费用全复制能否继续紧密跟踪 S&P 500，以及当前高估值和巨型公司集中度能否被未来盈利增长兑现。基金本身没有明显产品缺陷；真正需要约束的是把“广泛持有约 500 只股票”误解为不存在集中风险，或在已有大量美国单股敞口时仅因 VOO 权重较低便自动加仓。",
+          "evidenceConfidence": "high",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "Morningstar 已依据 2026-04-27 当前分析页及后续官网文章建立独立基金研究面板，并确认分析师驱动的 Gold Medalist；但仍未取得完整基金研报 PDF，因此当前传统历史星级、完整 Pillar 论证和报告附表未核实，日后取得 PDF 时仍须全文提取并逐页复核。",
+            "尚未建立 S&P 500 同口径、长历史的点时 PE／PB 本地时间序列，因此“估值偏贵”基于当前绝对估值、收益率机会成本与集中度，估值结论置信度为中等，不声称具体历史百分位或公允价值。",
+            "Vanguard 2026-06-30 官方事实表与完整持仓 API 对股票数量给出 506、503 与 504 的不同口径；本研究保留差异，不自行选择一个数字作为唯一真值。",
+            "组合穿透只对本账户直接持有的八只美国个股逐项核对，尚未把 VOO 与所有其他 ETF 的底层成分在同一日期完整交叉合并。",
+            "VOO 的发行人分配历史在本项目中仍是自 2016-09-13 起的 reviewed_partial 覆盖；更早分配不主动追补，不能据此计算成立以来分配统计。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "截至 2026-06-30，主要年化窗口落后指数约 3–5 个基点；费用率 0.03%",
+              "challengingDirection": "连续四季异常落后，或费用、现金拖累和交易摩擦明显扩大。",
+              "confirmingDirection": "跟踪差异继续接近费用与正常摩擦，费用率不升。",
+              "metric": "跟踪差异与费用",
+              "nextReview": "quarterly"
+            },
+            {
+              "baseline": "2026-06-30 PE 27.5 倍、PB 5.4 倍、ROE 29%；2026-07-29 十年期国债 4.67%",
+              "challengingDirection": "盈利预期下修而倍数保持高位，或高利率使机会成本长期上升。",
+              "confirmingDirection": "盈利增长、利润质量和回购消化估值，PE 在没有盈利衰退的情况下回落。",
+              "metric": "估值与盈利兑现",
+              "nextReview": "monthly_or_material_market_repricing"
+            },
+            {
+              "baseline": "2026-06-30 前十大占 37.9%，NVDA、Apple、Alphabet、MSFT 为最大权重",
+              "challengingDirection": "上涨和盈利进一步集中于极少数公司，单一主题冲击足以主导指数。",
+              "confirmingDirection": "盈利贡献向更多行业扩散，前十大和信息技术权重稳定或下降。",
+              "metric": "指数与巨型股集中度",
+              "nextReview": "each_quarterly_holdings_update"
+            },
+            {
+              "baseline": "VOO 占 NAV 2.84%；直接美国单股占 35.83%；直接持股占 VOO 14.32%",
+              "challengingDirection": "直接股与 VOO 同时增加同一巨型股、科技或消费因子暴露。",
+              "confirmingDirection": "新增 VOO 降低单股依赖并符合经确认的长期资产配置。",
+              "metric": "账户穿透与组合角色",
+              "nextReview": "each_position_or_allocation_change"
+            },
+            {
+              "baseline": "TTM 每份分配 US$7.3456，按 2026-07-29 收盘约 1.10%；历史官方覆盖自 2016-09-13",
+              "challengingDirection": "日历反复变更、异常资本利得分配或基金结构改变。",
+              "confirmingDirection": "正式宣告与预估日历一致，分配和基金税务处理保持透明。",
+              "metric": "分配与税务",
+              "nextReview": "each_distribution_declaration"
+            }
+          ],
+          "researchMaturity": "active",
+          "sourceRegister": [
+            {
+              "label": "Vanguard S&P 500 ETF Prospectus",
+              "publishedAt": "20260428",
+              "url": "https://personal1.vanguard.com/pub/Pdf/p968.pdf"
+            },
+            {
+              "asOf": "20260630",
+              "label": "Vanguard S&P 500 ETF Fact Sheet",
+              "url": "https://workplace.vanguard.com/assets/corp/fund_communications/pdf_publish/us-products/fact-sheet/F0968.pdf"
+            },
+            {
+              "asOf": "20260630",
+              "label": "Vanguard VOO official profile",
+              "url": "https://investor.vanguard.com/investment-products/etfs/profile/voo"
+            },
+            {
+              "asOf": "20260630",
+              "label": "Vanguard VOO official portfolio holdings",
+              "url": "https://investor.vanguard.com/investment-products/etfs/profile/vmf/api/VOO/portfolio-holding/stock.json?start=1&count=20000&asOfType=daily"
+            },
+            {
+              "label": "S&P U.S. Indices Methodology",
+              "url": "https://www.spglobal.com/spdji/en/documents/methodologies/methodology-sp-us-indices.pdf"
+            },
+            {
+              "label": "Vanguard 2026 Dividend Schedule",
+              "url": "https://advisors.vanguard.com/content/dam/fas/pdfs/DIVDAT_2026.pdf"
+            },
+            {
+              "asOf": "20260630",
+              "label": "Vanguard VOO official distributions",
+              "url": "https://investor.vanguard.com/investment-products/etfs/profile/voo#distributions"
+            },
+            {
+              "label": "Morningstar VOO ETF Analysis",
+              "publishedAt": "20260427",
+              "url": "https://www.morningstar.com/etfs/arcx/voo/quote"
+            },
+            {
+              "label": "Morningstar VOO official research article",
+              "publishedAt": "20250916",
+              "url": "https://www.morningstar.com/funds/why-vanguard-sp-500-etf-is-one-best-its-class"
+            },
+            {
+              "asOf": "20260610",
+              "label": "Morningstar Best Vanguard Funds",
+              "url": "https://www.morningstar.com/funds/best-vanguard-funds"
+            },
+            {
+              "asOf": "20260729",
+              "label": "U.S. Treasury Daily Par Yield Curve Rates",
+              "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202607&type=daily_treasury_yield_curve"
+            }
+          ],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "expensive"
+        },
+        "sourceLabel": "VOO 2026 年指数产品与组合角色完整研究",
+        "sourceVersion": "v1.1",
+        "status": "active",
+        "summary": "VOO 是 Vanguard 500 Index Fund 的 ETF 份额，以全复制方式跟踪浮动市值加权的 S&P 500，并非主动选股或低估值策略。产品层面的证据很强：0.03%费用率、约 US$979B 的 ETF 净资产、2.4%换手率，以及截至 2026-06-30 的一至十年年化 NAV 回报仅落后指数约 3–5 个基点，说明规模、流动性和跟踪都属优质。风险主要来自所买指数本身：组合约 27.5 倍 PE、5.4 倍 PB，前十大占 37.9%，且本账户直接持有的八只美国个股合计又占 VOO 14.32%，形成约 0.41% NAV 的额外重复暴露。现有 4.1673 股占 NAV 2.84%，适合继续作为美国大盘核心底仓；但低权重不是增持理由，在当前估值与直接持股重叠下，新增现金列入观察名单，优先服从全组合再平衡，而不是追逐近期强势。",
+        "updatedAt": "2026-07-30T17:02:13.398030Z"
+      }
+    ],
     "summary": {
       "research": {
-        "count": 0
+        "count": 1,
+        "internalCount": 1,
+        "providerCount": 0
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "VOO"

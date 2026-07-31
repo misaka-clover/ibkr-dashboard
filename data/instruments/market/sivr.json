@@ -6,13 +6,13 @@
       "requestedTo": null,
       "series": [
         {
-          "availableEnd": "20260727",
-          "availablePoints": 4276,
+          "availableEnd": "20260729",
+          "availablePoints": 4278,
           "availableStart": "20090727",
           "barType": "ADJUSTED_LAST",
           "priceBasis": "source",
-          "returnedEnd": "20260727",
-          "returnedPoints": 4276,
+          "returnedEnd": "20260729",
+          "returnedPoints": 4278,
           "returnedStart": "20090727",
           "splitNormalizationAnchorDate": null,
           "splitNormalizationMethod": null,
@@ -20,13 +20,13 @@
           "truncated": false
         },
         {
-          "availableEnd": "20260727",
-          "availablePoints": 4276,
+          "availableEnd": "20260729",
+          "availablePoints": 4278,
           "availableStart": "20090727",
           "barType": "TRADES",
           "priceBasis": "source",
-          "returnedEnd": "20260727",
-          "returnedPoints": 4276,
+          "returnedEnd": "20260729",
+          "returnedPoints": 4278,
           "returnedStart": "20090727",
           "splitNormalizationAnchorDate": null,
           "splitNormalizationMethod": null,
@@ -196731,6 +196731,98 @@
         "splitNormalization": null,
         "symbol": "SIVR",
         "volume": 679911.0
+      },
+      {
+        "adjustmentMode": "adjusted_last",
+        "barType": "ADJUSTED_LAST",
+        "close": 54.33,
+        "currency": "USD",
+        "date": "20260728",
+        "high": 54.65,
+        "low": 53.82,
+        "open": 54.22,
+        "peEpsEffectiveDate": null,
+        "peEpsEvidenceLabel": null,
+        "peEpsSplitFactorApplied": null,
+        "peEpsTtm": null,
+        "pePriceBasis": "trades_point_in_time_close",
+        "peStatus": "not_available",
+        "peTtm": null,
+        "priceBasis": "source",
+        "qualityStatus": "pass",
+        "sourceName": "IBKR 历史日线（经书面授权公开）",
+        "splitNormalization": null,
+        "symbol": "SIVR",
+        "volume": 658099.0
+      },
+      {
+        "adjustmentMode": "unadjusted",
+        "barType": "TRADES",
+        "close": 54.33,
+        "currency": "USD",
+        "date": "20260728",
+        "high": 54.65,
+        "low": 53.82,
+        "open": 54.22,
+        "peEpsEffectiveDate": null,
+        "peEpsEvidenceLabel": null,
+        "peEpsSplitFactorApplied": null,
+        "peEpsTtm": null,
+        "pePriceBasis": "trades_point_in_time_close",
+        "peStatus": "not_available",
+        "peTtm": null,
+        "priceBasis": "source",
+        "qualityStatus": "pass",
+        "sourceName": "IBKR 历史日线（经书面授权公开）",
+        "splitNormalization": null,
+        "symbol": "SIVR",
+        "volume": 658099.0
+      },
+      {
+        "adjustmentMode": "adjusted_last",
+        "barType": "ADJUSTED_LAST",
+        "close": 54.43,
+        "currency": "USD",
+        "date": "20260729",
+        "high": 56.3,
+        "low": 53.91,
+        "open": 54.35,
+        "peEpsEffectiveDate": null,
+        "peEpsEvidenceLabel": null,
+        "peEpsSplitFactorApplied": null,
+        "peEpsTtm": null,
+        "pePriceBasis": "trades_point_in_time_close",
+        "peStatus": "not_available",
+        "peTtm": null,
+        "priceBasis": "source",
+        "qualityStatus": "pass",
+        "sourceName": "IBKR 历史日线（经书面授权公开）",
+        "splitNormalization": null,
+        "symbol": "SIVR",
+        "volume": 1234804.0
+      },
+      {
+        "adjustmentMode": "unadjusted",
+        "barType": "TRADES",
+        "close": 54.43,
+        "currency": "USD",
+        "date": "20260729",
+        "high": 56.3,
+        "low": 53.91,
+        "open": 54.35,
+        "peEpsEffectiveDate": null,
+        "peEpsEvidenceLabel": null,
+        "peEpsSplitFactorApplied": null,
+        "peEpsTtm": null,
+        "pePriceBasis": "trades_point_in_time_close",
+        "peStatus": "not_available",
+        "peTtm": null,
+        "priceBasis": "source",
+        "qualityStatus": "pass",
+        "sourceName": "IBKR 历史日线（经书面授权公开）",
+        "splitNormalization": null,
+        "symbol": "SIVR",
+        "volume": 1234804.0
       }
     ],
     "chartEvents": {
@@ -196748,28 +196840,43 @@
       "items": []
     },
     "corporateEvents": {
-      "items": [],
+      "items": [
+        {
+          "currency": null,
+          "description": "Aberdeen 官方 fact sheet 和最新 SEC 文件把 2027-02-28 列为现行费率减免安排的预定终止日期；0.45%毛费率当前减至 0.30%净费率。该减免为自愿安排，Sponsor 可在此前停止，因此本事件确认的是最迟复核边界，不表示届时费率一定改变。",
+          "eventDate": "20270228",
+          "eventTime": null,
+          "eventTimezone": null,
+          "eventType": "fund_fee_review",
+          "publicKey": "f7522ea262ac6c01239949c06a2d4956db534fc2e4993f032e748f69a97cfb60",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://www.aberdeeninvestments.com/docs?editionId=7690ff0f-7aed-44f1-b573-3146cc0d5c1e",
+          "status": "confirmed",
+          "title": "SIVR 当前 0.30%净费率减免安排复核日"
+        }
+      ],
       "sources": [
+        {},
         {}
       ],
       "stale": false,
       "status": "warning",
-      "updatedAt": "2026-07-28T02:55:11.793265Z",
+      "updatedAt": "2026-07-30T17:55:36Z",
       "warning": "Aberdeen 官方白银产品资料尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方产品页。"
     },
     "coverage": [
       {
         "barType": "ADJUSTED_LAST",
-        "coverageEnd": "20260727",
+        "coverageEnd": "20260729",
         "coverageStart": "20090727",
-        "points": 4276,
+        "points": 4278,
         "warnings": 0
       },
       {
         "barType": "TRADES",
-        "coverageEnd": "20260727",
+        "coverageEnd": "20260729",
         "coverageStart": "20090727",
-        "points": 4276,
+        "points": 4278,
         "warnings": 0
       }
     ],
@@ -196777,15 +196884,15 @@
       "corporateEvents": {
         "stale": false,
         "status": "warning",
-        "updatedAt": "2026-07-28T02:55:11.793265Z"
+        "updatedAt": "2026-07-30T17:55:36Z"
       },
       "market": {
         "ADJUSTED_LAST": {
-          "coverageEnd": "20260727",
+          "coverageEnd": "20260729",
           "coverageStart": "20090727"
         },
         "TRADES": {
-          "coverageEnd": "20260727",
+          "coverageEnd": "20260729",
           "coverageStart": "20090727"
         }
       }
@@ -196794,14 +196901,14 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 0,
+          "count": 1,
           "stale": false,
           "status": "warning",
-          "updatedAt": "2026-07-28T02:55:11.793265Z",
+          "updatedAt": "2026-07-30T17:55:36Z",
           "warning": "Aberdeen 官方白银产品资料尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方产品页。"
         },
         "fundamentals": {
-          "asOfDate": "20260727",
+          "asOfDate": "20260729",
           "status": "pass",
           "unavailable": []
         },
@@ -196847,7 +196954,7 @@
       "status": "pass"
     },
     "fundamentals": {
-      "asOfDate": "20260727",
+      "asOfDate": "20260729",
       "betaMethodology": {
         "benchmark": "SPX",
         "endMonth": "202606",
@@ -196868,7 +196975,7 @@
         "peTtmStatus": "not_available",
         "priceToBook": null
       },
-      "price": 55.64,
+      "price": 54.43,
       "status": "partial",
       "unavailable": [
         "eps_ttm",
@@ -196887,7 +196994,7 @@
       "englishName": "abrdn Physical Silver Shares ETF",
       "firstSeenDate": "20260130",
       "instrumentKind": "etf",
-      "lastSeenDate": "20260728",
+      "lastSeenDate": "20260730",
       "primaryExchange": "ARCA",
       "status": "active",
       "symbols": [
@@ -196896,7 +197003,7 @@
           "exchange": null,
           "firstSeenDate": "20260130",
           "isPrimary": true,
-          "lastSeenDate": "20260728",
+          "lastSeenDate": "20260730",
           "symbol": "SIVR"
         }
       ]
@@ -196910,12 +197017,12 @@
     },
     "summary": {
       "barPoints": {
-        "ADJUSTED_LAST": 4276,
-        "TRADES": 4276
+        "ADJUSTED_LAST": 4278,
+        "TRADES": 4278
       },
       "corporateEvents": {
-        "count": 0,
-        "sourceCount": 1
+        "count": 1,
+        "sourceCount": 2
       }
     },
     "valuationAnalysis": {
@@ -196931,7 +197038,7 @@
       },
       "current": null,
       "message": "尚无与完成日线配对的正数、申报生效 TTM diluted EPS。",
-      "methodologyVersion": "filing_effective_pe_distribution_v1",
+      "methodologyVersion": "filing_effective_source_aware_pe_distribution_v2",
       "metric": "pe_ttm",
       "referenceWindow": null,
       "statistics": null,
@@ -196940,20 +197047,20 @@
     "valuationSeries": {
       "coverageEnd": null,
       "coverageStart": null,
-      "displayPolicy": "All price views reuse the same date-aligned TTM PE calculated from the point-in-time TRADES close. Zero or negative EPS is disclosed as a gap and never plotted as a negative PE.",
+      "displayPolicy": "All price views reuse the same date-aligned TTM PE calculated from the retained TRADES close after aligning filing-effective EPS to the source series' reviewed split basis. Zero or negative EPS is disclosed as a gap and never plotted as a negative PE.",
       "items": [],
-      "methodologyVersion": "filing_effective_pe_distribution_v1",
+      "methodologyVersion": "filing_effective_source_aware_pe_distribution_v2",
       "priceBasis": "trades_point_in_time_close",
       "status": "not_available",
       "summary": {
         "availablePoints": 0,
         "negativeEpsPoints": 0,
-        "preEpsPricePoints": 4276,
+        "preEpsPricePoints": 4278,
         "zeroEpsPoints": 0
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "SIVR"

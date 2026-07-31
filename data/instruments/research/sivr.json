@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
+        "latestAsOfDate": "20260730",
         "providerPublishedDate": null,
         "providerVerifiedAt": null
       }
@@ -10,22 +10,134 @@
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 1,
+          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "status": "pass"
         }
       }
     },
     "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "research": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "physical_silver_trust_review",
+        "frameworkVersion": "physical-commodity-trust-research-v1",
+        "result": {
+          "bearCase": [
+            "全球制造业或新能源资本开支放缓削弱白银工业需求，使其在衰退中不像纯避险资产。",
+            "高波动、杠杆资金和库存变化可能造成比黄金更深、更快的回撤。",
+            "净费率减免提前停止或到期后恢复 0.45%毛费率，持续扩大相对基准拖累。",
+            "托管、次托管、未分配账户、申赎中断或市场价偏离 NAV 会在压力期放大产品风险。"
+          ],
+          "bullCase": [
+            "工业需求、能源转型、电气化和有限矿山供给共同收紧白银实物市场。",
+            "实际利率下降、美元走弱或风险事件同时提升货币金属需求。",
+            "实物支持、机构申赎和可核验金条清单使 SIVR 有效传递白银价格。"
+          ],
+          "cashDecision": "do_not_buy",
+          "decisionHinge": "产品本身能够较直接地传递白银价格，但白银不是便宜版黄金，也不能用持仓成本或跌幅判定低估。现有仓位很小，可以保留观察；只有当组合明确需要工业周期与货币金属双重暴露、贵金属总权重仍在预算内、且能够承受约为 GLDM 1.86 倍的历史日波动时，才有重新讨论新增的基础。",
+          "evidenceConfidence": "high",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "Morningstar SIVR 官方分析页目前明确没有分析师覆盖；本版本不虚构 Medalist、pillar、传统星级或分析师观点。",
+            "白银没有可审核的企业现金流或单点内在价值模型；本版本不以成本、高点、技术位或宏观单点预测建立公允价值。",
+            "组合贵金属目标区间尚未写入正式配置规则；现阶段只确认总权重约 4.63%和 SIVR 的卫星定位。",
+            "发行人尚未确认 2027-02-28 之后的实际净费率；日期只代表现行减免安排的预定终止／复核边界，不代表一定调费。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "0.45%毛费率；0.30%净费率；当前安排预定至 2027-02-28且可提前停止",
+              "challengingDirection": "提前撤回或到期后恢复 0.45%。",
+              "confirmingDirection": "Sponsor 继续维持或正式延长 0.30%净费率。",
+              "metric": "费率减免",
+              "nextReview": "each_sponsor_update_and_2027-02-28"
+            },
+            {
+              "baseline": "2026-06-30 每股约 0.950385754 盎司",
+              "challengingDirection": "下降显著快于费用或出现无法解释的资产缺口。",
+              "confirmingDirection": "下降速度与净费率和正常运营一致。",
+              "metric": "每股白银量与费用侵蚀",
+              "nextReview": "quarterly"
+            },
+            {
+              "baseline": "三年至成立以来 NAV 年化落后基准约 33–41 个基点",
+              "challengingDirection": "持续扩大或折溢价失控。",
+              "confirmingDirection": "差异保持在适用费率和正常摩擦范围。",
+              "metric": "NAV 跟踪",
+              "nextReview": "quarterly"
+            },
+            {
+              "baseline": "London 实物银条；Bureau Veritas 每年两次检查，最近披露 2025-08-04 与 2026-01-05",
+              "challengingDirection": "未分配余额、托管、次托管或检查出现重大问题。",
+              "confirmingDirection": "金条清单、检查和托管关系持续无重大例外。",
+              "metric": "托管与白银检查",
+              "nextReview": "each_filing_and_inspection_update"
+            },
+            {
+              "baseline": "SIVR 约 0.55% NAV；与 GLDM 合计约 4.63%",
+              "challengingDirection": "与黄金高度重叠、尾部风险失控或新增只由亏损驱动。",
+              "confirmingDirection": "白银提供黄金之外的可验证分散且维持小型卫星规模。",
+              "metric": "组合角色",
+              "nextReview": "portfolio_research_audit"
+            },
+            {
+              "baseline": "2026-07-30 官方分析页显示目前无分析师覆盖",
+              "challengingDirection": "任何第三方转述或页面残片被误填为正式评级。",
+              "confirmingDirection": "若未来开始覆盖，取得正式日期、分析师和完整证据后另建版本。",
+              "metric": "Morningstar 覆盖",
+              "nextReview": "each_material_coverage_change_or_90_days"
+            }
+          ],
+          "researchMaturity": "active",
+          "sourceRegister": [
+            {
+              "asOf": "20260728",
+              "label": "Aberdeen abrdn Physical Silver Shares ETF official product page",
+              "url": "https://www.aberdeeninvestments.com/en-us/investor/funds/view-all-funds/abrdn-physical-silver-shares-etf/share/us0032641088"
+            },
+            {
+              "asOf": "20260630",
+              "label": "abrdn Physical Silver Shares ETF fact sheet",
+              "url": "https://www.aberdeeninvestments.com/docs?editionId=7690ff0f-7aed-44f1-b573-3146cc0d5c1e"
+            },
+            {
+              "label": "abrdn Silver ETF Trust Form 10-Q for quarter ended 2026-03-31",
+              "publishedAt": "20260508",
+              "url": "https://www.sec.gov/Archives/edgar/data/1450922/000199937126010350/sivr-10q_033126.htm"
+            },
+            {
+              "label": "abrdn Silver ETF Trust Form 10-K for year ended 2025-12-31",
+              "publishedAt": "20260302",
+              "url": "https://www.sec.gov/Archives/edgar/data/1450922/000199937126004884/sivr-10k_123125.htm"
+            },
+            {
+              "asOf": "20260730",
+              "label": "Morningstar SIVR analysis page and coverage status",
+              "url": "https://www.morningstar.com/etfs/xmex/sivr/analysis"
+            }
+          ],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "nav_aligned"
+        },
+        "sourceLabel": "SIVR 2026 年实物白银信托与组合角色完整研究",
+        "sourceVersion": "v1.0",
+        "status": "active",
+        "summary": "SIVR 是结构透明、以分配实物白银支持的单一商品信托；2026-06-30 官方资料列示净费率 0.30%、约 US$3.95B 净资产、67.19M 金衡盎司白银、70.70M 股和每股约 0.9504 盎司白银。当前 0.30%净费率依赖自成立以来持续的自愿减免，毛费率为 0.45%，安排预定至 2027-02-28 且 Sponsor 可提前停止；这是相对 GLDM 更明确的产品成本风险。SIVR 不生息，会转移白银支付费用，也不受 1940 Act 投资公司或 CEA 商品池制度保护。白银兼具货币／避险与工业周期属性，长期波动和尾部回撤显著高于黄金；现有 10 股仅占 NAV 约 0.55%，与 GLDM 合计约 4.63%，可作为很小的卫星仓继续持有，但不应因为账面亏损约 37.75%而补仓。新增现金结论为不买，除非先建立独立的白银配置理由、贵金属总预算和再平衡规则。",
+        "updatedAt": "2026-07-30T18:02:24.185672Z"
+      }
+    ],
     "summary": {
       "research": {
-        "count": 0
+        "count": 1,
+        "internalCount": 1,
+        "providerCount": 0
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "SIVR"

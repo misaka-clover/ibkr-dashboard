@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
+        "latestAsOfDate": "20260730",
         "providerPublishedDate": null,
         "providerVerifiedAt": null
       }
@@ -10,22 +10,126 @@
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 1,
+          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "status": "pass"
         }
       }
     },
     "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "research": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "single_country_index_etf_review",
+        "frameworkVersion": "single-country-index-etf-research-v1",
+        "result": {
+          "bearCase": [
+            "高估值叠加医疗、消费龙头增长放缓，导致长期回报落后更便宜的欧洲或全球宽基。",
+            "前三大和医疗行业集中使监管、专利、定价与个别公司执行风险被放大。",
+            "0.50%费用、外币和瑞士预扣税摩擦，以及与 VGK／SCHF 的重复持有，持续侵蚀组合效率。"
+          ],
+          "bullCase": [
+            "瑞士医疗、消费、工业和金融龙头保持全球定价权、资本回报与防御性，盈利质量支持估值。",
+            "瑞郎走强提升美元计价回报，低 Beta 与行业构成在美国成长股回撤时提供差异化。",
+            "25／50 约束和低换手使单一国家暴露在可控框架内有效传递。"
+          ],
+          "cashDecision": "do_not_buy",
+          "decisionHinge": "EWL 的投资价值取决于组合是否有独立、可解释的瑞士超配意图。它确实提供医疗保健、必需消费、工业和金融中的全球化瑞士龙头，但 0.50%费用、40 只持仓、前三大 37.15%以及与 VGK／SCHF 的完全区域嵌套，使它不适合作为默认国际核心；除非瑞士估值和角色显著改善，否则不应因防御性叙事追加资金。",
+          "evidenceConfidence": "high",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "Morningstar 当前没有 EWL 分析师覆盖，也没有用户提供的完整 ETF 研报 PDF；不把无覆盖解释为负面评级，不补猜 Medalist、pillar 或传统星级。",
+            "没有可审核的长期指数估值分位和底层一致口径盈利增长序列，因此偏贵判断是基于当前横截面、成本与机会成本，不能解释成精确公允价值。",
+            "组合层面 SCHF、VGK、EWL、EWJV 的完整成分穿透重叠将在六只新增研究完成后的统一审计中计算；本版本只披露官方国家层面的可证明重叠。",
+            "EWL 自 2013-02-12 才从旧 MSCI Switzerland Index 切换到当前 25／50 指数，成立以来回报不是同一指数方法的完整实盘历史。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "0.50%费用率；三至十年 NAV 落后净指数约 12–17 个基点",
+              "challengingDirection": "持续异常落后或同类低费工具优势扩大。",
+              "confirmingDirection": "长期差异继续受控，费用下降。",
+              "metric": "费用与跟踪",
+              "nextReview": "semiannual"
+            },
+            {
+              "baseline": "前三大 37.15%、前十大 65.19%、医疗 36.62%（2026-06-30 fact sheet）",
+              "challengingDirection": "前三大或医疗集中进一步上升。",
+              "confirmingDirection": "集中度稳定或下降，盈利来源保持多元。",
+              "metric": "持仓集中",
+              "nextReview": "each_holdings_refresh"
+            },
+            {
+              "baseline": "PE 24.56、PB 4.26（2026-07-29）",
+              "challengingDirection": "估值继续上升而盈利质量或增长放缓。",
+              "confirmingDirection": "盈利增长兑现使估值下降。",
+              "metric": "估值",
+              "nextReview": "quarterly"
+            },
+            {
+              "baseline": "直接 EWL 0.64% NAV；已知瑞士小计约 0.81% NAV，另含 VGK 与 SCHF 穿透",
+              "challengingDirection": "与宽基重复，却没有可解释的超配目标或退出规则。",
+              "confirmingDirection": "EWL 被赋予明确、有预算的瑞士卫星角色。",
+              "metric": "组合重叠",
+              "nextReview": "portfolio_research_audit"
+            },
+            {
+              "baseline": "2026-07-30 官网核验为目前无 Morningstar 分析师覆盖",
+              "challengingDirection": "无研究覆盖状态本身不构成产品恶化；只在出现新的实质证据时修订。",
+              "confirmingDirection": "未来新增可审核的分析师研究并形成独立产品判断。",
+              "metric": "Morningstar 覆盖",
+              "nextReview": "each_coverage_change_or_90_days"
+            }
+          ],
+          "researchMaturity": "active",
+          "sourceRegister": [
+            {
+              "asOf": "20260729",
+              "label": "iShares MSCI Switzerland ETF official product page",
+              "url": "https://www.ishares.com/us/products/239685/ishares-msci-switzerland-capped-etf"
+            },
+            {
+              "asOf": "20260630",
+              "label": "iShares MSCI Switzerland ETF fact sheet",
+              "url": "https://www.ishares.com/us/literature/fact-sheet/ewl-ishares-msci-switzerland-etf-fund-fact-sheet-en-us.pdf"
+            },
+            {
+              "asOf": "20260630",
+              "label": "MSCI Switzerland 25/50 Index",
+              "url": "https://www.msci.com/indexes/index/702749/msci-switzerland-25-50-index"
+            },
+            {
+              "asOf": "20260730",
+              "label": "Morningstar EWL Fund Analysis coverage status",
+              "url": "https://www.morningstar.com/etfs/arcx/ewl/analysis"
+            },
+            {
+              "label": "iShares and BlackRock Exchange Traded Funds 2026–2028 distribution schedule",
+              "publishedAt": "20260730",
+              "url": "https://www.ishares.com/us/literature/shareholder-letters/isharesandblackrocketfsdistributionschedule.pdf"
+            }
+          ],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "expensive"
+        },
+        "sourceLabel": "EWL 2026 年瑞士单一国家与组合角色完整研究",
+        "sourceVersion": "v1.0",
+        "status": "active",
+        "summary": "EWL 是历史悠久、流动性尚可的瑞士大型与中型股单一国家 ETF，但它不是低成本宽基核心：费用率 0.50%，只有 40 只股票，2026-06-30 前十大占 65.19%，Roche、Novartis 与 Nestlé 三只合计 37.15%；医疗保健、金融和必需消费合计 67.82%。基金一至十年 NAV 年化回报均落后净指数 15–88 个基点，较高费用和税务／公允价值时点摩擦形成长期阻力。2026-07-29 的 PE 24.56、PB 4.26，在授权日线过去一年上涨约 18.07%后属于偏贵；瑞士高质量防御属性不足以自动抵消估值。现有 10 股仅占 NAV 0.64%，可继续持有；在没有明确瑞士超配意图前不新增现金，因为同一暴露已嵌套于 VGK 与 SCHF，且 EWL 成本明显更高。",
+        "updatedAt": "2026-07-30T17:43:18.501098Z"
+      }
+    ],
     "summary": {
       "research": {
-        "count": 0
+        "count": 1,
+        "internalCount": 1,
+        "providerCount": 0
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "EWL"

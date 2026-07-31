@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
+        "latestAsOfDate": "20260730",
         "providerPublishedDate": null,
         "providerVerifiedAt": null
       }
@@ -10,22 +10,139 @@
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 1,
+          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "status": "pass"
         }
       }
     },
     "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "research": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "single_country_factor_etf_review",
+        "frameworkVersion": "single-country-factor-etf-research-v1",
+        "result": {
+          "bearCase": [
+            "金融与周期股盈利下滑，低估值反映的是结构性低回报或资产质量风险，而非可收敛折价。",
+            "日本成长和出口龙头继续领涨，价值筛选造成长期机会成本；较高指数换手又增加隐性摩擦。",
+            "日元对美元波动、全球衰退或日本政策意外使美元投资者回报显著偏离本地公司基本面。"
+          ],
+          "bullCase": [
+            "日本公司治理、回购、交叉持股压降和资本效率改善持续，使价值股的账面折价转化为实际股东回报。",
+            "利率正常化改善银行净息差和资本回报，同时没有引发严重信贷损失。",
+            "价值指数保持相对广义日本市场的估值折价，EWJV 继续以低费用和小跟踪差异传递因子收益。"
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "EWJV 的后续回报能否优于更广泛的日本或国际股票，取决于日本价值股相对折价能否通过盈利、资本回报和治理改善兑现，同时不被金融业集中、日元波动、周期性价值陷阱和较高指数换手所抵消。低费率与良好跟踪解决的是产品效率，不解决因子择时和单一国家集中风险。",
+          "evidenceConfidence": "high",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "目前没有用户提供的 Morningstar ETF 完整研报 PDF；晨星部分以官网当前分析摘要和发行人展示的晨星评级为边界，不推断未公开的 pillar 细节。",
+            "没有对日本价值因子的未来超额收益做点估计，也没有把历史回报外推为预期回报。",
+            "指数估值为持仓横截面特征，不是基金份额的可兑现公允价值；不存在单一公司式 DCF。",
+            "日元暴露、成分股海外收入和税务处理没有被压缩为单一净货币敏感度。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "2026-06-30 价值指数 PE 16.10、PB 1.38；广义日本 PE 21.27、PB 2.04",
+              "challengingDirection": "折价收敛仅来自价格上涨，盈利质量和资本效率没有改善。",
+              "confirmingDirection": "折价在盈利和资本回报改善中有序收敛。",
+              "metric": "相对估值",
+              "nextReview": "quarterly_or_material_index_update"
+            },
+            {
+              "baseline": "金融 34.41%，前十大 42.52%",
+              "challengingDirection": "集中进一步上升，或银行盈利与资产质量同时恶化。",
+              "confirmingDirection": "集中度稳定或下降，银行盈利改善且信贷成本受控。",
+              "metric": "金融与前十大集中",
+              "nextReview": "each_holdings_refresh"
+            },
+            {
+              "baseline": "三年净值回报仅落后基准 1 个基点；30 日中位价差 0.28%",
+              "challengingDirection": "持续异常落后、价差扩大或规模明显萎缩。",
+              "confirmingDirection": "主要窗口差异继续接近费用与正常摩擦，价差和成交维持可接受。",
+              "metric": "跟踪与流动性",
+              "nextReview": "semiannual"
+            },
+            {
+              "baseline": "单一国家价值因子，美元计价但底层日本股票受日元与日本利率影响",
+              "challengingDirection": "价值风格长期落后、日元剧烈不利或政策正常化引发信用压力。",
+              "confirmingDirection": "治理与资本回报改善、金融正常化有序，美元回报未被汇率长期侵蚀。",
+              "metric": "因子与货币环境",
+              "nextReview": "each_material_macro_or_policy_change"
+            },
+            {
+              "baseline": "60 股，占 NAV 2.79%",
+              "challengingDirection": "与其他日本／欧洲／国际 ETF 重复增加，或单一国家风险超过组合需要。",
+              "confirmingDirection": "提供与美国大盘和直接个股不同的国际价值暴露，集中风险受控。",
+              "metric": "组合角色",
+              "nextReview": "each_portfolio_allocation_decision"
+            },
+            {
+              "baseline": "2026-05-31 量化 Gold Medalist，2026-06-30 传统四星",
+              "challengingDirection": "评级下调源自费用、流程、Parent、流动性或持续跟踪问题。",
+              "confirmingDirection": "Medalist、产品效率与同类风险调整后表现保持稳定。",
+              "metric": "Morningstar 基金研究",
+              "nextReview": "each_medalist_update_or_90_days"
+            }
+          ],
+          "researchMaturity": "active",
+          "sourceRegister": [
+            {
+              "asOf": "20260724",
+              "label": "iShares EWJV official product page",
+              "url": "https://www.ishares.com/us/products/307263/fund"
+            },
+            {
+              "asOf": "20260724",
+              "label": "iShares EWJV official holdings CSV",
+              "url": "https://www.ishares.com/us/products/307263/ishares-msci-japan-value-etf/latest-holdings.csv"
+            },
+            {
+              "asOf": "20260630",
+              "label": "MSCI Japan Value Index official page",
+              "url": "https://www.msci.com/indexes/index/105796/msci-japan-value-index"
+            },
+            {
+              "asOf": "20260630",
+              "label": "MSCI Japan Index official page",
+              "url": "https://www.msci.com/indexes/index/939200/msci-japan-index"
+            },
+            {
+              "asOf": "20260531",
+              "label": "Morningstar EWJV Fund Analysis",
+              "publishedAt": "20260715",
+              "url": "https://www.morningstar.com/etfs/xnas/ewjv/analysis"
+            },
+            {
+              "label": "iShares and BlackRock ETFs Distribution Schedule",
+              "publishedAt": "20260709",
+              "url": "https://www.ishares.com/us/literature/shareholder-letters/isharesandblackrocketfsdistributionschedule.pdf"
+            }
+          ],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "fair"
+        },
+        "sourceLabel": "EWJV 2026 年日本价值因子与组合角色完整研究",
+        "sourceVersion": "v1.0",
+        "status": "active",
+        "summary": "EWJV 是一只低费用的日本价值因子 ETF，而不是广义日本市场的中性替代品。产品层面证据较强：0.15%费用率、109 只成分、截至 2026-06-30 的主要窗口净值回报与基准十分接近，Morningstar 亦给予量化 Gold Medalist。价值暴露真实存在：MSCI Japan Value 的 PE、前瞻 PE、PB 分别为 16.10、13.61、1.38，显著低于广义 MSCI Japan 的 21.27、16.91、2.04；但基金金融股占 34.41%、前十大占 42.52%，指数换手率 24.46%，且本地授权日线过去一年已上涨约 37.93%。因此本研究把它判断为产品质量良好、相对估值有吸引力但绝对估值合理，现有 60 股、约 2.79% NAV 继续持有；新增现金只列入观察名单，不能因权重较低或历史盈利良好而机械加仓。",
+        "updatedAt": "2026-07-30T17:17:38.392886Z"
+      }
+    ],
     "summary": {
       "research": {
-        "count": 0
+        "count": 1,
+        "internalCount": 1,
+        "providerCount": 0
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "EWJV"

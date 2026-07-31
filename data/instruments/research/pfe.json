@@ -2,30 +2,330 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "latestAsOfDate": "20260730",
+        "providerPublishedDate": "20260505",
+        "providerVerifiedAt": "2026-07-30T12:11:43Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
+          "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Karen Andersen, CFA",
+          "role": "Director"
+        },
+        "freshness": {
+          "ageDays": 1.1584048441550925,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "本次以截至 2026-05-05 19:05 UTC 的 24 页完整报告为主证据，并以 Morningstar 官网第一季度文章作为公开来源链接。报告给出 US$32 公允价值、四星、窄护城河、中等不确定性与标准资本配置；报告价 US$26.30，Price/FVE 为 0.82。Morningstar 认为市场低估了 2027–2029 专利到期后的恢复能力，但其模型本身也预计 2026–2029 收入与调整后 EPS 下行，2030 年才恢复增长，且公允价值已由 US$34 下调至 US$32。主要正面因素是 Padcev、Lorbrena、Nurtec、Vyndaqel、成本节约和肿瘤／肥胖管线；主要风险是 Ibrance、Eliquis 等专利悬崖、疫苗与新冠收入下降、研发削减、定价监管及昂贵并购。报告后本项目另行核验到 berobenatide 二期数据与 PADCEV 新适应症获批，同时 sigvotatug vedotin 三期总体生存期主终点未达标；这些是报告后事实，不代表 Morningstar 已修订观点。以 2026-07-29 本地完成收盘 US$25.15 观察，价格低于其公允价值约 27.2%，但该差距不替代本项目对现金流、净债务和专利悬崖的独立判断。",
+        "metrics": {
+          "capitalAllocation": "standard",
+          "economicMoat": "narrow",
+          "fairValue": 32,
+          "fairValueCurrency": "USD",
+          "fairValueUpdatedDate": "20260204",
+          "ratingStars": 4,
+          "ratingUpdatedDate": "20260504",
+          "uncertainty": "medium"
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260505",
+        "sections": {
+          "bearish": [
+            "Ibrance、Eliquis 与 Vyndaqel 的专利到期使 2027–2029 收入和利润形成集中缺口。",
+            "新冠、Prevnar 与疫苗竞争继续拖累，价格监管和支付方议价压缩成熟产品经济性。",
+            "研发削减、临床失败或高价并购回报不足，使管线无法覆盖专利悬崖并进一步压低资本回报。"
+          ],
+          "bullish": [
+            "Padcev、Lorbrena、Nurtec 与 Vyndaqel 维持较快增长，缓冲新冠收入回落和部分成熟产品压力。",
+            "肿瘤 ADC、PD-1/VEGF、肥胖和癌症恶病质管线若成功，可在 2028 年后重建增长。",
+            "成本节约、专利和解及商业执行优于预期，使 2027–2029 下滑浅于市场担忧。"
+          ],
+          "capitalAllocation": [
+            "资本配置评级为标准；晨星认为资产负债表仍可管理，股息和历史回购总体合理。",
+            "US$43B Seagen 收购压低近期资本回报，US$10B Metsera 交易被视为高风险、高回报押注。",
+            "约 US$7.2B 年化成本节约需要在不损害研发产出的前提下兑现，且约 US$500M 将重新投入管线。"
+          ],
+          "economicMoat": [
+            "窄护城河主要来自药品专利、临床数据、监管批准、品牌和商业化网络等无形资产。",
+            "晨星预计资本回报率仅在高个位数，略高于约 7.1% WACC，护城河缓冲小于多数大型制药同业。",
+            "专利到期会周期性侵蚀单品经济租金，必须由持续研发和商业化能力补位。"
+          ],
+          "fairValue": [
+            "公允价值为 US$32，报告价 US$26.30、Price/FVE 0.82，对应四星；五星与一星价格界限分别为 US$22.40 和 US$43.20。",
+            "公允价值由 US$34 下调，主要因为长期利润率更保守，并把 Metsera 相关产品 2034 年收入预测由约 US$5.5B 下调至 US$4.2B。",
+            "DCF 使用 7.1% WACC、3%第二阶段经营利润增长和 40%再投资率，估算权益价值约 US$176.6B。"
+          ],
+          "financialHealth": [
+            "晨星预计 2026–2030 净债务／EBITDA 约 1.5–2.2 倍，资产负债表在基准情景下仍属可管理。",
+            "模型预计调整后 EPS 从 2026 年 US$2.99 降至 2029 年 US$1.82，2030 年仅恢复至 US$1.92。",
+            "季度股息在近期具支持性，但若专利悬崖更深或并购继续扩大，债务、研发和股息之间的取舍会更困难。"
+          ],
+          "strategyOutlook": [
+            "Morningstar 预计收入在 2026–2029 下滑、2030 年恢复增长；对 2028–2033 的长期增速假设低于管理层高个位数目标。",
+            "增长接力依赖 Seagen 肿瘤资产、内部晚期管线、Vyndaqel 专利和解，以及 Metsera 肥胖资产的开发。",
+            "关键检验不是管线数量，而是经过概率调整后的新产品现金流能否超过专利损失、研发投入和并购资本成本。"
+          ],
+          "uncertainty": [
+            "中等不确定性反映大型已上市产品、地域和治疗领域分散，但专利悬崖、临床失败与监管结果仍会显著改变价值。",
+            "美国药价、IRA／最惠国政策、疫苗需求、新冠产品季节性及诉讼都可能改变收入和利润率。",
+            "Metsera、Seagen 与内部管线的成功概率和峰值销售高度不确定，不能按管理层目标全额计价。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/stocks/pfizer-earnings-strong-first-quarter-performance-makes-2026-guidance-more-achievable",
+        "title": "Pfizer Earnings: Strong First-Quarter Performance Makes 2026 Guidance More Achievable",
+        "verifiedAt": "2026-07-30T12:11:43Z",
+        "version": 1
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
+    "research": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "equity_research",
+        "frameworkVersion": "equity-research-strategy-v1",
+        "result": {
+          "bearCase": [
+            "Ibrance、Eliquis 和其他成熟产品在 2027–2029 的仿制／生物类似药侵蚀快于预期，收入和利润形成更深台阶。",
+            "sigvotatug vedotin 的失败扩散到其他 ADC 或组合项目，Seagen 收购回报低于资本成本。",
+            "berobenatide、Metsera 或内部肥胖管线在疗效、安全、给药、生产或竞争上不能形成商业差异化。",
+            "美国药价、IRA、最惠国政策、关税和支付方议价削弱成熟产品价格与现金流。",
+            "Prevnar、Abrysvo、新冠产品和其他疫苗受到需求、竞争或监管压力，增长产品无法弥补。",
+            "成本削减减少关键研发项目和科学人才，短期利润改善以长期管线产出为代价。",
+            "GAAP 自由现金流持续不能覆盖股息，同时净债务或并购支出上升，迫使资本配置取舍。",
+            "CFO 更换、并购整合和多条临床项目并行增加执行复杂度，管理层仍以规模而非每股价值为优先。"
+          ],
+          "bullCase": [
+            "Padcev、Lorbrena、Nurtec、Vyndaqel 与 Eliquis 在专利期内持续超预期增长，使专利悬崖前现金流更高。",
+            "Vyndamax 和解延长美国保护，Ibrance、Eliquis 的实际侵蚀速度低于模型，收入谷底更浅。",
+            "berobenatide 以月度给药差异化进入肥胖市场，Metsera 资产形成可观峰值销售和高增量利润。",
+            "Padcev 新适应症、PF’4404、atirmociclib 及其他肿瘤资产连续通过关键临床和监管门槛。",
+            "US$7.2B 年化成本节约在不削弱研发产出的情况下兑现，并改善 GAAP 现金流转化。",
+            "新冠收入稳定在可预测季节性水平，Prevnar 和 Abrysvo 在疫苗竞争中维持份额。",
+            "ViiV 出售及经营现金流用于降低净债务，股息由自由现金流覆盖，避免高价并购和高价回购。"
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "PFE 必须证明 Padcev、Lorbrena、Nurtec、Vyndaqel、成本节约及经过临床验证的新管线，能够在不牺牲研发质量、股息覆盖和资产负债表的前提下填补 2027–2029 的 Ibrance、Eliquis 等专利损失；否则 8.7 倍 2026 调整后 PE 和 6.84%股息率只是对未来利润下台阶、管线失败与资本配置风险的补偿。",
+          "evidenceConfidence": "medium",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "2026 年第二季度正式财报尚未发布；研究日距离 2026-08-04 结果仅五天，本版本不能代表财报后的当前观点。",
+            "PFE 没有提供把每项专利损失、已上市产品增量、成本节约和概率调整管线逐年桥接到 2028–2033 收入与现金流的完整可审计模型。",
+            "本项目尚未建立同一冻结时间、同一专利和研发口径的 PFE、MRK、BMY、ABBV 等同业估值集合；本次估值以公司自身现金流为主。",
+            "FCFF 模型用 TTM GAAP 自由现金流加税后融资成本构建简化桥接，未建立逐产品、逐适应症的风险调整净现值；临床二元结果使区间远比普通消费股宽。",
+            "berobenatide、sigvotatug vedotin 和其他管线证据来自公司正式披露，尚未逐项完成监管文件、完整临床论文和独立医学证据的深度复核。",
+            "Morningstar 完整 PDF 已全文提取并逐页核验，仅保留 SHA-256 与结构化摘要；报告原文件、截图、表格和下载路径不会进入页面或发布包。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "收入 US$59.5B–US$62.5B；调整后 EPS US$2.80–US$3.00",
+              "challengingDirection": "下调且不能由汇率或短期时点解释。",
+              "confirmingDirection": "维持或上调，且由核心产品和经营执行而非一次性项目推动。",
+              "metric": "2026 收入与调整后 EPS 指引",
+              "nextReview": "20260804"
+            },
+            {
+              "baseline": "Q1 Padcev +39%、Nurtec +42%、Eliquis +13%；Lorbrena 亦保持强劲增长",
+              "challengingDirection": "增速连续放缓，且新适应症没有转化为销售。",
+              "confirmingDirection": "增长产品合计增量持续抵消新冠和成熟产品下降。",
+              "metric": "增长产品组合",
+              "nextReview": "each_quarter"
+            },
+            {
+              "baseline": "Morningstar 预计调整后 EPS 由 2026 US$2.99 降至 2029 US$1.82",
+              "challengingDirection": "Ibrance、Eliquis 等侵蚀快于预期且补位不透明。",
+              "confirmingDirection": "专利和解、核心产品和经过验证的新产品使谷底上移或提前恢复。",
+              "metric": "2027–2029 专利悬崖桥接",
+              "nextReview": "each_guidance_or_LOE_update"
+            },
+            {
+              "baseline": "Padcev 新适应症获批；sigvotatug vedotin SigVie-002 总体 OS 主终点未达标",
+              "challengingDirection": "关键项目继续失败、延迟或峰值销售下调并触发减值。",
+              "confirmingDirection": "Padcev 商业化、PF’4404、atirmociclib 和其他关键项目通过主要终点与监管门槛。",
+              "metric": "肿瘤管线与 Seagen 回报",
+              "nextReview": "each_material_trial_or_regulatory_event"
+            },
+            {
+              "baseline": "berobenatide 二期最高周剂量 32 周非安慰剂调整减重 15.9%，计划 10 项三期",
+              "challengingDirection": "疗效、安全、依从性、生产或竞争使商业概率下降。",
+              "confirmingDirection": "三期复现疗效和耐受性，月度方案形成真实差异化，生产和监管路径清晰。",
+              "metric": "肥胖管线与 Metsera",
+              "nextReview": "each_phase_3_readout"
+            },
+            {
+              "baseline": "TTM GAAP FCF US$9.483B、股息 US$9.779B、净债务约 US$51.38B",
+              "challengingDirection": "FCF 持续低于股息、净债务上升或新增大额并购。",
+              "confirmingDirection": "FCF 覆盖股息并扩大，净债务下降，业务开发不重新加杠杆。",
+              "metric": "自由现金流、股息与净债务",
+              "nextReview": "each_quarter"
+            },
+            {
+              "baseline": "2026 R&D 指引 US$10.5B–US$11.5B；年化成本节约目标约 US$7.2B 至 2027 年末",
+              "challengingDirection": "利润改善主要来自削减高价值研发，管线里程碑减少。",
+              "confirmingDirection": "节约兑现且研发里程碑、关键人才和项目产出保持。",
+              "metric": "研发投入与成本节约质量",
+              "nextReview": "each_quarter"
+            },
+            {
+              "baseline": "Cecile Guegan 自 2026-08-16 任临时 CFO；现有回购授权约 US$3.3B 但 Q1 无回购",
+              "challengingDirection": "以大额并购或高价回购替代内部项目纪律和债务下降。",
+              "confirmingDirection": "去杠杆和高回报研发优先，回购只在低于内在价值时执行。",
+              "metric": "资本配置与 CFO 交接",
+              "nextReview": "each_capital_allocation_update"
+            }
+          ],
+          "researchMaturity": "preliminary",
+          "sourceRegister": [
+            {
+              "label": "SEC EDGAR Company Facts locally verified source",
+              "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000078003.json"
+            },
+            {
+              "label": "Pfizer 2025 Form 10-K",
+              "publishedAt": "20260226",
+              "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800326000026/pfe-20251231.htm"
+            },
+            {
+              "label": "Pfizer 2026 Q1 Form 10-Q",
+              "publishedAt": "20260505",
+              "url": "https://www.sec.gov/Archives/edgar/data/78003/000007800326000054/pfe-20260329.htm"
+            },
+            {
+              "label": "Pfizer 2026 Q1 earnings release and guidance",
+              "publishedAt": "20260505",
+              "url": "https://investors.pfizer.com/Investors/news-events/event-details/2026/Pfizer-Quarterly-Corporate-Performance---First-Quarter-2026-2026-i9bKt-ao1m/default.aspx"
+            },
+            {
+              "label": "Pfizer August 4 Q2 2026 conference-call announcement",
+              "publishedAt": "20260623",
+              "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-invites-public-view-and-listen-webcast-august-4"
+            },
+            {
+              "label": "Pfizer berobenatide Phase 2b update",
+              "publishedAt": "20260606",
+              "url": "https://www.pfizer.com/news/press-release/press-release-detail/robust-phase-2b-efficacy-and-favorable-tolerability-support"
+            },
+            {
+              "label": "Pfizer SigVie-002 Phase 3 topline results",
+              "publishedAt": "20260622",
+              "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-topline-phase-3-results-sigvotatug-vedotin"
+            },
+            {
+              "label": "Pfizer Padcev plus Keytruda MIBC FDA approval announcement",
+              "publishedAt": "20260710",
+              "url": "https://www.pfizer.com/news/press-release/press-release-detail/us-fda-approves-padcevr-plus-keytrudar-neoadjuvant-and"
+            },
+            {
+              "label": "Pfizer chief financial officer transition announcement",
+              "publishedAt": "20260618",
+              "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-chief-financial-officer-transition"
+            },
+            {
+              "label": "Pfizer 2026 Q3 dividend declaration",
+              "publishedAt": "20260624",
+              "url": "https://www.pfizer.com/print/pdf/node/563435"
+            }
+          ],
+          "valuation": {
+            "dcf": {
+              "coreSensitivityRangeUsd": [
+                20.25,
+                27.89
+              ],
+              "scenarios": [
+                {
+                  "fcffYears1To10UsdB": [
+                    11.8,
+                    10.8,
+                    8.5,
+                    7.5,
+                    7.7,
+                    8.0,
+                    8.3,
+                    8.6,
+                    8.9,
+                    9.2
+                  ],
+                  "name": "bear",
+                  "terminalGrowthPct": 1.5,
+                  "valuePerShareUsd": 10.46,
+                  "waccPct": 9.0,
+                  "years1to5GrowthPct": -10.15,
+                  "years6to10GrowthPct": 3.55
+                },
+                {
+                  "fcffYears1To10UsdB": [
+                    13.0,
+                    13.0,
+                    11.5,
+                    10.0,
+                    10.5,
+                    11.0,
+                    11.5,
+                    12.0,
+                    12.5,
+                    13.0
+                  ],
+                  "name": "base",
+                  "terminalGrowthPct": 2.0,
+                  "valuePerShareUsd": 24.22,
+                  "waccPct": 7.75,
+                  "years1to5GrowthPct": -5.2,
+                  "years6to10GrowthPct": 4.27
+                },
+                {
+                  "fcffYears1To10UsdB": [
+                    13.5,
+                    14.0,
+                    13.0,
+                    12.0,
+                    13.0,
+                    14.5,
+                    16.0,
+                    17.5,
+                    19.0,
+                    20.5
+                  ],
+                  "name": "bull",
+                  "terminalGrowthPct": 2.0,
+                  "valuePerShareUsd": 41.23,
+                  "waccPct": 7.5,
+                  "years1to5GrowthPct": -0.94,
+                  "years6to10GrowthPct": 9.04
+                }
+              ]
+            },
+            "priceUsd": 25.15
+          },
+          "valuationState": "fair"
+        },
+        "sourceLabel": "PFE 2026 年第二季度财报前发起覆盖研究",
+        "sourceVersion": "v1.1",
+        "status": "active",
+        "summary": "PFE 不是稳定增长型防御股，而是处于后疫情收入重置、Seagen／Metsera 并购整合和 2027–2029 专利悬崖之间的高股息转型标的。2026 年第一季度收入增长 5%，Padcev、Lorbrena 与 Nurtec 增长强劲，全年调整后 EPS 指引维持 US$2.80–US$3.00；但 TTM GAAP 自由现金流约 US$9.48B，略低于约 US$9.78B 现金股息，净债务约 US$51.4B。报告后的 berobenatide 数据和 PADCEV 新适应症扩大上行情景，sigvotatug vedotin 三期总体生存期主终点未达标则提示管线不能按确定性资产计价。2026-07-29 完成收盘 US$25.15 对应约 8.7 倍 2026 指引中点调整后 EPS、6.84%股息率和约 15.1 倍 TTM GAAP 自由现金流；自建 FCFF DCF 悲观、基准、乐观情景约 US$10、US$24、US$41，基准敏感区间约 US$20–US$28，Morningstar 独立公允价值为 US$32。现有 4.10% 仓位继续持有，新增现金列入观察名单；2026-08-04 第二季度财报发布后，本版本立即转为待复核。",
+        "updatedAt": "2026-07-30T12:21:35.687813Z"
+      }
+    ],
     "summary": {
       "research": {
-        "count": 0
+        "count": 2,
+        "internalCount": 1,
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "PFE"

@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
+        "latestAsOfDate": "20260730",
         "providerPublishedDate": null,
         "providerVerifiedAt": null
       }
@@ -10,22 +10,122 @@
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 1,
+          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "status": "pass"
         }
       }
     },
     "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "research": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "regional_all_cap_index_etf_review",
+        "frameworkVersion": "regional-all-cap-index-etf-research-v1",
+        "result": {
+          "bearCase": [
+            "欧洲生产率、人口和资本形成偏弱，能源、监管或地缘政治冲击使盈利长期落后美国。",
+            "金融、工业和传统行业偏重造成结构性增长差距，货币走弱又侵蚀美元回报。",
+            "与 SCHF 和 EWL 的重复持有增加复杂度，却没有形成与名义基金数量相称的真实分散。"
+          ],
+          "bullCase": [
+            "欧洲盈利与资本回报改善，较低起始估值带来更好的中长期相对回报。",
+            "美元走弱提升未对冲欧系货币与英镑资产的美元回报，区域分散降低美国巨型科技集中风险。",
+            "低费用、低换手和全市值覆盖继续把欧洲指数收益高效率传递给持有人。"
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "VGK 是否值得保留或新增，取决于欧洲全市值暴露相对 SCHF 的额外价值能否抵消工具重叠、区域集中与管理复杂度。基金本身的费用、广度、流动性和跟踪没有明显缺陷；核心问题不是“VGK 好不好”，而是组合是否需要在发达市场核心之外单独超配欧洲。",
+          "evidenceConfidence": "high",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "目前没有用户提供的 Morningstar VGK 完整研报 PDF；晨星面板以官网当前分析和官方精选文章为边界，不推断未公开的 pillar 或传统星级。",
+            "Morningstar 加拿大文章讨论同一 Vanguard 欧洲指数策略和美国 ETF share class，但其页面证券链接不是 VGK；本研究只把它作为相关策略层，不把其中 pillar 字段冒充 VGK 当前直接字段。",
+            "没有可审核的长期指数估值时间序列，因此不把当前 PE／PB 与未经核验的历史均值比较。",
+            "组合层面 SCHF、VGK、EWL、EWJV 的完整成分穿透重叠将在六只新增研究完成后的统一审计中计算；本版本只披露官方国家层面的可证明重叠。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "0.06%费用率；三、五、十年及成立以来与指数差异在正负 10 个基点内",
+              "challengingDirection": "持续异常落后或费用上升。",
+              "confirmingDirection": "差异继续接近费用、税务、借贷和正常摩擦范围。",
+              "metric": "跟踪与费用",
+              "nextReview": "semiannual"
+            },
+            {
+              "baseline": "英国 22.5%、金融 24.2%、前十大 19.4%",
+              "challengingDirection": "国家或行业权重显著上升并改变区域工具角色。",
+              "confirmingDirection": "分散度稳定，单一国家和行业没有失控。",
+              "metric": "国家和行业集中",
+              "nextReview": "each_holdings_refresh"
+            },
+            {
+              "baseline": "PE 18.0、PB 2.4、ROE 13.8%、盈利增长率 10.0%",
+              "challengingDirection": "估值上升而盈利质量和增长没有跟进。",
+              "confirmingDirection": "盈利和 ROE 改善使估值保持或下降。",
+              "metric": "估值与盈利质量",
+              "nextReview": "quarterly"
+            },
+            {
+              "baseline": "VGK 0.90% NAV；瑞士穿透约 0.13% NAV，欧洲暴露与 SCHF、EWL 重叠",
+              "challengingDirection": "多个工具持有相同国家和大型公司，却没有明确角色或再平衡规则。",
+              "confirmingDirection": "VGK 被明确定位为有预算的欧洲卫星。",
+              "metric": "组合重叠",
+              "nextReview": "portfolio_research_audit"
+            },
+            {
+              "baseline": "2026-04-27 分析师驱动 Gold，2026-05 100%分析师覆盖",
+              "challengingDirection": "评级下调由可验证的产品或组织问题驱动。",
+              "confirmingDirection": "Gold、流程和执行评价稳定。",
+              "metric": "Morningstar 基金研究",
+              "nextReview": "each_medalist_update_or_90_days"
+            }
+          ],
+          "researchMaturity": "active",
+          "sourceRegister": [
+            {
+              "asOf": "20260630",
+              "label": "Vanguard FTSE Europe ETF fact sheet",
+              "url": "https://institutional.vanguard.com/assets/corp/fund_communications/pdf_publish/us-products/fact-sheet/F0963.pdf"
+            },
+            {
+              "asOf": "20260427",
+              "label": "Morningstar VGK Fund Analysis",
+              "publishedAt": "20260427",
+              "url": "https://www.morningstar.com/etfs/arcx/vgk/analysis"
+            },
+            {
+              "label": "Morningstar The Best Equity ETFs",
+              "publishedAt": "20260527",
+              "url": "https://www.morningstar.com/funds/best-equity-etfs"
+            },
+            {
+              "label": "Vanguard 2026 Dividend Schedule",
+              "publishedAt": "202607",
+              "url": "https://advisors.vanguard.com/content/dam/fas/pdfs/DIVDAT_2026.pdf"
+            }
+          ],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "fair"
+        },
+        "sourceLabel": "VGK 2026 年欧洲全市值与组合角色完整研究",
+        "sourceVersion": "v1.0",
+        "status": "active",
+        "summary": "VGK 是一只产品质量很高、费用低廉的欧洲发达市场全市值 ETF：费用率 0.06%、约 1,230 只股票、ETF 净资产约 US$30.0B、换手率 4.7%，一至十年 NAV 回报均紧贴 FTSE Developed Europe All Cap Index。2026-06-30 的组合 PE 18.0、PB 2.4、ROE 13.8%，在过去一年授权日线上涨约 18.42%后，支持“估值合理”而非明显低估。它提供广泛欧洲暴露，但英国 22.5%、金融业 24.2%，外币不对冲，并且整个欧洲仓位已大量嵌套于 SCHF，瑞士部分又与 EWL 重叠。现有 10 股仅占 NAV 0.90%，继续持有；新增现金列入观察名单，待全组合国际工具重叠审计后，优先选择角色最清楚、结构最简的工具，而不是机械叠加区域基金。",
+        "updatedAt": "2026-07-30T17:35:43.533560Z"
+      }
+    ],
     "summary": {
       "research": {
-        "count": 0
+        "count": 1,
+        "internalCount": 1,
+        "providerCount": 0
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "VGK"
