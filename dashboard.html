@@ -59,13 +59,13 @@
     .accounting-symbol { justify-self: start; }
     .accounting-amount { justify-self: end; }
     .accounting-money.inline {
-      display: inline-grid;
+      display: inline;
       width: auto;
-      min-width: 8.5em;
-      margin: 0 0.18em;
+      min-width: 0;
+      margin: 0;
       vertical-align: baseline;
     }
-    .accounting-money.inline.compact { min-width: 6.6em; }
+    .accounting-money.inline.compact { min-width: 0; }
 
     .shell {
       width: min(1440px, calc(100% - 40px));
@@ -649,13 +649,13 @@
 
     .pnl-table {
       width: 100%;
-      min-width: 560px;
+      min-width: 630px;
       border-collapse: collapse;
-      table-layout: auto;
+      table-layout: fixed;
     }
 
     .pnl-table th, .pnl-table td {
-      padding: 12px 10px;
+      padding: 12px 8px;
       border-bottom: 1px solid #edf0f2;
       text-align: right;
       font-size: 12px;
@@ -670,63 +670,117 @@
     }
 
     .pnl-table td:first-child { color: var(--ink); font-family: var(--sans); font-weight: 700; }
-    .pnl-table th:first-child { width: 28%; }
-    .pnl-table th:not(:first-child) { width: 24%; }
-    .pnl-table tr:last-child td { border-bottom: 0; }
-
-    .pnl-leaders-row td {
-      padding: 10px;
-      background: #f7f9fa;
+    .pnl-table th:first-child { width: 16%; }
+    .pnl-table th:not(:first-child) { width: 16.8%; }
+    .pnl-table tfoot td {
+      position: sticky;
+      bottom: 0;
+      z-index: 2;
+      border-top: 1px solid rgba(22,59,89,.22);
+      border-bottom: 1px solid rgba(22,59,89,.10);
+      background: #eef2f5;
+      font-weight: 800;
     }
-
-    .pnl-leaders {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .pnl-leader {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 3px 8px;
-      align-items: baseline;
-      min-width: 0;
-      padding: 9px 10px;
-      border: 1px solid #e5ebef;
-      background: #fff;
-    }
-
-    .pnl-leader-rank {
-      grid-row: 1 / span 2;
-      color: #8a98a3;
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 750;
-    }
-
-    .pnl-leader-symbol {
-      overflow: hidden;
+    .pnl-table tfoot td:first-child {
       color: var(--navy);
       font-family: var(--sans);
-      font-size: 12px;
-      font-weight: 780;
-      text-overflow: ellipsis;
-    }
-
-    .pnl-leader-value {
-      color: var(--ink);
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 750;
-      white-space: nowrap;
+      letter-spacing: .02em;
     }
 
     .summary-stack {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
       gap: 14px;
     }
     .summary-stack > .card { height: 100%; }
+
+    .card.capital-card {
+      margin-top: 14px;
+      padding: 0;
+      overflow: hidden;
+    }
+    .capital-card .card-head {
+      margin-bottom: 14px;
+      padding: 22px 22px 0;
+    }
+    .capital-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      border-top: 1px solid rgba(22,59,89,.13);
+      border-bottom: 1px solid rgba(22,59,89,.13);
+      background: rgba(22,59,89,.11);
+    }
+    .capital-metric {
+      min-width: 0;
+      padding: 15px 18px;
+      border: 0;
+      border-radius: 0;
+      background: #fff;
+    }
+    .capital-metric-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 680;
+    }
+    .capital-metric-value {
+      margin-top: 7px;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .capital-metric-value.textual {
+      font-size: 13px;
+      letter-spacing: -.02em;
+      white-space: nowrap;
+    }
+    .capital-metric-detail {
+      margin-top: 5px;
+      color: var(--soft);
+      font-size: 10px;
+      line-height: 1.5;
+    }
+    .capital-details {
+      margin: 0;
+      border-top: 0;
+    }
+    .capital-details summary {
+      padding: 14px 22px;
+      color: var(--navy);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 750;
+    }
+    .capital-details[open] summary { border-bottom: 1px solid rgba(22,59,89,.13); }
+    .capital-table-wrap {
+      max-height: 360px;
+      margin: 0;
+      overflow: auto;
+      scrollbar-width: thin;
+    }
+    .capital-table { min-width: 860px; }
+    .capital-table th, .capital-table td { font-size: 11px; }
+    .capital-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #f7f9fa;
+    }
+    .capital-metric-value .accounting-money,
+    .capital-table .accounting-money {
+      display: grid;
+      grid-template-columns: 3.2em minmax(0, 1fr);
+      width: min(100%, 12.25em);
+      column-gap: 0;
+    }
+    .capital-metric-value .accounting-money { margin-right: auto; }
+    .capital-table .accounting-money { margin-left: auto; }
+    .capital-card > .method-note {
+      margin: 0;
+      padding: 14px 22px 18px;
+      border-top: 1px solid rgba(22,59,89,.13);
+    }
 
     .method-note {
       margin: 13px 0 0;
@@ -863,7 +917,7 @@
       font-family: var(--mono);
       font-size: 11px;
     }
-    .category-total .accounting-money.inline { min-width: 8.2em; color: var(--ink); }
+    .category-total .accounting-money.inline { min-width: 0; color: var(--ink); }
     .bond-section { margin-top: 18px; }
     .bond-table { min-width: 1320px; }
     .bond-table th.bond-yield-col,
@@ -878,6 +932,22 @@
     }
     .bond-table tbody tr:not(.category-row):hover td.bond-yield-col { background: #d3e9f4; }
     .bond-table tbody tr:not(.category-row):hover td.bond-result-col { background: #e7eef3; }
+    .bond-table tfoot td {
+      position: sticky;
+      bottom: 0;
+      z-index: 2;
+      border-top: 1px solid rgba(22,59,89,.22);
+      border-bottom: 1px solid rgba(22,59,89,.10);
+      background: #eef2f5;
+      font-weight: 800;
+    }
+    .bond-table tfoot td.bond-yield-col { background: #dceef7; }
+    .bond-table tfoot td.bond-result-col { background: #e3ebf1; }
+    .bond-table tfoot td:first-child {
+      color: var(--navy);
+      font-family: var(--sans);
+      letter-spacing: .02em;
+    }
     .table-footnote {
       margin: 0;
       padding: 11px 14px 13px;
@@ -1105,6 +1175,7 @@
 
     @media (max-width: 900px) {
       .summary-stack { grid-template-columns: 1fr; }
+      .capital-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .allocation-donuts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
@@ -1129,10 +1200,10 @@
       .footer-meta-item:nth-child(2) { border-right: 0; padding-right: 0; }
       .footer-meta-item:nth-child(3), .footer-meta-item:nth-child(4) { border-top: 1px solid rgba(22,59,89,.10); }
       .footer-meta-item:nth-child(3) { padding-left: 0; }
-      .pnl-leaders { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 520px) {
+      .capital-metrics { grid-template-columns: 1fr; }
       .allocation-donuts-grid { grid-template-columns: 1fr; }
       .allocation-mini-title { min-height: 0; }
     }
@@ -1281,7 +1352,7 @@
       font-size: 11px;
     }
     .portfolio-nav-note .kpi-note-line { min-height: 0; }
-    .portfolio-nav-note .accounting-money.inline { min-width: 8em; color: var(--muted); }
+    .portfolio-nav-note .accounting-money.inline { min-width: 0; color: var(--muted); }
 
     .portfolio-hero .status-cluster {
       grid-column: 2;
@@ -1685,7 +1756,7 @@
             <div class="card-head">
               <div>
                 <h3 class="card-title">盈亏汇总</h3>
-                <p class="card-subtitle">已实现为年初至今；未实现为当前持仓</p>
+                <p class="card-subtitle">已实现分期；总计纳入税后股息与利息</p>
               </div>
             </div>
             <div class="pnl-scroll">
@@ -1693,12 +1764,15 @@
                 <thead>
                   <tr>
                     <th scope="col">资产</th>
-                    <th scope="col">已实现</th>
+                    <th scope="col">过去实现</th>
+                    <th scope="col">本年实现</th>
+                    <th scope="col">股息／利息</th>
                     <th scope="col">未实现</th>
                     <th scope="col">合计</th>
                   </tr>
                 </thead>
                 <tbody id="pnlBody"></tbody>
+                <tfoot id="pnlTotalBody"></tfoot>
               </table>
             </div>
             <p class="method-note" id="pnlMethodNote">—</p>
@@ -1713,6 +1787,36 @@
             <div class="risk-grid" id="riskGrid"></div>
           </article>
         </div>
+
+        <article class="card capital-card" id="capitalReviewCard" hidden>
+          <div class="card-head">
+            <div>
+              <h3 class="card-title">IBKR 投资组合出入金记录</h3>
+              <p class="card-subtitle" id="capitalReviewSubtitle">IBKR 报表为主；自有台账仅用于核对</p>
+            </div>
+          </div>
+          <div class="capital-metrics" id="capitalMetrics"></div>
+          <details class="capital-details">
+            <summary id="capitalLedgerSummary">查看出入金记录</summary>
+            <div class="capital-table-wrap">
+              <table class="data-table capital-table">
+                <caption class="sr-only">IBKR 投资组合出入金记录</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">日期</th>
+                    <th scope="col">类型</th>
+                    <th scope="col">原币金额</th>
+                    <th scope="col">汇率</th>
+                    <th scope="col">USD 等值</th>
+                    <th scope="col">累计现金投入</th>
+                  </tr>
+                </thead>
+                <tbody id="capitalLedgerBody"></tbody>
+              </table>
+            </div>
+          </details>
+          <p class="method-note" id="capitalReviewNote">—</p>
+        </article>
       </div>
     </section>
 
@@ -1789,7 +1893,7 @@
             <tbody id="positionsBody"></tbody>
           </table>
         </div>
-        <p class="table-footnote">现价、市值和盈亏统一采用页面估值日的完成 RTH 收盘；缺少完成日线时不归档，也不以盘中或夜盘补值。当日盈亏%缺失时不作本地推算。归总收益＝未实现盈亏＋股息合计＋平仓总计；年化收益为真实日历上的完整生命周期 XIRR，总回报率为第一次建仓以来排除零持仓日的非年化累计收益率。</p>
+        <p class="table-footnote">完成 RTH 收盘口径；缺少完成日线时保留为空。当日盈亏%不作本地反推。归总收益含未实现、税后股息与平仓结果；年化收益与总回报率按完整生命周期现金流计算。</p>
       </article>
     </section>
 
@@ -1808,7 +1912,7 @@
                 <th scope="col">类型</th>
                 <th scope="col">面值</th>
                 <th scope="col">票息</th>
-                <th scope="col" class="bond-yield-col" title="买入时的到期收益率；来自 Assets 持仓息率">实际息率</th>
+                <th scope="col" class="bond-yield-col" title="买入时记录的到期收益率">实际息率</th>
                 <th scope="col">购买日期</th>
                 <th scope="col">成本价</th>
                 <th scope="col">现价</th>
@@ -1819,9 +1923,10 @@
               </tr>
             </thead>
             <tbody id="bondsBody"></tbody>
+            <tfoot id="bondsSummaryBody"></tfoot>
           </table>
         </div>
-        <p class="table-footnote">实际息率为买入到期收益率；已派利息按“已收／预计总额”显示，STRIPS 不派现金票息。</p>
+        <p class="table-footnote">实际息率为买入到期收益率，合计按完成收盘成本基础加权。已派利息按“已收／预计总额”显示，合计仅加总已收；STRIPS 无现金票息。</p>
       </article>
     </section>
 
@@ -1857,12 +1962,12 @@
     <footer>
       <div class="footer-head">
         <p class="footer-kicker">DATA &amp; METHOD</p>
-        <h2 class="footer-title">数据与口径</h2>
+        <h2 class="footer-title">数据口径</h2>
       </div>
       <div class="footer-meta-grid">
         <div class="footer-meta-item">
-          <span class="footer-meta-label">账户数据</span>
-          <span class="footer-meta-value">IBKR 只读账户、持仓、有效挂单、PortfolioAnalyst 与行情快照</span>
+          <span class="footer-meta-label">账户日结</span>
+          <span class="footer-meta-value" id="footerAccountData">—</span>
         </div>
         <div class="footer-meta-item">
           <span class="footer-meta-label">历史复核</span>
@@ -1873,22 +1978,24 @@
           <span class="footer-meta-value" id="footerReturnMethod">—</span>
         </div>
         <div class="footer-meta-item">
-          <span class="footer-meta-label">参考资料</span>
-          <span class="footer-meta-value">资产汇总表 · IPS v1.8 · Playbook</span>
+          <span class="footer-meta-label">治理资料</span>
+          <span class="footer-meta-value" id="footerGovernanceSources">—</span>
         </div>
       </div>
       <p class="footer-disclaimer">组合事实统一使用完成 RTH 收盘，不以盘中或夜盘补值；挂单另行标注最近验证时间。风险监控不显示保证金。本机只读，不保存账户号、订单 ID、成交 ID 或凭证；不构成交易建议。</p>
     </footer>
   </main>
 
-  <script id="ibkrLifecycleMetrics" type="application/json">{"asOf":"2026-07-29","statementThrough":"2026-07-23","excelAsOf":"2026-07-23","currency":"USD","metrics":{"VGK":{"comprehensiveCost":77.10964770000001,"dividendTotal":21.240000000000002,"realizedPnl":0,"annualizedTotalReturn":0.19060665776934743,"totalReturn":0.14977972314024923,"holdingPeriodStartDate":"20251010","holdingPeriodEndDate":"20260729","holdingPeriodDays":292,"holdingCalendarDays":292,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"EWL":{"comprehensiveCost":54.057247700000005,"dividendTotal":9.81,"realizedPnl":0,"annualizedTotalReturn":0.21996318288255656,"totalReturn":0.1590695210567456,"holdingPeriodStartDate":"20251031","holdingPeriodEndDate":"20260729","holdingPeriodDays":271,"holdingCalendarDays":271,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"VOO":{"comprehensiveCost":634.3158630290595,"dividendTotal":15.02,"realizedPnl":0,"annualizedTotalReturn":0.1275950421967877,"totalReturn":0.07896291789506349,"holdingPeriodStartDate":"20251210","holdingPeriodEndDate":"20260729","holdingPeriodDays":231,"holdingCalendarDays":231,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"MSFT":{"comprehensiveCost":388.41286113333337,"dividendTotal":20.470000000000002,"realizedPnl":9.009511,"annualizedTotalReturn":0.020909339508809424,"totalReturn":0.010715699429117903,"holdingPeriodStartDate":"20260122","holdingPeriodEndDate":"20260729","holdingPeriodDays":188,"holdingCalendarDays":188,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"BOXX":{"comprehensiveCost":116.0191746,"dividendTotal":0,"realizedPnl":186.98005999999995,"annualizedTotalReturn":0.039330655522641284,"totalReturn":0.030906689707942803,"holdingPeriodStartDate":"20251013","holdingPeriodEndDate":"20260729","holdingPeriodDays":288,"holdingCalendarDays":289,"excludedNoPositionDays":1,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"MCD":{"comprehensiveCost":264.0775034,"dividendTotal":82.48000000000002,"realizedPnl":549.8145949999999,"annualizedTotalReturn":0.050746900079658624,"totalReturn":0.06765472593951133,"holdingPeriodStartDate":"20250203","holdingPeriodEndDate":"20260729","holdingPeriodDays":486,"holdingCalendarDays":541,"excludedNoPositionDays":55,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"IBKR":{"comprehensiveCost":69.39415351223569,"dividendTotal":1.44,"realizedPnl":0,"annualizedTotalReturn":null,"totalReturn":null,"holdingPeriodStartDate":"20251114","holdingPeriodEndDate":"20260729","holdingPeriodDays":257,"holdingCalendarDays":257,"excludedNoPositionDays":0,"holdingClockQuality":"incomplete","cashFlowQuality":"incomplete","note":"生命周期交易成本与官方持仓成本基础无法核对；存在未纳入的非现金取得、转入或其他成本事件。非现金取得不得按零成本伪造负现金流，因此不显示误导性的 XIRR；未实现盈亏率仍按官方 Lot 成本基础单独计算。"},"SCHF":{"comprehensiveCost":22.075147699999995,"dividendTotal":15.17,"realizedPnl":0,"annualizedTotalReturn":0.24211896986681575,"totalReturn":0.2165608798936105,"holdingPeriodStartDate":"20250902","holdingPeriodEndDate":"20260729","holdingPeriodDays":330,"holdingCalendarDays":330,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"EWJV":{"comprehensiveCost":35.82075746666666,"dividendTotal":120.55,"realizedPnl":0,"annualizedTotalReturn":0.3175791501862635,"totalReturn":0.33159111634982186,"holdingPeriodStartDate":"20250715","holdingPeriodEndDate":"20260729","holdingPeriodDays":379,"holdingCalendarDays":379,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"NVDA":{"comprehensiveCost":112.0275283,"dividendTotal":1.79,"realizedPnl":930.9147609999999,"annualizedTotalReturn":0.3223993909096503,"totalReturn":0.17355254651149116,"holdingPeriodStartDate":"20250127","holdingPeriodEndDate":"20260729","holdingPeriodDays":213,"holdingCalendarDays":548,"excludedNoPositionDays":335,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"BRK B":{"comprehensiveCost":468.1137553333333,"dividendTotal":0,"realizedPnl":0,"annualizedTotalReturn":0.6971349125141622,"totalReturn":0.08768433763824787,"holdingPeriodStartDate":"20260601","holdingPeriodEndDate":"20260729","holdingPeriodDays":58,"holdingCalendarDays":58,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"SIVR":{"comprehensiveCost":83.33184469999999,"dividendTotal":0,"realizedPnl":41.01781,"annualizedTotalReturn":-0.5039004061887631,"totalReturn":-0.29226678132496875,"holdingPeriodStartDate":"20260130","holdingPeriodEndDate":"20260729","holdingPeriodDays":180,"holdingCalendarDays":180,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"KO":{"comprehensiveCost":57.83570293333333,"dividendTotal":98,"realizedPnl":274.972407,"annualizedTotalReturn":0.37016307552283645,"totalReturn":0.6839530764798114,"holdingPeriodStartDate":"20241202","holdingPeriodEndDate":"20260729","holdingPeriodDays":604,"holdingCalendarDays":604,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"GLDM":{"comprehensiveCost":82.60216464,"dividendTotal":0,"realizedPnl":0,"annualizedTotalReturn":-0.055985777649210894,"totalReturn":-0.04625030020954643,"holdingPeriodStartDate":"20251002","holdingPeriodEndDate":"20260729","holdingPeriodDays":300,"holdingCalendarDays":300,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"PFE":{"comprehensiveCost":20.958965825,"dividendTotal":352.17,"realizedPnl":146.61757,"annualizedTotalReturn":0.11554200309926188,"totalReturn":0.19833833377914034,"holdingPeriodStartDate":"20241202","holdingPeriodEndDate":"20260729","holdingPeriodDays":604,"holdingCalendarDays":604,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"KHC":{"comprehensiveCost":25.32786174,"dividendTotal":255.59999999999997,"realizedPnl":-85.778293,"annualizedTotalReturn":0.04622164534881251,"totalReturn":0.07803902717583555,"holdingPeriodStartDate":"20241129","holdingPeriodEndDate":"20260729","holdingPeriodDays":607,"holdingCalendarDays":607,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"}}}</script>
+  <script id="ibkrLifecycleMetrics" type="application/json">{"asOf":"2026-07-30","statementThrough":"2026-07-23","excelAsOf":"2026-07-23","currency":"USD","metrics":{"VGK":{"comprehensiveCost":77.1096477,"dividendTotal":21.240000000000002,"realizedPnl":0,"realizedPnlYtd":0,"annualizedTotalReturn":0.2250029479976985,"totalReturn":0.1769314782858885,"holdingPeriodStartDate":"20251010","holdingPeriodEndDate":"20260730","holdingPeriodDays":293,"holdingCalendarDays":293,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"EWL":{"comprehensiveCost":54.05724770000002,"dividendTotal":9.81,"realizedPnl":0,"realizedPnlYtd":0,"annualizedTotalReturn":0.24821886955055922,"totalReturn":0.17965874013280198,"holdingPeriodStartDate":"20251031","holdingPeriodEndDate":"20260730","holdingPeriodDays":272,"holdingCalendarDays":272,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"VOO":{"comprehensiveCost":634.3158627890961,"dividendTotal":15.02,"realizedPnl":0,"realizedPnlYtd":0,"annualizedTotalReturn":0.16712084243807857,"totalReturn":0.10321439883259206,"holdingPeriodStartDate":"20251210","holdingPeriodEndDate":"20260730","holdingPeriodDays":232,"holdingCalendarDays":232,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"MSFT":{"comprehensiveCost":388.41286113333337,"dividendTotal":20.470000000000002,"realizedPnl":9.009511,"realizedPnlYtd":9.009511,"annualizedTotalReturn":0.713179109742242,"totalReturn":0.32149339249930453,"holdingPeriodStartDate":"20260122","holdingPeriodEndDate":"20260730","holdingPeriodDays":189,"holdingCalendarDays":189,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"BOXX":{"comprehensiveCost":116.0191746,"dividendTotal":0,"realizedPnl":186.98005999999995,"realizedPnlYtd":162.889239,"annualizedTotalReturn":0.039270807764954146,"totalReturn":0.030968643829294963,"holdingPeriodStartDate":"20251013","holdingPeriodEndDate":"20260730","holdingPeriodDays":289,"holdingCalendarDays":290,"excludedNoPositionDays":1,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"MCD":{"comprehensiveCost":264.0775034,"dividendTotal":82.48000000000002,"realizedPnl":549.8145949999999,"realizedPnlYtd":251.646912,"annualizedTotalReturn":0.02965325671905735,"totalReturn":0.03947701827870116,"holdingPeriodStartDate":"20250203","holdingPeriodEndDate":"20260730","holdingPeriodDays":487,"holdingCalendarDays":542,"excludedNoPositionDays":55,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"IBKR":{"comprehensiveCost":69.1785467328631,"dividendTotal":4.240000000000001,"realizedPnl":0,"realizedPnlYtd":0,"annualizedTotalReturn":null,"totalReturn":null,"holdingPeriodStartDate":"20251114","holdingPeriodEndDate":"20260730","holdingPeriodDays":258,"holdingCalendarDays":258,"excludedNoPositionDays":0,"holdingClockQuality":"incomplete","cashFlowQuality":"incomplete","note":"生命周期交易成本与官方持仓成本基础无法核对；存在未纳入的非现金取得、转入或其他成本事件。非现金取得不得按零成本伪造负现金流，因此不显示误导性的 XIRR；未实现盈亏率仍按官方 Lot 成本基础单独计算。"},"SCHF":{"comprehensiveCost":22.075147699999995,"dividendTotal":15.17,"realizedPnl":0,"realizedPnlYtd":0,"annualizedTotalReturn":0.2858933825050016,"totalReturn":0.2561238001712538,"holdingPeriodStartDate":"20250902","holdingPeriodEndDate":"20260730","holdingPeriodDays":331,"holdingCalendarDays":331,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"EWJV":{"comprehensiveCost":35.82075746666666,"dividendTotal":120.55,"realizedPnl":0,"realizedPnlYtd":0,"annualizedTotalReturn":0.3585428774703896,"totalReturn":0.37575822427672134,"holdingPeriodStartDate":"20250715","holdingPeriodEndDate":"20260730","holdingPeriodDays":380,"holdingCalendarDays":380,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"NVDA":{"comprehensiveCost":112.0275283,"dividendTotal":1.79,"realizedPnl":930.9147609999999,"realizedPnlYtd":874.1515170000001,"annualizedTotalReturn":0.3433667648961264,"totalReturn":0.1852209250807914,"holdingPeriodStartDate":"20250127","holdingPeriodEndDate":"20260730","holdingPeriodDays":214,"holdingCalendarDays":549,"excludedNoPositionDays":335,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"BRK B":{"comprehensiveCost":468.1137553333333,"dividendTotal":0,"realizedPnl":0,"realizedPnlYtd":0,"annualizedTotalReturn":0.6926431469722059,"totalReturn":0.08879517874120083,"holdingPeriodStartDate":"20260601","holdingPeriodEndDate":"20260730","holdingPeriodDays":59,"holdingCalendarDays":59,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"SIVR":{"comprehensiveCost":83.3318447,"dividendTotal":0,"realizedPnl":41.01781,"realizedPnlYtd":41.01781,"annualizedTotalReturn":-0.475861468741797,"totalReturn":-0.2741013228251541,"holdingPeriodStartDate":"20260130","holdingPeriodEndDate":"20260730","holdingPeriodDays":181,"holdingCalendarDays":181,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"KO":{"comprehensiveCost":57.83570293333333,"dividendTotal":98,"realizedPnl":274.972407,"realizedPnlYtd":0,"annualizedTotalReturn":0.36286902278391986,"totalReturn":0.6705608874737281,"holdingPeriodStartDate":"20241202","holdingPeriodEndDate":"20260730","holdingPeriodDays":605,"holdingCalendarDays":605,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"GLDM":{"comprehensiveCost":82.60216464,"dividendTotal":0,"realizedPnl":0,"realizedPnlYtd":0,"annualizedTotalReturn":-0.02757305950804391,"totalReturn":-0.022793900939018744,"holdingPeriodStartDate":"20251002","holdingPeriodEndDate":"20260730","holdingPeriodDays":301,"holdingCalendarDays":301,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"PFE":{"comprehensiveCost":20.958965825,"dividendTotal":352.17,"realizedPnl":146.61757,"realizedPnlYtd":102.864349,"annualizedTotalReturn":0.10887633223743456,"totalReturn":0.18684853648389266,"holdingPeriodStartDate":"20241202","holdingPeriodEndDate":"20260730","holdingPeriodDays":605,"holdingCalendarDays":605,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"},"KHC":{"comprehensiveCost":25.32786174,"dividendTotal":255.59999999999997,"realizedPnl":-85.778293,"realizedPnlYtd":-90.130951,"annualizedTotalReturn":0.021287891257034924,"totalReturn":0.035711066829855864,"holdingPeriodStartDate":"20241129","holdingPeriodEndDate":"20260730","holdingPeriodDays":608,"holdingCalendarDays":608,"excludedNoPositionDays":0,"note":"逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。"}}}</script>
 
-  <script id="ibkrBenchmarkHistory" type="application/json">{"asOf":"20260730","completedThrough":"20260730","fetchedAt":"2026-07-31T08:10:11.007366Z","isComplete":true,"redistribution":"review_required","returnType":"mixed_by_series","series":{"ACWI":{"closes":[511.16,508.62,501.94,508.02,507.37,510.64,511.92,514.71,513.45,518.39,521.66,521.11,521.25,520.87,519.05,517.92,516.18,523.2,521.93,521.74,521.93,523.76,521.18,517.68,519.5,522.69,523.6,525.35,526.92,528.65,532.3,532.7,535.2,535.33,535.13,536.67,538.09,539.95,538.34,536.75,533.61,535.52,537.71,540.07,542.17,543.37,544.75,546.34,544.19,546.38,544.95,533.34,538.2,536.68,540.6,540.05,539.79,546.26,545.8,543.57,545.95,549.41,555.53,556.14,556.59,551.55,552.15,552.97,546.78,547.9,544.53,544.08,551.75,553.87,555.29,548.6,546.52,542.13,536.01,536.5,531.56,533.11,539.46,544.55,549.58,552.08,549.66,551.19,552.99,554.45,555.32,553.92,553.02,556.66,557.8,554.43,553.83,551.09,546.71,550.29,554.25,558.23,561.01,562.08,562.23,561.19,560.84,557.85,560.62,565.37,569.12,567.02,566.04,569.05,570.85,570.75,570.06,571.03,571.03,562.01,565.68,570.05,570.66,574.06,579.21,578.53,578.14,574.38,574.5,574.21,571.97,564.73,573.65,579.82,580.0,581.09,574.71,573.75,574.41,577.26,576.36,579.56,575.91,579.15,584.49,582.99,581.77,578.14,567.14,568.23,566.05,560.27,559.53,564.05,563.28,555.21,550.54,555.49,558.23,554.07,548.43,540.82,542.83,543.34,548.71,539.99,532.76,529.97,539.99,549.8,547.91,550.42,550.67,568.9,569.83,571.12,573.98,582.01,585.57,587.34,593.25,591.79,588.8,591.5,589.35,592.09,593.65,590.35,589.59,594.92,596.51,595.59,598.97,609.9,609.58,610.98,612.54,609.82,613.16,616.95,607.62,607.31,603.78,609.25,612.22,615.38,620.35,620.84,622.24,625.62,626.19,628.92,625.32,626.17,612.0,609.35,610.72,601.66,608.65,615.75,626.32,624.69,620.73,624.34,623.52,612.72,611.56,613.84,610.6,615.88,620.6,619.24,619.74,625.15,621.21,617.22,621.66,624.2,618.85,621.46,625.13,621.56,614.39,612.62,619.05,619.21,613.86,612.67,614.13,611.94,604.65,613.58],"dates":["20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251226","20251229","20251230","20251231","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"exchange":"CBOE","label":"MSCI ACWI","providerSymbol":"MXACW","redistribution":"review_required","returnType":"net_total_return","source":"Cboe Global Indices / MSCI ACWI Net Total Return USD Index","sourceId":"cboe-global-indices-msci","symbol":"ACWI"},"NDX":{"closes":[23345.41,23218.12,22763.31,23188.61,23018.56,23315.04,23389.53,23611.27,23526.63,23839.2,23849.04,23832.44,23712.07,23713.76,23384.77,23249.57,23142.58,23498.12,23425.61,23525.29,23565.85,23703.45,23415.42,23231.11,23414.84,23633.01,23652.44,23762.3,23839.8,23849.27,23992.56,24092.19,24293.78,24274.25,24223.69,24454.89,24626.25,24761.07,24580.17,24503.57,24397.31,24503.85,24611.35,24679.99,24800.86,24892.76,24785.52,24978.56,24840.23,25136.62,25098.18,24221.75,24750.25,24579.32,24745.36,24657.24,24817.95,25141.02,25127.13,24879.01,25097.42,25358.16,25821.54,26012.16,26119.85,25734.81,25858.13,25972.94,25435.7,25620.03,25130.04,25059.81,25611.74,25533.49,25517.33,24993.46,25008.24,24799.92,24503.1,24640.52,24054.38,24239.57,24873.85,25018.36,25236.94,25434.89,25342.85,25555.86,25606.54,25581.7,25692.05,25627.95,25668.69,25776.44,25686.69,25196.73,25067.27,25132.94,24647.61,25019.37,25346.18,25461.7,25587.83,25656.15,25644.39,25525.56,25462.56,25249.85,25206.17,25401.32,25639.71,25653.9,25507.1,25766.26,25787.66,25741.95,25465.94,25547.07,25529.26,24987.57,25326.58,25518.35,25605.47,25713.21,25939.74,26022.79,25884.29,25552.39,25738.61,25338.62,24891.24,24548.69,25075.77,25268.14,25127.64,25201.26,24687.61,24732.73,24701.6,24898.87,24797.34,25012.62,24708.94,24977.04,25329.04,25034.37,24960.04,24992.6,24720.08,25093.68,25020.41,24643.02,24967.25,24956.47,24965.01,24533.58,24380.73,24655.34,24780.42,24425.09,24355.28,23898.15,24188.59,24002.45,24162.98,23586.99,23132.77,22953.38,23740.19,24019.99,24045.53,24192.17,24202.37,24903.17,25082.09,25116.34,25383.72,25842.0,26204.58,26333.0,26672.43,26590.34,26479.47,26937.28,26782.63,27303.67,27305.68,27029.01,27186.98,27452.12,27710.36,27651.82,28015.06,28599.17,28563.95,29234.99,29320.66,29064.8,29366.94,29580.3,29125.2,28994.37,28818.84,29297.7,29357.27,29481.64,30001.32,29973.57,30223.89,30333.18,30513.86,30660.6,30571.24,30407.81,28957.6,29414.26,29084.5,28508.03,29446.18,29635.95,30543.92,29968.13,29670.95,30406.19,30347.08,29347.27,29220.06,29440.32,29118.24,29774.75,30276.35,29809.13,29329.21,29697.87,29173.02,29252.56,29727.1,29825.11,29264.1,29586.29,29502.6,29025.77,28592.66,28604.23,29155.17879873958,28998.10050692603,28454.80831838385,28128.34202832737,28039.21063690933,27763.13443183173,27192.30643543328,28106.34636313117],"dates":["20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251226","20251229","20251230","20251231","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"exchange":"NASDAQ","label":"纳斯达克 100","providerSymbol":"NDX","redistribution":"review_required","returnType":"price_return","source":"Nasdaq Global Index Watch / Nasdaq-100 Index","sourceId":"nasdaq-global-index-watch","symbol":"NDX"},"SPX":{"closes":[6362.9,6339.39,6238.01,6329.94,6299.19,6345.06,6340.0,6389.45,6373.45,6445.76,6466.58,6468.54,6449.8,6449.15,6411.37,6395.78,6370.17,6466.91,6439.32,6465.94,6481.4,6501.86,6460.26,6415.54,6448.26,6502.08,6481.5,6495.15,6512.61,6532.04,6587.47,6584.29,6615.28,6606.76,6600.35,6631.96,6664.36,6693.75,6656.92,6637.97,6604.72,6643.7,6661.21,6688.46,6711.2,6715.35,6715.79,6740.28,6714.59,6753.72,6735.11,6552.51,6654.72,6644.31,6671.06,6629.07,6664.01,6735.13,6735.35,6699.4,6738.44,6791.69,6875.16,6890.89,6890.59,6822.34,6840.2,6851.97,6771.55,6796.29,6720.32,6728.8,6832.43,6846.61,6850.92,6737.49,6734.11,6672.41,6617.32,6642.16,6538.76,6602.99,6705.12,6765.88,6812.61,6849.09,6812.63,6829.37,6849.72,6857.12,6870.4,6846.51,6840.51,6886.68,6901.0,6827.41,6816.51,6800.26,6721.43,6774.76,6834.5,6878.49,6909.79,6932.05,6929.94,6905.74,6896.24,6845.5,6858.47,6902.05,6944.82,6920.93,6921.46,6966.28,6977.27,6963.74,6926.6,6944.47,6940.01,6796.86,6875.62,6913.35,6915.61,6950.23,6978.6,6978.03,6969.01,6939.03,6976.44,6917.81,6882.72,6798.4,6932.3,6964.82,6941.81,6941.47,6832.76,6836.17,6843.22,6881.31,6861.89,6909.51,6837.75,6890.07,6946.13,6908.86,6878.88,6881.62,6816.63,6869.5,6830.71,6740.02,6795.99,6781.48,6775.8,6672.62,6632.19,6699.38,6716.09,6624.7,6606.49,6506.48,6581.0,6556.37,6591.9,6477.16,6368.85,6343.72,6528.52,6575.32,6582.69,6611.83,6616.85,6782.81,6824.66,6816.89,6886.24,6967.38,7022.95,7041.28,7126.06,7109.14,7064.01,7137.9,7108.4,7165.08,7173.91,7138.8,7135.95,7209.01,7230.12,7200.75,7259.22,7365.12,7337.11,7398.93,7412.84,7400.96,7444.25,7501.24,7408.5,7403.05,7353.61,7432.97,7445.72,7473.47,7519.12,7520.36,7563.63,7580.06,7599.96,7609.78,7553.68,7584.31,7383.74,7405.73,7386.65,7266.99,7394.3,7431.46,7554.29,7511.35,7420.1,7500.58,7472.79,7365.46,7358.22,7357.49,7354.02,7440.43,7499.36,7483.23,7483.24,7537.43,7503.85,7482.71,7543.64,7575.39,7515.34,7543.59,7572.4,7533.77,7457.69,7443.28,7509.2,7498.96,7408.3,7411.98,7413.18,7428.78,7316.15,7437.63],"dates":["20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251226","20251229","20251230","20251231","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"exchange":"CBOE","label":"标普 500","providerSymbol":"SPX","redistribution":"review_required","returnType":"price_return","source":"Cboe Global Indices / S\u0026P 500 Price Return Index","sourceId":"cboe-global-indices","symbol":"SPX"}},"source":"Cboe Global Indices and Nasdaq Global Index Watch"}</script>
+  <script id="ibkrGovernanceSources" type="application/json">{"ips":{"label":"IPS","asOf":"2026-07-27","version":"v1.9"},"playbook":{"label":"Playbook","asOf":"2026-07-27"}}</script>
 
-  <script id="ibkrPnlBreakdown" type="application/json">{"snapshotFetchedAt":"2026-07-19T15:13:47.074Z","source":"IBKR year-to-date activity, classified by security type","etfSymbols":["BIL","BOXX","COPX","EWJV","EWL","GLDM","SCHF","SCHG","SGOV","SHV","SIVR","TBIL","TFLO","USFR","VGK","VOO"],"equity":{"realizedYtd":2979.718159,"unrealized":594.57600187},"etf":{"realizedYtd":220.866172,"unrealized":663.7046465}}</script>
+  <script id="ibkrBenchmarkHistory" type="application/json">{"asOf":"20260730","completedThrough":"20260730","fetchedAt":"2026-07-31T08:10:11.007366Z","isComplete":true,"returnType":"mixed_by_series","source":"Cboe Global Indices and Nasdaq Global Index Watch","series":{"SPX":{"symbol":"SPX","label":"标普 500","exchange":"CBOE","dates":["20250725","20250728","20250729","20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251226","20251229","20251230","20251231","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"closes":[6388.64,6389.77,6370.86,6362.9,6339.39,6238.01,6329.94,6299.19,6345.06,6340,6389.45,6373.45,6445.76,6466.58,6468.54,6449.8,6449.15,6411.37,6395.78,6370.17,6466.91,6439.32,6465.94,6481.4,6501.86,6460.26,6415.54,6448.26,6502.08,6481.5,6495.15,6512.61,6532.04,6587.47,6584.29,6615.28,6606.76,6600.35,6631.96,6664.36,6693.75,6656.92,6637.97,6604.72,6643.7,6661.21,6688.46,6711.2,6715.35,6715.79,6740.28,6714.59,6753.72,6735.11,6552.51,6654.72,6644.31,6671.06,6629.07,6664.01,6735.13,6735.35,6699.4,6738.44,6791.69,6875.16,6890.89,6890.59,6822.34,6840.2,6851.97,6771.55,6796.29,6720.32,6728.8,6832.43,6846.61,6850.92,6737.49,6734.11,6672.41,6617.32,6642.16,6538.76,6602.99,6705.12,6765.88,6812.61,6849.09,6812.63,6829.37,6849.72,6857.12,6870.4,6846.51,6840.51,6886.68,6901,6827.41,6816.51,6800.26,6721.43,6774.76,6834.5,6878.49,6909.79,6932.05,6929.94,6905.74,6896.24,6845.5,6858.47,6902.05,6944.82,6920.93,6921.46,6966.28,6977.27,6963.74,6926.6,6944.47,6940.01,6796.86,6875.62,6913.35,6915.61,6950.23,6978.6,6978.03,6969.01,6939.03,6976.44,6917.81,6882.72,6798.4,6932.3,6964.82,6941.81,6941.47,6832.76,6836.17,6843.22,6881.31,6861.89,6909.51,6837.75,6890.07,6946.13,6908.86,6878.88,6881.62,6816.63,6869.5,6830.71,6740.02,6795.99,6781.48,6775.8,6672.62,6632.19,6699.38,6716.09,6624.7,6606.49,6506.48,6581,6556.37,6591.9,6477.16,6368.85,6343.72,6528.52,6575.32,6582.69,6611.83,6616.85,6782.81,6824.66,6816.89,6886.24,6967.38,7022.95,7041.28,7126.06,7109.14,7064.01,7137.9,7108.4,7165.08,7173.91,7138.8,7135.95,7209.01,7230.12,7200.75,7259.22,7365.12,7337.11,7398.93,7412.84,7400.96,7444.25,7501.24,7408.5,7403.05,7353.61,7432.97,7445.72,7473.47,7519.12,7520.36,7563.63,7580.06,7599.96,7609.78,7553.68,7584.31,7383.74,7405.73,7386.65,7266.99,7394.3,7431.46,7554.29,7511.35,7420.1,7500.58,7472.79,7365.46,7358.22,7357.49,7354.02,7440.43,7499.36,7483.23,7483.24,7537.43,7503.85,7482.71,7543.64,7575.39,7515.34,7543.59,7572.4,7533.77,7457.69,7443.28,7509.2,7498.96,7408.3,7411.98,7413.18,7428.78,7316.15,7437.63],"source":"Cboe Global Indices / S&P 500 Price Return Index","providerSymbol":"SPX","sourceId":"cboe-global-indices","returnType":"price_return","redistribution":"review_required"},"NDX":{"symbol":"NDX","label":"纳斯达克 100","exchange":"NASDAQ","dates":["20250725","20250728","20250729","20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251226","20251229","20251230","20251231","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"closes":[23272.25,23356.27,23308.3,23345.41,23218.12,22763.31,23188.61,23018.56,23315.04,23389.53,23611.27,23526.63,23839.2,23849.04,23832.44,23712.07,23713.76,23384.77,23249.57,23142.58,23498.12,23425.61,23525.29,23565.85,23703.45,23415.42,23231.11,23414.84,23633.01,23652.44,23762.3,23839.8,23849.27,23992.56,24092.19,24293.78,24274.25,24223.69,24454.89,24626.25,24761.07,24580.17,24503.57,24397.31,24503.85,24611.35,24679.99,24800.86,24892.76,24785.52,24978.56,24840.23,25136.62,25098.18,24221.75,24750.25,24579.32,24745.36,24657.24,24817.95,25141.02,25127.13,24879.01,25097.42,25358.16,25821.54,26012.16,26119.85,25734.81,25858.13,25972.94,25435.7,25620.03,25130.04,25059.81,25611.74,25533.49,25517.33,24993.46,25008.24,24799.92,24503.1,24640.52,24054.38,24239.57,24873.85,25018.36,25236.94,25434.89,25342.85,25555.86,25606.54,25581.7,25692.05,25627.95,25668.69,25776.44,25686.69,25196.73,25067.27,25132.94,24647.61,25019.37,25346.18,25461.7,25587.83,25656.15,25644.39,25525.56,25462.56,25249.85,25206.17,25401.32,25639.71,25653.9,25507.1,25766.26,25787.66,25741.95,25465.94,25547.07,25529.26,24987.57,25326.58,25518.35,25605.47,25713.21,25939.74,26022.79,25884.29,25552.39,25738.61,25338.62,24891.24,24548.69,25075.77,25268.14,25127.64,25201.26,24687.61,24732.73,24701.6,24898.87,24797.34,25012.62,24708.94,24977.04,25329.04,25034.37,24960.04,24992.6,24720.08,25093.68,25020.41,24643.02,24967.25,24956.47,24965.01,24533.58,24380.73,24655.34,24780.42,24425.09,24355.28,23898.15,24188.59,24002.45,24162.98,23586.99,23132.77,22953.38,23740.19,24019.99,24045.53,24192.17,24202.37,24903.17,25082.09,25116.34,25383.72,25842,26204.58,26333,26672.43,26590.34,26479.47,26937.28,26782.63,27303.67,27305.68,27029.01,27186.98,27452.12,27710.36,27651.82,28015.06,28599.17,28563.95,29234.99,29320.66,29064.8,29366.94,29580.3,29125.2,28994.37,28818.84,29297.7,29357.27,29481.64,30001.32,29973.57,30223.89,30333.18,30513.86,30660.6,30571.24,30407.81,28957.6,29414.26,29084.5,28508.03,29446.18,29635.95,30543.92,29968.13,29670.95,30406.19,30347.08,29347.27,29220.06,29440.32,29118.24,29774.75,30276.35,29809.13,29329.21,29697.87,29173.02,29252.56,29727.1,29825.11,29264.1,29586.29,29502.6,29025.77,28592.66,28604.23,29155.17879873958,28998.10050692603,28454.80831838385,28128.34202832737,28039.21063690933,27763.13443183173,27192.30643543328,28106.34636313117],"source":"Nasdaq Global Index Watch / Nasdaq-100 Index","providerSymbol":"NDX","sourceId":"nasdaq-global-index-watch","returnType":"price_return","redistribution":"review_required"},"ACWI":{"symbol":"ACWI","label":"MSCI ACWI","exchange":"CBOE","dates":["20250725","20250728","20250729","20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251226","20251229","20251230","20251231","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"closes":[514.93,513.9,511.95,511.16,508.62,501.94,508.02,507.37,510.64,511.92,514.71,513.45,518.39,521.66,521.11,521.25,520.87,519.05,517.92,516.18,523.2,521.93,521.74,521.93,523.76,521.18,517.68,519.5,522.69,523.6,525.35,526.92,528.65,532.3,532.7,535.2,535.33,535.13,536.67,538.09,539.95,538.34,536.75,533.61,535.52,537.71,540.07,542.17,543.37,544.75,546.34,544.19,546.38,544.95,533.34,538.2,536.68,540.6,540.05,539.79,546.26,545.8,543.57,545.95,549.41,555.53,556.14,556.59,551.55,552.15,552.97,546.78,547.9,544.53,544.08,551.75,553.87,555.29,548.6,546.52,542.13,536.01,536.5,531.56,533.11,539.46,544.55,549.58,552.08,549.66,551.19,552.99,554.45,555.32,553.92,553.02,556.66,557.8,554.43,553.83,551.09,546.71,550.29,554.25,558.23,561.01,562.08,562.23,561.19,560.84,557.85,560.62,565.37,569.12,567.02,566.04,569.05,570.85,570.75,570.06,571.03,571.03,562.01,565.68,570.05,570.66,574.06,579.21,578.53,578.14,574.38,574.5,574.21,571.97,564.73,573.65,579.82,580,581.09,574.71,573.75,574.41,577.26,576.36,579.56,575.91,579.15,584.49,582.99,581.77,578.14,567.14,568.23,566.05,560.27,559.53,564.05,563.28,555.21,550.54,555.49,558.23,554.07,548.43,540.82,542.83,543.34,548.71,539.99,532.76,529.97,539.99,549.8,547.91,550.42,550.67,568.9,569.83,571.12,573.98,582.01,585.57,587.34,593.25,591.79,588.8,591.5,589.35,592.09,593.65,590.35,589.59,594.92,596.51,595.59,598.97,609.9,609.58,610.98,612.54,609.82,613.16,616.95,607.62,607.31,603.78,609.25,612.22,615.38,620.35,620.84,622.24,625.62,626.19,628.92,625.32,626.17,612,609.35,610.72,601.66,608.65,615.75,626.32,624.69,620.73,624.34,623.52,612.72,611.56,613.84,610.6,615.88,620.6,619.24,619.74,625.15,621.21,617.22,621.66,624.2,618.85,621.46,625.13,621.56,614.39,612.62,619.05,619.21,613.86,612.67,614.13,611.94,604.65,613.58],"source":"Cboe Global Indices / MSCI ACWI Net Total Return USD Index","providerSymbol":"MXACW","sourceId":"cboe-global-indices-msci","returnType":"net_total_return","redistribution":"review_required"}},"redistribution":"review_required"}</script>
+
+  <script id="ibkrPnlBreakdown" type="application/json">{"status":"complete","asOf":"2026-07-30","realizedThrough":"2026-07-30","currency":"USD","rows":{"equity":{"priorRealized":909.280112016,"currentYearRealized":2982.09960954,"cashIncome":1265.3479782,"unrealized":2719.470511},"etf":{"priorRealized":41.41919722,"currentYearRealized":230.26115428,"cashIncome":362.26000000000005,"unrealized":990.8677279999997},"other":{"priorRealized":-10.058298,"currentYearRealized":44.398478,"cashIncome":56.6765336,"unrealized":-80.81}},"methodologyVersion":"reviewed-total-investment-result-v2","snapshotFetchedAt":"2026-07-30","source":"IBKR reviewed realized, unrealized, dividend and interest summary","etfSymbols":["BIL","BOXX","COPX","EWJV","EWL","GLDM","SCHF","SCHG","SGOV","SHV","SIVR","TBIL","TFLO","USFR","VGK","VOO"],"equity":{"realizedYtd":2982.09960954,"unrealized":2719.470511},"etf":{"realizedYtd":230.26115428,"unrealized":990.8677279999997}}</script>
   <script id="ibkrStatementHistory" type="application/json">[{"periodStart":"2024-11-12","periodEnd":"2024-12-31","startNav":0,"endNav":8953.700246795,"twr":0.04381921116,"source":"IBKR Activity statement"},{"periodStart":"2025-01-01","periodEnd":"2025-12-31","startNav":8953.700246795,"endNav":60442.842258076,"twr":0.14372297724,"source":"IBKR Activity statement"},{"periodStart":"2026-01-01","periodEnd":"2026-07-03","startNav":60442.842258076,"endNav":97992.071494939,"twr":0.05282596485,"source":"IBKR Activity statement"}]</script>
 
-  <script id="familySnapshot" type="application/json">{"currency":"USD","dailyPnlRateSource":"IBKR Activity Flex completed close","fetchedAt":"2026-07-31T08:10:11.007366Z","holdingsFetchedAt":"2026-07-31T08:10:11.007366Z","marketDataFetchedAt":"2026-07-31T08:10:11.007366Z","orders":[{"filledQuantity":0.0,"limitPrice":75.4,"remainingQuantity":5.0,"side":"BUY","status":"NEW","symbol":"Buy 5 KO","time":"2026-07-10T14:19:24Z","totalQuantity":5.0,"type":"LIMIT"},{"filledQuantity":0.0,"limitPrice":70.4,"remainingQuantity":10.0,"side":"BUY","status":"NEW","symbol":"Buy 10 KO","time":"2026-07-10T14:19:02Z","totalQuantity":10.0,"type":"LIMIT"},{"filledQuantity":0.0,"limitPrice":192.0,"remainingQuantity":5.0,"side":"BUY","status":"NEW","symbol":"Buy 5 NVDA","time":"2026-07-08T17:18:03Z","totalQuantity":5.0,"type":"LIMIT"},{"filledQuantity":0.0,"limitPrice":146.0,"remainingQuantity":10.0,"side":"BUY","status":"REPLACED","symbol":"Buy 10 XLV","time":"2026-06-14T02:40:45Z","totalQuantity":10.0,"type":"LIMIT"},{"filledQuantity":0.0,"limitPrice":48.0,"remainingQuantity":20.0,"side":"BUY","status":"REPLACED","symbol":"Buy 20 XLF","time":"2026-06-14T02:40:20Z","totalQuantity":20.0,"type":"LIMIT"},{"filledQuantity":0.0,"limitPrice":452.0,"remainingQuantity":3.0,"side":"BUY","status":"NEW","symbol":"Buy 3 BRK B","time":"2026-06-13T12:17:15Z","totalQuantity":3.0,"type":"LIMIT"},{"filledQuantity":0.0,"limitPrice":465.0,"remainingQuantity":2.0,"side":"BUY","status":"NEW","symbol":"Buy 2 BRK B","time":"2026-06-13T12:16:59Z","totalQuantity":2.0,"type":"LIMIT"},{"filledQuantity":0.0,"limitPrice":476.0,"remainingQuantity":2.0,"side":"BUY","status":"NEW","symbol":"Buy 2 BRK B","time":"2026-06-13T12:16:39Z","totalQuantity":2.0,"type":"LIMIT"}],"ordersSnapshot":{"asOf":"2026-07-21T05:20:24.667000Z","source":"last validated family order snapshot","status":"carried_forward"},"performance":{"1D":{"dates":["20260730"],"frequency":"D","nav":[100121.958698191],"returns":[0.019022742784258105],"startDate":"20260729","startNav":98252.918697616},"1M":{"dates":["20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"frequency":"D","nav":[97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447,97876.62986899322,97881.230398835,97711.190398845,97089.960398744,97311.570398736,97957.600398756,98541.570398749,98252.918697616,100121.958698191],"returns":[0.005856195299146272,0.015280883011268287,0.015093174968109357,0.013421176543498392,0.014802542328290036,0.009475340722423065,0.010688271681864814,0.012069010619281118,0.012437709147158804,0.010551244716799246,0.014686500716402318,0.019061090786286483,0.012211641787000849,0.012072229059536532,0.013900434107712467,0.013944977516731516,0.012183544772103039,0.005748265652283591,0.00804390850153025,0.014736089128791319,0.02078539445758376,0.017795271206146435,0.037156528857335225],"startDate":"20260630","startNav":96534.7543332258},"1Y":{"dates":["20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250901","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251127","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251225","20251226","20251229","20251230","20251231","20260101","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260119","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260216","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260403","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260525","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260619","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"frequency":"D","nav":[32725.8704907915,32646.609125379102,32755.794647431503,33095.1996463428,33545.3333813833,33743.4433814226,35145.6736303182,35099.9439162438,35172.554361295806,30050.528164378702,30030.5421643948,28970.0661645366,27539.5701644394,27775.1801645838,27731.4501645777,26754.1501643843,27036.760164637497,26717.5701645022,26642.1301646578,26708.920164697796,26536.710164737604,26705.4501647025,26705.4501646836,32639.365072424,31779.412275499897,40240.792275432,40469.1722756424,40345.7122756397,40348.8322756794,40252.767478669,40463.207478714,40088.2774786793,39977.407478727095,40161.8674788951,40084.457478808,40123.0874786338,40028.8147816539,40031.8247817205,40152.0047817032,40075.5647814724,39671.898303292895,39883.278303361105,43984.4083034975,44313.00830362,51803.53671217601,51947.507638982395,52157.3376365102,51675.547630201196,51678.667629937605,51534.437629810105,51326.976932750404,51123.479061064805,51278.477628886394,51502.197628995804,51462.2876291195,51651.927629248894,51868.3276292277,52118.577629206906,52252.3311519904,52154.0132049846,51971.1125078809,52008.3025078432,52348.2684908551,52694.64647397339,52360.751298859395,52207.3006016355,52358.5481246552,52125.8924816128,51839.702481692504,52017.942481616294,51846.8324817839,52171.3624817161,52267.5948526189,52788.4408356213,52891.720835518005,52725.1008355658,52478.8540415569,52160.584041434005,52200.354041337,51964.7740410507,51701.124041038005,52342.9240412113,52547.9040411347,53124.0940412999,53339.104041221,53339.1040412406,53567.9940412306,53097.784041325795,53007.0140412838,53260.8740413886,53373.0784544128,53437.058454363905,53343.7061972946,53168.626197136204,53462.03262627989,53535.632626343504,53568.7026262923,53750.3526264017,53578.7526264895,60576.6825209652,60763.57627374011,60673.1062720006,60697.1262621192,60584.8962622649,60802.6262623207,60802.62626234231,60803.6194182429,60631.256485310296,60673.531728216694,60442.841728167405,60442.8417281593,60634.1685520969,60727.77416219399,60848.190654136604,60908.774210131596,61096.3742100869,61375.1242099089,61335.3027198646,61272.0952056886,61651.870948814496,61770.400948790295,61401.400948873896,61401.4009488689,61068.19578285381,61338.1357828404,61663.1663688246,61976.106369247995,62209.0363694834,62570.5963698055,62265.8763695952,62435.970222627206,62230.2760253116,62348.047273194505,62494.215066154,70253.4379817209,69618.9147246878,70653.9935969229,71117.95133912709,71286.955025351,71431.5850255363,70886.5155356326,70999.6355356384,70999.6355355062,70567.2471785444,70825.3171782997,70676.4171782739,71028.5571782581,70944.2971783028,71127.57671408591,71318.9254420242,70813.4443780454,70466.6743780566,70552.8609128636,69688.4938698951,69887.8722969291,69464.2960848443,69076.0116557892,69643.9963018189,69784.83431274301,69543.60431259891,68647.7153335322,68164.3431764687,68822.3765355596,68896.9081215361,67988.1478643905,67468.9403497473,66126.3003495168,66659.3903496355,66483.8203496309,67284.33034955419,66045.9003494679,65440.2103493515,65598.8245814275,67373.16458156079,74959.08983372079,75075.82293559119,75075.8229264448,75177.7429264263,74944.5529264452,76187.20876961699,76342.0687695496,76332.6737915164,76582.5083114991,77124.6783115823,77439.8983115519,77589.5201745727,78110.7701746193,77877.6499175943,77311.3399175091,77425.4899174802,77163.5199174456,77522.2699174856,77484.1040764691,77379.96407644599,77356.9941373146,77495.2841379264,77335.2141378459,76714.0641378243,76948.154137706,77805.92413794491,77834.0941378729,77866.5588659329,77891.9724738501,77869.3120967865,77913.2020967376,77928.9120966482,77576.292096602,77743.8820965897,77533.03209654,77915.6520965627,78012.30303055039,78061.47303051219,78061.4730305573,78143.6340084903,78254.0540084668,78517.3740085114,78749.4840084918,78748.6027424282,78615.6921113924,78157.02211136889,78157.34211139049,77881.2421113496,77890.92814335541,77965.8975253231,77512.3742523011,78226.3742523901,78303.5842523539,78655.0143213415,78653.5343213277,77983.0860372888,85221.03865769741,85221.03865627441,84722.2481138926,84585.16811212851,84361.0122530973,83961.538850095,96693.03432145421,96527.2043251261,96534.7543332258,97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447,97876.62986899322,97881.230398835,97711.190398845,97089.960398744,97311.570398736,97957.600398756,98541.570398749,98252.918697616,100121.958698191],"returns":[-0.013574811504772244,-0.015963917643501024,-0.012672842679641083,-0.002442472653142014,0.0008479164184358456,0.0067586699369326375,0.009713545073467555,0.008399764474827487,0.010485818834125027,0.018219192889668,0.01754199198904427,0.01864833623979334,0.01400086322102978,0.022675977616857468,0.021065850603631642,0.021604255570548236,0.03239568548366423,0.020207451294200318,0.017326785607690853,0.019877148093060182,0.013301334991049796,0.01974464803626952,0.01974464803626952,0.009186175806251251,0.014742681316930017,0.013377243815982487,0.019128501785935503,0.016019423732345883,0.01609799422882041,0.01367881120166925,0.018978291376193557,0.009536492729946167,0.006744470942977143,0.011389691778128208,0.009440293778106401,0.010413104015042363,0.00803904655772314,0.008114853010673384,0.01114132711168292,0.009216344829457768,-0.000949121360214078,0.004374027216635712,0.007126287725649494,0.014650362263222139,0.024046963679249966,0.026892966212526348,0.031040863957289222,0.02151689132078749,0.021578560202971664,0.01872743907057628,0.014626376507751004,0.010603648985841208,0.013667652655590112,0.01809012229428686,0.017301182374898305,0.021049972709165088,0.02532773955077161,0.030274660855186708,0.032918683467233034,0.03097514114460287,0.027359577708202076,0.0280947518624457,0.034815165389564307,0.041662325668063716,0.03506192281588638,0.03202852836886816,0.035018373774583056,0.030419261280294485,0.024761878418181338,0.028285317307640945,0.0249028241635183,0.03131810775996313,0.03322041464809167,0.043516446064087555,0.045558070983032994,0.04226434458482964,0.037396567059990504,0.03110504095304134,0.03189120659170741,0.027234284638970374,0.02202247583015393,0.03470951750375084,0.03876153364981905,0.05015160420428222,0.05440189440581866,0.05440189440581866,0.05892657223172071,0.04963151358501272,0.047837178426697546,0.05285545300282979,0.0550734955590062,0.05633825021528582,0.0544928723865572,0.05103191111794225,0.056831939100300044,0.058286849713845346,0.05894057671890973,0.06253141732156653,0.059139250025109336,0.05731405995130534,0.060576132932558036,0.05899705534158728,0.059416309558214975,0.057457431912624646,0.061257715354027464,0.061257715354027464,0.061275057167842206,0.05826661077292927,0.059004487547507756,0.054977992736646275,0.054977992736646275,0.05831743846217963,0.05995124411492925,0.06205300233632327,0.06311044349109074,0.06638484205902095,0.07125018313067999,0.07055512855632973,0.06945189641384486,0.07608055393315882,0.07814939956221845,0.07170881984892818,0.07170881984892818,0.06589300610688809,0.07060457422381794,0.07627771213401902,0.0817398102025495,0.08580540087348076,0.09212138364701983,0.08680273943739447,0.08977158834952381,0.08618136197876103,0.08823697091049953,0.09078821379491764,0.0994818779939517,0.08955144763861989,0.10575066728361482,0.11301170724966747,0.11565665120955515,0.11792014692590724,0.10938968414117833,0.1111600335440226,0.1111600335440226,0.10439306123931913,0.1084319225856516,0.10610159843920397,0.11161267126410368,0.1102939768103095,0.1131623476217356,0.11615699427342374,0.10824610720043859,0.10281908177307097,0.10416791453847707,0.09064037841516637,0.09376069691242095,0.08713164014237607,0.08105490069165278,0.08994398276784699,0.09214813344601502,0.08837282876831232,0.07435196206192618,0.06678708205217787,0.07708544754937185,0.07825188415377626,0.06402959033486466,0.055903875656860835,0.03489125848406527,0.04323423722026831,0.0404865322644703,0.05301469262141767,0.03363298397427017,0.02415379908005888,0.026636145620336782,0.054404965565290064,0.05886770834185362,0.06051667528519311,0.06051667528519311,0.06195638365935574,0.058662360382403245,0.07621604325183484,0.078403589194461,0.07827087415650724,0.08180001516538549,0.08945867814818964,0.09391146013086815,0.09602501160463173,0.10338815738590768,0.10009511687998618,0.09209545282388354,0.09370792415550566,0.09000735102493862,0.09507504055696425,0.09453590874897255,0.09306483359940998,0.09274036560126553,0.09469383800618614,0.09243269684542899,0.08365837376147955,0.08696511163864318,0.09908192089600232,0.09947985102870072,0.09993844679815589,0.10029743462875818,0.09997733791426122,0.10059732311393432,0.10081924509733131,0.09583815202519874,0.0982055143548708,0.0952270629507943,0.10063193508117574,0.10199721902415004,0.1026917924501829,0.1026917924501829,0.10385239385159206,0.10541217432388428,0.10913181935476834,0.1124105892063465,0.11239814077328947,0.11052065909088737,0.10404150561463732,0.10546044271357524,0.10155526893902911,0.10169227336304476,0.10275264235650794,0.09633799346635397,0.10643683596989462,0.10752888909190395,0.11249952998463586,0.11247860515143815,0.1029957553402574,0.1012054741124444,0.1012054741124444,0.09476022623675795,0.09298891453727887,0.09009243237949227,0.08493052991208483,0.09598749227309078,0.09410785054186044,0.0941934335191279,0.10060124396085923,0.11091367536843189,0.11070828646018849,0.10887879676312484,0.11039027813413194,0.1045612891179597,0.10588847020909276,0.10739926568781777,0.10780269319596991,0.10573853620370288,0.1102633061643894,0.11504995389319461,0.10755533177495202,0.10740278728401154,0.10940319724285219,0.10945193634850736,0.1075245882057494,0.10048314804998038,0.10299502538133098,0.11031756547960403,0.11693667564772103,0.11366490242058536,0.1348498634071882],"startDate":"20250730","startNav":33176.2316650049},"7D":{"dates":["20260724","20260727","20260728","20260729","20260730"],"frequency":"D","nav":[97311.570398736,97957.600398756,98541.570398749,98252.918697616,100121.958698191],"returns":[0.0022825223046820664,0.008936454362840518,0.014951185419691093,0.011978151954405325,0.031228752042323116],"startDate":"20260723","startNav":97089.960398744},"MTD":{"dates":["20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"frequency":"D","nav":[97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447,97876.62986899322,97881.230398835,97711.190398845,97089.960398744,97311.570398736,97957.600398756,98541.570398749,98252.918697616,100121.958698191],"returns":[0.005856195299146272,0.015280883011268287,0.015093174968109357,0.013421176543498392,0.014802542328290036,0.009475340722423065,0.010688271681864814,0.012069010619281118,0.012437709147158804,0.010551244716799246,0.014686500716402318,0.019061090786286483,0.012211641787000849,0.012072229059536532,0.013900434107712467,0.013944977516731516,0.012183544772103039,0.005748265652283591,0.00804390850153025,0.014736089128791319,0.02078539445758376,0.017795271206146435,0.037156528857335225],"startDate":"20260630","startNav":96534.7543332258},"YTD":{"dates":["20260101","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260119","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260216","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260403","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260525","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260619","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"frequency":"D","nav":[60442.8417281593,60634.1685520969,60727.77416219399,60848.190654136604,60908.774210131596,61096.3742100869,61375.1242099089,61335.3027198646,61272.0952056886,61651.870948814496,61770.400948790295,61401.400948873896,61401.4009488689,61068.19578285381,61338.1357828404,61663.1663688246,61976.106369247995,62209.0363694834,62570.5963698055,62265.8763695952,62435.970222627206,62230.2760253116,62348.047273194505,62494.215066154,70253.4379817209,69618.9147246878,70653.9935969229,71117.95133912709,71286.955025351,71431.5850255363,70886.5155356326,70999.6355356384,70999.6355355062,70567.2471785444,70825.3171782997,70676.4171782739,71028.5571782581,70944.2971783028,71127.57671408591,71318.9254420242,70813.4443780454,70466.6743780566,70552.8609128636,69688.4938698951,69887.8722969291,69464.2960848443,69076.0116557892,69643.9963018189,69784.83431274301,69543.60431259891,68647.7153335322,68164.3431764687,68822.3765355596,68896.9081215361,67988.1478643905,67468.9403497473,66126.3003495168,66659.3903496355,66483.8203496309,67284.33034955419,66045.9003494679,65440.2103493515,65598.8245814275,67373.16458156079,74959.08983372079,75075.82293559119,75075.8229264448,75177.7429264263,74944.5529264452,76187.20876961699,76342.0687695496,76332.6737915164,76582.5083114991,77124.6783115823,77439.8983115519,77589.5201745727,78110.7701746193,77877.6499175943,77311.3399175091,77425.4899174802,77163.5199174456,77522.2699174856,77484.1040764691,77379.96407644599,77356.9941373146,77495.2841379264,77335.2141378459,76714.0641378243,76948.154137706,77805.92413794491,77834.0941378729,77866.5588659329,77891.9724738501,77869.3120967865,77913.2020967376,77928.9120966482,77576.292096602,77743.8820965897,77533.03209654,77915.6520965627,78012.30303055039,78061.47303051219,78061.4730305573,78143.6340084903,78254.0540084668,78517.3740085114,78749.4840084918,78748.6027424282,78615.6921113924,78157.02211136889,78157.34211139049,77881.2421113496,77890.92814335541,77965.8975253231,77512.3742523011,78226.3742523901,78303.5842523539,78655.0143213415,78653.5343213277,77983.0860372888,85221.03865769741,85221.03865627441,84722.2481138926,84585.16811212851,84361.0122530973,83961.538850095,96693.03432145421,96527.2043251261,96534.7543332258,97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447,97876.62986899322,97881.230398835,97711.190398845,97089.960398744,97311.570398736,97957.600398756,98541.570398749,98252.918697616,100121.958698191],"returns":[0.0,0.0031654174291073645,0.00471408068464263,0.006706310130056847,0.007708644929500963,0.010812404998880476,0.015424198898996044,0.01476536565400366,0.01371962616931266,0.020002844933069808,0.02196387695772195,0.01585893471472466,0.01585893471472466,0.010346200058569899,0.014812234562955773,0.020189728642699523,0.0253671807849587,0.029220901619821715,0.0352077400344839,0.03016626595043359,0.03298039945138731,0.0295772702908923,0.03152575542128466,0.03394404556760322,0.042184657465565545,0.032771730917617425,0.04812676178700426,0.05500940769624951,0.05751651588058859,0.059662054206445436,0.05157613881914869,0.053254230130088676,0.053254230130088676,0.046839904569467405,0.050668289023114266,0.048459404892363,0.05368327957301289,0.052433306149042735,0.055152197757374344,0.05799078460212925,0.05049215702179066,0.04534794978265211,0.04662649092255511,0.03380391432243113,0.03676162388484627,0.030478026676482584,0.024717963914453023,0.03314380989170962,0.035233095823115734,0.03165453332826296,0.01836433504648105,0.011193683088021933,0.02095537060008046,0.022061020777084384,0.008579892339496409,0.0008776324497659083,-0.01903995570606687,-0.011131754024474305,-0.013736268028288201,-0.0018609867966399296,-0.02023265784626138,-0.029217854655554043,-0.026864870463117363,-0.0005431650473294303,0.003687011133869378,0.0052500455807418245,0.0052500455807418245,0.006614726535296933,0.003492364457953867,0.020131273506565073,0.02220482002382629,0.02207902115516025,0.02542424829086909,0.03268379591701187,0.03690453039046537,0.03890793850733165,0.045887369198748695,0.04276593867736023,0.035183160542480385,0.03671160127084039,0.03320387584334816,0.03800747323297715,0.037496437162363616,0.03610202404693319,0.03579446502638639,0.03764613626348323,0.03550282979043384,0.02718576237826098,0.030320176460763015,0.04180554330327668,0.04218273613140999,0.04261743313230704,0.04295771305574991,0.042654297518458284,0.04324197347373082,0.04345233045266794,0.03873081672780665,0.04097480887358684,0.038151573294662455,0.04327478170999721,0.04456891670842755,0.045227293879150476,0.045227293879150476,0.04632741294267584,0.04780590868669221,0.051331712121923445,0.05443961567455857,0.054427815965803594,0.05264817535213373,0.04650666953792926,0.04785166166924104,0.044149997936506535,0.044279862658765046,0.04528497271865617,0.039204609967662396,0.048777172213576137,0.049812315249286865,0.05452392148842544,0.05450408710956456,0.04551541637285861,0.04381843194271995,0.04381843194271995,0.037709064808939985,0.03603006134946107,0.033284523359352836,0.028391622746310352,0.038872374418033706,0.03709068632200574,0.037171809319695326,0.043245689993840486,0.053020710400495163,0.05282602490974808,0.051091875278514554,0.05252458892885947,0.04699936560069151,0.04825738339847563,0.049689446900393675,0.05007185061964625,0.0481152628931929,0.05240423384030146,0.05694143533811524,0.049837379926683134,0.049692784975896576,0.05158894771352074,0.05163514688164628,0.04980823849490501,0.04313374840672468,0.04551472445422955,0.05245566554370029,0.05872983449669111,0.055628562953909055,0.07570951358269729],"startDate":"20251231","startNav":60442.841728167405}},"pnl":{"accountUnrealized":3629.528239,"option":{"realizedYtd":0.0,"unrealized":0.0},"other":{"realizedYtd":32.18,"unrealized":-80.80999999999995},"positionUnrealized":3629.528239,"realizedThrough":"2026-07-19T15:13:47.074Z","stock":{"realizedYtd":3200.5843309999996,"unrealized":3710.338239}},"positions":[{"assetClass":"BOND","averagePrice":49.248666667,"currency":"USD","dailyPnl":-7.77,"dailyPnlRate":-0.0051007246,"familyBondKey":"strips-2040-05-15","marketPrice":50.506006,"marketValue":1515.18,"name":"US Treasury STRIPS 2040-05-15","priceScope":"completed-rth-close","quantity":3000.0,"unrealizedPnl":37.72,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":79.2336477,"currency":"USD","dailyPnl":21.3,"dailyPnlRate":0.0239702903,"marketPrice":90.99,"marketValue":909.9,"name":"VGK","priceScope":"completed-rth-close","quantity":10.0,"unrealizedPnl":117.563523,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":55.0382477,"currency":"USD","dailyPnl":11.3,"dailyPnlRate":0.0179964963,"marketPrice":63.92,"marketValue":639.2,"name":"EWL","priceScope":"completed-rth-close","quantity":10.0,"unrealizedPnl":88.817523,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"BOND","averagePrice":31.796666667000004,"currency":"USD","dailyPnl":-7.43,"dailyPnlRate":-0.0080717707,"familyBondKey":"strips-2048-11-15","marketPrice":30.464564,"marketValue":913.94,"name":"US Treasury STRIPS 2048-11-15","priceScope":"completed-rth-close","quantity":3000.0,"unrealizedPnl":-39.96,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":637.9201149424903,"currency":"USD","dailyPnl":46.5,"dailyPnlRate":0.0166410688,"marketPrice":681.79,"marketValue":2841.220000001,"name":"VOO","priceScope":"completed-rth-close","quantity":4.1673,"unrealizedPnl":182.815505,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"BOND","averagePrice":96.1196,"currency":"USD","dailyPnl":0.0,"dailyPnlRate":0.0,"familyBondKey":"ust-2029-05-31","marketPrice":95.96875,"marketValue":4798.44,"name":"US Treasury 2.75% 2029-05-31","priceScope":"completed-rth-close","quantity":5000.0,"unrealizedPnl":-7.54,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":389.39551149996674,"currency":"USD","dailyPnl":1816.8,"dailyPnlRate":0.1550673427,"marketPrice":451.1,"marketValue":13533.0,"name":"MSFT","priceScope":"completed-rth-close","quantity":30.0,"unrealizedPnl":1851.134655,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":116.60348728734375,"currency":"USD","dailyPnl":3.2,"dailyPnlRate":8.50196e-05,"marketPrice":117.63,"marketValue":37641.6,"name":"BOXX","priceScope":"completed-rth-close","quantity":320.0,"unrealizedPnl":328.484068,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":285.1539899,"currency":"USD","dailyPnl":-92.4,"dailyPnlRate":-0.0113435474,"marketPrice":268.44,"marketValue":8053.2,"name":"MCD","priceScope":"completed-rth-close","quantity":30.0,"unrealizedPnl":-501.419697,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":69.50503696104715,"currency":"USD","dailyPnl":54.81,"dailyPnlRate":0.0489218641,"marketPrice":90.48,"marketValue":1175.030000001,"name":"IBKR","priceScope":"completed-rth-close","quantity":12.9866,"unrealizedPnl":272.395885,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":22.8336477,"currency":"USD","dailyPnl":17.0,"dailyPnlRate":0.0317875841,"marketPrice":27.59,"marketValue":551.8,"name":"SCHF","priceScope":"completed-rth-close","quantity":20.0,"unrealizedPnl":95.127046,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"BOND","averagePrice":94.59,"currency":"USD","dailyPnl":0.16,"dailyPnlRate":8.24112e-05,"familyBondKey":"ust-2028-05-31","marketPrice":94.800781,"marketValue":1896.02,"name":"US Treasury 1.25% 2028-05-31","priceScope":"completed-rth-close","quantity":2000.0,"unrealizedPnl":4.22,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":37.8299241333,"currency":"USD","dailyPnl":78.0,"dailyPnlRate":0.0284090909,"marketPrice":47.06,"marketValue":2823.6,"name":"EWJV","priceScope":"completed-rth-close","quantity":60.0,"unrealizedPnl":553.804552,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":205.2980044,"currency":"USD","dailyPnl":50.3,"dailyPnlRate":0.0264722909,"marketPrice":195.04,"marketValue":1950.4,"name":"NVDA","priceScope":"completed-rth-close","quantity":10.0,"unrealizedPnl":-102.580044,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":468.113755333,"currency":"USD","dailyPnl":1.56,"dailyPnlRate":0.00102129,"marketPrice":509.68,"marketValue":1529.04,"name":"BRK B","priceScope":"completed-rth-close","quantity":3.0,"unrealizedPnl":124.698734,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":87.4336257,"currency":"USD","dailyPnl":17.9,"dailyPnlRate":0.032886276,"marketPrice":56.22,"marketValue":562.2,"name":"SIVR","priceScope":"completed-rth-close","quantity":10.0,"unrealizedPnl":-312.136257,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":66.12397864444445,"currency":"USD","dailyPnl":-26.55,"dailyPnlRate":-0.00662326,"marketPrice":88.49,"marketValue":3982.05,"name":"KO","priceScope":"completed-rth-close","quantity":45.0,"unrealizedPnl":1006.470961,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"BOND","averagePrice":30.909666666999996,"currency":"USD","dailyPnl":-8.01,"dailyPnlRate":-0.0089154968,"familyBondKey":"strips-2049-05-15","marketPrice":29.663068,"marketValue":889.89,"name":"US Treasury STRIPS 2049-05-15","priceScope":"completed-rth-close","quantity":3000.0,"unrealizedPnl":-37.4,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"BOND","averagePrice":98.6255,"currency":"USD","dailyPnl":-3.75,"dailyPnlRate":-0.0019224607,"familyBondKey":"ust-2035-05-15","marketPrice":97.34375,"marketValue":1946.88,"name":"US Treasury 4.25% 2035-05-15","priceScope":"completed-rth-close","quantity":2000.0,"unrealizedPnl":-25.63,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"BOND","averagePrice":27.166666667,"currency":"USD","dailyPnl":-7.67,"dailyPnlRate":-0.0094684861,"familyBondKey":"strips-2051-05-15","marketPrice":26.759193,"marketValue":802.78,"name":"US Treasury STRIPS 2051-05-15","priceScope":"completed-rth-close","quantity":3000.0,"unrealizedPnl":-12.22,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":82.60216464,"currency":"USD","dailyPnl":65.5,"dailyPnlRate":0.0163709073,"marketPrice":81.33,"marketValue":4066.5,"name":"GLDM","priceScope":"completed-rth-close","quantity":50.0,"unrealizedPnl":-63.608232,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":24.0763881375,"currency":"USD","dailyPnl":-38.4,"dailyPnlRate":-0.0095427435,"marketPrice":24.91,"marketValue":3985.6,"name":"PFE","priceScope":"completed-rth-close","quantity":160.0,"unrealizedPnl":133.377898,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"},{"assetClass":"STK","averagePrice":27.0260788098,"currency":"USD","dailyPnl":-124.0,"dailyPnlRate":-0.0448950036,"marketPrice":26.38,"marketValue":2638.0,"name":"KHC","priceScope":"completed-rth-close","quantity":100.0,"unrealizedPnl":-64.607881,"valuationDate":"20260730","valuationMethod":"IBKR Activity Flex completed close"}],"reconciliation":{"cash":369.688698191,"netLiquidation":100121.958698191,"positionsMarketValue":99645.470000002,"residual":106.799999998},"regularSession":{"archiveEligible":true,"calendarSource":"NYSE published calendar; verified for 2026-2028","displayMode":"completed_close","isComplete":true,"phase":"completed_close","priceScope":"regular-trading-hours-only","scheduledClose":"16:00","timezone":"America/New_York","valuationAt":"2026-07-30T20:00:00Z","valuationDate":"20260730"},"returnMethod":"IBKR Activity Flex Change in NAV TWR","risk":{"effectiveOrderCount":8,"effectiveOrderNotional":7699.0},"schemaVersion":1,"sourceMode":"family-static-snapshot","summary":{"availableFunds":null,"buyingPower":null,"cash":369.688698191,"dailyPnl":1868.35000058,"excessLiquidity":null,"grossPositionValue":99645.470000002,"initialMargin":null,"maintenanceMargin":null,"netLiquidation":100121.958698191},"valuationAt":"2026-07-30T20:00:00Z"}</script>
+  <script id="familySnapshot" type="application/json">{"schemaVersion":1,"sourceMode":"family-static-snapshot","fetchedAt":"2026-07-31T08:10:11.007366Z","currency":"USD","returnMethod":"IBKR Activity Flex Change in NAV TWR","holdingsFetchedAt":"2026-07-31T08:10:11.007366Z","marketDataFetchedAt":"2026-07-31T08:10:11.007366Z","valuationAt":null,"dailyPnlRateSource":"IBKR Activity Flex Change in NAV TWR","regularSession":{"archiveEligible":true,"calendarSource":null,"displayMode":"completed_close","isComplete":true,"phase":"completed_close","priceScope":null,"scheduledClose":null,"timezone":null,"valuationAt":null,"valuationDate":"20260730"},"summary":{"netLiquidation":100121.958698191,"cash":369.688698191,"availableFunds":null,"buyingPower":null,"initialMargin":null,"maintenanceMargin":null,"excessLiquidity":null,"grossPositionValue":99645.470000002,"dailyPnl":1868.35000058},"pnl":{"stock":{"realizedLifetime":null,"realizedYtd":3200.5843309999996,"unrealized":3710.338239},"option":{"realizedLifetime":null,"realizedYtd":0,"unrealized":0},"other":{"realizedLifetime":0,"realizedYtd":0,"unrealized":-80.80999999999995},"accountUnrealized":3629.528239,"positionUnrealized":3629.528239},"reconciliation":{"positionsMarketValue":99645.470000002,"cash":369.688698191,"netLiquidation":100121.958698191,"residual":106.799999998},"positions":[{"name":"US Treasury STRIPS 2040-05-15","assetClass":"BOND","currency":"USD","quantity":3000,"averagePrice":49.248666667,"marketPrice":50.506006,"marketValue":1515.18,"unrealizedPnl":37.72,"dailyPnl":-7.77,"dailyPnlRate":-0.0051007246,"valuationMethod":"IBKR Activity Flex completed close","familyBondKey":"strips-2040-05-15"},{"name":"VGK","assetClass":"STK","currency":"USD","quantity":10,"averagePrice":79.2336477,"marketPrice":90.99,"marketValue":909.9,"unrealizedPnl":117.563523,"dailyPnl":21.3,"dailyPnlRate":0.0239702903,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"EWL","assetClass":"STK","currency":"USD","quantity":10,"averagePrice":55.0382477,"marketPrice":63.92,"marketValue":639.2,"unrealizedPnl":88.817523,"dailyPnl":11.3,"dailyPnlRate":0.0179964963,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"US Treasury STRIPS 2048-11-15","assetClass":"BOND","currency":"USD","quantity":3000,"averagePrice":31.796666667000004,"marketPrice":30.464564,"marketValue":913.94,"unrealizedPnl":-39.96,"dailyPnl":-7.43,"dailyPnlRate":-0.0080717707,"valuationMethod":"IBKR Activity Flex completed close","familyBondKey":"strips-2048-11-15"},{"name":"VOO","assetClass":"STK","currency":"USD","quantity":4.1673,"averagePrice":637.9201149424903,"marketPrice":681.79,"marketValue":2841.220000001,"unrealizedPnl":182.815505,"dailyPnl":46.5,"dailyPnlRate":0.0166410688,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"US Treasury 2.75% 2029-05-31","assetClass":"BOND","currency":"USD","quantity":5000,"averagePrice":96.1196,"marketPrice":95.96875,"marketValue":4798.44,"unrealizedPnl":-7.54,"dailyPnl":0,"dailyPnlRate":0,"valuationMethod":"IBKR Activity Flex completed close","familyBondKey":"ust-2029-05-31"},{"name":"MSFT","assetClass":"STK","currency":"USD","quantity":30,"averagePrice":389.39551149996674,"marketPrice":451.1,"marketValue":13533,"unrealizedPnl":1851.134655,"dailyPnl":1816.8,"dailyPnlRate":0.1550673427,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"BOXX","assetClass":"STK","currency":"USD","quantity":320,"averagePrice":116.60348728734375,"marketPrice":117.63,"marketValue":37641.6,"unrealizedPnl":328.484068,"dailyPnl":3.2,"dailyPnlRate":0.0000850196,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"MCD","assetClass":"STK","currency":"USD","quantity":30,"averagePrice":285.1539899,"marketPrice":268.44,"marketValue":8053.2,"unrealizedPnl":-501.419697,"dailyPnl":-92.4,"dailyPnlRate":-0.0113435474,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"IBKR","assetClass":"STK","currency":"USD","quantity":12.9866,"averagePrice":69.50503696104715,"marketPrice":90.48,"marketValue":1175.030000001,"unrealizedPnl":272.395885,"dailyPnl":54.81,"dailyPnlRate":0.0489218641,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"SCHF","assetClass":"STK","currency":"USD","quantity":20,"averagePrice":22.8336477,"marketPrice":27.59,"marketValue":551.8,"unrealizedPnl":95.127046,"dailyPnl":17,"dailyPnlRate":0.0317875841,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"US Treasury 1.25% 2028-05-31","assetClass":"BOND","currency":"USD","quantity":2000,"averagePrice":94.59,"marketPrice":94.800781,"marketValue":1896.02,"unrealizedPnl":4.22,"dailyPnl":0.16,"dailyPnlRate":0.0000824112,"valuationMethod":"IBKR Activity Flex completed close","familyBondKey":"ust-2028-05-31"},{"name":"EWJV","assetClass":"STK","currency":"USD","quantity":60,"averagePrice":37.8299241333,"marketPrice":47.06,"marketValue":2823.6,"unrealizedPnl":553.804552,"dailyPnl":78,"dailyPnlRate":0.0284090909,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"NVDA","assetClass":"STK","currency":"USD","quantity":10,"averagePrice":205.2980044,"marketPrice":195.04,"marketValue":1950.4,"unrealizedPnl":-102.580044,"dailyPnl":50.3,"dailyPnlRate":0.0264722909,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"BRK B","assetClass":"STK","currency":"USD","quantity":3,"averagePrice":468.113755333,"marketPrice":509.68,"marketValue":1529.04,"unrealizedPnl":124.698734,"dailyPnl":1.56,"dailyPnlRate":0.00102129,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"SIVR","assetClass":"STK","currency":"USD","quantity":10,"averagePrice":87.4336257,"marketPrice":56.22,"marketValue":562.2,"unrealizedPnl":-312.136257,"dailyPnl":17.9,"dailyPnlRate":0.032886276,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"KO","assetClass":"STK","currency":"USD","quantity":45,"averagePrice":66.12397864444445,"marketPrice":88.49,"marketValue":3982.05,"unrealizedPnl":1006.470961,"dailyPnl":-26.55,"dailyPnlRate":-0.00662326,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"US Treasury STRIPS 2049-05-15","assetClass":"BOND","currency":"USD","quantity":3000,"averagePrice":30.909666666999996,"marketPrice":29.663068,"marketValue":889.89,"unrealizedPnl":-37.4,"dailyPnl":-8.01,"dailyPnlRate":-0.0089154968,"valuationMethod":"IBKR Activity Flex completed close","familyBondKey":"strips-2049-05-15"},{"name":"US Treasury 4.25% 2035-05-15","assetClass":"BOND","currency":"USD","quantity":2000,"averagePrice":98.6255,"marketPrice":97.34375,"marketValue":1946.88,"unrealizedPnl":-25.63,"dailyPnl":-3.75,"dailyPnlRate":-0.0019224607,"valuationMethod":"IBKR Activity Flex completed close","familyBondKey":"ust-2035-05-15"},{"name":"US Treasury STRIPS 2051-05-15","assetClass":"BOND","currency":"USD","quantity":3000,"averagePrice":27.166666667,"marketPrice":26.759193,"marketValue":802.78,"unrealizedPnl":-12.22,"dailyPnl":-7.67,"dailyPnlRate":-0.0094684861,"valuationMethod":"IBKR Activity Flex completed close","familyBondKey":"strips-2051-05-15"},{"name":"GLDM","assetClass":"STK","currency":"USD","quantity":50,"averagePrice":82.60216464,"marketPrice":81.33,"marketValue":4066.5,"unrealizedPnl":-63.608232,"dailyPnl":65.5,"dailyPnlRate":0.0163709073,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"PFE","assetClass":"STK","currency":"USD","quantity":160,"averagePrice":24.0763881375,"marketPrice":24.91,"marketValue":3985.6,"unrealizedPnl":133.377898,"dailyPnl":-38.4,"dailyPnlRate":-0.0095427435,"valuationMethod":"IBKR Activity Flex completed close"},{"name":"KHC","assetClass":"STK","currency":"USD","quantity":100,"averagePrice":27.0260788098,"marketPrice":26.38,"marketValue":2638,"unrealizedPnl":-64.607881,"dailyPnl":-124,"dailyPnlRate":-0.0448950036,"valuationMethod":"IBKR Activity Flex completed close"}],"orders":[{"symbol":"Buy 5 KO","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":75.4,"totalQuantity":5,"filledQuantity":0,"remainingQuantity":5,"time":"2026-07-10T14:19:24Z"},{"symbol":"Buy 10 KO","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":70.4,"totalQuantity":10,"filledQuantity":0,"remainingQuantity":10,"time":"2026-07-10T14:19:02Z"},{"symbol":"Buy 5 NVDA","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":192,"totalQuantity":5,"filledQuantity":0,"remainingQuantity":5,"time":"2026-07-08T17:18:03Z"},{"symbol":"Buy 10 XLV","side":"BUY","type":"LIMIT","status":"REPLACED","limitPrice":146,"totalQuantity":10,"filledQuantity":0,"remainingQuantity":10,"time":"2026-06-14T02:40:45Z"},{"symbol":"Buy 20 XLF","side":"BUY","type":"LIMIT","status":"REPLACED","limitPrice":48,"totalQuantity":20,"filledQuantity":0,"remainingQuantity":20,"time":"2026-06-14T02:40:20Z"},{"symbol":"Buy 3 BRK B","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":452,"totalQuantity":3,"filledQuantity":0,"remainingQuantity":3,"time":"2026-06-13T12:17:15Z"},{"symbol":"Buy 2 BRK B","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":465,"totalQuantity":2,"filledQuantity":0,"remainingQuantity":2,"time":"2026-06-13T12:16:59Z"},{"symbol":"Buy 2 BRK B","side":"BUY","type":"LIMIT","status":"NEW","limitPrice":476,"totalQuantity":2,"filledQuantity":0,"remainingQuantity":2,"time":"2026-06-13T12:16:39Z"}],"ordersSnapshot":{"status":"validated","asOf":"2026-07-21T05:20:24.667000Z","source":"IBKR live orders"},"risk":{"effectiveOrderCount":8,"effectiveOrderNotional":7699},"performance":{"1D":{"dates":["20260730"],"returns":[0.019022742784258105],"nav":[100121.958698191],"startNav":98252.918697616,"startDate":"20260729","frequency":"D"},"7D":{"dates":["20260723","20260724","20260727","20260728","20260729","20260730"],"returns":[-0.006357818355235412,-0.00408980791275837,0.002521819654026203,0.008498310143361776,0.005544178684812495,0.024672386954141867],"nav":[97089.960398744,97311.570398736,97957.600398756,98541.570398749,98252.918697616,100121.958698191],"startNav":97711.190398845,"startDate":"20260722","frequency":"D"},"MTD":{"dates":["20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"returns":[0.00585619529914605,0.015280883011268287,0.015093174968109357,0.013421176543498392,0.014802542328290036,0.009475340722423065,0.010688271681864814,0.012069010619280895,0.012437709147158804,0.010551244716799246,0.014686500716402318,0.019061090786286483,0.012211641787000849,0.012072229059536532,0.013900434107712467,0.013944977516731516,0.012183544772103039,0.005748265652283591,0.00804390850153025,0.014736089128791097,0.02078539445758376,0.017795271206146435,0.037156528857335225],"nav":[97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447,97876.62986899322,97881.230398835,97711.190398845,97089.960398744,97311.570398736,97957.600398756,98541.570398749,98252.918697616,100121.958698191],"startNav":96534.7543332258,"startDate":"20260630","frequency":"D"},"1M":{"dates":["20260630","20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"returns":[0.0000782217011103814,0.005934875081814672,0.015360300009042316,0.015172577283040889,0.013500448071868787,0.014881921909442042,0.009554303600803227,0.010767329437767925,0.012148176378932618,0.012516903747036734,0.010630291754220256,0.014765871220582039,0.019140803478343127,0.012290818703505124,0.012151395070939985,0.013979743124424848,0.014024290017705221,0.012262719490810925,0.005826936992511689,0.00812275941084728,0.014815463511860916,0.020865242027606756,0.017874884883642306,0.0372376570053401],"nav":[96534.7543332258,97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447,97876.62986899322,97881.230398835,97711.190398845,97089.960398744,97311.570398736,97957.600398756,98541.570398749,98252.918697616,100121.958698191],"startNav":96527.2043251261,"startDate":"20260629","frequency":"D"},"YTD":{"dates":["20260101","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260119","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260216","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260403","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260525","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260619","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"returns":[0,0.0031654174291073645,0.004714080684642408,0.006706310130056847,0.007708644929500741,0.010812404998880698,0.015424198898996044,0.014765365654003437,0.01371962616931266,0.020002844933069808,0.02196387695772195,0.01585893471472488,0.01585893471472488,0.010346200058569899,0.014812234562955773,0.0201897286426993,0.025367180784958476,0.029220901619821715,0.0352077400344839,0.03016626595043359,0.03298039945138731,0.0295772702908923,0.03152575542128466,0.033944045567603,0.042184657465565545,0.0327717309176172,0.048126761787004035,0.05500940769624951,0.05751651588058859,0.059662054206445436,0.05157613881914869,0.053254230130088676,0.053254230130088676,0.046839904569467405,0.050668289023114266,0.048459404892363,0.05368327957301289,0.052433306149042735,0.055152197757374344,0.05799078460212925,0.05049215702179066,0.04534794978265211,0.04662649092255511,0.03380391432243113,0.03676162388484627,0.030478026676482584,0.024717963914453023,0.0331438098917094,0.035233095823115734,0.03165453332826296,0.01836433504648105,0.011193683088021933,0.02095537060008046,0.022061020777084384,0.008579892339496187,0.0008776324497659083,-0.01903995570606687,-0.011131754024474416,-0.013736268028288312,-0.0018609867966401517,-0.020232657846261493,-0.029217854655554154,-0.026864870463117363,-0.0005431650473295413,0.0036870111338696,0.0052500455807418245,0.0052500455807418245,0.006614726535296711,0.003492364457953867,0.020131273506565073,0.02220482002382629,0.02207902115516025,0.025424248290868867,0.03268379591701165,0.03690453039046537,0.03890793850733165,0.045887369198748695,0.042765938677360005,0.035183160542480385,0.03671160127084039,0.03320387584334794,0.03800747323297693,0.03749643716236384,0.03610202404693319,0.03579446502638617,0.03764613626348323,0.03550282979043362,0.027185762378260758,0.030320176460763015,0.04180554330327668,0.04218273613140977,0.04261743313230704,0.04295771305574991,0.042654297518458284,0.04324197347373082,0.04345233045266794,0.03873081672780665,0.04097480887358684,0.038151573294662455,0.04327478170999721,0.04456891670842733,0.045227293879150476,0.045227293879150476,0.046327412942675616,0.04780590868669221,0.051331712121923445,0.05443961567455835,0.054427815965803594,0.05264817535213373,0.04650666953792926,0.04785166166924104,0.044149997936506535,0.044279862658765046,0.04528497271865617,0.039204609967662396,0.048777172213576137,0.049812315249286865,0.05452392148842544,0.05450408710956456,0.04551541637285861,0.04381843194271995,0.04381843194271995,0.03770906480893976,0.03603006134946107,0.033284523359352614,0.028391622746310352,0.038872374418033484,0.03709068632200552,0.037171809319695326,0.043245689993840264,0.053020710400495163,0.05282602490974808,0.051091875278514554,0.05252458892885947,0.04699936560069151,0.04825738339847563,0.049689446900393675,0.05007185061964625,0.0481152628931929,0.05240423384030146,0.05694143533811524,0.04983737992668291,0.049692784975896576,0.05158894771352074,0.05163514688164628,0.04980823849490501,0.04313374840672468,0.04551472445422955,0.05245566554370007,0.05872983449669111,0.055628562953909055,0.07570951358269729],"nav":[60442.8417281593,60634.1685520969,60727.77416219399,60848.190654136604,60908.774210131596,61096.3742100869,61375.1242099089,61335.3027198646,61272.0952056886,61651.870948814496,61770.400948790295,61401.400948873896,61401.4009488689,61068.19578285381,61338.1357828404,61663.1663688246,61976.106369247995,62209.0363694834,62570.5963698055,62265.8763695952,62435.970222627206,62230.2760253116,62348.047273194505,62494.215066154,70253.4379817209,69618.9147246878,70653.9935969229,71117.95133912709,71286.955025351,71431.5850255363,70886.5155356326,70999.6355356384,70999.6355355062,70567.2471785444,70825.3171782997,70676.4171782739,71028.5571782581,70944.2971783028,71127.57671408591,71318.9254420242,70813.4443780454,70466.6743780566,70552.8609128636,69688.4938698951,69887.8722969291,69464.2960848443,69076.0116557892,69643.9963018189,69784.83431274301,69543.60431259891,68647.7153335322,68164.3431764687,68822.3765355596,68896.9081215361,67988.1478643905,67468.9403497473,66126.3003495168,66659.3903496355,66483.8203496309,67284.33034955419,66045.9003494679,65440.2103493515,65598.8245814275,67373.16458156079,74959.08983372079,75075.82293559119,75075.8229264448,75177.7429264263,74944.5529264452,76187.20876961699,76342.0687695496,76332.6737915164,76582.5083114991,77124.6783115823,77439.8983115519,77589.5201745727,78110.7701746193,77877.6499175943,77311.3399175091,77425.4899174802,77163.5199174456,77522.2699174856,77484.1040764691,77379.96407644599,77356.9941373146,77495.2841379264,77335.2141378459,76714.0641378243,76948.154137706,77805.92413794491,77834.0941378729,77866.5588659329,77891.9724738501,77869.3120967865,77913.2020967376,77928.9120966482,77576.292096602,77743.8820965897,77533.03209654,77915.6520965627,78012.30303055039,78061.47303051219,78061.4730305573,78143.6340084903,78254.0540084668,78517.3740085114,78749.4840084918,78748.6027424282,78615.6921113924,78157.02211136889,78157.34211139049,77881.2421113496,77890.92814335541,77965.8975253231,77512.3742523011,78226.3742523901,78303.5842523539,78655.0143213415,78653.5343213277,77983.0860372888,85221.03865769741,85221.03865627441,84722.2481138926,84585.16811212851,84361.0122530973,83961.538850095,96693.03432145421,96527.2043251261,96534.7543332258,97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447,97876.62986899322,97881.230398835,97711.190398845,97089.960398744,97311.570398736,97957.600398756,98541.570398749,98252.918697616,100121.958698191],"startNav":60442.841728167405,"startDate":"20251231","frequency":"D"},"1Y":{"dates":["20250730","20250731","20250801","20250804","20250805","20250806","20250807","20250808","20250811","20250812","20250813","20250814","20250815","20250818","20250819","20250820","20250821","20250822","20250825","20250826","20250827","20250828","20250829","20250901","20250902","20250903","20250904","20250905","20250908","20250909","20250910","20250911","20250912","20250915","20250916","20250917","20250918","20250919","20250922","20250923","20250924","20250925","20250926","20250929","20250930","20251001","20251002","20251003","20251006","20251007","20251008","20251009","20251010","20251013","20251014","20251015","20251016","20251017","20251020","20251021","20251022","20251023","20251024","20251027","20251028","20251029","20251030","20251031","20251103","20251104","20251105","20251106","20251107","20251110","20251111","20251112","20251113","20251114","20251117","20251118","20251119","20251120","20251121","20251124","20251125","20251126","20251127","20251128","20251201","20251202","20251203","20251204","20251205","20251208","20251209","20251210","20251211","20251212","20251215","20251216","20251217","20251218","20251219","20251222","20251223","20251224","20251225","20251226","20251229","20251230","20251231","20260101","20260102","20260105","20260106","20260107","20260108","20260109","20260112","20260113","20260114","20260115","20260116","20260119","20260120","20260121","20260122","20260123","20260126","20260127","20260128","20260129","20260130","20260202","20260203","20260204","20260205","20260206","20260209","20260210","20260211","20260212","20260213","20260216","20260217","20260218","20260219","20260220","20260223","20260224","20260225","20260226","20260227","20260302","20260303","20260304","20260305","20260306","20260309","20260310","20260311","20260312","20260313","20260316","20260317","20260318","20260319","20260320","20260323","20260324","20260325","20260326","20260327","20260330","20260331","20260401","20260402","20260403","20260406","20260407","20260408","20260409","20260410","20260413","20260414","20260415","20260416","20260417","20260420","20260421","20260422","20260423","20260424","20260427","20260428","20260429","20260430","20260501","20260504","20260505","20260506","20260507","20260508","20260511","20260512","20260513","20260514","20260515","20260518","20260519","20260520","20260521","20260522","20260525","20260526","20260527","20260528","20260529","20260601","20260602","20260603","20260604","20260605","20260608","20260609","20260610","20260611","20260612","20260615","20260616","20260617","20260618","20260619","20260622","20260623","20260624","20260625","20260626","20260629","20260630","20260701","20260702","20260703","20260706","20260707","20260708","20260709","20260710","20260713","20260714","20260715","20260716","20260717","20260719","20260720","20260721","20260722","20260723","20260724","20260727","20260728","20260729","20260730"],"returns":[-0.012675962808693542,-0.02607870050769623,-0.028437522425864503,-0.025188165005847196,-0.01508747476932315,-0.011838794547242681,-0.0060029655205176,-0.0030855462713178516,-0.004382673435950779,-0.0023230618241286694,0.005312284269500589,0.004643667542307162,0.005735987814480037,0.0011474259908568207,0.009712574959241715,0.008122857856152965,0.008654438021733046,0.01930907617061761,0.00727533958444293,0.004431189109039835,0.0069492232943961785,0.00045676495470359235,0.006818402803397294,0.006818402803397294,-0.003606230625316398,0.0018798408281626156,0.000531711562194559,0.006210066800017344,0.003140399304204289,0.003217973843987698,0.0008294562909161307,0.0060617604518427015,-0.0032603543059176454,-0.006016984528554037,-0.0014306463399473834,-0.0033553338434216817,-0.002394854912868838,-0.004738818906153464,-0.0046639733729814115,-0.0016758627451177732,-0.003576444023526082,-0.013613053141844578,-0.008357380598380204,-0.005640007641218525,0.0017886920073459933,0.01106618245329627,0.01387610916430737,0.01797142831152332,0.008568181197952995,0.00862906836767996,0.005814087940722024,0.0017650102944193335,-0.0022067252830333395,0.0008184391901522314,0.005184849768186117,0.004405910421874104,0.008107181229286109,0.012330723257504062,0.017214937571446765,0.01982544465119762,0.01790653859876623,0.014336805910017736,0.015062661024024315,0.021697886839214142,0.028458252768678305,0.021941516377577353,0.018946573125753652,0.021898519362302027,0.017357705046944005,0.011772034959585564,0.015250810868723486,0.011911194081896559,0.01824515778206548,0.020123351098829456,0.03028887040351913,0.032304615760922806,0.029052640516044947,0.024246566758071575,0.01803479180206402,0.018810992034332896,0.014213101051071986,0.009067356936881987,0.02159357814207219,0.025594231082172403,0.03683992152589877,0.0410363352069143,0.0410363352069143,0.045503658384973944,0.03632642355597637,0.03455483332339426,0.03950949643763546,0.04169942316886188,0.04294814584215634,0.04112615995415281,0.037709069701861164,0.043435576745225024,0.04487204496594299,0.04551748535180433,0.04906280859252998,0.045713640282563306,0.04391158625025393,0.04713230931571677,0.04557324805356133,0.04598718781933164,0.044053140833923754,0.047805252023760625,0.047805252023760625,0.04782237401338829,0.04485206257308949,0.04558058604911608,0.041605130936726464,0.041605130936726464,0.04490224597244108,0.046515341565499746,0.048590457977846446,0.04963449504786377,0.052867387461326354,0.05767105565050934,0.05698481156209345,0.05589556394921624,0.06244019685234359,0.06448281787115251,0.05812387870677438,0.05812387870677438,0.052381786003430575,0.05703363045813936,0.06263485588318218,0.06802771659973872,0.07204177199452988,0.0782776936053311,0.07302646833189974,0.0759576842256342,0.07241296743082204,0.07444251954019276,0.07696142296469177,0.08554488659966775,0.07574033401019431,0.0917342129494394,0.09890321224293008,0.10151462899155117,0.10374943272038517,0.09532710176465642,0.09707501028431187,0.09707501028431187,0.09039381586887019,0.09438148075898711,0.09208069571475197,0.09752191038548741,0.09621993165354548,0.09905194310324439,0.10200862972535063,0.09419802076268646,0.0888397881077978,0.09017152311923438,0.07681546154071617,0.07989622699674848,0.07335119990377725,0.06735148897632937,0.07612789337872239,0.07830410432486912,0.07457665526885271,0.06073351654738213,0.053264528675289746,0.06343235247445089,0.06458400337183923,0.05054199082043054,0.04251927739947914,0.021773015380479155,0.030010238828508395,0.027297363678539188,0.03966671754074058,0.020530690711573207,0.01117166361253763,0.013622544020392757,0.0410393674364824,0.04544554065158568,0.04707360535127858,0.04707360535127858,0.04849506403563475,0.04524279567523215,0.06257396871345522,0.06473378540507047,0.06460275265800197,0.06808715840670487,0.07564874046237469,0.08004507914624548,0.08213183932013357,0.0894016501393311,0.08615035209239008,0.0782520914803444,0.07984412318533707,0.07619045838214378,0.08119391007013554,0.08066161227689106,0.07920918442121305,0.07888882936734554,0.08081753962871363,0.07858506060921533,0.06992196051834965,0.07318678230916409,0.08514999934301692,0.08554288532815302,0.08599566795469027,0.08635010526890308,0.08603406608845421,0.08664619237879423,0.08686530128738346,0.08194734836577977,0.08428470209860617,0.0813440054337553,0.08668036560602643,0.088028343260516,0.08871411229963266,0.08871411229963266,0.08986000196084176,0.09140001071387771,0.09507250566268866,0.09830971394956989,0.09829742331238722,0.09644374051796545,0.09004671655021235,0.09144766725525622,0.08759199531823758,0.08772726307926959,0.08877419087480831,0.08244085383541666,0.09241168378697173,0.09348989408422126,0.09839752731786144,0.0983768677270711,0.0890142221674175,0.08724663447786529,0.08724663447786529,0.08088308632454377,0.07913422770629008,0.07627446124861148,0.07117799086490306,0.08209479558224353,0.0802389801196921,0.08032347825032282,0.08665006352520943,0.09683177493579254,0.09662898952971122,0.09482269037600655,0.09631501226536865,0.09055991129717778,0.09187026909015938,0.09336191378158443,0.09376022745764723,0.0917222356426457,0.09618964978759226,0.10091562214780914,0.09351600158080253,0.09336539073815575,0.09534044357475624,0.09538856486532077,0.09348564771593959,0.08653346459370481,0.08901350146142328,0.09624322131374519,0.10277842788754454,0.09954812753615472,0.12046454874518764],"nav":[33176.2316650049,32725.8704907915,32646.609125379102,32755.794647431503,33095.1996463428,33545.3333813833,33743.4433814226,35145.6736303182,35099.9439162438,35172.554361295806,30050.528164378702,30030.5421643948,28970.0661645366,27539.5701644394,27775.1801645838,27731.4501645777,26754.1501643843,27036.760164637497,26717.5701645022,26642.1301646578,26708.920164697796,26536.710164737604,26705.4501647025,26705.4501646836,32639.365072424,31779.412275499897,40240.792275432,40469.1722756424,40345.7122756397,40348.8322756794,40252.767478669,40463.207478714,40088.2774786793,39977.407478727095,40161.8674788951,40084.457478808,40123.0874786338,40028.8147816539,40031.8247817205,40152.0047817032,40075.5647814724,39671.898303292895,39883.278303361105,43984.4083034975,44313.00830362,51803.53671217601,51947.507638982395,52157.3376365102,51675.547630201196,51678.667629937605,51534.437629810105,51326.976932750404,51123.479061064805,51278.477628886394,51502.197628995804,51462.2876291195,51651.927629248894,51868.3276292277,52118.577629206906,52252.3311519904,52154.0132049846,51971.1125078809,52008.3025078432,52348.2684908551,52694.64647397339,52360.751298859395,52207.3006016355,52358.5481246552,52125.8924816128,51839.702481692504,52017.942481616294,51846.8324817839,52171.3624817161,52267.5948526189,52788.4408356213,52891.720835518005,52725.1008355658,52478.8540415569,52160.584041434005,52200.354041337,51964.7740410507,51701.124041038005,52342.9240412113,52547.9040411347,53124.0940412999,53339.104041221,53339.1040412406,53567.9940412306,53097.784041325795,53007.0140412838,53260.8740413886,53373.0784544128,53437.058454363905,53343.7061972946,53168.626197136204,53462.03262627989,53535.632626343504,53568.7026262923,53750.3526264017,53578.7526264895,60576.6825209652,60763.57627374011,60673.1062720006,60697.1262621192,60584.8962622649,60802.6262623207,60802.62626234231,60803.6194182429,60631.256485310296,60673.531728216694,60442.841728167405,60442.8417281593,60634.1685520969,60727.77416219399,60848.190654136604,60908.774210131596,61096.3742100869,61375.1242099089,61335.3027198646,61272.0952056886,61651.870948814496,61770.400948790295,61401.400948873896,61401.4009488689,61068.19578285381,61338.1357828404,61663.1663688246,61976.106369247995,62209.0363694834,62570.5963698055,62265.8763695952,62435.970222627206,62230.2760253116,62348.047273194505,62494.215066154,70253.4379817209,69618.9147246878,70653.9935969229,71117.95133912709,71286.955025351,71431.5850255363,70886.5155356326,70999.6355356384,70999.6355355062,70567.2471785444,70825.3171782997,70676.4171782739,71028.5571782581,70944.2971783028,71127.57671408591,71318.9254420242,70813.4443780454,70466.6743780566,70552.8609128636,69688.4938698951,69887.8722969291,69464.2960848443,69076.0116557892,69643.9963018189,69784.83431274301,69543.60431259891,68647.7153335322,68164.3431764687,68822.3765355596,68896.9081215361,67988.1478643905,67468.9403497473,66126.3003495168,66659.3903496355,66483.8203496309,67284.33034955419,66045.9003494679,65440.2103493515,65598.8245814275,67373.16458156079,74959.08983372079,75075.82293559119,75075.8229264448,75177.7429264263,74944.5529264452,76187.20876961699,76342.0687695496,76332.6737915164,76582.5083114991,77124.6783115823,77439.8983115519,77589.5201745727,78110.7701746193,77877.6499175943,77311.3399175091,77425.4899174802,77163.5199174456,77522.2699174856,77484.1040764691,77379.96407644599,77356.9941373146,77495.2841379264,77335.2141378459,76714.0641378243,76948.154137706,77805.92413794491,77834.0941378729,77866.5588659329,77891.9724738501,77869.3120967865,77913.2020967376,77928.9120966482,77576.292096602,77743.8820965897,77533.03209654,77915.6520965627,78012.30303055039,78061.47303051219,78061.4730305573,78143.6340084903,78254.0540084668,78517.3740085114,78749.4840084918,78748.6027424282,78615.6921113924,78157.02211136889,78157.34211139049,77881.2421113496,77890.92814335541,77965.8975253231,77512.3742523011,78226.3742523901,78303.5842523539,78655.0143213415,78653.5343213277,77983.0860372888,85221.03865769741,85221.03865627441,84722.2481138926,84585.16811212851,84361.0122530973,83961.538850095,96693.03432145421,96527.2043251261,96534.7543332258,97100.08085636239,98009.8909293871,97991.77096574579,97830.3641866406,97963.71408264371,97449.45405138089,97566.5439750337,97699.8339751162,97735.42609001399,97553.31609004259,97952.5123880468,98374.8123880144,97713.60238801141,97700.14447,97876.62986899322,97881.230398835,97711.190398845,97089.960398744,97311.570398736,97957.600398756,98541.570398749,98252.918697616,100121.958698191],"startNav":33602.1716651856,"startDate":"20250729","frequency":"D"}}}</script>
   <script>
     (function () {
       "use strict";
@@ -1932,8 +2039,10 @@
       var embedded = JSON.parse(document.getElementById("familySnapshot").textContent);
       var holdingsSnapshot = null;
       var lifecycleMetrics = JSON.parse(document.getElementById("ibkrLifecycleMetrics").textContent);
+      var governanceSources = JSON.parse(document.getElementById("ibkrGovernanceSources").textContent);
       var benchmarkHistory = JSON.parse(document.getElementById("ibkrBenchmarkHistory").textContent);
       var pnlBreakdown = JSON.parse(document.getElementById("ibkrPnlBreakdown").textContent);
+      embedded.pnlBreakdownLifecycle = pnlBreakdown;
       var statementHistory = JSON.parse(document.getElementById("ibkrStatementHistory").textContent);
       var state = {
         data: null,
@@ -2028,9 +2137,14 @@
         return Math.min(max, Math.max(min, value));
       }
 
+      function currencyMarkForCode(value) {
+        var code = String(value || "USD").toUpperCase();
+        return code === "USD" ? "US$" : code;
+      }
+
       function currencyMark() {
         var code = String((state.data && state.data.currency) || embedded.currency || "USD").toUpperCase();
-        return code === "USD" ? "US$" : code;
+        return currencyMarkForCode(code);
       }
 
       function amountNumber(value, options) {
@@ -2071,9 +2185,15 @@
         var opts = options || {};
         var wrapper = document.createElement("span");
         wrapper.className = "accounting-money" + (opts.inline ? " inline" : "") + (opts.compact || opts.compactK ? " compact" : "");
+        if (opts.inline) {
+          wrapper.textContent = currencyMarkForCode(
+            opts.currencyCode || ((state.data && state.data.currency) || embedded.currency || "USD")
+          ) + CURRENCY_SEPARATOR + amountNumber(value, opts);
+          return wrapper;
+        }
         var symbol = document.createElement("span");
         symbol.className = "accounting-symbol";
-        symbol.textContent = currencyMark();
+        symbol.textContent = currencyMarkForCode(opts.currencyCode || ((state.data && state.data.currency) || embedded.currency || "USD"));
         var amount = document.createElement("span");
         amount.className = "accounting-amount";
         amount.textContent = amountNumber(value, opts);
@@ -2161,23 +2281,34 @@
       function shortDate(raw) {
         var date = typeof raw === "string" && /^\d{8}$/.test(raw) ? parseIbkrDate(raw) : new Date(raw);
         if (Number.isNaN(date.getTime())) return String(raw || "—");
-        return new Intl.DateTimeFormat("zh-CN", { month: "numeric", day: "numeric", timeZone: "UTC" }).format(date);
+        return new Intl.DateTimeFormat("zh-CN", {
+          year: "numeric", month: "2-digit", day: "2-digit", timeZone: "UTC"
+        }).format(date).replace(/\//g, "-");
       }
 
       function shortUtcDate(raw) {
+        return fullUtcDate(raw);
+      }
+
+      function fullUtcDate(raw) {
         var date = typeof raw === "string" && /^\d{8}$/.test(raw) ? parseIbkrDate(raw) : new Date(raw);
         if (Number.isNaN(date.getTime())) return String(raw || "—");
-        return "UTC " + new Intl.DateTimeFormat("zh-CN", { month: "numeric", day: "numeric", timeZone: "UTC" }).format(date);
+        return "UTC " + new Intl.DateTimeFormat("zh-CN", {
+          year: "numeric", month: "2-digit", day: "2-digit", timeZone: "UTC"
+        }).format(date).replace(/\//g, "-");
+      }
+
+      function utcDateTimeMinute(raw) {
+        var date = new Date(raw);
+        if (Number.isNaN(date.getTime())) return String(raw || "—");
+        return "UTC " + new Intl.DateTimeFormat("zh-CN", {
+          year: "numeric", month: "2-digit", day: "2-digit",
+          hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "UTC"
+        }).format(date).replace(/\//g, "-");
       }
 
       function longDateTime(raw) {
-        var date = new Date(raw);
-        if (Number.isNaN(date.getTime())) return String(raw || "—");
-        return new Intl.DateTimeFormat("zh-CN", {
-          year: "numeric", month: "2-digit", day: "2-digit",
-          hour: "2-digit", minute: "2-digit", second: "2-digit",
-          hour12: false, timeZone: "UTC"
-        }).format(date).replace(/\//g, "-").replace(/^(.+)$/, "UTC $1");
+        return utcDateTimeMinute(raw);
       }
 
       function setSignedText(element, value, formatter) {
@@ -2204,6 +2335,7 @@
       /* FAMILY:DASHBOARD_ARCHIVE_RUNTIME:END */
 
       function getPeriod(periodKey) {
+        if (!state.data || !state.data.performance) return null;
         var source;
         if (periodKey === "3M") {
           var oneYear = state.data.performance["1Y"];
@@ -2788,75 +2920,115 @@
 
       function currentPnlBreakdown() {
         var etfSymbols = pnlBreakdown.etfSymbols || [];
-        var etfUnrealized = state.data.positions.filter(function (position) {
-          return position.assetClass === "STK" && etfSymbols.indexOf(positionSymbol(position)) >= 0;
-        }).reduce(function (sum, position) {
-          return sum + n(position.unrealizedPnl);
-        }, 0);
-        var equityUnrealized = n(state.data.pnl.stock.unrealized) - etfUnrealized;
-        var equityRealized = Number(pnlBreakdown.equity && pnlBreakdown.equity.realizedYtd);
-        var etfRealized = Number(pnlBreakdown.etf && pnlBreakdown.etf.realizedYtd);
-        var realizedSplitAvailable = Number.isFinite(equityRealized) && Number.isFinite(etfRealized);
+        var stockPositions = state.data.positions.filter(function (position) {
+          return position.assetClass === "STK";
+        });
+        var equityPositions = stockPositions.filter(function (position) {
+          return etfSymbols.indexOf(positionSymbol(position)) < 0;
+        });
+        var etfPositions = stockPositions.filter(function (position) {
+          return etfSymbols.indexOf(positionSymbol(position)) >= 0;
+        });
+        var reviewed = state.data.pnlBreakdownLifecycle;
+        if (reviewed && reviewed.rows) {
+          return {
+            equity: reviewed.rows.equity,
+            etf: reviewed.rows.etf,
+            other: reviewed.rows.other,
+            realizedSplitAvailable: reviewed.status === "complete",
+            realizedThrough: reviewed.realizedThrough || null,
+            sourceStatus: reviewed.status || "incomplete"
+          };
+        }
         return {
           equity: {
-            realizedYtd: realizedSplitAvailable ? equityRealized : null,
-            unrealized: equityUnrealized
+            priorRealized: null,
+            currentYearRealized: null,
+            cashIncome: null,
+            unrealized: equityPositions.reduce(function (sum, position) {
+              return sum + n(position.unrealizedPnl);
+            }, 0)
           },
           etf: {
-            realizedYtd: realizedSplitAvailable ? etfRealized : null,
-            unrealized: etfUnrealized
+            priorRealized: null,
+            currentYearRealized: null,
+            cashIncome: null,
+            unrealized: etfPositions.reduce(function (sum, position) {
+              return sum + n(position.unrealizedPnl);
+            }, 0)
           },
-          realizedSplitAvailable: realizedSplitAvailable,
-          realizedThrough: pnlBreakdown.snapshotFetchedAt || null
+          other: {
+            priorRealized: null,
+            currentYearRealized: null,
+            cashIncome: null,
+            unrealized: n(state.data.pnl.other.unrealized)
+          },
+          realizedSplitAvailable: false,
+          realizedThrough: null,
+          sourceStatus: "unavailable"
         };
       }
 
-      function stockAggregateLeaders(limit) {
-        var etfSymbols = pnlBreakdown.etfSymbols || [];
-        return state.data.positions.filter(function (position) {
-          var symbol = positionSymbol(position);
-          return position.assetClass === "STK" && etfSymbols.indexOf(symbol) < 0;
-        }).map(function (position) {
-          var symbol = positionSymbol(position);
-          var lifecycle = lifecycleMetrics.metrics[symbol] || null;
-          return {
-            symbol: symbol,
-            value: positionAggregateReturn(position, lifecycle)
-          };
-        }).filter(function (row) {
-          return row.value != null && Number.isFinite(row.value);
-        }).sort(function (a, b) {
-          return b.value - a.value;
-        }).slice(0, limit);
+      function pnlRowTotal(data) {
+        if (
+          data.priorRealized == null ||
+          data.currentYearRealized == null ||
+          data.cashIncome == null ||
+          data.unrealized == null
+        ) return null;
+        return Number(data.priorRealized) + Number(data.currentYearRealized) + Number(data.cashIncome) + Number(data.unrealized);
       }
 
-      function appendStockAggregateLeaders(body) {
-        var leaders = stockAggregateLeaders(3);
-        if (!leaders.length) return;
-        var row = document.createElement("tr");
-        row.className = "pnl-leaders-row";
+      function appendPnlMoneyCell(row, value) {
         var cell = document.createElement("td");
-        cell.colSpan = 4;
-        var group = document.createElement("div");
-        group.className = "pnl-leaders";
-        group.setAttribute("aria-label", "股票归总收益前三");
-        leaders.forEach(function (leader, index) {
-          var item = document.createElement("div");
-          item.className = "pnl-leader";
-          var rank = document.createElement("span");
-          rank.className = "pnl-leader-rank";
-          rank.textContent = String(index + 1).padStart(2, "0");
-          var symbol = document.createElement("span");
-          symbol.className = "pnl-leader-symbol";
-          symbol.textContent = leader.symbol;
-          var value = document.createElement("span");
-          value.className = "pnl-leader-value " + signClass(leader.value);
-          setAccountingMoney(value, leader.value, { signed: true, digits: 2 });
-          item.append(rank, symbol, value);
-          group.appendChild(item);
-        });
-        cell.appendChild(group);
+        if (value == null) {
+          cell.className = "neutral";
+          cell.textContent = "—";
+        } else {
+          cell.className = signClass(value);
+          setAccountingMoney(cell, value, { signed: true, digits: 2 });
+        }
         row.appendChild(cell);
+      }
+
+      function appendPnlRow(body, labelText, data) {
+        var row = document.createElement("tr");
+        var label = document.createElement("td");
+        label.textContent = labelText;
+        row.appendChild(label);
+        [data.priorRealized, data.currentYearRealized, data.cashIncome, data.unrealized, pnlRowTotal(data)].forEach(function (value) {
+          appendPnlMoneyCell(row, value);
+        });
+        body.appendChild(row);
+      }
+
+      function sumPnlColumn(rows, key) {
+        var available = rows.every(function (row) {
+          return row.data[key] != null;
+        });
+        return available ? rows.reduce(function (sum, row) {
+          return sum + Number(row.data[key]);
+        }, 0) : null;
+      }
+
+      function renderPnlTotal(rows) {
+        var priorRealized = sumPnlColumn(rows, "priorRealized");
+        var currentYearRealized = sumPnlColumn(rows, "currentYearRealized");
+        var cashIncome = sumPnlColumn(rows, "cashIncome");
+        var unrealized = sumPnlColumn(rows, "unrealized");
+        var total =
+          priorRealized == null || currentYearRealized == null || cashIncome == null || unrealized == null
+            ? null
+            : priorRealized + currentYearRealized + cashIncome + unrealized;
+        var body = document.getElementById("pnlTotalBody");
+        body.replaceChildren();
+        var row = document.createElement("tr");
+        var label = document.createElement("td");
+        label.textContent = "合计";
+        row.appendChild(label);
+        [priorRealized, currentYearRealized, cashIncome, unrealized, total].forEach(function (value) {
+          appendPnlMoneyCell(row, value);
+        });
         body.appendChild(row);
       }
 
@@ -2865,43 +3037,154 @@
         var rows = [
           { label: "股票", data: split.equity },
           { label: "ETF", data: split.etf },
-          { label: "债券与其他", data: state.data.pnl.other }
+          { label: "债券与其他", data: split.other }
         ];
         var body = document.getElementById("pnlBody");
         body.replaceChildren();
 
         rows.forEach(function (row) {
-          var total = row.data.realizedYtd == null ? null : n(row.data.realizedYtd) + n(row.data.unrealized);
-          var tr = document.createElement("tr");
-          var label = document.createElement("td");
-          label.textContent = row.label;
-          tr.appendChild(label);
-          [row.data.realizedYtd, row.data.unrealized, total].forEach(function (value) {
-            var td = document.createElement("td");
-            if (value == null) {
-              td.className = "neutral";
-              td.textContent = "—";
-            } else {
-              td.className = signClass(value);
-              setAccountingMoney(td, value, { signed: true, digits: 2 });
-            }
-            tr.appendChild(td);
-          });
-          body.appendChild(tr);
-          if (row.label === "股票") appendStockAggregateLeaders(body);
+          appendPnlRow(body, row.label, row.data);
         });
+        renderPnlTotal(rows);
 
         var difference = n(state.data.pnl.positionUnrealized) - n(state.data.pnl.accountUnrealized);
         var note = document.getElementById("pnlMethodNote");
         note.replaceChildren();
-        appendText(note, "前三名按归总收益排序；未实现盈亏核对差额 ");
+        appendText(note, "已实现包含当前与已完全平仓标的；股息／利息为税后生命周期净额。未实现盈亏核对差额 ");
         appendAccountingMoney(note, difference, { signed: true, digits: 2 });
         if (split.realizedSplitAvailable && split.realizedThrough) {
-          appendText(note, "；已实现拆分资料截至 " + shortUtcDate(split.realizedThrough));
+          appendText(note, " · 资料截至 " + fullUtcDate(split.realizedThrough));
         } else if (!split.realizedSplitAvailable) {
-          appendText(note, "；股票与 ETF 的已实现拆分待刷新");
+          appendText(note, " · 部分已实现期间拆分待刷新");
         }
         appendText(note, "。");
+      }
+
+      function appendCapitalMetric(container, labelText, value, detailText, options) {
+        var settings = options || {};
+        var item = document.createElement("div");
+        item.className = "capital-metric";
+        var label = document.createElement("div");
+        label.className = "capital-metric-label";
+        label.textContent = labelText;
+        var amount = document.createElement("div");
+        amount.className = "capital-metric-value";
+        if (value == null || !Number.isFinite(Number(value))) {
+          amount.classList.add("neutral");
+          amount.textContent = "—";
+        } else {
+          if (settings.signed) amount.classList.add(signClass(Number(value)));
+          setAccountingMoney(amount, Number(value), {
+            signed: Boolean(settings.signed),
+            digits: 2
+          });
+        }
+        var detail = document.createElement("div");
+        detail.className = "capital-metric-detail";
+        detail.textContent = detailText;
+        item.append(label, amount, detail);
+        container.appendChild(item);
+      }
+
+      function appendCapitalTextMetric(container, labelText, valueText, detailText) {
+        var item = document.createElement("div");
+        item.className = "capital-metric";
+        var label = document.createElement("div");
+        label.className = "capital-metric-label";
+        label.textContent = labelText;
+        var value = document.createElement("div");
+        value.className = "capital-metric-value textual";
+        value.textContent = valueText || "—";
+        var detail = document.createElement("div");
+        detail.className = "capital-metric-detail";
+        detail.textContent = detailText;
+        item.append(label, value, detail);
+        container.appendChild(item);
+      }
+
+      function displayCapitalFxRate(item) {
+        var sourceCurrency = String(item && item.sourceCurrency || "").toUpperCase();
+        var rateToUsd = Number(item && item.fxRateToBase);
+        if (!sourceCurrency || !Number.isFinite(rateToUsd) || rateToUsd <= 0) return "—";
+        if (sourceCurrency === "USD") return "USD/USD" + CURRENCY_SEPARATOR + "1";
+        var displayInverse = rateToUsd < 1;
+        var pair = displayInverse ? "USD/" + sourceCurrency : sourceCurrency + "/USD";
+        var displayedRate = displayInverse ? 1 / rateToUsd : rateToUsd;
+        return pair + CURRENCY_SEPARATOR + amountNumber(displayedRate, { digits: 5 });
+      }
+
+      function renderCapitalReview() {
+        var card = document.getElementById("capitalReviewCard");
+        var review = state.data.capitalReview;
+        if (!review || !Array.isArray(review.items)) {
+          card.hidden = true;
+          return;
+        }
+        card.hidden = false;
+        var aligned = review.status === "complete";
+        var metrics = document.getElementById("capitalMetrics");
+        metrics.replaceChildren();
+        appendCapitalMetric(
+          metrics,
+          "IBKR 报表净投入",
+          review.officialNetContributedCapital,
+          "现金出入金 " + currency(review.officialCashContributions, 2) + "；股票奖励净额 " + currency(review.officialGrantActivity, 2)
+        );
+        appendCapitalMetric(
+          metrics,
+          "完成收盘净值",
+          aligned ? review.netLiquidation : null,
+          aligned ? "IBKR · " + fullUtcDate(review.valuationDate) : "与复核报表日期尚未对齐"
+        );
+        appendCapitalMetric(
+          metrics,
+          "综合投资结果",
+          aligned ? review.officialComprehensiveInvestmentResult : null,
+          "完成收盘净值减 IBKR 报表净投入",
+          { signed: true }
+        );
+        appendCapitalTextMetric(
+          metrics,
+          "核对时间",
+          review.reviewedAt ? utcDateTimeMinute(review.reviewedAt) : "—",
+          review.reviewedThrough ? "IBKR 报表复核至 " + fullUtcDate(review.reviewedThrough) : "报表复核截止日缺失"
+        );
+
+        var body = document.getElementById("capitalLedgerBody");
+        body.replaceChildren();
+        review.items.forEach(function (item) {
+          var row = document.createElement("tr");
+          var date = document.createElement("td");
+          date.textContent = fullUtcDate(item.date);
+          var type = document.createElement("td");
+          type.textContent = item.type || "—";
+          var source = document.createElement("td");
+          setAccountingMoney(source, item.sourceAmount, {
+            currencyCode: item.sourceCurrency,
+            signed: true,
+            digits: 2
+          });
+          var fx = document.createElement("td");
+          fx.textContent = displayCapitalFxRate(item);
+          var usd = document.createElement("td");
+          setAccountingMoney(usd, item.usdAmount, { signed: true, digits: 2 });
+          var cumulative = document.createElement("td");
+          setAccountingMoney(cumulative, item.cumulativeUsd, { digits: 2 });
+          row.append(date, type, source, fx, usd, cumulative);
+          body.appendChild(row);
+        });
+        document.getElementById("capitalLedgerSummary").textContent =
+          "查看 " + String(review.items.length) + " 笔 IBKR 出入金与债务转入记录";
+        document.getElementById("capitalReviewSubtitle").textContent =
+          "IBKR 报表为主；逐笔折算保留原始来源";
+
+        var note = document.getElementById("capitalReviewNote");
+        note.replaceChildren();
+        if (aligned) {
+          appendText(note, "USD 等值仍按 IBKR 原始折算率计算；汇率栏只调整显示方向。净投入包含现金流与 Grant Activity；综合投资结果是金额对账，不是收益率。");
+        } else {
+          appendText(note, "当前完成收盘日期晚于或不同于已复核 IBKR 报表，净值与综合投资结果暂不显示；出入金仍保留其真实截止日。");
+        }
       }
 
       function isCashEquivalentPosition(position) {
@@ -3132,6 +3415,35 @@
         return quantity >= 100 ? quantity : quantity * 1000;
       }
 
+      function bondCostBasis(position) {
+        var marketValue = Number(position && position.marketValue);
+        var unrealizedPnl = Number(position && position.unrealizedPnl);
+        if (Number.isFinite(marketValue) && Number.isFinite(unrealizedPnl)) {
+          var reconciled = marketValue - unrealizedPnl;
+          if (reconciled > 0) return reconciled;
+        }
+        var faceValue = bondFaceValue(position);
+        var averagePrice = Number(position && position.averagePrice);
+        return faceValue > 0 && Number.isFinite(averagePrice) && averagePrice > 0
+          ? faceValue * averagePrice / 100
+          : null;
+      }
+
+      function portfolioBondYield(rows) {
+        if (!rows.length) return null;
+        var weightedYield = 0;
+        var totalCost = 0;
+        for (var index = 0; index < rows.length; index += 1) {
+          var row = rows[index];
+          var yieldValue = Number(row.reference && row.reference.actualYield);
+          var costBasis = bondCostBasis(row.position);
+          if (!Number.isFinite(yieldValue) || costBasis == null) return null;
+          weightedYield += yieldValue * costBasis;
+          totalCost += costBasis;
+        }
+        return totalCost > 0 ? weightedYield / totalCost : null;
+      }
+
       function renderPositionRow(body, position, categoryTag, categoryClass) {
         var nav = n(state.data.summary.netLiquidation);
         var returnRate = positionReturnRate(position);
@@ -3356,7 +3668,7 @@
 
             [
               { value: percent(reference.coupon, 2) },
-              { value: percent(reference.actualYield, 3), className: "bond-yield-col", title: "购买时的到期收益率；来自 资产汇总表 持仓息率" },
+              { value: percent(reference.actualYield, 3), className: "bond-yield-col", title: "购买时记录的到期收益率" },
               { value: reference.purchaseDate },
               { amount: position.averagePrice },
               { amount: position.marketPrice },
@@ -3375,7 +3687,7 @@
             setAccountingProgress(interest, reference.paidInterest, totalInterest, { digits: 2 });
             interest.title = reference.type === "STRIPS"
               ? "STRIPS 不派发现金票息；折价增值不计入本栏"
-              : "已派息票 / 从购买日至到期日预计息票总额；实际派息截至 2026-07-03";
+              : "已派息票 / 从购买日至到期日预计息票总额；已派金额以最近纳入的 IBKR 生命周期活动为准";
             tr.appendChild(interest);
 
             [
@@ -3422,6 +3734,66 @@
             body.appendChild(tr);
           });
         }
+
+        var summaryBody = document.getElementById("bondsSummaryBody");
+        summaryBody.replaceChildren();
+        var faceValueTotal = rows.reduce(function (sum, row) {
+          return sum + bondFaceValue(row.position);
+        }, 0);
+        var marketValueTotal = rows.reduce(function (sum, row) {
+          return sum + n(row.position.marketValue);
+        }, 0);
+        var unrealizedTotal = rows.reduce(function (sum, row) {
+          return sum + n(row.position.unrealizedPnl);
+        }, 0);
+        var paidInterestAvailable = rows.every(function (row) {
+          return row.reference && Number.isFinite(Number(row.reference.paidInterest));
+        });
+        var paidInterestTotal = paidInterestAvailable ? rows.reduce(function (sum, row) {
+          return sum + Number(row.reference.paidInterest);
+        }, 0) : null;
+        var aggregateYield = portfolioBondYield(rows);
+        var navWeight = nav > 0 ? marketValueTotal / nav : null;
+        var summaryRow = document.createElement("tr");
+        [
+          { value: "合计" },
+          { value: "—" },
+          { amount: faceValueTotal },
+          { value: "—" },
+          {
+            value: aggregateYield == null ? "—" : percent(aggregateYield, 3),
+            className: "bond-yield-col",
+            title: "按当前债券完成收盘成本基础加权的买入到期收益率"
+          },
+          { value: "—" },
+          { value: "—" },
+          { value: "—" },
+          { amount: marketValueTotal },
+          { amount: paidInterestTotal },
+          {
+            value: navWeight == null ? "—" : percent(navWeight, 2),
+            className: "bond-result-col"
+          },
+          {
+            amount: unrealizedTotal,
+            signed: true,
+            className: "bond-result-col " + signClass(unrealizedTotal)
+          }
+        ].forEach(function (cell) {
+          var td = document.createElement("td");
+          if (cell.amount == null && Object.prototype.hasOwnProperty.call(cell, "amount")) {
+            td.className = "neutral";
+            td.textContent = "—";
+          } else if (cell.amount != null) {
+            setAccountingMoney(td, cell.amount, { signed: cell.signed, digits: 2 });
+          } else {
+            td.textContent = cell.value;
+          }
+          if (cell.className) td.className = cell.className;
+          if (cell.title) td.title = cell.title;
+          summaryRow.appendChild(td);
+        });
+        summaryBody.appendChild(summaryRow);
         document.getElementById("bondsNote").textContent =
           rows.length + " 笔 · 按到期日排列";
       }
@@ -3432,9 +3804,9 @@
         var snapshot = currentOrdersSnapshot();
         var note = document.getElementById("ordersNote");
         note.replaceChildren();
-        appendText(note, "挂单更新时间：" + (snapshot.validTime ? longDateTime(snapshot.asOf) : "—"));
+        appendText(note, "挂单核验：" + (snapshot.validTime ? longDateTime(snapshot.asOf) : "—"));
         if (snapshot.stale) appendText(note, " · 可能不是最新情况");
-        appendText(note, " · REPLACED 且剩余数量大于零，仍视为有效挂单");
+        appendText(note, " · REPLACED 且有剩余数量仍计为有效");
         var rows = state.data.orders.slice().sort(function (a, b) {
           return new Date(b.time) - new Date(a.time);
         });
@@ -3655,8 +4027,8 @@
         var asOfLine1 = document.getElementById("asOfLine1");
         var asOfLine2 = document.getElementById("asOfLine2");
         if (regularSession && regularSession.valuationDate) {
-          var phaseLabel = regularSession.phase === "regular" ? "旧版 RTH 盘中兼容值" : "RTH 收盘";
-          asOfLine1.textContent = "估值口径：" + shortUtcDate(regularSession.valuationDate) + " " + phaseLabel;
+          var phaseLabel = regularSession.phase === "regular" ? "RTH 盘中兼容值" : "RTH 完成收盘";
+          asOfLine1.textContent = "估值口径：" + fullUtcDate(regularSession.valuationDate) + " · " + phaseLabel;
           asOfLine1.style.display = "block";
           asOfLine2.textContent = "采集时间：" + longDateTime(collectedAt);
         } else {
@@ -3675,8 +4047,31 @@
           : "它可能包含盘前、盘后或夜盘标记，不能视为已验证的 RTH 收盘；下一次成功刷新后才会切换到新口径。本机服务不会发送交易指令。";
         document.getElementById("footerReturnMethod").textContent =
           (state.data.returnMethod === "TWR" ? "TWR（时间加权收益率）" : state.data.returnMethod) + "；SPX／NDX 为价格回报，MXACW 为净总回报";
+        var accountSource = state.data.accountValuationSource && state.data.accountValuationSource.source
+          ? state.data.accountValuationSource.source
+          : "IBKR Activity Flex";
+        var valuationDate = regularSession && regularSession.valuationDate
+          ? regularSession.valuationDate
+          : state.data.fetchedAt;
+        document.getElementById("footerAccountData").textContent =
+          accountSource + " · 估值 " + shortUtcDate(valuationDate) +
+          " · 本机同步 " + longDateTime(state.data.fetchedAt);
+        var lifecycleThrough = lifecycleMetrics.statementThrough || lifecycleMetrics.asOf;
+        var benchmarkThrough = benchmarkHistory.completedThrough || benchmarkHistory.asOf;
         document.getElementById("footerStatementHistory").textContent =
-          "IBKR Activity · " + statementHistory[0].periodStart + "—" + statementHistory[statementHistory.length - 1].periodEnd;
+          "IBKR 生命周期至 " + shortUtcDate(lifecycleThrough) +
+          " · 三指数完成收盘至 " + shortUtcDate(benchmarkThrough);
+        var governanceParts = [];
+        ["ips", "playbook"].forEach(function (key) {
+          var source = governanceSources && governanceSources[key];
+          if (!source) return;
+          var label = String(source.label || (key === "ips" ? "IPS" : "Playbook"));
+          if (source.version) label += " " + source.version;
+          if (source.asOf) label += " · " + shortUtcDate(source.asOf);
+          governanceParts.push(label);
+        });
+        document.getElementById("footerGovernanceSources").textContent =
+          governanceParts.length ? governanceParts.join("；") : "—";
       }
 
       function renderAll() {
@@ -3684,6 +4079,7 @@
         renderPerformance();
         renderAllocation();
         renderPnl();
+        renderCapitalReview();
         renderRisk();
         renderPositions();
         renderBonds();
@@ -3767,6 +4163,9 @@
         }
         if (snapshot && snapshot.lifecycleMetrics && snapshot.lifecycleMetrics.metrics) {
           lifecycleMetrics = snapshot.lifecycleMetrics;
+        }
+        if (snapshot && snapshot.governanceSources) {
+          governanceSources = snapshot.governanceSources;
         }
         state.data = applyHoldingsSnapshot(snapshot);
         recordSnapshot(state.data);

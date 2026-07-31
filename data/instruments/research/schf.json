@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
+        "latestAsOfDate": "20260730",
         "providerPublishedDate": null,
         "providerVerifiedAt": null
       }
@@ -10,22 +10,134 @@
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 1,
+          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "status": "pass"
         }
       }
     },
     "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "research": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "developed_ex_us_index_etf_review",
+        "frameworkVersion": "developed-ex-us-index-etf-research-v1",
+        "result": {
+          "bearCase": [
+            "美元走强、欧洲与日本增长疲弱或地缘政治冲击，使非美盈利和美元计价回报长期落后。",
+            "金融、工业和传统行业偏重造成结构性增长差距；韩国和日本科技的周期性又放大下行。",
+            "与 VGK、EWL、EWJV 的重复持有增加复杂度，却没有形成与名义基金数量相称的真实分散。"
+          ],
+          "bullCase": [
+            "非美发达市场盈利和资本回报改善，较美国更低的起始估值带来更好的中长期相对回报。",
+            "美元走弱提升未对冲外币资产的美元回报，国家和行业分散降低美国巨型科技集中风险。",
+            "低费用、低换手、窄价差和广覆盖继续把指数收益高效率传递给持有人。"
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "SCHF 是否适合承担国际股票核心仓位，取决于其低费率、宽覆盖和紧密跟踪能否继续提供相对单一国家 ETF 更稳定的分散收益，同时外币、发达市场价值倾向、金融与日本权重，以及与 VGK、EWL、EWJV 的重复暴露不会把名义分散夸大。产品本身没有明显缺陷；真正需要决定的是国际股票总预算和各区域工具的最简组合。",
+          "evidenceConfidence": "high",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "目前没有用户提供的 Morningstar SCHF 完整研报 PDF；晨星面板以官网分析摘要和当前官方清单为边界，不推断未公开的 pillar 评级。",
+            "没有可审核的长期指数估值时间序列，因此不把当前 PE/PB 与未经核验的历史均值比较。",
+            "组合层面 SCHF、VGK、EWL、EWJV 的完整成分穿透重叠将在六只新增研究完成后的统一审计中计算；本版本只披露官方国家层面的可证明重叠。",
+            "Schwab 官方逐笔分配历史从 2016-12-19 开始，成立日至该日期之间继续保持 reviewed-partial advisory，不用持有期 Flex 或候选数据补齐。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "0.03%费用率；一至十年 NAV 比净指数高约 15–18 个基点",
+              "challengingDirection": "持续异常落后或费用上升。",
+              "confirmingDirection": "差异继续接近费用、税务、借贷和正常摩擦范围。",
+              "metric": "跟踪与费用",
+              "nextReview": "semiannual"
+            },
+            {
+              "baseline": "日本 20.89%、金融 24.26%、前十大约 13.31%",
+              "challengingDirection": "国家或行业权重显著上升并改变核心角色。",
+              "confirmingDirection": "分散度稳定，单一国家和行业没有失控。",
+              "metric": "国家和行业集中",
+              "nextReview": "each_holdings_refresh"
+            },
+            {
+              "baseline": "PE 19.02、PB 2.32、ROE 17.77%",
+              "challengingDirection": "估值上升而盈利质量和增长没有跟进。",
+              "confirmingDirection": "盈利和 ROE 改善使估值保持或下降。",
+              "metric": "估值与盈利质量",
+              "nextReview": "quarterly"
+            },
+            {
+              "baseline": "未对冲美元，覆盖日本、欧洲、韩国、加拿大和澳洲",
+              "challengingDirection": "美元或地区增长差异造成长期、不可逆的机会成本。",
+              "confirmingDirection": "币种和国家分散在完整周期中降低美国集中风险。",
+              "metric": "货币和地区相对表现",
+              "nextReview": "each_material_macro_change"
+            },
+            {
+              "baseline": "SCHF 0.54% NAV；其中日本约 0.11%、瑞士约 0.04% NAV，并与 VGK、EWJV、EWL 重叠",
+              "challengingDirection": "多个工具持有相同国家和大型公司，却没有明确角色或再平衡规则。",
+              "confirmingDirection": "SCHF 被明确定位为核心，区域工具只承担可说明的卫星角色。",
+              "metric": "组合重叠",
+              "nextReview": "portfolio_research_audit"
+            },
+            {
+              "baseline": "2026-04-27 分析师驱动 Gold，2026-05 100%分析师覆盖",
+              "challengingDirection": "评级下调由可验证的产品或组织问题驱动。",
+              "confirmingDirection": "Gold、团队和流程评价稳定。",
+              "metric": "Morningstar 基金研究",
+              "nextReview": "each_medalist_update_or_90_days"
+            }
+          ],
+          "researchMaturity": "active",
+          "sourceRegister": [
+            {
+              "asOf": "20260729",
+              "label": "Schwab International Equity ETF official product page",
+              "url": "https://www.schwabassetmanagement.com/products/schf"
+            },
+            {
+              "asOf": "20260331",
+              "label": "FTSE Developed ex US Universe",
+              "url": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/ftse-developed-ex-us-universe.pdf"
+            },
+            {
+              "asOf": "20260427",
+              "label": "Morningstar SCHF Fund Analysis",
+              "publishedAt": "20260427",
+              "url": "https://www.morningstar.com/etfs/arcx/schf/analysis"
+            },
+            {
+              "label": "Morningstar Best International Equity Funds and ETFs to Buy",
+              "publishedAt": "20260608",
+              "url": "https://www.morningstar.com/funds/best-international-equity-funds-etfs-buy"
+            },
+            {
+              "label": "Schwab Equity ETFs Distributions Schedule 2026",
+              "publishedAt": "20260728",
+              "url": "https://www.schwabassetmanagement.com/resource/schwab-equity-etfs-distribution-schedule-2026"
+            }
+          ],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "fair"
+        },
+        "sourceLabel": "SCHF 2026 年发达市场宽基与组合角色完整研究",
+        "sourceVersion": "v1.0",
+        "status": "active",
+        "summary": "SCHF 是一只产品质量很高的发达市场（美国以外）大型与中型股宽基 ETF：费用率 0.03%、净资产约 US$65.0B、约 1,491 只持仓、换手率 3.97%、30 日中位买卖价差 0.04%，主要窗口的 NAV 回报与 FTSE Developed ex US Net 十分接近。它的分散程度明显高于单一国家或价值因子基金，前十大约 13.31%；但仍有金融业 24.26%、日本 20.89%，且韩国与加拿大均被纳入，外币没有对冲。2026-06-30 的 PE 19.02、PB 2.32 与 ROE 17.77%支持“估值合理”而非显著低估；授权日线过去一年又已上涨约 24.99%。现有 20 股仅占 NAV 0.54%，继续持有；新增现金列入观察名单，待 SCHF 与 VGK、EWL、EWJV 的穿透重叠和全组合国际配置统一审计后再定，不因低权重机械加仓。",
+        "updatedAt": "2026-07-30T17:26:31.727408Z"
+      }
+    ],
     "summary": {
       "research": {
-        "count": 0
+        "count": 1,
+        "internalCount": 1,
+        "providerCount": 0
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "SCHF"

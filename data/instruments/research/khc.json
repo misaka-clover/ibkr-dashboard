@@ -2,30 +2,309 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "latestAsOfDate": "20260730",
+        "providerPublishedDate": "20260707",
+        "providerVerifiedAt": "2026-07-30T15:02:42Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
+          "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Erin Lash, CFA",
+          "role": "Sector Director"
+        },
+        "freshness": {
+          "ageDays": 1.0396384022222223,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "本次以截至 2026-07-07 16:31 UTC 的 23 页完整报告为主证据，已完成全文提取和 23／23 页视觉核验，并以 Morningstar 官网公司报告及 7 月 9 日行业文章作为公开链接和更新层。完整报告给出 US$40 公允价值、五星、窄护城河、中等不确定性与标准资本配置；报告价 US$24.82，Price/FVE 为 0.62，五星／一星价格界限为 US$28／US$54。Morningstar 认为品牌资产、品类份额、规模和零售关系支持窄护城河，赞同暂停分拆并增加 US$600M 品牌、销售和研发投入，长期假设约 2%销售增长及接近 20%的经营利润率。其主要担忧是销量、通胀、消费者预算、食品健康偏好和投入回报。报告正文已把公允价值由 US$42 下调至 US$40，但 7 月 9 日行业文章仍显示 US$42；本项目保留这一日期冲突，以完整报告 US$40 为主值，不将两个数字混合。报告估值表本身仍标注模型财务资料截至 2 月 11 日，因此后续财报必须独立复核。",
+        "metrics": {
+          "capitalAllocation": "standard",
+          "economicMoat": "narrow",
+          "fairValue": 40,
+          "fairValueCurrency": "USD",
+          "fairValueUpdatedDate": "20260707",
+          "ratingStars": 5,
+          "ratingUpdatedDate": "20260707",
+          "uncertainty": "medium"
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260707",
+        "sections": {
+          "bearish": [
+            "销量在通胀和消费者预算压力下可能继续下滑，促销与低价包装未必形成持久份额。",
+            "US$600M 增量投入会先压低利润，若品牌相关性未恢复，现金流和回报率会同时受损。",
+            "历史并购、商誉和无形资产减值说明品类份额并不自动转化为高资本回报。"
+          ],
+          "bullish": [
+            "2025 年仅 21%的组合维持或提升份额，2026 年第一季度改善至 35%、3 月达到 58%，初步显示投入开始奏效。",
+            "私人品牌敞口由 2019 年约 17%降至约 11%，降低部分消费者降级风险。",
+            "US$2.5B 生产力目标、品牌投入和更灵活的包装／价格架构若同时兑现，可恢复低个位数增长。"
+          ],
+          "capitalAllocation": [
+            "资本配置评级为标准；晨星认可 2019 年以来去杠杆、成本节约、品牌再投资和股东分配的总体方向。",
+            "暂停分拆并把资源转向品牌、研发、销售与价格架构，被视为比承担分拆成本更审慎的选择。",
+            "报告预计公司仍会处置低回报品牌、降低债务并维持股息，但未来回购和交易必须以每股价值为约束。"
+          ],
+          "economicMoat": [
+            "窄护城河主要来自品牌无形资产、领先品类份额、规模化制造分销和零售商关系。",
+            "报告列举 Philadelphia、通心粉奶酪、加工奶酪、Lunchables 与调味酱等品类的领先份额，并估算直接经营利润率高于覆盖同业平均。",
+            "含商誉 ROIC 长期偏低；晨星更依赖剔除商誉后的回报改善，因此护城河并不等于历史并购创造了价值。"
+          ],
+          "fairValue": [
+            "完整报告公允价值为 US$40；报告价 US$24.82、Price/FVE 0.62，对应五星，五星与一星价格界限分别为 US$28 和 US$54。",
+            "报告正文把公允价值由 US$42 下调至 US$40，原因包括将 WACC 由 6.5%提高至 6.7%、2026 年销售预期下降约 3%，以及毛利率压力。",
+            "7 月 9 日行业文章仍显示 US$42；本项目按日期保留冲突，以 7 月 7 日完整报告的 US$40 为主值，不自行推算新值。"
+          ],
+          "financialHealth": [
+            "晨星认为资产负债表已明显改善，并预计净债务／EBITDA 由约 3.4 倍逐步下降。",
+            "报告模型预计 2026 年利润和 FCFF 先下台阶，2027 年以后才恢复，不能把当前高股息率视为无风险收益。",
+            "股息、品牌投入、去杠杆与潜在资产处置之间仍需维持纪律，尤其是在评级展望承压时。"
+          ],
+          "strategyOutlook": [
+            "晨星赞同暂停分拆并把执行重点放回品牌、创新、品类管理、电商和零售关系。",
+            "长期预测为约 2%平均销售增长、经营利润率接近 20%，但报告明确认为改善需要时间。",
+            "真正的验证标准是销量、份额与回报率同步改善，而不是仅以成本节约或调整后利润完成目标。"
+          ],
+          "uncertainty": [
+            "中等不确定性反映销量和品牌修复仍未完成，原料、制造、物流、关税与消费者预算压力可能继续拖累利润。",
+            "食品健康偏好、监管、召回和私人品牌竞争会影响品牌资产的持久性。",
+            "新增品牌投入是否能在不永久压低利润率的情况下恢复销量，是估值最重要的不确定项。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/company-reports/1487100-the-fruits-of-its-prioritization-of-brand-spending-already-aiding-kraft-heinzs-competitive-prowess",
+        "title": "The Fruits of Its Prioritization of Brand Spending Already Aiding Kraft Heinz's Competitive Prowess",
+        "verifiedAt": "2026-07-30T15:02:42Z",
+        "version": 1
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
+    "research": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "equity_research",
+        "frameworkVersion": "equity-research-strategy-v1",
+        "result": {
+          "bearCase": [
+            "消费者预算压力、健康偏好和私人品牌使北美销量持续下降，份额改善只是一季度或促销时点现象。",
+            "US$600M 投入永久压低利润，却没有带来足够销量、定价或零售关系回报。",
+            "2026 年固定汇率调整后营业利润下降超过 18%，或调整后毛利率跌幅超过 75bp。",
+            "Heinz 与少数强势品牌无法抵消 Oscar Mayer、Lunchables 和传统中心店品类的结构性压力。",
+            "商誉与品牌无形资产继续减值，说明实际经济回报低于账面和调整后利润所暗示的水平。",
+            "咖啡、肉类、物流、包装和关税通胀延续，价格行动又因消费者疲弱而受限。",
+            "自由现金流下降、净债务或评级压力上升，迫使公司在股息、品牌投入和去杠杆之间取舍。",
+            "管理层在分拆、组织重构、资产处置或并购之间反复切换，削弱执行连续性和每股价值纪律。"
+          ],
+          "bullCase": [
+            "US$600M 品牌、销售、研发、产品力和价格投入使北美销量在 2026 年下半年触底，并把维持或提升份额的组合比例稳定在第一季度 35%以上。",
+            "Heinz、Taste Elevation、Philadelphia 与新兴市场继续增长，抵消传统北美杂货和低增长品牌压力。",
+            "更低开价、小包装和更精准促销在不破坏品牌溢价的情况下改善可负担性与销量。",
+            "US$2.5B 生产力目标按计划兑现，节约资金主要用于品牌投入而非短期利润粉饰。",
+            "调整后营业利润在 2026 年低点后恢复，FCFF 回到 US$4B–US$5B并逐步增长。",
+            "债务赎回、现金流和审慎资产处置推动净债务下降，评级稳定且股息继续由现金流覆盖。",
+            "暂停分拆和三地区组织重构降低复杂度，使管理层能更快复制有效的品牌和渠道打法。"
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "KHC 当前价格只有在 US$600M 品牌与能力投入能够使北美销量和份额止跌、2026 年利润低点之后恢复约 US$4B 以上可持续 FCFF，并继续覆盖股息和去杠杆时才构成低估；若投入只降低利润、品牌相关性仍恶化或减值继续扩大，那么 5.79%股息率和低现金流倍数只是对结构性衰退与资本回报不足的补偿。",
+          "evidenceConfidence": "medium",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "2026 年第二季度正式财报、补充资料和分析师问答会尚未发布；本版本是明确的财报前评价。",
+            "US$600M 增量投入目前只有一个季度的早期份额和广告回报证据，尚未形成跨季度销量、利润率和 ROIC 验证。",
+            "公司未提供完整、可逐项复算的品牌投入回报桥接；管理层份额和广告回报指标仍需外部或后续正式披露交叉核验。",
+            "晨星 7 月 7 日完整报告 US$40 与 7 月 9 日行业文章 US$42 存在未解释日期冲突，且报告估值表仍标注财务资料截至 2 月 11 日。",
+            "评级展望、债务赎回和 2026 年利润低点后的长期资本成本仍可能变化，DCF 置信度因此保持中等。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "FY2026 指引 -1.5% 至 -3.5%；Q1 有机 -0.4%、北美量／组 -1.5%",
+              "challengingDirection": "北美量／组重新恶化、全年有机销售低于指引下沿。",
+              "confirmingDirection": "Q2 有机销售和北美量／组继续改善，全年指引维持或上调。",
+              "metric": "有机销售与北美销量"
+            },
+            {
+              "baseline": "FY2026 固定汇率调整后营业利润 -14% 至 -18%；调整后毛利率 -25 至 -75bp",
+              "challengingDirection": "利润跌幅超过 18%或毛利率跌幅超过 75bp。",
+              "confirmingDirection": "利润和毛利率处于指引内，且改善不是削减品牌投入换来。",
+              "metric": "调整后营业利润与毛利率"
+            },
+            {
+              "baseline": "2025 年 21%；Q1 35%；2026 年 3 月 58%",
+              "challengingDirection": "指标回落至接近 21%，或只在促销期短暂改善。",
+              "confirmingDirection": "维持或提升份额的组合比例连续两个季度保持在 35%以上。",
+              "metric": "组合份额质量"
+            },
+            {
+              "baseline": "Q1 营销投入同比 +37%、研发 +16%；管理层称全球广告回报 +8%",
+              "challengingDirection": "只有投入金额增长，销量和利润率没有改善。",
+              "confirmingDirection": "销量、份额、广告回报和新品速度提供可量化、可持续证据。",
+              "metric": "US$600M 增量投入回报"
+            },
+            {
+              "baseline": "TTM FCF US$3.945B；股息 US$1.895B；Q1 净债务约 US$17.042B",
+              "challengingDirection": "FCF 覆盖降至 1.3 倍以下，或净债务／评级压力上升。",
+              "confirmingDirection": "FCF 覆盖股息超过 1.5 倍，净债务在债务赎回后继续下降。",
+              "metric": "自由现金流、股息与净债务"
+            },
+            {
+              "baseline": "2026-08-05 盘前发布；09:00 EDT 问答会",
+              "challengingDirection": "下调指引、投入回报含糊或重新改变战略方向。",
+              "confirmingDirection": "维持指引并提供品牌投入、销量和份额的连续证据。",
+              "metric": "Q2 正式复核"
+            }
+          ],
+          "researchMaturity": "preliminary",
+          "sourceRegister": [
+            {
+              "label": "SEC EDGAR Company Facts locally verified source",
+              "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001637459.json"
+            },
+            {
+              "label": "Kraft Heinz 2025 Form 10-K",
+              "publishedAt": "20260212",
+              "url": "https://www.sec.gov/Archives/edgar/data/1637459/000163745926000009/khc-20251227.htm"
+            },
+            {
+              "label": "Kraft Heinz 2026 Q1 Form 10-Q",
+              "publishedAt": "20260506",
+              "url": "https://www.sec.gov/Archives/edgar/data/1637459/000163745926000022/khc-20260328.htm"
+            },
+            {
+              "label": "Kraft Heinz 2025 full-year results and separation pause",
+              "publishedAt": "20260211",
+              "url": "https://ir.kraftheinzcompany.com/news/kraft-heinz-reports-fourth-quarter-and-full-year-2025-results/9ab50a62-8397-48cb-949c-eb1648570fd6"
+            },
+            {
+              "label": "Kraft Heinz 2026 Q1 earnings release and guidance",
+              "publishedAt": "20260506",
+              "url": "https://ir.kraftheinzcompany.com/news/kraft-heinz-reports-first-quarter-2026-results-maintains-2026-full-year-outlook/201c3b0e-079f-4900-a4f5-356dae8d742d"
+            },
+            {
+              "label": "Kraft Heinz new global operating structure",
+              "publishedAt": "20260618",
+              "url": "https://ir.kraftheinzcompany.com/news/kraft-heinz-announces-new-global-operating-structure-to-accelerate-growth/6cb6b759-b68c-4815-a313-772cc8bc1dc2"
+            },
+            {
+              "label": "Kraft Heinz partial redemption of 2027 senior notes",
+              "publishedAt": "20260706",
+              "url": "https://ir.kraftheinzcompany.com/news/kraft-heinz-announces-redemption-price-for-the-partial-redemption-of-dollar10-billion-aggregate-principal-amount/16526294-b345-4f60-b47b-e1e46204dfe9"
+            },
+            {
+              "label": "Kraft Heinz August 5 Q2 2026 results announcement",
+              "publishedAt": "20260713",
+              "url": "https://ir.kraftheinzcompany.com/news/the-kraft-heinz-company-to-report-second-quarter-2026-results-on-august-5-2026/cf99b412-30d9-4782-8396-8b7666606c26"
+            },
+            {
+              "label": "Morningstar KHC full equity analyst report, privately reviewed",
+              "publishedAt": "20260707",
+              "url": "https://www.morningstar.com/company-reports/1487100-the-fruits-of-its-prioritization-of-brand-spending-already-aiding-kraft-heinzs-competitive-prowess"
+            },
+            {
+              "label": "Morningstar consumer defensive sector outlook",
+              "publishedAt": "20260709",
+              "url": "https://www.morningstar.com/stocks/consumer-defensives-firms-must-adapt-win-shelf-amid-intense-macro-uncertainty"
+            }
+          ],
+          "valuation": {
+            "dcf": {
+              "coreSensitivityRangeUsd": [
+                32.96,
+                43.28
+              ],
+              "scenarios": [
+                {
+                  "fcffYears1To10UsdB": [
+                    2.4,
+                    2.7,
+                    2.9,
+                    3.0,
+                    3.1,
+                    3.15,
+                    3.2,
+                    3.25,
+                    3.3,
+                    3.35
+                  ],
+                  "name": "bear",
+                  "terminalGrowthPct": 1.25,
+                  "valuePerShareUsd": 16.27,
+                  "waccPct": 9.25,
+                  "years1to5GrowthPct": 6.61,
+                  "years6to10GrowthPct": 1.55
+                },
+                {
+                  "fcffYears1To10UsdB": [
+                    3.0,
+                    3.4,
+                    3.7,
+                    4.0,
+                    4.2,
+                    4.3,
+                    4.4,
+                    4.5,
+                    4.6,
+                    4.7
+                  ],
+                  "name": "base",
+                  "terminalGrowthPct": 2.0,
+                  "valuePerShareUsd": 39.28,
+                  "waccPct": 8.0,
+                  "years1to5GrowthPct": 8.78,
+                  "years6to10GrowthPct": 2.25
+                },
+                {
+                  "fcffYears1To10UsdB": [
+                    3.3,
+                    3.8,
+                    4.3,
+                    4.7,
+                    5.0,
+                    5.2,
+                    5.4,
+                    5.6,
+                    5.8,
+                    6.0
+                  ],
+                  "name": "bull",
+                  "terminalGrowthPct": 2.25,
+                  "valuePerShareUsd": 57.31,
+                  "waccPct": 7.75,
+                  "years1to5GrowthPct": 10.95,
+                  "years6to10GrowthPct": 3.64
+                }
+              ]
+            },
+            "priceUsd": 27.62
+          },
+          "valuationState": "undervalued"
+        },
+        "sourceLabel": "KHC 2026 年第二季度财报前发起覆盖研究",
+        "sourceVersion": "v1.0",
+        "status": "active",
+        "summary": "KHC 是具备品牌、品类份额和规模优势，但长期销量、资本回报与品牌再投资纪律尚未证明的高股息修复型标的。2026 年第一季度净销售额增长 0.8%、有机销售下降 0.4%，调整后营业利润下降 11.8%、调整后 EPS 下降 6.5%；全年仍指引有机销售下降 1.5%–3.5%、固定汇率调整后营业利润下降 14%–18%，并投入约 US$600M 修复品牌、销售、研发、产品力与价格架构。2025 年 US$9.3B 非现金减值使 GAAP 利润失真，但 TTM 经营现金流约 US$4.75B、推导自由现金流约 US$3.95B，约为现金股息的 2.08 倍。2026-07-29 完成收盘 US$27.62 对应约 13.5 倍 2026 指引中点调整后 EPS、5.79%股息率和约 8.3 倍 TTM GAAP 自由现金流；自建 FCFF DCF 悲观／基准／乐观情景约 US$16／US$39／US$57，基准敏感区间约 US$33–US$43，Morningstar 7 月 7 日完整报告公允价值为 US$40。现有 100 股、2.81%权重继续持有，新增现金维持观察名单；2026-08-05 第二季度财报发布后，本版本立即转为待复核。",
+        "updatedAt": "2026-07-30T15:07:59.443842Z"
+      }
+    ],
     "summary": {
       "research": {
-        "count": 0
+        "count": 2,
+        "internalCount": 1,
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "KHC"

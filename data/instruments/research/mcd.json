@@ -2,30 +2,272 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "latestAsOfDate": "20260730",
+        "providerPublishedDate": "20260710",
+        "providerVerifiedAt": "2026-07-30T10:00:57Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
+          "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Ari Felhandler",
+          "role": "Equity Analyst"
+        },
+        "freshness": {
+          "ageDays": 1.2491958161458334,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "本次以截至 2026-07-10 09:56 UTC 的 24 页完整报告为主证据，并以 5 月 7 日晨星官网财报文章作公开链接。报告正式栏显示 US$295 公允价值、四星、宽护城河、低不确定性与优秀资本配置；报告价 US$276.49，Price/FVE 为 0.94。晨星将公允价值由 US$300 下调，主因五年门店增速预测由 4.4%降至 4.1%、2026 全球同店销售预测由 3.9%降至 2.3%，但仍预计品牌、采购和营销规模、地产／加盟结构、忠诚度与技术平台支持长期份额和利润率。其模型使用 6.9% WACC，预测 2026–2030 年收入由 US$28.3B 增至 US$35.1B、经营利润率由 46.1%升至 49.3%、FCFF 由 US$8.7B 增至 US$12.5B。主要风险是低收入客流、加盟商成本和促销负担、快速开店回报、国际竞争、健康偏好及约 US$40B 债务。以 2026-07-29 本地完成收盘 US$271.52 观察，价格低于其公允价值约 8.6%；不过该估值对较低资本成本和长期扩张假设敏感，不替代本项目独立判断。",
+        "metrics": {
+          "capitalAllocation": "exemplary",
+          "economicMoat": "wide",
+          "fairValue": 295,
+          "fairValueCurrency": "USD",
+          "fairValueUpdatedDate": "20260710",
+          "ratingStars": 4,
+          "ratingUpdatedDate": "20260710",
+          "uncertainty": "low"
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260710",
+        "sections": {
+          "bearish": [
+            "牛肉、人工和其他成本可能压缩加盟商回报，迫使总部补贴更多促销。",
+            "鸡肉、咖啡、饮料和国际本地品牌竞争加剧，门店扩张可能不及计划或回报下降。",
+            "健康偏好、GLP-1、超加工食品监管与低收入消费者压力可能削弱长期客流。"
+          ],
+          "bullish": [
+            "价值菜单、核心产品、文化营销和菜单创新有望恢复客流并提升长期份额。",
+            "忠诚度、AI、地理围栏、预测分析和设备自动化提高速度、准确率与个性化营销。",
+            "国际发展许可市场和全球会员扩张提供较低公司资本强度的门店与销售增长。"
+          ],
+          "capitalAllocation": [
+            "资本配置评级为优秀，晨星认可管理层把技术、数据、设备和全球业务服务逐步集中化。",
+            "约 95% 加盟化和既有门店改造提高现金流稳定性；大型并购纪律和回购价格仍须持续检验。",
+            "2025 年净债务／EBITDA 约 2.7 倍，晨星预计未来五年现金流和利息覆盖足以支持债务、股息与投资。"
+          ],
+          "economicMoat": [
+            "宽护城河来自品牌无形资产，以及采购、营销、配送和技术部署形成的成本优势。",
+            "全球统一品牌和大规模加盟网络让广告、供应链、忠诚度数据与门店技术的投入可以跨更大销售基础摊薄。",
+            "晨星预计这些优势可支持二十年以上的超额资本回报，但不把竞争对手附表中的第三方数据搬入本页面。"
+          ],
+          "fairValue": [
+            "公允价值由 US$300 下调至 US$295；报告价 US$276.49、Price/FVE 0.94，对应四星，五星与一星价格界限分别为 US$236 和 US$368.75。",
+            "下调来自更保守的门店和近期同店销售预测；公允价值约对应 16 倍 2026 EV/EBITDA。",
+            "DCF 使用 6.9% WACC，估算企业价值约 US$244.0B、权益价值约 US$203.2B。"
+          ],
+          "financialHealth": [
+            "2025 年净债务／EBITDA 约 2.7 倍；模型预计未来五年利息覆盖约 10 倍。",
+            "模型预计 2026–2030 年 FCFF 由 US$8.7B 增至 US$12.5B，并保持较高现金流利润率。",
+            "US$15B 回购授权只有在低于内在价值执行时才是审慎用途，债务和门店资本开支仍限制弹性。"
+          ],
+          "strategyOutlook": [
+            "晨星预计未来十年系统销售额年增约 6%，由约 3.7%门店增长和 3.5%同店销售增长共同推动。",
+            "模型预计公司营业利润率由 2025 年 46.1%升至 2035 年 52%，主要靠加盟收入占比和 SG&A 杠杆。",
+            "全球活跃忠诚会员目标由 2025 年 210M 增至 2027 年 250M，技术与会员飞轮是核心执行变量。"
+          ],
+          "uncertainty": [
+            "低不确定性反映约 95% 加盟结构、价值定位、地域分散和以租金／特许权费为主的经常性收入。",
+            "低收入消费者承压、客流下降、成本不能转嫁及加盟商促销负担仍会削弱门店经济性。",
+            "快速开店、健康偏好、超加工食品监管与社交媒体声誉风险可能提高长期结果差异。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/company-reports/1480772-mcdonalds-earnings-sales-sizzle-on-prudent-value-and-innovation-focus-but-costs-bite",
+        "title": "McDonald's Earnings: Sales Sizzle on Prudent Value and Innovation Focus, but Costs Bite",
+        "verifiedAt": "2026-07-30T10:00:57Z",
+        "version": 1
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
+    "research": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "equity_research",
+        "frameworkVersion": "equity-research-strategy-v1",
+        "result": {
+          "bearCase": [
+            "低收入消费者持续减少到店频次，价格和促销只能维持客单价，无法恢复美国客流。",
+            "牛肉、人工、能源和配送成本侵蚀公司自营与加盟商利润，迫使总部承担更多促销和改造补贴。",
+            "2026–2027 快速开店稀释成熟店销售，新店回报低于资本成本，资本开支上升却不带来自由现金流增长。",
+            "鸡肉、咖啡、饮料和高品质快餐竞争加剧，MCD 的价值定位不能同时满足可负担性与品牌升级。",
+            "技术平台、AI 和集中化项目投资庞大但执行复杂，数据、设备和加盟商采用未产生预期回报。",
+            "US$40B 债务和更高利率提高固定负担；若增长放缓，回购、股息和门店投资之间的取舍变得尖锐。",
+            "健康偏好、超加工食品监管或 GLP-1 使用改变消费频率，使长期同店销售算法下移。"
+          ],
+          "bullCase": [
+            "价值菜单、核心产品和文化营销重新带动美国客流，平均客单价与交易量形成更健康的组合。",
+            "忠诚度、App、个性化优惠、地理围栏与门店自动化提高营销回报、速度和订单准确率。",
+            "到 2027 年接近 50,000 家门店和 250M 活跃忠诚会员，国际发展许可市场以较低公司资本强度贡献增量。",
+            "特许经营收入占比继续提升，加盟利润和 SG&A 杠杆推动公司营业利润率扩张。",
+            "NEXT 的系统集中化、全球业务服务和设备标准化减少复杂度，改善加盟商与公司单位经济。",
+            "现金流覆盖资本开支和股息，回购只在低于内在价值时执行，使每股价值稳步增长。"
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "MCD 必须在美国低收入消费者承压和约 40% 累计菜单涨价之后，重新以客流而非主要靠客单价驱动同店销售，同时证明 2026 年 US$3.7B–US$3.9B 资本开支和约 2,100 家净新增门店不会稀释新店、加盟商和股东回报；否则当前低于十年 PE 常态带的表面折价仍可能只是增长和资本强度风险的补偿。",
+          "evidenceConfidence": "high",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "截至 2026-07-30 10:00:57 UTC，官方财务页仅列示 2026 年第一季度财报，官方事件页没有可读取的下一次财报日期；不能根据往年节奏推算第二季度发布日期。",
+            "公司没有在第一季度 10-Q 中量化美国可比客流，当前只能确认同店销售主要由客单价推动，不能把价格增长误写为客流恢复。",
+            "2026-06-01 公布的 NEXT 尚缺少完整、可审计的分年度投入、节省和资本回报桥接。",
+            "同一冻结时间、同一租赁和加盟口径的 MCD、YUM、QSR 与 CMG 估值集合尚未建立；竞争判断主要依赖公司经济性而不是同业倍数。",
+            "历史财务和本项目 DCF 没有把租赁负债二次计入债务；租赁承诺通过经营现金流和风险披露处理，模型敏感性仍可能低估地产资本风险。",
+            "Morningstar 完整 PDF 已逐页核验并仅保留 SHA-256 与结构化摘要；报告原文件、截图、表格和下载路径不会进入页面或发布包。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "Q1 美国同店销售 +3.9%，主要由客单价推动",
+              "challengingDirection": "继续主要靠价格，低收入消费者交易量与份额下降。",
+              "confirmingDirection": "客流转正或明显改善，价值、核心产品和营销同时支持量价。",
+              "metric": "美国同店销售与客流",
+              "nextReview": "next_official_quarter_date_not_announced"
+            },
+            {
+              "baseline": "Q1 加盟餐厅利润 +10%，占餐厅利润超过 90%",
+              "challengingDirection": "促销、人工、牛肉或租金压力使加盟利润落后并需要总部补贴。",
+              "confirmingDirection": "加盟利润至少跟上系统销售，改造和新店投资意愿稳定。",
+              "metric": "加盟商经济性",
+              "nextReview": "each_quarter"
+            },
+            {
+              "baseline": "Q1 总体 +4%，美国 -25%",
+              "challengingDirection": "通胀和促销使自营利润持续下滑。",
+              "confirmingDirection": "成本缓解和销售杠杆推动美国及全球自营利润恢复。",
+              "metric": "公司自营门店利润",
+              "nextReview": "each_quarter"
+            },
+            {
+              "baseline": "2026 指引约 2,100 家净新增、资本开支 US$3.7B–US$3.9B",
+              "challengingDirection": "开店或回报低于计划，资本开支超支且 FCF 不增长。",
+              "confirmingDirection": "开店按计划完成，成熟店蚕食可控，单位经济和自由现金流改善。",
+              "metric": "开店、资本开支与回报",
+              "nextReview": "20261231"
+            },
+            {
+              "baseline": "2026 指引低至中 80%区间；推导 TTM FCF US$7.039B",
+              "challengingDirection": "转化率低于低 80%且非可逆时点因素。",
+              "confirmingDirection": "转化率达到指引，资本投入后 FCFF 持续增长。",
+              "metric": "自由现金流转化",
+              "nextReview": "each_quarter"
+            },
+            {
+              "baseline": "2026-06-01 宣布 NEXT，聚焦客户首选、增长与生产率",
+              "challengingDirection": "投资和复杂度上升但经营指标没有改善。",
+              "confirmingDirection": "集中化、GBS、忠诚度和自动化带来可量化速度、客流、利润或加盟商回报。",
+              "metric": "NEXT 生产率与数字化",
+              "nextReview": "each_official_strategy_update"
+            },
+            {
+              "baseline": "Q1 净债务约 US$38.935B；季度股息 US$1.86；现有 US$15B 回购授权",
+              "challengingDirection": "债务和利息上升同时高价回购或股息覆盖恶化。",
+              "confirmingDirection": "利息覆盖稳定，回购低于内在价值，股息由现金流覆盖。",
+              "metric": "债务、股息与回购",
+              "nextReview": "each_quarter"
+            },
+            {
+              "baseline": "MCD 8.31%；KO、MCD、KHC 合计约 15.67%",
+              "challengingDirection": "接近或超过 20%，同时低收入消费者、定价或防御因子共同恶化。",
+              "confirmingDirection": "维持低于 20%软关注线且公司论点与估值足够分散。",
+              "metric": "组合消费篮子集中度",
+              "nextReview": "each_completed_close"
+            }
+          ],
+          "researchMaturity": "preliminary",
+          "sourceRegister": [
+            {
+              "label": "SEC EDGAR Company Facts locally verified source",
+              "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000063908.json"
+            },
+            {
+              "label": "McDonald's 2025 Form 10-K",
+              "publishedAt": "20260224",
+              "url": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm"
+            },
+            {
+              "label": "McDonald's 2026 Q1 Form 10-Q",
+              "publishedAt": "20260507",
+              "url": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000051/mcd-20260331.htm"
+            },
+            {
+              "label": "McDonald's 2026 Q1 earnings release",
+              "publishedAt": "20260507",
+              "url": "https://corporate.mcdonalds.com/corpmcd/our-stories/article/Q1-2026-results.html"
+            },
+            {
+              "label": "McDonald's > NEXT strategy announcement",
+              "publishedAt": "20260601",
+              "url": "https://corporate.mcdonalds.com/corpmcd/our-stories/article/NEXT-announcement.html"
+            },
+            {
+              "label": "McDonald's 2026 Q3 dividend declaration",
+              "publishedAt": "20260723",
+              "url": "https://corporate.mcdonalds.com/content/dam/sites/corp/nfl/pdf/Q326%20Dividend%20Release.pdf"
+            }
+          ],
+          "valuation": {
+            "dcf": {
+              "coreSensitivityRangeUsd": [
+                214,
+                297
+              ],
+              "scenarios": [
+                {
+                  "name": "bear",
+                  "terminalGrowthPct": 2.0,
+                  "valuePerShareUsd": 149.44,
+                  "waccPct": 8.25,
+                  "years1to5GrowthPct": 2.5,
+                  "years6to10GrowthPct": 2.0
+                },
+                {
+                  "name": "base",
+                  "terminalGrowthPct": 2.5,
+                  "valuePerShareUsd": 251.14,
+                  "waccPct": 7.25,
+                  "years1to5GrowthPct": 5.0,
+                  "years6to10GrowthPct": 3.5
+                },
+                {
+                  "name": "bull",
+                  "terminalGrowthPct": 3.0,
+                  "valuePerShareUsd": 421.4,
+                  "waccPct": 6.5,
+                  "years1to5GrowthPct": 7.5,
+                  "years6to10GrowthPct": 5.0
+                }
+              ]
+            },
+            "priceUsd": 271.52
+          },
+          "valuationState": "fair"
+        },
+        "sourceLabel": "MCD 2026 年第一季度后发起覆盖研究",
+        "sourceVersion": "v1.0",
+        "status": "active",
+        "summary": "MCD 本质上是品牌、特许经营、餐厅地产和数字化运营平台的组合：截至 2026 年第一季度约 95% 门店由加盟商经营，2025 年特许经营收入占公司收入约 62%，且第一季度超过 90% 的餐厅利润来自加盟业务。2026 年第一季度全球同店销售增长 3.8%、系统销售额按固定汇率增长 6%，说明价值、营销和菜单创新仍有拉力；但美国增长主要来自客单价，公司自营餐厅继续承受成本压力。2026-07-29 完成收盘价 US$271.52 对应约 22.4 倍申报生效 TTM EPS、约 3.65% 推导 TTM 自由现金流收益率。自建 FCFF DCF 悲观、基准、乐观情景约为 US$149、US$251、US$421，核心敏感区间约 US$214–US$297；Morningstar 2026-07-10 的独立公允价值为 US$295。现有 8.31% 仓位继续持有，新增现金列入观察名单，等待第二季度正式财报验证客流、加盟商经济性与高资本开支阶段的回报。",
+        "updatedAt": "2026-07-30T10:05:02.792333Z"
+      }
+    ],
     "summary": {
       "research": {
-        "count": 0
+        "count": 2,
+        "internalCount": 1,
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "MCD"

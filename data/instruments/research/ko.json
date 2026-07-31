@@ -2,30 +2,293 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "latestAsOfDate": "20260729",
+        "providerPublishedDate": "20260508",
+        "providerVerifiedAt": "2026-07-30T07:59:24Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
+          "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Kristoffer Inton",
+          "role": "Senior Equity Analyst"
+        },
+        "freshness": {
+          "ageDays": 1.333598504212963,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "本次以截至 2026-07-28 19:28 UTC 的 23 页完整报告为主证据，并以 5 月 8 日晨星官网文章作公开链接。完整报告正式栏显示 US$75 公允价值、两星、宽护城河、低不确定性与优秀资本配置；报告价为 US$84.07，Price/FVE 为 1.12。7 月 28 日财报附注确认 Q2 有机收入增长 6%、可比营业利润增长 9%、可比 EPS 为 US$0.97，并认可全球销量和创新执行，但也指出世界杯活动、天气及较低比较基数提供助力。附注表示财报后拟把 US$74 公允价值上调中高个位数百分比，可是 7 月 13 日正式模型仍为 US$75，尚无新的精确值，本项目不提前推算。模型采用 6.8% WACC，预计 2026–2030 年收入由 US$49.4B 增至 US$58.9B、经营利润率由 31.5%升至 32.9%、FCFF 由 US$12.2B 增至 US$16.9B。以 2026-07-28 正式收盘 US$88.27 观察，价格仍高于当前正式公允价值约 17.7%；护城河和资本配置结论增强，但估值方向仍偏贵。Fairlife 网络事件、装瓶伙伴经济性、健康偏好、汇率以及 Costa 执行继续是重点。",
+        "metrics": {
+          "capitalAllocation": "exemplary",
+          "economicMoat": "wide",
+          "fairValue": 75,
+          "fairValueCurrency": "USD",
+          "fairValueUpdatedDate": "20260713",
+          "ratingStars": 2,
+          "ratingUpdatedDate": "20260727",
+          "uncertainty": "low"
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260508",
+        "sections": {
+          "bearish": [
+            "Q2 增长受到世界杯活动、天气和较低比较基数帮助，下半年可能面对更高比较基数。",
+            "成熟市场健康偏好与无汽饮料竞争持续，Costa 的执行仍未达到晨星期望。",
+            "汇率、地缘政治、装瓶伙伴利润压力及 Fairlife 网络安全事件都可能削弱盈利兑现。"
+          ],
+          "bullish": [
+            "新兴市场、密集装瓶网络和本地化创新仍可共同推动销量与价格／组合。",
+            "零糖产品、Fairlife 等无汽品类以及供应链数字化扩大传统汽水以外的增长空间。",
+            "Q2 动能与上调后的 2026 指引支持长期 4%–6%有机增长框架。"
+          ],
+          "capitalAllocation": [
+            "资本配置评级为优秀，晨星认可资产负债表、投资记录和股东分配之间的平衡。",
+            "2025 年净债务／调整后 EBITDA 约 2.0 倍；模型预计 2030 年净债务／EBITDA 降至约 1.2 倍。",
+            "公司持续投入约收入 10%–11%的品牌营销，选择性并购，股息支付率约 70%，回购则以低于内在价值为前提。"
+          ],
+          "economicMoat": [
+            "宽护城河主要来自品牌无形资产，以及全球生产、装瓶和分销系统形成的成本优势。",
+            "装瓶伙伴、零售与餐饮渠道关系及按销售额分成的定价机制，增强了新品、渠道与终端执行力。",
+            "系统规模支持可负担的小包装和本地化创新，晨星预计超额资本回报可延续二十年以上。"
+          ],
+          "fairValue": [
+            "正式公允价值为 US$75；报告价 US$84.07、Price/FVE 1.12，对应两星，五星与一星价格界限分别为 US$60 和 US$93.75。",
+            "DCF 采用 6.8% WACC，估算企业价值 US$346.9B、权益价值 US$317.0B，并以 42.89 亿股摊薄股数折算。",
+            "7 月 28 日附注预期上调旧 US$74 估值，但正式模型仍停留在 7 月 13 日的 US$75，未给出已生效的新精确值。"
+          ],
+          "financialHealth": [
+            "2025 年净债务／调整后 EBITDA 约 2.0 倍，晨星认为资产负债表稳健且现金流韧性较强。",
+            "模型预计 2026–2030 年 FCFF 由 US$12.2B 增至 US$16.9B，净债务／EBITDA 由 1.7 倍降至 1.2 倍。",
+            "股息支付率预计由 65.3%升至 68.2%，在品牌投资、并购弹性与股东回报之间保留空间。"
+          ],
+          "strategyOutlook": [
+            "模型预计 2026–2030 年收入由 US$49.4B 增至 US$58.9B，五年复合增速约 4.2%。",
+            "同期经营利润率预计由 31.5%升至 32.9%，2035 年约 33%，依靠组合、装瓶业务重构和数据能力。",
+            "基准预测以新兴市场和无汽品类为主要增量，因并购管线不可见而未计入未来并购贡献。"
+          ],
+          "uncertainty": [
+            "低不确定性反映需求分散、品牌组合和全球系统的防御性，但通胀期仍需维护装瓶伙伴经济性。",
+            "较高的国际业务敞口使利润持续受到汇率、宏观与地缘政治波动影响。",
+            "健康偏好、品牌声誉与 Fairlife 网络安全事件是需要持续复核的经营风险。"
+          ]
+        },
+        "sourceUrl": "https://global.morningstar.com/de/aktien/ist-die-coca-cola-aktie-nach-der-verffentlichung-der-geschftszahlen-ein-kauf-ein-verkauf-oder-fair-bewertet",
+        "title": "After Earnings, Is Coca-Cola Stock a Buy, a Sell, or Fairly Valued?",
+        "verifiedAt": "2026-07-30T07:59:24Z",
+        "version": 2
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
+    "research": [
+      {
+        "asOfDate": "20260729",
+        "assessmentType": "equity_research",
+        "frameworkVersion": "equity-research-strategy-v1",
+        "result": {
+          "bearCase": [
+            "第二季度销量受较低比较基数、天气和世界杯拉动，两年平均 2%的增长更接近真实趋势，后续回落使当前倍数失去支撑。",
+            "亚太以 9% 负价格／组合换取 8% 销量增长，印度价值份额下降，显示可负担性投资可能牺牲利润和品牌经济性。",
+            "低收入消费者持续承压，迫使公司扩大入门价格带、促销或小包装，削弱价格／组合与装瓶伙伴回报。",
+            "fairlife 网络事件、产能爬坡或其他供应链问题限制高增长品类的可售能力。",
+            "CCBA 交割延后或再特许经营后的经济利益低于预期，报告收入下降却没有足够利润率和资本回报补偿。",
+            "IRS 上诉失败导致 US$6.0B 保证金无法收回并触发后续税年约 US$14B 潜在负担，压缩股东回报和财务弹性。",
+            "约 27 倍盈利估值回归较低区间，即使公司继续增长，股东总回报仍可能不足。"
+          ],
+          "bullCase": [
+            "品牌、装瓶系统与收入增长管理继续支撑 4%–6% 长期有机收入增长，并在成熟市场与新兴市场之间实现更均衡的量价组合。",
+            "Coca-Cola Zero Sugar、fairlife、Powerade 与本地化创新扩大饮用场景，减少对传统含糖汽水单一品类的依赖。",
+            "CCBA 交割和持续再特许经营进一步降低资本强度、改善利润率与现金回报。",
+            "数字营销和世界杯取得的第一方数据提高营销效率，使品牌投入同时支持销量和定价。",
+            "汇率、供应链和原材料保持可控，2026 自由现金流达到或超过 US$12.4B，股息覆盖稳定。",
+            "IRS 上诉成功，US$6.0B 保证金返还，且后续税年约 US$14B 潜在负担消失。"
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "KO 必须证明第二季度 5% 销量增长不是较低比较基数、天气与世界杯共同形成的短期峰值，并在保持约 5% 有机收入增长、利润率扩张和现金转化的同时消化当前约 27 倍盈利与约 3.3% 指引自由现金流收益率；否则好公司仍可能是回报不足的证券。",
+          "evidenceConfidence": "medium",
+          "existingPositionAction": "hold",
+          "missingEvidence": [
+            "截至 2026-07-29 15:35 UTC，KO 尚未提交 2026 年第二季度 10-Q；本评价用 8-K 附件中的正式财务表，待 10-Q 对承诺、诉讼、营运资本和分部注释复核。",
+            "公司官方事件页已链接 Q2 电话会文字稿，但原 PDF 在本次访问返回 HTTP 403；电话会问答采用二级全文转录并明确降级为中等证据。",
+            "同一冻结时间、同一会计口径的 KO、PEP、KDP 与主要装瓶商估值集合尚未建立。",
+            "Q2 后 Morningstar 股票分析尚无可公开访问的详细更新；当前摘要沿用 2026-05-08 版本并于本日重新核验。",
+            "CCBA 交易的最终交割日和 IRS 上诉裁决日均未确认，不能用管理层时间范围伪装成正式日期。",
+            "分部资本投入、分部自由现金流以及印度可负担性投资的长期回报尚未充分披露。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "Q2 有机收入 +6%；单位箱销量 +5%；价格／组合 +2%；两年平均销量 +2%",
+              "challengingDirection": "销量回落、价格／组合转负或市场份额下降。",
+              "confirmingDirection": "更难比较基数下仍接近 4%–6% 长期算法，量价贡献均衡且不依赖单一活动。",
+              "metric": "有机收入、销量与价格／组合",
+              "nextReview": "next_official_quarter_date_not_announced"
+            },
+            {
+              "baseline": "Q2 可比营业利润率 35.6%；可比货币中性营业利润 +6%；可比 EPS +11%",
+              "challengingDirection": "利润率扩张主要来自汇率、投资时点或再特许经营，基础经营杠杆减弱。",
+              "confirmingDirection": "利润增长至少跟上有机收入，汇率和结构变化之外仍有基础经营扩张。",
+              "metric": "可比利润率与 EPS 质量",
+              "nextReview": "each_quarter"
+            },
+            {
+              "baseline": "2026 指引 OCF US$14.6B、资本开支 US$2.2B、FCF US$12.4B；年化股息约 US$9.14B",
+              "challengingDirection": "FCF 明显低于指引或净债务上升，股息占用正常化 FCF 过高。",
+              "confirmingDirection": "达到或超过指引，营运资本与一次性现金项目透明，股息覆盖维持。",
+              "metric": "现金转化与股息覆盖",
+              "nextReview": "20261231"
+            },
+            {
+              "baseline": "Q2 亚太销量 +8%、价格／组合 -9%、可比货币中性营业利润持平；印度价值份额下降",
+              "challengingDirection": "持续以利润和价格换销量，印度份额继续流失。",
+              "confirmingDirection": "负组合逐步收窄，消费者基数与份额提升转化为利润。",
+              "metric": "亚太与印度经济性",
+              "nextReview": "each_quarter"
+            },
+            {
+              "baseline": "管理层称多数美国生产已恢复、下半年不预计重大影响，Webster 继续爬坡",
+              "challengingDirection": "网络事件、供应或品牌信任产生重大财务影响。",
+              "confirmingDirection": "核心 SKU 供应、渠道可得性与产能爬坡按计划恢复。",
+              "metric": "fairlife 恢复与产能",
+              "nextReview": "each_company_update"
+            },
+            {
+              "baseline": "公司假设交易在 Q3 末或 Q4 完成，交割取决于监管批准",
+              "challengingDirection": "交割延迟、监管条件恶化或经济利益不足。",
+              "confirmingDirection": "按期交割，报告收入下降伴随利润率、资本强度和现金回报改善。",
+              "metric": "CCBA 再特许经营",
+              "nextReview": "20261231"
+            },
+            {
+              "baseline": "US$6.0B 已付保证金；2010–2025 潜在新增税息约 US$14B；裁决日期未知",
+              "challengingDirection": "不利裁决或潜在负担上升，压缩股东回报和财务弹性。",
+              "confirmingDirection": "上诉胜诉并收回保证金，后续税年风险解除。",
+              "metric": "IRS 税务上诉",
+              "nextReview": "on_official_decision"
+            },
+            {
+              "baseline": "KO 4.03%；KO、MCD、KHC 合计约 15.67%",
+              "challengingDirection": "接近或超过 20%，同时低收入消费者、定价或防御因子共同恶化。",
+              "confirmingDirection": "维持低于 20% 软关注线，且不同公司论点与估值提供足够分散。",
+              "metric": "组合消费篮子集中度",
+              "nextReview": "each_completed_close"
+            }
+          ],
+          "researchMaturity": "preliminary",
+          "sourceRegister": [
+            {
+              "label": "Coca-Cola 2026 Q2 Form 8-K filing index",
+              "publishedAt": "20260728",
+              "url": "https://www.sec.gov/Archives/edgar/data/21344/000162828026049922/0001628280-26-049922-index.htm"
+            },
+            {
+              "label": "Coca-Cola 2026 Q2 earnings release, Exhibit 99.1",
+              "publishedAt": "20260728",
+              "url": "https://www.sec.gov/Archives/edgar/data/21344/000162828026049922/a2026q2earningsreleaseex-9.htm"
+            },
+            {
+              "label": "Coca-Cola official Q2 2026 earnings call event and transcript link",
+              "publishedAt": "20260728",
+              "url": "https://investors.coca-colacompany.com/news-events/events/detail/20260728-2nd-quarter-2026-earnings-call"
+            },
+            {
+              "label": "Investing.com Q2 2026 earnings-call transcript",
+              "publishedAt": "20260728",
+              "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-cocacola-beats-q2-2026-forecasts-shares-jump-6-93CH-4817082"
+            },
+            {
+              "label": "Coca-Cola 2025 Form 10-K",
+              "publishedAt": "20260220",
+              "url": "https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/ko-20251231.htm"
+            },
+            {
+              "label": "Coca-Cola 2026 Q1 Form 10-Q",
+              "publishedAt": "20260430",
+              "url": "https://investors.coca-colacompany.com/filings-reports/all-sec-filings/content/0001628280-26-028802/ko-20260403.htm"
+            },
+            {
+              "label": "Coca-Cola fairlife technology disruption announcement",
+              "publishedAt": "20260716",
+              "url": "https://investors.coca-colacompany.com/news-events/press-releases/detail/1166/the-coca-cola-company-announces-technology-disruption-involving-fairlife-operations"
+            },
+            {
+              "label": "Coca-Cola July 2026 quarterly dividend declaration",
+              "publishedAt": "20260715",
+              "url": "https://investors.coca-colacompany.com/news-events/press-releases/detail/1165/board-of-directors-of-the-coca-cola-company-elects-new-officer-and-declares-regular-quarterly-dividend"
+            },
+            {
+              "label": "Coca-Cola and GFI agreement to sell controlling interest in CCBA",
+              "publishedAt": "20251021",
+              "url": "https://investors.coca-colacompany.com/news-events/press-releases/detail/1143/the-coca-cola-company-and-gutsche-family-investments-agree-to-sell-controlling-interest-in-coca-cola-beverages-africa-to-coca-cola-hbc-ag"
+            },
+            {
+              "label": "Morningstar KO valuation and moat opinion",
+              "publishedAt": "20260508",
+              "url": "https://global.morningstar.com/de/aktien/ist-die-coca-cola-aktie-nach-der-verffentlichung-der-geschftszahlen-ein-kauf-ein-verkauf-oder-fair-bewertet"
+            }
+          ],
+          "valuation": {
+            "dcf": {
+              "coreSensitivityRangeUsd": [
+                59,
+                86
+              ],
+              "scenarios": [
+                {
+                  "name": "bear",
+                  "terminalGrowthPct": 2.0,
+                  "valuePerShareUsd": 46.21,
+                  "waccPct": 8.5,
+                  "years1to5GrowthPct": 3.0,
+                  "years6to10GrowthPct": 2.5
+                },
+                {
+                  "name": "base",
+                  "terminalGrowthPct": 2.5,
+                  "valuePerShareUsd": 69.81,
+                  "waccPct": 7.5,
+                  "years1to5GrowthPct": 5.0,
+                  "years6to10GrowthPct": 4.0
+                },
+                {
+                  "name": "bull",
+                  "terminalGrowthPct": 3.0,
+                  "valuePerShareUsd": 105.44,
+                  "waccPct": 6.75,
+                  "years1to5GrowthPct": 7.0,
+                  "years6to10GrowthPct": 5.0
+                }
+              ]
+            },
+            "priceUsd": 88.27
+          },
+          "valuationState": "expensive"
+        },
+        "sourceLabel": "KO 2026 年第二季度财报后发起覆盖研究",
+        "sourceVersion": "v1.0",
+        "status": "active",
+        "summary": "KO 的品牌资产、全球装瓶系统、渠道规模与收入增长管理能力支持宽护城河判断，2026 年第二季度 5% 销量增长、6% 有机收入增长及利润率扩张也强化了公司论点；但管理层同时承认季度受较低比较基数、天气与世界杯推动，两年平均销量增长只有 2%。2026-07-28 正式收盘价 US$88.27 对应约 26.6 倍推导 TTM GAAP 盈利、约 26.7–27.0 倍 2026 可比 EPS 指引和约 3.3% 指引 FCF 收益率。自建 FCFF DCF 悲观、基准、乐观情景约为 US$46、US$70、US$105，当前价格已高于核心敏感区间。现有 4.03% 仓位维持持有，新增现金列入观察名单，等待高增长在更难比较基数下得到验证。",
+        "updatedAt": "2026-07-29T15:44:48.377121Z"
+      }
+    ],
     "summary": {
       "research": {
-        "count": 0
+        "count": 2,
+        "internalCount": 1,
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-07-29T10:13:54.436638Z",
+  "generatedAt": "2026-07-31T15:59:44.623814Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "KO"

@@ -242,9 +242,9 @@
     .asof-value { margin-top: 7px; color: var(--navy); font: 700 13px var(--mono); }
     .asof-note { margin-top: 5px; color: var(--muted); font-size: 10px; }
     .two-col { display: grid; grid-template-columns: minmax(0, 1.22fr) minmax(500px, .78fr); gap: 18px; align-items: stretch; }
-    .records-card { height: 442px; min-height: 0; overflow: hidden; }
+    .records-card { height: 442px; min-width: 0; min-height: 0; overflow: hidden; }
     .table-wrap { overflow-x: auto; }
-    .event-ledger-scroll { height: 100%; overflow-x: auto; }
+    .event-ledger-scroll { width: 100%; max-width: 100%; height: 100%; min-width: 0; overflow-x: auto; }
     .event-ledger-surface { min-width: 760px; }
     .event-table-wrap { height: 392px; max-height: 392px; overflow-y: auto; scrollbar-gutter: stable; }
     .event-table-wrap th { position: sticky; top: 0; z-index: 2; }
@@ -284,7 +284,9 @@
     .tax-lot-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
     .tax-lot-title { margin: 0; color: var(--navy); font-size: 17px; font-weight: 750; }
     #taxLotsBody { display: flex; flex: 1 1 auto; min-height: 0; }
-    .tax-lot-scroll { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; min-height: 0; max-height: none; overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable; }
+    .tax-lot-scroll { display: flex; flex: 1 1 auto; min-width: 0; min-height: 0; overflow-x: auto; overflow-y: hidden; }
+    .tax-lot-surface { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; min-height: 0; }
+    .tax-lot-table-wrap { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; scrollbar-gutter: stable; }
     .tax-lot-table { flex: 0 0 auto; min-width: 0; table-layout: fixed; }
     .tax-lot-table th { position: sticky; top: 0; z-index: 2; }
     .tax-lot-table th.sortable-th { padding: 0; }
@@ -313,7 +315,7 @@
     .tax-lot-table th:nth-child(3), .tax-lot-table td:nth-child(3) { width: 16%; }
     .tax-lot-table th:nth-child(4), .tax-lot-table td:nth-child(4) { width: 23%; }
     .tax-lot-table th:nth-child(5), .tax-lot-table td:nth-child(5) { width: 19%; }
-    .tax-lot-summary { position: sticky; bottom: 0; z-index: 3; display: grid; flex: 0 0 auto; grid-template-columns: 22fr 20fr 16fr 23fr 19fr; min-width: 0; min-height: 52px; margin-top: auto; border-top: 1px solid #dfe5e9; background: #fafbfc; }
+    .tax-lot-summary { display: grid; flex: 0 0 auto; grid-template-columns: 22fr 20fr 16fr 23fr 19fr; min-width: 0; min-height: 52px; border-top: 1px solid #dfe5e9; background: #fafbfc; }
     .tax-lot-summary-item { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 3px; min-width: 0; padding: 7px 6px; border-left: 1px solid #e1e6ea; }
     .tax-lot-summary-item.total-cost-basis { grid-column: 1; border-left: 0; }
     .tax-lot-summary-item.cost-basis { grid-column: 2; }
@@ -431,8 +433,9 @@
       .metric:last-child { border-bottom: 0; }
       .section-head { align-items: flex-start; flex-direction: column; gap: 10px; }
       .chart-toolbar { align-items: flex-start; flex-direction: column; }
-      .chart-controls, .chart-control { align-items: flex-start; }
+      .chart-controls, .chart-control { width: 100%; min-width: 0; align-items: flex-start; }
       .chart-control { flex-direction: column; }
+      .segmented { max-width: 100%; overflow-x: auto; }
       .valuation-comparator-note { flex-basis: 100%; margin-left: 0; }
       .chart-frame { min-height: 390px; padding-inline: 2px; }
       .chart-svg { height: 370px; }
@@ -451,8 +454,7 @@
       .account-kpi.wide { grid-column: 1 / -1; }
     }
     @media (max-width: 560px) {
-      .tax-lot-scroll { overflow-x: auto; }
-      .tax-lot-table, .tax-lot-summary { min-width: 440px; }
+      .tax-lot-surface { min-width: 440px; }
     }
   </style>
 </head>
@@ -854,7 +856,7 @@
       }
       function researchLabel(value) {
         return {
-          preliminary: "初步评价", fair: "估值合理", nav_aligned: "价格贴近 NAV", hold: "持有",
+          preliminary: "初步评价", fair: "估值合理", undervalued: "估值偏低", nav_aligned: "价格贴近 NAV", hold: "持有",
           expensive: "估值偏贵", watchlist: "观察名单", active: "正式复核",
           review_due: "待复核", superseded: "已被取代", current: "当前版本",
           add_eligible: "符合增持研究条件", trim_review: "复核减持",
@@ -1831,6 +1833,11 @@
           dividend_record: 22,
           dividend_payment: 23,
           shareholder_meeting: 30,
+          fund_fee_review: 31,
+          executive_transition: 32,
+          corporate_separation: 34,
+          merger_acquisition: 35,
+          strategic_investment: 36,
           regulatory_filing: 40,
           stock_split: 50
         }[eventType] || 99;
@@ -2118,6 +2125,10 @@
         }
         var scroll = document.createElement("div");
         scroll.className = "tax-lot-scroll";
+        var surface = document.createElement("div");
+        surface.className = "tax-lot-surface";
+        var tableWrap = document.createElement("div");
+        tableWrap.className = "tax-lot-table-wrap";
         var table = document.createElement("table");
         table.className = "tax-lot-table";
         var thead = document.createElement("thead");
@@ -2212,7 +2223,9 @@
           item.append(label, value);
           summaryBar.appendChild(item);
         });
-        scroll.append(table, summaryBar);
+        tableWrap.appendChild(table);
+        surface.append(tableWrap, summaryBar);
+        scroll.appendChild(surface);
         body.appendChild(scroll);
       }
       function renderList(items) {
@@ -2285,11 +2298,29 @@
         if (isFundMedalist) {
           var medalistLabels = { gold: "金牌", silver: "银牌", bronze: "铜牌", neutral: "中性", negative: "负面" };
           var medalistMethodLabels = { quantitatively_derived: "量化衍生", analyst_rated: "分析师评级" };
+          var historicalStarRating = finite(metrics.historicalStarRating);
           metricRows = [
-            ["晨星评级", number(metrics.historicalStarRating, 0) + " 星", "传统历史星级 · 截至 " + compactToIso(metrics.historicalStarRatingAsOf)],
-            ["Medalist Rating", medalistLabels[metrics.medalistRating] || metrics.medalistRating || "—", "量化衍生 · " + compactToIso(metrics.medalistRatedDate)],
+            [
+              "晨星评级",
+              historicalStarRating == null ? "未核实" : number(historicalStarRating, 0) + " 星",
+              historicalStarRating == null
+                ? "官网文章未列出当前传统历史星级"
+                : "传统历史星级 · 截至 " + compactToIso(metrics.historicalStarRatingAsOf)
+            ],
+            [
+              "Medalist Rating",
+              medalistLabels[metrics.medalistRating] || metrics.medalistRating || "—",
+              (medalistMethodLabels[metrics.medalistMethod] || "评级方式未核实")
+                + " · " + compactToIso(metrics.medalistRatedDate)
+            ],
             ["晨星分类", metrics.morningstarCategory || "—", "基金类别，不是信用评级"],
-            ["评级方式", medalistMethodLabels[metrics.medalistMethod] || metrics.medalistMethod || "—", "Morningstar Automated Analysis"],
+            [
+              "评级方式",
+              medalistMethodLabels[metrics.medalistMethod] || metrics.medalistMethod || "—",
+              metrics.medalistMethod === "analyst_rated"
+                ? "Morningstar Manager Research"
+                : "Morningstar Automated Analysis"
+            ],
             ["资产类别", metrics.morningstarAssetClass || "Fixed Income", "晨星专题口径"]
           ];
         } else {
@@ -2318,7 +2349,7 @@
           var item = document.createElement("article"); item.className = "morningstar-metric";
           var label = document.createElement("div"); label.className = "morningstar-metric-label"; label.textContent = entry[0];
           var value = document.createElement("div"); value.className = "morningstar-metric-value";
-          if (entry[0] === "晨星评级") {
+          if (entry[0] === "晨星评级" && finite(isFundMedalist ? metrics.historicalStarRating : metrics.ratingStars) != null) {
             var ratingStars = isFundMedalist ? metrics.historicalStarRating : metrics.ratingStars;
             var starCount = Math.max(0, Math.min(5, Math.round(finite(ratingStars) || 0)));
             var stars = document.createElement("span"); stars.className = "morningstar-stars";
@@ -2438,7 +2469,7 @@
           if (seenBadgeLabels.has(label)) return;
           seenBadgeLabels.add(label);
           var span = document.createElement("span"); span.className = "badge";
-          if (value === "fair" || value === "nav_aligned" || value === "hold") span.classList.add("good");
+          if (value === "fair" || value === "undervalued" || value === "nav_aligned" || value === "hold") span.classList.add("good");
           if (value === "watchlist" || value === "preliminary" || value === "expensive" || value === "review_due") span.classList.add("warn");
           span.textContent = label; badges.appendChild(span);
         });
@@ -2458,12 +2489,16 @@
             var name = document.createElement("div"); name.className = "valuation-name"; name.textContent = { bear: "悲观情景", base: "基准情景", bull: "乐观情景" }[scenario.name] || scenario.name;
             var price = document.createElement("div"); price.className = "valuation-price"; price.textContent = money(scenario.valuePerShareUsd, "USD", 2);
             var assumptions = document.createElement("div"); assumptions.className = "valuation-assumptions";
-            assumptions.textContent = "WACC " + percent(scenario.waccPct, 1) + " · 永续 " + percent(scenario.terminalGrowthPct, 1) + " · 前五年 " + percent(scenario.years1to5GrowthPct, 1);
+            var discountRate = scenario.costOfEquityPct != null ? scenario.costOfEquityPct : scenario.waccPct;
+            var discountLabel = scenario.costOfEquityPct != null ? "权益成本" : "WACC";
+            var growthRate = scenario.years1to10GrowthPct != null ? scenario.years1to10GrowthPct : scenario.years1to5GrowthPct;
+            var growthLabel = scenario.years1to10GrowthPct != null ? "十年增长" : "前五年";
+            assumptions.textContent = discountLabel + " " + percent(discountRate, 1) + " · 永续 " + percent(scenario.terminalGrowthPct, 1) + " · " + growthLabel + " " + percent(growthRate, 1);
             item.append(name, price, assumptions); valuations.appendChild(item);
           });
           body.appendChild(valuations);
           var range = document.createElement("p"); range.className = "section-note";
-          range.textContent = "核心 DCF 敏感区间：" + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[0], "USD", 0) + " — " + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[1], "USD", 0) + "；" + (valuation.priceContextLabel || "当前行情完成收盘") + " " + money(valuation.priceUsd, "USD", 2) + "。";
+          range.textContent = (dcf.sensitivityLabel || "核心 DCF 敏感区间") + "：" + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[0], "USD", 0) + " — " + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[1], "USD", 0) + "；" + (valuation.priceContextLabel || "当前行情完成收盘") + " " + money(valuation.priceUsd, "USD", 2) + "。";
           body.appendChild(range);
         }
         if (Array.isArray(result.monitoring) && result.monitoring.length) {
