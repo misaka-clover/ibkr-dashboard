@@ -3,21 +3,81 @@
     "dataAsOf": {
       "research": {
         "latestAsOfDate": "20260730",
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "providerPublishedDate": "20260715",
+        "providerVerifiedAt": "2026-07-30T17:13:42Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 1,
-          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
           "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Morningstar Automated Analysis",
+          "role": "Quantitative fund analysis"
+        },
+        "freshness": {
+          "ageDays": 1.5663630141666667,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "Morningstar 在 2026-07-15 发布的当前 EWJV 分析中，将其列为截至 2026-05-31 的量化衍生 Gold Medalist；iShares 官方资料同时显示其传统历史星级为四星，并列示分析师覆盖 20%、数据覆盖 100%。这说明晨星的前瞻框架认为 EWJV 在日本股票同类中具有较强的扣费后风险调整结果潜力，但当前结论主要由量化模型形成，不等同于一位分析师对日本价值股逐项主观承保。EWJV 的优势是明确的价值因子、0.15%费用率、较好的长期跟踪和相对广义日本市场的估值折价；风险则是金融与周期行业集中、单一国家及日元暴露、因子长期失效和指数重构换手。Gold 评价强化的是产品和流程质量，不提供份额公允价值，也不能替代本项目对当前价格、组合重叠和加仓机会成本的独立判断。由于没有完整 Morningstar ETF 研报 PDF，本次不补猜 Process、People 或 Parent 的未公开 pillar 细节。",
+        "metrics": {
+          "analystCoveragePct": 20,
+          "dataCoveragePct": 100,
+          "historicalStarRating": 4,
+          "historicalStarRatingAsOf": "20260630",
+          "medalistMethod": "quantitatively_derived",
+          "medalistRatedDate": "20260531",
+          "medalistRating": "gold",
+          "morningstarAssetClass": "Equity",
+          "morningstarCategory": "Japan Stock",
+          "parentPillar": null,
+          "peoplePillar": null,
+          "processPillar": null,
+          "researchType": "fund_medalist"
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260715",
+        "sections": {
+          "investmentMerit": [
+            "Gold Medalist 支持 EWJV 作为同类中较有竞争力的日本价值因子工具。",
+            "传统四星反映历史风险调整后结果处于较好区间，但属于回顾性指标，不能与前瞻 Gold 混为一项。",
+            "产品质量认可不等于当前绝对估值便宜，也不构成自动加仓建议。"
+          ],
+          "parent": [
+            "公开证据没有提供可安全复述的当前 Parent pillar 结论，因此保持未核实。",
+            "发行人规模、费率和运营质量由项目独立核验，不把 iShares 的品牌本身当作 Morningstar Parent 评级。"
+          ],
+          "people": [
+            "当前页面署名为 Morningstar Automated Analysis，而不是单一基金分析师的完整人工研究。",
+            "iShares 显示截至 2026-05-31 的分析师覆盖比例为 20%、数据覆盖为 100%；这不代表基金经理团队仅有 20%被覆盖。"
+          ],
+          "process": [
+            "当前 Gold 属量化衍生评价，反映 Morningstar 对扣费后风险调整结果的前瞻模型判断。",
+            "基金以账面价值、前瞻盈利和股息收益率承载日本价值因子，风格偏离广义日本指数是设计结果。",
+            "未取得完整研报前，不把未公开的 Process pillar 分数或模型权重补写到页面。"
+          ],
+          "risks": [
+            "金融业和前十大集中度较高，价值因子可能在成长主导或信贷压力环境下长期落后。",
+            "单一国家、日元和日本政策风险不会因基金持有 109 只股票而消失。",
+            "量化 Medalist 会随模型输入、费用、表现和同类比较变化，后续评级变动须重新解释原因。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/etfs/xnas/ewjv/analysis",
+        "title": "iShares MSCI Japan Value ETF EWJV ETF Analysis",
+        "verifiedAt": "2026-07-30T17:13:42Z",
+        "version": 1
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
         "asOfDate": "20260730",
@@ -136,13 +196,13 @@
     ],
     "summary": {
       "research": {
-        "count": 1,
+        "count": 2,
         "internalCount": 1,
-        "providerCount": 0
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-07-31T15:59:44.623814Z",
+  "generatedAt": "2026-08-01T06:49:14.125106Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "EWJV"

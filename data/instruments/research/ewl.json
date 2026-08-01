@@ -3,21 +3,91 @@
     "dataAsOf": {
       "research": {
         "latestAsOfDate": "20260730",
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "providerPublishedDate": "20260730",
+        "providerVerifiedAt": "2026-07-30T17:31:02Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 1,
-          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
           "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": null,
+          "role": null
+        },
+        "freshness": {
+          "ageDays": 1.5543272285416667,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "Morningstar 的 EWL 官方分析页在 2026-07-30 核验时明确表示该基金目前没有 Morningstar 分析师覆盖，并解释未覆盖基金往往因为资产规模、客户持有度或策略相关性未达到其优先覆盖标准，未来仍可能因规模、经理、策略、风险调整后表现或母公司变化而进入覆盖。这个状态不能解释成 Negative 或“不值得持有”，也不能反向推断任何 Medalist、Process、People、Parent 或传统星级。由于没有可供复核的 Morningstar EWL 分析、完整研报 PDF或安全暴露的评级字段，本面板只记录覆盖缺口；产品质量、估值和组合角色由 iShares、MSCI、本地组合事实及授权日线独立判断。",
+        "metrics": {
+          "analystCoveragePct": null,
+          "coverageStatus": "not_currently_covered_by_morningstar_analyst",
+          "historicalStarRating": null,
+          "historicalStarRatingAsOf": null,
+          "medalistMethod": null,
+          "medalistRatedDate": null,
+          "medalistRating": null,
+          "morningstarAssetClass": "Equity",
+          "morningstarCategory": null,
+          "parentPillar": null,
+          "peoplePillar": null,
+          "processPillar": null,
+          "publishedDateBasis": "coverage_status_observation_date_not_research_report_date",
+          "researchType": "coverage_status",
+          "supportingSources": [
+            {
+              "label": "Morningstar ETF quote page methodology",
+              "publishedAt": "202607",
+              "url": "https://www.morningstar.com/help-center/funds/etf-quote-page"
+            }
+          ]
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260730",
+        "sections": {
+          "coverage": [
+            "Morningstar 官方页明确写明 EWL 目前没有分析师覆盖。",
+            "无覆盖是研究资源与基金相关性选择，不等于负面评级或投资结论。",
+            "若未来开始覆盖，应以新报告日期、分析师和完整证据另建版本。"
+          ],
+          "investmentMerit": [
+            "Morningstar 没有提供可引用的 EWL 前瞻产品观点，因此不以第三方评级强化买入或卖出判断。",
+            "是否持有 EWL 应回到瑞士单一国家角色、估值、费用、集中度和组合重叠。"
+          ],
+          "parent": [
+            "当前没有可安全复述的 EWL Parent pillar。",
+            "BlackRock／iShares 的规模与执行事实由项目独立核验，不替代 Morningstar Parent 判断。"
+          ],
+          "people": [
+            "当前没有 Morningstar 分析师署名，因此页面不显示虚构分析师或自动化作者。",
+            "被动指数基金仍需要监控组合管理与执行，但这不是 Morningstar 已发表的人事评价。"
+          ],
+          "process": [
+            "当前没有可安全归属于 EWL 的 Morningstar Process 判断或 pillar 等级。",
+            "本项目对指数规则、费用、集中度和跟踪的判断来自发行人、指数提供商与独立计算，不冒充晨星观点。"
+          ],
+          "risks": [
+            "缺少 Morningstar 覆盖意味着少一层独立外部研究，而不是产品本身新增风险。",
+            "Medalist、pillar 与传统星级均未知；任何外部平台转述都不得填补官方证据空白。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/etfs/arcx/ewl/analysis",
+        "title": "iShares MSCI Switzerland ETF EWL Morningstar Coverage Status",
+        "verifiedAt": "2026-07-30T17:31:02Z",
+        "version": 1
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
         "asOfDate": "20260730",
@@ -123,13 +193,13 @@
     ],
     "summary": {
       "research": {
-        "count": 1,
+        "count": 2,
         "internalCount": 1,
-        "providerCount": 0
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-07-31T15:59:44.623814Z",
+  "generatedAt": "2026-08-01T06:49:14.125106Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "EWL"
