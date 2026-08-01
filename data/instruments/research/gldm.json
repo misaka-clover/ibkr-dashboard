@@ -3,21 +3,104 @@
     "dataAsOf": {
       "research": {
         "latestAsOfDate": "20260730",
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "providerPublishedDate": "20260212",
+        "providerVerifiedAt": "2026-07-30T17:49:00Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 1,
-          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
           "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Bryan Armour",
+          "role": "Director, ETF and Passive Strategies, US"
+        },
+        "freshness": {
+          "ageDays": 1.5418425821759258,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "Morningstar 在 2026-02-12 的黄金 ETF 比较中由 Bryan Armour 给出一个清楚但有限的结论：八只主要实物黄金 ETF 持有的核心资产相同，长期差异主要来自费用和交易成本；GLDM 同时具有 0.10%低费率和仅次于超大工具的低交易成本，因此适合大多数低频、买入持有型黄金投资者。文章也强调黄金不产生收入，价格受资金流、实际利率、美元和避险需求驱动，可能只提供不完美的通胀或危机对冲。GLDM 的 Morningstar 证券页目前显示没有独立 Analysis 数据，所以文章结论不是 Medalist、pillar、星级或黄金估值判断；它支持的是“若组合已经决定持有黄金，GLDM 是有效实现工具”，而不是“当前金价便宜”或“应提高贵金属权重”。",
+        "metrics": {
+          "analystCoveragePct": null,
+          "articleConclusion": "best_choice_for_most_gold_etf_investors_due_to_low_fee_and_low_trading_costs",
+          "coverageStatus": "no_morningstar_analysis_data_available_on_security_page",
+          "historicalStarRating": null,
+          "historicalStarRatingAsOf": null,
+          "medalistMethod": null,
+          "medalistRatedDate": null,
+          "medalistRating": null,
+          "morningstarAssetClass": "Commodities",
+          "morningstarCategory": "Commodities Focused",
+          "parentPillar": null,
+          "peoplePillar": null,
+          "processPillar": null,
+          "researchType": "official_articles",
+          "supportingSources": [
+            {
+              "label": "Choosing a Top Gold ETF",
+              "publishedAt": "20230526",
+              "url": "https://www.morningstar.com/funds/choosing-top-gold-etf"
+            },
+            {
+              "label": "Investors Are Seeking Safety in Gold ETFs. Is It Working?",
+              "publishedAt": "20250808",
+              "url": "https://www.morningstar.com/funds/investors-are-seeking-safety-gold-etfs-is-it-working-2"
+            },
+            {
+              "label": "SPDR Gold MiniShares GLDM quote page",
+              "publishedAt": "20260730",
+              "url": "https://www.morningstar.com/etfs/arcx/GLDM/"
+            }
+          ]
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260212",
+        "sections": {
+          "costs": [
+            "0.10%年费使 GLDM 在长期持有者中具有明确优势。",
+            "交易成本也很低；只有非常高频或超大规模交易者才更可能优先考虑 GLD 的极致流动性。",
+            "低费并不会消除黄金本身的机会成本或价格风险。"
+          ],
+          "liquidity": [
+            "Morningstar 2025-09-30 的比较显示 GLDM 的价差约为 GLD 的两倍，但绝对水平仍很低。",
+            "低频投资者通常可用较低年费抵消这点交易差异；大额或高频交易者需单独评估市场深度。"
+          ],
+          "portfolioRole": [
+            "黄金可分散股票与债券风险、对冲弱势法币或在部分压力期充当避险资产。",
+            "这些作用并不稳定，黄金也可能因资金流逆转而在风险下降时被抛售。",
+            "Morningstar 的工具选择结论不能替代组合对黄金目标权重和再平衡规则的判断。"
+          ],
+          "process": [
+            "实物黄金 ETF 的核心过程几乎没有主动管理空间；重点是持有金条、稳定申赎并把费用拖累降到最低。",
+            "Morningstar 认为同类工具持有相同核心资产，成本差异会直接累积为长期回报差异。",
+            "证券页没有独立 Process pillar，不把文章框架冒充正式评级。"
+          ],
+          "risks": [
+            "黄金不产生现金流，回报依赖稀缺性和边际需求，无法用企业盈利验证。",
+            "通胀、危机和美元对冲并非每个时期都有效。",
+            "Morningstar 没有给 GLDM 证券级前瞻评级；文章推荐只比较实现黄金敞口的工具质量。"
+          ],
+          "tax": [
+            "Morningstar 提醒美国税法通常把实物黄金信托视为收藏品暴露，长期资本利得最高税率可高于股票。",
+            "具体账户和纳税人适用结果须由税务专业人士确认，不能从文章直接套用。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/funds/digging-gold-with-etfs",
+        "title": "How to Choose the Right Gold ETF",
+        "verifiedAt": "2026-07-30T17:49:00Z",
+        "version": 1
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
         "asOfDate": "20260730",
@@ -123,13 +206,13 @@
     ],
     "summary": {
       "research": {
-        "count": 1,
+        "count": 2,
         "internalCount": 1,
-        "providerCount": 0
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-07-31T15:59:44.623814Z",
+  "generatedAt": "2026-08-01T06:49:14.125106Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "GLDM"

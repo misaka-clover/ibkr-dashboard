@@ -3,21 +3,96 @@
     "dataAsOf": {
       "research": {
         "latestAsOfDate": "20260730",
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "providerPublishedDate": "20260715",
+        "providerVerifiedAt": "2026-07-30T10:34:06Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 1,
-          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
           "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Lan Anh Tran",
+          "role": "Manager Research Analyst · Prospects H1 2026"
+        },
+        "freshness": {
+          "ageDays": 1.8438509414930555,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "Morningstar 对 BOXX 的覆盖并非个股式公允价值研报，而是基金研究。当前分析页给出截至 2026-05-31 的量化衍生 Neutral Medalist Rating，含义是模型对其完整周期相对同类既无明确跑赢、也无明确跑输预期；这不是“差评”，也不是现金安全保证。2026 年上半年 Prospects 的人工专题仍由 Lan Anh Tran 署名，确认其突出之处是以 SPY、QQQ 等指数 ETF 的欧式期权构造箱式价差，并通过亏损收割尽量减少应税分配；截至 2025-12-31 的传统历史星级为两星。晨星认为这种流程对需要税务效率的现金类用途有吸引力，但明确提醒税务效率不保证，2024 年 8 月曾因早期使用 SPX 期权产生非周期资本利得分配，之后已切换到指数 ETF 期权。我们的结论是：晨星确实覆盖 BOXX，而且其最新量化评级与人工研究应分开理解；基金是否适合作为机会储备，仍须由当前短端收益、费用、流动性、税务适用性和组合用途共同决定。",
+        "metrics": {
+          "historicalStarRating": 2,
+          "historicalStarRatingAsOf": "20251231",
+          "managerResearchAnalyst": "Lan Anh Tran",
+          "managerResearchAsOf": "20251231",
+          "medalistMethod": "quantitatively_derived",
+          "medalistRatedDate": "20260531",
+          "medalistRating": "neutral",
+          "morningstarCategory": "Ultrashort Bond",
+          "researchType": "fund_medalist",
+          "supportingSources": [
+            {
+              "label": "BOXX ETF: Cashlike Returns Without the Tax Bill",
+              "publishedAt": "20240712",
+              "url": "https://www.morningstar.com/funds/boxx-etf-cashlike-returns-without-tax-bill"
+            },
+            {
+              "label": "This Bond ETF Promises T-Bill Returns Without Taxable Income",
+              "publishedAt": "20240305",
+              "url": "https://www.morningstar.com/funds/this-bond-etf-promises-t-bill-returns-without-taxable-income"
+            }
+          ]
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260715",
+        "sections": {
+          "investmentMerit": [
+            "产品适合作为需要短久期、可交易和潜在税务递延的现金类工具候选，而不是权益上行资产。",
+            "Morningstar 的人工研究认可独特流程与现金类用途，量化 Neutral 则提醒投资者不要期待稳定跑赢同类。",
+            "在税务优势不适用的账户中，应直接与国库券、货币基金和其他超短债工具比较净收益、担保结构、流动性与复杂度。"
+          ],
+          "parent": [
+            "Alpha Architect 负责基金发起与产品结构，Arin Risk Advisors 负责主要期权组合执行。",
+            "截至 2026 年 Prospects 的公开材料没有提供可安全引用的独立 Parent Pillar 分数，本项目不自行补造。",
+            "基金规模快速增长有利于交易与产品存续，但也要求申赎、税务和风险控制随规模同步成熟。"
+          ],
+          "people": [
+            "Morningstar Prospects 列示 Arin Risk Advisors 与 Alpha Architect 共同管理；Ryan Bailey、Joseph DeSipio、Lawrence Lempert 执行期权交易。",
+            "人工专题由 Lan Anh Tran 署名，资料截止 2025-12-31；当前 Medalist 页面则由 Morningstar Automated Analysis 生成。",
+            "管理流程需要持续证明大规模下的执行、展期、申赎和税务处理能力。"
+          ],
+          "process": [
+            "以 SPY、QQQ 等指数 ETF 的欧式期权构造多组箱式价差，目标是接近短期国库券总回报，同时尽量减少应税收入分配。",
+            "管理人通过不同价差的损益与实物申赎安排管理已实现收益；该税务流程比单纯持有国库券复杂。",
+            "当前 Medalist Rating 为量化衍生 Neutral，表示没有明确的同类相对超额回报预期。"
+          ],
+          "risks": [
+            "箱式价差、FLEX／交易所期权流动性、OCC 履约、ETF 溢折价和现金申赎均带来传统国库券没有的结构风险。",
+            "短端利率下降会直接压低预期收益；费用与交易成本可能使净回报落后于目标基准。",
+            "税务优势不是保证，法规或实务变化可能导致普通收入重分类、补税、罚金或额外分配。"
+          ],
+          "taxEfficiency": [
+            "Morningstar 认为税务递延是主要吸引力，但只在投资者税务身份、账户类型、持有期和当时法规适用时才有意义。",
+            "2024-08-13 的每份 US$0.29 资本利得分配证明“零分配”不是合同保证；此后流程已转向指数 ETF 期权。",
+            "税法、IRS 或法院解释发生变化时，历史税务结果不能自动外推。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/etfs/bats/boxx/analysis",
+        "title": "Alpha Architect 1-3 Month Box ETF BOXX ETF Analysis",
+        "verifiedAt": "2026-07-30T10:34:06Z",
+        "version": 2
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
         "asOfDate": "20260730",
@@ -135,12 +210,6 @@
               "url": "https://www.morningstar.com/etfs/bats/boxx/analysis"
             },
             {
-              "asOf": "20251231",
-              "label": "Morningstar Prospects H1 2026 BOXX manager research",
-              "publishedAt": "20260126",
-              "url": "https://www.morningstar.com/content/cs-assets/v3/assets/blt9415ea4cc4157833/blt2ba58c7cc61a52fe/6977d0db102b97db6ce6995f/Morningstar_Prospects_H1_2026.pdf"
-            },
-            {
               "label": "Morningstar BOXX ETF: Cashlike Returns Without the Tax Bill",
               "publishedAt": "20240712",
               "url": "https://www.morningstar.com/funds/boxx-etf-cashlike-returns-without-tax-bill"
@@ -160,13 +229,13 @@
     ],
     "summary": {
       "research": {
-        "count": 1,
+        "count": 2,
         "internalCount": 1,
-        "providerCount": 0
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-07-31T15:59:44.623814Z",
+  "generatedAt": "2026-08-01T06:49:14.125106Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "BOXX"

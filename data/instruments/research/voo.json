@@ -3,21 +3,105 @@
     "dataAsOf": {
       "research": {
         "latestAsOfDate": "20260730",
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "providerPublishedDate": "20260427",
+        "providerVerifiedAt": "2026-07-30T16:53:42Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 1,
-          "message": "Morningstar 仍由独立出版商权利门槛控制。",
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
           "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "internal_research_published_morningstar_withheld",
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Brendan McCann",
+          "role": "Associate Analyst"
+        },
+        "freshness": {
+          "ageDays": 1.580296929837963,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "Morningstar 将 VOO 评为由分析师覆盖的 Gold Medalist，并把它视为美国大盘股的优质核心工具。其正面判断建立在 S&P 500 对美国大盘机会集的代表性、完全复制、极低费率、低换手和较小跟踪摩擦上；市值加权会自动随价格调整仓位，因此交易成本低，并使 VOO 长期显著跑赢大型混合类平均同业。晨星也承认前十大和科技权重偏高，但认为这主要反映美国市场结构，长期而言分散、低费用与高效率仍占上风。2026 年文章进一步认为，VOO 相比 SPY 更适合长期持有，原因是费率更低且没有单位投资信托结构造成的现金拖累。这里的 Gold 是相对同类、扣除费用和风险后的前瞻评价，不是对 S&P 500 当前估值的公允价值判断，也不是加仓指令；因此它强化了本项目“产品质量高”的判断，但不推翻“指数当前估值偏贵、现有持有而新增资金观察”的结论。本次没有完整基金研报 PDF，官网文章未暴露当前传统历史星级，页面会明确显示未核实而不补猜。",
+        "metrics": {
+          "analystCoverageAsOf": "20260610",
+          "analystCoveragePct": 100,
+          "historicalStarRating": null,
+          "historicalStarRatingAsOf": null,
+          "medalistMethod": "analyst_rated",
+          "medalistRatedDate": "20260427",
+          "medalistRating": "gold",
+          "morningstarAssetClass": "Equity",
+          "morningstarCategory": "US Large Blend",
+          "parentPillar": "high",
+          "peoplePillar": "above_average",
+          "pillarEvidenceDate": "20250916",
+          "processPillar": "high",
+          "researchType": "fund_medalist",
+          "supportingSources": [
+            {
+              "label": "Why Vanguard S&P 500 ETF Is One of the Best in Its Class",
+              "publishedAt": "20250916",
+              "url": "https://www.morningstar.com/funds/why-vanguard-sp-500-etf-is-one-best-its-class"
+            },
+            {
+              "label": "How to Pick an S&P 500 Fund",
+              "publishedAt": "20260312",
+              "url": "https://www.morningstar.com/funds/how-pick-an-sp-500-fund"
+            },
+            {
+              "asOf": "20260610",
+              "label": "The Best Vanguard Funds",
+              "url": "https://www.morningstar.com/funds/best-vanguard-funds"
+            },
+            {
+              "asOf": "20260430",
+              "label": "The Best ETFs and How They Fit in Your Portfolio",
+              "publishedAt": "20260506",
+              "url": "https://www.morningstar.com/funds/best-etfs-how-they-fit-your-portfolio"
+            }
+          ]
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260427",
+        "sections": {
+          "investmentMerit": [
+            "截至 2025 年 8 月的十年期间，Morningstar 统计 VOO 年化回报比大型混合类平均同业高约 2.23 个百分点。",
+            "截至 2026-06-10 的 Morningstar Vanguard 精选文章仍将 VOO 列为 Gold，且分析师覆盖比例为 100%。",
+            "Morningstar 认为 VOO 比 SPY 更适合长期投资者，但这一比较针对费用与基金结构，不代表当前指数估值便宜。"
+          ],
+          "parent": [
+            "2025-09-16 官网专题把 Parent Pillar 评为 High，Morningstar 认为 Vanguard 的低成本取向与基金持有人利益一致。",
+            "基金费率和运营效率是 Parent 判断能够转化为投资者实际结果的核心渠道。"
+          ],
+          "people": [
+            "2026-04-27 的当前 VOO 分析由 Brendan McCann 署名，属于分析师驱动而非纯量化生成。",
+            "2025-09-16 官网专题把 People Pillar 评为 Above Average；未取得完整 PDF 前，不扩写文章没有披露的团队细节。"
+          ],
+          "process": [
+            "Morningstar 认为市值加权简单、低成本，仓位随价格自动调整，有助于压低换手和交易摩擦。",
+            "VOO 完全复制 S&P 500；指数委员会在盈利能力与流动性门槛下选择约 500 家美国大型公司，覆盖约 80%的美国股市市值。",
+            "低费率、广泛持仓和紧密跟踪共同形成相对大型混合类同业的长期优势。"
+          ],
+          "risks": [
+            "市值加权使上涨最多、规模最大的公司自然取得更高权重，前十大和科技集中度可能放大少数公司的冲击。",
+            "VOO 只复制指数，不会主动回避高估值、行业集中、盈利转弱或指数委员会选择带来的风险。",
+            "Gold Medalist 是相对同类的基金质量判断；市场整体估值、利率机会成本和账户内直接个股重叠仍须独立评估。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/etfs/arcx/voo/quote",
+        "title": "Vanguard S&P 500 ETF VOO ETF Analysis",
+        "verifiedAt": "2026-07-30T16:53:42Z",
+        "version": 1
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
         "asOfDate": "20260730",
@@ -157,13 +241,13 @@
     ],
     "summary": {
       "research": {
-        "count": 1,
+        "count": 2,
         "internalCount": 1,
-        "providerCount": 0
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-07-31T15:59:44.623814Z",
+  "generatedAt": "2026-08-01T06:49:14.125106Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "VOO"

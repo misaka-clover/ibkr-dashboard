@@ -2267,8 +2267,12 @@
           return;
         }
         var metrics = provider.metrics || {}, analyst = provider.analyst || {};
+        var fundResearchTypes = ["fund_medalist", "official_articles", "coverage_status"];
+        var isFundResearch = fundResearchTypes.indexOf(metrics.researchType) >= 0;
         var isFundMedalist = metrics.researchType === "fund_medalist";
-        morningstarTitle.textContent = isFundMedalist ? "晨星基金研究" : "晨星研报";
+        var isFundArticle = metrics.researchType === "official_articles";
+        var isCoverageStatus = metrics.researchType === "coverage_status";
+        morningstarTitle.textContent = isFundResearch ? "晨星基金研究" : "晨星研报";
         var freshness = provider.freshness || {};
         freshnessBadge.className = "badge " + (freshness.status === "stale" ? "warn" : "good");
         freshnessBadge.textContent = freshness.status === "stale" ? "超过 7 天未核验" : "7 天内已核验";
@@ -2276,12 +2280,19 @@
         var copy = document.createElement("div");
         var reportLink = document.createElement("a"); reportLink.className = "morningstar-report-link";
         reportLink.href = provider.sourceUrl; reportLink.target = "_blank"; reportLink.rel = "noreferrer";
-        reportLink.textContent = isFundMedalist ? "基金研究速览 ↗" : "研报速览 ↗";
+        reportLink.textContent = isFundMedalist
+          ? "基金研究速览 ↗"
+          : isFundArticle
+            ? "晨星专题速览 ↗"
+            : isCoverageStatus
+              ? "晨星覆盖页 ↗"
+              : "研报速览 ↗";
         var reportTitle = document.createElement("div"); reportTitle.className = "section-note";
         reportTitle.textContent = provider.title;
         var analystLine = document.createElement("div"); analystLine.className = "morningstar-analyst";
-        analystLine.textContent = "分析师 "
-          + (analyst.name || "未标注") + (analyst.role ? " · " + analyst.role : "");
+        analystLine.textContent = isCoverageStatus && !analyst.name
+          ? "分析师 · 当前无覆盖"
+          : "分析师 " + (analyst.name || "未标注") + (analyst.role ? " · " + analyst.role : "");
         copy.append(reportLink, reportTitle, analystLine);
         var dateBlock = document.createElement("div"); dateBlock.className = "section-note";
         var reportAsOf = metrics.reportAsOf ? String(metrics.reportAsOf).slice(0, 10) : null;
@@ -2289,9 +2300,12 @@
           ? "Medalist 发布 " + compactToIso(provider.publishedDate)
             + (metrics.medalistRatedDate ? " · 评级日期 " + compactToIso(metrics.medalistRatedDate) : "")
             + " · 本地核验 " + utcDateTime(provider.verifiedAt)
-          : "官网文章发布 " + compactToIso(provider.publishedDate)
-            + (reportAsOf ? " · 完整报告截止 " + reportAsOf : "")
-            + " · 本地核验 " + utcDateTime(provider.verifiedAt);
+          : isCoverageStatus
+            ? "覆盖状态核验 " + compactToIso(provider.publishedDate)
+              + " · 本地核验 " + utcDateTime(provider.verifiedAt)
+            : "官网文章发布 " + compactToIso(provider.publishedDate)
+              + (reportAsOf ? " · 完整报告截止 " + reportAsOf : "")
+              + " · 本地核验 " + utcDateTime(provider.verifiedAt);
         overview.append(copy, dateBlock); body.appendChild(overview);
 
         var metricRows;
@@ -2323,6 +2337,25 @@
             ],
             ["资产类别", metrics.morningstarAssetClass || "Fixed Income", "晨星专题口径"]
           ];
+        } else if (isFundArticle) {
+          var articleConclusionLabels = {
+            best_choice_for_most_gold_etf_investors_due_to_low_fee_and_low_trading_costs: "适合多数长期黄金 ETF 投资者"
+          };
+          metricRows = [
+            ["研究类型", "官网专题", "不是证券级 Medalist 或公允价值研报"],
+            ["证券级覆盖", metrics.coverageStatus ? "未提供" : "—", "以晨星证券页当前状态为准"],
+            ["晨星分类", metrics.morningstarCategory || "—", "基金类别，不是投资评级"],
+            ["资产类别", metrics.morningstarAssetClass || "—", "晨星专题口径"],
+            ["专题结论", articleConclusionLabels[metrics.articleConclusion] || "见研究解读", "只说明工具选择，不判断底层资产估值"]
+          ];
+        } else if (isCoverageStatus) {
+          metricRows = [
+            ["分析师覆盖", "当前未覆盖", "无覆盖不等于负面评级"],
+            ["Medalist Rating", "未提供", "不得从无覆盖反推评级"],
+            ["晨星评级", "未提供", "传统历史星级未核实"],
+            ["晨星分类", metrics.morningstarCategory || "—", "未核实则保持空缺"],
+            ["资产类别", metrics.morningstarAssetClass || "—", "晨星页面口径"]
+          ];
         } else {
           var currentHolding = state.detail.currentHolding || {};
           var currentPrice = finite(currentHolding.closePrice);
@@ -2349,7 +2382,7 @@
           var item = document.createElement("article"); item.className = "morningstar-metric";
           var label = document.createElement("div"); label.className = "morningstar-metric-label"; label.textContent = entry[0];
           var value = document.createElement("div"); value.className = "morningstar-metric-value";
-          if (entry[0] === "晨星评级" && finite(isFundMedalist ? metrics.historicalStarRating : metrics.ratingStars) != null) {
+          if (entry[0] === "晨星评级" && finite(isFundMedalist ? metrics.historicalStarRating : (isFundResearch ? null : metrics.ratingStars)) != null) {
             var ratingStars = isFundMedalist ? metrics.historicalStarRating : metrics.ratingStars;
             var starCount = Math.max(0, Math.min(5, Math.round(finite(ratingStars) || 0)));
             var stars = document.createElement("span"); stars.className = "morningstar-stars";
@@ -2383,25 +2416,30 @@
         });
         body.appendChild(metricGrid);
         var interpretation = document.createElement("section"); interpretation.className = "research-interpretation";
-        var interpretationTitle = document.createElement("h4"); interpretationTitle.textContent = isFundMedalist ? "研究解读" : "研报解读";
+        var interpretationTitle = document.createElement("h4"); interpretationTitle.textContent = isFundResearch ? "研究解读" : "研报解读";
         var interpretationCopy = document.createElement("p"); interpretationCopy.textContent = provider.interpretation;
         interpretation.append(interpretationTitle, interpretationCopy); body.appendChild(interpretation);
 
         var details = document.createElement("details"); details.className = "research-details";
         var summary = document.createElement("summary"); summary.textContent = "查看晨星各部分要点与来源登记";
         details.appendChild(summary);
-        var sectionLabels = isFundMedalist
+        var sectionLabels = isFundResearch
           ? {
               process: "投资流程", people: "团队", parent: "基金公司",
-              taxEfficiency: "税务效率", investmentMerit: "投资用途", risks: "主要风险"
+              taxEfficiency: "税务效率", investmentMerit: "投资用途", risks: "主要风险",
+              coverage: "覆盖状态", costs: "成本", liquidity: "流动性",
+              portfolioRole: "组合角色", tax: "税务"
             }
           : {
               fairValue: "公允价值", economicMoat: "护城河", uncertainty: "不确定性",
               capitalAllocation: "资本分配", bullish: "看好观点", bearish: "看淡观点",
               financialHealth: "财务健康度", strategyOutlook: "企业战略与展望"
             };
-        var sectionOrder = isFundMedalist
-          ? ["process", "people", "parent", "taxEfficiency", "investmentMerit", "risks"]
+        var sectionOrder = isFundResearch
+          ? [
+              "process", "people", "parent", "taxEfficiency", "investmentMerit", "risks",
+              "coverage", "costs", "liquidity", "portfolioRole", "tax"
+            ]
           : [
               "fairValue", "economicMoat", "uncertainty", "capitalAllocation",
               "bullish", "bearish", "financialHealth", "strategyOutlook"
@@ -2418,7 +2456,12 @@
         var sourceList = document.createElement("div"); sourceList.className = "source-list";
         var source = document.createElement("a"); source.className = "source-link";
         source.href = provider.sourceUrl; source.target = "_blank"; source.rel = "noreferrer";
-        var sourceName = document.createElement("span"); sourceName.textContent = isFundMedalist ? "Morningstar 基金分析" : "Morningstar 官网文章";
+        var sourceName = document.createElement("span");
+        sourceName.textContent = isFundMedalist
+          ? "Morningstar 基金分析"
+          : isFundResearch
+            ? "Morningstar 基金研究"
+            : "Morningstar 官网文章";
         var sourceDate = document.createElement("span"); sourceDate.className = "source-date"; sourceDate.textContent = compactToIso(provider.publishedDate);
         source.append(sourceName, sourceDate); sourceList.appendChild(source); details.appendChild(sourceList);
         (Array.isArray(metrics.supportingSources) ? metrics.supportingSources : []).forEach(function (entry) {
