@@ -218,7 +218,27 @@
     .chart-event-stem { stroke-width: 1; stroke-dasharray: 2 2; pointer-events: none; }
     .chart-event-marker { stroke-width: 1; pointer-events: none; }
     .chart-event-label { font: 750 8px var(--sans); letter-spacing: .02em; pointer-events: none; }
+    .moving-average-line { fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
     .chart-caption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding: 10px 18px 15px; border-top: 1px solid rgba(22,59,89,.09); color: var(--muted); font-size: 10px; }
+    .price-ma-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 20px;
+      padding: 10px var(--price-ma-legend-right-inset, 18px) 10px var(--price-ma-legend-left-inset, 18px);
+      border-top: 1px solid rgba(22,59,89,.09);
+      background: #fafbfc;
+      color: #53616c;
+      font-size: 10px;
+    }
+    .price-ma-legend-item { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .price-ma-legend-mark { display: inline-block; width: 28px; height: 0; border-top: 2px solid #176b9b; }
+    .price-ma-legend-mark.ma-50 { border-top-color: #a87316; border-top-style: dashed; }
+    .price-ma-legend-mark.ma-60 { border-top-color: #a87316; border-top-style: dashed; }
+    .price-ma-legend-mark.ma-120 { border-top-color: #73828d; border-top-style: dashed; }
+    .price-ma-legend-mark.ma-200 { border-top-color: #44556d; border-top-style: dotted; }
+    .price-ma-legend-mark.ma-250 { border-top-color: #44556d; border-top-style: dotted; }
+    .price-ma-method { margin-left: auto; color: var(--muted); }
     .valuation-legend {
       display: flex;
       flex-wrap: wrap;
@@ -235,7 +255,7 @@
     .valuation-legend-mark.mean { border-top: 1px dashed #707d87; }
     .valuation-legend-mark.band { height: 9px; border: 1px solid rgba(23,107,155,.24); background: rgba(23,107,155,.10); }
     .valuation-comparator-note { margin-left: auto; color: var(--muted); }
-    .chart-control[hidden], .valuation-legend[hidden] { display: none; }
+    .chart-control[hidden], .moving-average-btn[hidden], .price-ma-legend[hidden], .price-ma-legend-item[hidden], .valuation-legend[hidden] { display: none; }
     .asof-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; border: 1px solid rgba(22,59,89,.13); background: rgba(22,59,89,.11); }
     .asof-item { min-height: 96px; padding: 15px; background: #fff; }
     .asof-label { color: var(--muted); font-size: 10px; font-weight: 760; }
@@ -372,6 +392,8 @@
     .valuation-item { padding: 14px; background: #fff; }
     .valuation-name { color: var(--muted); font-size: 10px; }
     .valuation-price { margin-top: 5px; color: var(--navy); font: 750 20px var(--mono); }
+    .valuation-gap { font-size: 11px; white-space: nowrap; }
+    .valuation-reference { margin-top: 5px; color: var(--muted); font-size: 9px; line-height: 1.45; }
     .valuation-assumptions { margin-top: 6px; color: var(--muted); font: 9px/1.5 var(--mono); }
     .monitoring-list { display: grid; gap: 1px; margin-top: 18px; border: 1px solid #dfe5e9; background: #dfe5e9; }
     .monitoring-item { display: grid; grid-template-columns: minmax(180px, .7fr) minmax(0, 1.3fr); gap: 18px; padding: 13px 14px; background: #fff; }
@@ -436,6 +458,7 @@
       .chart-controls, .chart-control { width: 100%; min-width: 0; align-items: flex-start; }
       .chart-control { flex-direction: column; }
       .segmented { max-width: 100%; overflow-x: auto; }
+      .price-ma-method { flex-basis: 100%; margin-left: 0; }
       .valuation-comparator-note { flex-basis: 100%; margin-left: 0; }
       .chart-frame { min-height: 390px; padding-inline: 2px; }
       .chart-svg { height: 370px; }
@@ -546,6 +569,24 @@
                 <button class="segment-btn bar-type-btn" type="button" data-bar-type="SPLIT_UNADJUSTED" aria-pressed="false">拆股未调整价格</button>
               </div>
             </div>
+            <div class="chart-control" id="movingAverageControl">
+              <span class="chart-control-label">均线方案</span>
+              <div class="segmented" aria-label="移动平均线方案">
+                <button class="segment-btn moving-average-preset-btn" type="button" data-ma-preset="market" aria-pressed="true">美股常用</button>
+                <button class="segment-btn moving-average-preset-btn" type="button" data-ma-preset="holding" aria-pressed="false">持有周期</button>
+              </div>
+            </div>
+            <div class="chart-control" id="movingAveragePeriodControl">
+              <span class="chart-control-label">均线</span>
+              <div class="segmented" aria-label="简单移动平均线周期">
+                <button class="segment-btn moving-average-btn" type="button" data-ma-period="20" aria-pressed="true" title="当前价格口径的 20 个交易日收盘简单移动平均">20日</button>
+                <button class="segment-btn moving-average-btn" type="button" data-ma-period="50" aria-pressed="false" title="当前价格口径的 50 个交易日收盘简单移动平均">50日</button>
+                <button class="segment-btn moving-average-btn" type="button" data-ma-period="60" aria-pressed="false" title="当前价格口径的 60 个交易日收盘简单移动平均" hidden>60日</button>
+                <button class="segment-btn moving-average-btn" type="button" data-ma-period="120" aria-pressed="false" title="当前价格口径的 120 个交易日收盘简单移动平均" hidden>120日</button>
+                <button class="segment-btn moving-average-btn" type="button" data-ma-period="200" aria-pressed="false" title="当前价格口径的 200 个交易日收盘简单移动平均">200日</button>
+                <button class="segment-btn moving-average-btn" type="button" data-ma-period="250" aria-pressed="false" title="当前价格口径的 250 个交易日收盘简单移动平均" hidden>250日</button>
+              </div>
+            </div>
           </div>
           <div class="chart-control">
             <span class="chart-control-label">范围</span>
@@ -569,6 +610,15 @@
             <div class="tooltip-grid"></div>
             <div class="tooltip-events" hidden></div>
           </div>
+        </div>
+        <div class="price-ma-legend" id="priceMovingAverageLegend" hidden>
+          <span class="price-ma-legend-item" data-ma-legend="20"><span class="price-ma-legend-mark" aria-hidden="true"></span>20 日均线</span>
+          <span class="price-ma-legend-item" data-ma-legend="50" hidden><span class="price-ma-legend-mark ma-50" aria-hidden="true"></span>50 日均线</span>
+          <span class="price-ma-legend-item" data-ma-legend="60" hidden><span class="price-ma-legend-mark ma-60" aria-hidden="true"></span>60 日均线</span>
+          <span class="price-ma-legend-item" data-ma-legend="120" hidden><span class="price-ma-legend-mark ma-120" aria-hidden="true"></span>120 日均线</span>
+          <span class="price-ma-legend-item" data-ma-legend="200" hidden><span class="price-ma-legend-mark ma-200" aria-hidden="true"></span>200 日均线</span>
+          <span class="price-ma-legend-item" data-ma-legend="250" hidden><span class="price-ma-legend-mark ma-250" aria-hidden="true"></span>250 日均线</span>
+          <span class="price-ma-method" id="priceMovingAverageMethod">美股常用 · 简单移动平均 · 当前价格口径的逐交易日收盘</span>
         </div>
         <div class="valuation-legend" id="valuationLegend" hidden>
           <span class="valuation-legend-item"><span class="valuation-legend-mark" aria-hidden="true"></span>市盈率 TTM</span>
@@ -692,8 +742,17 @@
         chartView: "price",
         priceRange: "6M",
         valuationRange: "5Y",
+        movingAveragePreset: "market",
+        movingAverageSelections: {
+          market: { "20": true, "50": false, "200": false },
+          holding: { "20": true, "60": false, "120": false, "250": false }
+        },
         lotSort: { key: "acquisitionDate", direction: "desc" },
         requestToken: 0
+      };
+      var movingAveragePresetDefinitions = {
+        market: { label: "美股常用", periods: [20, 50, 200] },
+        holding: { label: "持有周期", periods: [20, 60, 120, 250] }
       };
       var rangeSettings = {
         "1M": { months: 1, maxPoints: 80 },
@@ -871,6 +930,21 @@
           low: "证据质量：较低"
         }[value] || value || "—";
       }
+      function valuationMaturityLabel(value) {
+        return {
+          conditional: "估值成熟度：有条件",
+          active: "估值成熟度：正式",
+          preliminary: "估值成熟度：初步"
+        }[value] || (value ? "估值成熟度：" + value : "—");
+      }
+      function portfolioRoleLabel(value) {
+        return {
+          pending: "组合角色：待确认",
+          core: "组合角色：核心",
+          satellite: "组合角色：卫星",
+          reserve: "组合角色：机会储备"
+        }[value] || (value ? "组合角色：" + value : "—");
+      }
       function valuationConfidenceValue(result) {
         if (result.valuationConfidence) return result.valuationConfidence;
         var dcf = result.valuation && result.valuation.dcf;
@@ -913,6 +987,24 @@
         if (state.chartView === "valuation") state.valuationRange = range;
         else state.priceRange = range;
       }
+      function activeMovingAveragePeriods() {
+        var definition = movingAveragePresetDefinitions[state.movingAveragePreset];
+        var selections = state.movingAverageSelections[state.movingAveragePreset];
+        return definition.periods.filter(function (period) {
+          return Boolean(selections[String(period)]);
+        });
+      }
+      function movingAverageFetchFrom(range) {
+        var visibleFrom = rangeFromDate(range);
+        if (!visibleFrom || state.chartView !== "price") return visibleFrom;
+        var date = new Date(Date.UTC(
+          Number(visibleFrom.slice(0, 4)),
+          Number(visibleFrom.slice(4, 6)) - 1,
+          Number(visibleFrom.slice(6, 8))
+        ));
+        date.setUTCDate(date.getUTCDate() - 380);
+        return date.toISOString().slice(0, 10).replace(/-/g, "");
+      }
       function syncChartControls() {
         var isEtf = state.detail && state.detail.instrument.instrumentKind === "etf";
         if (isEtf && state.chartView === "valuation") state.chartView = "price";
@@ -928,7 +1020,25 @@
         document.querySelectorAll(".bar-type-btn").forEach(function (button) {
           button.setAttribute("aria-pressed", String(button.dataset.barType === state.barType));
         });
+        document.querySelectorAll(".moving-average-preset-btn").forEach(function (button) {
+          button.setAttribute("aria-pressed", String(button.dataset.maPreset === state.movingAveragePreset));
+        });
+        var movingAverageDefinition = movingAveragePresetDefinitions[state.movingAveragePreset];
+        var movingAverageSelections = state.movingAverageSelections[state.movingAveragePreset];
+        document.querySelectorAll(".moving-average-btn").forEach(function (button) {
+          var available = movingAverageDefinition.periods.indexOf(Number(button.dataset.maPeriod)) >= 0;
+          button.hidden = !available;
+          button.setAttribute("aria-pressed", String(available && Boolean(movingAverageSelections[button.dataset.maPeriod])));
+        });
         el("barTypeControl").hidden = state.chartView === "valuation";
+        el("movingAverageControl").hidden = state.chartView === "valuation";
+        el("movingAveragePeriodControl").hidden = state.chartView === "valuation";
+        var activeAverages = activeMovingAveragePeriods();
+        el("priceMovingAverageLegend").hidden = state.chartView !== "price" || !activeAverages.length;
+        document.querySelectorAll(".price-ma-legend-item").forEach(function (item) {
+          item.hidden = activeAverages.indexOf(Number(item.dataset.maLegend)) < 0;
+        });
+        el("priceMovingAverageMethod").textContent = movingAverageDefinition.label + " · 简单移动平均 · 当前价格口径的逐交易日收盘";
         el("valuationLegend").hidden = state.chartView !== "valuation";
         el("marketHistoryNote").textContent = state.chartView === "valuation"
           ? "TTM PE 使用股息未调整完成日线与当时已申报生效的正数 diluted EPS；2010 年前仅按当时提交的 10-K 年报频率重建并显示警示，均值与常态带只代表十年历史参照，不是合理价值。"
@@ -941,8 +1051,21 @@
           "aria-label",
           state.chartView === "valuation"
             ? "标的历史 TTM 市盈率、十年缩尾均值与历史估值常态带"
-            : "标的历史 K 线和成交量"
+            : "标的历史 K 线、成交量" + (activeAverages.length
+              ? "与" + movingAverageDefinition.label + "方案的 " + activeAverages.join("、") + " 日简单移动平均线"
+              : "")
         );
+      }
+      function syncPriceMovingAverageLegendAlignment() {
+        var legend = el("priceMovingAverageLegend");
+        if (!legend || legend.hidden) return;
+        var svg = el("instrumentChart");
+        var plot = svg && svg.querySelector(".chart-interaction-overlay");
+        if (!plot) return;
+        var plotRect = plot.getBoundingClientRect();
+        var legendRect = legend.getBoundingClientRect();
+        legend.style.setProperty("--price-ma-legend-left-inset", Math.max(0, plotRect.left - legendRect.left).toFixed(2) + "px");
+        legend.style.setProperty("--price-ma-legend-right-inset", Math.max(0, legendRect.right - plotRect.right).toFixed(2) + "px");
       }
       function syncValuationLegendAlignment() {
         var legend = el("valuationLegend");
@@ -956,7 +1079,10 @@
         legend.style.setProperty("--valuation-legend-right-inset", Math.max(0, legendRect.right - seriesRect.right).toFixed(2) + "px");
       }
       function scheduleValuationLegendAlignment() {
-        requestAnimationFrame(syncValuationLegendAlignment);
+        requestAnimationFrame(function () {
+          syncValuationLegendAlignment();
+          syncPriceMovingAverageLegendAlignment();
+        });
       }
       async function fetchJson(url) {
         var response = await fetch(url, { cache: "no-store" });
@@ -1154,6 +1280,23 @@
           return Object.assign({}, row, { chartEvents: eventsByDate[row.date] || [] });
         });
       }
+      function calculateMovingAverages(rows, periods) {
+        return rows.map(function (row, index) {
+          var averages = {};
+          periods.forEach(function (period) {
+            if (index + 1 < period) {
+              averages[String(period)] = null;
+              return;
+            }
+            var windowRows = rows.slice(index - period + 1, index + 1);
+            var closes = windowRows.map(function (item) { return finite(item.close); });
+            averages[String(period)] = closes.every(function (value) { return value != null; })
+              ? closes.reduce(function (sum, value) { return sum + value; }, 0) / period
+              : null;
+          });
+          return Object.assign({}, row, { movingAverages: averages });
+        });
+      }
       function aggregateBars(rows) {
         var target = 170;
         var bucketSize = Math.max(1, Math.ceil(rows.length / target));
@@ -1184,6 +1327,7 @@
             peTtm: finite(chunk[chunk.length - 1].peTtm),
             peStatus: chunk[chunk.length - 1].peStatus,
             peEpsTtm: finite(chunk[chunk.length - 1].peEpsTtm),
+            movingAverages: Object.assign({}, chunk[chunk.length - 1].movingAverages || {}),
             chartEvents: chunk.reduce(function (items, row) {
               return items.concat(row.chartEvents || []);
             }, []),
@@ -1278,7 +1422,12 @@
         });
       }
       function renderPriceChart() {
-        var sourceRows = latestBars();
+        var visibleFrom = rangeFromDate(state.priceRange);
+        var movingAverageDefinition = movingAveragePresetDefinitions[state.movingAveragePreset];
+        var sourceRows = calculateMovingAverages(latestBars(), movingAverageDefinition.periods).filter(function (row) {
+          return !visibleFrom || String(row.date || "") >= visibleFrom;
+        });
+        var activeAverages = activeMovingAveragePeriods();
         var barType = activeBarType();
         var svg = el("instrumentChart");
         var tooltip = el("chartTooltip");
@@ -1298,6 +1447,15 @@
         var priceHeight = priceBottom - top;
         var lows = rows.map(function (row) { return finite(row.low); }).filter(Number.isFinite);
         var highs = rows.map(function (row) { return finite(row.high); }).filter(Number.isFinite);
+        var movingAverageValues = rows.reduce(function (values, row) {
+          activeAverages.forEach(function (period) {
+            var value = finite(row.movingAverages && row.movingAverages[String(period)]);
+            if (value != null) values.push(value);
+          });
+          return values;
+        }, []);
+        lows = lows.concat(movingAverageValues);
+        highs = highs.concat(movingAverageValues);
         var minPrice = Math.min.apply(null, lows), maxPrice = Math.max.apply(null, highs);
         var padding = Math.max((maxPrice - minPrice) * .06, maxPrice * .005);
         minPrice = Math.max(0, minPrice - padding); maxPrice += padding;
@@ -1330,6 +1488,37 @@
             x: cx - candleWidth / 2, y: bottom - volumeHeight,
             width: candleWidth, height: Math.max(.5, volumeHeight), fill: color, opacity: .34
           }));
+        });
+        var movingAverageStyles = {
+          "20": { stroke: "#176b9b", dash: "" },
+          "50": { stroke: "#a87316", dash: "7 4" },
+          "60": { stroke: "#a87316", dash: "7 4" },
+          "120": { stroke: "#73828d", dash: "10 4" },
+          "200": { stroke: "#44556d", dash: "2 4" },
+          "250": { stroke: "#44556d", dash: "2 4" }
+        };
+        activeAverages.forEach(function (period) {
+          var path = "";
+          var hasOpenSegment = false;
+          rows.forEach(function (row, index) {
+            var average = finite(row.movingAverages && row.movingAverages[String(period)]);
+            if (average == null) {
+              hasOpenSegment = false;
+              return;
+            }
+            path += (hasOpenSegment ? " L " : " M ") + x(index).toFixed(2) + " " + y(average).toFixed(2);
+            hasOpenSegment = true;
+          });
+          if (!path) return;
+          var style = movingAverageStyles[String(period)];
+          var attributes = {
+            d: path.trim(),
+            class: "moving-average-line moving-average-line-" + period,
+            stroke: style.stroke,
+            "data-ma-period": period
+          };
+          if (style.dash) attributes["stroke-dasharray"] = style.dash;
+          svg.appendChild(svgEl("path", attributes));
         });
         var sourceIndexByDate = {};
         sourceRows.forEach(function (row, index) { sourceIndexByDate[row.date] = index; });
@@ -1388,7 +1577,7 @@
         svg.appendChild(focus);
         var interactionLeft = Math.max(0, left - slot / 2);
         var interactionRight = Math.min(width, width - right + slot / 2);
-        var overlay = svgEl("rect", { x: interactionLeft, y: top, width: interactionRight - interactionLeft, height: bottom - top, fill: "transparent", tabindex: "0", "aria-label": "移动指针查看市场历史价格详情" });
+        var overlay = svgEl("rect", { x: interactionLeft, y: top, width: interactionRight - interactionLeft, height: bottom - top, fill: "transparent", class: "chart-interaction-overlay", tabindex: "0", "aria-label": "移动指针查看市场历史价格详情" });
         function showAt(event) {
           var interactionRect = overlay.getBoundingClientRect();
           var ratio = interactionRect.width
@@ -1429,6 +1618,12 @@
             ["量", compactCount(row.volume)],
             ["市盈率 TTM", peDisplayText(row)]
           ];
+          activeAverages.forEach(function (period) {
+            labels.push([
+              "MA" + period,
+              money(row.movingAverages && row.movingAverages[String(period)], state.detail.instrument.currency, 2)
+            ]);
+          });
           var grid = tooltip.querySelector(".tooltip-grid");
           grid.replaceChildren();
           labels.forEach(function (item) {
@@ -1464,10 +1659,13 @@
         });
         svg.appendChild(overlay);
         var selection = (state.detail.barSelection.series || []).find(function (row) { return row.barType === barType; }) || {};
-        el("chartCoverage").textContent = compactToIso(selection.returnedStart) + " — " + compactToIso(selection.returnedEnd) + " · " + number(selection.returnedPoints, 0) + " 根日线";
+        el("chartCoverage").textContent = compactToIso(sourceRows[0].date) + " — " + compactToIso(sourceRows[sourceRows.length - 1].date) + " · " + number(sourceRows.length, 0) + " 根日线";
+        var movingAverageMethod = activeAverages.length
+          ? " · " + movingAverageDefinition.label + " " + activeAverages.join("／") + " 日简单均线先按底层逐日收盘计算，再取图形桶末值"
+          : "";
         el("chartAggregation").textContent = aggregated.bucketSize > 1
-          ? "图形每根合并最多 " + aggregated.bucketSize + " 个连续交易日；底层日线未改变"
-          : "逐交易日绘制";
+          ? "图形每根合并最多 " + aggregated.bucketSize + " 个连续交易日；底层日线未改变" + movingAverageMethod
+          : "逐交易日绘制" + movingAverageMethod;
         var splitBasis = selection.splitNormalizationStatus === "pass"
           ? "拆股标准化至 " + compactToIso(selection.splitNormalizationAnchorDate) + "；原始来源保留"
           : (selection.splitNormalizationStatus === "required" ? "拆股派生层待建立" : "无审核拆股事件");
@@ -2485,15 +2683,28 @@
           body.appendChild(empty); updateResearchDateBadge(); return;
         }
         var result = assessment.result || {}, valuation = result.valuation || {}, dcf = valuation.dcf || {};
+        var completedCloseHolding = state.detail.currentHolding || {};
+        var completedClosePrice = finite(completedCloseHolding.closePrice);
+        var completedCloseAsOf = completedCloseHolding.valuationDate;
+        if (completedClosePrice == null) {
+          completedClosePrice = finite(state.detail.fundamentals && state.detail.fundamentals.price);
+          completedCloseAsOf = state.detail.fundamentals && state.detail.fundamentals.asOfDate;
+        }
         updateResearchDateBadge();
         var badges = document.createElement("div"); badges.className = "badge-row";
         var maturity = result.researchMaturity || result.underwritingStatus || "preliminary";
         var badgeEntries = [
           { value: assessment.reviewStatus },
           maturity !== "active" ? { value: maturity } : null,
-          { value: result.valuationState },
+          result.valuationMaturity
+            ? { value: result.valuationMaturity, label: valuationMaturityLabel(result.valuationMaturity) }
+            : null,
+          { value: result.valuationState, label: result.valuationStateLabelZh || researchLabel(result.valuationState) },
           { value: result.existingPositionAction },
           { value: result.cashDecision },
+          result.portfolioRole
+            ? { value: result.portfolioRole, label: portfolioRoleLabel(result.portfolioRole) }
+            : null,
           result.evidenceConfidence
             ? { value: result.evidenceConfidence, label: evidenceQualityLabel(result.evidenceConfidence) }
             : null
@@ -2518,6 +2729,11 @@
         });
         body.appendChild(badges);
         var summary = document.createElement("p"); summary.className = "research-summary"; summary.textContent = assessment.summary || "—"; body.appendChild(summary);
+        if (result.tradeAuthorization && result.tradeAuthorization.meaningZh) {
+          var guardrail = document.createElement("p"); guardrail.className = "section-note";
+          guardrail.textContent = "研究边界：" + result.tradeAuthorization.meaningZh;
+          body.appendChild(guardrail);
+        }
         var hinge = document.createElement("div"); hinge.className = "research-hinge"; hinge.innerHTML = "<strong>关键判断：</strong> " + zh(result.decisionHinge); body.appendChild(hinge);
         var cases = document.createElement("div"); cases.className = "case-grid";
         [["支持论据", result.bullCase], ["反方论据", result.bearCase]].forEach(function (entry) {
@@ -2530,19 +2746,45 @@
           dcf.scenarios.forEach(function (scenario) {
             var item = document.createElement("article"); item.className = "valuation-item";
             var name = document.createElement("div"); name.className = "valuation-name"; name.textContent = { bear: "悲观情景", base: "基准情景", bull: "乐观情景" }[scenario.name] || scenario.name;
-            var price = document.createElement("div"); price.className = "valuation-price"; price.textContent = money(scenario.valuePerShareUsd, "USD", 2);
+            var scenarioValue = finite(scenario.valuePerShareUsd);
+            var scenarioGap = scenarioValue != null && completedClosePrice > 0
+              ? (scenarioValue / completedClosePrice - 1) * 100
+              : null;
+            var price = document.createElement("div"); price.className = "valuation-price"; price.textContent = money(scenarioValue, valuation.currency || "USD", 2);
+            var gap = document.createElement("span"); gap.className = "valuation-gap";
+            gap.textContent = " · " + (scenarioGap == null ? "—" : (scenarioGap > 0 ? "+" : "") + percent(scenarioGap, 2));
+            setClassBySign(gap, scenarioGap); price.appendChild(gap);
+            var reference = document.createElement("div"); reference.className = "valuation-reference";
+            reference.textContent = completedClosePrice > 0 && completedCloseAsOf
+              ? "较 " + compactToIso(completedCloseAsOf) + " 收盘"
+              : "完成收盘基准不可用";
             var assumptions = document.createElement("div"); assumptions.className = "valuation-assumptions";
-            var discountRate = scenario.costOfEquityPct != null ? scenario.costOfEquityPct : scenario.waccPct;
-            var discountLabel = scenario.costOfEquityPct != null ? "权益成本" : "WACC";
-            var growthRate = scenario.years1to10GrowthPct != null ? scenario.years1to10GrowthPct : scenario.years1to5GrowthPct;
-            var growthLabel = scenario.years1to10GrowthPct != null ? "十年增长" : "前五年";
-            assumptions.textContent = discountLabel + " " + percent(discountRate, 1) + " · 永续 " + percent(scenario.terminalGrowthPct, 1) + " · " + growthLabel + " " + percent(growthRate, 1);
-            item.append(name, price, assumptions); valuations.appendChild(item);
+            if (scenario.assumptionSummary) {
+              assumptions.textContent = scenario.assumptionSummary;
+            } else {
+              var discountRate = scenario.costOfEquityPct != null ? scenario.costOfEquityPct : scenario.waccPct;
+              var discountLabel = scenario.costOfEquityPct != null ? "权益成本" : "WACC";
+              var growthRate = scenario.years1to10GrowthPct != null ? scenario.years1to10GrowthPct : scenario.years1to5GrowthPct;
+              var growthLabel = scenario.years1to10GrowthPct != null ? "十年增长" : "前五年";
+              var assumptionParts = [discountLabel + " " + percent(discountRate, 1), "永续 " + percent(scenario.terminalGrowthPct, 1)];
+              if (growthRate != null) assumptionParts.push(growthLabel + " " + percent(growthRate, 1));
+              assumptions.textContent = assumptionParts.join(" · ");
+            }
+            item.append(name, price, reference, assumptions); valuations.appendChild(item);
           });
           body.appendChild(valuations);
           var range = document.createElement("p"); range.className = "section-note";
-          range.textContent = (dcf.sensitivityLabel || "核心 DCF 敏感区间") + "：" + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[0], "USD", 0) + " — " + money(dcf.coreSensitivityRangeUsd && dcf.coreSensitivityRangeUsd[1], "USD", 0) + "；" + (valuation.priceContextLabel || "当前行情完成收盘") + " " + money(valuation.priceUsd, "USD", 2) + "。";
+          var sensitivityRange = Array.isArray(dcf.coreSensitivityRangeUsd) && dcf.coreSensitivityRangeUsd.length >= 2
+            ? dcf.coreSensitivityRangeUsd
+            : null;
+          range.textContent = sensitivityRange
+            ? (dcf.sensitivityLabel || "核心 DCF 敏感区间") + "：" + money(sensitivityRange[0], "USD", 0) + " — " + money(sensitivityRange[1], "USD", 0) + "；" + (valuation.priceContextLabel || "当前行情完成收盘") + " " + money(valuation.priceUsd, "USD", 2) + "。"
+            : (dcf.sensitivityNote || "未定义可审计的核心敏感区间。") + " " + (valuation.priceContextLabel || "当前行情完成收盘") + " " + money(valuation.priceUsd, "USD", 2) + "。";
           body.appendChild(range);
+          if (dcf.modelSummary) {
+            var modelSummary = document.createElement("p"); modelSummary.className = "section-note";
+            modelSummary.textContent = dcf.modelSummary; body.appendChild(modelSummary);
+          }
         }
         if (Array.isArray(result.monitoring) && result.monitoring.length) {
           var monitoring = document.createElement("div"); monitoring.className = "monitoring-list";
@@ -2586,7 +2828,7 @@
               "v" + number(entry.version, 0),
               compactToIso(entry.asOfDate),
               researchLabel(entry.status),
-              researchLabel(archivedResult.valuationState),
+              archivedResult.valuationStateLabelZh || researchLabel(archivedResult.valuationState),
               researchLabel(archivedResult.existingPositionAction)
             ].filter(Boolean).forEach(function (label) {
               var span = document.createElement("span"); span.textContent = label; meta.appendChild(span);
@@ -2642,6 +2884,20 @@
           state.barType = button.dataset.barType;
           document.querySelectorAll(".bar-type-btn").forEach(function (peer) { peer.setAttribute("aria-pressed", String(peer === button)); });
           if (state.detail) { renderChart(); renderDates(); }
+        });
+      });
+      document.querySelectorAll(".moving-average-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          var selections = state.movingAverageSelections[state.movingAveragePreset];
+          selections[button.dataset.maPeriod] = !selections[button.dataset.maPeriod];
+          if (state.detail) renderChart();
+        });
+      });
+      document.querySelectorAll(".moving-average-preset-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          if (state.movingAveragePreset === button.dataset.maPreset) return;
+          state.movingAveragePreset = button.dataset.maPreset;
+          if (state.detail) renderChart();
         });
       });
       document.querySelectorAll(".chart-view-btn").forEach(function (button) {

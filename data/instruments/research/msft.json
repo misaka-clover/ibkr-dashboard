@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": "20260730",
+        "latestAsOfDate": "20260803",
         "providerPublishedDate": "20260722",
         "providerVerifiedAt": "2026-07-24T13:51:50Z"
       }
@@ -23,7 +23,7 @@
           "role": "Senior Equity Research Analyst, Technology"
         },
         "freshness": {
-          "ageDays": 7.7065679033796295,
+          "ageDays": 10.12259477107639,
           "maximumDays": 7,
           "status": "stale",
           "warning": "资料超过七天未重新核验"
@@ -92,77 +92,91 @@
     "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
-        "asOfDate": "20260730",
+        "asOfDate": "20260803",
         "assessmentType": "long_only_equity_review",
         "frameworkVersion": "equity-research-strategy-v1",
         "result": {
           "bearCase": [
-            "FY2026 资本开支同比增长约 80%，自由现金流反而下降约 6.5%，FCF 利润率降至约 20.2%。",
-            "10-K 披露 US$743.8B 合同义务；其中租赁和数据中心购买承诺规模巨大，未来现金义务不能只用净现金衡量。",
-            "盘后约 US$419.82 对应约 24.3 倍调整后 EPS、46.5 倍默认 FCF，且反向 DCF 要求前五年 FCF 年增约 18.7%。",
-            "Microsoft Cloud 毛利率 65% 同比下降，AI 使用与基础设施成本尚未被效率完全抵销。",
-            "FY27 完整年度仅承诺 FCF 为正，未承诺恢复增长；会计寿命与租赁分类变化也降低跨期口径可比性。"
+            "AI 变现慢于预期，收入增长不能转化为相称经营利润，将压低分部收入、利润率与 FCFF。",
+            "资本开支和租赁相关现金需求在高位维持更久，将推迟现金转化并提高终值依赖。",
+            "云利润率受容量成本压制，且股权薪酬稀释不能被回购抵销，可使每股价值向 US$229.94 下行情景靠近。"
           ],
           "bullCase": [
-            "Azure Q4 增长 43%，FY27 Q1 指引约 45%，显示新增产能与效率正在快速转化为收入。",
-            "M365 Copilot 付费席位超过 3,000 万且净新增环比超过翻倍，企业分发开始形成可计量商业化。",
-            "排除 OpenAI 后商业 RPO 仍增长 25%，且季度序增全部来自前沿模型公司以外客户，需求基础比标题数字更广。",
-            "FY2026 营业利润增长 21%，快于收入增长 18%，公司仍能在高投入期维持经营杠杆。",
-            "净现金、强经营现金流和庞大企业客户基础使微软有能力跨周期建设 AI 基础设施。"
+            "Azure 与 Copilot 变现强于基础情景，Intelligent Cloud 与 PBP 增速更持久，从而提高分部收入与成熟期经营利润。",
+            "AI 基建效率更快显现，现金资本开支更早正常化，缩小资本开支与折旧摊销差额并提前释放 FCFF。",
+            "成熟期分部利润率高于基础路径，可支持 US$819.26 的上行情景；该情景不构成概率加权目标价。"
           ],
           "cashDecision": "do_not_buy",
-          "decisionHinge": "经营论点已由 Azure 43% 增长、Copilot 超过 3,000 万付费席位和非 OpenAI 商业 RPO 25% 增长强化；证券论点则取决于自由现金流能否在 FY27 资本开支继续增长时恢复，因为盘后价格已要求接近乐观的现金流增长路径。",
-          "evidenceConfidence": "high",
+          "decisionHinge": "AI 与云业务的增量经营利润能否在可辩护期限内持续超过现金再投资，并使 FY2027 之后的经营型 FCFF 恢复。",
+          "evidenceConfidence": "medium",
           "existingPositionAction": "hold",
           "missingEvidence": [
-            "公司仍未完整拆分维护性与增长性资本开支，也未披露每类 GPU、CPU、建筑和能源承诺的项目级回报。",
-            "未取得同一时点、同一口径的完整卖方 FY2027 预测分布；FactSet 共识仅用于财报惊喜比较。",
-            "Morningstar 尚未发布或尚未核验本次 FY2026 Q4 财报后的新研究版本。",
-            "FY27 数据中心寿命与租赁分类变化将降低资本开支、折旧和自由现金流的跨期可比性，需要后续脚注复核。",
-            "盘后价格尚未形成下一常规交易日完成收盘，不作为 Dashboard 最新完成收盘事实。"
+            "融资租赁、经营租赁与基础设施承诺的精确付款时点仍不可得。",
+            "尚未取得可系统三角验证的当前一致预期数据集。",
+            "其他非经营性投资尚未完成穿透估值。",
+            "尚未取得用户提供的 MSFT Morningstar 完整 PDF；现有外部发布方快照继续独立保存。",
+            "三种情景没有可靠的概率赋值，因此不进行概率加权。"
           ],
           "monitoring": [
             {
-              "baseline": "FY2026 Q4 43%；FY2027 Q1 指引约 45%",
-              "challengingDirection": "明显低于指引且需求或利用率转弱。",
-              "confirmingDirection": "维持约 45%，且容量与效率改善继续转化为收入。",
-              "metric": "Azure 固定汇率增长",
-              "nextReview": "FY2027 Q1 财报"
+              "baseline": "Azure FY2026 Q4 增长 43%；FY2027 Q1 固定汇率指引约 45%；模型 FY2027 Intelligent Cloud 增长 25%、利润率 40.0%",
+              "challengingDirection": "增长或利润率持续低于基础路径",
+              "confirmingDirection": "增长与利润率达到或超过基础路径，同时现金转化不恶化",
+              "metric": "Azure／智能云增长与分部利润率"
             },
             {
-              "baseline": "超过 3,000 万付费席位；季度净新增超过环比翻倍",
-              "challengingDirection": "席位增长与收入或毛利改善脱节。",
-              "confirmingDirection": "席位、使用强度、E7 升级与按量 ARPU 同时增长。",
-              "metric": "M365 Copilot 商业化",
-              "nextReview": "FY2027 Q1 财报"
+              "baseline": "付费席位超过 3,000 万；季度净新增超过上一季度两倍",
+              "challengingDirection": "在 AI 投入保持高位时，采用或变现停滞",
+              "confirmingDirection": "付费席位、净新增与变现继续扩大",
+              "metric": "Copilot 付费渗透、每用户收入与企业采用"
             },
             {
-              "baseline": "FY2026 Q4 65%；FY2027 Q1 指引环比大致稳定",
-              "challengingDirection": "跌破 64% 且没有可量化效率抵销。",
-              "confirmingDirection": "稳定在约 65% 或改善。",
-              "metric": "Microsoft Cloud 毛利率",
-              "nextReview": "FY2027 Q1 财报"
+              "baseline": "FY2026 现金资本开支 US$115.948B；FY2027 Q1 指引超过 US$50B；租赁重分类后 2026 日历年资本开支语境约 US$175B",
+              "challengingDirection": "正常化反复后移，或承诺增加却没有相称营业利润",
+              "confirmingDirection": "现金再投资不晚于基础路径见顶，且产能利用率改善",
+              "metric": "现金资本开支、租赁与基础设施承诺"
             },
             {
-              "baseline": "FY2026 FCF US$66.987B，下降 6.5%；Q1 CapEx 指引 >US$50B",
-              "challengingDirection": "FCF 继续下降或利润率持续低于 20%。",
-              "confirmingDirection": "FY27 FCF 恢复增长，FCF 利润率回升至 20%以上。",
-              "metric": "自由现金流与资本开支",
-              "nextReview": "逐季，FY2027 Q1 起"
+              "baseline": "FY2026 折旧摊销 US$38.534B；模型明确区分现金资本开支与折旧摊销",
+              "challengingDirection": "会计年限或租赁分类变化掩盖持续偏弱的现金回报",
+              "confirmingDirection": "折旧摊销逐步追上已部署资产，同时现金资本开支强度下降",
+              "metric": "折旧摊销、资产使用年限与租赁重分类"
             },
             {
-              "baseline": "FY2026 Q4 增长 25%；总 RPO 的 30% 预计未来 12 个月确认",
-              "challengingDirection": "增长集中于少数长久期合同或近期确认比例下降。",
-              "confirmingDirection": "非 OpenAI 增长维持 20%以上且近期确认比例改善。",
-              "metric": "非 OpenAI 商业 RPO",
-              "nextReview": "FY2027 Q1 财报"
+              "baseline": "管理层指引同比下降少于 1 个百分点；FY2026 营业利润率约 46.78%",
+              "challengingDirection": "降幅超过指引，或弱势延续超过预期投资期",
+              "confirmingDirection": "降幅保持在指引内，并沿基础路径恢复",
+              "metric": "FY2027 营业利润率"
             },
             {
-              "baseline": "盘后只读权重约 12.7%；15% 关注线；核心 DCF US$267–457",
-              "challengingDirection": "完成收盘权重达 15%，或价格高于敏感区间而 FCF 未改善。",
-              "confirmingDirection": "低于关注线且 FCF 证据追上价格。",
-              "metric": "组合集中度与估值",
-              "nextReview": "每次完成收盘与重大估值变化"
+              "baseline": "FY2026 报告自由现金流 US$66.987B；最终模型 FY2026 经营型 FCFF US$51.289B",
+              "challengingDirection": "差距扩大且无法由营运资本或付款时点解释",
+              "confirmingDirection": "资本开支正常化后现金转化改善，且差异能够勾稽",
+              "metric": "报告自由现金流与经营型 FCFF 转化"
+            },
+            {
+              "baseline": "FY2026 股权薪酬 US$12.405B；流通股 7.427B；稀释股数 7.453B",
+              "challengingDirection": "股权薪酬增速超过收入，或净稀释恢复",
+              "confirmingDirection": "股权薪酬增速不超过收入，净股数持平或下降",
+              "metric": "股权薪酬与净股数"
+            },
+            {
+              "baseline": "基础 WACC 9.373099%；无风险利率 4.68%；Beta 1.132559；ERP 来源值 4.16962956%、模型取整为 4.20%",
+              "challengingDirection": "输入变化令 WACC 变动达到或超过 50bp",
+              "confirmingDirection": "输入变化令 WACC 变动低于 50bp，或由更强基本面抵销",
+              "metric": "WACC 输入"
+            },
+            {
+              "baseline": "25 股；直接权重约 11.57%；关注线 15%；硬上限 20%",
+              "challengingDirection": "直接或经验证的穿透后敞口接近 15% 或 20%",
+              "confirmingDirection": "权重保持在政策线下，同时不把低于政策线误作买入信号",
+              "metric": "组合集中度"
+            },
+            {
+              "baseline": "除既定情景外，没有嵌入其他独立重大事件",
+              "challengingDirection": "重大事件改变业务经济性或每股价值路径",
+              "confirmingDirection": "没有不利并购、监管、竞争或 AI 技术路径断裂",
+              "metric": "重大公司或行业变化"
             }
           ],
           "researchMaturity": "active",
@@ -173,68 +187,62 @@
               "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast"
             },
             {
-              "label": "Microsoft FY2026 Q4 earnings call and FY2027 outlook",
-              "publishedAt": "20260729",
-              "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4"
-            },
-            {
               "label": "Microsoft FY2026 Form 10-K",
               "publishedAt": "20260729",
               "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm"
             },
             {
-              "label": "Microsoft 2026-07-29 Form 8-K",
+              "label": "Microsoft FY2026 Q4 earnings call and FY2027 outlook",
               "publishedAt": "20260729",
-              "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-20260729.htm"
+              "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4"
             },
             {
-              "label": "AP report citing FactSet Q4 consensus",
-              "publishedAt": "20260729",
-              "url": "https://apnews.com/article/f7dff4fb9d51a2bdec56a13e5da1053d"
+              "asOf": "20260730",
+              "label": "FRED DGS10",
+              "url": "https://fred.stlouisfed.org/series/DGS10"
+            },
+            {
+              "asOf": "20260701",
+              "label": "Damodaran ERPJuly26 workbook",
+              "url": "https://pages.stern.nyu.edu/~adamodar/pc/implprem/ERPJuly26.xlsx"
             }
           ],
           "valuation": {
             "dcf": {
-              "coreSensitivityRangeUsd": [
-                267,
-                457
-              ],
+              "coreSensitivityRangeUsd": "unavailable",
               "scenarios": [
                 {
+                  "assumptionSummary": "分部经营下行情景 · WACC 10.37% · 永续增长 2.5%",
                   "name": "bear",
-                  "terminalGrowthPct": 3.0,
-                  "valuePerShareUsd": 199.82,
-                  "waccPct": 9.5,
-                  "years1to5GrowthPct": 8.0,
-                  "years6to10GrowthPct": 6.0
+                  "terminalGrowthPct": 2.5,
+                  "valuePerShareUsd": 229.94,
+                  "waccPct": 10.373099182
                 },
                 {
+                  "assumptionSummary": "分部经营基础情景 · WACC 9.37% · 永续增长 3.0%",
                   "name": "base",
-                  "terminalGrowthPct": 3.5,
-                  "valuePerShareUsd": 347.92,
-                  "waccPct": 8.5,
-                  "years1to5GrowthPct": 14.0,
-                  "years6to10GrowthPct": 8.0
+                  "terminalGrowthPct": 3.0,
+                  "valuePerShareUsd": 476.76,
+                  "waccPct": 9.373099182
                 },
                 {
+                  "assumptionSummary": "分部经营上行情景 · WACC 8.77% · 永续增长 3.5%",
                   "name": "bull",
-                  "terminalGrowthPct": 4.0,
-                  "valuePerShareUsd": 621.23,
-                  "waccPct": 7.5,
-                  "years1to5GrowthPct": 18.0,
-                  "years6to10GrowthPct": 10.0
+                  "terminalGrowthPct": 3.5,
+                  "valuePerShareUsd": 819.26,
+                  "waccPct": 8.773099182
                 }
               ]
             },
-            "priceUsd": 419.82
+            "priceUsd": 464.72
           },
-          "valuationState": "expensive"
+          "valuationState": "fair"
         },
-        "sourceLabel": "MSFT FY2026 Q4 财报后完整复核",
-        "sourceVersion": "2026-07-30-v2",
+        "sourceLabel": "MSFT 十年分部经营型 FCFF-WACC DCF 完整复核",
+        "sourceVersion": "2026-08-03-v3",
         "status": "active",
-        "summary": "FY2026 Q4 证明 Azure、Copilot 与企业云需求正在把 AI 投入转化为收入，经营论点较财报前明显增强；但 FY2026 自由现金流下降、未来合同义务巨大，盘后约 US$419.82 已接近本轮乐观敏感区间。现有 30 股继续持有，但不把强劲财报等同于当前价格仍有安全边际，也不建议在盘后跳升后新增等额现金。",
-        "updatedAt": "2026-07-30T02:23:43.246231Z"
+        "summary": "微软 FY2026 的 Azure、Copilot 与企业云需求继续强化公司质量论点，但 FY2027 高额 AI 基础设施投入的现金回报仍待验证。以 2026-07-31 完成收盘价 464.72 美元比较，独立分部经营型 FCFF－WACC DCF 的下行、基础和上行情景分别为 229.94、476.76 和 819.26 美元/股；基础价值仅高约 2.59%，因此证券状态为“接近基准价值但缺乏新增资金安全边际”。现有持仓继续 hold，等额新增现金 do_not_buy，组合角色 pending；460 美元只触发研究复核，不构成机械交易规则或交易授权。",
+        "updatedAt": "2026-08-03T15:45:57.242215Z"
       }
     ],
     "summary": {
@@ -245,7 +253,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-01T06:49:14.125106Z",
+  "generatedAt": "2026-08-03T16:48:18.797338Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "MSFT"
