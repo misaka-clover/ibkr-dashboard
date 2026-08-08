@@ -420,8 +420,17 @@
     .quality-domain { color: var(--muted); font-size: 10px; }
     .quality-status { margin-top: 5px; color: var(--navy); font: 750 14px var(--mono); }
     .quality-note { margin-top: 5px; color: var(--muted); font-size: 9px; }
-    footer { margin-top: 38px; padding-top: 18px; border-top: 1px solid rgba(22,59,89,.14); color: var(--muted); font-size: 10px; }
-    footer strong { color: var(--navy); }
+    footer { margin-top: 34px; padding: 26px 2px 0; border-top: 1px solid rgba(22,59,89,.16); color: var(--muted); font-size: 11px; }
+    .footer-head { margin-bottom: 16px; }
+    .footer-kicker { margin: 0 0 3px; color: var(--gold); font-size: 9px; font-weight: 800; letter-spacing: .16em; }
+    .footer-title { margin: 0; color: var(--navy); font-size: 15px; font-weight: 760; }
+    .footer-meta-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border-top: 1px solid rgba(22,59,89,.10); border-bottom: 1px solid rgba(22,59,89,.10); }
+    .footer-meta-item { min-width: 0; padding: 13px 16px 14px 0; border-right: 1px solid rgba(22,59,89,.10); }
+    .footer-meta-item + .footer-meta-item { padding-left: 16px; }
+    .footer-meta-item:last-child { border-right: 0; padding-right: 0; }
+    .footer-meta-label { display: block; margin-bottom: 4px; color: #8b98a3; font-size: 9px; letter-spacing: .08em; }
+    .footer-meta-value { display: block; color: #465563; font-size: 11px; font-weight: 650; line-height: 1.55; }
+    .footer-disclaimer { margin: 5px 0 0; color: #7a8792; line-height: 1.65; }
     @media (max-width: 1000px) {
       .instrument-hero { grid-template-columns: 1fr; }
       .hero-quote { border-top: 1px solid rgba(22,59,89,.12); padding-top: 18px; }
@@ -475,6 +484,10 @@
       .card-body { padding: 15px; }
       .account-kpi-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .account-kpi.wide { grid-column: 1 / -1; }
+      .footer-meta-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .footer-meta-item:nth-child(2) { border-right: 0; padding-right: 0; }
+      .footer-meta-item:nth-child(3), .footer-meta-item:nth-child(4) { border-top: 1px solid rgba(22,59,89,.10); }
+      .footer-meta-item:nth-child(3) { padding-left: 0; }
     }
     @media (max-width: 560px) {
       .tax-lot-surface { min-width: 440px; }
@@ -492,18 +505,20 @@
         <div class="workspace-nav-links">
           <a class="workspace-nav-link" href="index.html">首页</a>
           <a class="workspace-nav-link" href="dashboard.html">投资组合</a>
-          <!-- FAMILY:INSTRUMENT_MARKET_NAV:START --><!-- FAMILY:INSTRUMENT_MARKET_NAV:END -->
           <a class="workspace-nav-link" href="instrument.html" aria-current="page">证券研究</a>
+          <!-- FAMILY:INSTRUMENT_MARKET_NAV:START --><!-- FAMILY:INSTRUMENT_MARKET_NAV:END -->
           <span class="workspace-nav-link" aria-disabled="true">期权雷达</span>
           <span class="workspace-nav-link" aria-disabled="true">交易决策</span>
-          <!-- FAMILY:INSTRUMENT_HISTORY_NAV:START --><!-- FAMILY:INSTRUMENT_HISTORY_NAV:END -->
+          <!-- FAMILY:INSTRUMENT_HISTORY_NAV:START -->
+          <a class="workspace-nav-link" href="history.html">历史档案</a>
+          <!-- FAMILY:INSTRUMENT_HISTORY_NAV:END -->
         </div>
       </div>
     </nav>
 
     <header class="instrument-hero">
       <div>
-        <p class="eyebrow">Private Security Research</p>
+        <p class="eyebrow">Public Family Security Research</p>
         <h1 id="instrumentSymbol">—</h1>
         <p class="company-name"><span id="instrumentEnglishName">正在载入标的资料</span><span class="company-name-zh" id="instrumentChineseName" hidden></span></p>
         <div class="instrument-meta">
@@ -528,7 +543,7 @@
 
     <aside class="status-line" id="serviceNotice">
       <span class="status-dot" aria-hidden="true"></span>
-      <span><strong>正在读取公开静态资料。</strong> 页面不连接券商、本机数据库或任何实时接口，也不能下单。</span>
+      <span><strong>投资组合透明计划 · 公开家庭版只读页面。</strong> 正在读取字段级筛选的静态资料；页面不连接券商、本机数据库或任何实时接口，也不能下单。</span>
     </aside>
 
     <section class="metric-grid" aria-label="标的关键指标">
@@ -723,8 +738,14 @@
     </section>
 
     <footer>
-      <strong>投资组合透明计划 · 公开家庭版只读页面</strong><br>
-      本页读取经字段级筛选的静态包；Flex、行情与研究保留独立更新时间，不连接券商、本机数据库或任何实时接口。
+      <div class="footer-head"><p class="footer-kicker">DATA &amp; METHOD</p><h2 class="footer-title">数据口径</h2></div>
+      <div class="footer-meta-grid">
+        <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value">最近获审核完成收盘持仓与生命周期资料</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label">市场历史</span><span class="footer-meta-value">IBKR 日线与申报日起生效的基本面事实分别留存日期</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label">研究边界</span><span class="footer-meta-value">外部研报与项目独立分析分栏、分版本、分日期</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label">页面角色</span><span class="footer-meta-value">公开家庭版静态包 · 只读</span></div>
+      </div>
+      <p class="footer-disclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
   </main>
 
@@ -831,6 +852,12 @@
           year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit",
           hour12: false, timeZone: "UTC"
         }).format(date).replace(/\//g, "-");
+      }
+      function utcDateOnly(value) {
+        var raw = String(value || "");
+        if (/^\d{8}$/.test(raw)) return "UTC " + compactToIso(raw);
+        var date = new Date(raw);
+        return Number.isNaN(date.getTime()) ? (raw || "—") : "UTC " + date.toISOString().slice(0, 10);
       }
       function number(value, digits) {
         var n = finite(value);
@@ -1231,7 +1258,7 @@
         syncChartControls();
         renderAll();
       }
-      /* FAMILY:INSTRUMENT_DATA_SOURCE:END */
+    /* FAMILY:INSTRUMENT_DATA_SOURCE:END */
       function chartEventsForMode() {
         var items = state.detail && state.detail.chartEvents && state.detail.chartEvents.items || [];
         if (state.chartView !== "price") return [];
@@ -2438,12 +2465,18 @@
         });
         var labels = [];
         if (provider) {
-          var providerReportDate = provider.metrics && provider.metrics.reportAsOf
-            ? String(provider.metrics.reportAsOf).slice(0, 10)
-            : compactToIso(provider.publishedDate);
-          labels.push("晨星 " + providerReportDate);
+          var providerReportAt = provider.metrics && provider.metrics.reportAsOf;
+          labels.push("晨星 " + utcDateOnly(providerReportAt || provider.publishedDate));
         }
-        if (assessment) labels.push("分析 " + compactToIso(assessment.asOfDate));
+        if (assessment) {
+          if (assessment.completedAt) {
+            labels.push("分析完成 " + utcDateOnly(assessment.completedAt));
+          } else if (assessment.updatedAt) {
+            labels.push("研究记录 " + utcDateOnly(assessment.updatedAt));
+          } else {
+            labels.push("研究基准 " + utcDateOnly(assessment.asOfDate));
+          }
+        }
         el("researchDateBadge").textContent = labels.length ? labels.join(" · ") : "尚未建立";
       }
       function renderProviderResearch() {
@@ -2493,7 +2526,7 @@
           : "分析师 " + (analyst.name || "未标注") + (analyst.role ? " · " + analyst.role : "");
         copy.append(reportLink, reportTitle, analystLine);
         var dateBlock = document.createElement("div"); dateBlock.className = "section-note";
-        var reportAsOf = metrics.reportAsOf ? String(metrics.reportAsOf).slice(0, 10) : null;
+        var reportAsOf = metrics.reportAsOf ? utcDateTime(metrics.reportAsOf) : null;
         dateBlock.textContent = isFundMedalist
           ? "Medalist 发布 " + compactToIso(provider.publishedDate)
             + (metrics.medalistRatedDate ? " · 评级日期 " + compactToIso(metrics.medalistRatedDate) : "")
