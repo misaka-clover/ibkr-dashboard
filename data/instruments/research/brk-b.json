@@ -11,8 +11,8 @@
       "domains": {
         "research": {
           "count": 2,
-          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
-          "status": "pass"
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "warning"
         }
       }
     },
@@ -23,10 +23,10 @@
           "role": "Senior Equity Analyst"
         },
         "freshness": {
-          "ageDays": 4.053929073506945,
+          "ageDays": 11.978074105613427,
           "maximumDays": 7,
-          "status": "current",
-          "warning": null
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
         },
         "interpretation": "本次以截至 2026-06-30 23:41 UTC 的 28 页完整报告为主证据，已完成全文提取和 28／28 页逐页视觉核验；公开链接使用 Morningstar 官网公司报告与相关文章，原 PDF、截图、表格和下载路径均不进入页面或发布包。报告给出 US$510 公允价值、三星、窄护城河、低不确定性与典范资本配置，报告价 US$496、Price/FVE 0.98；分部估值为保险 US$263、铁路 US$63、能源公用事业 US$40、制造服务零售 US$144。晨星认为 Berkshire 的低成本浮存金、保险规模、铁路和受监管资产仍构成优势，但 Buffett 退休、体量扩大和可投机会收窄使超额资本配置能力不足以继续支持宽护城河。报告后的 Alphabet 私募投资已获 SEC 证据确认，Taylor Morrison 也已于 7 月 24 日完成交割；两项资本配置尚未产生足够经营记录。报告财务附表存在明显格式异常，本项目没有使用相关异常字段。",
         "metrics": {
@@ -94,6 +94,7 @@
       {
         "asOfDate": "20260730",
         "assessmentType": "equity_research",
+        "completedAt": "2026-07-30T15:45:34.157898Z",
         "frameworkVersion": "equity-research-strategy-v1",
         "result": {
           "bearCase": [
@@ -284,7 +285,7 @@
         "sourceVersion": "v1.0",
         "status": "active",
         "summary": "Berkshire Hathaway 是以保险浮存金、强资产负债表和去中心化经营为底座的多元资本配置平台，但 Greg Abel 接任后的新增资本回报仍待形成纪录。2026 年第一季度经营收益 US$11.346B，同比增长 17.7%；TTM 经营收益约 US$46.191B。保险及其他业务持有净 US$373.5B 现金、现金等价物和国库券，浮存金约 US$176.9B；巨额流动性同时承担保险、监管和集团安全职责，不能全额视为可分配现金。2026-07-29 完成收盘 US$509.16 对应约 1.51 倍 2026 年第一季度末每股账面价值和 23.8 倍 TTM 经营收益。本项目经营收益折现的悲观／基准／乐观情景约 US$304／US$517／US$709，基准敏感区间约 US$420–US$622；五年账面价值模型交叉检验约 US$334／US$489／US$586，Morningstar 完整报告公允价值为 US$510。三种方法共同指向当前价格大致合理，而不是明显低估。现有 3 股、1.55%权重继续持有，新增现金等待下一份正式财报和 Alphabet、Taylor Morrison 资本配置的回报证据；任何新财报、重大收购或估值区间变化都会使本版本立即待复核，最迟 90 天复核。",
-        "updatedAt": "2026-07-30T15:45:34.157898Z"
+        "updatedAt": "2026-08-09T05:41:33.615770Z"
       }
     ],
     "summary": {
@@ -295,7 +296,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-03T16:48:18.797338Z",
+  "generatedAt": "2026-08-11T14:59:05.371392Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "BRK B"

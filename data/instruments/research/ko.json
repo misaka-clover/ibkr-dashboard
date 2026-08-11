@@ -11,8 +11,8 @@
       "domains": {
         "research": {
           "count": 2,
-          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
-          "status": "pass"
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "warning"
         }
       }
     },
@@ -23,10 +23,10 @@
           "role": "Senior Equity Analyst"
         },
         "freshness": {
-          "ageDays": 4.367326536967592,
+          "ageDays": 12.291467198680555,
           "maximumDays": 7,
-          "status": "current",
-          "warning": null
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
         },
         "interpretation": "本次以截至 2026-07-28 19:28 UTC 的 23 页完整报告为主证据，并以 5 月 8 日晨星官网文章作公开链接。完整报告正式栏显示 US$75 公允价值、两星、宽护城河、低不确定性与优秀资本配置；报告价为 US$84.07，Price/FVE 为 1.12。7 月 28 日财报附注确认 Q2 有机收入增长 6%、可比营业利润增长 9%、可比 EPS 为 US$0.97，并认可全球销量和创新执行，但也指出世界杯活动、天气及较低比较基数提供助力。附注表示财报后拟把 US$74 公允价值上调中高个位数百分比，可是 7 月 13 日正式模型仍为 US$75，尚无新的精确值，本项目不提前推算。模型采用 6.8% WACC，预计 2026–2030 年收入由 US$49.4B 增至 US$58.9B、经营利润率由 31.5%升至 32.9%、FCFF 由 US$12.2B 增至 US$16.9B。以 2026-07-28 正式收盘 US$88.27 观察，价格仍高于当前正式公允价值约 17.7%；护城河和资本配置结论增强，但估值方向仍偏贵。Fairlife 网络事件、装瓶伙伴经济性、健康偏好、汇率以及 Costa 执行继续是重点。",
         "metrics": {
@@ -94,6 +94,7 @@
       {
         "asOfDate": "20260729",
         "assessmentType": "equity_research",
+        "completedAt": "2026-07-29T15:44:48.377121Z",
         "frameworkVersion": "equity-research-strategy-v1",
         "result": {
           "bearCase": [
@@ -288,7 +289,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-03T16:48:18.797338Z",
+  "generatedAt": "2026-08-11T14:59:05.371392Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "KO"

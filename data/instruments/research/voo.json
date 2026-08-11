@@ -11,8 +11,8 @@
       "domains": {
         "research": {
           "count": 2,
-          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
-          "status": "pass"
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "warning"
         }
       }
     },
@@ -23,10 +23,10 @@
           "role": "Associate Analyst"
         },
         "freshness": {
-          "ageDays": 3.996324313611111,
+          "ageDays": 11.92046010042824,
           "maximumDays": 7,
-          "status": "current",
-          "warning": null
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
         },
         "interpretation": "Morningstar 将 VOO 评为由分析师覆盖的 Gold Medalist，并把它视为美国大盘股的优质核心工具。其正面判断建立在 S&P 500 对美国大盘机会集的代表性、完全复制、极低费率、低换手和较小跟踪摩擦上；市值加权会自动随价格调整仓位，因此交易成本低，并使 VOO 长期显著跑赢大型混合类平均同业。晨星也承认前十大和科技权重偏高，但认为这主要反映美国市场结构，长期而言分散、低费用与高效率仍占上风。2026 年文章进一步认为，VOO 相比 SPY 更适合长期持有，原因是费率更低且没有单位投资信托结构造成的现金拖累。这里的 Gold 是相对同类、扣除费用和风险后的前瞻评价，不是对 S&P 500 当前估值的公允价值判断，也不是加仓指令；因此它强化了本项目“产品质量高”的判断，但不推翻“指数当前估值偏贵、现有持有而新增资金观察”的结论。本次没有完整基金研报 PDF，官网文章未暴露当前传统历史星级，页面会明确显示未核实而不补猜。",
         "metrics": {
@@ -106,6 +106,7 @@
       {
         "asOfDate": "20260730",
         "assessmentType": "broad_market_index_etf_review",
+        "completedAt": "2026-07-30T17:02:13.398030Z",
         "frameworkVersion": "broad-market-index-etf-research-v1",
         "result": {
           "bearCase": [
@@ -247,7 +248,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-03T16:48:18.797338Z",
+  "generatedAt": "2026-08-11T14:59:05.371392Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "VOO"

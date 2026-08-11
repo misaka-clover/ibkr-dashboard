@@ -11,8 +11,8 @@
       "domains": {
         "research": {
           "count": 2,
-          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
-          "status": "pass"
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "warning"
         }
       }
     },
@@ -23,10 +23,10 @@
           "role": "Manager Research Analyst · Prospects H1 2026"
         },
         "freshness": {
-          "ageDays": 4.259876957743055,
+          "ageDays": 12.184022517650462,
           "maximumDays": 7,
-          "status": "current",
-          "warning": null
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
         },
         "interpretation": "Morningstar 对 BOXX 的覆盖并非个股式公允价值研报，而是基金研究。当前分析页给出截至 2026-05-31 的量化衍生 Neutral Medalist Rating，含义是模型对其完整周期相对同类既无明确跑赢、也无明确跑输预期；这不是“差评”，也不是现金安全保证。2026 年上半年 Prospects 的人工专题仍由 Lan Anh Tran 署名，确认其突出之处是以 SPY、QQQ 等指数 ETF 的欧式期权构造箱式价差，并通过亏损收割尽量减少应税分配；截至 2025-12-31 的传统历史星级为两星。晨星认为这种流程对需要税务效率的现金类用途有吸引力，但明确提醒税务效率不保证，2024 年 8 月曾因早期使用 SPX 期权产生非周期资本利得分配，之后已切换到指数 ETF 期权。我们的结论是：晨星确实覆盖 BOXX，而且其最新量化评级与人工研究应分开理解；基金是否适合作为机会储备，仍须由当前短端收益、费用、流动性、税务适用性和组合用途共同决定。",
         "metrics": {
@@ -97,6 +97,7 @@
       {
         "asOfDate": "20260730",
         "assessmentType": "cash_equivalent_etf_review",
+        "completedAt": "2026-07-30T10:41:38.474881Z",
         "frameworkVersion": "cash-equivalent-etf-research-v1",
         "result": {
           "bearCase": [
@@ -235,7 +236,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-03T16:48:18.797338Z",
+  "generatedAt": "2026-08-11T14:59:05.371392Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "BOXX"

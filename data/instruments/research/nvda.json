@@ -11,8 +11,8 @@
       "domains": {
         "research": {
           "count": 2,
-          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
-          "status": "pass"
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "warning"
         }
       }
     },
@@ -23,10 +23,10 @@
           "role": "Senior Equity Analyst"
         },
         "freshness": {
-          "ageDays": 4.409511214363426,
+          "ageDays": 12.333650138738427,
           "maximumDays": 7,
-          "status": "current",
-          "warning": null
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
         },
         "interpretation": "本次以截至 2026-07-27 的 24 页完整报告为主证据，并以 6 月 17 日晨星官网文章作公开补充。晨星维持宽护城河、US$280 公允价值与四星；报告价 US$206.84 对应 Price/FVE 0.74。7 月 27 日附注认为，市场对 NVIDIA 可能为 OpenAI 数据中心融资提供约 US$250B 支持的“循环交易”风险反应过度：此类安排应继续监控，但在算力仍紧缺、token 用量上升及大型客户资本开支强劲的背景下，不足以推翻需求判断。估值并非只押注短期热度：模型假设 FY2027 收入增长约 80%、FY2031 收入约 US$856B，长期毛利率回落至高 60%区间、营业利润率维持高 50%至中 60%，WACC 约 9.5%；数据中心在 FY2032 经历一次平年后再以低双位数增长。优秀资本配置来自净现金、持续研发与 CUDA／网络投资，OpenAI／Anthropic 等投资的循环性则是需跟踪的反证。极高不确定性下，US$140／US$490 分别对应五星／一星阈值；6 月文章的 US$180／US$280／US$420 情景仍有解释力。与本项目基准 DCF 的差异主要来自晨星更高的收入与长期利润率假设，不应取平均。",
         "metrics": {
@@ -94,6 +94,7 @@
       {
         "asOfDate": "20260729",
         "assessmentType": "equity_research",
+        "completedAt": "2026-07-29T12:42:14.909317Z",
         "frameworkVersion": "equity-research-strategy-v1",
         "result": {
           "bearCase": [
@@ -260,7 +261,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-03T16:48:18.797338Z",
+  "generatedAt": "2026-08-11T14:59:05.371392Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "NVDA"

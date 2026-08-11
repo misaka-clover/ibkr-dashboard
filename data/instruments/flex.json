@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-11T06:04:56.066646Z",
+  "generatedAt": "2026-08-11T14:59:05.371392Z",
   "instruments": {
     "BOXX": {
       "accountPerformance": {
@@ -46,9 +46,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260804",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-08-05T07:49:36.089008Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -65,7 +65,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -73,6 +73,7 @@
             "asOf": "20260810",
             "count": 7,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -1402,26 +1403,26 @@
           "tradeDate": "20260420"
         },
         {
-          "amount": -698.385,
+          "amount": -1745.9625,
           "currency": "USD",
           "details": {
             "closePrice": 116.42,
-            "commission": 0.015,
-            "costBasis": 698.385,
+            "commission": 0.0375,
+            "costBasis": 1745.9625,
             "description": "ALPHA ARCHITECT 1-3 MNTH BOX",
             "metadata": {
               "buySell": "BUY",
               "transactionType": "ExchTrade"
             },
-            "mtmPnl": 0.12,
+            "mtmPnl": 0.3,
             "price": 116.4,
-            "proceeds": -698.4,
+            "proceeds": -1746.0,
             "realizedPnl": 0.0,
             "taxes": 0.0
           },
           "eventTime": "20260420;093002",
           "eventType": "trade",
-          "quantity": 6.0,
+          "quantity": 15.0,
           "symbol": "BOXX",
           "tradeDate": "20260420"
         },
@@ -1474,26 +1475,26 @@
           "tradeDate": "20260420"
         },
         {
-          "amount": -1745.9625,
+          "amount": -698.385,
           "currency": "USD",
           "details": {
             "closePrice": 116.42,
-            "commission": 0.0375,
-            "costBasis": 1745.9625,
+            "commission": 0.015,
+            "costBasis": 698.385,
             "description": "ALPHA ARCHITECT 1-3 MNTH BOX",
             "metadata": {
               "buySell": "BUY",
               "transactionType": "ExchTrade"
             },
-            "mtmPnl": 0.3,
+            "mtmPnl": 0.12,
             "price": 116.4,
-            "proceeds": -1746.0,
+            "proceeds": -698.4,
             "realizedPnl": 0.0,
             "taxes": 0.0
           },
           "eventTime": "20260420;093002",
           "eventType": "trade",
-          "quantity": 15.0,
+          "quantity": 6.0,
           "symbol": "BOXX",
           "tradeDate": "20260420"
         },
@@ -2168,9 +2169,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260601",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-24T09:42:47.049929Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -2187,7 +2188,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -2195,6 +2196,7 @@
             "asOf": "20260810",
             "count": 1,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -2346,9 +2348,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260618",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-24T09:42:47.049929Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -2365,7 +2367,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -2373,6 +2375,7 @@
             "asOf": "20260810",
             "count": 5,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -2899,30 +2902,6 @@
           "tradeDate": "20260615"
         },
         {
-          "amount": -10.49,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": null,
-            "description": "EWJV(US46435U3749) CASH DIVIDEND USD 1.749185 PER SHARE - US TAX",
-            "metadata": {
-              "settleDate": "20251219",
-              "type": "Withholding Tax"
-            },
-            "mtmPnl": null,
-            "price": null,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20251219;202000",
-          "eventType": "cash_transaction",
-          "quantity": null,
-          "symbol": "EWJV",
-          "tradeDate": "20260205"
-        },
-        {
           "amount": 10.5,
           "currency": "USD",
           "details": {
@@ -2947,7 +2926,7 @@
           "tradeDate": "20260205"
         },
         {
-          "amount": -10.5,
+          "amount": -10.49,
           "currency": "USD",
           "details": {
             "closePrice": null,
@@ -2968,7 +2947,7 @@
           "eventType": "cash_transaction",
           "quantity": null,
           "symbol": "EWJV",
-          "tradeDate": "20251219"
+          "tradeDate": "20260205"
         },
         {
           "amount": 104.95,
@@ -2982,6 +2961,30 @@
               "dividendType": "Ordinary Dividend",
               "settleDate": "20251219",
               "type": "Dividends"
+            },
+            "mtmPnl": null,
+            "price": null,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20251219;202000",
+          "eventType": "cash_transaction",
+          "quantity": null,
+          "symbol": "EWJV",
+          "tradeDate": "20251219"
+        },
+        {
+          "amount": -10.5,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": null,
+            "description": "EWJV(US46435U3749) CASH DIVIDEND USD 1.749185 PER SHARE - US TAX",
+            "metadata": {
+              "settleDate": "20251219",
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -3478,9 +3481,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260618",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-24T09:42:47.049929Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -3497,7 +3500,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -3505,6 +3508,7 @@
             "asOf": "20260810",
             "count": 1,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -3889,9 +3893,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260624",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-27T09:14:06.393966Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -3908,7 +3912,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -3916,6 +3920,7 @@
             "asOf": "20260810",
             "count": 6,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -4295,8 +4300,8 @@
         "summary": {
           "costBasis": 4130.108232,
           "quantity": 50.0,
-          "totalPnl": 210.391768,
-          "totalPnlPct": 0.050940981732606576
+          "totalPnl": 210.39176800000004,
+          "totalPnlPct": 0.05094098173260658
         }
       },
       "summary": {
@@ -4316,8 +4321,8 @@
           "totals": {
             "costBasis": 4130.108232,
             "quantity": 50.0,
-            "totalPnl": 210.391768,
-            "totalPnlPct": 0.050940981732606576
+            "totalPnl": 210.39176800000004,
+            "totalPnlPct": 0.05094098173260658
           }
         }
       }
@@ -4336,7 +4341,7 @@
         "costBasisXirrQuality": "complete",
         "currency": "USD",
         "currentCost": 902.5189990010001,
-        "dividendTotal": 4.24,
+        "dividendTotal": 4.240000000000001,
         "excludedNoPositionDays": 0,
         "feeTotal": -0.34496819300000003,
         "holdingCalendarDays": 269,
@@ -4367,9 +4372,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260616",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-27T09:14:06.393966Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -4386,7 +4391,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -4394,6 +4399,7 @@
             "asOf": "20260810",
             "count": 22,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -4426,7 +4432,7 @@
           "tradeDate": "20260612"
         },
         {
-          "amount": 0.66,
+          "amount": 0.6599999999999999,
           "currency": "USD",
           "details": {
             "grossAmount": 0.78,
@@ -5291,55 +5297,6 @@
           "tradeDate": "20260616"
         },
         {
-          "amount": 0.4,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": null,
-            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND (Ordinary Dividend)",
-            "metadata": {
-              "dividendType": "Ordinary Dividend",
-              "settleDate": "20260612",
-              "type": "Payment In Lieu Of Dividends"
-            },
-            "mtmPnl": null,
-            "price": null,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20260612;202000",
-          "eventType": "cash_transaction",
-          "quantity": null,
-          "symbol": "IBKR",
-          "tradeDate": "20260612"
-        },
-        {
-          "amount": -0.07,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": null,
-            "description": "IBKR(US45841N1072) CASH DIVIDEND USD 0.0875 PER SHARE - US TAX",
-            "metadata": {
-              "settleDate": "20260612",
-              "type": "Withholding Tax"
-            },
-            "mtmPnl": null,
-            "price": null,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20260612;202000",
-          "eventType": "cash_transaction",
-          "quantity": null,
-          "symbol": "IBKR",
-          "tradeDate": "20260612"
-        },
-        {
           "amount": 0.74,
           "currency": "USD",
           "details": {
@@ -5372,6 +5329,55 @@
             "commission": null,
             "costBasis": null,
             "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND - US TAX",
+            "metadata": {
+              "settleDate": "20260612",
+              "type": "Withholding Tax"
+            },
+            "mtmPnl": null,
+            "price": null,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20260612;202000",
+          "eventType": "cash_transaction",
+          "quantity": null,
+          "symbol": "IBKR",
+          "tradeDate": "20260612"
+        },
+        {
+          "amount": 0.4,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": null,
+            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND (Ordinary Dividend)",
+            "metadata": {
+              "dividendType": "Ordinary Dividend",
+              "settleDate": "20260612",
+              "type": "Payment In Lieu Of Dividends"
+            },
+            "mtmPnl": null,
+            "price": null,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20260612;202000",
+          "eventType": "cash_transaction",
+          "quantity": null,
+          "symbol": "IBKR",
+          "tradeDate": "20260612"
+        },
+        {
+          "amount": -0.07,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": null,
+            "description": "IBKR(US45841N1072) CASH DIVIDEND USD 0.0875 PER SHARE - US TAX",
             "metadata": {
               "settleDate": "20260612",
               "type": "Withholding Tax"
@@ -5653,31 +5659,6 @@
           "tradeDate": "20260601"
         },
         {
-          "amount": 0.65,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": null,
-            "description": "IBKR(US45841N1072) CASH DIVIDEND USD 0.08 PER SHARE (Ordinary Dividend)",
-            "metadata": {
-              "dividendType": "Ordinary Dividend",
-              "settleDate": "20260313",
-              "type": "Dividends"
-            },
-            "mtmPnl": null,
-            "price": null,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20260313;202000",
-          "eventType": "cash_transaction",
-          "quantity": null,
-          "symbol": "IBKR",
-          "tradeDate": "20260313"
-        },
-        {
           "amount": 0.45,
           "currency": "USD",
           "details": {
@@ -5703,16 +5684,17 @@
           "tradeDate": "20260313"
         },
         {
-          "amount": -0.07,
+          "amount": 0.65,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "IBKR(US45841N1072) CASH DIVIDEND USD 0.08 PER SHARE - US TAX",
+            "description": "IBKR(US45841N1072) CASH DIVIDEND USD 0.08 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20260313",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -5734,6 +5716,30 @@
             "commission": null,
             "costBasis": null,
             "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND - US TAX",
+            "metadata": {
+              "settleDate": "20260313",
+              "type": "Withholding Tax"
+            },
+            "mtmPnl": null,
+            "price": null,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20260313;202000",
+          "eventType": "cash_transaction",
+          "quantity": null,
+          "symbol": "IBKR",
+          "tradeDate": "20260313"
+        },
+        {
+          "amount": -0.07,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": null,
+            "description": "IBKR(US45841N1072) CASH DIVIDEND USD 0.08 PER SHARE - US TAX",
             "metadata": {
               "settleDate": "20260313",
               "type": "Withholding Tax"
@@ -6087,17 +6093,17 @@
           "tradeDate": "20260227"
         },
         {
-          "amount": 0.67,
+          "amount": 0.5,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND (Ordinary Dividend)",
+            "description": "IBKR(US45841N1072) CASH DIVIDEND USD 0.08 PER SHARE (Ordinary Dividend)",
             "metadata": {
               "dividendType": "Ordinary Dividend",
               "settleDate": "20251212",
-              "type": "Payment In Lieu Of Dividends"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -6112,16 +6118,17 @@
           "tradeDate": "20251212"
         },
         {
-          "amount": -0.05,
+          "amount": 0.67,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "IBKR(US45841N1072) CASH DIVIDEND USD 0.08 PER SHARE - US TAX",
+            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20251212",
-              "type": "Withholding Tax"
+              "type": "Payment In Lieu Of Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -6160,17 +6167,16 @@
           "tradeDate": "20251212"
         },
         {
-          "amount": 0.5,
+          "amount": -0.05,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "IBKR(US45841N1072) CASH DIVIDEND USD 0.08 PER SHARE (Ordinary Dividend)",
+            "description": "IBKR(US45841N1072) CASH DIVIDEND USD 0.08 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20251212",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -6449,30 +6455,6 @@
           "tradeDate": "20251201"
         },
         {
-          "amount": -324.34486725,
-          "currency": "USD",
-          "details": {
-            "closePrice": 66.03,
-            "commission": -0.34486725,
-            "costBasis": 324.34486725,
-            "description": "INTERACTIVE BROKERS GRO-CL A",
-            "metadata": {
-              "buySell": "BUY",
-              "transactionType": "ExchTrade"
-            },
-            "mtmPnl": 6.15,
-            "price": 64.8,
-            "proceeds": -324.0,
-            "realizedPnl": 0.0,
-            "taxes": 0.0
-          },
-          "eventTime": "20251114;093302",
-          "eventType": "trade",
-          "quantity": 5.0,
-          "symbol": "IBKR",
-          "tradeDate": "20251114"
-        },
-        {
           "amount": -29.441925943,
           "currency": "USD",
           "details": {
@@ -6497,16 +6479,41 @@
           "tradeDate": "20251114"
         },
         {
-          "amount": -0.06,
+          "amount": -324.34486725,
+          "currency": "USD",
+          "details": {
+            "closePrice": 66.03,
+            "commission": -0.34486725,
+            "costBasis": 324.34486725,
+            "description": "INTERACTIVE BROKERS GRO-CL A",
+            "metadata": {
+              "buySell": "BUY",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": 6.15,
+            "price": 64.8,
+            "proceeds": -324.0,
+            "realizedPnl": 0.0,
+            "taxes": 0.0
+          },
+          "eventTime": "20251114;093302",
+          "eventType": "trade",
+          "quantity": 5.0,
+          "symbol": "IBKR",
+          "tradeDate": "20251114"
+        },
+        {
+          "amount": 0.56,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND - US TAX",
+            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20250912",
-              "type": "Withholding Tax"
+              "type": "Payment In Lieu Of Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -6521,17 +6528,16 @@
           "tradeDate": "20250912"
         },
         {
-          "amount": 0.56,
+          "amount": -0.06,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND (Ordinary Dividend)",
+            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20250912",
-              "type": "Payment In Lieu Of Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -6857,16 +6863,17 @@
           "tradeDate": "20250618"
         },
         {
-          "amount": -0.04,
+          "amount": 0.42,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND - US TAX",
+            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20250613",
-              "type": "Withholding Tax"
+              "type": "Payment In Lieu Of Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -6881,17 +6888,16 @@
           "tradeDate": "20250613"
         },
         {
-          "amount": 0.42,
+          "amount": -0.04,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND (Ordinary Dividend)",
+            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20250613",
-              "type": "Payment In Lieu Of Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -7194,17 +7200,16 @@
           "tradeDate": "20250530"
         },
         {
-          "amount": 0.26,
+          "amount": -0.03,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND (Ordinary Dividend)",
+            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20250314",
-              "type": "Payment In Lieu Of Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -7219,16 +7224,17 @@
           "tradeDate": "20250314"
         },
         {
-          "amount": -0.03,
+          "amount": 0.26,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND - US TAX",
+            "description": "IBKR(US45841N1072) PAYMENT IN LIEU OF DIVIDEND (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20250314",
-              "type": "Withholding Tax"
+              "type": "Payment In Lieu Of Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -8188,10 +8194,10 @@
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
-          "costBasis": 902.518998,
+          "costBasis": 902.5189980000001,
           "quantity": 12.9707,
           "totalPnl": 273.401001,
-          "totalPnlPct": 0.30293102040606573
+          "totalPnlPct": 0.3029310204060657
         }
       },
       "summary": {
@@ -8209,10 +8215,10 @@
           "sourceMode": "official_activity_flex_lot",
           "status": "complete",
           "totals": {
-            "costBasis": 902.518998,
+            "costBasis": 902.5189980000001,
             "quantity": 12.9707,
             "totalPnl": 273.401001,
-            "totalPnlPct": 0.30293102040606573
+            "totalPnlPct": 0.3029310204060657
           }
         }
       }
@@ -8241,7 +8247,7 @@
         "holdingPeriodStartDate": "20241129",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": -85.778293,
-        "realizedPnlYtd": -90.13095100000001,
+        "realizedPnlYtd": -90.130951,
         "totalReturn": -0.013485670428128094,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "valuationDate": "20260810"
@@ -8262,9 +8268,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260729",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-30T07:43:20.747265Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -8281,7 +8287,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -8289,6 +8295,7 @@
             "asOf": "20260810",
             "count": 3,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -10829,16 +10836,17 @@
           "tradeDate": "20251029"
         },
         {
-          "amount": -4.8,
+          "amount": 48.0,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "KHC(US5007541064) CASH DIVIDEND USD 0.40 PER SHARE - US TAX",
+            "description": "KHC(US5007541064) CASH DIVIDEND USD 0.40 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20250926",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -10853,17 +10861,16 @@
           "tradeDate": "20250926"
         },
         {
-          "amount": 48.0,
+          "amount": -4.8,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "KHC(US5007541064) CASH DIVIDEND USD 0.40 PER SHARE (Ordinary Dividend)",
+            "description": "KHC(US5007541064) CASH DIVIDEND USD 0.40 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20250926",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -12113,31 +12120,6 @@
             "costBasis": 1409.907264,
             "description": "KRAFT HEINZ CO/THE",
             "metadata": {
-              "direction": "IN",
-              "settleDate": "20250403",
-              "type": "INTERNAL"
-            },
-            "mtmPnl": null,
-            "price": 0.0,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20250402;091811",
-          "eventType": "asset_transfer",
-          "quantity": 50.0,
-          "symbol": "KHC",
-          "tradeDate": "20250402"
-        },
-        {
-          "amount": 0.0,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": 1409.907264,
-            "description": "KRAFT HEINZ CO/THE",
-            "metadata": {
               "direction": "OUT",
               "settleDate": "20250403",
               "type": "INTERNAL"
@@ -12155,17 +12137,41 @@
           "tradeDate": "20250402"
         },
         {
-          "amount": 28.0,
+          "amount": 0.0,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": 1409.907264,
+            "description": "KRAFT HEINZ CO/THE",
+            "metadata": {
+              "direction": "IN",
+              "settleDate": "20250403",
+              "type": "INTERNAL"
+            },
+            "mtmPnl": null,
+            "price": 0.0,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20250402;091811",
+          "eventType": "asset_transfer",
+          "quantity": 50.0,
+          "symbol": "KHC",
+          "tradeDate": "20250402"
+        },
+        {
+          "amount": -2.8,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "KHC(US5007541064) CASH DIVIDEND USD 0.40 PER SHARE (Ordinary Dividend)",
+            "description": "KHC(US5007541064) CASH DIVIDEND USD 0.40 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20250328",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -12180,16 +12186,17 @@
           "tradeDate": "20250328"
         },
         {
-          "amount": -2.8,
+          "amount": 28.0,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "KHC(US5007541064) CASH DIVIDEND USD 0.40 PER SHARE - US TAX",
+            "description": "KHC(US5007541064) CASH DIVIDEND USD 0.40 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20250328",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -12742,31 +12749,6 @@
             "costBasis": 637.313217,
             "description": "KRAFT HEINZ CO/THE",
             "metadata": {
-              "direction": "OUT",
-              "settleDate": "20241203",
-              "type": "INTERNAL"
-            },
-            "mtmPnl": null,
-            "price": 0.0,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20241201;205148",
-          "eventType": "asset_transfer",
-          "quantity": -20.0,
-          "symbol": "KHC",
-          "tradeDate": "20241202"
-        },
-        {
-          "amount": 0.0,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": 637.313217,
-            "description": "KRAFT HEINZ CO/THE",
-            "metadata": {
               "direction": "IN",
               "settleDate": "20241203",
               "type": "INTERNAL"
@@ -12780,6 +12762,31 @@
           "eventTime": "20241201;205148",
           "eventType": "asset_transfer",
           "quantity": 20.0,
+          "symbol": "KHC",
+          "tradeDate": "20241202"
+        },
+        {
+          "amount": 0.0,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": 637.313217,
+            "description": "KRAFT HEINZ CO/THE",
+            "metadata": {
+              "direction": "OUT",
+              "settleDate": "20241203",
+              "type": "INTERNAL"
+            },
+            "mtmPnl": null,
+            "price": 0.0,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20241201;205148",
+          "eventType": "asset_transfer",
+          "quantity": -20.0,
           "symbol": "KHC",
           "tradeDate": "20241202"
         },
@@ -12854,8 +12861,8 @@
         "summary": {
           "costBasis": 2702.607881,
           "quantity": 100.0,
-          "totalPnl": -209.607881,
-          "totalPnlPct": -0.07755763700446339
+          "totalPnl": -209.60788100000002,
+          "totalPnlPct": -0.0775576370044634
         }
       },
       "summary": {
@@ -12875,8 +12882,8 @@
           "totals": {
             "costBasis": 2702.607881,
             "quantity": 100.0,
-            "totalPnl": -209.607881,
-            "totalPnlPct": -0.07755763700446339
+            "totalPnl": -209.60788100000002,
+            "totalPnlPct": -0.0775576370044634
           }
         }
       }
@@ -12926,9 +12933,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260701",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-27T09:14:06.393966Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -12945,7 +12952,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -12953,6 +12960,7 @@
             "asOf": "20260810",
             "count": 4,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -13736,17 +13744,16 @@
       ],
       "events": [
         {
-          "amount": 23.85,
+          "amount": -2.39,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "KO(US1912161007) CASH DIVIDEND USD 0.53 PER SHARE (Ordinary Dividend)",
+            "description": "KO(US1912161007) CASH DIVIDEND USD 0.53 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20260701",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -13761,16 +13768,17 @@
           "tradeDate": "20260701"
         },
         {
-          "amount": -2.39,
+          "amount": 23.85,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "KO(US1912161007) CASH DIVIDEND USD 0.53 PER SHARE - US TAX",
+            "description": "KO(US1912161007) CASH DIVIDEND USD 0.53 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20260701",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -14554,17 +14562,16 @@
           "tradeDate": "20260210"
         },
         {
-          "amount": 20.4,
+          "amount": -2.04,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "KO(US1912161007) CASH DIVIDEND USD 0.51 PER SHARE (Ordinary Dividend)",
+            "description": "KO(US1912161007) CASH DIVIDEND USD 0.51 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20251215",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -14579,16 +14586,17 @@
           "tradeDate": "20251215"
         },
         {
-          "amount": -2.04,
+          "amount": 20.4,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "KO(US1912161007) CASH DIVIDEND USD 0.51 PER SHARE - US TAX",
+            "description": "KO(US1912161007) CASH DIVIDEND USD 0.51 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20251215",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -15300,17 +15308,16 @@
           "tradeDate": "20250723"
         },
         {
-          "amount": 10.2,
+          "amount": -1.02,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "KO(US1912161007) CASH DIVIDEND USD 0.51 PER SHARE (Ordinary Dividend)",
+            "description": "KO(US1912161007) CASH DIVIDEND USD 0.51 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20250701",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -15325,16 +15332,17 @@
           "tradeDate": "20250701"
         },
         {
-          "amount": -1.02,
+          "amount": 10.2,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "KO(US1912161007) CASH DIVIDEND USD 0.51 PER SHARE - US TAX",
+            "description": "KO(US1912161007) CASH DIVIDEND USD 0.51 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20250701",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -15693,31 +15701,6 @@
             "costBasis": 1226.506085,
             "description": "COCA-COLA CO/THE",
             "metadata": {
-              "direction": "OUT",
-              "settleDate": "20250404",
-              "type": "INTERNAL"
-            },
-            "mtmPnl": null,
-            "price": 0.0,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20250403;105443",
-          "eventType": "asset_transfer",
-          "quantity": -20.0,
-          "symbol": "KO",
-          "tradeDate": "20250403"
-        },
-        {
-          "amount": 0.0,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": 1226.506085,
-            "description": "COCA-COLA CO/THE",
-            "metadata": {
               "direction": "IN",
               "settleDate": "20250404",
               "type": "INTERNAL"
@@ -15731,6 +15714,31 @@
           "eventTime": "20250403;105443",
           "eventType": "asset_transfer",
           "quantity": 20.0,
+          "symbol": "KO",
+          "tradeDate": "20250403"
+        },
+        {
+          "amount": 0.0,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": 1226.506085,
+            "description": "COCA-COLA CO/THE",
+            "metadata": {
+              "direction": "OUT",
+              "settleDate": "20250404",
+              "type": "INTERNAL"
+            },
+            "mtmPnl": null,
+            "price": 0.0,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20250403;105443",
+          "eventType": "asset_transfer",
+          "quantity": -20.0,
           "symbol": "KO",
           "tradeDate": "20250403"
         },
@@ -16250,31 +16258,6 @@
             "costBasis": 1840.671564,
             "description": "COCA-COLA CO/THE",
             "metadata": {
-              "direction": "IN",
-              "settleDate": "20250108",
-              "type": "INTERNAL"
-            },
-            "mtmPnl": null,
-            "price": 0.0,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20250107;201959",
-          "eventType": "asset_transfer",
-          "quantity": 30.0,
-          "symbol": "KO",
-          "tradeDate": "20250107"
-        },
-        {
-          "amount": 0.0,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": 1840.671564,
-            "description": "COCA-COLA CO/THE",
-            "metadata": {
               "direction": "OUT",
               "settleDate": "20250108",
               "type": "INTERNAL"
@@ -16288,6 +16271,31 @@
           "eventTime": "20250107;201959",
           "eventType": "asset_transfer",
           "quantity": -30.0,
+          "symbol": "KO",
+          "tradeDate": "20250107"
+        },
+        {
+          "amount": 0.0,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": 1840.671564,
+            "description": "COCA-COLA CO/THE",
+            "metadata": {
+              "direction": "IN",
+              "settleDate": "20250108",
+              "type": "INTERNAL"
+            },
+            "mtmPnl": null,
+            "price": 0.0,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20250107;201959",
+          "eventType": "asset_transfer",
+          "quantity": 30.0,
           "symbol": "KO",
           "tradeDate": "20250107"
         },
@@ -16542,9 +16550,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260804",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-08-05T07:49:36.089008Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -16561,7 +16569,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -16569,6 +16577,7 @@
             "asOf": "20260810",
             "count": 8,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -17800,30 +17809,6 @@
       ],
       "events": [
         {
-          "amount": -262.14866025,
-          "currency": "USD",
-          "details": {
-            "closePrice": 268.34,
-            "commission": -0.34866025,
-            "costBasis": 262.14866025,
-            "description": "MC DONALD'S-CORP",
-            "metadata": {
-              "buySell": "BUY",
-              "transactionType": "ExchTrade"
-            },
-            "mtmPnl": 6.54,
-            "price": 261.8,
-            "proceeds": -261.8,
-            "realizedPnl": 0.0,
-            "taxes": 0.0
-          },
-          "eventTime": "20260804;090446",
-          "eventType": "trade",
-          "quantity": 1.0,
-          "symbol": "MCD",
-          "tradeDate": "20260804"
-        },
-        {
           "amount": -2356.185627,
           "currency": "USD",
           "details": {
@@ -17844,6 +17829,30 @@
           "eventTime": "20260804;090446",
           "eventType": "trade",
           "quantity": 9.0,
+          "symbol": "MCD",
+          "tradeDate": "20260804"
+        },
+        {
+          "amount": -262.14866025,
+          "currency": "USD",
+          "details": {
+            "closePrice": 268.34,
+            "commission": -0.34866025,
+            "costBasis": 262.14866025,
+            "description": "MC DONALD'S-CORP",
+            "metadata": {
+              "buySell": "BUY",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": 6.54,
+            "price": 261.8,
+            "proceeds": -261.8,
+            "realizedPnl": 0.0,
+            "taxes": 0.0
+          },
+          "eventTime": "20260804;090446",
+          "eventType": "trade",
+          "quantity": 1.0,
           "symbol": "MCD",
           "tradeDate": "20260804"
         },
@@ -18305,16 +18314,17 @@
           "tradeDate": "20260402"
         },
         {
-          "amount": -0.93,
+          "amount": 9.3,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.86 PER SHARE - US TAX",
+            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.86 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20260317",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -18329,17 +18339,16 @@
           "tradeDate": "20260317"
         },
         {
-          "amount": 9.3,
+          "amount": -0.93,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.86 PER SHARE (Ordinary Dividend)",
+            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.86 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20260317",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -18714,16 +18723,17 @@
           "tradeDate": "20260102"
         },
         {
-          "amount": -1.86,
+          "amount": 18.6,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.86 PER SHARE - US TAX",
+            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.86 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20251215",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -18738,17 +18748,16 @@
           "tradeDate": "20251215"
         },
         {
-          "amount": 18.6,
+          "amount": -1.86,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.86 PER SHARE (Ordinary Dividend)",
+            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.86 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20251215",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -19099,17 +19108,16 @@
           "tradeDate": "20251001"
         },
         {
-          "amount": 17.7,
+          "amount": -1.77,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.77 PER SHARE (Ordinary Dividend)",
+            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.77 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20250916",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -19124,16 +19132,17 @@
           "tradeDate": "20250916"
         },
         {
-          "amount": -1.77,
+          "amount": 17.7,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.77 PER SHARE - US TAX",
+            "description": "MCD(US5801351017) CASH DIVIDEND USD 1.77 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20250916",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -19686,6 +19695,31 @@
             "costBasis": 1500.345432,
             "description": "MC DONALD'S-CORP",
             "metadata": {
+              "direction": "IN",
+              "settleDate": "20250403",
+              "type": "INTERNAL"
+            },
+            "mtmPnl": null,
+            "price": 0.0,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20250402;091811",
+          "eventType": "asset_transfer",
+          "quantity": 5.0,
+          "symbol": "MCD",
+          "tradeDate": "20250402"
+        },
+        {
+          "amount": 0.0,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": 1500.345432,
+            "description": "MC DONALD'S-CORP",
+            "metadata": {
               "direction": "OUT",
               "settleDate": "20250403",
               "type": "INTERNAL"
@@ -19701,56 +19735,6 @@
           "quantity": -5.0,
           "symbol": "MCD",
           "tradeDate": "20250402"
-        },
-        {
-          "amount": 0.0,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": 1500.345432,
-            "description": "MC DONALD'S-CORP",
-            "metadata": {
-              "direction": "IN",
-              "settleDate": "20250403",
-              "type": "INTERNAL"
-            },
-            "mtmPnl": null,
-            "price": 0.0,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20250402;091811",
-          "eventType": "asset_transfer",
-          "quantity": 5.0,
-          "symbol": "MCD",
-          "tradeDate": "20250402"
-        },
-        {
-          "amount": 0.0,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": 1500.345432,
-            "description": "MC DONALD'S-CORP",
-            "metadata": {
-              "direction": "IN",
-              "settleDate": "20250401",
-              "type": "INTERNAL"
-            },
-            "mtmPnl": null,
-            "price": 0.0,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20250331;103526",
-          "eventType": "asset_transfer",
-          "quantity": 5.0,
-          "symbol": "MCD",
-          "tradeDate": "20250331"
         },
         {
           "amount": 0.0,
@@ -19796,7 +19780,7 @@
             "realizedPnl": null,
             "taxes": null
           },
-          "eventTime": "20250331;034650",
+          "eventTime": "20250331;103526",
           "eventType": "asset_transfer",
           "quantity": 5.0,
           "symbol": "MCD",
@@ -19824,6 +19808,31 @@
           "eventTime": "20250331;034650",
           "eventType": "asset_transfer",
           "quantity": -5.0,
+          "symbol": "MCD",
+          "tradeDate": "20250331"
+        },
+        {
+          "amount": 0.0,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": 1500.345432,
+            "description": "MC DONALD'S-CORP",
+            "metadata": {
+              "direction": "IN",
+              "settleDate": "20250401",
+              "type": "INTERNAL"
+            },
+            "mtmPnl": null,
+            "price": 0.0,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20250331;034650",
+          "eventType": "asset_transfer",
+          "quantity": 5.0,
           "symbol": "MCD",
           "tradeDate": "20250331"
         },
@@ -20491,10 +20500,10 @@
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
-          "costBasis": 11172.953984,
+          "costBasis": 11172.953984000002,
           "quantity": 40.0,
           "totalPnl": -224.153984,
-          "totalPnlPct": -0.020062195219007897
+          "totalPnlPct": -0.020062195219007893
         }
       },
       "summary": {
@@ -20512,10 +20521,10 @@
           "sourceMode": "official_activity_flex_lot",
           "status": "complete",
           "totals": {
-            "costBasis": 11172.953984,
+            "costBasis": 11172.953984000002,
             "quantity": 40.0,
             "totalPnl": -224.153984,
-            "totalPnlPct": -0.020062195219007897
+            "totalPnlPct": -0.020062195219007893
           }
         }
       }
@@ -20565,9 +20574,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260731",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-08-01T07:38:26.114191Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -20584,7 +20593,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -20592,6 +20601,7 @@
             "asOf": "20260810",
             "count": 4,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -21041,16 +21051,17 @@
           "tradeDate": "20260618"
         },
         {
-          "amount": -0.91,
+          "amount": 9.1,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "MSFT(US5949181045) CASH DIVIDEND USD 0.91 PER SHARE - US TAX",
+            "description": "MSFT(US5949181045) CASH DIVIDEND USD 0.91 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20260611",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -21065,17 +21076,16 @@
           "tradeDate": "20260611"
         },
         {
-          "amount": 9.1,
+          "amount": -0.91,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "MSFT(US5949181045) CASH DIVIDEND USD 0.91 PER SHARE (Ordinary Dividend)",
+            "description": "MSFT(US5949181045) CASH DIVIDEND USD 0.91 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20260611",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -22131,10 +22141,10 @@
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
-          "costBasis": 9432.364088,
+          "costBasis": 9432.364087999998,
           "quantity": 25.0,
           "totalPnl": 3219.1359119999997,
-          "totalPnlPct": 0.34128622283520993
+          "totalPnlPct": 0.34128622283521
         }
       },
       "summary": {
@@ -22152,10 +22162,10 @@
           "sourceMode": "official_activity_flex_lot",
           "status": "complete",
           "totals": {
-            "costBasis": 9432.364088,
+            "costBasis": 9432.364087999998,
             "quantity": 25.0,
             "totalPnl": 3219.1359119999997,
-            "totalPnlPct": 0.34128622283520993
+            "totalPnlPct": 0.34128622283521
           }
         }
       }
@@ -22205,9 +22215,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260729",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-30T07:43:20.747265Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -22224,7 +22234,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -22232,6 +22242,7 @@
             "asOf": "20260810",
             "count": 2,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -25434,30 +25445,6 @@
           "tradeDate": "20260619"
         },
         {
-          "amount": 418.79317672,
-          "currency": "USD",
-          "details": {
-            "closePrice": 210.69,
-            "commission": -0.00682328,
-            "costBasis": -409.667857,
-            "description": "NVIDIA CORP",
-            "metadata": {
-              "buySell": "SELL",
-              "transactionType": "ExchTrade"
-            },
-            "mtmPnl": -2.58,
-            "price": 209.4,
-            "proceeds": 418.8,
-            "realizedPnl": 9.125319,
-            "taxes": 0.0
-          },
-          "eventTime": "20260618;105721",
-          "eventType": "trade",
-          "quantity": -2.0,
-          "symbol": "NVDA",
-          "tradeDate": "20260618"
-        },
-        {
           "amount": 209.39658836,
           "currency": "USD",
           "details": {
@@ -25478,6 +25465,30 @@
           "eventTime": "20260618;105721",
           "eventType": "trade",
           "quantity": -1.0,
+          "symbol": "NVDA",
+          "tradeDate": "20260618"
+        },
+        {
+          "amount": 418.79317672,
+          "currency": "USD",
+          "details": {
+            "closePrice": 210.69,
+            "commission": -0.00682328,
+            "costBasis": -409.667857,
+            "description": "NVIDIA CORP",
+            "metadata": {
+              "buySell": "SELL",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": -2.58,
+            "price": 209.4,
+            "proceeds": 418.8,
+            "realizedPnl": 9.125319,
+            "taxes": 0.0
+          },
+          "eventTime": "20260618;105721",
+          "eventType": "trade",
+          "quantity": -2.0,
           "symbol": "NVDA",
           "tradeDate": "20260618"
         },
@@ -26443,30 +26454,6 @@
           "tradeDate": "20260317"
         },
         {
-          "amount": 550.27245775,
-          "currency": "USD",
-          "details": {
-            "closePrice": 181.93,
-            "commission": -0.34754225,
-            "costBasis": -549.402977,
-            "description": "NVIDIA CORP",
-            "metadata": {
-              "buySell": "SELL",
-              "transactionType": "ExchTrade"
-            },
-            "mtmPnl": 4.83,
-            "price": 183.54,
-            "proceeds": 550.62,
-            "realizedPnl": 0.869481,
-            "taxes": 0.0
-          },
-          "eventTime": "20260317;073225",
-          "eventType": "trade",
-          "quantity": -3.0,
-          "symbol": "NVDA",
-          "tradeDate": "20260317"
-        },
-        {
           "amount": 1835.40905,
           "currency": "USD",
           "details": {
@@ -26487,6 +26474,30 @@
           "eventTime": "20260317;073225",
           "eventType": "trade",
           "quantity": -10.0,
+          "symbol": "NVDA",
+          "tradeDate": "20260317"
+        },
+        {
+          "amount": 550.27245775,
+          "currency": "USD",
+          "details": {
+            "closePrice": 181.93,
+            "commission": -0.34754225,
+            "costBasis": -549.402977,
+            "description": "NVIDIA CORP",
+            "metadata": {
+              "buySell": "SELL",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": 4.83,
+            "price": 183.54,
+            "proceeds": 550.62,
+            "realizedPnl": 0.869481,
+            "taxes": 0.0
+          },
+          "eventTime": "20260317;073225",
+          "eventType": "trade",
+          "quantity": -3.0,
           "symbol": "NVDA",
           "tradeDate": "20260317"
         },
@@ -26731,30 +26742,6 @@
           "tradeDate": "20260316"
         },
         {
-          "amount": 918.008025,
-          "currency": "USD",
-          "details": {
-            "closePrice": 183.22,
-            "commission": 0.008025,
-            "costBasis": -907.673129,
-            "description": "NVIDIA CORP",
-            "metadata": {
-              "buySell": "SELL",
-              "transactionType": "ExchTrade"
-            },
-            "mtmPnl": 1.9,
-            "price": 183.6,
-            "proceeds": 918.0,
-            "realizedPnl": 10.334896,
-            "taxes": 0.0
-          },
-          "eventTime": "20260316;091919",
-          "eventType": "trade",
-          "quantity": -5.0,
-          "symbol": "NVDA",
-          "tradeDate": "20260316"
-        },
-        {
           "amount": 917.65776775,
           "currency": "USD",
           "details": {
@@ -26770,6 +26757,30 @@
             "price": 183.6,
             "proceeds": 918.0,
             "realizedPnl": 9.984639,
+            "taxes": 0.0
+          },
+          "eventTime": "20260316;091919",
+          "eventType": "trade",
+          "quantity": -5.0,
+          "symbol": "NVDA",
+          "tradeDate": "20260316"
+        },
+        {
+          "amount": 918.008025,
+          "currency": "USD",
+          "details": {
+            "closePrice": 183.22,
+            "commission": 0.008025,
+            "costBasis": -907.673129,
+            "description": "NVIDIA CORP",
+            "metadata": {
+              "buySell": "SELL",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": 1.9,
+            "price": 183.6,
+            "proceeds": 918.0,
+            "realizedPnl": 10.334896,
             "taxes": 0.0
           },
           "eventTime": "20260316;091919",
@@ -26875,30 +26886,6 @@
           "tradeDate": "20260313"
         },
         {
-          "amount": 1469.44724,
-          "currency": "USD",
-          "details": {
-            "closePrice": 183.14,
-            "commission": 0.00724,
-            "costBasis": -1458.831406,
-            "description": "NVIDIA CORP",
-            "metadata": {
-              "buySell": "SELL",
-              "transactionType": "ExchTrade"
-            },
-            "mtmPnl": 4.32,
-            "price": 183.68,
-            "proceeds": 1469.44,
-            "realizedPnl": 10.615834,
-            "taxes": 0.0
-          },
-          "eventTime": "20260312;132101",
-          "eventType": "trade",
-          "quantity": -8.0,
-          "symbol": "NVDA",
-          "tradeDate": "20260312"
-        },
-        {
           "amount": 367.01155275,
           "currency": "USD",
           "details": {
@@ -26919,6 +26906,30 @@
           "eventTime": "20260312;132101",
           "eventType": "trade",
           "quantity": -2.0,
+          "symbol": "NVDA",
+          "tradeDate": "20260312"
+        },
+        {
+          "amount": 1469.44724,
+          "currency": "USD",
+          "details": {
+            "closePrice": 183.14,
+            "commission": 0.00724,
+            "costBasis": -1458.831406,
+            "description": "NVIDIA CORP",
+            "metadata": {
+              "buySell": "SELL",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": 4.32,
+            "price": 183.68,
+            "proceeds": 1469.44,
+            "realizedPnl": 10.615834,
+            "taxes": 0.0
+          },
+          "eventTime": "20260312;132101",
+          "eventType": "trade",
+          "quantity": -8.0,
           "symbol": "NVDA",
           "tradeDate": "20260312"
         },
@@ -26947,30 +26958,6 @@
           "tradeDate": "20260312"
         },
         {
-          "amount": -184.9182,
-          "currency": "USD",
-          "details": {
-            "closePrice": 183.14,
-            "commission": 0.0018,
-            "costBasis": 184.9182,
-            "description": "NVIDIA CORP",
-            "metadata": {
-              "buySell": "BUY",
-              "transactionType": "ExchTrade"
-            },
-            "mtmPnl": -1.78,
-            "price": 184.92,
-            "proceeds": -184.92,
-            "realizedPnl": 0.0,
-            "taxes": 0.0
-          },
-          "eventTime": "20260312;042845",
-          "eventType": "trade",
-          "quantity": 1.0,
-          "symbol": "NVDA",
-          "tradeDate": "20260312"
-        },
-        {
           "amount": -1664.61405725,
           "currency": "USD",
           "details": {
@@ -26991,6 +26978,30 @@
           "eventTime": "20260312;042845",
           "eventType": "trade",
           "quantity": 9.0,
+          "symbol": "NVDA",
+          "tradeDate": "20260312"
+        },
+        {
+          "amount": -184.9182,
+          "currency": "USD",
+          "details": {
+            "closePrice": 183.14,
+            "commission": 0.0018,
+            "costBasis": 184.9182,
+            "description": "NVIDIA CORP",
+            "metadata": {
+              "buySell": "BUY",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": -1.78,
+            "price": 184.92,
+            "proceeds": -184.92,
+            "realizedPnl": 0.0,
+            "taxes": 0.0
+          },
+          "eventTime": "20260312;042845",
+          "eventType": "trade",
+          "quantity": 1.0,
           "symbol": "NVDA",
           "tradeDate": "20260312"
         },
@@ -27451,30 +27462,6 @@
           "tradeDate": "20260305"
         },
         {
-          "amount": -364.82805725,
-          "currency": "USD",
-          "details": {
-            "closePrice": 183.34,
-            "commission": -0.34805725,
-            "costBasis": 364.82805725,
-            "description": "NVIDIA CORP",
-            "metadata": {
-              "buySell": "BUY",
-              "transactionType": "ExchTrade"
-            },
-            "mtmPnl": 2.2,
-            "price": 182.24,
-            "proceeds": -364.48,
-            "realizedPnl": 0.0,
-            "taxes": 0.0
-          },
-          "eventTime": "20260305;073934",
-          "eventType": "trade",
-          "quantity": 2.0,
-          "symbol": "NVDA",
-          "tradeDate": "20260305"
-        },
-        {
           "amount": -546.7167,
           "currency": "USD",
           "details": {
@@ -27495,6 +27482,30 @@
           "eventTime": "20260305;073934",
           "eventType": "trade",
           "quantity": 3.0,
+          "symbol": "NVDA",
+          "tradeDate": "20260305"
+        },
+        {
+          "amount": -364.82805725,
+          "currency": "USD",
+          "details": {
+            "closePrice": 183.34,
+            "commission": -0.34805725,
+            "costBasis": 364.82805725,
+            "description": "NVIDIA CORP",
+            "metadata": {
+              "buySell": "BUY",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": 2.2,
+            "price": 182.24,
+            "proceeds": -364.48,
+            "realizedPnl": 0.0,
+            "taxes": 0.0
+          },
+          "eventTime": "20260305;073934",
+          "eventType": "trade",
+          "quantity": 2.0,
           "symbol": "NVDA",
           "tradeDate": "20260305"
         },
@@ -28027,30 +28038,6 @@
           "tradeDate": "20250716"
         },
         {
-          "amount": 5096.42736,
-          "currency": "USD",
-          "details": {
-            "closePrice": 171.37,
-            "commission": 0.02736,
-            "costBasis": -5096.42736,
-            "description": "NVIDIA CORP",
-            "metadata": {
-              "buySell": "SELL",
-              "transactionType": "ExchTrade"
-            },
-            "mtmPnl": -44.7,
-            "price": 169.88,
-            "proceeds": 5096.4,
-            "realizedPnl": 0.0,
-            "taxes": 0.0
-          },
-          "eventTime": "20250716;105657",
-          "eventType": "trade",
-          "quantity": -30.0,
-          "symbol": "NVDA",
-          "tradeDate": "20250716"
-        },
-        {
           "amount": 5096.07710275,
           "currency": "USD",
           "details": {
@@ -28066,6 +28053,30 @@
             "price": 169.88,
             "proceeds": 5096.4,
             "realizedPnl": -18.791586,
+            "taxes": 0.0
+          },
+          "eventTime": "20250716;105657",
+          "eventType": "trade",
+          "quantity": -30.0,
+          "symbol": "NVDA",
+          "tradeDate": "20250716"
+        },
+        {
+          "amount": 5096.42736,
+          "currency": "USD",
+          "details": {
+            "closePrice": 171.37,
+            "commission": 0.02736,
+            "costBasis": -5096.42736,
+            "description": "NVIDIA CORP",
+            "metadata": {
+              "buySell": "SELL",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": -44.7,
+            "price": 169.88,
+            "proceeds": 5096.4,
+            "realizedPnl": 0.0,
             "taxes": 0.0
           },
           "eventTime": "20250716;105657",
@@ -29504,7 +29515,7 @@
           "latestEventDate": "20260810",
           "latestSourceAt": "2026-08-11T06:04:56.066646Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -29521,7 +29532,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -29529,6 +29540,7 @@
             "asOf": "20260810",
             "count": 6,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -31589,16 +31601,17 @@
           "tradeDate": "20260402"
         },
         {
-          "amount": -8.6,
+          "amount": 86.0,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE - US TAX",
+            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20260306",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -31613,17 +31626,16 @@
           "tradeDate": "20260306"
         },
         {
-          "amount": 86.0,
+          "amount": -8.6,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE (Ordinary Dividend)",
+            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20260306",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -33007,16 +33019,17 @@
           "tradeDate": "20250919"
         },
         {
-          "amount": -6.02,
+          "amount": 60.2,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE - US TAX",
+            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20250902",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -33031,17 +33044,16 @@
           "tradeDate": "20250902"
         },
         {
-          "amount": 60.2,
+          "amount": -6.02,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE (Ordinary Dividend)",
+            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20250902",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -34529,31 +34541,6 @@
             "costBasis": 2583.805381,
             "description": "PFIZER INC",
             "metadata": {
-              "direction": "IN",
-              "settleDate": "20250404",
-              "type": "INTERNAL"
-            },
-            "mtmPnl": null,
-            "price": 0.0,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20250403;105443",
-          "eventType": "asset_transfer",
-          "quantity": 100.0,
-          "symbol": "PFE",
-          "tradeDate": "20250403"
-        },
-        {
-          "amount": 0.0,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": 2583.805381,
-            "description": "PFIZER INC",
-            "metadata": {
               "direction": "OUT",
               "settleDate": "20250404",
               "type": "INTERNAL"
@@ -34567,6 +34554,31 @@
           "eventTime": "20250403;105443",
           "eventType": "asset_transfer",
           "quantity": -100.0,
+          "symbol": "PFE",
+          "tradeDate": "20250403"
+        },
+        {
+          "amount": 0.0,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": 2583.805381,
+            "description": "PFIZER INC",
+            "metadata": {
+              "direction": "IN",
+              "settleDate": "20250404",
+              "type": "INTERNAL"
+            },
+            "mtmPnl": null,
+            "price": 0.0,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20250403;105443",
+          "eventType": "asset_transfer",
+          "quantity": 100.0,
           "symbol": "PFE",
           "tradeDate": "20250403"
         },
@@ -34629,7 +34641,7 @@
             "costBasis": 2583.805381,
             "description": "PFIZER INC",
             "metadata": {
-              "direction": "IN",
+              "direction": "OUT",
               "settleDate": "20250401",
               "type": "INTERNAL"
             },
@@ -34641,7 +34653,7 @@
           },
           "eventTime": "20250331;103526",
           "eventType": "asset_transfer",
-          "quantity": 100.0,
+          "quantity": -100.0,
           "symbol": "PFE",
           "tradeDate": "20250331"
         },
@@ -34654,7 +34666,7 @@
             "costBasis": 2583.805381,
             "description": "PFIZER INC",
             "metadata": {
-              "direction": "OUT",
+              "direction": "IN",
               "settleDate": "20250401",
               "type": "INTERNAL"
             },
@@ -34666,7 +34678,7 @@
           },
           "eventTime": "20250331;103526",
           "eventType": "asset_transfer",
-          "quantity": -100.0,
+          "quantity": 100.0,
           "symbol": "PFE",
           "tradeDate": "20250331"
         },
@@ -34703,31 +34715,6 @@
             "costBasis": 1575.529724,
             "description": "PFIZER INC",
             "metadata": {
-              "direction": "IN",
-              "settleDate": "20250327",
-              "type": "INTERNAL"
-            },
-            "mtmPnl": null,
-            "price": 0.0,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20250326;182336",
-          "eventType": "asset_transfer",
-          "quantity": 60.0,
-          "symbol": "PFE",
-          "tradeDate": "20250326"
-        },
-        {
-          "amount": 0.0,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": 1575.529724,
-            "description": "PFIZER INC",
-            "metadata": {
               "direction": "OUT",
               "settleDate": "20250327",
               "type": "INTERNAL"
@@ -34745,16 +34732,42 @@
           "tradeDate": "20250326"
         },
         {
-          "amount": -2.15,
+          "amount": 0.0,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": 1575.529724,
+            "description": "PFIZER INC",
+            "metadata": {
+              "direction": "IN",
+              "settleDate": "20250327",
+              "type": "INTERNAL"
+            },
+            "mtmPnl": null,
+            "price": 0.0,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20250326;182336",
+          "eventType": "asset_transfer",
+          "quantity": 60.0,
+          "symbol": "PFE",
+          "tradeDate": "20250326"
+        },
+        {
+          "amount": 21.5,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE - US TAX",
+            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20250307",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -34769,17 +34782,16 @@
           "tradeDate": "20250307"
         },
         {
-          "amount": 21.5,
+          "amount": -2.15,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE (Ordinary Dividend)",
+            "description": "PFE(US7170811035) CASH DIVIDEND USD 0.43 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20250307",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -35660,12 +35672,12 @@
           "tradeDate": "20250103"
         },
         {
-          "amount": -400.72908,
+          "amount": -401.07933725,
           "currency": "USD",
           "details": {
             "closePrice": 26.62,
-            "commission": -0.00408,
-            "costBasis": 400.72908,
+            "commission": -0.35433725,
+            "costBasis": 401.07933725,
             "description": "PFIZER INC",
             "metadata": {
               "buySell": "BUY",
@@ -35684,12 +35696,12 @@
           "tradeDate": "20241227"
         },
         {
-          "amount": -401.07933725,
+          "amount": -400.72908,
           "currency": "USD",
           "details": {
             "closePrice": 26.62,
-            "commission": -0.35433725,
-            "costBasis": 401.07933725,
+            "commission": -0.00408,
+            "costBasis": 400.72908,
             "description": "PFIZER INC",
             "metadata": {
               "buySell": "BUY",
@@ -35812,10 +35824,10 @@
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
-          "costBasis": 3852.222102,
+          "costBasis": 3852.2221019999997,
           "quantity": 160.0,
           "totalPnl": 475.777898,
-          "totalPnlPct": 0.12350739012503593
+          "totalPnlPct": 0.12350739012503595
         }
       },
       "summary": {
@@ -35833,10 +35845,10 @@
           "sourceMode": "official_activity_flex_lot",
           "status": "complete",
           "totals": {
-            "costBasis": 3852.222102,
+            "costBasis": 3852.2221019999997,
             "quantity": 160.0,
             "totalPnl": 475.777898,
-            "totalPnlPct": 0.12350739012503593
+            "totalPnlPct": 0.12350739012503595
           }
         }
       }
@@ -35886,9 +35898,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260629",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-27T09:14:06.393966Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -35905,7 +35917,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -35913,6 +35925,7 @@
             "asOf": "20260810",
             "count": 2,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -36198,16 +36211,17 @@
       ],
       "events": [
         {
-          "amount": -0.33,
+          "amount": 3.3,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "SCHF(US8085248057) CASH DIVIDEND USD 0.165 PER SHARE - US TAX",
+            "description": "SCHF(US8085248057) CASH DIVIDEND USD 0.165 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20260629",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -36222,17 +36236,16 @@
           "tradeDate": "20260629"
         },
         {
-          "amount": 3.3,
+          "amount": -0.33,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "SCHF(US8085248057) CASH DIVIDEND USD 0.165 PER SHARE (Ordinary Dividend)",
+            "description": "SCHF(US8085248057) CASH DIVIDEND USD 0.165 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20260629",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -36568,31 +36581,6 @@
             "costBasis": 226.336477,
             "description": "SCHWAB INTL EQUITY ETF",
             "metadata": {
-              "direction": "OUT",
-              "settleDate": "20250905",
-              "type": "INTERNAL"
-            },
-            "mtmPnl": null,
-            "price": 0.0,
-            "proceeds": null,
-            "realizedPnl": null,
-            "taxes": null
-          },
-          "eventTime": "20250904;012215",
-          "eventType": "asset_transfer",
-          "quantity": -10.0,
-          "symbol": "SCHF",
-          "tradeDate": "20250904"
-        },
-        {
-          "amount": 0.0,
-          "currency": "USD",
-          "details": {
-            "closePrice": null,
-            "commission": null,
-            "costBasis": 226.336477,
-            "description": "SCHWAB INTL EQUITY ETF",
-            "metadata": {
               "direction": "IN",
               "settleDate": "20250905",
               "type": "INTERNAL"
@@ -36606,6 +36594,31 @@
           "eventTime": "20250904;012215",
           "eventType": "asset_transfer",
           "quantity": 10.0,
+          "symbol": "SCHF",
+          "tradeDate": "20250904"
+        },
+        {
+          "amount": 0.0,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": 226.336477,
+            "description": "SCHWAB INTL EQUITY ETF",
+            "metadata": {
+              "direction": "OUT",
+              "settleDate": "20250905",
+              "type": "INTERNAL"
+            },
+            "mtmPnl": null,
+            "price": 0.0,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": null
+          },
+          "eventTime": "20250904;012215",
+          "eventType": "asset_transfer",
+          "quantity": -10.0,
           "symbol": "SCHF",
           "tradeDate": "20250904"
         },
@@ -36790,9 +36803,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260408",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-27T09:14:06.393966Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -36809,7 +36822,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -36817,6 +36830,7 @@
             "asOf": "20260810",
             "count": 1,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -37177,7 +37191,7 @@
         "costBasisXirrQuality": "complete",
         "currency": "USD",
         "currentCost": 792.3364770000001,
-        "dividendTotal": 21.24,
+        "dividendTotal": 21.240000000000002,
         "excludedNoPositionDays": 0,
         "feeTotal": -0.33647725,
         "holdingCalendarDays": 304,
@@ -37208,9 +37222,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260623",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-07-24T09:42:47.049929Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -37227,7 +37241,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -37235,6 +37249,7 @@
             "asOf": "20260810",
             "count": 1,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -37629,17 +37644,16 @@
           "tradeDate": "20260618"
         },
         {
-          "amount": 3.82,
+          "amount": -0.38,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "VGK(US9220428745) CASH DIVIDEND USD 0.3819 PER SHARE (Ordinary Dividend)",
+            "description": "VGK(US9220428745) CASH DIVIDEND USD 0.3819 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20260324",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -37654,16 +37668,17 @@
           "tradeDate": "20260324"
         },
         {
-          "amount": -0.38,
+          "amount": 3.82,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "VGK(US9220428745) CASH DIVIDEND USD 0.3819 PER SHARE - US TAX",
+            "description": "VGK(US9220428745) CASH DIVIDEND USD 0.3819 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20260324",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -38037,9 +38052,9 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260803",
-          "latestSourceAt": "2026-08-11T06:04:56.066646Z",
+          "latestSourceAt": "2026-08-04T10:10:13.351747Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20260810"
+          "statementThrough": "20260723"
         },
         "portfolioClose": {
           "sourceAt": "2026-08-11T06:04:56.066646Z",
@@ -38056,7 +38071,7 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 10,
+            "ingestionWindows": 4,
             "responseTruncated": false,
             "status": "pass"
           },
@@ -38064,6 +38079,7 @@
             "asOf": "20260810",
             "count": 16,
             "coverageStatus": "complete",
+            "message": null,
             "sourceMode": "official_activity_flex_lot",
             "status": "pass"
           }
@@ -38739,17 +38755,16 @@
           "tradeDate": "20260706"
         },
         {
-          "amount": 7.61,
+          "amount": -0.76,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "VOO(US9229083632) CASH DIVIDEND USD 1.9622 PER SHARE (Ordinary Dividend)",
+            "description": "VOO(US9229083632) CASH DIVIDEND USD 1.9622 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20260630",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -38764,16 +38779,17 @@
           "tradeDate": "20260630"
         },
         {
-          "amount": -0.76,
+          "amount": 7.61,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "VOO(US9229083632) CASH DIVIDEND USD 1.9622 PER SHARE - US TAX",
+            "description": "VOO(US9229083632) CASH DIVIDEND USD 1.9622 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20260630",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -39009,16 +39025,17 @@
           "tradeDate": "20260413"
         },
         {
-          "amount": -0.55,
+          "amount": 5.53,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "VOO(US9229083632) CASH DIVIDEND USD 1.8724 PER SHARE - US TAX",
+            "description": "VOO(US9229083632) CASH DIVIDEND USD 1.8724 PER SHARE (Ordinary Dividend)",
             "metadata": {
+              "dividendType": "Ordinary Dividend",
               "settleDate": "20260331",
-              "type": "Withholding Tax"
+              "type": "Dividends"
             },
             "mtmPnl": null,
             "price": null,
@@ -39033,17 +39050,16 @@
           "tradeDate": "20260331"
         },
         {
-          "amount": 5.53,
+          "amount": -0.55,
           "currency": "USD",
           "details": {
             "closePrice": null,
             "commission": null,
             "costBasis": null,
-            "description": "VOO(US9229083632) CASH DIVIDEND USD 1.8724 PER SHARE (Ordinary Dividend)",
+            "description": "VOO(US9229083632) CASH DIVIDEND USD 1.8724 PER SHARE - US TAX",
             "metadata": {
-              "dividendType": "Ordinary Dividend",
               "settleDate": "20260331",
-              "type": "Dividends"
+              "type": "Withholding Tax"
             },
             "mtmPnl": null,
             "price": null,
@@ -39700,8 +39716,8 @@
         "summary": {
           "costBasis": 2758.695674,
           "quantity": 4.3113,
-          "totalPnl": 305.134324,
-          "totalPnlPct": 0.11060818591764682
+          "totalPnl": 305.13432400000005,
+          "totalPnlPct": 0.11060818591764683
         }
       },
       "summary": {
@@ -39721,8 +39737,8 @@
           "totals": {
             "costBasis": 2758.695674,
             "quantity": 4.3113,
-            "totalPnl": 305.134324,
-            "totalPnlPct": 0.11060818591764682
+            "totalPnl": 305.13432400000005,
+            "totalPnlPct": 0.11060818591764683
           }
         }
       }
