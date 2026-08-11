@@ -11,8 +11,8 @@
       "domains": {
         "research": {
           "count": 2,
-          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
-          "status": "pass"
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "warning"
         }
       }
     },
@@ -23,10 +23,10 @@
           "role": "Director, ETF and Passive Strategies, US"
         },
         "freshness": {
-          "ageDays": 3.957869074733796,
+          "ageDays": 11.88201323087963,
           "maximumDays": 7,
-          "status": "current",
-          "warning": null
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
         },
         "interpretation": "Morningstar 在 2026-02-12 的黄金 ETF 比较中由 Bryan Armour 给出一个清楚但有限的结论：八只主要实物黄金 ETF 持有的核心资产相同，长期差异主要来自费用和交易成本；GLDM 同时具有 0.10%低费率和仅次于超大工具的低交易成本，因此适合大多数低频、买入持有型黄金投资者。文章也强调黄金不产生收入，价格受资金流、实际利率、美元和避险需求驱动，可能只提供不完美的通胀或危机对冲。GLDM 的 Morningstar 证券页目前显示没有独立 Analysis 数据，所以文章结论不是 Medalist、pillar、星级或黄金估值判断；它支持的是“若组合已经决定持有黄金，GLDM 是有效实现工具”，而不是“当前金价便宜”或“应提高贵金属权重”。",
         "metrics": {
@@ -105,6 +105,7 @@
       {
         "asOfDate": "20260730",
         "assessmentType": "physical_gold_trust_review",
+        "completedAt": "2026-07-30T17:51:56.398540Z",
         "frameworkVersion": "physical-commodity-trust-research-v1",
         "result": {
           "bearCase": [
@@ -212,7 +213,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-03T16:48:18.797338Z",
+  "generatedAt": "2026-08-11T14:59:05.371392Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "GLDM"

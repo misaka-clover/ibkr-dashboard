@@ -11,8 +11,8 @@
       "domains": {
         "research": {
           "count": 2,
-          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
-          "status": "pass"
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "warning"
         }
       }
     },
@@ -23,10 +23,10 @@
           "role": "Analyst"
         },
         "freshness": {
-          "ageDays": 3.9757511991319445,
+          "ageDays": 11.899889058287036,
           "maximumDays": 7,
-          "status": "current",
-          "warning": null
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
         },
         "interpretation": "Morningstar 在 2026-04-27 的当前分析中，由 Zachary Evens 将 SCHF 评为分析师驱动的 Gold Medalist，核心理由是其市值加权组合以很低费用覆盖发达市场（美国以外）的大型和中型公司，广度、成本与执行使它成为较有吸引力的国际股票基金。Morningstar 2026-05 与 2026-06 的官方精选清单继续把 SCHF 列入 Gold、100%分析师覆盖的国际股票工具，并提醒投资者在增加国际基金前先检查既有重叠。这里的 Gold 是相对 Foreign Large Blend 同类、扣除费用和风险后的前瞻评价，不是指数当前便宜的证明，也不解决外币、金融和日本权重、韩国分类差异或账户内 VGK／EWL／EWJV 重叠。没有完整 Morningstar ETF 研报 PDF，官网公开材料也没有安全暴露当前传统历史星级或 pillar 等级，因此这些字段保持未核实，不用发行人数据代替。",
         "metrics": {
@@ -103,6 +103,7 @@
       {
         "asOfDate": "20260730",
         "assessmentType": "developed_ex_us_index_etf_review",
+        "completedAt": "2026-07-30T17:26:31.727408Z",
         "frameworkVersion": "developed-ex-us-index-etf-research-v1",
         "result": {
           "bearCase": [
@@ -218,7 +219,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-03T16:48:18.797338Z",
+  "generatedAt": "2026-08-11T14:59:05.371392Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "SCHF"

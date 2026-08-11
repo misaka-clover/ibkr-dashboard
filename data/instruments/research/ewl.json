@@ -11,8 +11,8 @@
       "domains": {
         "research": {
           "count": 2,
-          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，原始研报仍仅通过来源链接访问。",
-          "status": "pass"
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "warning"
         }
       }
     },
@@ -23,10 +23,10 @@
           "role": null
         },
         "freshness": {
-          "ageDays": 3.9703538340740745,
+          "ageDays": 11.894495580081019,
           "maximumDays": 7,
-          "status": "current",
-          "warning": null
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
         },
         "interpretation": "Morningstar 的 EWL 官方分析页在 2026-07-30 核验时明确表示该基金目前没有 Morningstar 分析师覆盖，并解释未覆盖基金往往因为资产规模、客户持有度或策略相关性未达到其优先覆盖标准，未来仍可能因规模、经理、策略、风险调整后表现或母公司变化而进入覆盖。这个状态不能解释成 Negative 或“不值得持有”，也不能反向推断任何 Medalist、Process、People、Parent 或传统星级。由于没有可供复核的 Morningstar EWL 分析、完整研报 PDF或安全暴露的评级字段，本面板只记录覆盖缺口；产品质量、估值和组合角色由 iShares、MSCI、本地组合事实及授权日线独立判断。",
         "metrics": {
@@ -92,6 +92,7 @@
       {
         "asOfDate": "20260730",
         "assessmentType": "single_country_index_etf_review",
+        "completedAt": "2026-07-30T17:43:18.501098Z",
         "frameworkVersion": "single-country-index-etf-research-v1",
         "result": {
           "bearCase": [
@@ -199,7 +200,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-03T16:48:18.797338Z",
+  "generatedAt": "2026-08-11T14:59:05.371392Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "EWL"

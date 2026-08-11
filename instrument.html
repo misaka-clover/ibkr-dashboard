@@ -44,56 +44,6 @@
     button { font: inherit; }
     a { color: inherit; }
     .shell { width: min(1520px, 100%); margin: 0 auto; padding: 0 clamp(22px, 3.4vw, 52px) 64px; }
-    .workspace-nav {
-      position: sticky;
-      top: 0;
-      z-index: 80;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      min-height: 78px;
-      margin: 0 0 26px;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(22,59,89,.12);
-      background: rgba(243,245,246,.94);
-      backdrop-filter: blur(14px);
-    }
-    .workspace-brand { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 13px; color: var(--navy); text-decoration: none; }
-    .workspace-brand-mark { position: relative; width: 35px; height: 35px; border: 1px solid rgba(22,59,89,.72); background: rgba(255,255,255,.55); }
-    .workspace-brand-mark::before, .workspace-brand-mark::after { content: ""; position: absolute; height: 2px; background: var(--gold); transform-origin: left center; }
-    .workspace-brand-mark::before { width: 17px; left: 7px; top: 22px; transform: rotate(-31deg); }
-    .workspace-brand-mark::after { width: 10px; left: 19px; top: 14px; transform: rotate(37deg); }
-    .workspace-brand-text { display: grid; line-height: 1.08; }
-    .workspace-brand-title { font-size: 13px; font-weight: 800; }
-    .workspace-brand-subtitle { margin-top: 3px; color: #8d98a4; font-size: 8px; font-weight: 750; letter-spacing: .16em; }
-    .workspace-nav-scroll { min-width: 0; flex: 1 1 auto; overflow-x: auto; scrollbar-width: none; }
-    .workspace-nav-scroll::-webkit-scrollbar { display: none; }
-    .workspace-nav-links { display: flex; align-items: center; justify-content: flex-end; min-width: max-content; }
-    .workspace-nav-link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 40px;
-      padding: 9px 12px;
-      color: #5e6b76;
-      font-size: 12px;
-      font-weight: 720;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: color 120ms ease, background 120ms ease, box-shadow 120ms ease;
-    }
-    .workspace-nav-link:hover, .workspace-nav-link:focus-visible {
-      color: var(--navy);
-      background: rgba(255,255,255,.72);
-      box-shadow: inset 0 -2px 0 rgba(47,111,159,.45);
-      outline: none;
-    }
-    .workspace-nav-link[aria-current="page"] {
-      color: var(--navy);
-      background: rgba(255,255,255,.82);
-      box-shadow: inset 0 -2px 0 var(--gold);
-    }
-    .workspace-nav-link[aria-disabled="true"] { color: #9aa4ad; cursor: default; }
-    .workspace-nav-link[aria-disabled="true"]:hover { color: #9aa4ad; background: transparent; box-shadow: none; }
     .instrument-hero {
       position: relative;
       display: grid;
@@ -113,6 +63,7 @@
     }
     .eyebrow { margin: 0 0 7px; color: var(--blue); font-size: 11px; font-weight: 780; letter-spacing: .14em; text-transform: uppercase; }
     h1 { margin: 0; color: var(--navy); font-size: clamp(35px, 5vw, 66px); font-weight: 700; line-height: .98; letter-spacing: -.055em; }
+    body.bond-detail h1 { font-size: clamp(30px, 4vw, 52px); letter-spacing: -.04em; }
     .company-name { margin: 12px 0 0; color: #465866; font-size: clamp(16px, 2vw, 21px); }
     .company-name-zh { margin-left: 10px; color: #75828c; font-size: .78em; }
     .company-name-zh::before { content: "·"; margin-right: 10px; color: #a5afb7; }
@@ -189,6 +140,10 @@
     .section-kicker { margin: 0 0 4px; color: var(--blue); font-size: 10px; font-weight: 780; letter-spacing: .14em; text-transform: uppercase; }
     .section-title { margin: 0; color: var(--navy); font-size: 21px; font-weight: 740; letter-spacing: -.02em; }
     .section-note { margin: 6px 0 0; color: var(--muted); font-size: 11px; }
+    .section-head-meta { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px; }
+    .decision-case-link { border-color: #ead9aa; background: var(--amber-soft); color: var(--amber); text-decoration: none; transition: color 120ms ease, background 120ms ease, border-color 120ms ease; }
+    .decision-case-link[hidden] { display: none; }
+    .decision-case-link:hover, .decision-case-link:focus-visible { border-color: rgba(189,140,40,.68); background: var(--gold-soft); color: var(--navy); outline: none; }
     .card { border: 1px solid rgba(22,59,89,.13); border-radius: 3px; background: rgba(255,255,255,.91); box-shadow: none; }
     .card-body { padding: 22px; }
     .chart-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; border-bottom: 1px solid rgba(22,59,89,.11); }
@@ -212,6 +167,9 @@
     .tooltip-grid { display: grid; grid-template-columns: auto 62px auto 62px; gap: 4px 6px; justify-content: center; margin-top: 7px; align-items: baseline; }
     .tooltip-label { color: var(--muted); white-space: nowrap; }
     .tooltip-value { min-width: 0; overflow: hidden; text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; text-overflow: ellipsis; white-space: nowrap; }
+    #bondYieldTooltip .tooltip-grid { grid-template-columns: minmax(0, 1fr) max-content; column-gap: 12px; justify-content: stretch; }
+    #bondYieldTooltip .tooltip-label { min-width: 0; overflow-wrap: anywhere; white-space: normal; }
+    #bondYieldTooltip .tooltip-value { overflow: visible; text-overflow: clip; }
     .tooltip-events { display: grid; gap: 5px; margin-top: 8px; padding-top: 7px; border-top: 1px solid #e1e6ea; color: #455d6e; line-height: 1.45; }
     .tooltip-event { display: grid; grid-template-columns: auto 1fr; gap: 6px; align-items: start; }
     .tooltip-event-kind { color: var(--blue); font-weight: 780; white-space: nowrap; }
@@ -220,6 +178,44 @@
     .chart-event-label { font: 750 8px var(--sans); letter-spacing: .02em; pointer-events: none; }
     .moving-average-line { fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
     .chart-caption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding: 10px 18px 15px; border-top: 1px solid rgba(22,59,89,.09); color: var(--muted); font-size: 10px; }
+    .bond-cashflow-surface { padding: 18px; }
+    .bond-yield-panel { margin-bottom: 16px; border: 1px solid rgba(22,59,89,.13); background: #fff; }
+    .bond-yield-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; padding: 14px 16px 11px; border-bottom: 1px solid #e3e8eb; }
+    .bond-yield-title { margin: 0; color: var(--navy); font-size: 14px; font-weight: 760; }
+    .bond-yield-subtitle { margin: 4px 0 0; color: var(--muted); font-size: 9px; line-height: 1.45; }
+    .bond-yield-status { color: var(--muted); font: 9px var(--mono); white-space: nowrap; }
+    .bond-yield-toolbar { display: flex; align-items: center; justify-content: flex-end; padding: 10px 16px; border-bottom: 1px solid #e3e8eb; background: #fafbfc; }
+    .bond-yield-chart-frame { position: relative; min-height: 0; padding: 8px 8px 0; overflow: hidden; }
+    .bond-yield-chart { display: block; width: 100%; height: auto; aspect-ratio: 3 / 1; touch-action: none; }
+    .bond-yield-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 18px; padding: 10px 16px; border-top: 1px solid #e7ebee; background: #fafbfc; color: #53616c; font-size: 10px; }
+    .bond-yield-legend-item { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .bond-yield-legend-mark { width: 27px; height: 0; border-top: 2px solid var(--bond-yield-color, #176b9b); }
+    .bond-yield-legend-mark.security { border-top-width: 3px; border-top-color: var(--navy); }
+    .bond-yield-legend-mark.unavailable { border-top-color: #9aa6ae; border-top-style: dotted; }
+    .bond-yield-legend-item.unavailable { color: #7c8992; }
+    .bond-yield-legend-mark.purchase { border-top-color: var(--gold); border-top-style: dashed; }
+    .bond-yield-method { margin: 0; padding: 10px 16px 12px; border-top: 1px solid #e7ebee; color: var(--muted); font-size: 9px; line-height: 1.55; }
+    .bond-cashflow-metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border: 1px solid rgba(22,59,89,.13); background: rgba(22,59,89,.11); }
+    .bond-cashflow-metric { min-width: 0; min-height: 92px; padding: 14px 16px; background: #fff; }
+    .bond-cashflow-metric + .bond-cashflow-metric { border-left: 1px solid rgba(22,59,89,.11); }
+    .bond-cashflow-label { color: var(--muted); font-size: 9px; font-weight: 780; letter-spacing: .05em; }
+    .bond-cashflow-value { margin-top: 7px; color: var(--navy); font: 750 18px var(--mono); font-variant-numeric: tabular-nums; }
+    .bond-cashflow-note { margin-top: 5px; color: var(--muted); font-size: 9px; line-height: 1.45; }
+    .bond-maturity-rail { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px; margin: 16px 0; border: 1px solid rgba(22,59,89,.12); background: rgba(22,59,89,.11); }
+    .bond-rail-stop { position: relative; min-height: 76px; padding: 13px 15px 12px 28px; background: #f9fbfc; }
+    .bond-rail-stop::before { content: ""; position: absolute; left: 13px; top: 18px; width: 7px; height: 7px; border: 1px solid var(--blue); border-radius: 50%; background: #fff; }
+    .bond-rail-stop.maturity::before { border-color: var(--gold); background: var(--gold); box-shadow: 0 0 0 3px rgba(189,140,40,.12); }
+    .bond-rail-label { color: var(--muted); font-size: 9px; font-weight: 760; }
+    .bond-rail-value { margin-top: 5px; color: var(--navy); font: 730 12px var(--mono); }
+    .bond-schedule-wrap { max-height: 330px; overflow: auto; border: 1px solid rgba(22,59,89,.12); }
+    .bond-schedule-table { width: 100%; min-width: 620px; border-collapse: collapse; }
+    .bond-schedule-table th { position: sticky; top: 0; z-index: 2; background: #f6f8fa; color: #62717d; font-size: 9px; font-weight: 780; letter-spacing: .04em; }
+    .bond-schedule-table th, .bond-schedule-table td { padding: 10px 12px; border-bottom: 1px solid #e5eaed; text-align: left; }
+    .bond-schedule-table th.number, .bond-schedule-table td.number { text-align: right; }
+    .bond-schedule-table td { color: #394a57; font-size: 11px; }
+    .bond-schedule-table td.number { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+    .bond-schedule-table tr.maturity td { color: var(--navy); font-weight: 760; background: #fffaf0; }
+    .bond-schedule-method { margin: 10px 2px 0; color: var(--muted); font-size: 10px; line-height: 1.55; }
     .price-ma-legend {
       display: flex;
       flex-wrap: wrap;
@@ -256,6 +252,7 @@
     .valuation-legend-mark.band { height: 9px; border: 1px solid rgba(23,107,155,.24); background: rgba(23,107,155,.10); }
     .valuation-comparator-note { margin-left: auto; color: var(--muted); }
     .chart-control[hidden], .moving-average-btn[hidden], .price-ma-legend[hidden], .price-ma-legend-item[hidden], .valuation-legend[hidden] { display: none; }
+    .chart-toolbar[hidden], .chart-frame[hidden], .chart-caption[hidden], .bond-cashflow-surface[hidden] { display: none; }
     .asof-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; border: 1px solid rgba(22,59,89,.13); background: rgba(22,59,89,.11); }
     .asof-item { min-height: 96px; padding: 15px; background: #fff; }
     .asof-label { color: var(--muted); font-size: 10px; font-weight: 760; }
@@ -291,6 +288,13 @@
     .event-summary-item.holding-total { grid-column: 4; }
     .event-summary-item.fees-total { grid-column: 6 / 8; }
     .event-summary-item.realized-total { grid-column: 8; }
+    .event-summary.bond-view .holding-total { grid-column: 3 / 6; }
+    .event-summary.bond-view .fees-total { grid-column: 6 / 8; }
+    .event-summary.bond-view .realized-total { grid-column: 8; }
+    .event-summary.bond-view .event-summary-value { overflow: visible; text-overflow: clip; }
+    .event-table.bond-view .event-col-realized,
+    .event-table.bond-view th:last-child,
+    .event-table.bond-view td:last-child { display: none; }
     .event-summary-label { overflow: hidden; max-width: 100%; color: var(--muted); font-size: 9px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
     .event-summary-value { max-width: 100%; overflow: hidden; color: var(--navy); font: 730 12px var(--mono); font-variant-numeric: tabular-nums; text-align: right; text-overflow: ellipsis; white-space: nowrap; }
     .account-kpi-grid { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 1px; margin: 0 0 18px; border: 1px solid #dfe5e9; background: #dfe5e9; }
@@ -344,6 +348,9 @@
     .tax-lot-summary-item.pnl-rate { grid-column: 5; }
     .tax-lot-summary-label { overflow: hidden; max-width: 100%; color: var(--muted); font-size: 9px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
     .tax-lot-summary-value { overflow: hidden; max-width: 100%; color: var(--navy); font: 730 12px var(--mono); font-variant-numeric: tabular-nums; text-align: right; text-overflow: ellipsis; white-space: nowrap; }
+    .tax-lot-summary.bond-view { grid-template-columns: 22fr 16fr 24fr 21fr 17fr; }
+    .tax-lot-summary.bond-view .tax-lot-summary-item { padding-inline: 4px; }
+    .tax-lot-summary.bond-view .tax-lot-summary-value { overflow: visible; text-overflow: clip; }
     .badge-row { display: flex; flex-wrap: wrap; gap: 7px; }
     .badge { display: inline-flex; align-items: center; min-height: 26px; padding: 4px 8px; border: 1px solid #d8e3eb; background: var(--blue-soft); color: var(--blue); font-size: 10px; font-weight: 780; white-space: nowrap; }
     .badge.good { border-color: #cce3d6; background: var(--green-soft); color: var(--green); }
@@ -365,6 +372,7 @@
     .morningstar-report-link:hover, .morningstar-report-link:focus-visible { text-decoration: underline; outline: none; }
     .morningstar-analyst { margin-top: 8px; color: #465866; font-size: 11px; }
     .morningstar-metrics { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 1px; margin-top: 18px; border: 1px solid #dfe5e9; background: #dfe5e9; }
+    .fixed-income-research-metrics { grid-template-columns: repeat(4, minmax(0,1fr)); }
     .morningstar-metric { min-height: 92px; padding: 13px; background: #fff; }
     .morningstar-metric-label { color: var(--muted); font-size: 9px; font-weight: 760; }
     .morningstar-metric-value { margin-top: 7px; color: var(--navy); font: 740 17px var(--mono); font-variant-numeric: tabular-nums; }
@@ -416,21 +424,11 @@
     .source-link:hover, .source-link:focus-visible { border-color: #b9cbd8; background: var(--blue-soft); outline: none; }
     .source-date { color: var(--muted); font-family: var(--mono); }
     .quality-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 1px; border: 1px solid #dfe5e9; background: #dfe5e9; }
+    .quality-grid.bond-quality-grid { grid-template-columns: repeat(6, minmax(0,1fr)); }
     .quality-item { padding: 14px; background: #fff; }
     .quality-domain { color: var(--muted); font-size: 10px; }
     .quality-status { margin-top: 5px; color: var(--navy); font: 750 14px var(--mono); }
     .quality-note { margin-top: 5px; color: var(--muted); font-size: 9px; }
-    footer { margin-top: 34px; padding: 26px 2px 0; border-top: 1px solid rgba(22,59,89,.16); color: var(--muted); font-size: 11px; }
-    .footer-head { margin-bottom: 16px; }
-    .footer-kicker { margin: 0 0 3px; color: var(--gold); font-size: 9px; font-weight: 800; letter-spacing: .16em; }
-    .footer-title { margin: 0; color: var(--navy); font-size: 15px; font-weight: 760; }
-    .footer-meta-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border-top: 1px solid rgba(22,59,89,.10); border-bottom: 1px solid rgba(22,59,89,.10); }
-    .footer-meta-item { min-width: 0; padding: 13px 16px 14px 0; border-right: 1px solid rgba(22,59,89,.10); }
-    .footer-meta-item + .footer-meta-item { padding-left: 16px; }
-    .footer-meta-item:last-child { border-right: 0; padding-right: 0; }
-    .footer-meta-label { display: block; margin-bottom: 4px; color: #8b98a3; font-size: 9px; letter-spacing: .08em; }
-    .footer-meta-value { display: block; color: #465563; font-size: 11px; font-weight: 650; line-height: 1.55; }
-    .footer-disclaimer { margin: 5px 0 0; color: #7a8792; line-height: 1.65; }
     @media (max-width: 1000px) {
       .instrument-hero { grid-template-columns: 1fr; }
       .hero-quote { border-top: 1px solid rgba(22,59,89,.12); padding-top: 18px; }
@@ -453,12 +451,9 @@
     @media (max-width: 660px) {
       body { background-size: 50% 100%; }
       .shell { width: 100%; padding: 0 12px 44px; }
-      .workspace-nav { min-height: 68px; margin-bottom: 14px; padding-block: 10px; }
-      .workspace-brand-text { display: none; }
-      .workspace-nav-link { padding-inline: 9px; }
-      .workspace-nav-link[aria-disabled="true"] { display: none; }
       .instrument-hero { padding-top: 10px; }
       .metric-grid, .asof-grid, .quality-grid, .case-grid, .provider-section-grid { grid-template-columns: 1fr; }
+      .fixed-income-research-metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .fundamental-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .metric { border-right: 0; border-bottom: 1px solid rgba(22,59,89,.11); }
       .metric:last-child { border-bottom: 0; }
@@ -481,20 +476,27 @@
       .corporate-source { justify-self: start; }
       .morningstar-overview { grid-template-columns: 1fr; }
       .morningstar-metrics { grid-template-columns: 1fr; }
+      .bond-cashflow-metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .bond-cashflow-metric:nth-child(3) { border-left: 0; border-top: 1px solid rgba(22,59,89,.11); }
+      .bond-cashflow-metric:nth-child(4) { border-top: 1px solid rgba(22,59,89,.11); }
+      .bond-maturity-rail { grid-template-columns: 1fr; }
+      .bond-yield-head { align-items: flex-start; flex-direction: column; gap: 6px; }
+      .bond-yield-status { white-space: normal; }
+      .bond-yield-toolbar { justify-content: flex-start; padding-inline: 12px; overflow-x: auto; }
+      .bond-yield-toolbar .chart-control { width: auto; flex-direction: row; align-items: center; }
+      .bond-yield-chart-frame { min-height: 0; padding-inline: 0; }
+      .bond-yield-chart { height: auto; aspect-ratio: 28 / 25; }
       .card-body { padding: 15px; }
       .account-kpi-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .account-kpi.wide { grid-column: 1 / -1; }
-      .footer-meta-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .footer-meta-item:nth-child(2) { border-right: 0; padding-right: 0; }
-      .footer-meta-item:nth-child(3), .footer-meta-item:nth-child(4) { border-top: 1px solid rgba(22,59,89,.10); }
-      .footer-meta-item:nth-child(3) { padding-left: 0; }
     }
     @media (max-width: 560px) {
       .tax-lot-surface { min-width: 440px; }
     }
   </style>
+  <link rel="stylesheet" href="assets/workspace-shell.css">
 </head>
-<body>
+<body class="workspace-inner workspace-bp-660">
   <main class="shell">
     <nav class="workspace-nav" aria-label="全局导航">
       <a class="workspace-brand" href="index.html" aria-label="投资组合透明计划首页">
@@ -506,9 +508,9 @@
           <a class="workspace-nav-link" href="index.html">首页</a>
           <a class="workspace-nav-link" href="dashboard.html">投资组合</a>
           <a class="workspace-nav-link" href="instrument.html" aria-current="page">证券研究</a>
-          <!-- FAMILY:INSTRUMENT_MARKET_NAV:START --><!-- FAMILY:INSTRUMENT_MARKET_NAV:END -->
+          <!-- FAMILY:INSTRUMENT_DECISION_NAV:START --><span class="workspace-nav-link" aria-disabled="true">交易决策</span><!-- FAMILY:INSTRUMENT_DECISION_NAV:END -->
+          <!-- FAMILY:INSTRUMENT_MARKET_NAV:START --><span class="workspace-nav-link" aria-disabled="true">市场监控</span><!-- FAMILY:INSTRUMENT_MARKET_NAV:END -->
           <span class="workspace-nav-link" aria-disabled="true">期权雷达</span>
-          <span class="workspace-nav-link" aria-disabled="true">交易决策</span>
           <!-- FAMILY:INSTRUMENT_HISTORY_NAV:START -->
           <a class="workspace-nav-link" href="history.html">历史档案</a>
           <!-- FAMILY:INSTRUMENT_HISTORY_NAV:END -->
@@ -518,7 +520,7 @@
 
     <header class="instrument-hero">
       <div>
-        <p class="eyebrow">Public Family Security Research</p>
+        <p class="eyebrow" id="instrumentEyebrow">Public Family Security Research</p>
         <h1 id="instrumentSymbol">—</h1>
         <p class="company-name"><span id="instrumentEnglishName">正在载入标的资料</span><span class="company-name-zh" id="instrumentChineseName" hidden></span></p>
         <div class="instrument-meta">
@@ -547,13 +549,13 @@
     </aside>
 
     <section class="metric-grid" aria-label="标的关键指标">
-      <article class="metric"><div class="metric-label">平均成本</div><div class="metric-value" id="averageCost">—</div><div class="metric-note" id="averageCostNote">每股持仓成本</div></article>
-      <article class="metric"><div class="metric-label">当前数量</div><div class="metric-value" id="holdingQuantity">—</div><div class="metric-note" id="holdingQuantityNote">完成收盘数量</div></article>
-      <article class="metric"><div class="metric-label">成本基础</div><div class="metric-value" id="currentCost">—</div><div class="metric-note" id="currentCostNote">持仓成本基础合计</div></article>
+      <article class="metric"><div class="metric-label" id="averageCostLabel">平均成本</div><div class="metric-value" id="averageCost">—</div><div class="metric-note" id="averageCostNote">每股持仓成本</div></article>
+      <article class="metric"><div class="metric-label" id="holdingQuantityLabel">当前数量</div><div class="metric-value" id="holdingQuantity">—</div><div class="metric-note" id="holdingQuantityNote">完成收盘数量</div></article>
+      <article class="metric"><div class="metric-label" id="currentCostLabel">成本基础</div><div class="metric-value" id="currentCost">—</div><div class="metric-note" id="currentCostNote">持仓成本基础合计</div></article>
       <article class="metric"><div class="metric-label">未实现盈亏</div><div class="metric-value metric-value-pair"><span class="metric-value-primary" id="unrealizedPnl">—</span><span class="metric-value-secondary" id="unrealizedPnlPct">—</span></div><div class="metric-note" id="unrealizedPnlNote">—</div></article>
     </section>
 
-    <section class="section" aria-labelledby="fundamentalsTitle">
+    <section class="section" id="fundamentalsSection" aria-labelledby="fundamentalsTitle">
       <div class="section-head">
         <div><p class="section-kicker" id="fundamentalsKicker">Company &amp; Valuation</p><h2 class="section-title" id="fundamentalsTitle">公司与估值概览</h2><p class="section-note" id="fundamentalsNote">公司事实与市场价格保留各自日期；无法可靠取得的字段不会估填。</p></div>
         <span class="badge" id="fundamentalsBadge">资料载入中</span>
@@ -561,13 +563,13 @@
       <div class="fundamental-grid" id="fundamentalGrid" aria-label="公司与估值基础数据"></div>
     </section>
 
-    <section class="section" aria-labelledby="priceHistoryTitle">
+    <section class="section" id="marketSection" aria-labelledby="priceHistoryTitle">
       <div class="section-head">
-        <div><p class="section-kicker">Market History &amp; Valuation</p><h2 class="section-title" id="priceHistoryTitle">市场价格与估值</h2><p class="section-note" id="marketHistoryNote">价格视图保留三套独立口径；长窗口只在图形层聚合，不改写底层日线。</p></div>
+        <div><p class="section-kicker" id="marketSectionKicker">Market History &amp; Valuation</p><h2 class="section-title" id="priceHistoryTitle">市场价格与估值</h2><p class="section-note" id="marketHistoryNote">价格视图保留三套独立口径；长窗口只在图形层聚合，不改写底层日线。</p></div>
         <span class="badge" id="marketQualityBadge">资料载入中</span>
       </div>
       <article class="card">
-        <div class="chart-toolbar">
+        <div class="chart-toolbar" id="equityChartToolbar">
           <div class="chart-controls">
             <div class="chart-control">
               <span class="chart-control-label">视图</span>
@@ -642,6 +644,52 @@
           <span class="valuation-comparator-note">IGV／SPX：合格历史估值来源尚未建立</span>
         </div>
         <div class="chart-caption"><span id="chartCoverage">—</span><span id="chartAggregation">—</span><span id="chartSource">—</span></div>
+        <div class="bond-cashflow-surface" id="bondCashflowSurface" hidden>
+          <div class="bond-yield-panel">
+            <div class="bond-yield-head">
+              <div><h3 class="bond-yield-title">美国国债恒定期限收益率参照</h3><p class="bond-yield-subtitle">本债券持有期估算 YTM、附近期限官方 DGS 曲线与购入实际息率；用于观察利率环境，不改变持有到期合同现金流。</p></div>
+              <div class="bond-yield-status" id="bondYieldStatus">—</div>
+            </div>
+            <div class="bond-yield-toolbar">
+              <div class="chart-control">
+                <span class="chart-control-label">范围</span>
+                <div class="segmented" aria-label="国债收益率参照时间范围">
+                  <button class="segment-btn bond-yield-range-btn" type="button" data-bond-yield-range="1M" aria-pressed="false">1M</button>
+                  <button class="segment-btn bond-yield-range-btn" type="button" data-bond-yield-range="3M" aria-pressed="false">3M</button>
+                  <button class="segment-btn bond-yield-range-btn" type="button" data-bond-yield-range="6M" aria-pressed="false">6M</button>
+                  <button class="segment-btn bond-yield-range-btn" type="button" data-bond-yield-range="1Y" aria-pressed="false">1Y</button>
+                  <button class="segment-btn bond-yield-range-btn" type="button" data-bond-yield-range="3Y" aria-pressed="true">3Y</button>
+                  <button class="segment-btn bond-yield-range-btn" type="button" data-bond-yield-range="5Y" aria-pressed="false">5Y</button>
+                  <button class="segment-btn bond-yield-range-btn" type="button" data-bond-yield-range="10Y" aria-pressed="false">10Y</button>
+                </div>
+              </div>
+            </div>
+            <div class="bond-yield-chart-frame" id="bondYieldChartFrame">
+              <svg class="bond-yield-chart" id="bondYieldChart" viewBox="0 0 1200 400" role="img" aria-label="美国国债恒定期限收益率参照"></svg>
+              <div class="chart-tooltip" id="bondYieldTooltip" aria-hidden="true"><div class="tooltip-date"></div><div class="tooltip-grid"></div><div class="tooltip-events" hidden></div></div>
+            </div>
+            <div class="bond-yield-legend" id="bondYieldLegend"></div>
+            <p class="bond-yield-method" id="bondYieldMethod">—</p>
+          </div>
+          <div class="bond-cashflow-metrics" aria-label="持有到期现金流摘要">
+            <article class="bond-cashflow-metric"><div class="bond-cashflow-label">下一笔合同现金流</div><div class="bond-cashflow-value" id="bondNextCashflow">—</div><div class="bond-cashflow-note" id="bondNextCashflowNote">—</div></article>
+            <article class="bond-cashflow-metric"><div class="bond-cashflow-label">剩余票息</div><div class="bond-cashflow-value" id="bondRemainingCoupon">—</div><div class="bond-cashflow-note" id="bondRemainingCouponNote">—</div></article>
+            <article class="bond-cashflow-metric"><div class="bond-cashflow-label">到期本金</div><div class="bond-cashflow-value" id="bondMaturityPrincipal">—</div><div class="bond-cashflow-note" id="bondMaturityPrincipalNote">—</div></article>
+            <article class="bond-cashflow-metric"><div class="bond-cashflow-label">剩余合同现金流</div><div class="bond-cashflow-value" id="bondRemainingCashflow">—</div><div class="bond-cashflow-note">票息与到期本金合计，不是当前价值</div></article>
+          </div>
+          <div class="bond-maturity-rail" aria-label="债券持有时间轴">
+            <article class="bond-rail-stop"><div class="bond-rail-label">首次买入</div><div class="bond-rail-value" id="bondRailPurchase">—</div></article>
+            <article class="bond-rail-stop"><div class="bond-rail-label">完成收盘</div><div class="bond-rail-value" id="bondRailClose">—</div></article>
+            <article class="bond-rail-stop maturity"><div class="bond-rail-label">合同到期</div><div class="bond-rail-value" id="bondRailMaturity">—</div></article>
+          </div>
+          <div class="bond-schedule-wrap">
+            <table class="bond-schedule-table">
+              <thead><tr><th>合同日期</th><th>类型</th><th class="number">票息</th><th class="number">本金</th><th class="number">合计</th></tr></thead>
+              <tbody id="bondCashflowRows"></tbody>
+            </table>
+          </div>
+          <p class="bond-schedule-method" id="bondCashflowMethod">—</p>
+        </div>
       </article>
     </section>
 
@@ -649,31 +697,31 @@
       <div class="section-head"><div><p class="section-kicker">Independent As-of Dates</p><h2 class="section-title" id="dataDatesTitle">资料日期口径</h2><p class="section-note">市场、账户、报表事件、挂单和研究各自保留真实日期。</p></div></div>
       <div class="asof-grid">
         <article class="asof-item"><div class="asof-label">投资组合完成收盘</div><div class="asof-value" id="asofPortfolio">—</div><div class="asof-note" id="asofPortfolioNote">—</div></article>
-        <article class="asof-item"><div class="asof-label">行情覆盖</div><div class="asof-value" id="asofMarket">—</div><div class="asof-note" id="asofMarketNote">—</div></article>
+        <article class="asof-item"><div class="asof-label" id="asofMarketLabel">行情覆盖</div><div class="asof-value" id="asofMarket">—</div><div class="asof-note" id="asofMarketNote">—</div></article>
         <article class="asof-item"><div class="asof-label">生命周期报表</div><div class="asof-value" id="asofLifecycle">—</div><div class="asof-note" id="asofLifecycleNote">—</div></article>
-        <article class="asof-item"><div class="asof-label">持仓批次 / 研究</div><div class="asof-value" id="asofLotsResearch">—</div><div class="asof-note" id="asofLotsResearchNote">—</div></article>
+        <article class="asof-item"><div class="asof-label" id="asofLotsResearchLabel">持仓批次 / 研究</div><div class="asof-value" id="asofLotsResearch">—</div><div class="asof-note" id="asofLotsResearchNote">—</div></article>
       </div>
     </section>
 
     <section class="section" aria-labelledby="activityTitle">
       <div class="section-head">
-        <div><p class="section-kicker">Trades &amp; Holdings</p><h2 class="section-title" id="activityTitle">交易与持仓</h2><p class="section-note" id="activitySubtitle">来自 IBKR Activity Flex 生命周期与完成收盘持仓档案。</p></div>
-        <span class="badge" id="activityCount">—</span>
+        <div><p class="section-kicker" id="activityKicker">Trades &amp; Holdings</p><h2 class="section-title" id="activityTitle">交易与持仓</h2><p class="section-note" id="activitySubtitle">来自 IBKR Activity Flex 生命周期与完成收盘持仓档案。</p></div>
+        <div class="section-head-meta"><span class="badge" id="activityCount">—</span><!-- FAMILY:INSTRUMENT_DECISION_ENTRY:START --><!-- FAMILY:INSTRUMENT_DECISION_ENTRY:END --></div>
       </div>
       <div class="account-kpi-grid" aria-label="标的账户收益">
-        <div class="account-kpi"><div class="account-kpi-label">平仓合计</div><div class="account-kpi-value" id="closedPositionTotal">—</div></div>
-        <div class="account-kpi"><div class="account-kpi-label">股息合计</div><div class="account-kpi-value" id="dividendTotal">—</div></div>
-        <div class="account-kpi"><div class="account-kpi-label">归总收益</div><div class="account-kpi-value" id="aggregateReturn">—</div></div>
-        <div class="account-kpi wide"><div class="account-kpi-label">综合成本</div><div class="account-kpi-value" id="comprehensiveCost">—</div></div>
-        <div class="account-kpi"><div class="account-kpi-label">年化收益</div><div class="account-kpi-value" id="annualizedReturn">—</div><div class="account-kpi-note">资金加权 XIRR</div></div>
-        <div class="account-kpi"><div class="account-kpi-label">总回报率</div><div class="account-kpi-value" id="totalReturn">—</div><div class="account-kpi-note" id="totalReturnPeriod">非年化累计收益</div></div>
+        <div class="account-kpi"><div class="account-kpi-label" id="closedPositionTotalLabel">平仓合计</div><div class="account-kpi-value" id="closedPositionTotal">—</div></div>
+        <div class="account-kpi"><div class="account-kpi-label" id="dividendTotalLabel">股息合计</div><div class="account-kpi-value" id="dividendTotal">—</div></div>
+        <div class="account-kpi"><div class="account-kpi-label" id="aggregateReturnLabel">归总收益</div><div class="account-kpi-value" id="aggregateReturn">—</div></div>
+        <div class="account-kpi wide"><div class="account-kpi-label" id="comprehensiveCostLabel">综合成本</div><div class="account-kpi-value" id="comprehensiveCost">—</div></div>
+        <div class="account-kpi"><div class="account-kpi-label" id="annualizedReturnLabel">年化收益</div><div class="account-kpi-value" id="annualizedReturn">—</div><div class="account-kpi-note" id="annualizedReturnNote">资金加权 XIRR</div></div>
+        <div class="account-kpi"><div class="account-kpi-label" id="totalReturnLabel">总回报率</div><div class="account-kpi-value" id="totalReturn">—</div><div class="account-kpi-note" id="totalReturnPeriod">非年化累计收益</div></div>
       </div>
       <div class="two-col">
         <article class="card records-card">
           <div class="event-ledger-scroll">
             <div class="event-ledger-surface">
               <div class="event-table-wrap">
-                <table class="event-table">
+                <table class="event-table" id="eventTable">
                   <colgroup>
                     <col class="event-col-date"><col class="event-col-type"><col class="event-col-side"><col class="event-col-quantity">
                     <col class="event-col-price"><col class="event-col-amount"><col class="event-col-fee"><col class="event-col-realized">
@@ -682,10 +730,10 @@
                   <tbody id="eventRows"></tbody>
                 </table>
               </div>
-              <div class="event-summary" aria-label="事件合计">
-                <div class="event-summary-item holding-total" title="最近完成收盘持股数量"><span class="event-summary-label">持股总计</span><span class="event-summary-value" id="eventHoldingTotal">—</span></div>
+              <div class="event-summary" id="eventSummary" aria-label="事件合计">
+                <div class="event-summary-item holding-total" title="最近完成收盘数量"><span class="event-summary-label" id="eventHoldingTotalLabel">持股总计</span><span class="event-summary-value" id="eventHoldingTotal">—</span></div>
                 <div class="event-summary-item fees-total"><span class="event-summary-label">费用合计</span><span class="event-summary-value" id="eventFeesTotal">—</span></div>
-                <div class="event-summary-item realized-total"><span class="event-summary-label">已实现盈亏合计</span><span class="event-summary-value" id="eventRealizedTotal">—</span></div>
+                <div class="event-summary-item realized-total"><span class="event-summary-label" id="eventRealizedTotalLabel">已实现盈亏合计</span><span class="event-summary-value" id="eventRealizedTotal">—</span></div>
               </div>
             </div>
           </div>
@@ -705,24 +753,24 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="researchTitle">
+    <section class="section" id="researchSection" aria-labelledby="researchTitle">
       <div class="section-head">
-        <div><p class="section-kicker">Versioned Research</p><h2 class="section-title" id="researchTitle">研究评价</h2><p class="section-note">事实与判断分离；结论是只读研究记录，不是交易指令。</p></div>
+        <div><p class="section-kicker">Versioned Research</p><h2 class="section-title" id="researchTitle">研究评价</h2><p class="section-note" id="researchSectionNote">事实与判断分离；结论是只读研究记录，不是交易指令。</p></div>
         <span class="badge" id="researchDateBadge">—</span>
       </div>
       <div class="research-stack">
-        <article class="card">
+        <article class="card" id="providerResearchCard">
           <div class="research-subhead"><div><p class="section-kicker">External Research</p><h3 class="research-subtitle" id="morningstarResearchTitle">晨星研报</h3></div><span class="badge" id="morningstarFreshness">—</span></div>
           <div class="card-body" id="providerResearchBody"><div class="empty">正在载入晨星研报。</div></div>
         </article>
         <article class="card">
-          <div class="research-subhead"><div><p class="section-kicker">Internal Analysis</p><h3 class="research-subtitle">研究分析</h3></div></div>
+          <div class="research-subhead"><div><p class="section-kicker">Internal Analysis</p><h3 class="research-subtitle" id="researchAnalysisTitle">研究分析</h3></div></div>
           <div class="card-body" id="researchBody"><div class="empty">正在载入研究分析。</div></div>
         </article>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="corporateEventsTitle">
+    <section class="section" id="corporateEventsSection" aria-labelledby="corporateEventsTitle">
       <div class="section-head">
         <div><p class="section-kicker">Corporate Events Timeline</p><h2 class="section-title" id="corporateEventsTitle">公司行动与重要日期</h2><p class="section-note" id="corporateEventsNote">发行人公开事件与我们的账户流水相互独立；预估日期不会显示为已确认。</p></div>
         <span class="badge" id="corporateEventsBadge">资料载入中</span>
@@ -740,12 +788,12 @@
     <footer>
       <div class="footer-head"><p class="footer-kicker">DATA &amp; METHOD</p><h2 class="footer-title">数据口径</h2></div>
       <div class="footer-meta-grid">
-        <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value">最近获审核完成收盘持仓与生命周期资料</span></div>
-        <div class="footer-meta-item"><span class="footer-meta-label">市场历史</span><span class="footer-meta-value">IBKR 日线与申报日起生效的基本面事实分别留存日期</span></div>
-        <div class="footer-meta-item"><span class="footer-meta-label">研究边界</span><span class="footer-meta-value">外部研报与项目独立分析分栏、分版本、分日期</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓与生命周期资料</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线与申报日起生效的基本面事实分别留存日期</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究边界</span><span class="footer-meta-value" id="footerResearchMethod">外部研报与项目独立分析分栏、分版本、分日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label">页面角色</span><span class="footer-meta-value">公开家庭版静态包 · 只读</span></div>
       </div>
-      <p class="footer-disclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
+      <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
   </main>
 
@@ -763,6 +811,7 @@
         chartView: "price",
         priceRange: "6M",
         valuationRange: "5Y",
+        bondYieldRange: "3Y",
         movingAveragePreset: "market",
         movingAverageSelections: {
           market: { "20": true, "50": false, "200": false },
@@ -771,6 +820,7 @@
         lotSort: { key: "acquisitionDate", direction: "desc" },
         requestToken: 0
       };
+      /* FAMILY:INSTRUMENT_DECISION_STATE:START *//* FAMILY:INSTRUMENT_DECISION_STATE:END */
       var movingAveragePresetDefinitions = {
         market: { label: "美股常用", periods: [20, 50, 200] },
         holding: { label: "持有周期", periods: [20, 60, 120, 250] }
@@ -834,6 +884,9 @@
         var symbols = detail && detail.instrument && detail.instrument.symbols || [];
         var primary = symbols.find(function (row) { return row.isPrimary; }) || symbols[0];
         return primary && primary.symbol || "—";
+      }
+      function isBondDetail() {
+        return Boolean(state.detail && state.detail.instrument && state.detail.instrument.assetClass === "BOND");
       }
       function compactToIso(value) {
         var raw = String(value || "");
@@ -1226,6 +1279,22 @@
         if (!manifest || manifest.schemaVersion !== 1) throw new Error("公开标的页清单版本不受支持。");
         var record = manifest.instruments && manifest.instruments[symbol];
         if (!record) throw new Error("公开标的目录中没有 " + symbol + "。");
+        if (record.fixedIncome) {
+          var fixedPackage = await fetchJson(record.fixedIncome.path);
+          if (
+            fixedPackage.schemaVersion !== 1
+            || fixedPackage.packageType !== "fixedIncome"
+            || fixedPackage.symbol !== symbol
+            || !fixedPackage.detail
+            || fixedPackage.detail.schemaVersion !== 8
+            || fixedPackage.detail.publicStatic !== true
+            || !fixedPackage.detail.instrument
+            || fixedPackage.detail.instrument.assetClass !== "BOND"
+          ) {
+            throw new Error("公开国债静态数据包版本或身份不受支持。");
+          }
+          return fixedPackage.detail;
+        }
         var packages = await Promise.all([
           fetchJson(manifest.packages.flex.path),
           fetchJson(record.market.path),
@@ -1904,7 +1973,304 @@
         el("chartAggregation").textContent = "十年参考 " + compactToIso(referenceWindow.startDate) + " — " + compactToIso(referenceWindow.endDate) + " · " + number(referenceWindow.observations, 0) + " 个交易日" + (hasAnnualReconstruction ? " · ⚠️ 2010 年前为年报频率" : "") + (gapNotes.length ? " · " + gapNotes.join(" · ") : "");
         el("chartSource").textContent = "IBKR TRADES 当日实际收盘 + SEC 申报文件／Company Facts · 三种价格视图共用同日 PE · EPS 自申报日起生效";
       }
+      function renderBondYieldChart(bond) {
+        var reference = bond.yieldReference || {};
+        var referenceSeries = Array.isArray(reference.series) ? reference.series : [];
+        var securityYield = reference.securityYieldSeries || {};
+        var yieldSubtitle = document.querySelector(".bond-yield-subtitle");
+        if (yieldSubtitle) {
+          yieldSubtitle.textContent = securityYield.status === "pass"
+            ? "本债券持有期估算 YTM、附近期限官方 DGS 曲线与购入实际息率；用于观察利率环境，不改变持有到期合同现金流。"
+            : "附近期限官方 DGS 曲线与购入实际息率；个券收益率历史未纳入当前公开口径，也不改变持有到期合同现金流。";
+        }
+        var svg = el("bondYieldChart"), tooltip = el("bondYieldTooltip"), legend = el("bondYieldLegend");
+        svg.replaceChildren();
+        legend.replaceChildren();
+        tooltip.classList.remove("visible");
+        tooltip.setAttribute("aria-hidden", "true");
+        document.querySelectorAll(".bond-yield-range-btn").forEach(function (button) {
+          button.setAttribute("aria-pressed", String(button.dataset.bondYieldRange === state.bondYieldRange));
+        });
+        var colors = ["#176b9b", "#6f8190", "#517891"];
+        var mobileChart = window.matchMedia("(max-width: 660px)").matches;
+        var width = mobileChart ? 560 : 1200;
+        var height = mobileChart ? 500 : 400;
+        var left = mobileChart ? 64 : 70, right = mobileChart ? 18 : 24, top = mobileChart ? 24 : 26, bottom = mobileChart ? 426 : 344;
+        var axisDateY = mobileChart ? 474 : 379;
+        svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+        var plotWidth = width - left - right, plotHeight = bottom - top;
+        function stamp(value) { return Date.parse(compactToIso(value) + "T00:00:00Z"); }
+        var rangeMonths = { "1M": 1, "3M": 3, "6M": 6, "1Y": 12, "3Y": 36, "5Y": 60, "10Y": 120 };
+        var rawTimes = [];
+        if (securityYield.status === "pass") {
+          (securityYield.points || []).forEach(function (point) {
+            var time = stamp(point[0]);
+            if (Number.isFinite(time)) rawTimes.push(time);
+          });
+        }
+        referenceSeries.forEach(function (row) {
+          (row.points || []).forEach(function (point) {
+            var time = stamp(point[0]);
+            if (Number.isFinite(time)) rawTimes.push(time);
+          });
+        });
+        var latestRawTime = rawTimes.length ? Math.max.apply(null, rawTimes) : null;
+        var cutoffTime = null;
+        if (latestRawTime != null && rangeMonths[state.bondYieldRange]) {
+          var cutoffDate = new Date(latestRawTime);
+          cutoffDate.setUTCMonth(cutoffDate.getUTCMonth() - rangeMonths[state.bondYieldRange]);
+          cutoffTime = cutoffDate.getTime();
+        }
+        function normalizedPoints(points) {
+          return (points || []).map(function (point) {
+            return { date: compactToIso(point[0]), time: stamp(point[0]), value: finite(point[1]) };
+          }).filter(function (point) {
+            return point.value != null && Number.isFinite(point.time) && (cutoffTime == null || point.time >= cutoffTime);
+          });
+        }
+        var series = [];
+        if (securityYield.status === "pass") {
+          var securityPoints = normalizedPoints(securityYield.points);
+          if (securityPoints.length) {
+            series.push(Object.assign({}, securityYield, {
+              _color: "#163b59", _points: securityPoints, _security: true
+            }));
+          }
+        }
+        referenceSeries.forEach(function (row, index) {
+          var points = normalizedPoints(row.points);
+          if (!points.length) return;
+          series.push(Object.assign({}, row, { _color: colors[index % colors.length], _points: points }));
+        });
+        var allPoints = [];
+        series.forEach(function (row) {
+          row._points.forEach(function (point) { allPoints.push(point); });
+        });
+        var purchase = reference.purchaseYield || {};
+        var purchaseValue = finite(purchase.valuePct);
+        if (!allPoints.length) {
+          var empty = svgEl("text", { x: width / 2, y: height / 2, "text-anchor": "middle", class: "axis-label" });
+          empty.textContent = reference.message || "所选范围尚未取得可绘制的收益率观察。";
+          svg.appendChild(empty);
+          el("bondYieldStatus").textContent = "官方期限参照没有可绘制观察";
+          el("bondYieldMethod").textContent = reference.methodology || "DGS 参照缺失不影响合同现金流与实际购入收益率。";
+          return;
+        }
+        var minTime = Math.min.apply(null, allPoints.map(function (point) { return point.time; }));
+        var maxTime = Math.max.apply(null, allPoints.map(function (point) { return point.time; }));
+        var values = allPoints.map(function (point) { return point.value; });
+        if (purchaseValue != null) values.push(purchaseValue);
+        var minValue = Math.min.apply(null, values), maxValue = Math.max.apply(null, values);
+        var valuePadding = Math.max((maxValue - minValue) * .12, .08);
+        minValue = Math.max(0, minValue - valuePadding);
+        maxValue += valuePadding;
+        function x(time) { return left + (time - minTime) / (maxTime - minTime || 1) * plotWidth; }
+        function y(value) { return top + (maxValue - value) / (maxValue - minValue || 1) * plotHeight; }
+        for (var grid = 0; grid <= 4; grid += 1) {
+          var gy = top + grid * plotHeight / 4;
+          svg.appendChild(svgEl("line", { x1: left, y1: gy, x2: width - right, y2: gy, class: "grid-line" }));
+          var gridLabel = svgEl("text", { x: left - 10, y: gy + 4, "text-anchor": "end", class: "axis-label" });
+          gridLabel.textContent = number(maxValue - grid * (maxValue - minValue) / 4, 2) + "%";
+          svg.appendChild(gridLabel);
+        }
+        [minTime, minTime + (maxTime - minTime) / 2, maxTime].forEach(function (time, index) {
+          var date = new Date(time).toISOString().slice(0, 10);
+          var label = svgEl("text", {
+            x: x(time), y: axisDateY,
+            "text-anchor": index === 0 ? "start" : (index === 2 ? "end" : "middle"),
+            class: "axis-label"
+          });
+          label.textContent = date;
+          svg.appendChild(label);
+        });
+        if (purchaseValue != null) {
+          var purchaseTime = stamp(purchase.startDate);
+          var lineStart = Number.isFinite(purchaseTime) ? Math.max(minTime, purchaseTime) : minTime;
+          svg.appendChild(svgEl("line", {
+            x1: x(lineStart), y1: y(purchaseValue), x2: width - right, y2: y(purchaseValue),
+            stroke: "#bd8c28", "stroke-width": 1.6, "stroke-dasharray": "7 5"
+          }));
+        }
+        series.forEach(function (row) {
+          var path = row._points.map(function (point, index) {
+            return (index ? "L" : "M") + x(point.time).toFixed(2) + " " + y(point.value).toFixed(2);
+          }).join(" ");
+          svg.appendChild(svgEl("path", {
+            d: path, fill: "none", stroke: row._color,
+            "stroke-width": row._security ? 3 : (row.closestTenor ? 2.5 : 1.7),
+            "stroke-linejoin": "round", "stroke-linecap": "round"
+          }));
+          var item = document.createElement("span"); item.className = "bond-yield-legend-item";
+          var mark = document.createElement("span"); mark.className = "bond-yield-legend-mark" + (row._security ? " security" : ""); mark.style.setProperty("--bond-yield-color", row._color);
+          var text = document.createElement("span"); text.textContent = row.label + (row.closestTenor ? " · 最接近" : "");
+          item.append(mark, text); legend.appendChild(item);
+        });
+        if (purchaseValue != null) {
+          var purchaseItem = document.createElement("span"); purchaseItem.className = "bond-yield-legend-item";
+          var purchaseMark = document.createElement("span"); purchaseMark.className = "bond-yield-legend-mark purchase";
+          var purchaseText = document.createElement("span"); purchaseText.textContent = (purchase.label || "购入实际息率") + " " + number(purchaseValue, 3) + "%";
+          purchaseItem.append(purchaseMark, purchaseText); legend.appendChild(purchaseItem);
+        }
+        var uniqueTimes = Array.from(new Set(allPoints.map(function (point) { return point.time; }))).sort(function (a, b) { return a - b; });
+        var focus = svgEl("line", { x1: left, y1: top, x2: left, y2: bottom, class: "focus-line", visibility: "hidden" });
+        var focusGroup = svgEl("g", {});
+        svg.append(focus, focusGroup);
+        var closestSeries = series.find(function (row) { return row.closestTenor; });
+        var focusedIndex = uniqueTimes.length - 1;
+        function hideTooltip() {
+          focus.setAttribute("visibility", "hidden"); focusGroup.replaceChildren();
+          tooltip.classList.remove("visible"); tooltip.setAttribute("aria-hidden", "true");
+        }
+        function showIndex(index, pointerClientY) {
+          focusedIndex = Math.max(0, Math.min(uniqueTimes.length - 1, index));
+          var time = uniqueTimes[focusedIndex], fx = x(time);
+          focus.setAttribute("x1", fx); focus.setAttribute("x2", fx); focus.setAttribute("visibility", "visible");
+          focusGroup.replaceChildren();
+          tooltip.querySelector(".tooltip-date").textContent = new Date(time).toISOString().slice(0, 10);
+          var gridNode = tooltip.querySelector(".tooltip-grid"); gridNode.replaceChildren();
+          series.forEach(function (row) {
+            var point = row._points.find(function (candidate) { return candidate.time === time; });
+            if (!point) return;
+            focusGroup.appendChild(svgEl("circle", { cx: x(point.time), cy: y(point.value), r: 3.5, fill: "#fff", stroke: row._color, "stroke-width": 2 }));
+            var key = document.createElement("span"), value = document.createElement("span");
+            key.className = "tooltip-label"; value.className = "tooltip-value";
+            key.textContent = row.label; value.textContent = number(point.value, 3) + "%";
+            gridNode.append(key, value);
+          });
+          if (purchaseValue != null) {
+            var purchaseKey = document.createElement("span"), purchaseDisplay = document.createElement("span");
+            purchaseKey.className = "tooltip-label"; purchaseDisplay.className = "tooltip-value";
+            purchaseKey.textContent = "购入实际息率"; purchaseDisplay.textContent = number(purchaseValue, 3) + "%";
+            gridNode.append(purchaseKey, purchaseDisplay);
+          }
+          if (purchaseValue != null && closestSeries) {
+            var closestPoint = closestSeries._points.find(function (point) { return point.time === time; });
+            if (closestPoint) {
+              var spreadBp = (purchaseValue - closestPoint.value) * 100;
+              var spreadKey = document.createElement("span"), spreadDisplay = document.createElement("span");
+              spreadKey.className = "tooltip-label"; spreadDisplay.className = "tooltip-value";
+              spreadKey.textContent = "购入实际息率较 " + closestSeries.label + "参照";
+              spreadDisplay.textContent = (spreadBp > 0 ? "+" : "") + number(spreadBp, 1) + " bp";
+              setClassBySign(spreadDisplay, spreadBp);
+              gridNode.append(spreadKey, spreadDisplay);
+            }
+          }
+          var frame = el("bondYieldChartFrame").getBoundingClientRect();
+          var anchor = allPoints.find(function (point) { return point.time === time; });
+          var focusPoint = svg.createSVGPoint(); focusPoint.x = fx; focusPoint.y = y(anchor ? anchor.value : purchaseValue);
+          var screenPoint = svg.getScreenCTM() ? focusPoint.matrixTransform(svg.getScreenCTM()) : null;
+          var resolvedX = screenPoint ? screenPoint.x - frame.left : fx / width * frame.width;
+          var resolvedY = pointerClientY == null
+            ? (screenPoint ? screenPoint.y - frame.top : focusPoint.y / height * frame.height)
+            : pointerClientY - frame.top;
+          var tooltipWidth = Math.max(220, Math.min(286, frame.width - 16));
+          var tooltipLeft = resolvedX <= frame.width / 2 ? resolvedX + 14 : resolvedX - tooltipWidth - 14;
+          tooltipLeft = Math.max(8, Math.min(frame.width - tooltipWidth - 8, tooltipLeft));
+          tooltip.style.width = tooltipWidth + "px";
+          tooltip.style.left = tooltipLeft + "px";
+          tooltip.classList.add("visible"); tooltip.setAttribute("aria-hidden", "false");
+          var tooltipHalfHeight = tooltip.getBoundingClientRect().height / 2;
+          tooltip.style.top = Math.min(
+            Math.max(resolvedY, tooltipHalfHeight + 8),
+            frame.height - tooltipHalfHeight - 8
+          ) + "px";
+        }
+        var overlay = svgEl("rect", { x: Math.max(0, left - 12), y: top, width: plotWidth + 24, height: plotHeight, fill: "transparent", tabindex: "0", class: "chart-interaction-overlay", "aria-label": "移动指针或使用方向键查看国债收益率参照" });
+        overlay.addEventListener("pointermove", function (event) {
+          var pointer = svg.createSVGPoint(); pointer.x = event.clientX; pointer.y = event.clientY;
+          var matrix = svg.getScreenCTM();
+          var localPointer = matrix ? pointer.matrixTransform(matrix.inverse()) : null;
+          var svgX = localPointer ? localPointer.x : left;
+          var targetTime = minTime + Math.max(0, Math.min(1, (svgX - left) / plotWidth)) * (maxTime - minTime);
+          var nearestIndex = 0;
+          uniqueTimes.forEach(function (time, index) { if (Math.abs(time - targetTime) < Math.abs(uniqueTimes[nearestIndex] - targetTime)) nearestIndex = index; });
+          showIndex(nearestIndex, event.clientY);
+        });
+        overlay.addEventListener("pointerleave", hideTooltip);
+        overlay.addEventListener("focus", function () { showIndex(focusedIndex); });
+        overlay.addEventListener("blur", hideTooltip);
+        overlay.addEventListener("keydown", function (event) {
+          var next = focusedIndex;
+          if (event.key === "ArrowLeft") next -= 1;
+          else if (event.key === "ArrowRight") next += 1;
+          else if (event.key === "Home") next = 0;
+          else if (event.key === "End") next = uniqueTimes.length - 1;
+          else return;
+          event.preventDefault(); showIndex(next);
+        });
+        svg.appendChild(overlay);
+        var latestDate = new Date(maxTime).toISOString().slice(0, 10);
+        el("bondYieldStatus").textContent = "截至 " + latestDate + " · " + state.bondYieldRange + (closestSeries ? " · " + closestSeries.label + "最接近" : "");
+        el("bondYieldMethod").textContent = reference.methodology || "—";
+      }
+      function renderBondCashflows() {
+        var bond = state.detail.fixedIncome || {};
+        var currency = state.detail.instrument.currency || "USD";
+        el("equityChartToolbar").hidden = true;
+        el("chartFrame").hidden = true;
+        el("priceMovingAverageLegend").hidden = true;
+        el("valuationLegend").hidden = true;
+        el("chartCoverage").parentElement.hidden = true;
+        el("bondCashflowSurface").hidden = false;
+        el("marketSectionKicker").textContent = "Fixed Income Market Context";
+        el("priceHistoryTitle").textContent = "收益率参照与持有到期现金流";
+        el("marketHistoryNote").textContent = "DGS 恒定期限曲线仅作市场参照；合同现金流仍按票面条款独立展示。";
+        var badge = el("marketQualityBadge");
+        badge.className = "badge " + (bond.status === "pass" ? "good" : "warn");
+        badge.textContent = bond.status === "pass" ? "合同现金流已勾稽" : "现金流证据待补";
+        renderBondYieldChart(bond);
+        var next = bond.nextCashFlow || {};
+        el("bondNextCashflow").textContent = finite(next.total) == null ? "—" : money(next.total, currency, 2);
+        el("bondNextCashflowNote").textContent = next.date
+          ? compactToIso(next.date) + " · " + (next.kind === "maturity" ? "到期本息" : "合同票息")
+          : "当前没有可用的后续合同现金流";
+        el("bondRemainingCoupon").textContent = money(bond.remainingCouponTotal, currency, 2);
+        el("bondRemainingCouponNote").textContent = number((bond.cashFlows || []).filter(function (row) { return finite(row.coupon) > 0; }).length, 0) + " 笔合同票息";
+        el("bondMaturityPrincipal").textContent = money(bond.remainingPrincipal, currency, 2);
+        el("bondMaturityPrincipalNote").textContent = compactToIso(bond.maturityDate) + " 合同到期";
+        el("bondRemainingCashflow").textContent = money(bond.remainingCashFlowTotal, currency, 2);
+        var purchases = Array.isArray(bond.purchaseDates) ? bond.purchaseDates : [];
+        el("bondRailPurchase").textContent = compactToIso(bond.purchaseDate || purchases[0]);
+        el("bondRailClose").textContent = compactToIso(bond.valuationDate);
+        el("bondRailMaturity").textContent = compactToIso(bond.maturityDate) + (finite(bond.remainingTermYears) == null ? "" : " · " + number(bond.remainingTermYears, 2) + " 年");
+        var rows = el("bondCashflowRows");
+        rows.replaceChildren();
+        (bond.cashFlows || []).forEach(function (cashflow) {
+          var tr = document.createElement("tr");
+          if (cashflow.kind === "maturity") tr.className = "maturity";
+          [
+            compactToIso(cashflow.date),
+            cashflow.kind === "maturity" ? "到期本息" : "合同票息",
+            money(cashflow.coupon, currency, 2),
+            money(cashflow.principal, currency, 2),
+            money(cashflow.total, currency, 2)
+          ].forEach(function (value, index) {
+            var td = document.createElement("td");
+            td.textContent = value;
+            if (index >= 2) td.className = "number";
+            tr.appendChild(td);
+          });
+          rows.appendChild(tr);
+        });
+        if (!(bond.cashFlows || []).length) {
+          var emptyRow = document.createElement("tr"), emptyCell = document.createElement("td");
+          emptyCell.colSpan = 5; emptyCell.className = "empty"; emptyCell.textContent = "尚未取得可勾稽的持有到期合同现金流。";
+          emptyRow.appendChild(emptyCell); rows.appendChild(emptyRow);
+        }
+        el("bondCashflowMethod").textContent = bond.cashFlowMethodology || "合同现金流方法尚未登记。";
+      }
       function renderChart() {
+        if (isBondDetail()) {
+          renderBondCashflows();
+          return;
+        }
+        el("equityChartToolbar").hidden = false;
+        el("chartFrame").hidden = false;
+        el("chartCoverage").parentElement.hidden = false;
+        el("bondCashflowSurface").hidden = true;
+        el("marketSectionKicker").textContent = "Market History & Valuation";
+        el("priceHistoryTitle").textContent = "市场价格与估值";
+        el("marketHistoryNote").textContent = "价格视图保留三套独立口径；长窗口只在图形层聚合，不改写底层日线。";
         syncChartControls();
         if (state.chartView === "valuation") renderValuationChart();
         else renderPriceChart();
@@ -1912,25 +2278,38 @@
       }
       function renderHero() {
         var detail = state.detail, instrument = detail.instrument, symbol = primarySymbol(detail);
-        document.title = symbol + " 证券研究 · 投资组合透明计划";
-        el("instrumentSymbol").textContent = symbol;
-        el("instrumentEnglishName").textContent = instrument.englishName || instrument.displayName || symbol;
+        var bond = detail.fixedIncome || {};
+        var isBond = instrument.assetClass === "BOND";
+        document.body.classList.toggle("bond-detail", isBond);
+        var heroName = isBond ? (bond.displayName || symbol) : symbol;
+        document.title = heroName + (isBond ? " 国债详情" : " 证券研究") + " · 投资组合透明计划";
+        el("instrumentEyebrow").textContent = isBond ? "Private Fixed Income Review" : "Private Security Research";
+        el("instrumentSymbol").textContent = heroName;
+        el("instrumentEnglishName").textContent = isBond
+          ? (bond.contractCode || symbol)
+          : (instrument.englishName || instrument.displayName || symbol);
         var chineseName = el("instrumentChineseName");
-        chineseName.textContent = instrument.chineseName || "";
-        chineseName.hidden = !instrument.chineseName;
-        el("instrumentAsset").textContent = instrument.assetClass === "STK" ? "股票" : instrument.assetClass;
-        el("instrumentExchange").textContent = instrument.primaryExchange || "交易所未登记";
+        chineseName.textContent = isBond ? (bond.contractNameZh || "美国国债") : (instrument.chineseName || "");
+        chineseName.hidden = !(isBond ? bond.contractNameZh : instrument.chineseName);
+        el("instrumentAsset").textContent = isBond
+          ? (bond.instrumentType === "treasury_strips" ? "美国国债 STRIPS" : "美国附息国债")
+          : (instrument.assetClass === "STK" ? "股票" : instrument.assetClass);
+        el("instrumentExchange").textContent = isBond ? (bond.issuerLabelZh || "美国财政部") : (instrument.primaryExchange || "交易所未登记");
         el("instrumentCurrency").textContent = instrument.currency || "—";
         el("instrumentStatus").textContent = instrument.status === "active" ? "有效标的" : instrument.status;
         var holding = detail.currentHolding;
         var trades = (detail.bars || []).filter(function (row) { return row.barType === "TRADES"; });
         var latest = trades[trades.length - 1] || (detail.bars || [])[detail.bars.length - 1];
         var closePrice = holding && finite(holding.closePrice);
-        el("latestCloseLabel").textContent = holding ? "持仓完成收盘价格" : "最近市场完成收盘";
-        el("latestClose").textContent = closePrice != null
+        el("latestCloseLabel").textContent = isBond ? "完成收盘估值 / US$100 面值" : (holding ? "持仓完成收盘价格" : "最近市场完成收盘");
+        el("latestClose").textContent = isBond && finite(bond.completedCloseValuePer100) != null
+          ? number(bond.completedCloseValuePer100, 3)
+          : closePrice != null
           ? money(closePrice, holding.currency, 2)
           : (latest ? money(latest.close, instrument.currency, 2) : "—");
-        el("latestCloseNote").textContent = holding
+        el("latestCloseNote").textContent = isBond
+          ? compactToIso(bond.valuationDate) + " · 由净清算值与面值换算"
+          : holding
           ? compactToIso(holding.valuationDate) + " · " + (holding.status === "official" ? "官方日结" : holding.status)
           : (latest ? compactToIso(latest.date) + " · 完成日线" : "当前窗口没有行情");
         el("dailyPnlAmount").textContent = holding ? signedMoney(holding.dailyPnl, holding.currency) : "—";
@@ -1944,6 +2323,33 @@
         setClassBySign(el("dailyPnlPct"), holding && holding.dailyPnlPct);
         var performance = detail.accountPerformance || {};
         var holdingQuantity = holding ? finite(holding.quantity) : null;
+        if (isBond) {
+          var faceValue = finite(bond.faceValue);
+          var costPer100 = faceValue && finite(bond.currentCost) != null
+            ? finite(bond.currentCost) / faceValue * 100
+            : null;
+          el("averageCostLabel").textContent = "成本价格";
+          el("averageCost").textContent = costPer100 == null ? "—" : number(costPer100, 3);
+          el("averageCostNote").textContent = "每 US$100 面值 · IBKR 成本含手续费";
+          el("holdingQuantityLabel").textContent = "持有面值";
+          el("holdingQuantity").textContent = money(faceValue, holding && holding.currency || instrument.currency, 2);
+          el("holdingQuantityNote").textContent = compactToIso(bond.valuationDate) + " 完成收盘";
+          el("currentCostLabel").textContent = "成本合计";
+          el("currentCost").textContent = money(bond.currentCost, holding && holding.currency || instrument.currency, 2);
+          el("currentCostNote").textContent = "含手续费 " + money(bond.feeTotal, instrument.currency, 2) + " · 不含购买应计利息";
+          el("unrealizedPnl").textContent = holding ? signedMoney(holding.unrealizedPnl, holding.currency) : "—";
+          setClassBySign(el("unrealizedPnl"), holding && holding.unrealizedPnl);
+          var bondUnrealizedRatio = finite(bond.currentCost) > 0 && holding
+            ? finite(holding.unrealizedPnl) / finite(bond.currentCost)
+            : null;
+          el("unrealizedPnlPct").textContent = bondUnrealizedRatio == null ? "—" : signedPercentRatio(bondUnrealizedRatio, 2);
+          setClassBySign(el("unrealizedPnlPct"), bondUnrealizedRatio);
+          el("unrealizedPnlNote").textContent = compactToIso(bond.valuationDate) + " · 净清算值减成本基础";
+          return;
+        }
+        el("averageCostLabel").textContent = "平均成本";
+        el("holdingQuantityLabel").textContent = "当前数量";
+        el("currentCostLabel").textContent = "成本基础";
         var averageCost = holdingQuantity && finite(performance.currentCost) != null
           ? finite(performance.currentCost) / holdingQuantity
           : null;
@@ -1974,7 +2380,40 @@
         var beta = facts.betaMethodology || {};
         var currency = state.detail.instrument.currency || "USD";
         var isEtf = state.detail.instrument.instrumentKind === "etf";
+        var isBond = isBondDetail();
         var fund = state.detail.fundProfile || {};
+        if (isBond) {
+          var bond = state.detail.fixedIncome || {};
+          var purchaseDates = Array.isArray(bond.purchaseDates) ? bond.purchaseDates : [];
+          var projectedMaturityGain = finite(bond.projectedHoldToMaturityNetGain);
+          var bondEntries = [
+            ["债券类型", bond.instrumentType === "treasury_strips" ? "STRIPS" : "附息国债", bond.issuerLabelZh || "美国财政部"],
+            ["票面息率", finite(bond.couponRate) == null ? "—" : percent(finite(bond.couponRate) * 100, 3), bond.instrumentType === "treasury_strips" ? "零息本金证券" : "合同年票息率"],
+            ["到期日", compactToIso(bond.maturityDate), "合同到期日"],
+            ["剩余期限", finite(bond.remainingTermYears) == null ? "—" : number(bond.remainingTermYears, 2) + " 年", "截至 " + compactToIso(bond.valuationDate)],
+            ["首次买入", compactToIso(bond.purchaseDate || purchaseDates[0]), number(bond.purchaseLotCount, 0) + " 个购入批次"],
+            ["实际息率", bond.actualYieldQuality === "complete" ? signedPercentRatio(bond.actualYield, 3) : "—", "含手续费实际投入至合同现金流的精确日历 XIRR；不是 IBKR 成交 YTM"],
+            ["购买应计利息", money(bond.purchasedAccruedInterest, currency, 2), "计入实际投入，不进入 IBKR 证券成本基础"],
+            ["预计持有到期净收益", projectedMaturityGain == null ? "—" : signedMoney(projectedMaturityGain, currency), "已收票息＋剩余合同现金流－实际投入 · 税前且不计再投资"]
+          ];
+          var bondGrid = el("fundamentalGrid");
+          bondGrid.replaceChildren();
+          bondEntries.forEach(function (entry) {
+            var item = document.createElement("article"); item.className = "fundamental-item note-wrap";
+            var label = document.createElement("div"); label.className = "fundamental-label"; label.textContent = entry[0];
+            var value = document.createElement("div"); value.className = "fundamental-value"; value.textContent = entry[1];
+            var note = document.createElement("div"); note.className = "fundamental-note"; note.textContent = entry[2];
+            item.title = entry[2]; item.append(label, value, note); bondGrid.appendChild(item);
+          });
+          el("fundamentalsKicker").textContent = "Treasury Contract & Yield";
+          el("fundamentalsTitle").textContent = "国债合同与收益概览";
+          el("fundamentalGrid").setAttribute("aria-label", "国债合同与收益基础数据");
+          el("fundamentalsNote").textContent = "实际息率与预计持有到期净收益均按获审核购入现金流和合同条款计算；前者是年化 XIRR，后者是税前名义金额且不计票息再投资。";
+          var bondBadge = el("fundamentalsBadge");
+          bondBadge.className = "badge " + (bond.status === "pass" ? "good" : "warn");
+          bondBadge.textContent = bond.status === "pass" ? "合同与购入现金流已勾稽" : "固定收益证据待补";
+          return;
+        }
         var factDate = function (metric, fallback) {
           var row = dates[metric];
           return row ? "申报期 " + compactToIso(row.periodEnd) : fallback;
@@ -2165,6 +2604,20 @@
         var portfolio = dates.portfolioClose;
         el("asofPortfolio").textContent = portfolio ? compactToIso(portfolio.valuationDate) : "没有持仓";
         el("asofPortfolioNote").textContent = portfolio ? (portfolio.status === "official" ? "IBKR 官方日结" : portfolio.status) + " · 采集 " + utcDateTime(portfolio.sourceAt) : "不影响历史行情与研究";
+        if (isBondDetail()) {
+          var bond = state.detail.fixedIncome || {}, lifecycleBond = dates.lifecycle || {}, lotsBond = dates.positionLots || {};
+          el("asofMarketLabel").textContent = "合同与完成收盘";
+          el("asofMarket").textContent = compactToIso(bond.valuationDate);
+          el("asofMarketNote").textContent = "合同到期 " + compactToIso(bond.maturityDate) + " · 持有到期口径";
+          el("asofLifecycle").textContent = compactToIso(lifecycleBond.statementThrough);
+          el("asofLifecycleNote").textContent = "报表始于 " + compactToIso(lifecycleBond.statementCoverageStart) + " · 最近事件 " + compactToIso(lifecycleBond.latestEventDate);
+          el("asofLotsResearchLabel").textContent = "持仓批次 / 利息";
+          el("asofLotsResearch").textContent = lotsBond.asOf ? compactToIso(lotsBond.asOf) : "批次尚不可用";
+          el("asofLotsResearchNote").textContent = "已收票息 " + money(bond.paidInterest, state.detail.instrument.currency, 2) + " · 购买应计 " + money(bond.purchasedAccruedInterest, state.detail.instrument.currency, 2);
+          return;
+        }
+        el("asofMarketLabel").textContent = "行情覆盖";
+        el("asofLotsResearchLabel").textContent = "持仓批次 / 研究";
         var market = dates.market && dates.market[activeBarType()];
         el("asofMarket").textContent = market ? compactToIso(market.coverageEnd) : "—";
         el("asofMarketNote").textContent = market ? "全量覆盖始于 " + compactToIso(market.coverageStart) : "当前口径没有行情";
@@ -2196,15 +2649,25 @@
       }
       function renderEvents() {
         var events = state.detail.eventTimeline || state.detail.events || [];
+        var isBond = isBondDetail();
         var rows = el("eventRows");
+        el("eventTable").classList.toggle("bond-view", isBond);
+        el("eventSummary").classList.toggle("bond-view", isBond);
         rows.replaceChildren();
         events.forEach(function (event) {
           var details = event.details || {}, metadata = details.metadata || {};
           var recurringInvestment = isRecurringInvestment(event);
+          var bondEventLabel = metadata.type === "Bond Interest Received"
+            ? "票息到账"
+            : (metadata.type === "Bond Interest Paid"
+              ? "购买应计利息"
+              : (event.eventType === "asset_transfer" ? "内部转移" : null));
           var tr = document.createElement("tr");
           var values = [
             compactToIso(event.tradeDate),
-            recurringInvestment
+            isBond && bondEventLabel
+              ? bondEventLabel
+              : recurringInvestment
               ? "定期投资"
               : (eventLabels[event.eventType] || event.eventType),
             metadata.buySell === "BUY" ? "买入" : (metadata.buySell === "SELL" ? "卖出" : "—"),
@@ -2227,7 +2690,7 @@
         });
         if (!events.length) {
           var tr = document.createElement("tr"), td = document.createElement("td");
-          td.colSpan = 8; td.className = "empty"; td.textContent = "尚未关联到该标的的生命周期事件。";
+          td.colSpan = isBond ? 7 : 8; td.className = "empty"; td.textContent = "尚未关联到该标的的生命周期事件。";
           tr.appendChild(td); rows.appendChild(tr);
         }
         el("activityCount").textContent = state.detail.publicStatic
@@ -2236,16 +2699,28 @@
             number(state.detail.summary.lifecycle.displayEventCount, 0) + " 条归并事件 · " +
             number(state.detail.summary.lifecycle.eventCount, 0) + " 条原始记录"
           );
+        el("activityKicker").textContent = isBond ? "Income, Trades & Holdings" : "Trades & Holdings";
+        el("activityTitle").textContent = isBond ? "收益归因与持仓" : "交易与持仓";
         el("activitySubtitle").textContent =
           compactToIso(state.detail.summary.lifecycle.earliestTradeDate) + " — " +
           compactToIso(state.detail.summary.lifecycle.latestTradeDate) + " · Activity Flex 生命周期档案";
         var performance = state.detail.accountPerformance || {};
         var holding = state.detail.currentHolding || {};
-        el("eventHoldingTotal").textContent = quantityNumber(holding.quantity == null ? 0 : holding.quantity);
-        el("eventFeesTotal").textContent = signedMoney(performance.feeTotal, performance.currency || state.detail.instrument.currency);
-        el("eventRealizedTotal").textContent = signedMoney(performance.realizedPnl, performance.currency || state.detail.instrument.currency);
-        setClassBySign(el("eventFeesTotal"), performance.feeTotal);
-        setClassBySign(el("eventRealizedTotal"), performance.realizedPnl);
+        el("eventHoldingTotalLabel").textContent = isBond ? "面值总计" : "持股总计";
+        el("eventHoldingTotal").textContent = isBond
+          ? money(state.detail.fixedIncome && state.detail.fixedIncome.faceValue, state.detail.instrument.currency, 2)
+          : quantityNumber(holding.quantity == null ? 0 : holding.quantity);
+        el("eventFeesTotal").textContent = isBond
+          ? money(performance.feeTotal, performance.currency || state.detail.instrument.currency, 2)
+          : signedMoney(performance.feeTotal, performance.currency || state.detail.instrument.currency);
+        el("eventRealizedTotalLabel").textContent = isBond ? "未实现盈亏" : "已实现盈亏合计";
+        var eventPnl = isBond
+          ? state.detail.fixedIncome && state.detail.fixedIncome.unrealizedPnl
+          : performance.realizedPnl;
+        el("eventRealizedTotal").textContent = signedMoney(eventPnl, performance.currency || state.detail.instrument.currency);
+        if (isBond) el("eventFeesTotal").classList.remove("positive", "negative");
+        else setClassBySign(el("eventFeesTotal"), performance.feeTotal);
+        setClassBySign(el("eventRealizedTotal"), eventPnl);
       }
       function sortedPositionLots(rows) {
         var sort = state.lotSort;
@@ -2291,10 +2766,18 @@
         var lots = state.detail.positionLots || {}, rows = lots.items || [];
         var performance = state.detail.accountPerformance || {};
         var currency = performance.currency || state.detail.instrument.currency;
+        var isBond = isBondDetail(), bond = state.detail.fixedIncome || {};
+        el("closedPositionTotalLabel").textContent = isBond ? "未实现盈亏" : "平仓合计";
+        el("dividendTotalLabel").textContent = isBond ? "已收票息" : "股息合计";
+        el("aggregateReturnLabel").textContent = "归总收益";
+        el("comprehensiveCostLabel").textContent = isBond ? "实际投入" : "综合成本";
+        el("annualizedReturnLabel").textContent = isBond ? "实际息率" : "年化收益";
+        el("annualizedReturnNote").textContent = isBond ? "持有到期现金流 XIRR" : "资金加权 XIRR";
+        el("totalReturnLabel").textContent = isBond ? "截至收盘回报率" : "总回报率";
         [
-          ["closedPositionTotal", performance.closedPositionTotal, true],
-          ["dividendTotal", performance.dividendTotal, false],
-          ["aggregateReturn", performance.aggregateReturn, true]
+          ["closedPositionTotal", isBond ? bond.unrealizedPnl : performance.closedPositionTotal, true],
+          ["dividendTotal", isBond ? bond.paidInterest : performance.dividendTotal, false],
+          ["aggregateReturn", isBond ? bond.aggregateReturn : performance.aggregateReturn, true]
         ].forEach(function (entry) {
           el(entry[0]).textContent = entry[2] ? signedMoney(entry[1], currency) : money(entry[1], currency, 2);
           setClassBySign(el(entry[0]), entry[1]);
@@ -2305,7 +2788,9 @@
         el("totalReturn").textContent = signedPercentRatio(performance.totalReturn, 2);
         setClassBySign(el("totalReturn"), performance.totalReturn);
         el("totalReturn").title = performance.totalReturnMethodology || performance.methodology || "";
-        el("totalReturnPeriod").textContent =
+        el("totalReturnPeriod").textContent = isBond
+          ? "归总收益 ÷ 实际投入 · 非持有到期收益率"
+          :
           performance.holdingPeriodStartDate && finite(performance.holdingPeriodDays) != null
             ? compactToIso(performance.holdingPeriodStartDate) + " 起 · 实际持仓 " +
               number(performance.holdingPeriodDays, 0) + " 日" +
@@ -2313,7 +2798,10 @@
                 ? " · 排除空仓 " + number(performance.excludedNoPositionDays, 0) + " 日"
                 : "")
             : "非年化累计收益";
-        el("comprehensiveCost").textContent = money(performance.comprehensiveCost, currency, 2) + " / 股";
+        el("comprehensiveCost").textContent = isBond
+          ? money(bond.acquisitionCashOutflow, currency, 2)
+          : money(performance.comprehensiveCost, currency, 2) + " / 股";
+        document.querySelector(".tax-lot-title").textContent = isBond ? "持仓批次" : "持仓计税单位";
         var badge = el("taxLotsStatusBadge");
         badge.className = "badge " + (
           lots.status === "complete" ? "good"
@@ -2328,7 +2816,7 @@
               ? "人工批次已失配"
               : (lots.status === "not_applicable" ? "当前没有持仓" : "尚未接入批次粒度")));
         el("taxLotsAsOf").textContent = lots.status === "complete"
-          ? "完成收盘：" + compactToIso(lots.asOf) + " · 批次不含账户或券商标识。"
+          ? "完成收盘：" + compactToIso(lots.asOf) + " · " + (isBond ? "债券价格均按每 US$100 面值。" : "批次不含账户或券商标识。")
           : (lots.status === "manual_reconciled"
             ? "批次结构核验：" + utcDateTime(lots.sourceAt) + " · 盈亏按 " + compactToIso(lots.asOf) + " 完成收盘重估。" +
               (finite(lots.summary && lots.summary.costBasisRoundingResidual) && Math.abs(lots.summary.costBasisRoundingResidual) >= .005
@@ -2360,10 +2848,10 @@
         var headingRow = document.createElement("tr");
         [
           ["acquisitionDate", "获得日期", false],
-          ["averagePrice", "平均价格", true],
-          ["quantity", "数量", true],
-          ["totalPnl", "合计盈亏", true],
-          [null, "合计盈亏%", true]
+          ["averagePrice", isBond ? "成本价格" : "平均价格", true],
+          ["quantity", isBond ? "面值" : "数量", true],
+          ["totalPnl", isBond ? "未实现盈亏" : "合计盈亏", true],
+          [null, isBond ? "未实现盈亏%" : "合计盈亏%", true]
         ].forEach(function (entry) {
           var th = document.createElement("th");
           if (entry[2]) th.classList.add("number");
@@ -2407,8 +2895,8 @@
           var tr = document.createElement("tr");
           [
             compactToIso(row.acquisitionDate),
-            money(row.averagePrice, row.currency || state.detail.instrument.currency, 2),
-            quantityNumber(row.quantity),
+            isBond ? number(row.averagePrice, 3) : money(row.averagePrice, row.currency || state.detail.instrument.currency, 2),
+            isBond ? money(row.quantity, row.currency || currency, 2) : quantityNumber(row.quantity),
             signedMoney(row.totalPnl, row.pnlCurrency || currency),
             signedPercentRatio(row.totalPnlPct, 2)
           ].forEach(function (value, index) {
@@ -2425,22 +2913,24 @@
         var summary = lots.summary || {};
         var summaryQuantity = finite(summary.quantity);
         var summaryAverageCost = summaryQuantity && finite(summary.costBasis) != null
-          ? finite(summary.costBasis) / summaryQuantity
+          ? finite(summary.costBasis) / summaryQuantity * (isBond ? 100 : 1)
           : null;
         var summaryBar = document.createElement("div");
-        summaryBar.className = "tax-lot-summary";
+        summaryBar.className = "tax-lot-summary" + (isBond ? " bond-view" : "");
         [
           ["total-cost-basis", "成本基础", money(summary.costBasis, currency, 2), null],
-          ["cost-basis", "平均成本", money(summaryAverageCost, currency, 2), null],
-          ["quantity", "持股总计", quantityNumber(summary.quantity), null],
-          ["pnl", "合计盈亏", signedMoney(summary.totalPnl, currency), summary.totalPnl],
-          ["pnl-rate", "合计盈亏%", signedPercentRatio(summary.totalPnlPct, 2), summary.totalPnlPct]
+          ["cost-basis", "平均成本", isBond ? number(summaryAverageCost, 3) : money(summaryAverageCost, currency, 2), null],
+          ["quantity", "持股总计", isBond ? money(summary.quantity, currency, 2) : quantityNumber(summary.quantity), null],
+          ["pnl", isBond ? "未实现盈亏" : "合计盈亏", signedMoney(summary.totalPnl, currency), summary.totalPnl],
+          ["pnl-rate", isBond ? "未实现盈亏%" : "合计盈亏%", signedPercentRatio(summary.totalPnlPct, 2), summary.totalPnlPct]
         ].forEach(function (entry) {
           var item = document.createElement("div");
           item.className = "tax-lot-summary-item " + entry[0];
           var label = document.createElement("span");
           label.className = "tax-lot-summary-label";
-          label.textContent = entry[1];
+          label.textContent = isBond && entry[0] === "cost-basis"
+            ? "成本价格"
+            : (isBond && entry[0] === "quantity" ? "面值总计" : entry[1]);
           var value = document.createElement("span");
           value.className = "tax-lot-summary-value";
           value.textContent = entry[2];
@@ -2479,6 +2969,7 @@
         }
         el("researchDateBadge").textContent = labels.length ? labels.join(" · ") : "尚未建立";
       }
+      /* FAMILY:INSTRUMENT_DECISION_RUNTIME:START *//* FAMILY:INSTRUMENT_DECISION_RUNTIME:END */
       function renderProviderResearch() {
         var body = el("providerResearchBody");
         body.replaceChildren();
@@ -2877,8 +3368,154 @@
           historyDetails.appendChild(historyList); body.appendChild(historyDetails);
         }
       }
+      function renderFixedIncomeResearch() {
+        var body = el("researchBody");
+        body.replaceChildren();
+        var assessment = (state.detail.research || []).find(function (row) {
+          return row.assessmentType === "fixed_income_research";
+        });
+        if (!assessment) {
+          var empty = document.createElement("div"); empty.className = "empty";
+          empty.textContent = "尚未为该国债建立版本化固定收益研究。";
+          body.appendChild(empty); updateResearchDateBadge(); return;
+        }
+        var result = assessment.result || {};
+        var securityRisk = result.securityRisk || {};
+        var portfolioRisk = result.portfolioRisk || {};
+        updateResearchDateBadge();
+
+        var badges = document.createElement("div"); badges.className = "badge-row";
+        [
+          ["持有到期", "good"],
+          ["暂不增加久期", "warn"],
+          ["固定收益研究 v" + number(assessment.version, 0), ""],
+          ["无交易授权", ""]
+        ].forEach(function (entry) {
+          var badge = document.createElement("span"); badge.className = "badge" + (entry[1] ? " " + entry[1] : "");
+          badge.textContent = entry[0]; badges.appendChild(badge);
+        });
+        body.appendChild(badges);
+
+        var summary = document.createElement("p"); summary.className = "research-summary";
+        summary.textContent = assessment.summary || "—"; body.appendChild(summary);
+        if (result.tradeAuthorization && result.tradeAuthorization.meaningZh) {
+          var guardrail = document.createElement("p"); guardrail.className = "section-note";
+          guardrail.textContent = "研究边界：" + result.tradeAuthorization.meaningZh;
+          body.appendChild(guardrail);
+        }
+        var hinge = document.createElement("div"); hinge.className = "research-hinge";
+        var hingeLabel = document.createElement("strong"); hingeLabel.textContent = "关键判断：";
+        hinge.append(hingeLabel, document.createTextNode(" " + (result.decisionHinge || "—")));
+        body.appendChild(hinge);
+
+        var metrics = document.createElement("div"); metrics.className = "morningstar-metrics fixed-income-research-metrics";
+        [
+          ["购入实际 XIRR", percent(securityRisk.purchaseActualXirrPct, 4), "含手续费与购买应计利息的实际现金流"],
+          ["修正久期", number(securityRisk.modifiedDurationYears, 2) + " 年", "收益率变动的一阶价格敏感度"],
+          ["个券 DV01", money(securityRisk.dv01UsdPerBp, "USD", 2), "收益率上移 1bp 的一阶价值影响"],
+          ["预计持有到期净收益", money(securityRisk.projectedHtmNetGainUsd, "USD", 2), "税前名义金额，不计票息再投资"]
+        ].forEach(function (entry) {
+          var item = document.createElement("article"); item.className = "morningstar-metric";
+          var label = document.createElement("div"); label.className = "morningstar-metric-label"; label.textContent = entry[0];
+          var value = document.createElement("div"); value.className = "morningstar-metric-value"; value.textContent = entry[1];
+          var note = document.createElement("div"); note.className = "morningstar-metric-note"; note.textContent = entry[2];
+          item.append(label, value, note); metrics.appendChild(item);
+        });
+        body.appendChild(metrics);
+
+        var cases = document.createElement("div"); cases.className = "case-grid";
+        var structure = document.createElement("article"); structure.className = "case-card";
+        var structureTitle = document.createElement("h3"); structureTitle.textContent = "组合结构判断";
+        structure.append(structureTitle, renderList(result.portfolioJudgments));
+        var ladder = document.createElement("article"); ladder.className = "case-card";
+        var ladderTitle = document.createElement("h3"); ladderTitle.textContent = "剩余合同现金流";
+        var ladderItems = Object.keys(result.cashFlowLadder || {}).sort().map(function (year) {
+          return year + " · " + money(result.cashFlowLadder[year], "USD", 2);
+        });
+        ladder.append(ladderTitle, renderList(ladderItems));
+        cases.append(structure, ladder); body.appendChild(cases);
+
+        var scenarioImpact = securityRisk.scenarioImpactUsd || {};
+        var scenarioRows = [
+          ["利率 -150bp", scenarioImpact.minus150bp],
+          ["利率 -100bp", scenarioImpact.minus100bp],
+          ["利率 -50bp", scenarioImpact.minus50bp],
+          ["利率 +50bp", scenarioImpact.plus50bp],
+          ["利率 +100bp", scenarioImpact.plus100bp],
+          ["利率 +150bp", scenarioImpact.plus150bp]
+        ];
+        var scenarios = document.createElement("div"); scenarios.className = "valuation-grid";
+        scenarioRows.forEach(function (entry) {
+          var item = document.createElement("article"); item.className = "valuation-item";
+          var name = document.createElement("div"); name.className = "valuation-name"; name.textContent = entry[0];
+          var value = document.createElement("div"); value.className = "valuation-price"; value.textContent = money(entry[1], "USD", 2); setClassBySign(value, entry[1]);
+          var note = document.createElement("div"); note.className = "valuation-reference"; note.textContent = "固定合同现金流完整重估";
+          item.append(name, value, note); scenarios.appendChild(item);
+        });
+        body.appendChild(scenarios);
+        var portfolioLine = document.createElement("p"); portfolioLine.className = "section-note";
+        portfolioLine.textContent = "组合基线：修正久期 " + number(portfolioRisk.modifiedDurationYears, 2)
+          + " 年 · DV01 " + money(portfolioRisk.dv01UsdPerBp, "USD", 2) + "／bp · STRIPS 占国债 DV01 "
+          + percent(portfolioRisk.stripsDv01SharePct, 2) + "。";
+        body.appendChild(portfolioLine);
+
+        if (Array.isArray(result.monitoring) && result.monitoring.length) {
+          var monitoring = document.createElement("div"); monitoring.className = "monitoring-list";
+          result.monitoring.forEach(function (row) {
+            var item = document.createElement("article"); item.className = "monitoring-item";
+            var left = document.createElement("div"); left.innerHTML = '<div class="monitoring-metric"></div><div class="monitoring-baseline"></div>';
+            left.querySelector(".monitoring-metric").textContent = row.metric || "—";
+            left.querySelector(".monitoring-baseline").textContent = row.baseline || "—";
+            var right = document.createElement("div"); right.className = "monitoring-signals";
+            var good = document.createElement("div"), bad = document.createElement("div");
+            good.innerHTML = "<strong>确认方向</strong> "; good.appendChild(document.createTextNode(row.confirmingDirection || "—"));
+            bad.innerHTML = "<strong>挑战方向</strong> "; bad.appendChild(document.createTextNode(row.challengingDirection || "—"));
+            right.append(good, bad); item.append(left, right); monitoring.appendChild(item);
+          });
+          body.appendChild(monitoring);
+        }
+
+        var details = document.createElement("details"); details.className = "research-details";
+        var detailsSummary = document.createElement("summary"); detailsSummary.textContent = "查看证据边界与来源登记"; details.appendChild(detailsSummary);
+        var missingTitle = document.createElement("p"); missingTitle.className = "section-note"; missingTitle.textContent = "仍需保留的研究边界"; details.appendChild(missingTitle);
+        var missing = renderList(result.missingEvidence); missing.className = "missing-list"; details.appendChild(missing);
+        var sources = document.createElement("div"); sources.className = "source-list";
+        (result.sourceRegister || []).filter(function (source) { return source.url; }).forEach(function (source) {
+          var link = document.createElement("a"); link.className = "source-link"; link.href = source.url; link.target = "_blank"; link.rel = "noreferrer";
+          var label = document.createElement("span"); label.textContent = source.label;
+          var date = document.createElement("span"); date.className = "source-date"; date.textContent = compactToIso(source.asOf);
+          link.append(label, date); sources.appendChild(link);
+        });
+        details.appendChild(sources); body.appendChild(details);
+      }
       function renderQuality() {
         var domains = state.detail.dataQuality.domains || {};
+        var qualityGrid = el("qualityGrid");
+        qualityGrid.classList.toggle("bond-quality-grid", isBondDetail());
+        if (isBondDetail()) {
+          var bond = state.detail.fixedIncome || {}, fixed = domains.fixedIncome || {}, quality = fixed.quality || bond.quality || {};
+          var bondConfigurations = [
+            ["完成收盘", quality.completedClose, compactToIso(bond.valuationDate) + " · 净清算值与面值换算"],
+            ["债券合同", quality.contract, (bond.couponRate == null ? "票息待核验" : percent(bond.couponRate * 100, 3)) + " · " + compactToIso(bond.maturityDate)],
+            ["购入现金流", quality.acquisition, "成本、手续费与购买应计利息"],
+            ["利息现金流", quality.interest, "已收票息与购买应计逐笔归集"],
+            ["持仓批次", domains.positionLots && domains.positionLots.status, domains.positionLots && domains.positionLots.asOf ? compactToIso(domains.positionLots.asOf) + " · " + number(domains.positionLots.count, 0) + " 个批次" : "尚未取得 Lot 粒度"],
+            ["固定收益研究", domains.research && domains.research.status, domains.research && domains.research.count ? "当前版本 " + number(domains.research.count, 0) : "尚未建立研究基线"]
+          ];
+          var bondGrid = qualityGrid; bondGrid.replaceChildren();
+          bondConfigurations.forEach(function (configuration) {
+            var item = document.createElement("article"); item.className = "quality-item";
+            item.innerHTML = '<div class="quality-domain"></div><div class="quality-status"></div><div class="quality-note"></div>';
+            item.querySelector(".quality-domain").textContent = configuration[0];
+            item.querySelector(".quality-status").textContent = qualityLabel(configuration[1]);
+            item.querySelector(".quality-note").textContent = configuration[2];
+            bondGrid.appendChild(item);
+          });
+          var bondOverall = el("overallQualityBadge");
+          bondOverall.className = "badge " + (state.detail.dataQuality.status === "pass" ? "good" : "warn");
+          bondOverall.textContent = "整体 " + qualityLabel(state.detail.dataQuality.status);
+          return;
+        }
         var configurations = [
           ["行情", domains.market, "缺口 " + number(domains.market && domains.market.openGaps, 0) + " · 日历差异 " + number(domains.market && domains.market.calendarMismatchPoints, 0) + " · 未解释调整 " + number(domains.market && domains.market.unexplainedAdjustmentDateCount, 0) + " · 派息史 " + distributionCoverageLabel(domains.market) + " · 拆股派生 " + qualityLabel(domains.market && domains.market.splitNormalization && domains.market.splitNormalization.TRADES ? domains.market.splitNormalization.TRADES.status : "warning")],
           ["生命周期", domains.lifecycle, "回填窗口 " + number(domains.lifecycle && domains.lifecycle.ingestionWindows, 0)],
@@ -2886,7 +3523,7 @@
             ["持仓批次", domains.positionLots, domains.positionLots && domains.positionLots.asOf ? compactToIso(domains.positionLots.asOf) + " · " + number(domains.positionLots.count, 0) + " 个存续批次" : "尚未取得 Lot 粒度日结"],
           ["研究", domains.research, "当前版本 " + number(domains.research && domains.research.count, 0)]
         ];
-        var grid = el("qualityGrid"); grid.replaceChildren();
+        var grid = qualityGrid; grid.replaceChildren();
         configurations.forEach(function (configuration) {
           var item = document.createElement("article"); item.className = "quality-item";
           item.innerHTML = '<div class="quality-domain"></div><div class="quality-status"></div><div class="quality-note"></div>';
@@ -2901,12 +3538,45 @@
         marketBadge.className = "badge " + (market.status === "pass" ? "good" : "warn");
         marketBadge.textContent = "行情质量 " + qualityLabel(market.status);
       }
+      function renderMethodFooter() {
+        if (isBondDetail()) {
+          el("footerAccountMethod").textContent = "IBKR 官方完成收盘、交易成本、持仓批次与债券利息流水";
+          el("footerMarketLabel").textContent = "固定收益合同";
+              el("footerMarketMethod").textContent = "每 US$100 面值完成收盘估值；票息、到期日与合同现金流独立展示";
+              el("footerResearchLabel").textContent = "研究边界";
+              el("footerResearchMethod").textContent = "持有期反推 YTM、购入实际 XIRR 与固定收益研究分层；研究不授权交易";
+          el("footerDisclaimer").textContent = "购买应计利息计入实际投入但不进入 IBKR 证券成本基础；合同现金流合计不是当前价值。本机页面不会发送交易指令，不构成交易建议。";
+          return;
+        }
+        el("footerAccountMethod").textContent = "最近获审核完成收盘持仓与生命周期资料";
+        el("footerMarketLabel").textContent = "市场历史";
+        el("footerMarketMethod").textContent = "IBKR 日线与申报日起生效的基本面事实分别留存日期";
+        el("footerResearchLabel").textContent = "研究边界";
+        el("footerResearchMethod").textContent = "外部研报与项目独立分析分栏、分版本、分日期";
+        el("footerDisclaimer").textContent = "不同资料域不共用一个虚假的更新时间；缺失字段不会估填。本机页面不会发送交易指令，不构成交易建议。";
+      }
       function renderAll() {
-        renderHero(); renderFundamentals(); renderCorporateEvents(); renderChart(); renderDates(); renderEvents(); renderPositionLots(); renderProviderResearch(); renderResearch(); renderQuality();
+        var isBond = isBondDetail();
+        el("researchSection").hidden = false;
+        el("corporateEventsSection").hidden = isBond;
+        el("providerResearchCard").hidden = isBond;
+        el("researchTitle").textContent = isBond ? "固定收益研究" : "研究评价";
+        el("researchAnalysisTitle").textContent = isBond ? "固定收益分析" : "研究分析";
+        el("researchSectionNote").textContent = isBond
+          ? "合同现金流、久期与利率风险分开呈现；研究不改变持有到期事实，也不是交易指令。"
+          : "事实与判断分离；结论是只读研究记录，不是交易指令。";
+        renderHero(); renderFundamentals(); renderChart(); renderDates(); renderEvents(); renderPositionLots();
+        if (isBond) renderFixedIncomeResearch();
+        else { renderCorporateEvents(); renderProviderResearch(); renderResearch(); }
+        /* FAMILY:INSTRUMENT_DECISION_RENDER:START *//* FAMILY:INSTRUMENT_DECISION_RENDER:END */
+        renderQuality();
+        renderMethodFooter();
         el("serviceNotice").classList.remove("error");
         el("serviceNotice").innerHTML = state.detail.publicStatic
           ? '<span class="status-dot" aria-hidden="true"></span><span><strong>公开静态资料已载入。</strong> Flex、行情与研究保留各自更新时间；页面不连接券商或本机服务。</span>'
-          : '<span class="status-dot" aria-hidden="true"></span><span><strong>本机资料已载入。</strong> 所有账户事实均为只读完成收盘；持仓计税单位仅接受 IBKR 官方 Lot 粒度。</span>';
+              : (isBond
+                ? '<span class="status-dot" aria-hidden="true"></span><span><strong>本机固定收益资料已载入。</strong> 完成收盘、购入现金流、利息与持有到期合同现金流已分别勾稽。</span>'
+            : '<span class="status-dot" aria-hidden="true"></span><span><strong>本机资料已载入。</strong> 所有账户事实均为只读完成收盘；持仓计税单位仅接受 IBKR 官方 Lot 粒度。</span>');
       }
       function showError(error) {
         el("serviceNotice").classList.add("error");
@@ -2949,7 +3619,22 @@
           loadDetail().catch(showError);
         });
       });
-      window.addEventListener("resize", scheduleValuationLegendAlignment);
+      document.querySelectorAll(".bond-yield-range-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          if (state.bondYieldRange === button.dataset.bondYieldRange) return;
+          state.bondYieldRange = button.dataset.bondYieldRange;
+          if (isBondDetail()) renderBondYieldChart(state.detail.fixedIncome || {});
+        });
+      });
+          var lastBondChartMobile = window.matchMedia("(max-width: 660px)").matches;
+          window.addEventListener("resize", function () {
+            scheduleValuationLegendAlignment();
+            var nextBondChartMobile = window.matchMedia("(max-width: 660px)").matches;
+            if (isBondDetail() && nextBondChartMobile !== lastBondChartMobile) {
+              lastBondChartMobile = nextBondChartMobile;
+              renderBondYieldChart(state.detail.fixedIncome || {});
+            }
+          });
       syncChartControls();
       resolveSecurityId().then(function (securityId) {
         state.securityId = securityId;
