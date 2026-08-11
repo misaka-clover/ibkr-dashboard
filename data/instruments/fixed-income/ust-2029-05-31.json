@@ -292,15 +292,15 @@
       "issuer": "United States Department of the Treasury",
       "issuerLabelZh": "美国财政部",
       "marketValue": 4797.66,
-      "marketYieldAsOf": null,
+      "marketYieldAsOf": "2026-08-10T11:33:59.375597Z",
       "marketYieldAsk": null,
       "marketYieldBid": null,
-      "marketYieldConvention": "not_published",
-      "marketYieldMessage": "当前个券报价收益率不属于本次公开范围。",
+      "marketYieldConvention": "TWS bid/ask yield-to-worst; equals yield-to-maturity for these noncallable U.S. Treasury securities",
+      "marketYieldMessage": "最近一次 TWS 买卖收益率读取已超过 24 小时，只保留日期提示，不再把数值标作当前报价。",
       "marketYieldRangeHigh": null,
       "marketYieldRangeLow": null,
-      "marketYieldSource": "not_published",
-      "marketYieldStatus": "withheld_public_source_scope",
+      "marketYieldSource": "IBKR TWS API one-shot market-data snapshot",
+      "marketYieldStatus": "stale_quote",
       "marketYieldToMaturity": null,
       "maturityDate": "2029-05-31",
       "methodology": "以 IBKR 当前成本基础（含手续费）与购买应计利息作为实际投入，按精确日历、未来半年票息及到期本金计算年化持有到期 XIRR；不是券商报价页的债券等价收益率。",
@@ -347,16 +347,183 @@
       "yieldReference": {
         "closestSeriesId": "DGS2",
         "message": "已载入三条附近期限序列。",
-        "methodology": "官方 FRED DGS 恒定期限收益率仅作相邻期限参照；购入实际息率为本持仓合同现金流 XIRR。",
+        "methodology": "官方 FRED DGS 恒定期限收益率仅作相邻期限参照；购入实际息率为本持仓合同现金流 XIRR；个券持有期收益率为 IBKR 完成收盘清洁价格推导并经 TWS 直接收益率重叠验收的估算 YTM。",
         "purchaseYield": {
           "label": "购入实际息率",
           "startDate": "20260618",
           "valuePct": 4.188663
         },
         "securityYieldSeries": {
-          "message": "个券持有期收益率线仍保留在本地；公开页只显示官方 DGS 期限参照与购入实际息率。",
-          "points": [],
-          "status": "withheld_public_source_scope"
+          "coverageEnd": "2026-08-10",
+          "coverageStart": "2026-06-18",
+          "label": "本债券持有期估算 YTM",
+          "message": "个券线来自买入后的 Statement／Flex 完成收盘价格链；TWS 直接 YIELD_BID_ASK 仅用于重叠残差验收，未与主序列拼接。",
+          "methodVersion": "treasury_clean_price_ytm_v1",
+          "pointCount": 36,
+          "points": [
+            [
+              "2026-06-18",
+              4.185043
+            ],
+            [
+              "2026-06-22",
+              4.247805
+            ],
+            [
+              "2026-06-23",
+              4.208068
+            ],
+            [
+              "2026-06-24",
+              4.136115
+            ],
+            [
+              "2026-06-25",
+              4.119769
+            ],
+            [
+              "2026-06-26",
+              4.085269
+            ],
+            [
+              "2026-06-29",
+              4.104055
+            ],
+            [
+              "2026-06-30",
+              4.137586
+            ],
+            [
+              "2026-07-01",
+              4.180054
+            ],
+            [
+              "2026-07-02",
+              4.158535
+            ],
+            [
+              "2026-07-06",
+              4.142046
+            ],
+            [
+              "2026-07-07",
+              4.196602
+            ],
+            [
+              "2026-07-08",
+              4.227581
+            ],
+            [
+              "2026-07-09",
+              4.184346
+            ],
+            [
+              "2026-07-10",
+              4.235871
+            ],
+            [
+              "2026-07-13",
+              4.287975
+            ],
+            [
+              "2026-07-14",
+              4.232575
+            ],
+            [
+              "2026-07-15",
+              4.165251
+            ],
+            [
+              "2026-07-16",
+              4.19639
+            ],
+            [
+              "2026-07-17",
+              4.200321
+            ],
+            [
+              "2026-07-20",
+              4.243645
+            ],
+            [
+              "2026-07-21",
+              4.293126
+            ],
+            [
+              "2026-07-22",
+              4.327689
+            ],
+            [
+              "2026-07-23",
+              4.383515
+            ],
+            [
+              "2026-07-24",
+              4.354658
+            ],
+            [
+              "2026-07-27",
+              4.340971
+            ],
+            [
+              "2026-07-28",
+              4.293933
+            ],
+            [
+              "2026-07-29",
+              4.274138
+            ],
+            [
+              "2026-07-30",
+              4.275538
+            ],
+            [
+              "2026-07-31",
+              4.343678
+            ],
+            [
+              "2026-08-03",
+              4.305529
+            ],
+            [
+              "2026-08-04",
+              4.233885
+            ],
+            [
+              "2026-08-05",
+              4.226127
+            ],
+            [
+              "2026-08-06",
+              4.294586
+            ],
+            [
+              "2026-08-07",
+              4.256065
+            ],
+            [
+              "2026-08-10",
+              4.297276
+            ]
+          ],
+          "providerValidation": {
+            "maxAbsoluteResidualBp": 5.7349,
+            "medianAbsoluteResidualBp": 2.1891,
+            "overlapCount": 20,
+            "overlapEnd": "20260807",
+            "overlapStart": "20260713",
+            "retrievedAt": "2026-08-10T13:07:27.276956Z",
+            "source": "IBKR TWS API YIELD_BID_ASK daily historical bars",
+            "status": "pass",
+            "thresholds": {
+              "maximumAbsoluteResidualBp": 8.0,
+              "maximumMedianAbsoluteResidualBp": 3.0,
+              "minimumOverlapPoints": 10
+            }
+          },
+          "sourceDisclosure": "个券线由持有期内 IBKR Statement／Activity Flex 完成收盘清洁价格推导；IBKR TWS YIELD_BID_ASK 仅用于重叠残差验收，未拼接进主序列。",
+          "status": "pass",
+          "yieldConvention": "Treasury Actual/Actual; semiannual bond-equivalent YTM"
         },
         "series": [
           {
@@ -30374,7 +30541,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-08-11T14:59:10.078449Z",
+    "generatedAt": "2026-08-11T16:21:04.692699Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BOND",
@@ -30600,7 +30767,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-08-11T14:59:05.371392Z",
+  "generatedAt": "2026-08-11T16:21:00.639139Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "UST-2029-05-31"
