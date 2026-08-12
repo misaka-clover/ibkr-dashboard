@@ -285,7 +285,7 @@
     .empty { padding: 24px; color: var(--muted); font-size: 12px; }
     .event-summary { display: grid; grid-template-columns: 14fr 22fr 8fr 8fr 11fr 14fr 10fr 13fr; min-height: 48px; border-top: 1px solid #dfe5e9; background: #fafbfc; }
     .event-summary-item { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 3px; min-width: 0; padding: 7px 10px; border-left: 1px solid #e1e6ea; }
-    .event-summary-item.holding-total { grid-column: 4; }
+    .event-summary-item.holding-total { grid-column: 3 / 5; }
     .event-summary-item.fees-total { grid-column: 6 / 8; }
     .event-summary-item.realized-total { grid-column: 8; }
     .event-summary.bond-view .holding-total { grid-column: 3 / 6; }
@@ -297,6 +297,8 @@
     .event-table.bond-view td:last-child { display: none; }
     .event-summary-label { overflow: hidden; max-width: 100%; color: var(--muted); font-size: 9px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
     .event-summary-value { max-width: 100%; overflow: hidden; color: var(--navy); font: 730 12px var(--mono); font-variant-numeric: tabular-nums; text-align: right; text-overflow: ellipsis; white-space: nowrap; }
+    .event-summary-item.holding-total .event-summary-value,
+    .tax-lot-summary-item.quantity .tax-lot-summary-value { overflow: visible; text-overflow: clip; }
     .account-kpi-grid { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 1px; margin: 0 0 18px; border: 1px solid #dfe5e9; background: #dfe5e9; }
     .account-kpi { min-height: 74px; padding: 13px 14px; background: #fff; }
     .account-kpi.wide { min-height: 74px; }
@@ -844,6 +846,8 @@
         dividend_accrual_change: "股息应计变动",
         open_dividend_accrual: "未结股息应计",
         corporate_action: "公司行动",
+        stock_award_vesting: "股票奖励归属",
+        stock_award_withholding: "股票归属扣缴税款",
         asset_transfer: "资产转入转出",
         cash_transfer: "现金转入转出",
         interest_accrual: "利息应计",
@@ -1022,7 +1026,8 @@
           pending: "组合角色：待确认",
           core: "组合角色：核心",
           satellite: "组合角色：卫星",
-          reserve: "组合角色：机会储备"
+          reserve: "组合角色：机会储备",
+          long_term_diversified_capital_allocator_equity: "组合角色：长期多元资本配置型权益"
         }[value] || (value ? "组合角色：" + value : "—");
       }
       function valuationConfidenceValue(result) {
@@ -1074,16 +1079,17 @@
           return Boolean(selections[String(period)]);
         });
       }
+      function movingAverageWarmupPoints() {
+        return Math.max.apply(null, Object.keys(movingAveragePresetDefinitions).reduce(function (periods, key) {
+          return periods.concat(movingAveragePresetDefinitions[key].periods);
+        }, []));
+      }
       function movingAverageFetchFrom(range) {
         var visibleFrom = rangeFromDate(range);
-        if (!visibleFrom || state.chartView !== "price") return visibleFrom;
-        var date = new Date(Date.UTC(
-          Number(visibleFrom.slice(0, 4)),
-          Number(visibleFrom.slice(4, 6)) - 1,
-          Number(visibleFrom.slice(6, 8))
-        ));
-        date.setUTCDate(date.getUTCDate() - 380);
-        return date.toISOString().slice(0, 10).replace(/-/g, "");
+        if (state.chartView !== "price") return visibleFrom;
+        // Price history is requested by point count without a date floor so the
+        // selected window always receives the full longest-SMA warm-up history.
+        return null;
       }
       function syncChartControls() {
         var isEtf = state.detail && state.detail.instrument.instrumentKind === "etf";
@@ -2670,7 +2676,11 @@
               : recurringInvestment
               ? "定期投资"
               : (eventLabels[event.eventType] || event.eventType),
-            metadata.buySell === "BUY" ? "买入" : (metadata.buySell === "SELL" ? "卖出" : "—"),
+            event.eventType === "stock_award_vesting"
+              ? "归属"
+              : (event.eventType === "stock_award_withholding"
+                ? "扣缴"
+                : (metadata.buySell === "BUY" ? "买入" : (metadata.buySell === "SELL" ? "卖出" : "—"))),
             quantityNumber(event.quantity),
             money(details.price, event.currency, 2),
             signedMoney(event.amount, event.currency),
