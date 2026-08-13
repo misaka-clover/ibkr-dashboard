@@ -916,6 +916,14 @@
         var date = new Date(raw);
         return Number.isNaN(date.getTime()) ? (raw || "—") : "UTC " + date.toISOString().slice(0, 10);
       }
+      function researchVersionLabel(assessment) {
+        var raw = String(assessment && assessment.sourceVersion || "").trim();
+        if (!raw && assessment && assessment.version != null) raw = "v" + number(assessment.version, 0);
+        if (!raw) return "版本待补";
+        if (/^\d{4}-\d{2}-\d{2}(?:\b|-)/.test(raw)) return raw;
+        var date = utcDateOnly(assessment.completedAt || assessment.updatedAt || assessment.asOfDate).replace(/^UTC\s+/, "");
+        return date === "—" ? raw : date + " · " + raw;
+      }
       function number(value, digits) {
         var n = finite(value);
         return n == null ? "—" : new Intl.NumberFormat("zh-CN", {
@@ -999,7 +1007,7 @@
       }
       function researchLabel(value) {
         return {
-          preliminary: "初步评价", fair: "估值合理", undervalued: "估值偏低", nav_aligned: "价格贴近 NAV", hold: "持有",
+          preliminary: "初步评价", conditional: "有条件评价", fair: "估值合理", undervalued: "估值偏低", nav_aligned: "价格贴近 NAV", hold: "持有",
           expensive: "估值偏贵", watchlist: "观察名单", active: "正式复核",
           review_due: "待复核", superseded: "已被取代", current: "当前版本",
           add_eligible: "符合增持研究条件", trim_review: "复核减持",
@@ -1027,7 +1035,8 @@
           core: "组合角色：核心",
           satellite: "组合角色：卫星",
           reserve: "组合角色：机会储备",
-          long_term_diversified_capital_allocator_equity: "组合角色：长期多元资本配置型权益"
+          long_term_diversified_capital_allocator_equity: "组合角色：长期多元资本配置型权益",
+          strategic_gold_tail_risk_buffer: "组合角色：战略黄金与尾部风险缓冲"
         }[value] || (value ? "组合角色：" + value : "—");
       }
       function valuationConfidenceValue(result) {
@@ -2969,13 +2978,7 @@
           labels.push("晨星 " + utcDateOnly(providerReportAt || provider.publishedDate));
         }
         if (assessment) {
-          if (assessment.completedAt) {
-            labels.push("分析完成 " + utcDateOnly(assessment.completedAt));
-          } else if (assessment.updatedAt) {
-            labels.push("研究记录 " + utcDateOnly(assessment.updatedAt));
-          } else {
-            labels.push("研究基准 " + utcDateOnly(assessment.asOfDate));
-          }
+          labels.push("内部分析 " + researchVersionLabel(assessment));
         }
         el("researchDateBadge").textContent = labels.length ? labels.join(" · ") : "尚未建立";
       }
@@ -3359,8 +3362,7 @@
             var card = document.createElement("article"); card.className = "research-history-card";
             var meta = document.createElement("div"); meta.className = "research-history-meta";
             [
-              "v" + number(entry.version, 0),
-              compactToIso(entry.asOfDate),
+              researchVersionLabel(entry),
               researchLabel(entry.status),
               archivedResult.valuationStateLabelZh || researchLabel(archivedResult.valuationState),
               researchLabel(archivedResult.existingPositionAction)
@@ -3398,7 +3400,7 @@
         [
           ["持有到期", "good"],
           ["暂不增加久期", "warn"],
-          ["固定收益研究 v" + number(assessment.version, 0), ""],
+          ["固定收益研究 " + researchVersionLabel(assessment), ""],
           ["无交易授权", ""]
         ].forEach(function (entry) {
           var badge = document.createElement("span"); badge.className = "badge" + (entry[1] ? " " + entry[1] : "");
