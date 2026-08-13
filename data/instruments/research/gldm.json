@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": "20260730",
+        "latestAsOfDate": "20260813",
         "providerPublishedDate": "20260212",
         "providerVerifiedAt": "2026-07-30T17:49:00Z"
       }
@@ -23,7 +23,7 @@
           "role": "Director, ETF and Passive Strategies, US"
         },
         "freshness": {
-          "ageDays": 12.888644730532407,
+          "ageDays": 13.747744983159722,
           "maximumDays": 7,
           "status": "stale",
           "warning": "资料超过七天未重新核验"
@@ -103,106 +103,127 @@
     "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
-        "asOfDate": "20260730",
+        "asOfDate": "20260813",
         "assessmentType": "physical_gold_trust_review",
-        "completedAt": "2026-07-30T17:51:56.398540Z",
+        "completedAt": "2026-08-13T02:15:25.935604Z",
         "frameworkVersion": "physical-commodity-trust-research-v1",
         "result": {
           "bearCase": [
-            "实际利率上升、美元走强或风险偏好恢复压低无收益黄金的机会成本。",
-            "黄金不产生现金流，价格主要依赖边际需求、央行与投资者流量，可能经历长期横盘或大幅回撤。",
-            "托管、次托管、申赎中暂时未分配账户、市场价偏离 NAV 或法律结构问题会在压力期放大产品风险。"
+            "高实际利率、美元走强或风险偏好恢复持续提高无收益黄金的机会成本。",
+            "黄金不产生现金流，也没有可审核内在价值锚，可能长期横盘或大幅回撤。",
+            "LBMA 标准、托管／次托管、未分配账户、申赎或估值机制在压力期发生故障并放大折溢价。",
+            "黄金与股票、长期名义国债或 BOXX 的分散关系并不稳定，组合角色可能在特定冲击中重复或失效。"
           ],
           "bullCase": [
-            "实际利率下降、美元走弱、央行需求或地缘风险提升黄金作为无主权信用资产的相对吸引力。",
-            "黄金与股票、信用的低相关性在压力期降低组合回撤和尾部风险。",
-            "GLDM 的低费用、窄价差和稳定申赎使大部分黄金回报有效传递给持有人。"
+            "实际利率下降、美元走弱、央行需求或地缘与法币风险上升，提高无主权信用黄金的相对吸引力。",
+            "黄金在部分股票、信用、通胀或法币压力情景中提供状态依赖的组合分散。",
+            "GLDM 的低费用、窄价差、分配金条和稳定申赎继续有效传递黄金回报。"
           ],
-          "cashDecision": "wait_for_proof",
-          "decisionHinge": "GLDM 的产品问题很少，真正的决策在于黄金是否仍以受控规模提供股票、信用、法币和地缘风险之外的组合分散。当前 4.07% NAV 已是有意义的配置；在没有确认贵金属总预算、目标区间和再平衡规则前，近期亏损、金价回撤或宏观叙事都不足以单独授权新增。",
+          "cashDecision": "do_not_buy",
+          "decisionHinge": "当前贵金属篮子已经完成约 5% 的战略配置。只有在行动前权重因价格或组合漂移接近或低于 4.5%、黄金战略论点仍成立、LBMA／托管／跟踪没有异常、宏观证据不显示单一不利机制占主导，且用户接受新增后的黄金主导和单一金属风险时，才有重新讨论新增的必要。低于 6%、资金充足、价格下跌或触及 US$80.60 本身均不是买入理由。",
           "evidenceConfidence": "high",
           "existingPositionAction": "hold",
           "missingEvidence": [
-            "Morningstar GLDM 证券页目前没有独立 Morningstar Analysis、Medalist、pillar 或传统星级；本面板只复述其 2026 黄金 ETF 官方文章，不把文章推荐冒充证券评级。",
-            "黄金没有可审核的企业现金流或内在价值模型；本版本不使用银行目标价、技术位或宏观单点预测建立公允价值。",
-            "组合贵金属目标区间和 GLDM／SIVR 的合并预算将在 SIVR 完成后的全组合审计中确认；当前只做产品与现有权重判断。",
-            "截至核验时，发行人没有正式确认下一份 10-Q／10-K 的提交日或其他投资者未来事件；不按 SEC 截止惯例推算。"
+            "单一金属上限尚未量化；下一次贵金属主动新增前应完成 GLDM／SIVR 风险贡献研究。",
+            "用户实际税务居民、账户类型及跨境税务适用尚未确认。",
+            "完整滚动相关性、危机 beta 和组合风险贡献尚未刷新至 2026-08-11；历史关系不能视为常数。",
+            "World Gold Council 的央行与 OTC 需求数据存在显著重分类风险，只能作为 provider evidence。",
+            "本研究不保存或决定当前订单状态、数量、价格、保留或取消；这些事项属于独立交易决策。"
           ],
           "monitoring": [
             {
-              "baseline": "2026-07-27 每股约 0.01978298 盎司；Sponsor fee 0.10%",
+              "baseline": "2026-08-11 每 100,000 股篮子 1,978.229 盎司；Sponsor fee 0.10%",
               "challengingDirection": "下降显著快于费用或出现无法解释的资产缺口。",
-              "confirmingDirection": "下降速度与费用和正常运营一致。",
-              "metric": "每股黄金量与费用侵蚀",
+              "confirmingDirection": "下降速度与费用、正常申赎和运营摩擦一致。",
+              "metric": "每股净黄金量与费用侵蚀",
               "nextReview": "monthly"
             },
             {
-              "baseline": "一至五年及成立以来 NAV 落后基准约 12–16 个基点",
-              "challengingDirection": "持续扩大或折溢价失控。",
-              "confirmingDirection": "差异保持在费用和正常摩擦范围。",
-              "metric": "NAV 跟踪",
-              "nextReview": "quarterly"
+              "baseline": "2026-06-30 黄金 100% allocated；未分配账户只在申赎与费用处理中短暂使用",
+              "challengingDirection": "持续未分配余额、托管／次托管／保险发生重大不利变化。",
+              "confirmingDirection": "SEC 文件继续确认分配金条和无重大托管例外。",
+              "metric": "allocated／unallocated 与托管",
+              "nextReview": "each_filing"
             },
             {
-              "baseline": "2026-03-31 黄金 100% allocated；财政年末完整盘点、年内另一次随机抽样",
-              "challengingDirection": "托管、次托管、未分配余额或审计出现重大问题。",
-              "confirmingDirection": "金条清单、审计和托管关系持续无重大例外。",
-              "metric": "托管与金条审计",
-              "nextReview": "each_filing_and_annual_bar_count"
+              "baseline": "2026 Q2 10-Q 首次纳入重大运营依赖风险",
+              "challengingDirection": "规则／名单中断、申赎暂停或估值机制失灵。",
+              "confirmingDirection": "规则、名单、替代标准与申赎运作保持稳定。",
+              "metric": "LBMA 标准依赖",
+              "nextReview": "each_filing_and_material_notice"
             },
             {
-              "baseline": "GLDM 约 4.07% NAV；SIVR 待合并审计",
-              "challengingDirection": "权重漂移、与现金／BOXX角色混淆或没有再平衡规则。",
-              "confirmingDirection": "贵金属在压力期提供可验证分散，并维持在明确预算内。",
-              "metric": "组合角色",
-              "nextReview": "portfolio_research_audit"
+              "baseline": "2026-08-11 NAV US$86.71、收盘 US$86.46、30 日中位价差 0.01%",
+              "challengingDirection": "持续显著折溢价或 NAV 相对 LBMA 无法解释地偏离。",
+              "confirmingDirection": "价差和折溢价保持在正常摩擦范围。",
+              "metric": "NAV 跟踪与流动性",
+              "nextReview": "monthly"
             },
             {
-              "baseline": "2026-02-12 文章认为 GLDM 兼具低费和低交易成本；证券页无独立 Analysis",
-              "challengingDirection": "更低成本工具在执行、托管和税务上形成可验证优势。",
-              "confirmingDirection": "产品成本和流动性优势保持。",
-              "metric": "Morningstar 黄金 ETF 框架",
-              "nextReview": "each_material_article_or_90_days"
+              "baseline": "2026-08-11 篮子 4.8162%，GLDM 占篮子约 87.53%",
+              "challengingDirection": "主动新增使角色重叠或单一黄金风险超过后续获批边界。",
+              "confirmingDirection": "篮子维持获批区间并在压力情景提供可验证分散。",
+              "metric": "贵金属篮子与黄金主导度",
+              "nextReview": "before_each_active_add"
+            },
+            {
+              "baseline": "2026-08-11 实际十年利率 2.43%；2026-08-12 十年盈亏平衡通胀 2.26%",
+              "challengingDirection": "高实际利率或美元机制持续占主导并显著提高机会成本。",
+              "confirmingDirection": "多项宏观变量共同支持黄金战略作用，而非依赖单点叙事。",
+              "metric": "实际利率、美元与通胀补偿",
+              "nextReview": "monthly_and_at_price_trigger"
+            },
+            {
+              "baseline": "US$80.60 仅为价格／组合复核点",
+              "challengingDirection": "把触价、低于 6% 或资金充足直接解释为自动买入。",
+              "confirmingDirection": "触价时完成研究、宏观、工具结构和组合权重刷新后再审议。",
+              "metric": "非执行性价格复核触发",
+              "nextReview": "on_trigger"
             }
           ],
-          "researchMaturity": "active",
+          "researchMaturity": "conditional",
           "sourceRegister": [
             {
-              "asOf": "20260728",
+              "label": "World Gold Trust Form 10-Q for quarter ended 2026-06-30",
+              "publishedAt": "20260804",
+              "url": "https://www.sec.gov/Archives/edgar/data/1618181/000143774926025679/gldm20260630_10q.htm"
+            },
+            {
+              "asOf": "20260811",
               "label": "State Street SPDR Gold MiniShares official product page",
               "url": "https://www.ssga.com/us/en/individual/etfs/spdr-gold-minishares-gldm"
             },
             {
-              "asOf": "20260630",
-              "label": "SPDR Gold MiniShares fact sheet",
+              "asOf": "20260812",
+              "label": "State Street SPDR Gold MiniShares fact sheet",
               "url": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-gldm.pdf"
             },
             {
-              "label": "World Gold Trust Form 10-Q for quarter ended 2026-03-31",
-              "publishedAt": "20260505",
-              "url": "https://www.sec.gov/Archives/edgar/data/1618181/000143774926014924/gldm20260331_10q.htm"
+              "asOf": "20260812",
+              "label": "Federal Reserve Economic Data DGS10, DFII10, T10YIE and DTWEXBGS",
+              "url": "https://fred.stlouisfed.org/series/DFII10"
             },
             {
-              "label": "Morningstar How to Choose the Right Gold ETF",
-              "publishedAt": "20260212",
-              "url": "https://www.morningstar.com/funds/digging-gold-with-etfs"
+              "label": "World Gold Council Gold Demand Trends Q2 2026",
+              "publishedAt": "20260730",
+              "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q2-2026"
             },
             {
-              "asOf": "20260730",
-              "label": "Morningstar GLDM quote page and analysis availability",
-              "url": "https://www.morningstar.com/etfs/arcx/GLDM/"
+              "asOf": "20260813",
+              "label": "World Gold Council Gold Demand Trends Q1 2026 erratum",
+              "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q1-2026"
             }
           ],
           "valuation": {
             "dcf": {}
           },
-          "valuationState": "nav_aligned"
+          "valuationState": "nav_aligned_wrapper_but_no_intrinsic_value_anchor"
         },
-        "sourceLabel": "GLDM 2026 年实物黄金信托与组合角色完整研究",
-        "sourceVersion": "v1.0",
+        "sourceLabel": "GLDM 2026 年第二季度文件后替代研究",
+        "sourceVersion": "2026-08-13-v2.0",
         "status": "active",
-        "summary": "GLDM 是结构简单、费用低且交易效率高的实物黄金信托：0.10%年费、约 US$27.7B AUM、2026-07-27 中位买卖价差 0.01%，其 NAV 一、三、五年及成立以来分别仅落后 LBMA Gold Price PM 约 12、13、12、16 个基点。每 100,000 股篮子对应约 1,978.298 金衡盎司，即每股约 0.019783 盎司；现有 50 股约对应 0.989 盎司经济敞口，但普通投资者不能直接向信托兑换金条。GLDM 不生息，也会定期卖金支付费用，所以每股黄金量会持续下降；黄金本身没有可折现现金流，本研究只确认市场价贴近 NAV，不声称黄金存在精确公允价值。现有仓位约占 NAV 4.07%，继续持有；新增现金等待与 SIVR 合并后的贵金属预算和组合压力测试，不因近期回撤或避险叙事机械加仓。",
-        "updatedAt": "2026-07-30T17:51:56.398540Z"
+        "summary": "GLDM 仍是结构简单、低费且流动性良好的实物黄金实现工具；2026 Q2 10-Q 继续确认 100% 分配的 London Good Delivery 金条和 0.10% 年费，同时新增对 LBMA Good Delivery Rules／List 及伦敦市场标准的运营依赖风险。该新增披露不推翻工具论点，但提高了尾部运营风险。2026-08-11 完成收盘时 GLDM 约 4.216%、SIVR 约 0.600%、贵金属篮子约 4.816%；2026-08-13 只读预检约 4.892%，均已位于 4.5%–5.5% 不操作区间。黄金无现金流和可审核内在价值锚，US$80.60 只是价格／组合复核触发点，不是已证明的公允价值。现有 50 股继续持有；新增资金暂不买入。订单数量与价格留待独立交易决策复核，本研究不构成撤单、改单或交易授权。",
+        "updatedAt": "2026-08-13T02:15:25.935604Z"
       }
     ],
     "summary": {
@@ -213,7 +234,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-12T15:08:38.513887Z",
+  "generatedAt": "2026-08-13T11:45:44.301087Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "GLDM"
