@@ -1879,10 +1879,13 @@
         return bondReference[position && position.familyBondKey || positionSymbol(position)] || null;
       }
 
+      /* FAMILY:BOND_METRIC_LOOKUP:START */
       function bondMetricFor(position) {
-        var metric = lifecycleMetrics.metrics[positionSymbol(position)] || null;
+        var familyKey = String(position && position.familyBondKey || "").trim().toUpperCase();
+        var metric = lifecycleMetrics.metrics[familyKey || positionSymbol(position)] || null;
         return metric && metric.assetClass === "BOND" ? metric : null;
       }
+      /* FAMILY:BOND_METRIC_LOOKUP:END */
 
       function applyHoldingsSnapshot(data) {
         return data;
