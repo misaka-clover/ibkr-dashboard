@@ -146,8 +146,11 @@
     .decision-case-link:hover, .decision-case-link:focus-visible { border-color: rgba(189,140,40,.68); background: var(--gold-soft); color: var(--navy); outline: none; }
     .card { border: 1px solid rgba(22,59,89,.13); border-radius: 3px; background: rgba(255,255,255,.91); box-shadow: none; }
     .card-body { padding: 22px; }
-    .chart-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; border-bottom: 1px solid rgba(22,59,89,.11); }
+    .chart-toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 12px; padding: 16px 18px; border-bottom: 1px solid rgba(22,59,89,.11); }
     .chart-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+    .chart-range-controls { align-self: start; justify-content: flex-end; }
+    .price-window-latest-control[hidden] { display: none; }
+    .price-window-latest-control .segment-btn { min-width: 72px; border-right: 0; }
     .chart-control { display: inline-flex; align-items: center; gap: 7px; }
     .chart-control-label { color: var(--muted); font-size: 9px; font-weight: 780; letter-spacing: .08em; text-transform: uppercase; }
     .segmented { display: inline-flex; border: 1px solid #ccd7df; background: #f2f5f7; }
@@ -158,24 +161,68 @@
     .segment-btn:disabled { color: #99a4ac; background: #edf1f3; cursor: not-allowed; }
     .chart-frame { position: relative; min-height: 470px; padding: 12px 12px 4px; }
     .chart-svg { display: block; width: 100%; height: 448px; overflow: visible; touch-action: none; }
+    .price-window-nav { position: absolute; inset: 12px 12px 4px; z-index: 4; pointer-events: none; }
+    .price-window-nav[hidden] { display: none; }
+    .price-window-nav-btn {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      width: 38px;
+      height: 88px;
+      padding: 7px 4px;
+      border: 1px solid #ccd7df;
+      border-radius: 2px;
+      background: rgba(247,249,250,.96);
+      color: #596773;
+      font-size: 9px;
+      font-weight: 760;
+      line-height: 1;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+    .price-window-nav-btn:hover, .price-window-nav-btn:focus-visible { border-color: #9fb2bf; background: #fff; box-shadow: inset 0 -2px 0 var(--gold); color: var(--navy); outline: none; }
+    .price-window-nav-btn:disabled { border-color: #e0e6ea; background: rgba(244,247,249,.92); box-shadow: none; color: #a1acb4; cursor: not-allowed; }
+    .price-window-nav-btn.older, .price-window-nav-btn.newer { top: 48%; transform: translateY(-50%); }
+    .price-window-nav-btn.older { left: 44px; }
+    .price-window-nav-btn.newer { right: 44px; }
     .grid-line { stroke: #e2e7eb; stroke-width: 1; }
     .axis-label { fill: #72808b; font: 10px var(--mono); }
     .focus-line { stroke: #8797a3; stroke-width: 1; stroke-dasharray: 3 3; pointer-events: none; }
-    .chart-tooltip { position: absolute; z-index: 5; min-width: 248px; max-width: 286px; padding: 10px 11px; border: 1px solid #cbd5dc; border-radius: 3px; background: rgba(255,255,255,.98); box-shadow: 0 8px 22px rgba(20,36,50,.12); color: var(--ink); font-size: 10px; opacity: 0; pointer-events: none; transform: translateY(-50%); }
-    .chart-tooltip.visible { opacity: 1; }
+    .chart-tooltip { position: absolute; z-index: 5; display: none; min-width: 248px; max-width: 286px; padding: 10px 11px; border: 1px solid #cbd5dc; border-radius: 3px; background: rgba(255,255,255,.98); box-shadow: 0 8px 22px rgba(20,36,50,.12); color: var(--ink); font-size: 10px; pointer-events: none; transform: translateY(-50%); }
+    .chart-tooltip.visible { display: block; }
     .tooltip-date { padding-bottom: 6px; border-bottom: 1px solid #e1e6ea; color: var(--navy); font: 750 11px var(--mono); }
     .tooltip-grid { display: grid; grid-template-columns: auto 62px auto 62px; gap: 4px 6px; justify-content: center; margin-top: 7px; align-items: baseline; }
+    .tooltip-section { margin-top: 8px; padding-top: 7px; border-top: 1px solid #e1e6ea; }
+    .tooltip-section-title { color: var(--muted); font-size: 9px; font-weight: 780; letter-spacing: .06em; }
+    .tooltip-section .tooltip-grid { margin-top: 5px; }
     .tooltip-label { color: var(--muted); white-space: nowrap; }
     .tooltip-value { min-width: 0; overflow: hidden; text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; text-overflow: ellipsis; white-space: nowrap; }
     #bondYieldTooltip .tooltip-grid { grid-template-columns: minmax(0, 1fr) max-content; column-gap: 12px; justify-content: stretch; }
     #bondYieldTooltip .tooltip-label { min-width: 0; overflow-wrap: anywhere; white-space: normal; }
     #bondYieldTooltip .tooltip-value { overflow: visible; text-overflow: clip; }
     .tooltip-events { display: grid; gap: 5px; margin-top: 8px; padding-top: 7px; border-top: 1px solid #e1e6ea; color: #455d6e; line-height: 1.45; }
+    .tooltip-events[hidden] { display: none; }
     .tooltip-event { display: grid; grid-template-columns: auto 1fr; gap: 6px; align-items: start; }
     .tooltip-event-kind { color: var(--blue); font-weight: 780; white-space: nowrap; }
+    .tooltip-trade { display: grid; gap: 5px; }
+    .tooltip-trade + .tooltip-trade { margin-top: 2px; padding-top: 7px; border-top: 1px solid #e8ecef; }
+    .tooltip-trade-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+    .tooltip-trade-kind { color: #176b9b; font-weight: 780; }
+    .tooltip-trade-kind.sell { color: #a14e4e; }
+    .tooltip-trade-date { color: var(--muted); font: 9px var(--mono); }
+    .tooltip-trade-grid { display: grid; grid-template-columns: auto max-content auto max-content; gap: 4px 8px; align-items: baseline; }
+    .tooltip-trade-label { color: var(--muted); white-space: nowrap; }
+    .tooltip-trade-value { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
     .chart-event-stem { stroke-width: 1; stroke-dasharray: 2 2; pointer-events: none; }
     .chart-event-marker { stroke-width: 1; pointer-events: none; }
     .chart-event-label { font: 750 8px var(--sans); letter-spacing: .02em; pointer-events: none; }
+    .chart-trade-marker { stroke-width: 1.2; }
+    .chart-trade-label { font-weight: 820; }
+    .tooltip-event-kind.trade-buy { color: #176b9b; }
+    .tooltip-event-kind.trade-sell { color: #a14e4e; }
     .moving-average-line { fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
     .chart-caption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding: 10px 18px 15px; border-top: 1px solid rgba(22,59,89,.09); color: var(--muted); font-size: 10px; }
     .bond-cashflow-surface { padding: 18px; }
@@ -234,6 +281,22 @@
     .price-ma-legend-mark.ma-120 { border-top-color: #73828d; border-top-style: dashed; }
     .price-ma-legend-mark.ma-200 { border-top-color: #44556d; border-top-style: dotted; }
     .price-ma-legend-mark.ma-250 { border-top-color: #44556d; border-top-style: dotted; }
+    .price-trade-legend-item { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .price-trade-legend-mark {
+      display: inline-flex;
+      min-width: 18px;
+      height: 15px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #176b9b;
+      border-radius: 2px;
+      background: #e8f1f7;
+      color: #176b9b;
+      font-size: 8px;
+      font-weight: 820;
+      line-height: 1;
+    }
+    .price-trade-legend-mark.sell { border-color: #a14e4e; background: #f8ebeb; color: #a14e4e; }
     .price-ma-method { margin-left: auto; color: var(--muted); }
     .valuation-legend {
       display: flex;
@@ -251,7 +314,7 @@
     .valuation-legend-mark.mean { border-top: 1px dashed #707d87; }
     .valuation-legend-mark.band { height: 9px; border: 1px solid rgba(23,107,155,.24); background: rgba(23,107,155,.10); }
     .valuation-comparator-note { margin-left: auto; color: var(--muted); }
-    .chart-control[hidden], .moving-average-btn[hidden], .price-ma-legend[hidden], .price-ma-legend-item[hidden], .valuation-legend[hidden] { display: none; }
+    .chart-control[hidden], .moving-average-btn[hidden], .price-ma-legend[hidden], .price-ma-legend-item[hidden], .price-trade-legend-item[hidden], .price-ma-method[hidden], .tooltip-section[hidden], .valuation-legend[hidden] { display: none; }
     .chart-toolbar[hidden], .chart-frame[hidden], .chart-caption[hidden], .bond-cashflow-surface[hidden] { display: none; }
     .asof-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; border: 1px solid rgba(22,59,89,.13); background: rgba(22,59,89,.11); }
     .asof-item { min-height: 96px; padding: 15px; background: #fff; }
@@ -460,14 +523,22 @@
       .metric { border-right: 0; border-bottom: 1px solid rgba(22,59,89,.11); }
       .metric:last-child { border-bottom: 0; }
       .section-head { align-items: flex-start; flex-direction: column; gap: 10px; }
-      .chart-toolbar { align-items: flex-start; flex-direction: column; }
+      .chart-toolbar { grid-template-columns: minmax(0, 1fr); align-items: flex-start; }
       .chart-controls, .chart-control { width: 100%; min-width: 0; align-items: flex-start; }
+      .chart-range-controls { justify-content: flex-end; }
+      .chart-range-controls .chart-control { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: end; gap: 7px; }
+      .chart-range-controls .chart-control-label { grid-column: 1 / -1; justify-self: end; }
+      .chart-range-controls .segmented[aria-label="行情或估值时间范围"] { min-width: 0; }
       .chart-control { flex-direction: column; }
       .segmented { max-width: 100%; overflow-x: auto; }
       .price-ma-method { flex-basis: 100%; margin-left: 0; }
       .valuation-comparator-note { flex-basis: 100%; margin-left: 0; }
       .chart-frame { min-height: 390px; padding-inline: 2px; }
       .chart-svg { height: 370px; }
+      .price-window-nav { inset-inline: 2px; }
+      .price-window-nav-btn.older, .price-window-nav-btn.newer { width: 34px; height: 78px; padding: 6px 3px; }
+      .price-window-nav-btn.older { left: 2px; }
+      .price-window-nav-btn.newer { right: 2px; }
       .valuation-grid { grid-template-columns: 1fr; }
       .monitoring-item { grid-template-columns: 1fr; gap: 8px; }
       .hero-quote { grid-template-columns: minmax(0,1fr) auto; }
@@ -598,7 +669,7 @@
             <div class="chart-control" id="movingAveragePeriodControl">
               <span class="chart-control-label">均线</span>
               <div class="segmented" aria-label="简单移动平均线周期">
-                <button class="segment-btn moving-average-btn" type="button" data-ma-period="20" aria-pressed="true" title="当前价格口径的 20 个交易日收盘简单移动平均">20日</button>
+                <button class="segment-btn moving-average-btn" type="button" data-ma-period="20" aria-pressed="false" title="当前价格口径的 20 个交易日收盘简单移动平均">20日</button>
                 <button class="segment-btn moving-average-btn" type="button" data-ma-period="50" aria-pressed="false" title="当前价格口径的 50 个交易日收盘简单移动平均">50日</button>
                 <button class="segment-btn moving-average-btn" type="button" data-ma-period="60" aria-pressed="false" title="当前价格口径的 60 个交易日收盘简单移动平均" hidden>60日</button>
                 <button class="segment-btn moving-average-btn" type="button" data-ma-period="120" aria-pressed="false" title="当前价格口径的 120 个交易日收盘简单移动平均" hidden>120日</button>
@@ -607,27 +678,41 @@
               </div>
             </div>
           </div>
-          <div class="chart-control">
-            <span class="chart-control-label">范围</span>
-            <div class="segmented" aria-label="行情或估值时间范围">
-              <button class="segment-btn range-btn" type="button" data-range="1M" aria-pressed="false">1M</button>
-              <button class="segment-btn range-btn" type="button" data-range="3M" aria-pressed="false">3M</button>
-              <button class="segment-btn range-btn" type="button" data-range="6M" aria-pressed="true">6M</button>
-              <button class="segment-btn range-btn" type="button" data-range="1Y" aria-pressed="false">1Y</button>
-              <button class="segment-btn range-btn" type="button" data-range="5Y" aria-pressed="false">5Y</button>
-              <button class="segment-btn range-btn" type="button" data-range="10Y" aria-pressed="false">10Y</button>
-              <button class="segment-btn range-btn" type="button" data-range="20Y" aria-pressed="false">20Y</button>
-              <button class="segment-btn range-btn" type="button" data-range="30Y" aria-pressed="false">30Y</button>
-              <button class="segment-btn range-btn" type="button" data-range="MAX" aria-pressed="false">MAX</button>
+          <div class="chart-controls chart-range-controls">
+            <div class="chart-control">
+              <span class="chart-control-label">范围</span>
+              <div class="segmented price-window-latest-control" id="priceWindowLatestControl" hidden aria-label="回到最新价格窗口">
+                <button class="segment-btn price-pan-btn" id="priceWindowLatest" type="button" data-price-pan="latest" disabled>回到最新</button>
+              </div>
+              <div class="segmented" aria-label="行情或估值时间范围">
+                <button class="segment-btn range-btn" type="button" data-range="1M" aria-pressed="false">1M</button>
+                <button class="segment-btn range-btn" type="button" data-range="3M" aria-pressed="false">3M</button>
+                <button class="segment-btn range-btn" type="button" data-range="6M" aria-pressed="true">6M</button>
+                <button class="segment-btn range-btn" type="button" data-range="1Y" aria-pressed="false">1Y</button>
+                <button class="segment-btn range-btn" type="button" data-range="5Y" aria-pressed="false">5Y</button>
+                <button class="segment-btn range-btn" type="button" data-range="10Y" aria-pressed="false">10Y</button>
+                <button class="segment-btn range-btn" type="button" data-range="20Y" aria-pressed="false">20Y</button>
+                <button class="segment-btn range-btn" type="button" data-range="30Y" aria-pressed="false">30Y</button>
+                <button class="segment-btn range-btn" type="button" data-range="MAX" aria-pressed="false">MAX</button>
+              </div>
             </div>
           </div>
         </div>
         <div class="chart-frame" id="chartFrame">
+          <div class="price-window-nav" id="pricePanControl" hidden aria-label="价格图固定窗口导航">
+            <button class="price-window-nav-btn price-pan-btn older" type="button" data-price-pan="older" title="向较早历史移动约四分之一个窗口" aria-label="向较早历史移动约四分之一个窗口"><span aria-hidden="true">←</span><span class="price-window-nav-label">较早</span></button>
+            <button class="price-window-nav-btn price-pan-btn newer" type="button" data-price-pan="newer" title="向较新历史移动约四分之一个窗口" aria-label="向较新历史移动约四分之一个窗口"><span class="price-window-nav-label">较新</span><span aria-hidden="true">→</span></button>
+          </div>
           <svg class="chart-svg" id="instrumentChart" viewBox="0 0 1120 448" role="img" aria-label="标的市场价格与估值历史"></svg>
           <div class="chart-tooltip" id="chartTooltip" aria-hidden="true">
             <div class="tooltip-date"></div>
-            <div class="tooltip-grid"></div>
-            <div class="tooltip-events" hidden></div>
+            <div class="tooltip-grid tooltip-primary-grid"></div>
+            <div class="tooltip-section tooltip-ma-section" hidden>
+              <div class="tooltip-section-title">均线</div>
+              <div class="tooltip-grid tooltip-ma-grid"></div>
+            </div>
+            <div class="tooltip-events tooltip-trade-events" hidden></div>
+            <div class="tooltip-events tooltip-corporate-events" hidden></div>
           </div>
         </div>
         <div class="price-ma-legend" id="priceMovingAverageLegend" hidden>
@@ -637,6 +722,8 @@
           <span class="price-ma-legend-item" data-ma-legend="120" hidden><span class="price-ma-legend-mark ma-120" aria-hidden="true"></span>120 日均线</span>
           <span class="price-ma-legend-item" data-ma-legend="200" hidden><span class="price-ma-legend-mark ma-200" aria-hidden="true"></span>200 日均线</span>
           <span class="price-ma-legend-item" data-ma-legend="250" hidden><span class="price-ma-legend-mark ma-250" aria-hidden="true"></span>250 日均线</span>
+          <span class="price-trade-legend-item" data-trade-legend><span class="price-trade-legend-mark" aria-hidden="true">买</span>买入</span>
+          <span class="price-trade-legend-item" data-trade-legend><span class="price-trade-legend-mark sell" aria-hidden="true">卖</span>卖出</span>
           <span class="price-ma-method" id="priceMovingAverageMethod">美股常用 · 简单移动平均 · 当前价格口径的逐交易日收盘</span>
         </div>
         <div class="valuation-legend" id="valuationLegend" hidden>
@@ -812,12 +899,14 @@
         barType: "ADJUSTED_LAST",
         chartView: "price",
         priceRange: "6M",
+        priceWindowEnd: null,
+        priceLatestEnd: null,
         valuationRange: "5Y",
         bondYieldRange: "3Y",
         movingAveragePreset: "market",
         movingAverageSelections: {
-          market: { "20": true, "50": false, "200": false },
-          holding: { "20": true, "60": false, "120": false, "250": false }
+          market: { "20": false, "50": false, "200": false },
+          holding: { "20": false, "60": false, "120": false, "250": false }
         },
         lotSort: { key: "acquisitionDate", direction: "desc" },
         requestToken: 0
@@ -1070,6 +1159,50 @@
         date.setUTCMonth(date.getUTCMonth() - setting.months);
         return date.toISOString().slice(0,10).replace(/-/g, "");
       }
+      function compactDateUtc(value) {
+        var text = String(value || "");
+        if (!/^\d{8}$/.test(text)) return null;
+        var date = new Date(Date.UTC(
+          Number(text.slice(0, 4)),
+          Number(text.slice(4, 6)) - 1,
+          Number(text.slice(6, 8))
+        ));
+        return Number.isNaN(date.getTime()) ? null : date;
+      }
+      function compactDateValue(date) {
+        return date.toISOString().slice(0, 10).replace(/-/g, "");
+      }
+      function shiftCompactDateDays(value, days) {
+        var date = compactDateUtc(value);
+        if (!date) return null;
+        date.setUTCDate(date.getUTCDate() + days);
+        return compactDateValue(date);
+      }
+      function shiftCompactDateMonths(value, months) {
+        var source = compactDateUtc(value);
+        if (!source) return null;
+        var day = source.getUTCDate();
+        var target = new Date(Date.UTC(source.getUTCFullYear(), source.getUTCMonth() + months, 1));
+        var lastDay = new Date(Date.UTC(target.getUTCFullYear(), target.getUTCMonth() + 1, 0)).getUTCDate();
+        target.setUTCDate(Math.min(day, lastDay));
+        return compactDateValue(target);
+      }
+      function fixedPriceWindow(rows, range, requestedEnd) {
+        var setting = rangeSettings[range];
+        var datedRows = rows.filter(function (row) { return /^\d{8}$/.test(String(row.date || "")); });
+        if (!datedRows.length || !setting || setting.months == null) {
+          return { start: null, end: null, rows: datedRows };
+        }
+        var end = requestedEnd || datedRows[datedRows.length - 1].date;
+        var start = shiftCompactDateMonths(end, -setting.months);
+        return {
+          start: start,
+          end: end,
+          rows: datedRows.filter(function (row) {
+            return String(row.date) >= start && String(row.date) <= end;
+          })
+        };
+      }
       function activeRange() {
         return state.chartView === "valuation" ? state.valuationRange : state.priceRange;
       }
@@ -1080,6 +1213,88 @@
       function setActiveRange(range) {
         if (state.chartView === "valuation") state.valuationRange = range;
         else state.priceRange = range;
+      }
+      function pricePanEligible() {
+        return state.chartView === "price"
+          && ["6M", "1Y"].indexOf(state.priceRange) >= 0
+          && !(state.detail && state.detail.instrument && state.detail.instrument.assetClass === "BOND");
+      }
+      function activeBarSelection() {
+        var barType = activeBarType();
+        return (state.detail && state.detail.barSelection && state.detail.barSelection.series || []).find(function (row) {
+          return row.barType === barType;
+        }) || {};
+      }
+      function rememberLatestPriceEnd() {
+        if (!state.detail || state.chartView !== "price") return;
+        var selection = activeBarSelection();
+        var rows = latestBars();
+        var candidate = selection.availableEnd || (rows.length ? rows[rows.length - 1].date : null);
+        if (!state.priceWindowEnd && candidate) state.priceLatestEnd = candidate;
+        else if (!state.priceLatestEnd && candidate) state.priceLatestEnd = candidate;
+      }
+      function priceRequestEnd() {
+        return pricePanEligible() ? state.priceWindowEnd : null;
+      }
+      function pricePanLimits() {
+        var setting = rangeSettings[state.priceRange];
+        var rows = latestBars();
+        var selection = activeBarSelection();
+        var availableStart = selection.availableStart || (rows.length ? rows[0].date : null);
+        var latestEnd = state.priceLatestEnd || selection.availableEnd || (rows.length ? rows[rows.length - 1].date : null);
+        var currentEnd = state.priceWindowEnd || latestEnd;
+        var earliestEnd = availableStart && setting && setting.months != null
+          ? shiftCompactDateMonths(availableStart, setting.months)
+          : null;
+        if (earliestEnd && latestEnd && earliestEnd > latestEnd) earliestEnd = latestEnd;
+        return {
+          availableStart: availableStart,
+          earliestEnd: earliestEnd,
+          currentEnd: currentEnd,
+          latestEnd: latestEnd,
+          canOlder: Boolean(currentEnd && earliestEnd && currentEnd > earliestEnd),
+          canNewer: Boolean(state.priceWindowEnd && currentEnd && latestEnd && currentEnd < latestEnd)
+        };
+      }
+      function movePriceWindowByRatio(ratio) {
+        if (!pricePanEligible() || !state.detail) return;
+        var limits = pricePanLimits();
+        var setting = rangeSettings[state.priceRange];
+        if (!limits.currentEnd || !setting || setting.months == null) return;
+        var start = shiftCompactDateMonths(limits.currentEnd, -setting.months);
+        var startDate = compactDateUtc(start), endDate = compactDateUtc(limits.currentEnd);
+        if (!startDate || !endDate) return;
+        var spanDays = Math.max(1, Math.round((endDate - startDate) / 86400000));
+        var shiftDays = Math.round(spanDays * ratio);
+        if (!shiftDays) shiftDays = ratio < 0 ? -1 : 1;
+        var target = shiftCompactDateDays(limits.currentEnd, shiftDays);
+        if (limits.earliestEnd && target < limits.earliestEnd) target = limits.earliestEnd;
+        if (limits.latestEnd && target >= limits.latestEnd) target = null;
+        if (target === state.priceWindowEnd || (!target && !state.priceWindowEnd)) return;
+        state.priceWindowEnd = target;
+        syncChartControls();
+        loadDetail().catch(showError);
+      }
+      function returnPriceWindowToLatest() {
+        if (!state.priceWindowEnd) return;
+        state.priceWindowEnd = null;
+        syncChartControls();
+        loadDetail().catch(showError);
+      }
+      function syncPricePanControls() {
+        var control = el("pricePanControl");
+        var eligible = pricePanEligible();
+        control.hidden = !eligible;
+        var limits = pricePanLimits();
+        control.querySelector('[data-price-pan="older"]').disabled = !eligible || !limits.canOlder;
+        control.querySelector('[data-price-pan="newer"]').disabled = !eligible || !limits.canNewer;
+        var latestControl = el("priceWindowLatestControl");
+        var latestButton = el("priceWindowLatest");
+        latestControl.hidden = false;
+        latestButton.disabled = !eligible || !state.priceWindowEnd;
+        latestButton.title = eligible
+          ? (state.priceWindowEnd ? "回到当前价格范围的最新截止" : "当前已经是最新截止")
+          : "只有 6M 与 1Y 价格图可以切换固定窗口";
       }
       function activeMovingAveragePeriods() {
         var definition = movingAveragePresetDefinitions[state.movingAveragePreset];
@@ -1129,12 +1344,18 @@
         el("movingAverageControl").hidden = state.chartView === "valuation";
         el("movingAveragePeriodControl").hidden = state.chartView === "valuation";
         var activeAverages = activeMovingAveragePeriods();
-        el("priceMovingAverageLegend").hidden = state.chartView !== "price" || !activeAverages.length;
+        var hasTradeMarkers = tradeChartEvents().length > 0;
+        el("priceMovingAverageLegend").hidden = state.chartView !== "price" || (!activeAverages.length && !hasTradeMarkers);
         document.querySelectorAll(".price-ma-legend-item").forEach(function (item) {
           item.hidden = activeAverages.indexOf(Number(item.dataset.maLegend)) < 0;
         });
+        document.querySelectorAll("[data-trade-legend]").forEach(function (item) {
+          item.hidden = state.chartView !== "price" || !hasTradeMarkers;
+        });
+        el("priceMovingAverageMethod").hidden = !activeAverages.length;
         el("priceMovingAverageMethod").textContent = movingAverageDefinition.label + " · 简单移动平均 · 当前价格口径的逐交易日收盘";
         el("valuationLegend").hidden = state.chartView !== "valuation";
+        syncPricePanControls();
         el("marketHistoryNote").textContent = state.chartView === "valuation"
           ? "TTM PE 使用股息未调整完成日线与当时已申报生效的正数 diluted EPS；2010 年前仅按当时提交的 10-K 年报频率重建并显示警示，均值与常态带只代表十年历史参照，不是合理价值。"
           : (
@@ -1148,7 +1369,8 @@
             ? "标的历史 TTM 市盈率、十年缩尾均值与历史估值常态带"
             : "标的历史 K 线、成交量" + (activeAverages.length
               ? "与" + movingAverageDefinition.label + "方案的 " + activeAverages.join("、") + " 日简单移动平均线"
-              : "")
+              : "") + (hasTradeMarkers ? "；包含 Activity Flex 买入和卖出日期标记" : "") +
+              (pricePanEligible() ? "；可使用较早／较新按钮或方向键切换固定窗口，Home 回到最新" : "")
         );
       }
       function syncPriceMovingAverageLegendAlignment() {
@@ -1202,13 +1424,14 @@
         if (!staticManifestPromise) staticManifestPromise = fetchJson(config.manifest);
         return staticManifestPromise;
       }
-      function mergeStaticInstrumentDetail(flexPackage, marketPackage, researchPackage, symbol, from, maxPoints) {
+      function mergeStaticInstrumentDetail(flexPackage, marketPackage, researchPackage, symbol, from, to, maxPoints) {
         var flex = flexPackage && flexPackage.instruments && flexPackage.instruments[symbol] || {};
         var market = marketPackage && marketPackage.detail || {};
         var research = researchPackage && researchPackage.detail || {};
         var marketBars = Array.isArray(market.bars) ? market.bars : [];
         var selectedBars = marketBars.filter(function (row) {
           return (!from || String(row.date || "") >= from)
+            && (!to || String(row.date || "") <= to)
             && (state.chartView !== "valuation" || row.barType === "TRADES");
         });
         var byType = {};
@@ -1289,7 +1512,7 @@
           publicStatic: true
         };
       }
-      async function loadStaticInstrument(symbol, from, maxPoints) {
+      async function loadStaticInstrument(symbol, from, to, maxPoints) {
         var manifest = await staticManifest();
         if (!manifest || manifest.schemaVersion !== 1) throw new Error("公开标的页清单版本不受支持。");
         var record = manifest.instruments && manifest.instruments[symbol];
@@ -1318,7 +1541,7 @@
         for (var index = 0; index < packages.length; index += 1) {
           if (packages[index].schemaVersion !== 1) throw new Error("公开标的静态数据包版本不受支持。");
         }
-        return mergeStaticInstrumentDetail(packages[0], packages[1], packages[2], symbol, from, maxPoints);
+        return mergeStaticInstrumentDetail(packages[0], packages[1], packages[2], symbol, from, to, maxPoints);
       }
       /* FAMILY:INSTRUMENT_DATA_SOURCE:START */
       async function resolveSecurityId() {
@@ -1334,11 +1557,17 @@
         var token = ++state.requestToken;
         var range = activeRange();
         var setting = rangeSettings[range];
-        var from = rangeFromDate(range);
-        var detail = await loadStaticInstrument(state.securityId, from, setting.maxPoints);
+        var from = state.chartView === "price" ? movingAverageFetchFrom(range) : rangeFromDate(range);
+        var to = priceRequestEnd();
+        var maxPoints = Math.min(
+          15000,
+          setting.maxPoints + (state.chartView === "price" ? movingAverageWarmupPoints() : 0)
+        );
+        var detail = await loadStaticInstrument(state.securityId, from, to, maxPoints);
         if (token !== state.requestToken) return;
         if (detail.schemaVersion !== 8) throw new Error("公开标的静态资料版本不受支持。");
         state.detail = detail;
+        rememberLatestPriceEnd();
         syncChartControls();
         renderAll();
       }
@@ -1347,12 +1576,77 @@
         var items = state.detail && state.detail.chartEvents && state.detail.chartEvents.items || [];
         if (state.chartView !== "price") return [];
         if (state.barType === "SPLIT_UNADJUSTED") {
-          return items.filter(function (row) { return row.eventType === "stock_split"; });
+          return items.filter(function (row) {
+            return row.eventType === "stock_split" || row.eventType === "cash_dividend";
+          });
         }
-        if (state.barType === "TRADES") {
-          return items.filter(function (row) { return row.eventType === "cash_dividend"; });
-        }
-        return [];
+        return items.filter(function (row) { return row.eventType === "cash_dividend"; });
+      }
+      function tradeDateValue(event) {
+        var raw = String(event && event.tradeDate || "");
+        if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) raw = raw.replace(/-/g, "");
+        return /^\d{8}$/.test(raw) ? raw : null;
+      }
+      function tradeDirection(event) {
+        var details = event && event.details || {};
+        var metadata = details.metadata || {};
+        var direction = String(metadata.buySell || "").toUpperCase();
+        return event && event.eventType === "trade" && ["BUY", "SELL"].indexOf(direction) >= 0
+          ? direction
+          : null;
+      }
+      function tradeChartEvents() {
+        if (state.chartView !== "price" || isBondDetail()) return [];
+        var events = state.detail && (state.detail.eventTimeline || state.detail.events) || [];
+        return events.filter(function (event) {
+          var details = event && event.details || {};
+          var quantity = Math.abs(finite(event && event.quantity) || 0);
+          var price = finite(details.price);
+          return tradeDirection(event)
+            && tradeDateValue(event)
+            && quantity > 0
+            && price != null
+            && price > 0;
+        });
+      }
+      function summarizeTradeEvents(events, direction) {
+        var ordered = events.slice().sort(function (left, right) {
+          return String(tradeDateValue(left)).localeCompare(String(tradeDateValue(right)));
+        });
+        var quantity = ordered.reduce(function (sum, event) {
+          return sum + Math.abs(finite(event.quantity) || 0);
+        }, 0);
+        var weightedNotional = ordered.reduce(function (sum, event) {
+          return sum + Math.abs(finite(event.quantity) || 0) * finite(event.details && event.details.price);
+        }, 0);
+        var knownCommissions = ordered.map(function (event) {
+          return finite(event.details && event.details.commission);
+        }).filter(function (value) { return value != null; });
+        return {
+          markerType: "trade",
+          direction: direction,
+          count: ordered.length,
+          quantity: quantity,
+          weightedPrice: quantity > 0 ? weightedNotional / quantity : null,
+          commission: knownCommissions.length
+            ? knownCommissions.reduce(function (sum, value) { return sum + value; }, 0)
+            : null,
+          commissionComplete: knownCommissions.length === ordered.length,
+          recurringCount: ordered.filter(isRecurringInvestment).length,
+          currency: ordered[0] && ordered[0].currency || state.detail && state.detail.instrument && state.detail.instrument.currency,
+          startDate: ordered[0] ? tradeDateValue(ordered[0]) : null,
+          endDate: ordered.length ? tradeDateValue(ordered[ordered.length - 1]) : null
+        };
+      }
+      function tradeMarkerDateLabel(summary) {
+        return summary.startDate === summary.endDate
+          ? compactToIso(summary.startDate)
+          : compactToIso(summary.startDate) + " — " + compactToIso(summary.endDate);
+      }
+      function tradeCommissionLabel(summary) {
+        return summary.commission == null
+          ? "—"
+          : signedMoney(summary.commission, summary.currency) + (summary.commissionComplete ? "" : "（部分）");
       }
       function splitUnadjustedBars(rows) {
         var splits = (state.detail && state.detail.chartEvents && state.detail.chartEvents.items || [])
@@ -1532,19 +1826,81 @@
           container.appendChild(item);
         });
       }
+      function renderTooltipTrades(container, summaries, showDates) {
+        container.replaceChildren();
+        container.hidden = !summaries.length;
+        summaries.forEach(function (summary) {
+          var item = document.createElement("div");
+          item.className = "tooltip-trade";
+          var head = document.createElement("div");
+          head.className = "tooltip-trade-head";
+          var kind = document.createElement("span");
+          kind.className = "tooltip-trade-kind" + (summary.direction === "SELL" ? " sell" : "");
+          if (summary.direction === "BUY") {
+            kind.textContent = summary.recurringCount === summary.count
+              ? "买入 · 定投"
+              : (summary.recurringCount
+                ? "买入 · 定投 " + number(summary.recurringCount, 0) + "/" + number(summary.count, 0)
+                : "买入");
+          } else {
+            kind.textContent = "卖出";
+          }
+          head.appendChild(kind);
+          if (showDates || summary.startDate !== summary.endDate) {
+            var date = document.createElement("span");
+            date.className = "tooltip-trade-date";
+            date.textContent = tradeMarkerDateLabel(summary);
+            head.appendChild(date);
+          }
+          var grid = document.createElement("div");
+          grid.className = "tooltip-trade-grid";
+          var fields = [
+            ["股数", quantityNumber(summary.quantity) + " 股"],
+            [summary.count > 1 ? "加权价" : "成交价", money(summary.weightedPrice, summary.currency, 2)],
+            ["费用", tradeCommissionLabel(summary)]
+          ];
+          if (summary.count > 1) fields.push(["笔数", number(summary.count, 0)]);
+          fields.forEach(function (field) {
+            var label = document.createElement("span"), value = document.createElement("span");
+            label.className = "tooltip-trade-label";
+            value.className = "tooltip-trade-value";
+            label.textContent = field[0];
+            value.textContent = field[1];
+            grid.append(label, value);
+          });
+          item.append(head, grid);
+          container.appendChild(item);
+        });
+      }
+      function resetInstrumentTooltipSections(tooltip) {
+        var movingAverageSection = tooltip.querySelector(".tooltip-ma-section");
+        var movingAverageGrid = tooltip.querySelector(".tooltip-ma-grid");
+        if (movingAverageGrid) movingAverageGrid.replaceChildren();
+        if (movingAverageSection) movingAverageSection.hidden = true;
+        var tradeEvents = tooltip.querySelector(".tooltip-trade-events");
+        var corporateEvents = tooltip.querySelector(".tooltip-corporate-events");
+        if (tradeEvents) renderTooltipTrades(tradeEvents, [], false);
+        if (corporateEvents) renderTooltipEvents(corporateEvents, []);
+      }
       function renderPriceChart() {
         var visibleFrom = rangeFromDate(state.priceRange);
         var movingAverageDefinition = movingAveragePresetDefinitions[state.movingAveragePreset];
-        var sourceRows = calculateMovingAverages(latestBars(), movingAverageDefinition.periods).filter(function (row) {
-          return !visibleFrom || String(row.date || "") >= visibleFrom;
-        });
+        var calculatedRows = calculateMovingAverages(latestBars(), movingAverageDefinition.periods);
+        var priceWindow = pricePanEligible()
+          ? fixedPriceWindow(calculatedRows, state.priceRange, state.priceWindowEnd)
+          : null;
+        var sourceRows = priceWindow
+          ? priceWindow.rows
+          : calculatedRows.filter(function (row) {
+              return !visibleFrom || String(row.date || "") >= visibleFrom;
+            });
         var activeAverages = activeMovingAveragePeriods();
         var barType = activeBarType();
         var svg = el("instrumentChart");
         var tooltip = el("chartTooltip");
         svg.replaceChildren();
         tooltip.classList.remove("visible");
-        renderTooltipEvents(tooltip.querySelector(".tooltip-events"), []);
+        resetInstrumentTooltipSections(tooltip);
         if (!sourceRows.length) {
           var empty = svgEl("text", { x: 560, y: 220, "text-anchor": "middle", class: "axis-label" });
           empty.textContent = "当前窗口没有可用日线";
@@ -1553,7 +1909,7 @@
         }
         var aggregated = aggregateBars(sourceRows);
         var rows = aggregated.rows;
-        var width = 1120, height = 448, left = 68, right = 20, top = 20, priceBottom = 320, volumeTop = 346, bottom = 412;
+        var width = 1120, height = 448, left = 68, right = 68, top = 20, priceBottom = 320, volumeTop = 346, bottom = 412;
         var plotWidth = width - left - right;
         var priceHeight = priceBottom - top;
         var lows = rows.map(function (row) { return finite(row.low); }).filter(Number.isFinite);
@@ -1658,8 +2014,11 @@
           var markerWidth = Math.max(16, markerText.length * 8 + 8);
           var markerY = Math.max(top + 3, y(finite(row.high)) - 25);
           markerHitZones.push({
+            markerType: "corporate",
             x: cx,
+            y: markerY + 7.5,
             halfWidth: markerWidth / 2 + 4,
+            halfHeight: 12,
             aggregateIndex: aggregateIndex,
             events: events
           });
@@ -1678,6 +2037,78 @@
           eventLabel.textContent = markerText;
           svg.appendChild(eventLabel);
         });
+        var tradeMarkerGroups = {};
+        var tradeSummariesByAggregateIndex = {};
+        tradeChartEvents().forEach(function (event) {
+          var tradeDate = tradeDateValue(event);
+          var sourceIndex = sourceIndexByDate[tradeDate];
+          if (sourceIndex == null) return;
+          var aggregateIndex = Math.min(rows.length - 1, Math.floor(sourceIndex / aggregated.bucketSize));
+          var direction = tradeDirection(event);
+          var currency = String(event.currency || state.detail.instrument.currency || "").toUpperCase();
+          var key = aggregateIndex + "|" + direction + "|" + currency;
+          var group = tradeMarkerGroups[key] || (tradeMarkerGroups[key] = {
+            aggregateIndex: aggregateIndex,
+            direction: direction,
+            events: []
+          });
+          group.events.push(event);
+        });
+        Object.keys(tradeMarkerGroups).sort(function (left, right) {
+          var leftGroup = tradeMarkerGroups[left], rightGroup = tradeMarkerGroups[right];
+          return leftGroup.aggregateIndex - rightGroup.aggregateIndex || leftGroup.direction.localeCompare(rightGroup.direction);
+        }).forEach(function (key) {
+          var group = tradeMarkerGroups[key];
+          var summary = summarizeTradeEvents(group.events, group.direction);
+          (tradeSummariesByAggregateIndex[group.aggregateIndex] || (tradeSummariesByAggregateIndex[group.aggregateIndex] = [])).push(summary);
+          var row = rows[group.aggregateIndex];
+          var cx = x(group.aggregateIndex);
+          var markerText = group.direction === "BUY" ? "买" : "卖";
+          if (summary.count > 1) markerText += "×" + summary.count;
+          var markerColor = group.direction === "BUY" ? "#176b9b" : "#a14e4e";
+          var markerFill = group.direction === "BUY" ? "#e8f1f7" : "#f8ebeb";
+          var markerWidth = Math.max(18, markerText.length * 8 + 8);
+          var candleY = group.direction === "BUY" ? y(finite(row.low)) : y(finite(row.high));
+          var markerY = group.direction === "BUY"
+            ? Math.min(priceBottom - 17, candleY + 10)
+            : Math.max(top + 3, candleY - 25);
+          markerHitZones.push({
+            markerType: "trade",
+            x: cx,
+            y: markerY + 7.5,
+            halfWidth: markerWidth / 2 + 5,
+            halfHeight: 13,
+            aggregateIndex: group.aggregateIndex,
+            events: [summary]
+          });
+          svg.appendChild(svgEl("line", {
+            x1: cx,
+            y1: group.direction === "BUY" ? Math.min(markerY - 2, candleY + 2) : markerY + 15,
+            x2: cx,
+            y2: group.direction === "BUY" ? markerY : Math.max(markerY + 17, candleY - 2),
+            class: "chart-event-stem",
+            stroke: markerColor
+          }));
+          svg.appendChild(svgEl("rect", {
+            x: cx - markerWidth / 2,
+            y: markerY,
+            width: markerWidth,
+            height: 15,
+            rx: 2,
+            fill: markerFill,
+            stroke: markerColor,
+            class: "chart-event-marker chart-trade-marker"
+          }));
+          var tradeLabel = svgEl("text", {
+            x: cx,
+            y: markerY + 10.5,
+            "text-anchor": "middle",
+            fill: markerColor,
+            class: "chart-event-label chart-trade-label"
+          });
+          tradeLabel.textContent = markerText;
+          svg.appendChild(tradeLabel);
+        });
         var labelIndexes = [0, Math.floor((rows.length - 1) / 2), rows.length - 1];
         labelIndexes.forEach(function (index) {
           var label = svgEl("text", { x: x(index), y: 437, "text-anchor": index === 0 ? "start" : (index === rows.length - 1 ? "end" : "middle"), class: "axis-label" });
@@ -1688,7 +2119,24 @@
         svg.appendChild(focus);
         var interactionLeft = Math.max(0, left - slot / 2);
         var interactionRight = Math.min(width, width - right + slot / 2);
-        var overlay = svgEl("rect", { x: interactionLeft, y: top, width: interactionRight - interactionLeft, height: bottom - top, fill: "transparent", class: "chart-interaction-overlay", tabindex: "0", "aria-label": "移动指针查看市场历史价格详情" });
+        var overlay = svgEl("rect", {
+          x: interactionLeft,
+          y: top,
+          width: interactionRight - interactionLeft,
+          height: bottom - top,
+          fill: "transparent",
+          class: "chart-interaction-overlay",
+          tabindex: "0",
+          "aria-label": pricePanEligible()
+            ? "移动指针查看价格详情；使用较早／较新按钮或方向键切换时间段；Home 回到最新"
+            : "移动指针查看市场历史价格详情",
+          "aria-keyshortcuts": pricePanEligible() ? "ArrowLeft ArrowRight Home" : ""
+        });
+        function hidePriceTooltip() {
+          focus.setAttribute("visibility", "hidden");
+          tooltip.classList.remove("visible");
+          tooltip.setAttribute("aria-hidden", "true");
+        }
         function showAt(event) {
           var interactionRect = overlay.getBoundingClientRect();
           var ratio = interactionRect.width
@@ -1697,9 +2145,14 @@
           ratio = Math.max(0, Math.min(1, ratio));
           var index = Math.max(0, Math.min(rows.length - 1, Math.round(ratio * rows.length - .5)));
           var pointerSvgX = interactionLeft + ratio * (interactionRight - interactionLeft);
+          var pointerSvgY = top + Math.max(0, Math.min(1,
+            (event.clientY - interactionRect.top) / (interactionRect.height || 1)
+          )) * (bottom - top);
           var markerHit = markerHitZones.reduce(function (nearest, candidate) {
-            var distance = Math.abs(pointerSvgX - candidate.x);
-            if (distance > candidate.halfWidth) return nearest;
+            var horizontalDistance = Math.abs(pointerSvgX - candidate.x);
+            var verticalDistance = Math.abs(pointerSvgY - candidate.y);
+            if (horizontalDistance > candidate.halfWidth || verticalDistance > candidate.halfHeight) return nearest;
+            var distance = Math.hypot(horizontalDistance, verticalDistance);
             return !nearest || distance < nearest.distance
               ? { distance: distance, marker: candidate }
               : nearest;
@@ -1729,13 +2182,7 @@
             ["量", compactCount(row.volume)],
             ["市盈率 TTM", peDisplayText(row)]
           ];
-          activeAverages.forEach(function (period) {
-            labels.push([
-              "MA" + period,
-              money(row.movingAverages && row.movingAverages[String(period)], state.detail.instrument.currency, 2)
-            ]);
-          });
-          var grid = tooltip.querySelector(".tooltip-grid");
+          var grid = tooltip.querySelector(".tooltip-primary-grid");
           grid.replaceChildren();
           labels.forEach(function (item) {
             var key = document.createElement("span"), value = document.createElement("span");
@@ -1746,9 +2193,28 @@
             if (item.length > 2) setClassBySign(value, item[2]);
             grid.append(key, value);
           });
+          var movingAverageSection = tooltip.querySelector(".tooltip-ma-section");
+          var movingAverageGrid = tooltip.querySelector(".tooltip-ma-grid");
+          movingAverageGrid.replaceChildren();
+          movingAverageSection.hidden = !activeAverages.length;
+          activeAverages.forEach(function (period) {
+            var key = document.createElement("span"), value = document.createElement("span");
+            key.className = "tooltip-label";
+            value.className = "tooltip-value";
+            key.textContent = "MA" + period;
+            value.textContent = money(row.movingAverages && row.movingAverages[String(period)], state.detail.instrument.currency, 2);
+            movingAverageGrid.append(key, value);
+          });
+          renderTooltipTrades(
+            tooltip.querySelector(".tooltip-trade-events"),
+            tradeSummariesByAggregateIndex[index] || [],
+            row.points > 1
+          );
           renderTooltipEvents(
-            tooltip.querySelector(".tooltip-events"),
-            markerHit ? markerHit.marker.events : (row.chartEvents || [])
+            tooltip.querySelector(".tooltip-corporate-events"),
+            markerHit && markerHit.marker.markerType === "corporate"
+              ? markerHit.marker.events
+              : (row.chartEvents || [])
           );
           var frame = el("chartFrame").getBoundingClientRect();
           var pointerX = event.clientX - frame.left;
@@ -1763,10 +2229,19 @@
           tooltip.setAttribute("aria-hidden", "false");
         }
         overlay.addEventListener("pointermove", showAt);
-        overlay.addEventListener("pointerleave", function () {
-          focus.setAttribute("visibility", "hidden");
-          tooltip.classList.remove("visible");
-          tooltip.setAttribute("aria-hidden", "true");
+        overlay.addEventListener("pointerleave", hidePriceTooltip);
+        overlay.addEventListener("keydown", function (event) {
+          if (!pricePanEligible()) return;
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            movePriceWindowByRatio(-.25);
+          } else if (event.key === "ArrowRight") {
+            event.preventDefault();
+            movePriceWindowByRatio(.25);
+          } else if (event.key === "Home") {
+            event.preventDefault();
+            returnPriceWindowToLatest();
+          }
         });
         svg.appendChild(overlay);
         var selection = (state.detail.barSelection.series || []).find(function (row) { return row.barType === barType; }) || {};
@@ -1774,9 +2249,12 @@
         var movingAverageMethod = activeAverages.length
           ? " · " + movingAverageDefinition.label + " " + activeAverages.join("／") + " 日简单均线先按底层逐日收盘计算，再取图形桶末值"
           : "";
+        var panMethod = pricePanEligible()
+          ? " · " + state.priceRange + " 固定窗口，使用按钮或方向键切换" + (state.priceWindowEnd ? "，当前为历史截止" : "，当前为最新截止")
+          : "";
         el("chartAggregation").textContent = aggregated.bucketSize > 1
-          ? "图形每根合并最多 " + aggregated.bucketSize + " 个连续交易日；底层日线未改变" + movingAverageMethod
-          : "逐交易日绘制" + movingAverageMethod;
+          ? "图形每根合并最多 " + aggregated.bucketSize + " 个连续交易日；底层日线未改变" + movingAverageMethod + panMethod
+          : "逐交易日绘制" + movingAverageMethod + panMethod;
         var splitBasis = selection.splitNormalizationStatus === "pass"
           ? "拆股标准化至 " + compactToIso(selection.splitNormalizationAnchorDate) + "；原始来源保留"
           : (selection.splitNormalizationStatus === "required" ? "拆股派生层待建立" : "无审核拆股事件");
@@ -1785,10 +2263,13 @@
           : (barType === "TRADES"
             ? "股息未调整；分红标记仅覆盖已核验可用期间"
             : "股息调整");
+        var tradeMarkerMethod = Object.keys(tradeMarkerGroups).length
+          ? " · 买卖标记来自脱敏 Activity Flex；按绘图桶与方向聚合，纵向位置不代表成交价"
+          : "";
         var sourcePrefix = state.detail && state.detail.publicStatic
           ? ""
           : (sourceRows[0].sourceName || "IBKR Historical Bars") + " · ";
-        el("chartSource").textContent = sourcePrefix + modeDescription + " · " + splitBasis + " · PE 统一按股息未调整实际收盘计算";
+        el("chartSource").textContent = sourcePrefix + modeDescription + " · " + splitBasis + " · PE 统一按股息未调整实际收盘计算" + tradeMarkerMethod;
       }
       function renderValuationChart() {
         var valuationSeries = state.detail && state.detail.valuationSeries || {};
@@ -1813,7 +2294,7 @@
         svg.replaceChildren();
         tooltip.classList.remove("visible");
         tooltip.setAttribute("aria-hidden", "true");
-        renderTooltipEvents(tooltip.querySelector(".tooltip-events"), []);
+        resetInstrumentTooltipSections(tooltip);
         if (!sourceRows.length || mean == null || bandLow == null || bandHigh == null) {
           var empty = svgEl("text", { x: 560, y: 215, "text-anchor": "middle", class: "axis-label" });
           empty.textContent = analysis.message || "当前窗口没有可用的申报生效 TTM 市盈率";
@@ -1924,7 +2405,7 @@
             ["股息未调整收盘", money(row.close, state.detail.instrument.currency, 2)],
             ["EPS 口径", (row.peEpsEvidenceLabel === "annual_diluted_eps" ? "⚠️ 年报频率重建" : "申报日生效") + (epsSplitFactor > 1 ? " · 拆股桥接×" + number(epsSplitFactor, 0) : "")]
           ];
-          var grid = tooltip.querySelector(".tooltip-grid");
+          var grid = tooltip.querySelector(".tooltip-primary-grid");
           grid.replaceChildren();
           labels.forEach(function (item) {
             var key = document.createElement("span"), value = document.createElement("span");
@@ -1934,7 +2415,7 @@
             value.textContent = item[1];
             grid.append(key, value);
           });
-          renderTooltipEvents(tooltip.querySelector(".tooltip-events"), []);
+          renderTooltipEvents(tooltip.querySelector(".tooltip-corporate-events"), []);
           var frame = el("chartFrame").getBoundingClientRect();
           var resolvedX = pointerX == null ? fx / width * frame.width : pointerX;
           var resolvedY = pointerY == null ? fy / height * frame.height : pointerY;
@@ -3626,9 +4107,17 @@
       document.querySelectorAll(".range-btn").forEach(function (button) {
         button.addEventListener("click", function () {
           if (activeRange() === button.dataset.range) return;
+          if (state.chartView === "price") state.priceWindowEnd = null;
           setActiveRange(button.dataset.range);
           syncChartControls();
           loadDetail().catch(showError);
+        });
+      });
+      document.querySelectorAll(".price-pan-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          if (button.dataset.pricePan === "older") movePriceWindowByRatio(-.25);
+          else if (button.dataset.pricePan === "newer") movePriceWindowByRatio(.25);
+          else returnPriceWindowToLatest();
         });
       });
       document.querySelectorAll(".bond-yield-range-btn").forEach(function (button) {
