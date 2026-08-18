@@ -432,6 +432,8 @@
     .research-stack { display: grid; gap: 18px; }
     .research-subhead { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; padding: 17px 20px 14px; border-bottom: 1px solid #e0e6ea; }
     .research-subtitle { margin: 0; color: var(--navy); font-size: 16px; font-weight: 750; }
+    .research-subhead-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 7px 10px; min-width: 0; }
+    .research-update-date { color: var(--muted); font: 10px/1.45 var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
     .morningstar-overview { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: end; }
     .morningstar-report-link { color: var(--blue); font-size: 13px; font-weight: 760; text-decoration: none; }
     .morningstar-report-link:hover, .morningstar-report-link:focus-visible { text-decoration: underline; outline: none; }
@@ -547,6 +549,8 @@
       .corporate-event-row { grid-template-columns: 1fr auto; gap: 8px 12px; padding-left: 22px; }
       .corporate-event-copy, .corporate-source { grid-column: 1 / -1; }
       .corporate-source { justify-self: start; }
+      .research-subhead { flex-wrap: wrap; align-items: flex-start; gap-block: 10px; }
+      .research-subhead-meta { width: 100%; max-width: none; }
       .morningstar-overview { grid-template-columns: 1fr; }
       .morningstar-metrics { grid-template-columns: 1fr; }
       .bond-cashflow-metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -845,15 +849,14 @@
     <section class="section" id="researchSection" aria-labelledby="researchTitle">
       <div class="section-head">
         <div><p class="section-kicker">Versioned Research</p><h2 class="section-title" id="researchTitle">研究评价</h2><p class="section-note" id="researchSectionNote">事实与判断分离；结论是只读研究记录，不是交易指令。</p></div>
-        <span class="badge" id="researchDateBadge">—</span>
       </div>
       <div class="research-stack">
         <article class="card" id="providerResearchCard">
-          <div class="research-subhead"><div><p class="section-kicker">External Research</p><h3 class="research-subtitle" id="morningstarResearchTitle">晨星研报</h3></div><span class="badge" id="morningstarFreshness">—</span></div>
+          <div class="research-subhead"><div><p class="section-kicker">External Research</p><h3 class="research-subtitle" id="morningstarResearchTitle">晨星研报</h3></div><div class="research-subhead-meta"><span class="badge" id="morningstarFreshness">—</span><span class="research-update-date" id="morningstarUpdatedAt">—</span></div></div>
           <div class="card-body" id="providerResearchBody"><div class="empty">正在载入晨星研报。</div></div>
         </article>
         <article class="card">
-          <div class="research-subhead"><div><p class="section-kicker">Internal Analysis</p><h3 class="research-subtitle" id="researchAnalysisTitle">研究分析</h3></div></div>
+          <div class="research-subhead"><div><p class="section-kicker">Internal Analysis</p><h3 class="research-subtitle" id="researchAnalysisTitle">研究分析</h3></div><div class="research-subhead-meta"><span class="research-update-date" id="internalResearchUpdatedAt">—</span></div></div>
           <div class="card-body" id="researchBody"><div class="empty">正在载入研究分析。</div></div>
         </article>
       </div>
@@ -1005,12 +1008,19 @@
         var date = new Date(raw);
         return Number.isNaN(date.getTime()) ? (raw || "—") : "UTC " + date.toISOString().slice(0, 10);
       }
-      function researchVersionLabel(assessment) {
+      function normalizeUtcDisplayText(value) {
+        return String(value || "—")
+          .replace(/\b(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2})(?::\d{2})?\s+UTC\b/g, "UTC $1 $2")
+          .replace(/\b(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})(?::\d{2})?Z\b/g, "UTC $1 $2")
+          .replace(/\bUTC\s+(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}):\d{2}\b/g, "UTC $1 $2");
+      }
+      function researchVersionLabel(assessment, includeUtc) {
         var raw = String(assessment && assessment.sourceVersion || "").trim();
         if (!raw && assessment && assessment.version != null) raw = "v" + number(assessment.version, 0);
         if (!raw) return "版本待补";
-        if (/^\d{4}-\d{2}-\d{2}(?:\b|-)/.test(raw)) return raw;
-        var date = utcDateOnly(assessment.completedAt || assessment.updatedAt || assessment.asOfDate).replace(/^UTC\s+/, "");
+        if (/^\d{4}-\d{2}-\d{2}(?:\b|-)/.test(raw)) return includeUtc ? "UTC " + raw : raw;
+        var date = utcDateOnly(assessment.completedAt || assessment.updatedAt || assessment.asOfDate);
+        if (!includeUtc) date = date.replace(/^UTC\s+/, "");
         return date === "—" ? raw : date + " · " + raw;
       }
       function number(value, digits) {
@@ -3124,7 +3134,7 @@
         el("asofLotsResearch").textContent = lots.asOf ? compactToIso(lots.asOf) : "批次尚不可用";
         el("asofLotsResearchNote").textContent =
           "自主研究 " + compactToIso(research.latestAsOfDate) +
-          " · 晨星发布 " + compactToIso(research.providerPublishedDate) +
+          " · 晨星发布 " + utcDateOnly(research.providerPublishedDate) +
           (lots.status === "manual_reconciled"
             ? " · 批次由门户人工核验"
             : (lots.status === "not_collected" ? " · 批次粒度尚未取得" : ""));
@@ -3445,23 +3455,20 @@
       }
       function renderList(items) {
         var ul = document.createElement("ul");
-        (items || []).forEach(function (item) { var li = document.createElement("li"); li.textContent = zh(item); ul.appendChild(li); });
+        (items || []).forEach(function (item) { var li = document.createElement("li"); li.textContent = normalizeUtcDisplayText(zh(item)); ul.appendChild(li); });
         return ul;
       }
-      function updateResearchDateBadge() {
+      function updateResearchTimestamps() {
         var assessment = state.detail.research && state.detail.research[0];
         var provider = (state.detail.providerResearch || []).find(function (row) {
           return String(row.provider || "").toLowerCase() === "morningstar";
         });
-        var labels = [];
-        if (provider) {
-          var providerReportAt = provider.metrics && provider.metrics.reportAsOf;
-          labels.push("晨星 " + utcDateOnly(providerReportAt || provider.publishedDate));
-        }
-        if (assessment) {
-          labels.push("内部分析 " + researchVersionLabel(assessment));
-        }
-        el("researchDateBadge").textContent = labels.length ? labels.join(" · ") : "尚未建立";
+        el("morningstarUpdatedAt").textContent = provider && provider.verifiedAt
+          ? "最近核验 " + utcDateTime(provider.verifiedAt)
+          : "核验时间尚未建立";
+        el("internalResearchUpdatedAt").textContent = assessment
+          ? "研究更新 " + researchVersionLabel(assessment, true)
+          : "研究时间尚未建立";
       }
       /* FAMILY:INSTRUMENT_DECISION_RUNTIME:START *//* FAMILY:INSTRUMENT_DECISION_RUNTIME:END */
       function renderProviderResearch() {
@@ -3479,7 +3486,7 @@
           body.appendChild(empty);
           freshnessBadge.className = "badge";
           freshnessBadge.textContent = "尚未建立";
-          updateResearchDateBadge();
+          updateResearchTimestamps();
           return;
         }
         var metrics = provider.metrics || {}, analyst = provider.analyst || {};
@@ -3513,15 +3520,12 @@
         var dateBlock = document.createElement("div"); dateBlock.className = "section-note";
         var reportAsOf = metrics.reportAsOf ? utcDateTime(metrics.reportAsOf) : null;
         dateBlock.textContent = isFundMedalist
-          ? "Medalist 发布 " + compactToIso(provider.publishedDate)
+          ? "Medalist 发布 " + utcDateOnly(provider.publishedDate)
             + (metrics.medalistRatedDate ? " · 评级日期 " + compactToIso(metrics.medalistRatedDate) : "")
-            + " · 本地核验 " + utcDateTime(provider.verifiedAt)
           : isCoverageStatus
-            ? "覆盖状态核验 " + compactToIso(provider.publishedDate)
-              + " · 本地核验 " + utcDateTime(provider.verifiedAt)
-            : "官网文章发布 " + compactToIso(provider.publishedDate)
-              + (reportAsOf ? " · 完整报告截止 " + reportAsOf : "")
-              + " · 本地核验 " + utcDateTime(provider.verifiedAt);
+            ? "覆盖状态核验 " + utcDateOnly(provider.publishedDate)
+            : "官网文章发布 " + utcDateOnly(provider.publishedDate)
+              + (reportAsOf ? " · 完整报告截止 " + reportAsOf : "");
         overview.append(copy, dateBlock); body.appendChild(overview);
 
         var metricRows;
@@ -3535,7 +3539,7 @@
               historicalStarRating == null ? "未核实" : number(historicalStarRating, 0) + " 星",
               historicalStarRating == null
                 ? "官网文章未列出当前传统历史星级"
-                : "传统历史星级 · 截至 " + compactToIso(metrics.historicalStarRatingAsOf)
+                : "传统历史星级 · 截至 " + utcDateOnly(metrics.historicalStarRatingAsOf)
             ],
             [
               "Medalist Rating",
@@ -3586,8 +3590,8 @@
           var uncertaintyLabels = { low: "低", medium: "中等", high: "高", very_high: "很高" };
           var allocationLabels = { exemplary: "优秀", standard: "标准", poor: "较差" };
           metricRows = [
-            ["晨星评级", number(metrics.ratingStars, 0) + " 星", "更新 " + compactToIso(metrics.ratingUpdatedDate)],
-            ["公允价值", money(fairValue, metrics.fairValueCurrency || "USD", 0), "更新 " + compactToIso(metrics.fairValueUpdatedDate) + " · 较 " + compactToIso(currentPriceAsOf) + " 收盘", fairGap, fairGap == null ? "—" : (fairGap > 0 ? "+" : "") + percent(fairGap, 2)],
+            ["晨星评级", number(metrics.ratingStars, 0) + " 星", "更新 " + utcDateOnly(metrics.ratingUpdatedDate)],
+            ["公允价值", money(fairValue, metrics.fairValueCurrency || "USD", 0), "更新 " + utcDateOnly(metrics.fairValueUpdatedDate) + " · 较 " + utcDateOnly(currentPriceAsOf) + " 收盘", fairGap, fairGap == null ? "—" : (fairGap > 0 ? "+" : "") + percent(fairGap, 2)],
             ["护城河", moatLabels[metrics.economicMoat] || metrics.economicMoat || "—", "Morningstar Economic Moat"],
             ["不确定性", uncertaintyLabels[metrics.uncertainty] || metrics.uncertainty || "—", "Morningstar Uncertainty"],
             ["资本分配", allocationLabels[metrics.capitalAllocation] || metrics.capitalAllocation || "—", "Morningstar Capital Allocation"]
@@ -3633,7 +3637,7 @@
         body.appendChild(metricGrid);
         var interpretation = document.createElement("section"); interpretation.className = "research-interpretation";
         var interpretationTitle = document.createElement("h4"); interpretationTitle.textContent = isFundResearch ? "研究解读" : "研报解读";
-        var interpretationCopy = document.createElement("p"); interpretationCopy.textContent = provider.interpretation;
+        var interpretationCopy = document.createElement("p"); interpretationCopy.textContent = normalizeUtcDisplayText(provider.interpretation);
         interpretation.append(interpretationTitle, interpretationCopy); body.appendChild(interpretation);
 
         var details = document.createElement("details"); details.className = "research-details";
@@ -3678,7 +3682,7 @@
           : isFundResearch
             ? "Morningstar 基金研究"
             : "Morningstar 官网文章";
-        var sourceDate = document.createElement("span"); sourceDate.className = "source-date"; sourceDate.textContent = compactToIso(provider.publishedDate);
+        var sourceDate = document.createElement("span"); sourceDate.className = "source-date"; sourceDate.textContent = utcDateOnly(provider.publishedDate);
         source.append(sourceName, sourceDate); sourceList.appendChild(source); details.appendChild(sourceList);
         (Array.isArray(metrics.supportingSources) ? metrics.supportingSources : []).forEach(function (entry) {
           if (!entry || !entry.url) return;
@@ -3686,11 +3690,11 @@
           link.href = entry.url; link.target = "_blank"; link.rel = "noreferrer";
           var label = document.createElement("span"); label.textContent = entry.label || "Morningstar 补充资料";
           var date = document.createElement("span"); date.className = "source-date";
-          date.textContent = compactToIso(entry.publishedAt || entry.asOf);
+          date.textContent = utcDateOnly(entry.publishedAt || entry.asOf);
           link.append(label, date); sourceList.appendChild(link);
         });
         body.appendChild(details);
-        updateResearchDateBadge();
+        updateResearchTimestamps();
       }
       function renderResearch() {
         var body = el("researchBody");
@@ -3698,7 +3702,7 @@
         var assessment = state.detail.research && state.detail.research[0];
         if (!assessment) {
           var empty = document.createElement("div"); empty.className = "empty"; empty.textContent = "尚未为该标的建立版本化研究分析。";
-          body.appendChild(empty); updateResearchDateBadge(); return;
+          body.appendChild(empty); updateResearchTimestamps(); return;
         }
         var result = assessment.result || {}, valuation = result.valuation || {}, dcf = valuation.dcf || {};
         var completedCloseHolding = state.detail.currentHolding || {};
@@ -3708,7 +3712,7 @@
           completedClosePrice = finite(state.detail.fundamentals && state.detail.fundamentals.price);
           completedCloseAsOf = state.detail.fundamentals && state.detail.fundamentals.asOfDate;
         }
-        updateResearchDateBadge();
+        updateResearchTimestamps();
         var badges = document.createElement("div"); badges.className = "badge-row";
         var maturity = result.researchMaturity || result.underwritingStatus || "preliminary";
         var badgeEntries = [
@@ -3746,7 +3750,7 @@
           span.textContent = label; badges.appendChild(span);
         });
         body.appendChild(badges);
-        var summary = document.createElement("p"); summary.className = "research-summary"; summary.textContent = assessment.summary || "—"; body.appendChild(summary);
+        var summary = document.createElement("p"); summary.className = "research-summary"; summary.textContent = normalizeUtcDisplayText(assessment.summary); body.appendChild(summary);
         if (result.tradeAuthorization && result.tradeAuthorization.meaningZh) {
           var guardrail = document.createElement("p"); guardrail.className = "section-note";
           guardrail.textContent = "研究边界：" + result.tradeAuthorization.meaningZh;
@@ -3851,11 +3855,11 @@
               var span = document.createElement("span"); span.textContent = label; meta.appendChild(span);
             });
             var archivedSummary = document.createElement("p"); archivedSummary.className = "research-history-summary";
-            archivedSummary.textContent = entry.summary || "—";
+            archivedSummary.textContent = normalizeUtcDisplayText(entry.summary);
             var archivedHinge = document.createElement("div"); archivedHinge.className = "research-history-hinge";
-            archivedHinge.textContent = "关键判断：" + zh(archivedResult.decisionHinge);
+            archivedHinge.textContent = normalizeUtcDisplayText("关键判断：" + zh(archivedResult.decisionHinge));
             var reason = document.createElement("div"); reason.className = "research-history-reason";
-            reason.textContent = "替代于 " + utcDateTime(entry.supersededAt) + " · " + (entry.supersededReason || "新研究版本正式发布");
+            reason.textContent = normalizeUtcDisplayText("替代于 " + utcDateTime(entry.supersededAt) + " · " + (entry.supersededReason || "新研究版本正式发布"));
             card.append(meta, archivedSummary, archivedHinge, reason); historyList.appendChild(card);
           });
           historyDetails.appendChild(historyList); body.appendChild(historyDetails);
@@ -3870,12 +3874,12 @@
         if (!assessment) {
           var empty = document.createElement("div"); empty.className = "empty";
           empty.textContent = "尚未为该国债建立版本化固定收益研究。";
-          body.appendChild(empty); updateResearchDateBadge(); return;
+          body.appendChild(empty); updateResearchTimestamps(); return;
         }
         var result = assessment.result || {};
         var securityRisk = result.securityRisk || {};
         var portfolioRisk = result.portfolioRisk || {};
-        updateResearchDateBadge();
+        updateResearchTimestamps();
 
         var badges = document.createElement("div"); badges.className = "badge-row";
         [
@@ -3890,7 +3894,7 @@
         body.appendChild(badges);
 
         var summary = document.createElement("p"); summary.className = "research-summary";
-        summary.textContent = assessment.summary || "—"; body.appendChild(summary);
+        summary.textContent = normalizeUtcDisplayText(assessment.summary); body.appendChild(summary);
         if (result.tradeAuthorization && result.tradeAuthorization.meaningZh) {
           var guardrail = document.createElement("p"); guardrail.className = "section-note";
           guardrail.textContent = "研究边界：" + result.tradeAuthorization.meaningZh;

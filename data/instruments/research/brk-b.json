@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": "20260812",
+        "latestAsOfDate": "20260818",
         "providerPublishedDate": "20260501",
         "providerVerifiedAt": "2026-07-30T15:30:40Z"
       }
@@ -23,7 +23,7 @@
           "role": "Senior Equity Analyst"
         },
         "freshness": {
-          "ageDays": 13.843805307569445,
+          "ageDays": 18.90845654417824,
           "maximumDays": 7,
           "status": "stale",
           "warning": "资料超过七天未重新核验"
@@ -92,9 +92,9 @@
     "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
-        "asOfDate": "20260812",
+        "asOfDate": "20260818",
         "assessmentType": "equity_research",
-        "completedAt": "2026-08-12T10:29:14.565137Z",
+        "completedAt": "2026-08-18T13:15:46.355255Z",
         "frameworkVersion": "equity-research-strategy-v1",
         "result": {
           "bearCase": [
@@ -112,7 +112,7 @@
             "每股经营收益与账面价值长期保持约 7%–9%增长。"
           ],
           "cashDecision": "do_not_buy",
-          "decisionHinge": "Berkshire 只有在每股经营收益与账面价值持续以中高个位数增长、GEICO 损失率与费用率正常化、float 继续保持负成本、BNSF／BHE 资本开支获得足够回报，并且 Alphabet、Taylor Morrison、OxyChem 与回购纪律创造高于权益成本的每股价值时，当前估值才有持续支撑；若表面增长主要来自汇兑、市场收益和收购并表，而基础承保、现金转换及新增资本回报走弱，内部基准必须下调。",
+          "decisionHinge": "Berkshire 只有在每股经营收益与账面价值持续以中高个位数增长、GEICO 正常化、float 继续低成本、BNSF／BHE 资本开支获得足够回报，并且 13F 所显示的 Alphabet、Delta、Lennar 等新增暴露与 OxyChem、Taylor Morrison、回购等配置持续创造高于权益成本的每股价值时，当前估值才有充分支撑；13F 的报告数量变化本身不是投资回报证据。",
           "evidenceConfidence": "high",
           "existingPositionAction": "hold",
           "missingEvidence": [
@@ -121,7 +121,9 @@
             "Taylor Morrison 在期后交割，暂无并表单位经济；OxyChem 记录期较短，Alphabet 回报尚未验证。",
             "现有 DCF 是经营收益代理的机械桥，不是完整 sum-of-parts 或标准化替代模型。",
             "没有同口径、同截止时点的市场一致预期，不能计算正式 beat／miss 或共识修订。",
-            "三张订单虽经新鲜只读确认，资金来源、结算安排和实际执行价格仍未获用户批准。"
+            "13F 不披露成交日、成交价、未申报资产或个人经理归因；报告股数变化不能直接等同净买入。",
+            "新增 13F 暴露的单位经济与长期回报尚未形成可核验记录。",
+            "订单副本虽于 2026-08-18 获本地验证，但本研究未刷新券商账户、现金或结算状态。"
           ],
           "monitoring": [
             {
@@ -179,6 +181,13 @@
               "confirmingDirection": "只在可辨认折价时回购并提升每股价值。",
               "metric": "回购价格纪律",
               "nextReview": "each_quarter"
+            },
+            {
+              "baseline": "2026 Q2 报告总值 US$299.254B；Alphabet、Delta、Macy’s、Lennar 报告股数上升，Capital One、Nucor、Kroger 等下降。",
+              "challengingDirection": "轮换频繁但回报不可见、集中度提高后出现减值，或 13F 修订显示当前解释不完整。",
+              "confirmingDirection": "新增暴露在后续经营结果、减值和每股价值中显示高于权益成本的回报，且集中度与流动性保持可控。",
+              "metric": "13F 资本配置与组合轮换",
+              "nextReview": "each_13f_or_amendment_and_each_quarter"
             }
           ],
           "researchMaturity": "active",
@@ -207,6 +216,21 @@
               "label": "Alphabet SEC-filed Berkshire private-placement disclosure",
               "publishedAt": "20260601",
               "url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526251733/d160205dfwp.htm"
+            },
+            {
+              "label": "Berkshire Hathaway 2026 Q1 Form 13F-HR",
+              "publishedAt": "20260515",
+              "url": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526226661/0001193125-26-226661-index.htm"
+            },
+            {
+              "label": "Berkshire Hathaway 2026 Q2 Form 13F-HR",
+              "publishedAt": "20260814",
+              "url": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/0001193125-26-352200-index.html"
+            },
+            {
+              "label": "Berkshire Hathaway 2026 Q2 Form 13F Information Table",
+              "publishedAt": "20260814",
+              "url": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/56757.xml"
             }
           ],
           "valuation": {
@@ -233,15 +257,15 @@
                 }
               ]
             },
-            "priceUsd": 529.42
+            "priceUsd": 498.23
           },
           "valuationState": "fair"
         },
-        "sourceLabel": "BRK B 2026 年第二季度财报后复核研究",
-        "sourceVersion": "v2.0",
+        "sourceLabel": "BRK B 2026 年第二季度财报后综合研究增量复核",
+        "sourceVersion": "v2.1",
         "status": "active",
-        "summary": "Berkshire 2026 年第二季度管理层定义经营收益 US$12.983B、同比增长 16.3%，但剔除本期与上年同期 Berkshire／BHFC 外币债务汇兑影响的分析代理仅增长约 5.2%；GAAP 净收益翻倍主要来自证券公允价值收益和去年 KHC 减值不再重复。GEICO 承保显著转弱，BH Primary 与 BHRG 改善部分来自有利准备金发展及巨灾低基数；BNSF、BHE 和制造服务业务总体改善，资本配置也明显重新活跃。2026-08-10 完成收盘 US$529.42 接近更新后的经营收益机械基准价值，却高于账面价值交叉基准，缺乏追价所需的新增资金安全边际。现有 3 股继续持有；2 股@476、2 股@465、3 股@452 的折价阶梯维持原价候选，但资金来源仍待用户决定，不构成交易授权。",
-        "updatedAt": "2026-08-12T10:29:14.565137Z"
+        "summary": "Berkshire 仍是一家以低成本保险浮存金、强资产负债表、铁路／能源／制造等多元经营现金流和去中心化资本配置为核心的复合型平台；Greg Abel 接班后的配置能力、集团规模压低边际回报及保险盈利波动，是主要未决问题。2026 Q2 管理层定义经营收益 US$12.983B，同比增长 16.3%，但剔除外币债务汇兑影响后的分析代理仅约增长 5.2%；GEICO 承保转弱，BH Primary／BHRG、BNSF、BHE 及制造服务整体改善。Q2 13F 显示权益组合重新投入与主动轮换，包括 Alphabet 两类等增持及多项减持，但 13F 不能证明成交价、经理归因或新增资本回报，故只强化资本配置活动证据，尚未证明回报质量。2026-08-17 完成收盘 US$498.23 约为 Q2 每股账面价值 1.43 倍、TTM 管理层定义经营收益 22.28 倍，较 v2.0 复核时价格回落，估值由偏贵回到大致合理但仍非明显低估。现有 3 股继续持有；折价阶梯与资金安排仍由独立决策流程管理，本研究不授权交易。",
+        "updatedAt": "2026-08-18T13:15:46.355255Z"
       }
     ],
     "summary": {
@@ -252,7 +276,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-13T11:45:44.301087Z",
+  "generatedAt": "2026-08-18T13:18:49.812038Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "BRK B"
