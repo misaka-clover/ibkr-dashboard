@@ -3,8 +3,8 @@
     "dataAsOf": {
       "research": {
         "latestAsOfDate": "20260818",
-        "providerPublishedDate": "20260501",
-        "providerVerifiedAt": "2026-07-30T15:30:40Z"
+        "providerPublishedDate": "20260817",
+        "providerVerifiedAt": "2026-08-18T15:24:27Z"
       }
     },
     "dataQuality": {
@@ -12,7 +12,7 @@
         "research": {
           "count": 2,
           "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
-          "status": "warning"
+          "status": "pass"
         }
       }
     },
@@ -23,12 +23,12 @@
           "role": "Senior Equity Analyst"
         },
         "freshness": {
-          "ageDays": 18.90845654417824,
+          "ageDays": 1.5386873503819445,
           "maximumDays": 7,
-          "status": "stale",
-          "warning": "资料超过七天未重新核验"
+          "status": "current",
+          "warning": null
         },
-        "interpretation": "本次以截至 2026-06-30 23:41 UTC 的 28 页完整报告为主证据，已完成全文提取和 28／28 页逐页视觉核验；公开链接使用 Morningstar 官网公司报告与相关文章，原 PDF、截图、表格和下载路径均不进入页面或发布包。报告给出 US$510 公允价值、三星、窄护城河、低不确定性与典范资本配置，报告价 US$496、Price/FVE 0.98；分部估值为保险 US$263、铁路 US$63、能源公用事业 US$40、制造服务零售 US$144。晨星认为 Berkshire 的低成本浮存金、保险规模、铁路和受监管资产仍构成优势，但 Buffett 退休、体量扩大和可投机会收窄使超额资本配置能力不足以继续支持宽护城河。报告后的 Alphabet 私募投资已获 SEC 证据确认，Taylor Morrison 也已于 7 月 24 日完成交割；两项资本配置尚未产生足够经营记录。报告财务附表存在明显格式异常，本项目没有使用相关异常字段。",
+        "interpretation": "Morningstar 对 Berkshire 的完整公司判断没有改变：低成本保险浮存金、保险规模、铁路、受监管资产与多元经营现金流仍支撑窄护城河和低不确定性，但 Buffett 退休、集团体量扩大与可投机会收窄，使未来超额资本配置回报更难复制。其分部加总公允价值仍为每股 B 类 US$510，三星、窄护城河、低不确定性和典范资本配置评级均保持不变；报告价为 US$504.03，Price/FVE 为 0.99。相较上一份截至 UTC 2026-06-30 23:41 的完整报告，本次实质变化是新增 2026-08-17 的 Q2 13F 分析师笔记：Morningstar 认为季度净买入约 US$19.8B，Alphabet 是最主要新增方向，Abel 任内投资组合集中与精简推进得比其原先预期更快。该笔记强化了资本重新部署的外部交叉证据，但没有证明新增配置已取得高于权益成本的回报；文档也没有显示 2026-05-01 核心经营预测或 UTC 2025-11-01 02:22 的 US$510 公允价值已经根据 Q2 经营业绩重新建模。",
         "metrics": {
           "capitalAllocation": "exemplary",
           "economicMoat": "narrow",
@@ -36,26 +36,26 @@
           "fairValueCurrency": "USD",
           "fairValueUpdatedDate": "20251101",
           "ratingStars": 3,
-          "ratingUpdatedDate": "20260630",
+          "ratingUpdatedDate": "20260814",
           "uncertainty": "low"
         },
         "provider": "Morningstar",
-        "publishedDate": "20260501",
+        "publishedDate": "20260817",
         "sections": {
           "bearish": [
-            "公司规模与竞争资金压低新增投资回报，巨额现金长期停留在低回报资产，资本配置优势继续收窄。",
+            "公司规模与竞争资金压低新增投资回报，巨额现金或新配置长期停留在低回报资产，资本配置优势继续收窄。",
             "巨灾、准备金不足、保险定价走弱、铁路／制造周期和 BHE 监管或野火损失可能同时侵蚀利润。",
-            "Alphabet、Taylor Morrison 或未来大型交易的回报不足，管理层为了部署现金而放松估值纪律。"
+            "Alphabet、Taylor Morrison、OxyChem 或未来大型交易的回报不足，投资组合集中度提高却没有形成足够补偿。"
           ],
           "bullish": [
             "保险承保、投资组合和低成本浮存金共同增长，Geico 效率改善并维持长期承保盈利。",
             "BNSF 运营效率、BHE 受监管资产增长和制造服务零售利润率改善，使每股账面价值保持高个位数至低双位数增长。",
-            "Abel 能以纪律价格部署巨额流动性，并通过收购整合、营运改进和适度回购提高每股价值。"
+            "Abel 能以纪律价格部署巨额流动性，Q2 新增证券与收购整合最终产生高于权益成本的每股价值增长。"
           ],
           "capitalAllocation": [
-            "资本配置评级为典范；晨星认为资产负债表明显高于监管要求、承保和收购纪律总体可靠，且不支付股息与现行回购框架相匹配。",
-            "Alphabet US$10B 私募投资和 Taylor Morrison 收购是新管理阶段的重要大额配置，但报告尚未把两者完整并入估值。",
-            "真正的验证标准是每股内在价值增长，而不是资金是否被花出去；若股价明显低于内在价值却不回购，评级可能受压。"
+            "资本配置评级仍为典范；晨星认为资产负债表明显高于监管要求、承保和收购纪律总体可靠，且不支付股息与现行回购框架相匹配。",
+            "2026-08-17 笔记把 Q2 13F 解读为净买入与组合精简并行：Alphabet 是最大新增方向，Bank of America、Lennar A、Capital One 和 Kroger 等则出现较大卖出。",
+            "投资活动与回报质量必须分开判断；只有新增证券、Taylor Morrison、OxyChem 及后续配置持续提高每股内在价值，才能验证 Abel 阶段的配置能力。"
           ],
           "economicMoat": [
             "窄护城河来自保险规模、长期低成本浮存金、Geico 的直接渠道成本优势、BNSF 不可复制的网络和部分受监管及工业资产。",
@@ -63,19 +63,19 @@
             "Buffett 退休、公司体量扩大、竞争资金增多及部分经营资产优势减弱，使过去依靠资本配置形成的宽护城河不再成立。"
           ],
           "fairValue": [
-            "公允价值为每股 B 类 US$510；报告价 US$496、Price/FVE 0.98，对应三星，五星与一星价格界限分别为 US$408 和 US$637.50。",
-            "晨星采用分部加总：保险 US$263、铁路 US$63、能源公用事业 US$40、制造服务零售 US$144，并使用 9.0%权益成本。",
-            "US$510 约为其 2026／2027 年末预估每股账面价值的 1.45／1.35 倍；悲观与乐观估值分别为 US$408 和 US$638。"
+            "公允价值仍为每股 B 类 US$510；报告价 US$504.03、Price/FVE 0.99，对应三星，五星与一星价格界限分别为 US$408 和 US$637.50。",
+            "晨星沿用分部加总：保险 US$263、铁路 US$63、能源公用事业 US$40、制造服务零售 US$144，并使用 9.0%权益成本。",
+            "US$510 仍对应其 2026／2027 年末预估每股账面价值的约 1.45／1.35 倍；本次 Q2 13F 笔记没有改变估值输入或区间。"
           ],
           "financialHealth": [
-            "2026 年第一季度保险及其他业务持有净 US$373.5B 现金、现金等价物和美国国库券，保险浮存金约 US$176.9B。",
-            "流动性并非全部可自由分配：它同时支持保险赔付、监管资本、集团债务和大型经营资产的资本开支。",
+            "2026-05-01 核心报告仍以 2026 年第一季度保险及其他业务净 US$373.5B 现金、现金等价物和美国国库券及约 US$176.9B 保险浮存金为基础；本次笔记没有更新完整资产负债表模型。",
+            "流动性并非全部可自由分配：它同时支持保险赔付、监管资本、集团债务、大型经营资产资本开支和机会性投资。",
             "Berkshire 设定回购后现金、现金等价物和国库券不得低于 US$30B 的底线，体现财务安全优先。"
           ],
           "strategyOutlook": [
             "核心仍是以去中心化经营产生现金，再由总部在全资收购、证券投资、内部资本开支和回购之间配置。",
-            "晨星预计 2026–2030 年保险综合成本率平均 93.6%，BNSF 货运收入年均增约 2.3%，受监管公用事业 EBITDA 年均增 4%–6%。",
-            "Taylor Morrison 将与 Clayton 的场地住宅业务整合，显示 Abel 可能比过去更主动推动经营协同；收益和文化代价仍需观察。"
+            "晨星继续预计保险、BNSF 与受监管公用事业贡献大部分长期价值，但 Buffett 之后的边际配置回报可能低于历史水平。",
+            "Q2 13F 显示证券组合集中和精简速度加快；下一验证点不是交易规模，而是后续每股经营收益、账面价值、减值和资本回报。"
           ],
           "uncertainty": [
             "低不确定性评级来自多元业务、强流动性和雄厚资本，但巨灾、保险准备金、股票价格、汇率、信用与监管风险仍可能显著影响结果。",
@@ -84,9 +84,9 @@
           ]
         },
         "sourceUrl": "https://www.morningstar.com/company-reports?listing=0P000000RD",
-        "title": "Berkshire Hathaway Has Entered a New Era With Greg Abel at the Helm",
-        "verifiedAt": "2026-07-30T15:30:40Z",
-        "version": 1
+        "title": "Berkshire Hathaway: Purchases Outweighed Sales; Alphabet Saw Most Activity in Second Quarter",
+        "verifiedAt": "2026-08-18T15:24:27Z",
+        "version": 3
       }
     ],
     "publicationStatus": "internal_and_morningstar_research_published",
@@ -94,7 +94,7 @@
       {
         "asOfDate": "20260818",
         "assessmentType": "equity_research",
-        "completedAt": "2026-08-18T13:15:46.355255Z",
+        "completedAt": "2026-08-18T15:32:14.729515Z",
         "frameworkVersion": "equity-research-strategy-v1",
         "result": {
           "bearCase": [
@@ -123,7 +123,8 @@
             "没有同口径、同截止时点的市场一致预期，不能计算正式 beat／miss 或共识修订。",
             "13F 不披露成交日、成交价、未申报资产或个人经理归因；报告股数变化不能直接等同净买入。",
             "新增 13F 暴露的单位经济与长期回报尚未形成可核验记录。",
-            "订单副本虽于 2026-08-18 获本地验证，但本研究未刷新券商账户、现金或结算状态。"
+            "订单副本虽于 2026-08-18 获本地验证，但本研究未刷新券商账户、现金或结算状态。",
+            "Morningstar 2026-08-17 更新仅提供 Q2 13F 分析师笔记；目前没有证据表明其 2026-05-01 核心经营模型或 US$510 公允价值已经按 Q2 经营结果重建。"
           ],
           "monitoring": [
             {
@@ -231,6 +232,11 @@
               "label": "Berkshire Hathaway 2026 Q2 Form 13F Information Table",
               "publishedAt": "20260814",
               "url": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/56757.xml"
+            },
+            {
+              "label": "Morningstar Berkshire Hathaway Analyst Report and Q2 13F Analyst Note",
+              "publishedAt": "20260817",
+              "url": "https://www.morningstar.com/company-reports?listing=0P000000RD"
             }
           ],
           "valuation": {
@@ -261,11 +267,11 @@
           },
           "valuationState": "fair"
         },
-        "sourceLabel": "BRK B 2026 年第二季度财报后综合研究增量复核",
-        "sourceVersion": "v2.1",
+        "sourceLabel": "BRK B 2026 年第二季度财报后综合研究外部证据增量复核",
+        "sourceVersion": "v2.2",
         "status": "active",
-        "summary": "Berkshire 仍是一家以低成本保险浮存金、强资产负债表、铁路／能源／制造等多元经营现金流和去中心化资本配置为核心的复合型平台；Greg Abel 接班后的配置能力、集团规模压低边际回报及保险盈利波动，是主要未决问题。2026 Q2 管理层定义经营收益 US$12.983B，同比增长 16.3%，但剔除外币债务汇兑影响后的分析代理仅约增长 5.2%；GEICO 承保转弱，BH Primary／BHRG、BNSF、BHE 及制造服务整体改善。Q2 13F 显示权益组合重新投入与主动轮换，包括 Alphabet 两类等增持及多项减持，但 13F 不能证明成交价、经理归因或新增资本回报，故只强化资本配置活动证据，尚未证明回报质量。2026-08-17 完成收盘 US$498.23 约为 Q2 每股账面价值 1.43 倍、TTM 管理层定义经营收益 22.28 倍，较 v2.0 复核时价格回落，估值由偏贵回到大致合理但仍非明显低估。现有 3 股继续持有；折价阶梯与资金安排仍由独立决策流程管理，本研究不授权交易。",
-        "updatedAt": "2026-08-18T13:15:46.355255Z"
+        "summary": "Berkshire 仍是一家以低成本保险浮存金、强资产负债表、铁路／能源／制造等多元经营现金流和去中心化资本配置为核心的复合型平台；Greg Abel 接班后的配置能力、集团规模压低边际回报及保险盈利波动，是主要未决问题。2026 Q2 管理层定义经营收益 US$12.983B，同比增长 16.3%，但剔除外币债务汇兑影响后的分析代理仅约增长 5.2%；GEICO 承保转弱，BH Primary／BHRG、BNSF、BHE 及制造服务整体改善。Q2 13F 显示权益组合重新投入与主动轮换，包括 Alphabet 两类等增持及多项减持，但 13F 不能证明成交价、经理归因或新增资本回报，故只强化资本配置活动证据，尚未证明回报质量。Morningstar 2026-08-17 的新笔记独立支持“净买入与组合精简并行”的判断，但其 US$510 公允价值及 2026-05-01 核心经营模型均未显示已按 Q2 经营结果重建。2026-08-17 完成收盘 US$498.23 约为 Q2 每股账面价值 1.43 倍、TTM 管理层定义经营收益 22.28 倍，估值较 v2.0 时回落至大致合理但仍非明显低估。现有 3 股继续持有；折价阶梯与资金安排仍由独立决策流程管理，本研究不授权交易。",
+        "updatedAt": "2026-08-18T15:32:14.729515Z"
       }
     ],
     "summary": {
@@ -276,7 +282,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-18T13:18:49.812038Z",
+  "generatedAt": "2026-08-20T04:20:08.806155Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "BRK B"
