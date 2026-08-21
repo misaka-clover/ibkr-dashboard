@@ -69,12 +69,8 @@
     .company-name-zh::before { content: "·"; margin-right: 10px; color: #a5afb7; }
     .instrument-meta { display: flex; flex-wrap: wrap; gap: 7px 14px; margin-top: 17px; color: var(--muted); font: 11px var(--mono); }
     .instrument-meta span + span::before { content: "·"; margin-right: 14px; color: #a5afb7; }
-    .hero-quote { align-self: end; display: grid; grid-template-columns: minmax(220px, 1fr) minmax(96px, auto); align-items: center; }
-    .hero-price { padding: 4px 24px 4px 26px; border-left: 1px solid rgba(22,59,89,.13); text-align: right; }
-    .hero-price-label { color: var(--muted); font-size: 11px; font-weight: 750; letter-spacing: .04em; }
-    .hero-price-value { margin-top: 8px; color: var(--navy); font: 750 clamp(34px, 4vw, 54px)/1 var(--mono); letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
-    .hero-price-note { margin-top: 9px; color: var(--muted); font-size: 11px; }
-    .hero-day-change { display: grid; grid-template-rows: repeat(2, 1fr); height: 54px; padding-left: 15px; border-left: 1px solid rgba(22,59,89,.13); }
+    .hero-quote { align-self: end; }
+    .hero-day-change { display: grid; grid-template-rows: repeat(2, 1fr); width: 100%; min-height: 54px; }
     .hero-change-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 10px; }
     .hero-change-row + .hero-change-row { border-top: 1px solid rgba(22,59,89,.12); }
     .hero-change-value { font: 730 12px var(--mono); font-variant-numeric: tabular-nums; }
@@ -498,8 +494,6 @@
     .quality-note { margin-top: 5px; color: var(--muted); font-size: 9px; }
     @media (max-width: 1000px) {
       .instrument-hero { grid-template-columns: 1fr; }
-      .hero-quote { border-top: 1px solid rgba(22,59,89,.12); padding-top: 18px; }
-      .hero-price { border-left: 0; padding: 0 24px 0 0; text-align: left; }
       .metric-grid, .asof-grid, .quality-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .fundamental-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
       .metric:nth-child(2) { border-right: 0; }
@@ -543,7 +537,6 @@
       .price-window-nav-btn.newer { right: 2px; }
       .valuation-grid { grid-template-columns: 1fr; }
       .monitoring-item { grid-template-columns: 1fr; gap: 8px; }
-      .hero-quote { grid-template-columns: minmax(0,1fr) auto; }
       .external-view { grid-template-columns: 1fr; }
       .external-view-link { justify-self: start; }
       .corporate-event-row { grid-template-columns: 1fr auto; gap: 8px 12px; padding-left: 22px; }
@@ -583,6 +576,7 @@
       <div class="workspace-nav-scroll">
         <div class="workspace-nav-links">
           <a class="workspace-nav-link" href="index.html">首页</a>
+          <!-- FAMILY:INSTRUMENT_CASH_FLOW_NAV:START --><!-- FAMILY:INSTRUMENT_CASH_FLOW_NAV:END -->
           <a class="workspace-nav-link" href="dashboard.html">投资组合</a>
           <a class="workspace-nav-link" href="instrument.html" aria-current="page">证券研究</a>
           <!-- FAMILY:INSTRUMENT_DECISION_NAV:START --><span class="workspace-nav-link" aria-disabled="true">交易决策</span><!-- FAMILY:INSTRUMENT_DECISION_NAV:END -->
@@ -595,11 +589,11 @@
       </div>
     </nav>
 
-    <header class="instrument-hero">
-      <div>
-        <p class="eyebrow" id="instrumentEyebrow">Public Family Security Research</p>
-        <h1 id="instrumentSymbol">—</h1>
-        <p class="company-name"><span id="instrumentEnglishName">正在载入标的资料</span><span class="company-name-zh" id="instrumentChineseName" hidden></span></p>
+    <header class="instrument-hero workspace-page-header workspace-page-header--identity">
+      <div class="workspace-page-heading">
+        <p class="eyebrow workspace-page-eyebrow" id="instrumentEyebrow">Public Family Security Research</p>
+        <h1 class="workspace-page-title" id="instrumentSymbol">—</h1>
+        <p class="company-name workspace-page-subtitle workspace-page-identity-name"><span id="instrumentEnglishName">正在载入标的资料</span><span class="company-name-zh" id="instrumentChineseName" hidden></span></p>
         <div class="instrument-meta">
           <span id="instrumentAsset">—</span>
           <span id="instrumentExchange">—</span>
@@ -607,17 +601,17 @@
           <span id="instrumentStatus">—</span>
         </div>
       </div>
-      <div class="hero-quote">
-        <div class="hero-price">
-          <div class="hero-price-label" id="latestCloseLabel">最近市场完成收盘</div>
-          <div class="hero-price-value" id="latestClose">—</div>
-          <div class="hero-price-note" id="latestCloseNote">—</div>
+      <aside class="hero-quote workspace-page-context workspace-page-context--quote" id="instrumentPageContext" data-context-state="loading" aria-label="标的完成收盘信息">
+        <div class="workspace-page-context-label" id="latestCloseLabel">最近市场完成收盘</div>
+        <div class="workspace-page-context-value" id="latestClose">—</div>
+        <div class="workspace-page-context-note" id="latestCloseNote">—</div>
+        <div class="workspace-page-context-meta">
+          <div class="hero-day-change" aria-label="上一交易日盈亏">
+            <div class="hero-change-row"><span>当日盈亏</span><span class="hero-change-value" id="dailyPnlAmount">—</span></div>
+            <div class="hero-change-row"><span>当日盈亏%</span><span class="hero-change-value" id="dailyPnlPct">—</span></div>
+          </div>
         </div>
-        <div class="hero-day-change" aria-label="上一交易日盈亏">
-          <div class="hero-change-row"><span>当日盈亏</span><span class="hero-change-value" id="dailyPnlAmount">—</span></div>
-          <div class="hero-change-row"><span>当日盈亏%</span><span class="hero-change-value" id="dailyPnlPct">—</span></div>
-        </div>
-      </div>
+      </aside>
     </header>
 
     <aside class="status-line" id="serviceNotice">
@@ -2788,6 +2782,7 @@
         var isBond = instrument.assetClass === "BOND";
         document.body.classList.toggle("bond-detail", isBond);
         var heroName = isBond ? (bond.displayName || symbol) : symbol;
+        el("instrumentPageContext").dataset.contextState = "pass";
         document.title = heroName + (isBond ? " 国债详情" : " 证券研究") + " · 投资组合透明计划";
         el("instrumentEyebrow").textContent = isBond ? "Private Fixed Income Review" : "Private Security Research";
         el("instrumentSymbol").textContent = heroName;
@@ -2814,10 +2809,10 @@
           ? money(closePrice, holding.currency, 2)
           : (latest ? money(latest.close, instrument.currency, 2) : "—");
         el("latestCloseNote").textContent = isBond
-          ? compactToIso(bond.valuationDate) + " · 由净清算值与面值换算"
+          ? utcDateOnly(bond.valuationDate) + " · 由净清算值与面值换算"
           : holding
-          ? compactToIso(holding.valuationDate) + " · " + (holding.status === "official" ? "官方日结" : holding.status)
-          : (latest ? compactToIso(latest.date) + " · 完成日线" : "当前窗口没有行情");
+          ? utcDateOnly(holding.valuationDate) + " · " + (holding.status === "official" ? "官方日结" : holding.status)
+          : (latest ? utcDateOnly(latest.date) + " · 完成日线" : "当前窗口没有行情");
         el("dailyPnlAmount").textContent = holding ? signedMoney(holding.dailyPnl, holding.currency) : "—";
         el("dailyPnlPct").textContent = holding && finite(holding.dailyPnlPct) != null
           ? (holding.dailyPnlPct > 0 ? "+" : "") + percent(holding.dailyPnlPct, 2)
@@ -4076,6 +4071,9 @@
             : '<span class="status-dot" aria-hidden="true"></span><span><strong>本机资料已载入。</strong> 所有账户事实均为只读完成收盘；持仓计税单位仅接受 IBKR 官方 Lot 粒度。</span>');
       }
       function showError(error) {
+        el("instrumentPageContext").dataset.contextState = "error";
+        el("latestClose").textContent = "—";
+        el("latestCloseNote").textContent = "标的完成收盘资料不可用";
         el("serviceNotice").classList.add("error");
         el("serviceNotice").innerHTML = '<span class="status-dot" aria-hidden="true"></span><span><strong>标的资料载入失败。</strong> ' + String(error && error.message || error) + "</span>";
       }
