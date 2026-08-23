@@ -492,6 +492,44 @@
     .quality-domain { color: var(--muted); font-size: 10px; }
     .quality-status { margin-top: 5px; color: var(--navy); font: 750 14px var(--mono); }
     .quality-note { margin-top: 5px; color: var(--muted); font-size: 9px; }
+    /* FAMILY:INSTRUMENT_DIRECTORY_STYLE:START */
+    .research-directory { padding: 0 2px 20px; }
+    .directory-hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr); gap: 32px; align-items: end; padding: 26px 0 30px; border-bottom: 1px solid rgba(22,59,89,.13); }
+    .directory-hero h1 { max-width: 760px; }
+    .directory-intro { margin: 16px 0 0; max-width: 780px; color: #526370; font-size: 14px; line-height: 1.7; }
+    .directory-section { margin-top: 32px; }
+    .directory-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .directory-card { display: grid; grid-template-columns: minmax(230px, .85fr) minmax(0, 1.55fr) auto; gap: 18px; align-items: center; min-height: 0; padding: 13px 15px; border: 1px solid rgba(22,59,89,.13); border-radius: 3px; background: rgba(255,255,255,.91); }
+    .directory-card-head { display: flex; min-width: 0; align-items: flex-start; justify-content: space-between; gap: 14px; }
+    .directory-symbol { color: var(--navy); font: 760 20px var(--mono); letter-spacing: -.035em; }
+    .directory-name { margin-top: 2px; overflow: hidden; color: #536571; font-size: 11px; line-height: 1.4; text-overflow: ellipsis; white-space: nowrap; }
+    .directory-name-zh { color: var(--muted); }
+    .directory-card-meta { display: flex; flex-wrap: wrap; gap: 3px 9px; margin-top: 6px; color: var(--muted); font: 8px var(--mono); }
+    .directory-card-meta span + span::before { content: "·"; margin-right: 9px; color: #a5afb7; }
+    .directory-facts { display: grid; grid-template-columns: minmax(155px, 1.35fr) repeat(2, minmax(90px, .8fr)); gap: 1px; border: 1px solid #e1e6e9; background: #e1e6e9; }
+    .directory-fact { min-width: 0; padding: 7px 9px; background: #fafbfc; }
+    .directory-fact-label { color: var(--muted); font-size: 8px; font-weight: 760; letter-spacing: .04em; }
+    .directory-fact-value { margin-top: 3px; overflow: hidden; color: #425461; font: 10px var(--mono); font-variant-numeric: tabular-nums; text-overflow: ellipsis; white-space: nowrap; }
+    .directory-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 7px; margin: 0; padding: 0; }
+    .directory-link { display: inline-flex; min-height: 31px; align-items: center; padding: 6px 10px; border: 1px solid #c9d6df; background: #f8fafb; color: var(--navy); font-size: 10px; font-weight: 740; text-decoration: none; }
+    .directory-link:hover, .directory-link:focus-visible { border-color: #8da9bc; background: var(--blue-soft); outline: none; }
+    .directory-link.secondary { border-color: #ead9aa; background: var(--amber-soft); color: var(--amber); }
+    .directory-link.disabled { border-color: #dde3e7; background: #f3f5f6; color: #87939c; cursor: not-allowed; }
+    .directory-empty { grid-column: 1 / -1; padding: 22px; border: 1px dashed #cbd5dc; color: var(--muted); font-size: 11px; }
+    .directory-group-heading { padding: 10px 2px 4px; color: var(--navy); font-size: 11px; font-weight: 780; letter-spacing: .02em; }
+    .directory-status.error { color: var(--red); }
+    @media (max-width: 1000px) {
+      .directory-card { grid-template-columns: minmax(210px, .75fr) minmax(0, 1.25fr); }
+      .directory-actions { grid-column: 1 / -1; justify-content: flex-start; }
+    }
+    @media (max-width: 660px) {
+      .directory-hero { grid-template-columns: 1fr; }
+      .directory-hero { gap: 20px; }
+      .directory-card { display: block; padding: 13px; }
+      .directory-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 11px; }
+      .directory-actions { justify-content: flex-start; margin-top: 11px; }
+    }
+    /* FAMILY:INSTRUMENT_DIRECTORY_STYLE:END */
     @media (max-width: 1000px) {
       .instrument-hero { grid-template-columns: 1fr; }
       .metric-grid, .asof-grid, .quality-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -576,7 +614,9 @@
       <div class="workspace-nav-scroll">
         <div class="workspace-nav-links">
           <a class="workspace-nav-link" href="index.html">首页</a>
-          <!-- FAMILY:INSTRUMENT_CASH_FLOW_NAV:START --><span class="workspace-nav-link" aria-disabled="true">现金流量</span><!-- FAMILY:INSTRUMENT_CASH_FLOW_NAV:END -->
+          <!-- FAMILY:INSTRUMENT_CASH_FLOW_NAV:START -->
+          <a class="workspace-nav-link" href="cashflow.html">现金流量</a>
+          <!-- FAMILY:INSTRUMENT_CASH_FLOW_NAV:END -->
           <a class="workspace-nav-link" href="dashboard.html">投资组合</a>
           <a class="workspace-nav-link" href="instrument.html" aria-current="page">证券研究</a>
           <!-- FAMILY:INSTRUMENT_DECISION_NAV:START --><span class="workspace-nav-link" aria-disabled="true">交易决策</span><!-- FAMILY:INSTRUMENT_DECISION_NAV:END -->
@@ -589,6 +629,44 @@
       </div>
     </nav>
 
+    <!-- FAMILY:INSTRUMENT_DIRECTORY_VIEW:START -->
+    <section class="research-directory" id="instrumentDirectoryView" hidden aria-labelledby="instrumentDirectoryTitle">
+      <header class="directory-hero workspace-page-header">
+        <div class="workspace-page-heading">
+          <p class="eyebrow workspace-page-eyebrow">Public Family Security Research</p>
+          <h1 class="workspace-page-title" id="instrumentDirectoryTitle">证券研究</h1>
+          <p class="directory-intro workspace-page-subtitle">按资产类别汇总已经通过公开门禁的证券资料，并把候选研究单独列示。候选详情用于回应与继续研究，不代表当前持仓、交易决定或买入授权。</p>
+        </div>
+        <aside class="workspace-page-context" id="instrumentDirectoryContext" data-context-state="loading" aria-label="证券研究目录状态">
+          <div class="workspace-page-context-label">证券研究目录</div>
+          <div class="workspace-page-context-value"><span class="workspace-page-context-dot" aria-hidden="true"></span><span id="directoryContextStatus">正在读取</span></div>
+          <div class="workspace-page-context-meta">
+            <div class="workspace-page-context-line" id="directoryContextCoverage">公开研究档案与候选 —</div>
+            <div class="workspace-page-context-line" id="directoryContextBoundary">这里不显示或修改订单；候选身份不等同于当前持仓、交易决定或买入授权。</div>
+          </div>
+        </aside>
+      </header>
+      <aside class="status-line directory-status" id="directoryNotice">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span><strong>正在载入公开证券研究目录。</strong> 目录只读取字段级筛选的公开静态包，不连接券商或本机服务。</span>
+      </aside>
+      <section class="directory-section" aria-labelledby="heldResearchTitle">
+        <div class="section-head">
+          <div><p class="section-kicker">Published Research Directory</p><h2 class="section-title" id="heldResearchTitle">公开研究档案</h2><p class="section-note">按个股、ETF 与固定收益排列；研究版本缺失会明确显示，不会补成结论。</p></div>
+          <span class="badge" id="heldResearchCount">—</span>
+        </div>
+        <div class="directory-grid" id="heldResearchGrid"></div>
+      </section>
+      <section class="directory-section" aria-labelledby="candidateResearchTitle">
+        <div class="section-head">
+          <div><p class="section-kicker">Research Candidates</p><h2 class="section-title" id="candidateResearchTitle">候选研究</h2><p class="section-note">候选研究已通过公开字段与详情门禁；推荐人身份和决策背景不公开，也不由此推定任何交易含义。</p></div>
+          <span class="badge" id="candidateResearchCount">—</span>
+        </div>
+        <div class="directory-grid" id="candidateResearchGrid"></div>
+      </section>
+    </section>
+    <!-- FAMILY:INSTRUMENT_DIRECTORY_VIEW:END -->
+    <!-- FAMILY:INSTRUMENT_DIRECTORY_DETAIL_OPEN:START --><div id="instrumentDetailView"><!-- FAMILY:INSTRUMENT_DIRECTORY_DETAIL_OPEN:END -->
     <header class="instrument-hero workspace-page-header workspace-page-header--identity">
       <div class="workspace-page-heading">
         <p class="eyebrow workspace-page-eyebrow" id="instrumentEyebrow">Public Family Security Research</p>
@@ -793,7 +871,7 @@
     <section class="section" aria-labelledby="activityTitle">
       <div class="section-head">
         <div><p class="section-kicker" id="activityKicker">Trades &amp; Holdings</p><h2 class="section-title" id="activityTitle">交易与持仓</h2><p class="section-note" id="activitySubtitle">来自 IBKR Activity Flex 生命周期与完成收盘持仓档案。</p></div>
-        <div class="section-head-meta"><span class="badge" id="activityCount">—</span><!-- FAMILY:INSTRUMENT_DECISION_ENTRY:START --><!-- FAMILY:INSTRUMENT_DECISION_ENTRY:END --></div>
+        <div class="section-head-meta"><span class="badge" id="activityCount">—</span><!-- FAMILY:INSTRUMENT_DECISION_ENTRY:START --><a class="badge decision-case-link" id="cashFlowLink" href="cashflow.html" hidden>实际现金收入</a><!-- FAMILY:INSTRUMENT_DECISION_ENTRY:END --></div>
       </div>
       <div class="account-kpi-grid" aria-label="标的账户收益">
         <div class="account-kpi"><div class="account-kpi-label" id="closedPositionTotalLabel">平仓合计</div><div class="account-kpi-value" id="closedPositionTotal">—</div></div>
@@ -881,10 +959,11 @@
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
+    <!-- FAMILY:INSTRUMENT_DIRECTORY_DETAIL_CLOSE:START --></div><!-- FAMILY:INSTRUMENT_DIRECTORY_DETAIL_CLOSE:END -->
   </main>
 
   <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:START -->
-  <script id="instrumentStaticConfig" type="application/json">{"mode":"public-static-v1","manifest":"data/instruments/manifest.json"}</script>
+  <script id="instrumentStaticConfig" type="application/json">{"mode":"public-static-v1","manifest":"data/instruments/manifest.json","catalog":"data/instruments/catalog.json","cashflow":"data/cashflow/actual.json"}</script>
   <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:END -->
   <script src="assets/accounting-money.js?v=4ad974b28457"></script>
   <script>
@@ -909,7 +988,9 @@
         lotSort: { key: "acquisitionDate", direction: "desc" },
         requestToken: 0
       };
-      /* FAMILY:INSTRUMENT_DECISION_STATE:START *//* FAMILY:INSTRUMENT_DECISION_STATE:END */
+      /* FAMILY:INSTRUMENT_DECISION_STATE:START */
+      var publicCashFlowPromise = null;
+      /* FAMILY:INSTRUMENT_DECISION_STATE:END */
       var movingAveragePresetDefinitions = {
         market: { label: "美股常用", periods: [20, 50, 200] },
         holding: { label: "持有周期", periods: [20, 60, 120, 250] }
@@ -1432,6 +1513,127 @@
         if (!response.ok) throw new Error(payload.error || "HTTP " + response.status);
         return payload;
       }
+      /* FAMILY:INSTRUMENT_DIRECTORY_RUNTIME:START */
+      function instrumentDirectoryRoute() {
+        var params = new URLSearchParams(location.search);
+        return !params.get("symbol") && !params.get("security");
+      }
+      function directoryText(parent, className, text) {
+        var node = document.createElement("div");
+        node.className = className;
+        node.textContent = text || "—";
+        parent.appendChild(node);
+        return node;
+      }
+      function directoryDateRange(start, end) {
+        if (!start && !end) return "未建立行情覆盖";
+        return compactDate(start) + " — " + compactDate(end);
+      }
+      function directoryCount(value, suffix) {
+        var number = Number(value);
+        return Number.isFinite(number) ? number.toLocaleString("zh-CN") + (suffix || "") : "—";
+      }
+      function directoryMeta(parent, values) {
+        var meta = document.createElement("div");
+        meta.className = "directory-card-meta";
+        values.filter(Boolean).forEach(function (value) {
+          var node = document.createElement("span"); node.textContent = value; meta.appendChild(node);
+        });
+        parent.appendChild(meta);
+      }
+      function directoryFacts(parent, facts) {
+        var grid = document.createElement("div"); grid.className = "directory-facts";
+        facts.forEach(function (fact) {
+          var item = document.createElement("div"); item.className = "directory-fact";
+          directoryText(item, "directory-fact-label", fact[0]);
+          directoryText(item, "directory-fact-value", fact[1]);
+          grid.appendChild(item);
+        });
+        parent.appendChild(grid);
+      }
+      function directoryLink(parent, label, href) {
+        var node = document.createElement("a");
+        node.className = "directory-link"; node.textContent = label; node.href = href;
+        parent.appendChild(node);
+      }
+      function assetGroupLabel(value) {
+        return { stock: "个股研究", etf: "ETF 研究", fixed_income: "固定收益研究" }[value] || "其他研究";
+      }
+      function renderPublicDirectoryCard(row) {
+        var candidate = row.directoryRole === "candidate_research";
+        var card = document.createElement("article"); card.className = "directory-card";
+        var head = document.createElement("div"); head.className = "directory-card-head";
+        var identity = document.createElement("div");
+        directoryText(identity, "directory-symbol", row.symbol || row.publicKey);
+        directoryText(identity, "directory-name", row.displayName || row.symbol);
+        if (row.displayNameZh) directoryText(identity, "directory-name directory-name-zh", row.displayNameZh);
+        directoryMeta(identity, [assetGroupLabel(row.assetGroup), currencyMark(row.currency), row.primaryExchange]);
+        var badge = document.createElement("span");
+        badge.className = "badge " + (candidate ? "warn" : "good");
+        badge.textContent = candidate ? "候选研究" : (Number(row.research?.versionCount || 0) ? "研究已公开" : "资料页已就绪");
+        head.append(identity, badge); card.appendChild(head);
+        var market = row.market || {};
+        directoryFacts(card, [
+          ["行情覆盖", directoryDateRange(market.coverageStart, market.coverageEnd)],
+          ["未调整日线", directoryCount(market.tradesBarCount, " 点")],
+          ["调整日线", directoryCount(market.adjustedBarCount, " 点")],
+          ["公司／基金事件", directoryCount(row.corporateEventCount, " 项")],
+          ["公开研究版本", directoryCount(row.research?.versionCount, " 个")],
+          ["身份边界", candidate ? "非当前持仓／交易决定／买入授权" : "公开只读研究档案"]
+        ]);
+        var actions = document.createElement("div"); actions.className = "directory-actions";
+        directoryLink(actions, "查看研究详情", "instrument.html?symbol=" + encodeURIComponent(row.publicKey));
+        card.appendChild(actions);
+        return card;
+      }
+      function appendDirectoryGroup(grid, label, rows) {
+        if (!rows.length) return;
+        var heading = document.createElement("div");
+        heading.className = "directory-group-heading";
+        heading.textContent = label + " · " + rows.length + " 个标的";
+        grid.appendChild(heading);
+        rows.forEach(function (row) { grid.appendChild(renderPublicDirectoryCard(row)); });
+      }
+      function renderDirectoryEmpty(grid, message) {
+        var empty = document.createElement("div"); empty.className = "directory-empty"; empty.textContent = message; grid.appendChild(empty);
+      }
+      async function renderInstrumentDirectory() {
+        el("instrumentDetailView").hidden = true;
+        el("instrumentDirectoryView").hidden = false;
+        document.body.classList.remove("bond-detail");
+        document.title = "证券研究 · 投资组合透明计划";
+        var config = staticConfig();
+        var payload = await fetchJson(config.catalog);
+        if (payload.schemaVersion !== 1 || payload.packageType !== "instrumentDirectory" || payload.visibility !== "public_static" || !Array.isArray(payload.instruments)) {
+          throw new Error("公开证券研究目录合同不受支持。");
+        }
+        var published = payload.instruments.filter(function (row) { return row.directoryRole === "published_research"; });
+        var candidates = payload.instruments.filter(function (row) { return row.directoryRole === "candidate_research"; });
+        var publishedGrid = el("heldResearchGrid"), candidateGrid = el("candidateResearchGrid");
+        publishedGrid.replaceChildren(); candidateGrid.replaceChildren();
+        ["stock", "etf", "fixed_income"].forEach(function (group) {
+          appendDirectoryGroup(publishedGrid, assetGroupLabel(group), published.filter(function (row) { return row.assetGroup === group; }));
+        });
+        candidates.forEach(function (row) { candidateGrid.appendChild(renderPublicDirectoryCard(row)); });
+        if (!published.length) renderDirectoryEmpty(publishedGrid, "当前没有通过公开门禁的研究档案。");
+        if (!candidates.length) renderDirectoryEmpty(candidateGrid, "当前没有获准公开的候选研究标的。");
+        el("heldResearchCount").textContent = published.length + " 个标的";
+        el("candidateResearchCount").textContent = candidates.length + " 个候选";
+        el("instrumentDirectoryContext").dataset.contextState = "pass";
+        el("directoryContextStatus").textContent = "公开证券研究目录已载入";
+        el("directoryContextCoverage").textContent = published.length + " 个公开档案 · " + candidates.length + " 个候选";
+        el("directoryNotice").classList.remove("error");
+        el("directoryNotice").innerHTML = '<span class="status-dot" aria-hidden="true"></span><span><strong>公开证券研究目录已载入。</strong> 候选研究单独分组，不代表当前持仓、交易决定或买入授权。</span>';
+      }
+      function showDirectoryError(error) {
+        el("instrumentDetailView").hidden = true; el("instrumentDirectoryView").hidden = false;
+        el("instrumentDirectoryContext").dataset.contextState = "error";
+        el("directoryContextStatus").textContent = "证券研究目录不可用";
+        el("directoryContextCoverage").textContent = "公开档案与候选不可用";
+        var notice = el("directoryNotice"); notice.classList.add("error");
+        notice.textContent = "公开证券研究目录载入失败：" + String(error && error.message || error);
+      }
+      /* FAMILY:INSTRUMENT_DIRECTORY_RUNTIME:END */
       var staticManifestPromise = null;
       function staticConfig() {
         var node = document.getElementById("instrumentStaticConfig");
@@ -1571,7 +1773,8 @@
       /* FAMILY:INSTRUMENT_DATA_SOURCE:START */
       async function resolveSecurityId() {
         var params = new URLSearchParams(location.search);
-        var requestedSymbol = String(params.get("symbol") || params.get("security") || "MSFT").trim().toUpperCase();
+        var requestedSymbol = String(params.get("symbol") || params.get("security") || "").trim().toUpperCase();
+        if (!requestedSymbol) throw new Error("公开标的详情缺少 symbol 参数。");
         var manifest = await staticManifest();
         if (!manifest.instruments || !manifest.instruments[requestedSymbol]) {
           throw new Error("公开标的目录中没有 " + requestedSymbol + "。");
@@ -2806,7 +3009,7 @@
         var heroName = isBond ? (bond.displayName || symbol) : symbol;
         el("instrumentPageContext").dataset.contextState = "pass";
         document.title = heroName + (isBond ? " 国债详情" : " 证券研究") + " · 投资组合透明计划";
-        el("instrumentEyebrow").textContent = isBond ? "Private Fixed Income Review" : "Private Security Research";
+        el("instrumentEyebrow").textContent = isBond ? "Private Fixed Income Review" : "Public Family Security Research";
         el("instrumentSymbol").textContent = heroName;
         el("instrumentEnglishName").textContent = isBond
           ? (bond.contractCode || symbol)
@@ -3489,7 +3692,25 @@
           ? "研究更新 " + researchVersionLabel(assessment, true)
           : "研究时间尚未建立";
       }
-      /* FAMILY:INSTRUMENT_DECISION_RUNTIME:START *//* FAMILY:INSTRUMENT_DECISION_RUNTIME:END */
+      /* FAMILY:INSTRUMENT_DECISION_RUNTIME:START */
+      function renderCashFlowEntry() {
+        var link = el("cashFlowLink");
+        link.hidden = true;
+        var symbol = primarySymbol(state.detail);
+        if (!symbol || symbol === "—") return;
+        if (!publicCashFlowPromise) publicCashFlowPromise = fetchJson("data/cashflow/actual.json");
+        publicCashFlowPromise.then(function (payload) {
+          if (primarySymbol(state.detail) !== symbol || payload.reconciliation?.status !== "pass") return;
+          var row = (payload.securities || []).find(function (item) {
+            return String(item.publicKey || item.symbol || "").toUpperCase() === symbol;
+          });
+          if (!row) return;
+          link.href = "cashflow.html?symbol=" + encodeURIComponent(symbol);
+          link.hidden = false;
+          link.setAttribute("aria-label", symbol + " 实际现金收入");
+        }).catch(function () { link.hidden = true; });
+      }
+      /* FAMILY:INSTRUMENT_DECISION_RUNTIME:END */
       function renderProviderResearch() {
         var body = el("providerResearchBody");
         body.replaceChildren();
@@ -4084,7 +4305,9 @@
         renderHero(); renderFundamentals(); renderChart(); renderDates(); renderEvents(); renderPositionLots();
         if (isBond) renderFixedIncomeResearch();
         else { renderCorporateEvents(); renderProviderResearch(); renderResearch(); }
-        /* FAMILY:INSTRUMENT_DECISION_RENDER:START *//* FAMILY:INSTRUMENT_DECISION_RENDER:END */
+        /* FAMILY:INSTRUMENT_DECISION_RENDER:START */
+        renderCashFlowEntry();
+        /* FAMILY:INSTRUMENT_DECISION_RENDER:END */
         renderQuality();
         renderMethodFooter();
         el("serviceNotice").classList.remove("error");
@@ -4163,10 +4386,17 @@
             }
           });
       syncChartControls();
-      resolveSecurityId().then(function (securityId) {
-        state.securityId = securityId;
-        return loadDetail();
-      }).catch(showError);
+      /* FAMILY:INSTRUMENT_DIRECTORY_INIT:START */      if (instrumentDirectoryRoute()) {
+        renderInstrumentDirectory().catch(showDirectoryError);
+      } else {
+        el("instrumentDirectoryView").hidden = true;
+        el("instrumentDetailView").hidden = false;
+        resolveSecurityId().then(function (securityId) {
+          state.securityId = securityId;
+          return loadDetail();
+        }).catch(showError);
+      }
+/* FAMILY:INSTRUMENT_DIRECTORY_INIT:END */
     })();
   </script>
 </body>

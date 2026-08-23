@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>现金流量 · 投资组合透明计划</title>
+  <style>
+    :root {
+      --page: #f4f6f8;
+      --card: #fff;
+      --ink: #17212b;
+      --muted: #66717d;
+      --soft: #8b98a3;
+      --border: #dfe4e8;
+      --navy: #163b59;
+      --blue: #2f6f9f;
+      --blue-soft: #e8f1f7;
+      --gold: #bd8c28;
+      --gold-soft: #fbf5e6;
+      --green: #14804a;
+      --green-soft: #e8f5ed;
+      --amber: #9a6a0a;
+      --amber-soft: #fff4d8;
+      --red: #c7353b;
+      --red-soft: #fff0f1;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { min-width: 320px; }
+    button, select { font: inherit; }
+    .shell { width: min(1520px, 100%); margin: 0 auto; padding: 0 clamp(22px, 3.4vw, 52px) 64px; }
+    .topbar { display: grid; grid-template-columns: minmax(0, 1fr) max-content; gap: 28px; align-items: start; margin-bottom: 22px; padding: 8px 2px 22px; border-bottom: 1px solid rgba(22,59,89,.13); }
+    .eyebrow, .section-kicker { margin: 0 0 6px; color: var(--blue); font-size: 10px; font-weight: 780; letter-spacing: .13em; text-transform: uppercase; }
+    h1 { margin: 0; color: var(--navy); font-size: clamp(30px, 4vw, 48px); font-weight: 710; line-height: 1.05; letter-spacing: -.045em; }
+    .subtitle { max-width: 840px; margin: 11px 0 0; color: var(--muted); font-size: 13px; line-height: 1.72; }
+    .notice { display: grid; grid-template-columns: 3px minmax(0, 1fr); gap: 12px; margin: 0 0 24px; color: #56636e; font-size: 12px; line-height: 1.65; }
+    .notice::before { content: ""; background: rgba(189,140,40,.72); }
+    .notice-copy { padding: 8px 0; }
+    .notice strong { color: var(--navy); }
+    .notice.error::before { background: var(--red); }
+    .notice.error { color: #8b252a; }
+    .forecast-trial { display: grid; grid-template-columns: 3px minmax(0, 1fr); gap: 12px; margin: 0 0 16px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .forecast-trial::before { content: ""; background: rgba(47,111,159,.62); }
+    .forecast-trial[data-forecast-state="partial"]::before { background: #bd8c28; }
+    .forecast-trial[data-forecast-state="stale"]::before, .forecast-trial[data-forecast-state="unavailable"]::before { background: var(--red); }
+    .forecast-trial-copy { padding: 7px 0; }
+    .forecast-trial-title { color: var(--navy); font-weight: 760; }
+    .forecast-trial[data-forecast-state="partial"] .forecast-trial-title { color: #7c5a18; }
+    .forecast-trial[data-forecast-state="stale"] .forecast-trial-title, .forecast-trial[data-forecast-state="unavailable"] .forecast-trial-title { color: #8b252a; }
+    .scope-strip { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; padding: 11px 14px; border-left: 3px solid rgba(47,111,159,.64); background: rgba(232,241,247,.55); color: var(--muted); font-size: 11px; }
+    .scope-strip strong { color: var(--navy); font: 760 11px var(--mono); }
+    .field { display: grid; gap: 5px; }
+    .field label { color: var(--soft); font-size: 9px; font-weight: 760; letter-spacing: .07em; }
+    .field select { min-width: 170px; }
+    .text-link { min-height: 30px; padding: 5px 9px; border: 1px solid #cad6df; border-radius: 2px; color: var(--navy); background: #fff; cursor: pointer; font-size: 10px; font-weight: 740; text-decoration: none; }
+    .text-link:hover, .text-link:focus-visible { border-color: var(--blue); background: #f3f8fb; outline: none; }
+    .section { margin-top: 34px; }
+    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 13px; padding-bottom: 11px; border-bottom: 1px solid rgba(22,59,89,.13); }
+    .section-title { margin: 0; color: var(--navy); font-size: 19px; font-weight: 740; letter-spacing: -.015em; }
+    .section-note { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
+    .metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .future-metric-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .metric, .card { border: 1px solid rgba(22,59,89,.13); border-radius: 3px; background: var(--card); box-shadow: none; }
+    .metric { min-width: 0; min-height: 124px; padding: 16px; }
+    .metric-label { color: var(--muted); font-size: 10px; font-weight: 760; }
+    .metric-value { display: flex; align-items: baseline; gap: .45em; margin-top: 8px; color: var(--navy); font-family: var(--mono); font-size: clamp(20px, 2vw, 26px); font-weight: 780; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .metric-symbol { font-size: .62em; font-weight: 720; }
+    .metric-note { margin-top: 8px; color: var(--muted); font-size: 10px; line-height: 1.55; }
+    .card { margin-bottom: 16px; padding: 19px; }
+    .card.flush { padding: 0; overflow: hidden; }
+    .expected-security-card { margin-top: 16px; }
+    .expected-security-head { padding: 15px 18px 13px; border-bottom: 1px solid rgba(22,59,89,.10); background: rgba(247,249,250,.58); }
+    .card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 13px; }
+    .card-title { margin: 0; color: var(--navy); font-size: 15px; font-weight: 760; }
+    .card-subtitle { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 18px; margin-bottom: 13px; padding: 10px 0; border-top: 1px solid rgba(22,59,89,.10); border-bottom: 1px solid rgba(22,59,89,.10); }
+    .toolbar-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+    .toolbar-label { color: var(--soft); font-size: 9px; font-weight: 780; letter-spacing: .08em; }
+    .segmented { display: inline-flex; border: 1px solid #ccd7df; background: #f2f5f7; }
+    .segment-btn { min-height: 32px; padding: 6px 10px; border: 0; border-right: 1px solid #d7e0e6; background: transparent; color: #596773; font-size: 10px; font-weight: 750; cursor: pointer; }
+    .segment-btn:last-child { border-right: 0; }
+    .segment-btn:hover, .segment-btn:focus-visible { color: var(--navy); background: #fff; outline: none; }
+    .segment-btn[aria-pressed="true"] { color: var(--navy); background: #fff; box-shadow: inset 0 -2px 0 var(--gold); }
+    .chart-wrap { position: relative; height: 340px; }
+    .chart-wrap canvas { width: 100% !important; height: 100% !important; }
+    .cashflow-chart-tooltip { position: absolute; z-index: 5; width: max-content; min-width: 250px; max-width: calc(100% - 16px); padding: 9px 10px; border: 1px solid #cfd7dd; border-radius: 3px; background: rgba(255,255,255,.97); box-shadow: 0 8px 22px rgba(20,36,50,.14); color: var(--ink); pointer-events: none; opacity: 0; transition: opacity 90ms ease; }
+    .cashflow-chart-tooltip.visible { opacity: 1; }
+    .cashflow-tooltip-date { color: var(--muted); font-size: 11px; }
+    .cashflow-tooltip-series { display: grid; gap: 5px; margin-top: 7px; padding-top: 7px; border-top: 1px solid #e8ecef; }
+    .cashflow-tooltip-series-row { display: grid; grid-template-columns: 12px minmax(92px, 1fr) auto; align-items: center; gap: 7px; font-size: 11px; }
+    .cashflow-tooltip-swatch { width: 10px; height: 10px; border: 1px solid transparent; }
+    .cashflow-tooltip-series-label { min-width: 0; overflow: hidden; color: var(--muted); text-overflow: ellipsis; white-space: nowrap; }
+    .cashflow-tooltip-series-value { color: var(--ink); font: 750 12px var(--mono); text-align: right; white-space: nowrap; }
+    .cashflow-tooltip-detail { display: grid; gap: 5px; margin-top: 7px; padding-top: 7px; border-top: 1px solid #e8ecef; }
+    .cashflow-tooltip-detail-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(96px, auto); align-items: baseline; gap: 14px; }
+    .cashflow-tooltip-detail-label { color: var(--soft); font-size: 9px; }
+    .cashflow-tooltip-detail-value { max-width: 190px; overflow: hidden; color: var(--navy); font: 700 10px var(--mono); text-align: right; text-overflow: ellipsis; white-space: nowrap; }
+    .cashflow-tooltip-detail-row.symbols { align-items: start; }
+    .cashflow-tooltip-symbol-list { display: grid; gap: 6px; min-width: 180px; color: var(--navy); font: 700 10px/1.35 var(--mono); }
+    .cashflow-tooltip-symbol-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 14px; }
+    .cashflow-tooltip-symbol-main { min-width: 0; }
+    .cashflow-tooltip-symbol-name, .cashflow-tooltip-symbol-date, .cashflow-tooltip-symbol-amount { display: block; white-space: nowrap; }
+    .cashflow-tooltip-symbol-date { margin-top: 1px; color: var(--soft); font: 8px/1.3 var(--sans); }
+    .cashflow-tooltip-symbol-amount { color: var(--ink); font: 750 10px/1.35 var(--mono); text-align: right; }
+    .chart-note { margin: 10px 0 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
+    .table-wrap { width: 100%; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid #e8ecef; text-align: left; vertical-align: top; white-space: nowrap; }
+    th { color: var(--muted); background: #f7f9fa; font-size: 9px; font-weight: 780; letter-spacing: .035em; }
+    td.numeric, th.numeric { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+    tbody tr:hover { background: #fafcfd; }
+    tbody tr:last-child td { border-bottom: 0; }
+    .symbol-link { color: var(--navy); font: 780 11px var(--mono); text-decoration: none; }
+    .symbol-link:hover, .symbol-link:focus-visible { color: var(--blue); outline: none; }
+    .cell-main { color: var(--ink); }
+    .cell-note { display: block; margin-top: 3px; color: var(--soft); font: 9px/1.45 var(--sans); white-space: normal; }
+    .money-line { vertical-align: top; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+    .money-line .cell-note { grid-column: 1 / -1; text-align: right; }
+    .expected-security-table, .archive-income-table, .cashflow-detail-table { table-layout: fixed; }
+    .expected-security-table { min-width: 980px; }
+    .archive-income-table { min-width: 920px; }
+    .cashflow-detail-table { min-width: 1180px; }
+    .security-group-row td { padding: 0; border-bottom-color: #d8e0e6; background: #eef2f5; }
+    .security-group-row:hover, .security-subtotal-row:hover { background: inherit; }
+    .security-group-toggle { display: flex; width: 100%; min-height: 42px; align-items: center; gap: 10px; padding: 10px 12px; border: 0; color: var(--navy); background: transparent; cursor: pointer; text-align: left; }
+    .security-group-toggle:hover, .security-group-toggle:focus-visible { background: rgba(255,255,255,.48); outline: none; }
+    .security-group-swatch { width: 10px; height: 10px; flex: 0 0 auto; border: 1px solid transparent; }
+    .security-group-swatch.stk { background: #034da2; }
+    .security-group-swatch.etf { background: #5889c1; }
+    .security-group-swatch.bond { background: #7a4e2d; }
+    .security-group-swatch.cash { background: #bd8c28; }
+    .security-group-name { font-size: 11px; font-weight: 790; }
+    .security-group-count { color: var(--soft); font: 9px/1.4 var(--mono); }
+    .security-group-chevron { width: 7px; height: 7px; margin-left: auto; border-right: 1px solid var(--navy); border-bottom: 1px solid var(--navy); transform: rotate(45deg); transition: transform 120ms ease; }
+    .security-group-toggle[aria-expanded="false"] .security-group-chevron { transform: rotate(-45deg); }
+    .security-item-row td:first-child { padding-left: 32px; }
+    .security-subtotal-row td { border-top: 1px solid #d8e0e6; background: #f7f9fa; font-weight: 720; }
+    .security-subtotal-label { color: var(--navy); }
+    .security-subtotal-label .cell-note { font-weight: 500; }
+    .archive-stack { display: grid; gap: 10px; }
+    .archive-details { overflow: hidden; border: 1px solid rgba(22,59,89,.13); border-radius: 3px; background: var(--card); }
+    .archive-details summary { display: flex; min-height: 48px; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 15px; color: var(--navy); background: #f7f9fa; cursor: pointer; list-style: none; }
+    .archive-details summary::-webkit-details-marker { display: none; }
+    .archive-details summary:hover, .archive-details summary:focus-visible { background: #f1f5f7; outline: none; }
+    .archive-summary-main { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
+    .archive-title { font-size: 12px; font-weight: 780; }
+    .archive-count { color: var(--soft); font: 9px/1.4 var(--mono); }
+    .archive-summary-total { color: var(--muted); font: 9px/1.4 var(--mono); }
+    .archive-latest { min-width: 170px; }
+    .archive-chevron { width: 8px; height: 8px; flex: 0 0 auto; border-right: 1px solid var(--navy); border-bottom: 1px solid var(--navy); transform: rotate(45deg); transition: transform 120ms ease; }
+    .archive-details[open] .archive-chevron { transform: rotate(225deg); }
+    .archive-details[open] summary { border-bottom: 1px solid rgba(22,59,89,.10); }
+    .empty { padding: 28px 18px; color: var(--muted); text-align: center; font-size: 11px; }
+    .detail-controls { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; padding: 15px 18px; border-bottom: 1px solid rgba(22,59,89,.10); background: rgba(247,249,250,.7); }
+    .detail-filter-group { display: flex; flex-wrap: wrap; align-items: end; justify-content: flex-end; gap: 10px; }
+    .detail-scroll { max-height: min(62vh, 560px); overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+    .detail-scroll thead th { position: sticky; top: 0; z-index: 3; box-shadow: 0 1px 0 #dfe5e9; }
+    .detail-year-row th { padding: 7px 12px; border-top: 1px solid #d8e0e6; border-bottom: 1px solid #d8e0e6; color: var(--navy); background: #eef2f5; font: 780 10px/1.4 var(--sans); letter-spacing: .02em; text-align: left; }
+    .detail-year-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .detail-year-count { color: var(--soft); font: 9px/1.4 var(--mono); }
+    .detail-summary { min-height: 39px; margin: 0; padding: 12px 18px; border-top: 1px solid rgba(22,59,89,.10); color: var(--soft); background: rgba(247,249,250,.72); font: 10px/1.45 var(--mono); }
+    .source-link { color: var(--blue); text-decoration: none; }
+    .source-link:hover, .source-link:focus-visible { text-decoration: underline; outline: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    @media (max-width: 1040px) {
+      .future-metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .shell { width: 100%; padding: 0 12px 44px; }
+      .topbar { grid-template-columns: 1fr; gap: 16px; }
+      .section-head, .card-head { align-items: stretch; flex-direction: column; }
+      .scope-strip { align-items: stretch; flex-direction: column; }
+      .field select { width: 100%; }
+      .metric-grid, .future-metric-grid { grid-template-columns: 1fr; }
+      .toolbar { align-items: stretch; }
+      .detail-controls, .detail-filter-group { align-items: stretch; flex-direction: column; }
+      .toolbar-group { display: grid; grid-template-columns: 1fr; }
+      .segmented { width: 100%; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+      .segment-btn { padding-inline: 5px; }
+      .chart-wrap { height: 300px; }
+    }
+    .public-cashflow-table { min-width: 820px; table-layout: fixed; }
+    .public-reconciliation-table { min-width: 720px; table-layout: fixed; }
+    .public-cashflow-table th:first-child { width: 28%; }
+    .public-cashflow-table th:nth-child(2) { width: 18%; }
+    .directory-anonymous { color: var(--muted); font-style: italic; }
+  </style>
+  <link rel="stylesheet" href="assets/workspace-shell.css?v=ed7f50f35dbe">
+</head>
+<body class="workspace-inner workspace-bp-720 workspace-mobile-gap-10">
+  <main class="shell">
+    <nav class="workspace-nav" aria-label="全局导航">
+      <a class="workspace-brand" href="index.html" aria-label="投资组合透明计划首页">
+        <span class="workspace-brand-mark" aria-hidden="true"></span>
+        <span class="workspace-brand-text"><span class="workspace-brand-title">投资组合透明计划</span><span class="workspace-brand-subtitle">PORTFOLIO TRANSPARENCY PROGRAM</span></span>
+      </a>
+      <div class="workspace-nav-scroll"><div class="workspace-nav-links">
+          <a class="workspace-nav-link" href="index.html">首页</a>
+          <a class="workspace-nav-link" href="cashflow.html" aria-current="page">现金流量</a>
+          <a class="workspace-nav-link" href="dashboard.html">投资组合</a>
+          <a class="workspace-nav-link" href="instrument.html">证券研究</a>
+          <span class="workspace-nav-link" aria-disabled="true">交易决策</span>
+          <span class="workspace-nav-link" aria-disabled="true">市场监控</span>
+          <span class="workspace-nav-link" aria-disabled="true">期权雷达</span>
+          <a class="workspace-nav-link" href="history.html">历史档案</a>
+      </div></div>
+    </nav>
+
+    <header class="topbar workspace-page-header">
+      <div class="workspace-page-heading">
+        <p class="eyebrow workspace-page-eyebrow">Public Family Actual Cash Income</p>
+        <h1 class="workspace-page-title">现金流量</h1>
+        <p class="subtitle workspace-page-subtitle">公开家庭版只列已经入账的投资现金收入，并以月度与公开标的汇总呈现。预测、尚未入账日程与逐笔流水继续保留在私有本地页面。</p>
+      </div>
+      <aside class="workspace-page-context" id="cashflowPageContext" data-context-state="loading" aria-label="实际现金收入档案状态">
+        <div class="workspace-page-context-label">实际收入档案</div>
+        <div class="workspace-page-context-value"><span class="workspace-page-context-dot" aria-hidden="true"></span><span id="archiveStatus">正在读取</span></div>
+        <div class="workspace-page-context-meta"><p class="workspace-page-context-line" id="headerCutoff">完成收盘截止 —</p><p class="workspace-page-context-line" id="headerCoverage">覆盖 —</p></div>
+      </aside>
+    </header>
+
+    <aside class="notice" id="statusNotice" aria-live="polite"><div class="notice-copy"><strong>正在读取公开静态实际收入。</strong> 页面不连接券商、本机数据库或实时接口。</div></aside>
+    <section class="scope-strip" id="scopeStrip" aria-label="当前标的范围" hidden><span>当前仅显示 <strong id="scopeSymbol">—</strong> 的实际收入汇总</span><a class="text-link" href="cashflow.html">查看组合汇总</a></section>
+
+    <section class="section" aria-labelledby="actualTitle">
+      <div class="section-head"><div><p class="section-kicker">Actual Posted Cash</p><h2 class="section-title" id="actualTitle">实际投资现金收入</h2><p class="section-note" id="actualCoverageNote">只使用 Activity Flex 已入账事实；经纪利息支出与买入应计利息单独列示，不冒充负投资收入。</p></div></div>
+      <div class="metric-grid" aria-label="实际投资现金收入摘要">
+        <article class="metric"><div class="metric-label">获审核覆盖期内税后净额</div><div class="metric-value" id="actualCoverageNet">—</div><div class="metric-note" id="actualCoverageBreakdown">—</div></article>
+        <article class="metric"><div class="metric-label">本年税后净额</div><div class="metric-value" id="actualYtdNet">—</div><div class="metric-note" id="actualYtdBreakdown">—</div></article>
+        <article class="metric"><div class="metric-label">过去 12 个月税后净额</div><div class="metric-value" id="actual12mNet">—</div><div class="metric-note" id="actual12mBreakdown">—</div></article>
+      </div>
+      <article class="card">
+        <div class="card-head"><div><h3 class="card-title">按月实际投资现金收入</h3><p class="card-subtitle">股票、ETF、国债票息与经纪现金利息分别列示；当前标的筛选使用该标的的月度汇总。</p></div></div>
+        <div class="chart-wrap"><canvas id="actualChart" role="img" aria-label="按月实际投资现金收入图"></canvas></div>
+        <p class="chart-note" id="actualChartNote">—</p>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="securityTitle">
+      <div class="section-head"><div><p class="section-kicker">Aggregate by Public Security</p><h2 class="section-title" id="securityTitle">公开标的收入汇总</h2><p class="section-note">这里只列按标的聚合后的累计、本年与过去 12 个月税后收入；没有收入事件显示为缺失，不补成零。</p></div></div>
+      <article class="card flush"><div class="table-wrap"><table class="archive-income-table public-cashflow-table"><caption class="sr-only">公开标的实际现金收入汇总</caption><thead><tr><th>标的</th><th>档案状态</th><th class="numeric">覆盖期累计</th><th class="numeric">本年</th><th class="numeric">过去 12 个月</th></tr></thead><tbody id="securityIncomeBody"></tbody></table></div><div class="empty" id="securityIncomeEmpty" hidden>当前范围没有可列示的实际收入汇总。</div></article>
+    </section>
+
+    <section class="section" aria-labelledby="reconciliationTitle">
+      <div class="section-head"><div><p class="section-kicker">Cross-page Reconciliation</p><h2 class="section-title" id="reconciliationTitle">与 Dashboard／History 勾稽</h2><p class="section-note">生命周期累计必须一致；年度差异只允许来自旧 History 的 Flex 事件日与本页支付／结算日之间的跨年归类。</p></div></div>
+      <article class="card flush"><div class="table-wrap"><table class="public-reconciliation-table"><caption class="sr-only">年度现金收入日期口径桥接</caption><thead><tr><th>年份</th><th class="numeric">History 事件日口径</th><th class="numeric">Cashflow 支付日口径</th><th class="numeric">跨年重分类</th></tr></thead><tbody id="reconciliationBody"></tbody></table></div><p class="detail-summary" id="reconciliationSummary">—</p></article>
+    </section>
+
+    <footer>
+      <div class="footer-head"><p class="footer-kicker">DATA &amp; METHOD</p><h2 class="footer-title">公开边界</h2></div>
+      <div class="footer-meta-grid">
+        <div class="footer-meta-item"><span class="footer-meta-label">事实来源</span><span class="footer-meta-value">IBKR Activity Flex 已入账现金事件</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label">公开粒度</span><span class="footer-meta-value">月度与公开标的汇总</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label">未公开</span><span class="footer-meta-value">预测、日程、逐笔流水与本地稳定身份</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label">产品边界</span><span class="footer-meta-value">静态、只读、不连接券商、不构成交易建议</span></div>
+      </div>
+      <p class="footer-disclaimer">这是字段级筛选的公开家庭版静态投影。任何未获公开许可的历史标的只进入匿名合计，不公开身份；缺失数据不会被写成零。</p>
+    </footer>
+  </main>
+  <script src="assets/vendor/chart.umd.min.js"></script>
+  <script src="assets/accounting-money.js?v=4ad974b28457"></script>
+  <script>
+    (function () {
+      "use strict";
+      var state = { data: null, selectedSymbol: "", chart: null };
+      var formatter = new Intl.NumberFormat("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      function el(id) { return document.getElementById(id); }
+      function finite(value) { var number = Number(value); return value == null || value === "" || !Number.isFinite(number) ? null : number; }
+      function isoDate(value) { var text = String(value || "").replace(/-/g, ""); return /^\d{8}$/.test(text) ? text.slice(0,4) + "-" + text.slice(4,6) + "-" + text.slice(6,8) : "—"; }
+      function monthLabel(value) { var text = String(value || ""); return /^\d{6}$/.test(text) ? text.slice(0,4) + "-" + text.slice(4,6) : text; }
+      function moneyText(value) { var number = finite(value); return number == null ? "—" : "US$ " + (number < 0 ? "-" : "") + formatter.format(Math.abs(number)); }
+      function moneyNode(value) { var number = finite(value), wrapper = document.createElement("span"); wrapper.className = "money-line"; if (number == null) { wrapper.textContent = "—"; return wrapper; } var symbol = document.createElement("span"), amount = document.createElement("span"); wrapper.dataset.accountingMoney = ""; symbol.dataset.accountingSymbol = ""; symbol.textContent = "US$"; amount.dataset.accountingAmount = ""; amount.textContent = (number < 0 ? "-" : "") + formatter.format(Math.abs(number)); wrapper.append(symbol, amount); return wrapper; }
+      function metric(node, value) { node.replaceChildren(); var number = finite(value); if (number == null) { node.textContent = "—"; return; } var symbol = document.createElement("span"), amount = document.createElement("span"); symbol.className = "metric-symbol"; symbol.textContent = "US$"; amount.textContent = (number < 0 ? "-" : "") + formatter.format(Math.abs(number)); node.append(symbol, amount); }
+      function summaryNote(row) { if (!row) return "—"; var count = Number(row.investmentIncomeItemCount ?? row.itemCount ?? 0); return "税前 " + moneyText(row.grossInvestmentIncome) + " · 预扣 " + moneyText(row.withholdingTax) + " · " + count + " 笔汇总事件"; }
+      function selectedSecurity() { return state.selectedSymbol ? state.data.securities.find(function (row) { return String(row.publicKey).toUpperCase() === state.selectedSymbol; }) : null; }
+      function activeSummary() { var row = selectedSecurity(); return row ? { reviewedCoverage: row.reviewedCoverage, yearToDate: row.yearToDate, trailing12Months: row.trailing12Months } : state.data.summary; }
+      function activeMonthly() { var row = selectedSecurity(); return row ? row.actualMonthly : state.data.actualMonthly; }
+      function validate(payload) {
+        if (!payload || payload.schemaVersion !== 1 || payload.packageType !== "cashFlowActual" || payload.visibility !== "public_static" || payload.sourceMode !== "sanitized_static_projection" || payload.currency !== "USD" || payload.reconciliation?.status !== "pass" || !Array.isArray(payload.actualMonthly) || !Array.isArray(payload.securities) || !Array.isArray(payload.reconciliation.annualTimingBridge)) throw new Error("公开实际现金收入合同不受支持。");
+        return payload;
+      }
+      function renderHeader() { var coverage = state.data.coverage; el("cashflowPageContext").dataset.contextState = "pass"; el("archiveStatus").textContent = "实际收入档案已载入"; el("headerCutoff").textContent = "完成收盘截止 UTC " + isoDate(state.data.asOf); el("headerCoverage").textContent = "获审核覆盖 " + isoDate(coverage.startDate) + " — " + isoDate(coverage.endDate); el("actualCoverageNote").textContent = isoDate(coverage.startDate) + " 起至 " + isoDate(coverage.endDate) + "；这是获审核覆盖期，不自动称为开户以来。"; el("statusNotice").innerHTML = '<div class="notice-copy"><strong>公开静态实际收入已载入。</strong> 生命周期累计已与 Dashboard／History 勾稽；年度日期口径桥接见页面下方。</div>'; el("scopeStrip").hidden = !state.selectedSymbol; el("scopeSymbol").textContent = state.selectedSymbol || "—"; }
+      function renderMetrics() { var summary = activeSummary(); [["actualCoverageNet","actualCoverageBreakdown",summary.reviewedCoverage],["actualYtdNet","actualYtdBreakdown",summary.yearToDate],["actual12mNet","actual12mBreakdown",summary.trailing12Months]].forEach(function (entry) { metric(el(entry[0]), entry[2].netInvestmentIncome); el(entry[1]).textContent = summaryNote(entry[2]); }); }
+      function renderChart() { var rows = activeMonthly(), labels = rows.map(function (row) { return monthLabel(row.month); }); var datasets = [{ label: "股票分派", key: "stockDistributionNet", color: "#034da2" }, { label: "ETF 分派", key: "etfDistributionNet", color: "#5889c1" }, { label: "国债票息", key: "treasuryCoupon", color: "#7a4e2d" }, { label: "经纪现金利息", key: "brokerInterest", color: "#bd8c28" }].map(function (series) { return { label: series.label, data: rows.map(function (row) { return Number(row[series.key] || 0); }), backgroundColor: series.color, borderWidth: 0 }; }); if (state.chart) state.chart.destroy(); state.chart = new Chart(el("actualChart"), { type: "bar", data: { labels: labels, datasets: datasets }, options: { responsive: true, maintainAspectRatio: false, interaction: { mode: "index", intersect: false }, scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, ticks: { callback: function (value) { return moneyText(value); } } } }, plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { label: function (context) { return context.dataset.label + " · " + moneyText(context.raw); } } } } } }); el("actualChartNote").textContent = state.selectedSymbol ? state.selectedSymbol + " · 按支付／结算日归月的标的汇总" : "组合汇总 · 按支付／结算日归月；未公开标的仍进入组合合计，但不公开身份。"; }
+      function appendMoneyCell(tr, summary) { var td = document.createElement("td"); td.className = "numeric"; if (!summary || Number(summary.itemCount || 0) === 0) { td.textContent = "—"; } else td.appendChild(moneyNode(summary.netInvestmentIncome)); tr.appendChild(td); }
+      function renderSecurities() { var body = el("securityIncomeBody"), rows = state.selectedSymbol ? [selectedSecurity()].filter(Boolean) : state.data.securities.slice(); body.replaceChildren(); rows.forEach(function (row) { var tr = document.createElement("tr"), identity = document.createElement("td"), link = document.createElement("a"), name = document.createElement("span"), status = document.createElement("td"); link.className = "symbol-link"; link.href = "instrument.html?symbol=" + encodeURIComponent(row.publicKey); link.textContent = row.symbol; name.className = "cell-note"; name.textContent = row.displayName || row.symbol; identity.append(link, name); status.textContent = row.holdingStatus === "current_holding" ? "当前持有" : row.holdingStatus === "cash_account" ? "现金利息" : "历史归档"; tr.append(identity, status); appendMoneyCell(tr, row.reviewedCoverage); appendMoneyCell(tr, row.yearToDate); appendMoneyCell(tr, row.trailing12Months); body.appendChild(tr); }); if (!state.selectedSymbol) { var hidden = state.data.unpublishedSecurityAggregate, summary = hidden && hidden.reviewedCoverage; if (summary && Number(summary.itemCount || 0) > 0) { var tr = document.createElement("tr"), label = document.createElement("td"), status = document.createElement("td"); label.className = "directory-anonymous"; label.textContent = "其他未公开标的（匿名合计）"; status.textContent = "仅合计"; tr.append(label, status); appendMoneyCell(tr, hidden.reviewedCoverage); appendMoneyCell(tr, hidden.yearToDate); appendMoneyCell(tr, hidden.trailing12Months); body.appendChild(tr); } } el("securityIncomeEmpty").hidden = body.children.length > 0; }
+      function renderReconciliation() { var reconciliation = state.data.reconciliation, body = el("reconciliationBody"); body.replaceChildren(); reconciliation.annualTimingBridge.forEach(function (row) { var tr = document.createElement("tr"), year = document.createElement("td"); year.textContent = row.year; tr.appendChild(year); [row.historyEventDateCashIncome,row.cashFlowPaymentDateCashImpact,row.timingReclassification].forEach(function (value) { var td = document.createElement("td"); td.className = "numeric"; td.appendChild(moneyNode(value)); tr.appendChild(td); }); body.appendChild(tr); }); var lifetime = reconciliation.lifetime; el("reconciliationSummary").textContent = "生命周期累计 " + moneyText(lifetime.cashFlowAllIncludedCashImpact) + " · Dashboard 差额 " + moneyText(lifetime.unexplainedResidual) + " · 年度差异全部由日期口径跨年重分类解释。"; }
+      function showError(error) { el("cashflowPageContext").dataset.contextState = "error"; el("archiveStatus").textContent = "实际收入档案不可用"; var notice = el("statusNotice"); notice.className = "notice error"; notice.innerHTML = '<div class="notice-copy"><strong>公开实际现金收入未通过读取合同。</strong> 本页已失败关闭，没有回退到较弱来源。</div>'; console.error(error); }
+      state.selectedSymbol = String(new URLSearchParams(location.search).get("symbol") || "").trim().toUpperCase();
+      fetch("data/cashflow/actual.json", { cache: "no-store" }).then(function (response) { if (!response.ok) throw new Error("公开实际现金收入包返回 " + response.status); return response.json(); }).then(validate).then(function (payload) { state.data = payload; if (state.selectedSymbol && !selectedSecurity()) throw new Error("公开现金流量目录中没有 " + state.selectedSymbol + "。"); renderHeader(); renderMetrics(); renderChart(); renderSecurities(); renderReconciliation(); if (window.AccountingMoney) window.AccountingMoney.align(); }).catch(showError);
+    }());
+  </script>
+</body>
+</html>
