@@ -134,6 +134,35 @@ body.workspace-inner .workspace-nav-link[aria-current="page"] {
 body.workspace-inner .workspace-nav-link[aria-disabled="true"] { color: #9aa4ad; cursor: default; }
 body.workspace-inner .workspace-nav-link[aria-disabled="true"]:hover { color: #9aa4ad; background: transparent; box-shadow: none; }
 
+body.workspace-inner table [data-accounting-money] {
+  display: inline-grid;
+  grid-template-columns:
+    var(--accounting-money-symbol-width, max-content)
+    minmax(.45em, 1fr)
+    var(--accounting-money-amount-width, max-content);
+  align-items: baseline;
+  justify-content: stretch;
+  column-gap: 0;
+  width: var(--accounting-money-lane-width, max-content);
+  min-width: 0;
+  max-width: 100%;
+  margin-inline-start: auto;
+  vertical-align: baseline;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+body.workspace-inner table [data-accounting-symbol] {
+  grid-column: 1;
+  justify-self: start;
+}
+
+body.workspace-inner table [data-accounting-amount] {
+  grid-column: 3;
+  justify-self: end;
+  text-align: right;
+}
+
 body.workspace-inner .workspace-page-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
