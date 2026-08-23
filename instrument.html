@@ -564,7 +564,7 @@
       .tax-lot-surface { min-width: 440px; }
     }
   </style>
-  <link rel="stylesheet" href="assets/workspace-shell.css?v=c19b38044724">
+  <link rel="stylesheet" href="assets/workspace-shell.css?v=ed7f50f35dbe">
 </head>
 <body class="workspace-inner workspace-bp-660">
   <main class="shell">
@@ -886,6 +886,7 @@
   <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:START -->
   <script id="instrumentStaticConfig" type="application/json">{"mode":"public-static-v1","manifest":"data/instruments/manifest.json"}</script>
   <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:END -->
+  <script src="assets/accounting-money.js?v=4ad974b28457"></script>
   <script>
     (function () {
       "use strict";
@@ -1044,6 +1045,26 @@
         var n = finite(value);
         if (n == null) return "—";
         return currencyMark(currency) + CURRENCY_SEPARATOR + moneyAmount(n, digits, false);
+      }
+      function moneyElement(value, currency, digits, signed) {
+        var n = finite(value);
+        var wrap = document.createElement("span");
+        if (n == null) {
+          wrap.textContent = "—";
+          return wrap;
+        }
+        wrap.className = "accounting-money";
+        wrap.dataset.accountingMoney = "";
+        var symbol = document.createElement("span");
+        symbol.className = "accounting-symbol";
+        symbol.dataset.accountingSymbol = "";
+        symbol.textContent = currencyMark(currency);
+        var amount = document.createElement("span");
+        amount.className = "accounting-amount";
+        amount.dataset.accountingAmount = "";
+        amount.textContent = moneyAmount(n, digits, Boolean(signed));
+        wrap.append(symbol, amount);
+        return wrap;
       }
       function compactMoney(value, currency) {
         var n = finite(value);
@@ -2741,12 +2762,13 @@
           [
             compactToIso(cashflow.date),
             cashflow.kind === "maturity" ? "到期本息" : "合同票息",
-            money(cashflow.coupon, currency, 2),
-            money(cashflow.principal, currency, 2),
-            money(cashflow.total, currency, 2)
+            moneyElement(cashflow.coupon, currency, 2, false),
+            moneyElement(cashflow.principal, currency, 2, false),
+            moneyElement(cashflow.total, currency, 2, false)
           ].forEach(function (value, index) {
             var td = document.createElement("td");
-            td.textContent = value;
+            if (value instanceof Node) td.appendChild(value);
+            else td.textContent = value;
             if (index >= 2) td.className = "number";
             tr.appendChild(td);
           });
@@ -3177,14 +3199,15 @@
                 ? "扣缴"
                 : (metadata.buySell === "BUY" ? "买入" : (metadata.buySell === "SELL" ? "卖出" : "—"))),
             quantityNumber(event.quantity),
-            money(details.price, event.currency, 2),
-            signedMoney(event.amount, event.currency),
-            signedMoney(details.commission, event.currency),
-            signedMoney(details.realizedPnl, event.currency)
+            moneyElement(details.price, event.currency, 2, false),
+            moneyElement(event.amount, event.currency, 2, true),
+            moneyElement(details.commission, event.currency, 2, true),
+            moneyElement(details.realizedPnl, event.currency, 2, true)
           ];
           values.forEach(function (value, index) {
             var td = document.createElement("td");
-            td.textContent = value;
+            if (value instanceof Node) td.appendChild(value);
+            else td.textContent = value;
             if (index >= 3) td.className = "number";
             if (index === 1 && recurringInvestment) {
               td.classList.add("event-kind-recurring");
@@ -3400,13 +3423,14 @@
           var tr = document.createElement("tr");
           [
             compactToIso(row.acquisitionDate),
-            isBond ? number(row.averagePrice, 3) : money(row.averagePrice, row.currency || state.detail.instrument.currency, 2),
-            isBond ? money(row.quantity, row.currency || currency, 2) : quantityNumber(row.quantity),
-            signedMoney(row.totalPnl, row.pnlCurrency || currency),
+            isBond ? number(row.averagePrice, 3) : moneyElement(row.averagePrice, row.currency || state.detail.instrument.currency, 2, false),
+            isBond ? moneyElement(row.quantity, row.currency || currency, 2, false) : quantityNumber(row.quantity),
+            moneyElement(row.totalPnl, row.pnlCurrency || currency, 2, true),
             signedPercentRatio(row.totalPnlPct, 2)
           ].forEach(function (value, index) {
             var td = document.createElement("td");
-            td.textContent = value || "—";
+            if (value instanceof Node) td.appendChild(value);
+            else td.textContent = value || "—";
             if (index > 0) td.className = "number";
             if (index >= 3) setClassBySign(td, index === 3 ? row.totalPnl : row.totalPnlPct);
             tr.appendChild(td);
