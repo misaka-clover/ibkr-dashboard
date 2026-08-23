@@ -1527,7 +1527,7 @@
       }
       function directoryDateRange(start, end) {
         if (!start && !end) return "未建立行情覆盖";
-        return compactDate(start) + " — " + compactDate(end);
+        return compactToIso(start) + " — " + compactToIso(end);
       }
       function directoryCount(value, suffix) {
         var number = Number(value);
