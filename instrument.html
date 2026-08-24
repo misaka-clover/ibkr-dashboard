@@ -871,7 +871,7 @@
     <section class="section" aria-labelledby="activityTitle">
       <div class="section-head">
         <div><p class="section-kicker" id="activityKicker">Trades &amp; Holdings</p><h2 class="section-title" id="activityTitle">交易与持仓</h2><p class="section-note" id="activitySubtitle">来自 IBKR Activity Flex 生命周期与完成收盘持仓档案。</p></div>
-        <div class="section-head-meta"><span class="badge" id="activityCount">—</span><!-- FAMILY:INSTRUMENT_DECISION_ENTRY:START --><a class="badge decision-case-link" id="cashFlowLink" href="cashflow.html" hidden>实际现金收入</a><!-- FAMILY:INSTRUMENT_DECISION_ENTRY:END --></div>
+        <div class="section-head-meta"><span class="badge" id="activityCount">—</span><!-- FAMILY:INSTRUMENT_DECISION_ENTRY:START --><a class="badge decision-case-link" id="cashFlowLink" href="cashflow.html" hidden>现金收入档案</a><!-- FAMILY:INSTRUMENT_DECISION_ENTRY:END --></div>
       </div>
       <div class="account-kpi-grid" aria-label="标的账户收益">
         <div class="account-kpi"><div class="account-kpi-label" id="closedPositionTotalLabel">平仓合计</div><div class="account-kpi-value" id="closedPositionTotal">—</div></div>
@@ -963,7 +963,7 @@
   </main>
 
   <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:START -->
-  <script id="instrumentStaticConfig" type="application/json">{"mode":"public-static-v1","manifest":"data/instruments/manifest.json","catalog":"data/instruments/catalog.json","cashflow":"data/cashflow/actual.json"}</script>
+  <script id="instrumentStaticConfig" type="application/json">{"mode":"public-static-v1","manifest":"data/instruments/manifest.json","catalog":"data/instruments/catalog.json","cashflow":"data/cashflow/public.json"}</script>
   <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:END -->
   <script src="assets/accounting-money.js?v=4ad974b28457"></script>
   <script>
@@ -3698,7 +3698,7 @@
         link.hidden = true;
         var symbol = primarySymbol(state.detail);
         if (!symbol || symbol === "—") return;
-        if (!publicCashFlowPromise) publicCashFlowPromise = fetchJson("data/cashflow/actual.json");
+        if (!publicCashFlowPromise) publicCashFlowPromise = fetchJson("data/cashflow/public.json");
         publicCashFlowPromise.then(function (payload) {
           if (primarySymbol(state.detail) !== symbol || payload.reconciliation?.status !== "pass") return;
           var row = (payload.securities || []).find(function (item) {
@@ -3707,7 +3707,7 @@
           if (!row) return;
           link.href = "cashflow.html?symbol=" + encodeURIComponent(symbol);
           link.hidden = false;
-          link.setAttribute("aria-label", symbol + " 实际现金收入");
+          link.setAttribute("aria-label", symbol + " 现金收入档案");
         }).catch(function () { link.hidden = true; });
       }
       /* FAMILY:INSTRUMENT_DECISION_RUNTIME:END */
