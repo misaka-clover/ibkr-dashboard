@@ -119,12 +119,18 @@
     .symbol-link:hover, .symbol-link:focus-visible { color: var(--blue); outline: none; }
     .cell-main { color: var(--ink); }
     .cell-note { display: block; margin-top: 3px; color: var(--soft); font: 9px/1.45 var(--sans); white-space: normal; }
+    .accrual-note, .entitlement-basis-note { white-space: nowrap; }
     .money-line { vertical-align: top; font-family: var(--mono); font-variant-numeric: tabular-nums; }
     .money-line .cell-note { grid-column: 1 / -1; text-align: right; }
+    body.workspace-inner .cashflow-detail-table .accrual-money-line { width: max-content; min-width: max-content; max-width: none; }
     .expected-security-table, .archive-income-table, .cashflow-detail-table { table-layout: fixed; }
     .expected-security-table { min-width: 980px; }
     .archive-income-table { min-width: 920px; }
-    .cashflow-detail-table { min-width: 1180px; }
+    .cashflow-detail-table { min-width: 1160px; }
+    .cashflow-detail-table .source-cell, .cashflow-detail-table .source-main, .cashflow-detail-table .source-cutoff { white-space: nowrap; }
+    .cashflow-detail-table .source-main { display: block; color: var(--ink); }
+    .cashflow-detail-table .source-main.source-link { color: var(--blue); }
+    .cashflow-detail-table .source-cutoff { display: block; margin-top: 3px; color: var(--soft); font: 9px/1.45 var(--sans); }
     .security-group-row td { padding: 0; border-bottom-color: #d8e0e6; background: #eef2f5; }
     .security-group-row:hover, .security-subtotal-row:hover { background: inherit; }
     .security-group-toggle { display: flex; width: 100%; min-height: 42px; align-items: center; gap: 10px; padding: 10px 12px; border: 0; color: var(--navy); background: transparent; cursor: pointer; text-align: left; }
@@ -160,9 +166,25 @@
     .detail-filter-group { display: flex; flex-wrap: wrap; align-items: end; justify-content: flex-end; gap: 10px; }
     .detail-scroll { max-height: min(62vh, 560px); overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
     .detail-scroll thead th { position: sticky; top: 0; z-index: 3; box-shadow: 0 1px 0 #dfe5e9; }
-    .detail-year-row th { padding: 7px 12px; border-top: 1px solid #d8e0e6; border-bottom: 1px solid #d8e0e6; color: var(--navy); background: #eef2f5; font: 780 10px/1.4 var(--sans); letter-spacing: .02em; text-align: left; }
-    .detail-year-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-    .detail-year-count { color: var(--soft); font: 9px/1.4 var(--mono); }
+    .detail-year-row th { position: sticky; top: 34px; z-index: 2; padding: 0; border-top: 1px solid #d8e0e6; border-bottom: 1px solid #c6d6e1; color: var(--navy); background: #eef4f7; text-align: left; }
+    .detail-year-summary, .detail-year-toggle { display: grid; grid-template-columns: 72px 56px 76px 128px 132px minmax(110px, max-content); min-height: 40px; align-items: baseline; justify-content: start; column-gap: 14px; width: 100%; padding: 8px 12px; color: inherit; background: transparent; text-align: left; }
+    .detail-year-toggle { border: 0; cursor: pointer; }
+    .detail-year-toggle:hover, .detail-year-toggle:focus-visible { background: rgba(47,111,159,.06); outline: none; }
+    .detail-year-label { display: inline-flex; align-items: center; gap: 9px; font: 820 11px/1.4 var(--sans); letter-spacing: .02em; }
+    .detail-year-chevron { width: 8px; height: 8px; flex: 0 0 auto; border-right: 1px solid var(--navy); border-bottom: 1px solid var(--navy); transform: rotate(-45deg); transition: transform 120ms ease; }
+    .detail-year-toggle[aria-expanded="true"] .detail-year-chevron { transform: rotate(45deg); }
+    .detail-year-stat { color: #536879; font: 620 10px/1.4 var(--sans); white-space: nowrap; }
+    .detail-year-slot-1 { grid-column: 1; }
+    .detail-year-slot-2 { grid-column: 2; }
+    .detail-year-slot-3 { grid-column: 3; }
+    .detail-year-slot-4 { grid-column: 4; }
+    .detail-year-slot-5 { grid-column: 5; }
+    .detail-year-slot-6 { grid-column: 6; }
+    .detail-year-stat strong { color: var(--ink); font-family: var(--mono); font-weight: 760; font-variant-numeric: tabular-nums; }
+    .detail-year-stat.withholding strong { color: var(--red); }
+    .detail-year-stat.net strong { color: var(--green); }
+    .detail-year-stat.income strong { color: var(--blue); }
+    .detail-year-stat.principal strong { color: #7a4e2d; }
     .detail-summary { min-height: 39px; margin: 0; padding: 12px 18px; border-top: 1px solid rgba(22,59,89,.10); color: var(--soft); background: rgba(247,249,250,.72); font: 10px/1.45 var(--mono); }
     .source-link { color: var(--blue); text-decoration: none; }
     .source-link:hover, .source-link:focus-visible { text-decoration: underline; outline: none; }
