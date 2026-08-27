@@ -3502,9 +3502,9 @@
         el("dividendTotalLabel").textContent = isBond ? "已收票息" : "股息合计";
         el("aggregateReturnLabel").textContent = "归总收益";
         el("comprehensiveCostLabel").textContent = isBond ? "实际投入" : "综合成本";
-        el("annualizedReturnLabel").textContent = isBond ? "实际息率" : "年化收益";
-        el("annualizedReturnNote").textContent = isBond ? "持有到期现金流 XIRR" : "资金加权 XIRR";
-        el("totalReturnLabel").textContent = isBond ? "截至收盘回报率" : "总回报率";
+        el("annualizedReturnLabel").textContent = "年化收益";
+        el("annualizedReturnNote").textContent = isBond ? "持有期资金加权 XIRR" : "资金加权 XIRR";
+        el("totalReturnLabel").textContent = "总回报率";
         [
           ["closedPositionTotal", isBond ? bond.unrealizedPnl : performance.closedPositionTotal, true],
           ["dividendTotal", isBond ? bond.paidInterest : performance.dividendTotal, false],
@@ -3519,9 +3519,7 @@
         el("totalReturn").textContent = signedPercentRatio(performance.totalReturn, 2);
         setClassBySign(el("totalReturn"), performance.totalReturn);
         el("totalReturn").title = performance.totalReturnMethodology || performance.methodology || "";
-        el("totalReturnPeriod").textContent = isBond
-          ? "归总收益 ÷ 实际投入 · 非持有到期收益率"
-          :
+        el("totalReturnPeriod").textContent =
           performance.holdingPeriodStartDate && finite(performance.holdingPeriodDays) != null
             ? compactToIso(performance.holdingPeriodStartDate) + " 起 · 实际持仓 " +
               number(performance.holdingPeriodDays, 0) + " 日" +
