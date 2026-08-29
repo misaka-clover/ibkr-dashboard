@@ -12,7 +12,7 @@
         "research": {
           "count": 2,
           "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
-          "status": "pass"
+          "status": "warning"
         }
       }
     },
@@ -23,10 +23,10 @@
           "role": "Senior Equity Analyst"
         },
         "freshness": {
-          "ageDays": 5.095225382361111,
+          "ageDays": 10.673657220532407,
           "maximumDays": 7,
-          "status": "current",
-          "warning": null
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
         },
         "interpretation": "Morningstar 对 Berkshire 的完整公司判断没有改变：低成本保险浮存金、保险规模、铁路、受监管资产与多元经营现金流仍支撑窄护城河和低不确定性，但 Buffett 退休、集团体量扩大与可投机会收窄，使未来超额资本配置回报更难复制。其分部加总公允价值仍为每股 B 类 US$510，三星、窄护城河、低不确定性和典范资本配置评级均保持不变；报告价为 US$504.03，Price/FVE 为 0.99。相较上一份截至 UTC 2026-06-30 23:41 的完整报告，本次实质变化是新增 2026-08-17 的 Q2 13F 分析师笔记：Morningstar 认为季度净买入约 US$19.8B，Alphabet 是最主要新增方向，Abel 任内投资组合集中与精简推进得比其原先预期更快。该笔记强化了资本重新部署的外部交叉证据，但没有证明新增配置已取得高于权益成本的回报；文档也没有显示 2026-05-01 核心经营预测或 UTC 2025-11-01 02:22 的 US$510 公允价值已经根据 Q2 经营业绩重新建模。",
         "metrics": {
@@ -282,7 +282,7 @@
       }
     }
   },
-  "generatedAt": "2026-08-23T17:41:33.683160Z",
+  "generatedAt": "2026-08-29T07:34:30.226911Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "BRK B"
