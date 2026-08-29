@@ -474,6 +474,12 @@
     .monitoring-signals strong { color: var(--muted); font-size: 9px; }
     details.research-details { margin-top: 18px; border-top: 1px solid #e2e7ea; }
     details.research-details summary { padding: 13px 0 0; color: var(--blue); font-size: 11px; font-weight: 750; cursor: pointer; }
+    .bill-method-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px; margin-top: 12px; border: 1px solid rgba(22,59,89,.12); background: rgba(22,59,89,.12); }
+    .bill-method-item { min-width: 0; padding: 12px 14px; background: #f9fbfc; }
+    .bill-method-label { color: var(--muted); font-size: 9px; font-weight: 780; letter-spacing: .04em; }
+    .bill-method-value { margin-top: 5px; color: var(--navy); font: 740 14px var(--mono); font-variant-numeric: tabular-nums; }
+    .bill-method-note { margin-top: 5px; color: var(--muted); font-size: 9px; line-height: 1.45; }
+    .bill-method-footnote { margin: 10px 0 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
     details.research-history { margin-top: 18px; border-top: 1px solid #d7e0e6; }
     details.research-history > summary { padding: 14px 0 0; color: var(--blue); font-size: 11px; font-weight: 750; cursor: pointer; }
     .research-history-list { display: grid; gap: 10px; margin-top: 13px; }
@@ -594,6 +600,7 @@
       .bond-yield-toolbar .chart-control { width: auto; flex-direction: row; align-items: center; }
       .bond-yield-chart-frame { min-height: 0; padding-inline: 0; }
       .bond-yield-chart { height: auto; aspect-ratio: 28 / 25; }
+      .bill-method-grid { grid-template-columns: 1fr; }
       .card-body { padding: 15px; }
       .account-kpi-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .account-kpi.wide { grid-column: 1 / -1; }
@@ -710,6 +717,11 @@
         <span class="badge" id="fundamentalsBadge">资料载入中</span>
       </div>
       <div class="fundamental-grid" id="fundamentalGrid" aria-label="公司与估值基础数据"></div>
+      <details class="research-details" id="billMethodDetails" hidden>
+        <summary>国库券收益率、成本与结算口径</summary>
+        <div class="bill-method-grid" id="billMethodGrid"></div>
+        <p class="bill-method-footnote" id="billMethodFootnote">—</p>
+      </details>
     </section>
 
     <section class="section" id="marketSection" aria-labelledby="priceHistoryTitle">
@@ -1058,7 +1070,10 @@
         return primary && primary.symbol || "—";
       }
       function isBondDetail() {
-        return Boolean(state.detail && state.detail.instrument && state.detail.instrument.assetClass === "BOND");
+        var assetClass = String(
+          state.detail && state.detail.instrument && state.detail.instrument.assetClass || ""
+        ).toUpperCase();
+        return assetClass === "BOND" || assetClass === "BILL";
       }
       function compactToIso(value) {
         var raw = String(value || "");
@@ -1323,7 +1338,7 @@
       function pricePanEligible() {
         return state.chartView === "price"
           && ["6M", "1Y"].indexOf(state.priceRange) >= 0
-          && !(state.detail && state.detail.instrument && state.detail.instrument.assetClass === "BOND");
+          && !isBondDetail();
       }
       function activeBarSelection() {
         var barType = activeBarType();
@@ -1754,7 +1769,7 @@
             || fixedPackage.detail.schemaVersion !== 8
             || fixedPackage.detail.publicStatic !== true
             || !fixedPackage.detail.instrument
-            || fixedPackage.detail.instrument.assetClass !== "BOND"
+            || !["BOND", "BILL"].includes(fixedPackage.detail.instrument.assetClass)
           ) {
             throw new Error("公开国债静态数据包版本或身份不受支持。");
           }
@@ -2699,11 +2714,14 @@
       }
       function renderBondYieldChart(bond) {
         var reference = bond.yieldReference || {};
+        var isBill = bond.instrumentType === "treasury_bill";
         var referenceSeries = Array.isArray(reference.series) ? reference.series : [];
         var securityYield = reference.securityYieldSeries || {};
         var yieldSubtitle = document.querySelector(".bond-yield-subtitle");
         if (yieldSubtitle) {
-          yieldSubtitle.textContent = securityYield.status === "pass"
+          yieldSubtitle.textContent = isBill
+            ? "附近期限官方 DGS 曲线与费后成交日起算有效 XIRR；后者标作成交日起算估算，不代替实际结算收益率。"
+            : securityYield.status === "pass"
             ? "本债券持有期估算 YTM、附近期限官方 DGS 曲线与购入实际息率；用于观察利率环境，不改变持有到期合同现金流。"
             : "附近期限官方 DGS 曲线与购入实际息率；个券收益率历史未纳入当前公开口径，也不改变持有到期合同现金流。";
         }
@@ -2864,7 +2882,7 @@
           if (purchaseValue != null) {
             var purchaseKey = document.createElement("span"), purchaseDisplay = document.createElement("span");
             purchaseKey.className = "tooltip-label"; purchaseDisplay.className = "tooltip-value";
-            purchaseKey.textContent = "购入实际息率"; purchaseDisplay.textContent = number(purchaseValue, 3) + "%";
+            purchaseKey.textContent = purchase.label || "购入实际息率"; purchaseDisplay.textContent = number(purchaseValue, 3) + "%";
             gridNode.append(purchaseKey, purchaseDisplay);
           }
           if (purchaseValue != null && closestSeries) {
@@ -2873,7 +2891,7 @@
               var spreadBp = (purchaseValue - closestPoint.value) * 100;
               var spreadKey = document.createElement("span"), spreadDisplay = document.createElement("span");
               spreadKey.className = "tooltip-label"; spreadDisplay.className = "tooltip-value";
-              spreadKey.textContent = "购入实际息率较 " + closestSeries.label + "参照";
+              spreadKey.textContent = (isBill ? "成交日起算估算较 " : "购入实际息率较 ") + closestSeries.label + "参照";
               spreadDisplay.textContent = (spreadBp > 0 ? "+" : "") + number(spreadBp, 1) + " bp";
               setClassBySign(spreadDisplay, spreadBp);
               gridNode.append(spreadKey, spreadDisplay);
@@ -2929,6 +2947,7 @@
       }
       function renderBondCashflows() {
         var bond = state.detail.fixedIncome || {};
+        var isBill = bond.instrumentType === "treasury_bill";
         var currency = state.detail.instrument.currency || "USD";
         el("equityChartToolbar").hidden = true;
         el("chartFrame").hidden = true;
@@ -2938,7 +2957,9 @@
         el("bondCashflowSurface").hidden = false;
         el("marketSectionKicker").textContent = "Fixed Income Market Context";
         el("priceHistoryTitle").textContent = "收益率参照与持有到期现金流";
-        el("marketHistoryNote").textContent = "DGS 恒定期限曲线仅作市场参照；合同现金流仍按票面条款独立展示。";
+        el("marketHistoryNote").textContent = isBill
+          ? "DGS 曲线仅作附近期限参照；国库券收益率按不同惯例分列，计划结算日不等于实际结算。"
+          : "DGS 恒定期限曲线仅作市场参照；合同现金流仍按票面条款独立展示。";
         var badge = el("marketQualityBadge");
         badge.className = "badge " + (bond.status === "pass" ? "good" : "warn");
         badge.textContent = bond.status === "pass" ? "合同现金流已勾稽" : "现金流证据待补";
@@ -2946,10 +2967,12 @@
         var next = bond.nextCashFlow || {};
         el("bondNextCashflow").textContent = finite(next.total) == null ? "—" : money(next.total, currency, 2);
         el("bondNextCashflowNote").textContent = next.date
-          ? compactToIso(next.date) + " · " + (next.kind === "maturity" ? "到期本息" : "合同票息")
+          ? compactToIso(next.date) + " · " + (next.kind === "maturity" ? (isBill ? "到期本金" : "到期本息") : "合同票息")
           : "当前没有可用的后续合同现金流";
         el("bondRemainingCoupon").textContent = money(bond.remainingCouponTotal, currency, 2);
-        el("bondRemainingCouponNote").textContent = number((bond.cashFlows || []).filter(function (row) { return finite(row.coupon) > 0; }).length, 0) + " 笔合同票息";
+        el("bondRemainingCouponNote").textContent = isBill
+          ? "国库券为零票息合同"
+          : number((bond.cashFlows || []).filter(function (row) { return finite(row.coupon) > 0; }).length, 0) + " 笔合同票息";
         el("bondMaturityPrincipal").textContent = money(bond.remainingPrincipal, currency, 2);
         el("bondMaturityPrincipalNote").textContent = compactToIso(bond.maturityDate) + " 合同到期";
         el("bondRemainingCashflow").textContent = money(bond.remainingCashFlowTotal, currency, 2);
@@ -2964,7 +2987,7 @@
           if (cashflow.kind === "maturity") tr.className = "maturity";
           [
             compactToIso(cashflow.date),
-            cashflow.kind === "maturity" ? "到期本息" : "合同票息",
+            cashflow.kind === "maturity" ? (isBill ? "到期本金" : "到期本息") : "合同票息",
             moneyElement(cashflow.coupon, currency, 2, false),
             moneyElement(cashflow.principal, currency, 2, false),
             moneyElement(cashflow.total, currency, 2, false)
@@ -3001,24 +3024,67 @@
         else renderPriceChart();
         scheduleValuationLegendAlignment();
       }
+      function renderTreasuryBillMethodDetails(bond, currency) {
+        var details = el("billMethodDetails");
+        var bill = bond && bond.treasuryBill;
+        var isBill = bond && bond.instrumentType === "treasury_bill";
+        details.hidden = !isBill;
+        if (!isBill || !bill) return;
+        var taxonomy = bill.yieldTaxonomy || {};
+        var settlement = bill.settlementEvidence || {};
+        var scheduled = settlement.scheduledSettlementDateTarget || {};
+        var actual = settlement.actualSettlementDate || {};
+        var cost = bill.cost || {};
+        var bridge = bill.pnlBridge || {};
+        var risk = bill.risk || {};
+        function ratio(name) {
+          var row = taxonomy[name] || {};
+          return finite(row.value) == null ? "—" : signedPercentRatio(row.value, 3);
+        }
+        var entries = [
+          ["费后有效 XIRR", ratio("feeInclusiveEffectiveTransactionDateXirrModelUnrounded"), "成交日起算估算 · model-derived proxy"],
+          ["银行折现率", ratio("tradeDateBankDiscountRateProxyClean"), "clean price · 360/face basis"],
+          ["Appendix B 类比", ratio("appendixBInvestmentRateAnalogClean"), "clean price · 成交日起算公式类比"],
+          ["365 日简单年化", ratio("purchasePriceSimpleAnnualization365Clean"), "clean purchase-price basis"],
+          ["360 日 money-market", ratio("moneyMarketYield360ProxyClean"), "clean purchase-price proxy"],
+          ["计划结算日", scheduled.value ? compactToIso(scheduled.value) : "缺失", scheduled.completionState === "scheduled_not_actual" ? "scheduled，不证明 actual" : "证据缺失"],
+          ["实际结算", actual.status === "provided" ? compactToIso(actual.value) : "缺失", "actual settlement-date XIRR 同步保持缺失"],
+          ["模型未舍入投入", finite(cost.modelUnroundedInvestedAmount) == null ? "—" : money(cost.modelUnroundedInvestedAmount, currency, 2), "净价证券价款＋佣金"],
+          ["Provider 成本基础", finite(cost.providerReportedCostBasis) == null ? "—" : money(cost.providerReportedCostBasis, currency, 2), "账本舍入差 " + (finite(cost.providerLedgerRoundingIncrement) == null ? "—" : money(cost.providerLedgerRoundingIncrement, currency, 4))],
+          ["红字勾稽", finite(bridge.reconciledUnrealizedPnl) == null ? "—" : signedMoney(bridge.reconciledUnrealizedPnl, currency), "净价 mark＋佣金＋账本舍入"],
+          ["修正久期", finite(risk.modifiedDuration) == null ? "—" : number(risk.modifiedDuration, 4), "clean market-value basis"],
+          ["DV01", finite(risk.dv01UsdPerBp) == null ? "—" : money(risk.dv01UsdPerBp, currency, 4) + " / bp", "缺失指标不写成零"]
+        ];
+        var grid = el("billMethodGrid"); grid.replaceChildren();
+        entries.forEach(function (entry) {
+          var item = document.createElement("article"); item.className = "bill-method-item";
+          var label = document.createElement("div"); label.className = "bill-method-label"; label.textContent = entry[0];
+          var value = document.createElement("div"); value.className = "bill-method-value"; value.textContent = entry[1];
+          var note = document.createElement("div"); note.className = "bill-method-note"; note.textContent = entry[2];
+          item.append(label, value, note); grid.appendChild(item);
+        });
+        el("billMethodFootnote").textContent =
+          "discount rate、Appendix B investment-rate analog、365 日简单年化、360 日 money-market proxy 与有效 XIRR 是不同口径。当前只确认计划结算目标；actual settlement date、cash ledger 与 settlement-date XIRR 均保持 missing。久期、凸性与 DV01 使用 clean market-value 基础。";
+      }
       function renderHero() {
         var detail = state.detail, instrument = detail.instrument, symbol = primarySymbol(detail);
         var bond = detail.fixedIncome || {};
-        var isBond = instrument.assetClass === "BOND";
+        var isBond = isBondDetail();
+        var isBill = bond.instrumentType === "treasury_bill";
         document.body.classList.toggle("bond-detail", isBond);
         var heroName = isBond ? (bond.displayName || symbol) : symbol;
         el("instrumentPageContext").dataset.contextState = "pass";
-        document.title = heroName + (isBond ? " 国债详情" : " 证券研究") + " · 投资组合透明计划";
+        document.title = heroName + (isBond ? " 固定收益详情" : " 证券研究") + " · 投资组合透明计划";
         el("instrumentEyebrow").textContent = isBond ? "Private Fixed Income Review" : "Public Family Security Research";
         el("instrumentSymbol").textContent = heroName;
         el("instrumentEnglishName").textContent = isBond
           ? (bond.contractCode || symbol)
           : (instrument.englishName || instrument.displayName || symbol);
         var chineseName = el("instrumentChineseName");
-        chineseName.textContent = isBond ? (bond.contractNameZh || "美国国债") : (instrument.chineseName || "");
+        chineseName.textContent = isBond ? (bond.contractNameZh || "美国固定收益证券") : (instrument.chineseName || "");
         chineseName.hidden = !(isBond ? bond.contractNameZh : instrument.chineseName);
         el("instrumentAsset").textContent = isBond
-          ? (bond.instrumentType === "treasury_strips" ? "美国国债 STRIPS" : "美国附息国债")
+          ? (isBill ? "美国国库券" : (bond.instrumentType === "treasury_strips" ? "美国国债 STRIPS" : "美国附息国债"))
           : (instrument.assetClass === "STK" ? "股票" : instrument.assetClass);
         el("instrumentExchange").textContent = isBond ? (bond.issuerLabelZh || "美国财政部") : (instrument.primaryExchange || "交易所未登记");
         el("instrumentCurrency").textContent = instrument.currency || "—";
@@ -3034,7 +3100,7 @@
           ? money(closePrice, holding.currency, 2)
           : (latest ? money(latest.close, instrument.currency, 2) : "—");
         el("latestCloseNote").textContent = isBond
-          ? utcDateOnly(bond.valuationDate) + " · 由净清算值与面值换算"
+          ? utcDateOnly(bond.valuationDate) + (isBill ? " · 完成收盘净价" : " · 由净清算值与面值换算")
           : holding
           ? utcDateOnly(holding.valuationDate) + " · " + (holding.status === "official" ? "官方日结" : holding.status)
           : (latest ? utcDateOnly(latest.date) + " · 完成日线" : "当前窗口没有行情");
@@ -3062,7 +3128,7 @@
           el("holdingQuantityNote").textContent = compactToIso(bond.valuationDate) + " 完成收盘";
           el("currentCostLabel").textContent = "成本合计";
           el("currentCost").textContent = money(bond.currentCost, holding && holding.currency || instrument.currency, 2);
-          el("currentCostNote").textContent = "含手续费 " + money(bond.feeTotal, instrument.currency, 2) + " · 不含购买应计利息";
+          el("currentCostNote").textContent = "含手续费 " + money(bond.feeTotal, instrument.currency, 2) + (isBill ? " · 国库券无应计票息" : " · 不含购买应计利息");
           el("unrealizedPnl").textContent = holding ? signedMoney(holding.unrealizedPnl, holding.currency) : "—";
           setClassBySign(el("unrealizedPnl"), holding && holding.unrealizedPnl);
           var bondUnrealizedRatio = finite(bond.currentCost) > 0 && holding
@@ -3108,18 +3174,20 @@
         var isEtf = state.detail.instrument.instrumentKind === "etf";
         var isBond = isBondDetail();
         var fund = state.detail.fundProfile || {};
+        el("billMethodDetails").hidden = true;
         if (isBond) {
           var bond = state.detail.fixedIncome || {};
+          var isBill = bond.instrumentType === "treasury_bill";
           var purchaseDates = Array.isArray(bond.purchaseDates) ? bond.purchaseDates : [];
           var projectedMaturityGain = finite(bond.projectedHoldToMaturityNetGain);
           var bondEntries = [
-            ["债券类型", bond.instrumentType === "treasury_strips" ? "STRIPS" : "附息国债", bond.issuerLabelZh || "美国财政部"],
-            ["票面息率", finite(bond.couponRate) == null ? "—" : percent(finite(bond.couponRate) * 100, 3), bond.instrumentType === "treasury_strips" ? "零息本金证券" : "合同年票息率"],
+            ["固定收益类型", isBill ? "国库券" : (bond.instrumentType === "treasury_strips" ? "STRIPS" : "附息国债"), bond.issuerLabelZh || "美国财政部"],
+            ["票面息率", finite(bond.couponRate) == null ? "—" : percent(finite(bond.couponRate) * 100, 3), isBill ? "零票息合同结构" : (bond.instrumentType === "treasury_strips" ? "零息本金证券" : "合同年票息率")],
             ["到期日", compactToIso(bond.maturityDate), "合同到期日"],
             ["剩余期限", finite(bond.remainingTermYears) == null ? "—" : number(bond.remainingTermYears, 2) + " 年", "截至 " + compactToIso(bond.valuationDate)],
             ["首次买入", compactToIso(bond.purchaseDate || purchaseDates[0]), number(bond.purchaseLotCount, 0) + " 个购入批次"],
-            ["实际息率", bond.actualYieldQuality === "complete" ? signedPercentRatio(bond.actualYield, 3) : "—", "含手续费实际投入至合同现金流的精确日历 XIRR；不是 IBKR 成交 YTM"],
-            ["购买应计利息", money(bond.purchasedAccruedInterest, currency, 2), "计入实际投入，不进入 IBKR 证券成本基础"],
+            [isBill ? "费后成交日起算有效 XIRR" : "实际息率", isBill ? (bond.displayAcquisitionYieldStatus === "model_derived_proxy" ? signedPercentRatio(bond.displayAcquisitionYield, 3) : "—") : (bond.actualYieldQuality === "complete" ? signedPercentRatio(bond.actualYield, 3) : "—"), isBill ? "成交日起算估算 · actual settlement 尚未确认" : "含手续费实际投入至合同现金流的精确日历 XIRR；不是 IBKR 成交 YTM"],
+            ["购买应计利息", money(bond.purchasedAccruedInterest, currency, 2), isBill ? "国库券无票息，应计利息为结构性 0" : "计入实际投入，不进入 IBKR 证券成本基础"],
             ["预计持有到期净收益", projectedMaturityGain == null ? "—" : signedMoney(projectedMaturityGain, currency), "已收票息＋剩余合同现金流－实际投入 · 税前且不计再投资"]
           ];
           var bondGrid = el("fundamentalGrid");
@@ -3132,12 +3200,15 @@
             item.title = entry[2]; item.append(label, value, note); bondGrid.appendChild(item);
           });
           el("fundamentalsKicker").textContent = "Treasury Contract & Yield";
-          el("fundamentalsTitle").textContent = "国债合同与收益概览";
-          el("fundamentalGrid").setAttribute("aria-label", "国债合同与收益基础数据");
-          el("fundamentalsNote").textContent = "实际息率与预计持有到期净收益均按获审核购入现金流和合同条款计算；前者是年化 XIRR，后者是税前名义金额且不计票息再投资。";
+          el("fundamentalsTitle").textContent = isBill ? "国库券合同与收益概览" : "国债合同与收益概览";
+          el("fundamentalGrid").setAttribute("aria-label", "固定收益合同与收益基础数据");
+          el("fundamentalsNote").textContent = isBill
+            ? "主指标显示费后成交日起算有效 XIRR，并明确标作成交日起算估算；计划结算日、实际结算日和各类收益率口径分开保存。"
+            : "实际息率与预计持有到期净收益均按获审核购入现金流和合同条款计算；前者是年化 XIRR，后者是税前名义金额且不计票息再投资。";
           var bondBadge = el("fundamentalsBadge");
           bondBadge.className = "badge " + (bond.status === "pass" ? "good" : "warn");
           bondBadge.textContent = bond.status === "pass" ? "合同与购入现金流已勾稽" : "固定收益证据待补";
+          renderTreasuryBillMethodDetails(bond, currency);
           return;
         }
         var factDate = function (metric, fallback) {
@@ -3332,14 +3403,17 @@
         el("asofPortfolioNote").textContent = portfolio ? (portfolio.status === "official" ? "IBKR 官方日结" : portfolio.status) + " · 采集 " + utcDateTime(portfolio.sourceAt) : "不影响历史行情与研究";
         if (isBondDetail()) {
           var bond = state.detail.fixedIncome || {}, lifecycleBond = dates.lifecycle || {}, lotsBond = dates.positionLots || {};
+          var isBill = bond.instrumentType === "treasury_bill";
           el("asofMarketLabel").textContent = "合同与完成收盘";
           el("asofMarket").textContent = compactToIso(bond.valuationDate);
           el("asofMarketNote").textContent = "合同到期 " + compactToIso(bond.maturityDate) + " · 持有到期口径";
           el("asofLifecycle").textContent = compactToIso(lifecycleBond.statementThrough);
           el("asofLifecycleNote").textContent = "报表始于 " + compactToIso(lifecycleBond.statementCoverageStart) + " · 最近事件 " + compactToIso(lifecycleBond.latestEventDate);
-          el("asofLotsResearchLabel").textContent = "持仓批次 / 利息";
+          el("asofLotsResearchLabel").textContent = isBill ? "持仓批次 / 结算" : "持仓批次 / 利息";
           el("asofLotsResearch").textContent = lotsBond.asOf ? compactToIso(lotsBond.asOf) : "批次尚不可用";
-          el("asofLotsResearchNote").textContent = "已收票息 " + money(bond.paidInterest, state.detail.instrument.currency, 2) + " · 购买应计 " + money(bond.purchasedAccruedInterest, state.detail.instrument.currency, 2);
+          el("asofLotsResearchNote").textContent = isBill
+            ? "计划结算 " + compactToIso(bond.treasuryBill && bond.treasuryBill.settlementEvidence && bond.treasuryBill.settlementEvidence.scheduledSettlementDateTarget && bond.treasuryBill.settlementEvidence.scheduledSettlementDateTarget.value) + " · actual settlement 缺失"
+            : "已收票息 " + money(bond.paidInterest, state.detail.instrument.currency, 2) + " · 购买应计 " + money(bond.purchasedAccruedInterest, state.detail.instrument.currency, 2);
           return;
         }
         el("asofMarketLabel").textContent = "行情覆盖";
@@ -3498,12 +3572,15 @@
         var performance = state.detail.accountPerformance || {};
         var currency = performance.currency || state.detail.instrument.currency;
         var isBond = isBondDetail(), bond = state.detail.fixedIncome || {};
+        var isBill = bond.instrumentType === "treasury_bill";
         el("closedPositionTotalLabel").textContent = isBond ? "未实现盈亏" : "平仓合计";
-        el("dividendTotalLabel").textContent = isBond ? "已收票息" : "股息合计";
+        el("dividendTotalLabel").textContent = isBill ? "票息收支" : (isBond ? "已收票息" : "股息合计");
         el("aggregateReturnLabel").textContent = "归总收益";
         el("comprehensiveCostLabel").textContent = isBond ? "实际投入" : "综合成本";
         el("annualizedReturnLabel").textContent = "年化收益";
-        el("annualizedReturnNote").textContent = isBond ? "持有期资金加权 XIRR" : "资金加权 XIRR";
+        el("annualizedReturnNote").textContent = isBill && performance.holdingClockQuality === "same_day_no_elapsed_period"
+          ? "同日买入，尚无经过期间"
+          : isBond ? "持有期资金加权 XIRR" : "资金加权 XIRR";
         el("totalReturnLabel").textContent = "总回报率";
         [
           ["closedPositionTotal", isBond ? bond.unrealizedPnl : performance.closedPositionTotal, true],
@@ -3515,10 +3592,14 @@
         });
         el("annualizedReturn").textContent = signedPercentRatio(performance.annualizedTotalReturn, 2);
         setClassBySign(el("annualizedReturn"), performance.annualizedTotalReturn);
-        el("annualizedReturn").title = performance.annualizedReturnMethodology || performance.methodology || "";
+        el("annualizedReturn").title = isBill && performance.holdingClockQuality === "same_day_no_elapsed_period"
+          ? "完成收盘日与买入日相同；年化收益缺失，不记为零"
+          : performance.annualizedReturnMethodology || performance.methodology || "";
         el("totalReturn").textContent = signedPercentRatio(performance.totalReturn, 2);
         setClassBySign(el("totalReturn"), performance.totalReturn);
-        el("totalReturn").title = performance.totalReturnMethodology || performance.methodology || "";
+        el("totalReturn").title = isBill && performance.holdingClockQuality === "same_day_no_elapsed_period"
+          ? "完成收盘日与买入日相同；总回报率缺失，不记为零"
+          : performance.totalReturnMethodology || performance.methodology || "";
         el("totalReturnPeriod").textContent =
           performance.holdingPeriodStartDate && finite(performance.holdingPeriodDays) != null
             ? compactToIso(performance.holdingPeriodStartDate) + " 起 · 实际持仓 " +
@@ -4143,9 +4224,16 @@
         hinge.append(hingeLabel, document.createTextNode(" " + (result.decisionHinge || "—")));
         body.appendChild(hinge);
 
+        var purchaseYieldLabel = securityRisk.purchaseYieldLabelZh || "购入实际 XIRR";
+        var purchaseYieldValue = securityRisk.purchaseYieldPct == null
+          ? securityRisk.purchaseActualXirrPct
+          : securityRisk.purchaseYieldPct;
+        var purchaseYieldNote = securityRisk.purchaseYieldQualifierZh
+          ? securityRisk.purchaseYieldQualifierZh + (securityRisk.purchaseYieldStatus === "model_derived_proxy" ? " · 未使用实际结算日" : "")
+          : "含手续费与购买应计利息的实际现金流";
         var metrics = document.createElement("div"); metrics.className = "morningstar-metrics fixed-income-research-metrics";
         [
-          ["购入实际 XIRR", percent(securityRisk.purchaseActualXirrPct, 4), "含手续费与购买应计利息的实际现金流"],
+          [purchaseYieldLabel, percent(purchaseYieldValue, 4), purchaseYieldNote],
           ["修正久期", number(securityRisk.modifiedDurationYears, 2) + " 年", "收益率变动的一阶价格敏感度"],
           ["个券 DV01", money(securityRisk.dv01UsdPerBp, "USD", 2), "收益率上移 1bp 的一阶价值影响"],
           ["预计持有到期净收益", money(securityRisk.projectedHtmNetGainUsd, "USD", 2), "税前名义金额，不计票息再投资"]
@@ -4179,15 +4267,21 @@
           ["利率 +100bp", scenarioImpact.plus100bp],
           ["利率 +150bp", scenarioImpact.plus150bp]
         ];
-        var scenarios = document.createElement("div"); scenarios.className = "valuation-grid";
-        scenarioRows.forEach(function (entry) {
-          var item = document.createElement("article"); item.className = "valuation-item";
-          var name = document.createElement("div"); name.className = "valuation-name"; name.textContent = entry[0];
-          var value = document.createElement("div"); value.className = "valuation-price"; value.textContent = money(entry[1], "USD", 2); setClassBySign(value, entry[1]);
-          var note = document.createElement("div"); note.className = "valuation-reference"; note.textContent = "固定合同现金流完整重估";
-          item.append(name, value, note); scenarios.appendChild(item);
-        });
-        body.appendChild(scenarios);
+        if (scenarioRows.some(function (entry) { return finite(entry[1]) != null; })) {
+          var scenarios = document.createElement("div"); scenarios.className = "valuation-grid";
+          scenarioRows.forEach(function (entry) {
+            var item = document.createElement("article"); item.className = "valuation-item";
+            var name = document.createElement("div"); name.className = "valuation-name"; name.textContent = entry[0];
+            var value = document.createElement("div"); value.className = "valuation-price"; value.textContent = money(entry[1], "USD", 2); setClassBySign(value, entry[1]);
+            var note = document.createElement("div"); note.className = "valuation-reference"; note.textContent = "固定合同现金流完整重估";
+            item.append(name, value, note); scenarios.appendChild(item);
+          });
+          body.appendChild(scenarios);
+        } else {
+          var scenarioUnavailable = document.createElement("p"); scenarioUnavailable.className = "section-note";
+          scenarioUnavailable.textContent = "个券六档利率冲击：已接受研究未提供逐档金额，保持缺失；组合压力结果仍保留在风险基线。";
+          body.appendChild(scenarioUnavailable);
+        }
         var portfolioLine = document.createElement("p"); portfolioLine.className = "section-note";
         portfolioLine.textContent = "组合基线：修正久期 " + number(portfolioRisk.modifiedDurationYears, 2)
           + " 年 · DV01 " + money(portfolioRisk.dv01UsdPerBp, "USD", 2) + "／bp · STRIPS 占国债 DV01 "
@@ -4229,11 +4323,12 @@
         qualityGrid.classList.toggle("bond-quality-grid", isBondDetail());
         if (isBondDetail()) {
           var bond = state.detail.fixedIncome || {}, fixed = domains.fixedIncome || {}, quality = fixed.quality || bond.quality || {};
+          var isBill = bond.instrumentType === "treasury_bill";
           var bondConfigurations = [
-            ["完成收盘", quality.completedClose, compactToIso(bond.valuationDate) + " · 净清算值与面值换算"],
-            ["债券合同", quality.contract, (bond.couponRate == null ? "票息待核验" : percent(bond.couponRate * 100, 3)) + " · " + compactToIso(bond.maturityDate)],
-            ["购入现金流", quality.acquisition, "成本、手续费与购买应计利息"],
-            ["利息现金流", quality.interest, "已收票息与购买应计逐笔归集"],
+            ["完成收盘", quality.completedClose, compactToIso(bond.valuationDate) + (isBill ? " · clean market-value basis" : " · 净清算值与面值换算")],
+            ["固定收益合同", quality.contract, (bond.couponRate == null ? "票息待核验" : percent(bond.couponRate * 100, 3)) + " · " + compactToIso(bond.maturityDate)],
+            ["购入现金流", quality.acquisition, isBill ? "证券净价、佣金、provider 成本与舍入分列" : "成本、手续费与购买应计利息"],
+            [isBill ? "结算证据" : "利息现金流", quality.interest, isBill ? "scheduled 与 actual 分离；actual 缺失不补零" : "已收票息与购买应计逐笔归集"],
             ["持仓批次", domains.positionLots && domains.positionLots.status, domains.positionLots && domains.positionLots.asOf ? compactToIso(domains.positionLots.asOf) + " · " + number(domains.positionLots.count, 0) + " 个批次" : "尚未取得 Lot 粒度"],
             ["固定收益研究", domains.research && domains.research.status, domains.research && domains.research.count ? "当前版本 " + number(domains.research.count, 0) : "尚未建立研究基线"]
           ];
@@ -4275,12 +4370,22 @@
       }
       function renderMethodFooter() {
         if (isBondDetail()) {
-          el("footerAccountMethod").textContent = "IBKR 官方完成收盘、交易成本、持仓批次与债券利息流水";
+          var bond = state.detail.fixedIncome || {};
+          var isBill = bond.instrumentType === "treasury_bill";
+          el("footerAccountMethod").textContent = isBill
+            ? "IBKR 官方完成收盘、交易净价、佣金、provider 成本基础与账本舍入"
+            : "IBKR 官方完成收盘、交易成本、持仓批次与债券利息流水";
           el("footerMarketLabel").textContent = "固定收益合同";
-              el("footerMarketMethod").textContent = "每 US$100 面值完成收盘估值；票息、到期日与合同现金流独立展示";
+              el("footerMarketMethod").textContent = isBill
+                ? "每 US$100 面值完成收盘净价；久期、凸性与 DV01 使用 clean market-value 基础"
+                : "每 US$100 面值完成收盘估值；票息、到期日与合同现金流独立展示";
               el("footerResearchLabel").textContent = "研究边界";
-              el("footerResearchMethod").textContent = "持有期反推 YTM、购入实际 XIRR 与固定收益研究分层；研究不授权交易";
-          el("footerDisclaimer").textContent = "购买应计利息计入实际投入但不进入 IBKR 证券成本基础；合同现金流合计不是当前价值。本机页面不会发送交易指令，不构成交易建议。";
+                  el("footerResearchMethod").textContent = isBill
+                    ? "国库券收益率 taxonomy 与研究判断分层；本页只实现技术模型，不导入研究版本或授权交易"
+                    : "持有期反推 YTM、购入实际 XIRR 与固定收益研究分层；研究不授权交易";
+              el("footerDisclaimer").textContent = isBill
+                ? "成交日起算估算不等于 actual settlement-date return；scheduled settlement 不证明已结算。合同现金流合计不是当前价值，本机页面不会发送交易指令。"
+                : "购买应计利息计入实际投入但不进入 IBKR 证券成本基础；合同现金流合计不是当前价值。本机页面不会发送交易指令，不构成交易建议。";
           return;
         }
         el("footerAccountMethod").textContent = "最近获审核完成收盘持仓与生命周期资料";
@@ -4311,8 +4416,8 @@
         el("serviceNotice").classList.remove("error");
         el("serviceNotice").innerHTML = state.detail.publicStatic
           ? '<span class="status-dot" aria-hidden="true"></span><span><strong>公开静态资料已载入。</strong> Flex、行情与研究保留各自更新时间；页面不连接券商或本机服务。</span>'
-              : (isBond
-                ? '<span class="status-dot" aria-hidden="true"></span><span><strong>本机固定收益资料已载入。</strong> 完成收盘、购入现金流、利息与持有到期合同现金流已分别勾稽。</span>'
+                  : (isBond
+                    ? '<span class="status-dot" aria-hidden="true"></span><span><strong>本机固定收益资料已载入。</strong> 完成收盘、购入现金流、结算状态与持有到期合同现金流已分别勾稽。</span>'
             : '<span class="status-dot" aria-hidden="true"></span><span><strong>本机资料已载入。</strong> 所有账户事实均为只读完成收盘；持仓计税单位仅接受 IBKR 官方 Lot 粒度。</span>');
       }
       function showError(error) {
