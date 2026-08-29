@@ -1,11 +1,11 @@
 {
   "detail": {
     "accountPerformance": {
-      "aggregateReturn": -11.52,
+      "aggregateReturn": -24.02,
       "annualizedReturnMethodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。",
-      "annualizedTotalReturn": -0.012414492545795408,
+      "annualizedTotalReturn": -0.025385917781660994,
       "cashFlowQuality": "complete",
-      "closedPositionTotal": -3.25,
+      "closedPositionTotal": -15.75,
       "comprehensiveCost": 4814.25,
       "costBasisResidual": null,
       "costBasisXirr": null,
@@ -16,17 +16,17 @@
       "dividendTotal": 0.0,
       "excludedNoPositionDays": 0,
       "feeTotal": 5.0,
-      "holdingCalendarDays": 70,
+      "holdingCalendarDays": 71,
       "holdingClockQuality": "complete",
-      "holdingPeriodDays": 70,
-      "holdingPeriodEndDate": "20260827",
+      "holdingPeriodDays": 71,
+      "holdingPeriodEndDate": "20260828",
       "holdingPeriodStartDate": "20260618",
       "methodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "realizedPnl": 0.0,
       "realizedPnlYtd": 0.0,
-      "totalReturn": -0.0023928960899060048,
+      "totalReturn": -0.004989354520371969,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
-      "valuationDate": "20260827"
+      "valuationDate": "20260828"
     },
     "barSelection": {
       "series": []
@@ -42,17 +42,17 @@
     },
     "coverage": [],
     "currentHolding": {
-      "closePrice": 0.9605459999999999,
+      "closePrice": 95.804688,
       "currency": "USD",
-      "dailyPnl": -1.57,
-      "dailyPnlPct": -0.03252297,
-      "marketValue": 4802.73,
-      "portfolioWeightPct": 4.658072462375131,
+      "dailyPnl": -12.5,
+      "dailyPnlPct": -0.2602684,
+      "marketValue": 4790.23,
+      "portfolioWeightPct": 4.640677749673579,
       "quantity": 5000.0,
-      "sourceAt": "2026-08-28T17:27:35.080327Z",
+      "sourceAt": "2026-08-29T09:19:05.649785Z",
       "status": "official",
-      "unrealizedPnl": -3.25,
-      "valuationDate": "20260827"
+      "unrealizedPnl": -15.75,
+      "valuationDate": "20260828"
     },
     "dataAsOf": {
       "lifecycle": {
@@ -62,18 +62,18 @@
         "statementThrough": "20260723"
       },
       "portfolioClose": {
-        "sourceAt": "2026-08-28T17:27:35.080327Z",
+        "sourceAt": "2026-08-29T09:19:05.649785Z",
         "status": "official",
-        "valuationDate": "20260827"
+        "valuationDate": "20260828"
       },
       "positionLots": {
-        "asOf": "20260827",
-        "sourceAt": "2026-08-28T17:27:35.080327Z",
+        "asOf": "20260828",
+        "sourceAt": "2026-08-29T09:19:05.649785Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete"
       },
       "research": {
-        "latestAsOfDate": "20260821"
+        "latestAsOfDate": "20260828"
       }
     },
     "dataGaps": [],
@@ -110,7 +110,7 @@
           "status": "unavailable"
         },
         "positionLots": {
-          "asOf": "20260827",
+          "asOf": "20260828",
           "count": 1,
           "coverageStatus": "complete",
           "message": null,
@@ -227,11 +227,17 @@
     ],
     "fixedIncome": {
       "acquisitionCashOutflow": 4814.25,
-      "actualTotalReturn": -0.0023928960899060048,
+      "actualTotalReturn": -0.004989354520371969,
       "actualYield": 0.04188662965512695,
       "actualYieldQuality": "complete",
-      "aggregateReturn": -11.52,
+      "aggregateReturn": -24.02,
+      "annualizedReturnMethodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。",
+      "annualizedReturnQuality": "complete",
+      "annualizedReturnRootCount": 1,
+      "annualizedTotalReturn": -0.025385917781660994,
       "cashFlowMethodology": "按代码所载票面息率、到期日和当前持有面值生成合同半年现金流；日期是合同日，不推断周末或假日导致的实际入账日。",
+      "cashFlowQuality": "complete",
+      "cashFlowReconciliationResidual": -4.369837824924616e-13,
       "cashFlows": [
         {
           "coupon": 68.75,
@@ -277,22 +283,32 @@
         }
       ],
       "completedCloseValueMethod": "完成收盘净清算值除以持有面值，再换算为每 US$100 面值；不把该值宣称为独立核验的 clean price 或 dirty price。",
-      "completedCloseValuePer100": 96.0546,
+      "completedCloseValuePer100": 95.804688,
       "contractCode": "T 2 3/4 05/31/29",
       "contractName": "United States Treasury 2.750% due 2029-05-31",
       "contractNameZh": "美国财政部附息国债 · 票面利率 2.750% · 2029-05-31 到期",
       "couponRate": 0.0275,
       "currentCost": 4805.98,
-      "currentCouponIncomeYield": 0.028629550276613513,
+      "currentCouponIncomeYield": 0.02870425845940592,
+      "displayAcquisitionYield": null,
+      "displayAcquisitionYieldLabel": null,
+      "displayAcquisitionYieldQualifier": null,
+      "displayAcquisitionYieldStatus": null,
       "displayName": "US Treasury 2.750% 2029-05-31",
+      "excludedNoPositionDays": 0,
       "expectedCouponCount": 6,
       "expectedCouponTotal": 412.5,
       "faceValue": 5000.0,
       "feeTotal": 5.0,
+      "holdingCalendarDays": 71,
+      "holdingClockQuality": "complete",
+      "holdingPeriodDays": 71,
+      "holdingPeriodEndDate": "20260828",
+      "holdingPeriodStartDate": "20260618",
       "instrumentType": "coupon_treasury",
       "issuer": "United States Department of the Treasury",
       "issuerLabelZh": "美国财政部",
-      "marketValue": 4802.73,
+      "marketValue": 4790.23,
       "marketYieldAsOf": "2026-08-24T09:31:25.585763Z",
       "marketYieldAsk": null,
       "marketYieldBid": null,
@@ -333,8 +349,8 @@
       "remainingCashFlowTotal": 5412.5,
       "remainingCouponTotal": 412.5,
       "remainingPrincipal": 5000.0,
-      "remainingTermDays": 1008,
-      "remainingTermYears": 2.7598102630444155,
+      "remainingTermDays": 1007,
+      "remainingTermYears": 2.757072356037427,
       "sources": {
         "acquisition": "IBKR Activity Flex trade and cost basis",
         "completedClose": "IBKR Activity Flex official completed close",
@@ -342,9 +358,13 @@
         "interest": "IBKR Activity Flex bond-interest cash transactions"
       },
       "status": "pass",
+      "totalReturn": -0.004989354520371969,
+      "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
+      "totalReturnQuality": "complete",
+      "totalReturnRootCount": 1,
       "tradeCostTotal": 4805.98,
-      "unrealizedPnl": -3.25,
-      "valuationDate": "2026-08-27",
+      "unrealizedPnl": -15.75,
+      "valuationDate": "2026-08-28",
       "yieldReference": {
         "closestSeriesId": "DGS2",
         "message": "已载入三条附近期限序列。",
@@ -355,12 +375,12 @@
           "valuePct": 4.188663
         },
         "securityYieldSeries": {
-          "coverageEnd": "2026-08-27",
+          "coverageEnd": "2026-08-28",
           "coverageStart": "2026-06-18",
           "label": "本债券持有期估算 YTM",
           "message": "个券线来自买入后的 Statement／Flex 完成收盘价格链；TWS 直接 YIELD_BID_ASK 仅用于重叠残差验收，未与主序列拼接。",
           "methodVersion": "treasury_clean_price_ytm_v1",
-          "pointCount": 49,
+          "pointCount": 50,
           "points": [
             [
               "2026-06-18",
@@ -557,6 +577,10 @@
             [
               "2026-08-27",
               4.281796
+            ],
+            [
+              "2026-08-28",
+              4.38614
             ]
           ],
           "providerValidation": {
@@ -581,7 +605,7 @@
         "series": [
           {
             "closestTenor": true,
-            "coverageEnd": "2026-08-24",
+            "coverageEnd": "2026-08-27",
             "coverageStart": "2016-08-29",
             "label": "2 年期",
             "points": [
@@ -10568,6 +10592,18 @@
               [
                 "2026-08-24",
                 4.24
+              ],
+              [
+                "2026-08-25",
+                4.17
+              ],
+              [
+                "2026-08-26",
+                4.19
+              ],
+              [
+                "2026-08-27",
+                4.2
               ]
             ],
             "seriesId": "DGS2",
@@ -10578,7 +10614,7 @@
           },
           {
             "closestTenor": false,
-            "coverageEnd": "2026-08-24",
+            "coverageEnd": "2026-08-27",
             "coverageStart": "2016-08-29",
             "label": "5 年期",
             "points": [
@@ -20565,6 +20601,18 @@
               [
                 "2026-08-24",
                 4.41
+              ],
+              [
+                "2026-08-25",
+                4.35
+              ],
+              [
+                "2026-08-26",
+                4.37
+              ],
+              [
+                "2026-08-27",
+                4.38
               ]
             ],
             "seriesId": "DGS5",
@@ -20575,7 +20623,7 @@
           },
           {
             "closestTenor": false,
-            "coverageEnd": "2026-08-24",
+            "coverageEnd": "2026-08-27",
             "coverageStart": "2016-08-29",
             "label": "10 年期",
             "points": [
@@ -30562,6 +30610,18 @@
               [
                 "2026-08-24",
                 4.7
+              ],
+              [
+                "2026-08-25",
+                4.64
+              ],
+              [
+                "2026-08-26",
+                4.66
+              ],
+              [
+                "2026-08-27",
+                4.67
               ]
             ],
             "seriesId": "DGS10",
@@ -30572,8 +30632,8 @@
           }
         ],
         "status": "pass",
-        "windowEnd": "2026-08-27",
-        "windowStart": "2016-08-27"
+        "windowEnd": "2026-08-28",
+        "windowStart": "2016-08-28"
       }
     },
     "fundProfile": {
@@ -30582,7 +30642,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-08-29T07:34:37.011936Z",
+    "generatedAt": "2026-08-29T13:57:57.677877Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BOND",
@@ -30593,7 +30653,7 @@
       "englishName": "T 2 3/4 05/31/29",
       "firstSeenDate": "20260618",
       "instrumentKind": "us_treasury",
-      "lastSeenDate": "20260827",
+      "lastSeenDate": "20260828",
       "primaryExchange": null,
       "status": "active",
       "symbols": [
@@ -30602,7 +30662,7 @@
           "exchange": null,
           "firstSeenDate": "20260618",
           "isPrimary": true,
-          "lastSeenDate": "20260827",
+          "lastSeenDate": "20260828",
           "symbol": "T 2 3/4 05/31/29"
         }
       ]
@@ -30614,44 +30674,44 @@
       "status": "not_collected"
     },
     "positionLots": {
-      "asOf": "20260827",
+      "asOf": "20260828",
       "items": [
         {
           "acquisitionDate": "20260618",
           "averagePrice": 96.1196,
           "costBasisMoney": 4805.98,
           "currency": "USD",
-          "marketPrice": 96.054688,
-          "marketValue": 4802.73,
+          "marketPrice": 95.804688,
+          "marketValue": 4790.23,
           "pnlCurrency": "USD",
           "quantity": 5000.0,
-          "totalPnl": -3.25,
-          "totalPnlPct": -0.000676240849941115
+          "totalPnl": -15.75,
+          "totalPnlPct": -0.003277167195868481
         }
       ],
-      "sourceAt": "2026-08-28T17:27:35.080327Z",
+      "sourceAt": "2026-08-29T09:19:05.649785Z",
       "sourceMode": "official_activity_flex_lot",
       "status": "complete",
       "summary": {
         "costBasis": 4805.98,
         "quantity": 5000.0,
-        "totalPnl": -3.25,
-        "totalPnlPct": -0.000676240849941115
+        "totalPnl": -15.75,
+        "totalPnlPct": -0.003277167195868481
       }
     },
     "providerResearch": [],
     "publicStatic": true,
     "research": [
       {
-        "asOfDate": "20260821",
+        "asOfDate": "20260828",
         "assessmentType": "fixed_income_research",
-        "completedAt": "2026-08-21T09:40:40.178968Z",
-        "frameworkVersion": "treasury-role-and-risk-v2.1",
+        "completedAt": "2026-08-29T13:13:13.282311Z",
+        "frameworkVersion": "fixed-income-research-workflow-v2.0",
         "result": {
-          "cashDecision": "defer_no_add_duration_and_choose_neither",
+          "cashDecision": "defer_no_automatic_roll_and_no_add_over_5y_duration",
           "cashFlowLadder": {
             "2026": 123.75,
-            "2027": 247.5,
+            "2027": 5247.5,
             "2028": 2235.0,
             "2029": 5153.75,
             "2030": 85.0,
@@ -30665,127 +30725,171 @@
             "2049": 3000.0,
             "2051": 3000.0
           },
-          "decisionHinge": "当前决定为持有现有七券且不新增 2036／2046。Treasury 回购扩容只改善部分合资格旧券的流动性，不等同 QE、未证明净久期移除，也不足以建立持久利率下行或美元贬值机制；任何未来新增久期都必须先另行解除现行规则并取得新鲜执行证据。",
-          "evidenceConfidence": "high_for_program_and_existing_positions_medium_for_new_money_relative_value",
+          "decisionHinge": "新 bill 以很小的边际 DV01 增加明确的 2027-08-05 合同兑付，并降低八券加权久期；这支持继续持有到期和保留短端灵活性，但风险指标低于门槛并不是新增 STRIPS、推进 2036 或跨越约五年剩余期限门禁的理由。",
+          "evidenceConfidence": "high_for_contract_and_completed_close_mixed_for_relative_carry_and_execution",
           "missingEvidence": [
-            "2026-09-09 之后扩容回购的最终合资格券、最终单次上限、实际接受额和交易后流动性尚未产生。",
-            "当前证券级 bid／ask、收益率和深度未请求；不能把研究升级为可执行方案。",
-            "当前订单、现金、保证金、结算和资金来源未请求；UTC 2026-08-18 的订单只作历史证据。",
-            "四只超长期 STRIPS 尚未逐一对应明确的家庭用途、金额和日期容忍度。",
-            "个人税务与 STRIPS OID 影响尚未纳入个性化税后收益。"
+            "实际结算日、实际结算现金账本和实际结算日起算 XIRR。",
+            "当前 bill、BOXX、FRN 及 2030—2031 候选的可执行 bid／ask／depth。",
+            "当前订单、现金、保证金、结算和资金来源。",
+            "用户税务身份下的税后比较。",
+            "BOXX 的实际持有期税后回报，而非发行人指示性收益。",
+            "精确 2030／2031 候选证券、规模、报价与行动后组合风险。",
+            "个券六档平行利率冲击金额未在已接受候选中逐档给出，因此保持 missing，不从久期／凸性补造。"
           ],
           "monitoring": [
             {
-              "baseline": "扩容操作自 2026-09-09 开始；当前只有公告容量，不是实际接受额",
-              "challengingDirection": "最终上限、实际接受额或流动性改善低于预期，或效果只维持单日。",
-              "confirmingDirection": "连续四至六周出现较高接受率、bid/ask 改善和可持续的相对价值修复。",
-              "metric": "Treasury 回购实际结果"
+              "baseline": "本券到期兑付 US$5,000；不自动续作",
+              "challengingDirection": "近端流动性需求、提前出售需要或合同兑付异常使持有到期假设不再成立。",
+              "confirmingDirection": "到期前约 30—45 天用当时可执行报价、费用、现金与结算证据完成 bill／BOXX／FRN／近端 bill 比较。",
+              "metric": "2027-08-05 到期与续作决定"
             },
             {
-              "baseline": "近期 20 年拍卖仍有序，但 bid-to-cover 与 indirect 走弱",
-              "challengingDirection": "20／30 年连续两次 tail 超过 1bp、dealer take 超过 15% 或 indirect 低于 60%。",
-              "confirmingDirection": "20／30 年拍卖持续无明显 tail，dealer take 与 indirect 结构改善。",
-              "metric": "拍卖与长端供给"
+              "baseline": "DV01/NAV 0.01102235%／bp；+100bp 1.022086%；+150bp 1.477029%；STRIPS DV01 70.25936%",
+              "challengingDirection": "被动价格／NAV 变化、新证券或有效订单使任一注意线或 future-add gate 被触发。",
+              "confirmingDirection": "现有风险继续低于注意线，且新增行动前以全持仓和全部有效订单重算后仍通过门禁。",
+              "metric": "八券行动后风险"
             },
             {
-              "baseline": "UTC 2026-08-20 长端 nominal 与 real yields 仍由供给、通胀、实际利率和期限溢价共同主导",
-              "challengingDirection": "实际利率、期限溢价或财政供给重新上行；广义美元与收益率单日波动彼此反转。",
-              "confirmingDirection": "real yields 与期限溢价在多周证据中持续下降，同时拍卖与流动性改善。",
-              "metric": "利率与美元机制"
+              "baseline": "本 bill 费后成交日起算有效 XIRR 估算 3.920433%；BOXX 只作指示性静态 carry 比较",
+              "challengingDirection": "BOXX 净 carry、bill spread／commission、FRN 或 1—5 年曲线变化足以反转排序。",
+              "confirmingDirection": "未来可执行 bill 报价、佣金与持有期限仍在流动性约束下提供更有吸引力的合同回报。",
+              "metric": "短端相对收益与流动性"
             },
             {
-              "baseline": "DV01/NAV 0.010645%／bp；STRIPS 占国债 DV01 72.75%",
-              "challengingDirection": "现金流异常、持有到期能力变化，或任一关注线被动触发。",
-              "confirmingDirection": "合同票息与本金正常、持有到期能力不变且风险保持在获批关注线内。",
-              "metric": "合同现金流与组合风险"
+              "baseline": "2026-08-28 曲线变动以前端和实际／政策利率重新定价为主",
+              "challengingDirection": "实际利率、期限溢价或财政供给继续上升，使长端机会成本和 STRIPS 风险进一步恶化。",
+              "confirmingDirection": "通胀、实际利率、期限溢价与拍卖证据共同改善，且不需跨越现行期限门禁。",
+              "metric": "宏观与供给窗口"
             }
           ],
           "portfolioJudgments": [
-            "现有七券继续承担短中期附息债合同现金流节点与超长期 STRIPS 远期整笔本金的杠铃角色；合同现金流未因回购公告改变。",
-            "Treasury 长端回购扩容改善合资格 off-the-run 名义附息债的流动性和相对价值发现，但不等同 Fed QE、不显著降低私人持有净借款，也未证明持久的净久期移除。",
-            "STRIPS 不在现行拟回购类别内。四只现有 STRIPS 贡献约 72.75% 的国债 DV01，继续持有到期不代表其通胀、实际利率、期限溢价和流动性风险为零。",
-            "UTC 2026-08-19 至 2026-08-20 的收益率与美元反应不足以建立长期美元贬值或长期利率下行机制；单日事件反应不作为交易规则。",
-            "四情景当前排序为两者都不做、只做 2036（仅在规则未来解除后的相对首选）、只做 2046、两者都做。用户已选择两者都不做。"
+            "新 T-bill 强化而非改变现行固定收益逻辑；相对七券，直接 Treasury 市值增加约 37.62%，组合 DV01 只增加约 4.04%，加权修正久期由 8.55 降至 6.46。",
+            "既有七券与新 bill 均继续持有到期；新 bill 的显示亏损可由成交净价至收盘 mark、佣金及 provider 美分账本舍入完整桥接，不改变 US$5,000 到期合同现金流。",
+            "新增资金继续延期：不自动续作 bill，不新增 STRIPS，不推进 2036，也不跨越行动日约五年的剩余期限门禁。",
+            "BOXX 与 T-bill 是互补工具。静态 carry 比较支持本 bill 的成交条件，但不构成税后保证、BOXX 出售决定或资金可用证明。",
+            "八券 DV01/NAV、+100bp、+150bp 与 STRIPS DV01 占比均低于现行注意线；满足门槛只证明尚未触发复核，不构成增持依据。"
           ],
           "portfolioRisk": {
-            "convexityYears2": 141.391,
-            "dv01NavPctPerBp": 0.010645,
-            "dv01UsdPerBp": 10.8953,
-            "faceValueUsd": 21000.0,
-            "marketValueUsd": 12783.14384,
-            "modifiedDurationYears": 8.523,
-            "navWeightPct": 12.4896,
-            "plus100bpLossNavPct": 0.976,
-            "plus150bpLossNavPct": 1.398,
-            "stripsDv01SharePct": 72.75,
-            "stripsMarketValueSharePct": 32.3242,
-            "valuationDate": "20260820"
+            "convexityYears2": 103.70199,
+            "dv01NavPctPerBp": 0.01102235,
+            "dv01UsdPerBp": 11.377556,
+            "marketValueUsd": 17607.18701,
+            "modifiedDurationYears": 6.461882,
+            "navUsd": 103222.638123,
+            "navWeightPct": 17.05749,
+            "plus100bpLossNavPct": 1.022086,
+            "plus100bpLossUsd": 1055.02414,
+            "plus150bpLossNavPct": 1.477029,
+            "plus150bpLossUsd": 1524.6283,
+            "riskBasis": "clean_market_value",
+            "securityCount": 8,
+            "stripsDv01SharePct": 70.25936,
+            "valuationDate": "20260828"
           },
-          "portfolioRole": "barbell_fixed_income_partially_confirmed",
-          "portfolioRoleZh": "短中期附息债合同现金流节点与超长期 STRIPS 远期整笔本金构成的杠铃；继续按持有到期管理，长期 STRIPS 的具体家庭用途仍待确认。",
-          "researchMaturity": "active",
+          "portfolioRole": "eight_security_fixed_income_barbell_with_short_term_bill_layer",
+          "portfolioRoleZh": "七只附息国债／STRIPS 与一只 Treasury Bill 构成的八券固定收益组合；新 bill 补充短端流动性与收益锁定层，强化但不改变既有持有到期逻辑。",
+          "researchMaturity": "research_ready_not_implementation_ready",
           "securityRisk": {
-            "convexityYears2": 8.31,
-            "durationYears": 2.6736,
-            "dv01UsdPerBp": 1.258,
-            "modifiedDurationYears": 2.618,
+            "assetClass": "BOND",
+            "convexityYears2": 8.1803,
+            "durationYears": null,
+            "dv01UsdPerBp": 1.243462,
+            "marketValueUsd": 4790.2344,
+            "modifiedDurationYears": 2.595827,
             "portfolioRoleZh": "近中期主要本金／再部署研究节点",
             "projectedHtmNetGainUsd": 598.25,
             "purchaseActualXirrPct": 4.1887,
+            "riskBasis": "clean_market_value",
+            "scenarioImpactStatus": "not_provided_in_accepted_candidate",
             "scenarioImpactUsd": {
-              "minus100bp": 127.8,
-              "minus150bp": 193.2,
-              "minus50bp": 63.4,
-              "plus100bp": -123.81,
-              "plus150bp": -184.22,
-              "plus50bp": -62.4
+              "minus100bp": null,
+              "minus150bp": null,
+              "minus50bp": null,
+              "plus100bp": null,
+              "plus150bp": null,
+              "plus50bp": null
             },
             "summaryZh": "2029 年到期附息国债继续按持有到期管理，是近中期主要本金与再部署节点。长端回购扩容对其没有直接影响；到期后先保留短久期、BOXX 或现金选择权，再按既定程序研究。"
           },
           "sourceRegister": [
             {
-              "asOf": "20260819",
-              "label": "U.S. Treasury 长端回购扩容公告",
-              "url": "https://home.treasury.gov/news/press-releases/sb0607"
+              "asOf": "20260827",
+              "label": "31 CFR Part 356 Appendix B",
+              "url": "https://www.ecfr.gov/current/title-31/subtitle-B/chapter-II/subchapter-A/part-356/appendix-Appendix%20B%20to%20Part%20356"
             },
             {
-              "asOf": "20260805",
-              "label": "U.S. Treasury 2026-08-05 Quarterly Refunding",
-              "url": "https://home.treasury.gov/news/press-releases/sb0590"
+              "asOf": "20260828",
+              "label": "U.S. Treasury daily nominal curve",
+              "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&type=daily_treasury_yield_curve"
             },
             {
-              "asOf": "20260821",
-              "label": "TreasuryDirect Buyback FAQ",
-              "url": "https://www.treasurydirect.gov/help-center/faqs/buyback-faqs/"
+              "asOf": "20260828",
+              "label": "U.S. Treasury daily real curve",
+              "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&type=daily_treasury_real_yield_curve"
             },
             {
-              "asOf": "20260820",
-              "label": "U.S. Treasury 名义与实际收益率曲线",
-              "url": "https://home.treasury.gov/treasury-daily-interest-rate-xml-feed"
+              "asOf": "20260828",
+              "label": "U.S. Treasury daily bill rates",
+              "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&type=daily_treasury_bill_rates"
             },
             {
-              "asOf": "20260820",
-              "label": "U.S. Treasury 拍卖结果",
+              "asOf": "20260806",
+              "label": "TreasuryDirect target security and auction API",
+              "url": "https://www.treasurydirect.gov/TA_WS/securities/search?maturityDate=2027-08-05&format=json"
+            },
+            {
+              "asOf": "20260827",
+              "label": "TreasuryDirect auction results",
               "url": "https://www.treasurydirect.gov/auctions/announcements-data-results/announcement-results-press-releases/auction-results/"
             },
             {
+              "asOf": "20260819",
+              "label": "U.S. Treasury borrowing estimates",
+              "url": "https://home.treasury.gov/news/press-releases/sb0584"
+            },
+            {
+              "asOf": "20260805",
+              "label": "U.S. Treasury Quarterly Refunding",
+              "url": "https://home.treasury.gov/news/press-releases/sb0590"
+            },
+            {
+              "asOf": "20260819",
+              "label": "U.S. Treasury long-end buyback release",
+              "url": "https://home.treasury.gov/news/press-releases/sb0607"
+            },
+            {
               "asOf": "20260729",
-              "label": "Federal Reserve 2026-07 Monetary Policy Report",
-              "url": "https://www.federalreserve.gov/monetarypolicy/2026-07-mpr-part2.htm"
+              "label": "Federal Reserve July 2026 FOMC statement",
+              "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm"
+            },
+            {
+              "asOf": "20260828",
+              "label": "Federal Reserve Chair speech",
+              "url": "https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm"
+            },
+            {
+              "asOf": "20260826",
+              "label": "NY Fed ACM term premium",
+              "url": "https://www.newyorkfed.org/research/data_indicators/term-premia-tabs"
+            },
+            {
+              "asOf": "20260826",
+              "label": "BOXX official provider",
+              "url": "https://funds.alphaarchitect.com/boxetf/"
             }
           ],
           "tradeAuthorization": {
-            "meaningZh": "现有七券继续持有到期；用户选择不新增 2036 附息债或 2046 STRIP。该结论不授权下单、改单、暂停或取消任何券商订单。",
+            "meaningZh": "本研究只支持现有八券继续持有到期并保持观察；不授权出售 BOXX、安排资金、创建、修改、取消或传送任何券商订单。",
             "status": "no_trade_authorization"
           }
         },
         "reviewStatus": "current",
-        "sourceLabel": "美国国债回购扩容与美元影响复核",
-        "sourceVersion": "v2.1",
+        "sourceLabel": "八券固定收益研究更新（Treasury Bill 首次覆盖）",
+        "sourceVersion": "v3.0",
         "status": "active",
         "summary": "2029 年到期附息国债继续按持有到期管理，是近中期主要本金与再部署节点。长端回购扩容对其没有直接影响；到期后先保留短久期、BOXX 或现金选择权，再按既定程序研究。",
-        "updatedAt": "2026-08-21T09:40:40.178968Z",
-        "version": 3
+        "updatedAt": "2026-08-29T13:13:13.282311Z",
+        "version": 4
       }
     ],
     "researchHistory": [],
@@ -30812,8 +30916,8 @@
         "totals": {
           "costBasis": 4805.98,
           "quantity": 5000.0,
-          "totalPnl": -3.25,
-          "totalPnlPct": -0.000676240849941115
+          "totalPnl": -15.75,
+          "totalPnlPct": -0.003277167195868481
         }
       },
       "research": {
@@ -30825,7 +30929,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-08-29T07:34:30.226911Z",
+  "generatedAt": "2026-08-29T13:57:52.224517Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "UST-2029-05-31"
