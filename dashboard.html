@@ -1365,11 +1365,9 @@
       <div class="workspace-nav-scroll">
         <div class="workspace-nav-links">
           <a class="workspace-nav-link" href="index.html">首页</a>
-          <!-- FAMILY:DASHBOARD_CASH_FLOW_NAV:START -->
-          <a class="workspace-nav-link" href="cashflow.html">现金流量</a>
-          <!-- FAMILY:DASHBOARD_CASH_FLOW_NAV:END -->
+          <!-- FAMILY:DASHBOARD_CASH_FLOW_NAV:START --><span class="workspace-nav-link" aria-disabled="true">现金流量</span><!-- FAMILY:DASHBOARD_CASH_FLOW_NAV:END -->
           <a class="workspace-nav-link" href="dashboard.html" aria-current="page">投资组合</a>
-          <a class="workspace-nav-link" href="instrument.html">证券研究</a>
+          <!-- FAMILY:DASHBOARD_INSTRUMENT_NAV:START --><span class="workspace-nav-link" aria-disabled="true">证券研究</span><!-- FAMILY:DASHBOARD_INSTRUMENT_NAV:END -->
           <!-- FAMILY:DASHBOARD_DECISION_NAV:START --><span class="workspace-nav-link" aria-disabled="true">交易决策</span><!-- FAMILY:DASHBOARD_DECISION_NAV:END -->
           <!-- FAMILY:DASHBOARD_MARKET_NAV:START --><span class="workspace-nav-link" aria-disabled="true">市场监控</span><!-- FAMILY:DASHBOARD_MARKET_NAV:END -->
           <span class="workspace-nav-link" aria-disabled="true">期权雷达</span>
@@ -3353,15 +3351,8 @@
             td.appendChild(category);
           } else if (cell.amount != null) {
             setAccountingMoney(td, cell.amount, { signed: cell.signed, digits: 2 });
-          } else if (cell.instrumentSymbol && state.instrumentCatalogBySymbol[cell.instrumentSymbol]) {
-            var instrument = state.instrumentCatalogBySymbol[cell.instrumentSymbol];
-            var link = document.createElement("a");
-            link.className = "symbol-link";
-            link.href = "instrument.html?symbol=" + encodeURIComponent(instrument.symbol);
-            link.textContent = cell.value;
-            link.setAttribute("aria-label", cell.value + " 证券详情");
-            td.appendChild(link);
-          } else {
+          /* FAMILY:DASHBOARD_INSTRUMENT_POSITION_LINK:START *//* FAMILY:DASHBOARD_INSTRUMENT_POSITION_LINK:END */
+          else {
             td.textContent = cell.value;
           }
           if (cell.className) td.className = cell.className;
@@ -3604,18 +3595,9 @@
             name.className = "symbol";
             var bondSymbol = instrumentCatalogKeyFor(position);
             var instrument = state.instrumentCatalogBySymbol[bondSymbol];
-            if (instrument) {
-              var link = document.createElement("a");
-              var routeParameter = instrument.routeParameter === "symbol" ? "symbol" : "security";
-              var routeValue = routeParameter === "symbol" ? instrument.symbol : instrument.securityId;
-              link.className = "symbol-link";
-              link.href = "instrument.html?" + routeParameter + "=" + encodeURIComponent(routeValue);
-              link.textContent = reference.name;
-              link.setAttribute("aria-label", reference.name + " 固定收益详情");
-              name.appendChild(link);
-            } else {
-              name.textContent = reference.name;
-            }
+            /* FAMILY:DASHBOARD_INSTRUMENT_BOND_LINK:START */
+            name.textContent = reference.name;
+            /* FAMILY:DASHBOARD_INSTRUMENT_BOND_LINK:END */
             tr.appendChild(name);
 
             var faceValue = document.createElement("td");
@@ -4287,27 +4269,8 @@
       }
 
       /* FAMILY:DASHBOARD_INSTRUMENT_CATALOG:START */
-      async function loadInstrumentCatalog() {
-        try {
-          var response = await fetch("data/instruments/manifest.json", { cache: "no-store" });
-          if (!response.ok) return;
-          var manifest = await response.json();
-          var next = {};
-          Object.keys(manifest.instruments || {}).forEach(function (symbol) {
-            var normalized = String(symbol || "").toUpperCase();
-            if (normalized) {
-              next[normalized] = {
-                symbol: normalized,
-                securityId: normalized
-              };
-            }
-          });
-          state.instrumentCatalogBySymbol = next;
-          renderPositions();
-          renderBonds();
-        } catch (error) {
-          console.warn("Public instrument catalog unavailable; keeping symbols as plain text.", error);
-        }
+      function loadInstrumentCatalog() {
+        return Promise.resolve();
       }
       /* FAMILY:DASHBOARD_INSTRUMENT_CATALOG:END */
 
