@@ -3351,6 +3351,7 @@
             td.appendChild(category);
           } else if (cell.amount != null) {
             setAccountingMoney(td, cell.amount, { signed: cell.signed, digits: 2 });
+          }
           /* FAMILY:DASHBOARD_INSTRUMENT_POSITION_LINK:START *//* FAMILY:DASHBOARD_INSTRUMENT_POSITION_LINK:END */
           else {
             td.textContent = cell.value;
