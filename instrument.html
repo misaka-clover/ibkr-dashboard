@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
-  <title>持仓详情 · 投资组合透明计划</title>
+  <title>证券研究 · 投资组合透明计划</title>
   <link rel="stylesheet" href="assets/workspace-shell.css?v=ed7f50f35dbe">
   <style>
     :root { --detail-blue-soft: #e8f1f7; --detail-gold: #bd8c28; --detail-green: #14804a; --detail-red: #c7353b; }
@@ -32,9 +32,26 @@
     .detail-method-item { min-height: 92px; padding: 15px; background: #f9fbfc; }
     .detail-method-value { margin-top: 7px; color: #163b59; font: 700 12px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; overflow-wrap: anywhere; }
     .detail-boundary { margin-top: 30px; padding: 16px 18px; border: 1px solid #dfe4e8; background: #f8fafb; color: #56636e; font-size: 12px; line-height: 1.65; }
+    .directory-section { margin-top: 34px; }
+    .directory-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(22,59,89,.14); }
+    .directory-kicker { margin: 0 0 4px; color: #2f6f9f; font-size: 10px; font-weight: 780; letter-spacing: .14em; text-transform: uppercase; }
+    .directory-title { margin: 0; color: #163b59; font-size: 21px; letter-spacing: -.02em; }
+    .directory-count { color: #66717d; font: 700 11px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; white-space: nowrap; }
+    .directory-list { border-top: 1px solid rgba(22,59,89,.13); }
+    .directory-row { display: grid; grid-template-columns: minmax(210px, 1.35fr) minmax(120px, .65fr) minmax(150px, .8fr) auto; gap: 18px; align-items: center; min-height: 86px; padding: 15px 4px; border-bottom: 1px solid rgba(22,59,89,.12); }
+    .directory-symbol { color: #163b59; font: 780 15px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    .directory-name { margin-top: 4px; color: #56636e; font-size: 11px; line-height: 1.45; }
+    .directory-label { color: #66717d; font-size: 9px; font-weight: 760; letter-spacing: .06em; text-transform: uppercase; }
+    .directory-value { margin-top: 5px; color: #163b59; font-size: 12px; font-weight: 700; }
+    .directory-badge { display: inline-flex; width: fit-content; padding: 4px 7px; border: 1px solid #bfd4e2; background: #eef5f9; color: #2f6f9f; font-size: 9px; font-weight: 760; }
+    .directory-badge.candidate { border-color: #e3d09d; background: #fff8e8; color: #80611d; }
+    .directory-link { color: #2f6f9f; font-size: 11px; font-weight: 730; text-decoration: none; white-space: nowrap; }
+    .directory-link:hover { text-decoration: underline; }
+    .directory-empty { padding: 22px 4px; border-bottom: 1px solid rgba(22,59,89,.12); color: #66717d; font-size: 12px; }
     [hidden] { display: none !important; }
     @media (max-width: 860px) { .detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .detail-method { grid-template-columns: 1fr; } }
-    @media (max-width: 560px) { .detail-hero { grid-template-columns: 1fr; } .detail-grid { grid-template-columns: 1fr; } .detail-back { justify-self: start; } }
+    @media (max-width: 760px) { .directory-row { grid-template-columns: 1fr 1fr; } .directory-action { justify-self: start; } }
+    @media (max-width: 560px) { .detail-hero { grid-template-columns: 1fr; } .detail-grid { grid-template-columns: 1fr; } .detail-back { justify-self: start; } .directory-row { grid-template-columns: 1fr; gap: 10px; } }
   </style>
 </head>
 <body>
@@ -44,7 +61,7 @@
       <a class="workspace-nav-link" href="index.html">首页</a>
       <span class="workspace-nav-link" aria-disabled="true">现金流量</span>
       <a class="workspace-nav-link" href="dashboard.html">投资组合</a>
-      <span class="workspace-nav-link" aria-disabled="true">证券研究</span>
+      <a class="workspace-nav-link" href="instrument.html" aria-current="page">证券研究</a>
       <span class="workspace-nav-link" aria-disabled="true">交易决策</span>
       <span class="workspace-nav-link" aria-disabled="true">市场监控</span>
       <span class="workspace-nav-link" aria-disabled="true">期权雷达</span>
@@ -52,24 +69,45 @@
     </div></nav>
   </header>
   <main class="detail-shell">
-    <section class="detail-hero">
-      <div><p class="detail-eyebrow">COMPLETED-CLOSE HOLDING DETAIL</p><h1 class="detail-title" id="detailTitle">持仓详情</h1><p class="detail-subtitle" id="detailSubtitle">正在读取与 Dashboard 相同的公开完成收盘资料。</p></div>
-      <a class="detail-back" href="dashboard.html">← 返回投资组合</a>
+    <section id="instrumentDirectoryView">
+      <section class="detail-hero">
+        <div><p class="detail-eyebrow">SECURITY RESEARCH DIRECTORY</p><h1 class="detail-title">证券研究</h1><p class="detail-subtitle">当前持有与候选研究分开列示；目录只使用获准公开的静态身份与完成收盘资料。</p></div>
+        <a class="detail-back" href="dashboard.html">查看投资组合 →</a>
+      </section>
+      <div class="detail-status" id="directoryStatus">正在读取公开 Dashboard 的同源资料。</div>
+      <section class="directory-section">
+        <div class="directory-head"><div><p class="directory-kicker">Current Holdings</p><h2 class="directory-title">当前持有</h2></div><span class="directory-count" id="heldCount">—</span></div>
+        <div class="directory-list" id="heldDirectory"></div>
+      </section>
+      <section class="directory-section">
+        <div class="directory-head"><div><p class="directory-kicker">Research Candidates</p><h2 class="directory-title">候选研究</h2></div><span class="directory-count" id="candidateCount">—</span></div>
+        <div class="directory-list" id="candidateDirectory"></div>
+      </section>
+      <div class="detail-boundary"><strong>家庭版边界：</strong>目录展示当前完成收盘持仓与获准公开的候选身份。候选不代表当前持仓、交易决定或买入授权；研究正文、行情包、订单、现金流、税批次和下载数据包仍不公开。</div>
     </section>
-    <div class="detail-status" id="detailStatus">正在读取公开 Dashboard 的同源资料。</div>
-    <section id="detailContent" hidden>
-      <div class="detail-grid" id="detailMetrics"></div>
-      <section class="detail-section" id="fixedIncomeSection" hidden><h2 class="detail-section-title">固定收益合同摘要</h2><div class="detail-grid" id="fixedIncomeMetrics"></div></section>
-      <section class="detail-section"><h2 class="detail-section-title">资料与口径</h2><div class="detail-method" id="detailMethod"></div></section>
-      <div class="detail-boundary"><strong>家庭版边界：</strong>本页只重组 Dashboard 已公开的完成收盘持仓与固定收益摘要，不提供证券研究目录、行情历史、公司事件、现金流、订单、税批次或下载数据包。完整 Instrument 仍只在本地私人产品中提供。</div>
+    <section id="instrumentDetailView" hidden>
+      <section class="detail-hero">
+        <div><p class="detail-eyebrow">COMPLETED-CLOSE HOLDING DETAIL</p><h1 class="detail-title" id="detailTitle">持仓详情</h1><p class="detail-subtitle" id="detailSubtitle">正在读取与 Dashboard 相同的公开完成收盘资料。</p></div>
+        <a class="detail-back" href="instrument.html">← 返回证券研究</a>
+      </section>
+      <div class="detail-status" id="detailStatus">正在读取公开 Dashboard 的同源资料。</div>
+      <section id="detailContent" hidden>
+        <div class="detail-grid" id="detailMetrics"></div>
+        <section class="detail-section" id="fixedIncomeSection" hidden><h2 class="detail-section-title">固定收益合同摘要</h2><div class="detail-grid" id="fixedIncomeMetrics"></div></section>
+        <section class="detail-section"><h2 class="detail-section-title">资料与口径</h2><div class="detail-method" id="detailMethod"></div></section>
+        <div class="detail-boundary"><strong>家庭版边界：</strong>详情只重组 Dashboard 已公开的完成收盘持仓与固定收益摘要；完整研究正文、行情历史、公司事件、现金流、订单、税批次和下载数据包仍不公开。</div>
+      </section>
     </section>
   </main>
-  <script id="instrumentStaticConfig" type="application/json">{"mode":"public-dashboard-projection-v1","source":"dashboard.html","routes":["symbol","security"],"directory":false,"packages":false}</script>
+  <script id="instrumentStaticConfig" type="application/json">{"mode":"public-dashboard-projection-v2","source":"dashboard.html","routes":["directory","symbol","security"],"directory":true,"packages":false,"candidates":[{"symbol":"XLF","displayName":"State Street Financial Select Sector SPDR ETF","displayNameZh":"State Street 金融精选行业 SPDR ETF","instrumentKind":"etf","currency":"USD"},{"symbol":"XLV","displayName":"State Street Health Care Select Sector SPDR ETF","displayNameZh":"State Street 医疗保健精选行业 SPDR ETF","instrumentKind":"etf","currency":"USD"}]}</script>
   <script>
     (function () {
       "use strict";
       var statusNode = document.getElementById("detailStatus");
       var contentNode = document.getElementById("detailContent");
+      var directoryView = document.getElementById("instrumentDirectoryView");
+      var detailView = document.getElementById("instrumentDetailView");
+      var config = JSON.parse(document.getElementById("instrumentStaticConfig").textContent);
       var params = new URLSearchParams(window.location.search);
       var route = params.has("security") ? "security" : params.has("symbol") ? "symbol" : "";
       var requested = route ? String(params.get(route) || "").trim().toUpperCase() : "";
@@ -84,15 +122,21 @@
       function addMethod(label, value) { var item = document.createElement("div"); item.className = "detail-method-item"; var labelNode = document.createElement("div"); labelNode.className = "detail-label"; labelNode.textContent = label; var valueNode = document.createElement("div"); valueNode.className = "detail-method-value"; valueNode.textContent = value; item.append(labelNode, valueNode); document.getElementById("detailMethod").appendChild(item); }
       function jsonScript(documentNode, id) { var node = documentNode.getElementById(id); if (!node) throw new Error("公开 Dashboard 缺少 " + id); return JSON.parse(node.textContent); }
       function fail(message) { statusNode.className = "detail-status error"; statusNode.textContent = message; contentNode.hidden = true; }
+      function category(position) { var assetClass = String(position.assetClass || "").toUpperCase(); return assetClass === "BILL" ? "国库债券" : assetClass === "BOND" ? (String(position.name || "").includes("STRIPS") ? "零息国债" : "附息国债") : "股票／ETF"; }
+      function publicKey(position) { return String(position.familyBondKey || position.symbol || position.name || "").trim().toUpperCase(); }
+      function detailHref(position) { var assetClass = String(position.assetClass || "").toUpperCase(); var route = assetClass === "BOND" || assetClass === "BILL" ? "security" : "symbol"; return "instrument.html?" + route + "=" + encodeURIComponent(publicKey(position)); }
+      function directoryCell(root, label, value) { var cell = document.createElement("div"); var labelNode = document.createElement("div"); var valueNode = document.createElement("div"); labelNode.className = "directory-label"; labelNode.textContent = label; valueNode.className = "directory-value"; valueNode.textContent = value; cell.append(labelNode, valueNode); root.appendChild(cell); }
+      function appendHolding(root, position, nav) { var row = document.createElement("article"); row.className = "directory-row"; var identity = document.createElement("div"); var symbol = document.createElement("div"); var name = document.createElement("div"); symbol.className = "directory-symbol"; symbol.textContent = publicKey(position); name.className = "directory-name"; name.textContent = String(position.name || publicKey(position)); identity.append(symbol, name); row.appendChild(identity); directoryCell(row, "资产类别", category(position)); directoryCell(row, "净清算值／组合权重", moneyText(position.marketValue) + " · " + percent(number(position.marketValue) / nav)); var action = document.createElement("div"); action.className = "directory-action"; var link = document.createElement("a"); link.className = "directory-link"; link.href = detailHref(position); link.textContent = "查看持仓详情 →"; action.appendChild(link); row.appendChild(action); root.appendChild(row); }
+      function appendCandidate(root, candidate) { var row = document.createElement("article"); row.className = "directory-row"; var identity = document.createElement("div"); var symbol = document.createElement("div"); var name = document.createElement("div"); symbol.className = "directory-symbol"; symbol.textContent = candidate.symbol; name.className = "directory-name"; name.textContent = candidate.displayName + (candidate.displayNameZh ? " · " + candidate.displayNameZh : ""); identity.append(symbol, name); row.appendChild(identity); directoryCell(row, "资产类别", candidate.instrumentKind === "etf" ? "ETF" : "股票"); directoryCell(row, "研究边界", "候选研究 · 非当前持仓"); var badge = document.createElement("span"); badge.className = "directory-badge candidate"; badge.textContent = "候选研究"; row.appendChild(badge); root.appendChild(row); }
+      function dashboardProjection() { return fetch("dashboard.html", { cache: "no-store" }).then(function (response) { if (!response.ok) throw new Error("公开 Dashboard 返回 " + response.status); return response.text(); }).then(function (html) { var source = new DOMParser().parseFromString(html, "text/html"); return { snapshot: jsonScript(source, "familySnapshot"), lifecycle: jsonScript(source, "ibkrLifecycleMetrics") }; }); }
+      function renderDirectory(data) { var positions = Array.isArray(data.snapshot.positions) ? data.snapshot.positions.slice() : []; var nav = number(data.snapshot.summary && data.snapshot.summary.netLiquidation); if (nav == null || nav <= 0) throw new Error("公开 Dashboard 缺少有效组合净值"); positions.sort(function (a, b) { return category(a).localeCompare(category(b), "zh-Hans") || publicKey(a).localeCompare(publicKey(b), "en"); }); var heldKeys = new Set(positions.map(publicKey)); var candidates = config.candidates.filter(function (candidate) { return !heldKeys.has(candidate.symbol); }); var heldRoot = document.getElementById("heldDirectory"); var candidateRoot = document.getElementById("candidateDirectory"); positions.forEach(function (position) { appendHolding(heldRoot, position, nav); }); candidates.forEach(function (candidate) { appendCandidate(candidateRoot, candidate); }); if (!positions.length) { var empty = document.createElement("div"); empty.className = "directory-empty"; empty.textContent = "当前完成收盘档案没有可列示的持仓。"; heldRoot.appendChild(empty); } if (!candidates.length) { var candidateEmpty = document.createElement("div"); candidateEmpty.className = "directory-empty"; candidateEmpty.textContent = "当前没有获准公开且不在持仓中的候选研究标的。"; candidateRoot.appendChild(candidateEmpty); } document.getElementById("heldCount").textContent = positions.length + " 个标的"; document.getElementById("candidateCount").textContent = candidates.length + " 个候选"; var valuationDate = dateText(data.snapshot.regularSession && data.snapshot.regularSession.valuationDate); document.getElementById("directoryStatus").textContent = "公开证券研究目录已载入；完成收盘估值日 " + valuationDate + "。"; }
 
-      if (!requested) { fail("请从 Dashboard 的标的代码或债券名称进入本页；家庭版不提供独立证券研究目录。"); return; }
-      fetch("dashboard.html", { cache: "no-store" }).then(function (response) {
-        if (!response.ok) throw new Error("公开 Dashboard 返回 " + response.status);
-        return response.text();
-      }).then(function (html) {
-        var source = new DOMParser().parseFromString(html, "text/html");
-        var snapshot = jsonScript(source, "familySnapshot");
-        var lifecycle = jsonScript(source, "ibkrLifecycleMetrics");
+      if (!requested) { dashboardProjection().then(renderDirectory).catch(function (error) { var node = document.getElementById("directoryStatus"); node.className = "detail-status error"; node.textContent = "证券研究目录未通过公开读取合同：" + error.message + "。"; }); return; }
+      directoryView.hidden = true;
+      detailView.hidden = false;
+      dashboardProjection().then(function (data) {
+        var snapshot = data.snapshot;
+        var lifecycle = data.lifecycle;
         var positions = Array.isArray(snapshot.positions) ? snapshot.positions : [];
         var position = positions.find(function (row) {
           var symbol = String(row.symbol || row.name || "").trim().toUpperCase();
@@ -100,14 +144,14 @@
           return route === "security" ? security === requested : symbol === requested;
         });
         if (!position) throw new Error("该标的不在当前公开完成收盘持仓中");
-        var key = String(position.familyBondKey || position.symbol || position.name || "").trim().toUpperCase();
+        var key = publicKey(position);
         var metric = lifecycle.metrics && lifecycle.metrics[key] || null;
         var assetClass = String(position.assetClass || "").toUpperCase();
         var fixedIncome = assetClass === "BOND" || assetClass === "BILL";
-        var category = assetClass === "BILL" ? "国库债券" : assetClass === "BOND" ? (String(position.name).includes("STRIPS") ? "零息国债" : "附息国债") : "股票／ETF";
-        document.title = String(position.name || key) + " · 持仓详情";
+        var categoryLabel = category(position);
+        document.title = String(position.name || key) + " · 投资组合透明计划";
         document.getElementById("detailTitle").textContent = String(position.name || key);
-        document.getElementById("detailSubtitle").textContent = key + " · " + category + " · 公开完成收盘持仓摘要";
+        document.getElementById("detailSubtitle").textContent = key + " · " + categoryLabel + " · 公开完成收盘持仓摘要";
         statusNode.textContent = "已载入与 Dashboard 相同的公开静态投影；估值日 " + dateText(snapshot.regularSession && snapshot.regularSession.valuationDate) + "。";
         var metrics = document.getElementById("detailMetrics");
         addMetric(metrics, fixedIncome ? "持有面值" : "持有数量", quantity(position.quantity), fixedIncome ? "美国国债票面金额" : "完成收盘持仓数量");
@@ -116,15 +160,15 @@
         addMetric(metrics, "综合成本价", number(position.averagePrice) == null ? "—" : number(position.averagePrice).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 6 }), fixedIncome ? "每 US$100 面值" : "每股／单位");
         addMetric(metrics, "当日盈亏", moneyText(position.dailyPnl, true), percent(position.dailyPnlRate, true), signClass(position.dailyPnl));
         addMetric(metrics, "未实现盈亏", moneyText(position.unrealizedPnl, true), "完成收盘账面变化", signClass(position.unrealizedPnl));
-        addMetric(metrics, "资产类别", category, assetClass);
+        addMetric(metrics, "资产类别", categoryLabel, assetClass);
         addMetric(metrics, "组合权重", percent(number(position.marketValue) / number(snapshot.summary && snapshot.summary.netLiquidation)), "以完成收盘 NAV 为分母");
         if (fixedIncome) {
           var fixedRoot = document.getElementById("fixedIncomeMetrics");
           var bill = metric && metric.treasuryBill;
           var purchaseYield = assetClass === "BILL" ? metric && metric.displayAcquisitionYield : metric && metric.actualYield;
           var purchaseYieldNote = assetClass === "BILL" ? metric && metric.displayAcquisitionYieldQualifier : "持有到期现金流 XIRR";
-          var coupon = assetClass === "BILL" || String(position.name).includes("STRIPS") ? 0 : Number((String(position.name).match(/([0-9]+(?:.[0-9]+)?)%/) || [])[1]) / 100;
-          var maturity = assetClass === "BILL" && bill ? bill.maturityDate : (String(position.name).match(/d{4}-d{2}-d{2}$/) || ["—"])[0];
+          var coupon = assetClass === "BILL" || String(position.name).includes("STRIPS") ? 0 : Number((String(position.name).match(/([0-9]+(?:\.[0-9]+)?)%/) || [])[1]) / 100;
+          var maturity = assetClass === "BILL" && bill ? bill.maturityDate : (String(position.name).match(/\d{4}-\d{2}-\d{2}$/) || ["—"])[0];
           addMetric(fixedRoot, assetClass === "BILL" ? (metric.displayAcquisitionYieldLabel || "费后成交日起算有效 XIRR") : "实际息率", percent(purchaseYield), purchaseYieldNote || "缺失时不补零");
           addMetric(fixedRoot, "票息", percent(coupon), assetClass === "BILL" ? "零票息合同" : String(position.name).includes("STRIPS") ? "零息国债" : "年票面利率");
           addMetric(fixedRoot, "到期日", maturity, "合同到期日");
