@@ -971,17 +971,18 @@
       <div class="quality-grid" id="qualityGrid"></div>
     </section>
 
+    <!-- FAMILY:INSTRUMENT_DIRECTORY_DETAIL_CLOSE:START --></div><!-- FAMILY:INSTRUMENT_DIRECTORY_DETAIL_CLOSE:END -->
+
     <footer>
       <div class="footer-head"><p class="footer-kicker">DATA &amp; METHOD</p><h2 class="footer-title">数据口径</h2></div>
       <div class="footer-meta-grid">
-        <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓与生命周期资料</span></div>
-        <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线与申报日起生效的基本面事实分别留存日期</span></div>
-        <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报与项目独立分析分栏、分版本、分日期</span></div>
-        <div class="footer-meta-item"><span class="footer-meta-label">页面角色</span><span class="footer-meta-value">公开家庭版静态包 · 只读</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v5.1.0</span><time class="footer-meta-value" datetime="2026-09-05T14:10:01Z">2026-09-05 14:10 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
-    <!-- FAMILY:INSTRUMENT_DIRECTORY_DETAIL_CLOSE:START --></div><!-- FAMILY:INSTRUMENT_DIRECTORY_DETAIL_CLOSE:END -->
   </main>
 
   <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:START -->
@@ -4535,15 +4536,15 @@
         if (isBondDetail()) {
           var bond = state.detail.fixedIncome || {};
           var isBill = bond.instrumentType === "treasury_bill";
-          el("footerAccountMethod").textContent = isBill
-            ? "IBKR 官方完成收盘、交易净价、佣金、provider 成本基础与账本舍入"
-            : "IBKR 官方完成收盘、交易成本、持仓批次与债券利息流水";
+          el("footerAccountMethod").innerText = isBill
+            ? "IBKR 官方完成收盘\n交易净价与佣金\nprovider 成本基础与账本舍入"
+            : "IBKR 官方完成收盘\n交易成本与持仓批次\n债券利息流水";
           el("footerMarketLabel").textContent = "固定收益合同";
-              el("footerMarketMethod").textContent = isBill
-                ? "每 US$100 面值完成收盘净价；久期、凸性与 DV01 使用 clean market-value 基础"
-                : "每 US$100 面值完成收盘估值；票息、到期日与合同现金流独立展示";
+              el("footerMarketMethod").innerText = isBill
+                ? "每 US$100 面值完成收盘净价\n久期、凸性与 DV01：clean market-value 基础"
+                : "每 US$100 面值完成收盘估值\n票息、到期日与合同现金流独立展示";
               el("footerResearchLabel").textContent = "研究资料";
-                  el("footerResearchMethod").textContent = isBill
+                  el("footerResearchMethod").innerText = isBill
                     ? "国库券收益率口径与研究判断分层展示"
                     : "持有期反推 YTM、购入实际 XIRR 与固定收益研究分层展示";
               el("footerDisclaimer").textContent = isBill
@@ -4551,11 +4552,11 @@
                 : "购买应计利息计入实际投入但不进入 IBKR 证券成本基础；合同现金流合计不是当前价值。本机页面不会发送交易指令，不构成交易建议。";
           return;
         }
-        el("footerAccountMethod").textContent = "最近获审核完成收盘持仓与生命周期资料";
+        el("footerAccountMethod").innerText = "最近获审核完成收盘持仓\n生命周期资料";
         el("footerMarketLabel").textContent = "市场历史";
-        el("footerMarketMethod").textContent = "IBKR 日线与申报日起生效的基本面事实分别留存日期";
+        el("footerMarketMethod").innerText = "IBKR 日线\n申报日起生效的基本面事实\n两者分别保留日期";
         el("footerResearchLabel").textContent = "研究资料";
-        el("footerResearchMethod").textContent = "外部研报与项目独立分析分栏、分版本、分日期";
+        el("footerResearchMethod").innerText = "外部研报\n项目独立分析\n分栏、分版本、分日期";
         el("footerDisclaimer").textContent = "不同资料域不共用一个虚假的更新时间；缺失字段不会估填。本机页面不会发送交易指令，不构成交易建议。";
       }
       function renderAll() {
