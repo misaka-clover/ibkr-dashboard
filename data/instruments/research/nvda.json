@@ -1,0 +1,586 @@
+{
+  "detail": {
+    "dataAsOf": {
+      "research": {
+        "latestAsOfDate": "20260831",
+        "providerPublishedDate": "20260827",
+        "providerVerifiedAt": "2026-08-31T11:19:00Z"
+      }
+    },
+    "dataQuality": {
+      "domains": {
+        "research": {
+          "count": 3,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "pass"
+        }
+      }
+    },
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Brian Colello, CPA",
+          "role": "Senior Equity Analyst"
+        },
+        "freshness": {
+          "ageDays": 4.604880503587963,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "Morningstar 在 FY2027 Q2 后把公允价值由 US$280 上调至 US$310，并继续以宽护城河、很高不确定性和优秀资本配置评价 NVIDIA。其三阶段模型比本项目内部筛查模型更乐观：后期收入与 FCFF 更高，WACC 约 9.8%，还通过长期淡化期与回购减股支持每股价值；约 66.9% 的公司价值来自后两个阶段。可见估值表从企业价值到股权价值仍存在约 US$220B 未解释差额，因此本项目把 US$310 视为独立外部偏乐观情景，不与内部 US$220.07 基准值平均，也不据此形成新增资金或交易结论。",
+        "metrics": {
+          "capitalAllocation": "exemplary",
+          "economicMoat": "wide",
+          "fairValue": 310,
+          "fairValueCurrency": "USD",
+          "fairValueUpdatedDate": "20260827",
+          "ratingStars": 4,
+          "ratingUpdatedDate": "20260724",
+          "uncertainty": "very_high"
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260827",
+        "sections": {
+          "bearish": [
+            "约三分之二公司价值来自后两个阶段，长期假设对估值影响很大。",
+            "自研芯片、现金转换和生态融资风险可能使后期收入、利润率或估值倍数低于模型。"
+          ],
+          "bullish": [
+            "FY2027—FY2031 收入与 FCFF 路径高于内部基准，长期淡化期及回购减股支持更高每股价值。",
+            "NVIDIA 的完整平台仍可能在训练和多样化推理工作负载中维持优先地位。"
+          ],
+          "capitalAllocation": [
+            "Morningstar 继续给予优秀资本配置评价。",
+            "本项目对大额权益投资、云采购、回购与或有支持保持独立监控，不直接采用发布方标签。"
+          ],
+          "economicMoat": [
+            "宽护城河判断来自 CUDA、GPU、网络互连、系统设计和开发者生态。",
+            "定制推理芯片已经进入实际部署，平台优势不等于在所有推理负载中免疫份额流失。"
+          ],
+          "fairValue": [
+            "公允价值由 US$280 上调至 US$310；报告价 US$209.66 对应 Price/FVE 约 0.68。",
+            "模型 WACC 约 9.8%，低于本项目内部筛查情景 10.5%。",
+            "可见企业价值至股权价值桥存在约 US$220B 未解释差额，本项目不作猜测修复。"
+          ],
+          "financialHealth": [
+            "强利润与流动性支持研发、供应链安排、投资和股东回报。",
+            "权益证券收益必须与经营利润及 FCFF 分开，保证与承诺也不能按已发生现金流处理。"
+          ],
+          "strategyOutlook": [
+            "三阶段模型通过较长淡化期刻画 AI 基础设施增长，而非把当前增速永久外推。",
+            "本项目把 US$310 保留为外部情景；新增资金仍需内部估值安全边际和需求质量证据。"
+          ],
+          "uncertainty": [
+            "不确定性仍为很高；长期需求、毛利率、客户融资和定制芯片会显著改变估值。",
+            "应收、DSO、采购与容量承诺、生态投资及担保需要用现金回收逐季验证。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/stocks/xnas/nvda",
+        "title": "NVIDIA Equity Research Report — FY2027 Q2 update",
+        "verifiedAt": "2026-08-31T11:19:00Z",
+        "version": 3
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
+    "research": [
+      {
+        "asOfDate": "20260831",
+        "assessmentType": "equity_research",
+        "completedAt": "UTC 2026-09-01 12:51",
+        "frameworkVersion": "IBKR-Public-Equity-Research-Workflow-4.0+research-collaboration-v5",
+        "result": {
+          "actionState": "hold_current_no_add",
+          "bearCase": [
+            "应收、延长付款条件、担保或生态融资增速持续快于第三方终端需求和现金回收。",
+            "定制加速器在重要推理工作负载中造成可观察的份额或定价损失。",
+            "毛利率持续低于 70%，而当前估值仍依赖高增长、高利润率与较大终值。"
+          ],
+          "bullCase": [
+            "收入和毛利率继续兑现指引，且现金转换恢复、DSO 回落。",
+            "NVIDIA 在训练和多样化推理工作负载中维持平台定价与部署广度。",
+            "Rubin、Vera CPU、NVLink 和网络产品扩大整机系统价值。"
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "经营论点继续成立，但新增资金需要更好的估值安全边际，并需由现金转换、应收质量和生态融资风险证明需求质量；低于 20 股上限本身不是增持理由。",
+          "evidenceConfidence": "medium",
+          "existingPositionAction": "hold",
+          "existingPositionDecision": "hold_15_shares",
+          "facts": [
+            {
+              "asOf": "20260826",
+              "label": "reported_fact",
+              "text": "FY2027 Q2 收入 US$96.221B，数据中心收入 US$89.023B；下一季收入指引中点为 US$108B。"
+            },
+            {
+              "asOf": "20260827",
+              "label": "reported_fact",
+              "text": "DSO 由上季 45 天升至 60 天，应收账款较财年末增长 64%，库存增长 48%。"
+            },
+            {
+              "asOf": "20260827",
+              "label": "reported_fact",
+              "text": "Q2 自由现金流 US$21.341B，只相当于 non-GAAP 净利润约 39.55%；利润表强度与现金质量需要分开判断。"
+            }
+          ],
+          "falsifiers": [
+            "连续两个季度 DSO 高于 60 天且自由现金流低于 non-GAAP 净利润的 45%，又没有可逆解释。",
+            "发生重大担保兑付、客户违约、重组或减值，表明客户信用损失正在由 NVIDIA 吸收。",
+            "定制加速器造成可观察的定价权或重要客户推理份额损失。",
+            "毛利率在当前产品转换窗口后仍连续两个季度低于 70%。"
+          ],
+          "fiveLayerDecisionSummary": {
+            "actionFalsifiersAndGaps": {
+              "evidenceClass": "my_judgment_missing_and_unresolved",
+              "status": "hold_and_monitor_not_implementation_ready",
+              "summary": "维持 15 股、暂不新增、20 股上限不变；重点反证包括持续弱现金转换、DSO 高位、担保提款或客户信用损失、过渡期后毛利率低于 70% 和定制芯片造成可见份额或定价流失。当前执行盘口、订单、现金、完整 WACC 与客户级利用率仍缺失。"
+            },
+            "latestEvidenceDelta": {
+              "evidenceClass": "reported_fact_and_independently_derived",
+              "status": "operating_evidence_stronger_cash_quality_risk_higher",
+              "summary": "Q2 收入、数据中心收入和 Q3 指引显著强于旧基线；60 天 DSO、应收和库存扩张、39.55% 的 FCF/非 GAAP 净利润，以及投资、采购承诺与担保使回款和终端利用率成为主要验证点。"
+            },
+            "longTermThesisAndStatus": {
+              "evidenceClass": "my_judgment",
+              "status": "maintained_with_lower_quality_confidence",
+              "summary": "NVIDIA 的全栈计算、网络与软件生态继续支撑长期 AI 基础设施卫星论点；定制推理芯片与生态融资没有推翻护城河，但降低了对份额稳定性和需求质量的置信度。"
+            },
+            "portfolioRoleExistingAndNewMoney": {
+              "evidenceClass": "provider_fact_and_my_judgment",
+              "status": "role_confirmed_existing_hold_new_money_defer",
+              "summary": "15 股约占 NAV 3.16%，作为受控 AI 基础设施卫星仓位规模适中；现有持仓继续持有，新增资金暂不配置，20 股上限继续作为行为与共同因子风险护栏。"
+            },
+            "valuationAndPricedExpectations": {
+              "evidenceClass": "model_derived_external_estimate_and_my_judgment",
+              "status": "approximately_fair_no_margin_of_safety",
+              "summary": "217.55 美元接近内部 screen-grade 基准值约 220 美元，反向预期要求 FY31 FCFF 约 405B 美元；Morningstar 310 美元依赖更高后期 FCFF、低 70bp 的 WACC、长期淡化期和回购，并存在可见估值桥缺口，不能与内部值机械平均。"
+            }
+          },
+          "missingEvidence": [
+            "当前可执行买卖报价和深度未请求；本研究不支持订单实施。",
+            "当前订单、现金、保证金、结算和资金来源未请求。",
+            "当前证券 beta 与完整 WACC 构建缺失，内部估值只达到筛查级。",
+            "客户逐户利用率、转售经济性与 NVIDIA 支持容量的信用证据仍不完整。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "收入 US$108B ±2%；GAAP 毛利率 74% ±50bp",
+              "challengingDirection": "收入低于区间或毛利率无可逆解释地低于 71%",
+              "confirmingDirection": "收入达到或超过区间中点且毛利率在指引区间",
+              "metric": "Q3 FY2027 收入与毛利率"
+            },
+            {
+              "baseline": "Q2 FCF/non-GAAP 净利润 39.55%；DSO 60 天；应收 US$63.059B",
+              "challengingDirection": "DSO 连续高于 60 天，或 FCF 转换连续两个季度低于 45%",
+              "confirmingDirection": "DSO 回落至 55 天附近或以下，FCF 转换恢复至 60% 以上",
+              "metric": "现金转换、DSO 与应收"
+            },
+            {
+              "baseline": "异质敞口算术堆叠 US$530.5B；最大总担保敞口 US$108.5B",
+              "challengingDirection": "担保兑付、客户重组、重大减值或支持义务快于现金创造",
+              "confirmingDirection": "无担保兑付、客户信用恶化或支持义务快于收入增长",
+              "metric": "生态融资与担保"
+            },
+            {
+              "baseline": "直接 NVDA 3.1614% NAV；估算 NVDA+MSFT+VOO AI 暴露 15.9699% NAV",
+              "challengingDirection": "共同因子暴露明显上升或出现更优风险调整替代机会",
+              "confirmingDirection": "暴露保持在政策约束内且机会成本仍有利",
+              "metric": "组合集中度"
+            }
+          ],
+          "myJudgments": [
+            "CUDA、GPU、网络互连、系统设计和开发者生态共同支持宽护城河判断，但定制推理芯片正在取得真实部署。",
+            "生态投资、云采购、容量承诺和担保不证明需求虚假，却使 NVIDIA 承担更多客户信用与利用率风险。",
+            "当前价格接近内部基准值且估值主要依赖终值，不足以支持新增资金；15 股现有仓位可继续持有。"
+          ],
+          "newMoneyDecision": "no_add_now",
+          "portfolioRole": "confirmed_long_term_ai_infrastructure_satellite",
+          "recommendedAction": "hold_15_shares_do_not_add_now_keep_20_share_cap",
+          "researchMaturity": "research_ready",
+          "sourceRegister": [
+            {
+              "asOf": "20260826",
+              "label": "NVIDIA FY2027 Q2 财务结果",
+              "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/default.aspx"
+            },
+            {
+              "asOf": "20260827",
+              "label": "NVIDIA FY2027 Q2 Form 10-Q",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm"
+            },
+            {
+              "asOf": "20260826",
+              "label": "NVIDIA Q2 FY2027 CFO commentary",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/q2fy27cfocommentary.htm"
+            },
+            {
+              "asOf": "20260624",
+              "label": "OpenAI 与 Broadcom Jalapeno 公告",
+              "url": "https://investors.broadcom.com/news-releases/news-release-details/openai-and-broadcom-unveil-llm-optimized-intelligence-processor"
+            }
+          ],
+          "underwritingStatus": "active",
+          "valuation": {
+            "currency": "USD",
+            "dcf": {
+              "modelSummary": "内部基准值 US$220.07 只比完成收盘价高约 1.2%，且基准情景约 80.5% 的经营价值来自终值，因此模型只达到筛查级。",
+              "scenarios": [
+                {
+                  "assumptionSummary": "WACC 11.5% · 永续增长 3.0% · FY2031 FCFF margin 37%",
+                  "name": "bear",
+                  "terminalGrowthPct": 3.0,
+                  "valuePerShareUsd": 120.77,
+                  "waccPct": 11.5
+                },
+                {
+                  "assumptionSummary": "WACC 10.5% · 永续增长 4.0% · FY2031 FCFF margin 43%",
+                  "name": "base",
+                  "terminalGrowthPct": 4.0,
+                  "valuePerShareUsd": 220.07,
+                  "waccPct": 10.5
+                },
+                {
+                  "assumptionSummary": "WACC 9.5% · 永续增长 4.5% · FY2031 FCFF margin 46%",
+                  "name": "bull",
+                  "terminalGrowthPct": 4.5,
+                  "valuePerShareUsd": 354.8,
+                  "waccPct": 9.5
+                }
+              ],
+              "sensitivityNote": "当前未定义单一核心敏感区间；完整 WACC × 永续增长矩阵保留在估值附录。"
+            },
+            "externalMorningstar": {
+              "classification": "external_estimate",
+              "fairValueUsd": 310,
+              "treatment": "external_bull_leaning_view_not_averaged_with_internal_value"
+            },
+            "method": "screen_grade_fcff_proxy_scenarios_plus_reverse_expectations",
+            "priceAsOf": "20260828",
+            "priceUsd": 217.55,
+            "reverseExpectations": {
+              "impliedFy27ToFy31RevenueCagrPct": 22.89,
+              "requiredFy31RevenueAt43PctFcffMarginUsdB": 942.07
+            },
+            "valuationMaturity": "screen_grade"
+          },
+          "valuationMaturity": "screen_grade",
+          "valuationState": "fair",
+          "valuationStateLabelZh": "接近内部筛查级基准值，尚无新增资金安全边际"
+        },
+        "reviewDueAt": null,
+        "reviewDueReason": null,
+        "reviewStatus": "current",
+        "reviewTriggerType": null,
+        "sourceLabel": "NVDA FY2027 Q2 财报后完整研究",
+        "sourceVersion": "nvda-post-earnings-v2.4-20260901",
+        "status": "active",
+        "summary": "长期论点仍是 NVIDIA 以全栈计算、网络与软件生态承担 AI 基础设施卫星角色，但推理侧定制芯片替代和生态融资使质量置信度低于增长置信度。最新财报的 96.221B 美元收入、89.023B 数据中心收入与 108B 美元 Q3 指引强化经营兑现；与此同时，60 天 DSO、63.059B 美元应收、偏弱现金转换及投资、采购承诺和担保提高需求质量风险。217.55 美元完成收盘价接近内部 screen-grade 基准值约 220 美元；市场已计入很高的长期收入与 FCFF，Morningstar 310 美元属于对后期 FCFF、更低 WACC 和回购更乐观且估值桥未完全复现的 external_estimate。组合层面，15 股约占 NAV 3.16%，继续适合作为受控卫星仓位；existing position 维持持有，new money 暂不新增，20 股上限继续有效。行动为持有并监控现金转换、DSO、担保损失、毛利率与 custom-silicon 替代；当前执行报价、订单、现金与完整 WACC 仍缺失，任何复核区间都不是自动买点或交易授权。",
+        "updatedAt": "2026-09-01T13:17:31.656850Z",
+        "version": 4
+      },
+      {
+        "asOfDate": "20260831",
+        "assessmentType": "equity_valuation_appendix",
+        "completedAt": "2026-09-01T05:11:14.261836Z",
+        "frameworkVersion": "equity-valuation-appendix-v1+research-collaboration-v5",
+        "result": {
+          "existingPositionDecision": "hold_15_shares",
+          "internalModelWalkthrough": {
+            "limitations": [
+              "WACC 是情景假设，不是以最新 beta、ERP、债务曲线和目标资本结构重建的决策级 WACC。",
+              "FCFF margin 压缩了 D&A、资本开支、营运资本、股权薪酬和税收驱动。",
+              "基准情景约 80.5% 的经营价值来自终值，输出对 WACC、永续增长和长期 margin 高度敏感。"
+            ],
+            "modelMaturity": "screen_grade",
+            "sensitivityPerShareUsd": {
+              "wacc10_5": {
+                "g3": 195.27,
+                "g4": 220.07,
+                "g5": 253.88
+              },
+              "wacc11_5": {
+                "g3": 171.34,
+                "g4": 189.72,
+                "g5": 213.76
+              },
+              "wacc9_5": {
+                "g3": 226.63,
+                "g4": 261.5,
+                "g5": 311.88
+              }
+            },
+            "terminalGrowthPct": 4.0,
+            "terminalValueSharePct": 80.4839,
+            "valuePerShareUsd": 220.0675,
+            "waccPct": 10.5
+          },
+          "missingEvidence": [
+            "17.73 倍预测 P/E 的精确定义仍未解决，不得显示成唯一、已确认的动态 P/E。",
+            "Morningstar 可见估值桥的 US$220B 差额及精确稀释股数口径未解决。",
+            "完整、驱动级 FCFF 模型和自底向上的最新 WACC 仍缺失。"
+          ],
+          "monitoring": [
+            "在任何新增资金判断前确认 17.73 倍预测 P/E 的提供商、时点、预测期和 GAAP／non-GAAP 口径。",
+            "用下一份 10-Q 复核 DSO、应收、现金转换、权益证券收益和生态融资敞口。",
+            "若 Morningstar 提供可完全勾稽的企业价值至股权价值桥，重新复核 US$220B 差额。"
+          ],
+          "morningstarComparison": {
+            "classification": "external_estimate",
+            "fairValuePerShareUsd": 310,
+            "internalValuePerShareUsd": 220.0675,
+            "internalWaccPct": 10.5,
+            "judgment": "Morningstar 的后期 FCFF 更高、WACC 低 70bp，并采用长期淡化期和回购减股；它是独立的偏乐观外部情景，不与内部 US$220.07 基准值平均。",
+            "morningstarWaccPct": 9.8,
+            "priceToFairValue": 0.68,
+            "publishedTableReconciliationGap": {
+              "publishedFairValueUsd": 310,
+              "status": "unresolved",
+              "treatment": "保留发布方可见数值，不猜测缺失项目、符号或股数口径。",
+              "unexplainedDifferenceUsdB": -220.0
+            },
+            "reportPriceUsd": 209.66,
+            "stage2And3SharePct": 66.9352
+          },
+          "newMoneyDecision": "no_add_now",
+          "peAudit": {
+            "currentDefinitionNonGaapTtm": {
+              "basis": "current-definition non-GAAP TTM",
+              "peXApprox": 31.1676,
+              "status": "model_derived",
+              "ttmDilutedEpsUsdApprox": 6.98
+            },
+            "gaapTtm": {
+              "basis": "GAAP TTM",
+              "peX": 27.5032,
+              "priceUsd": 217.55,
+              "status": "confirmed",
+              "ttmDilutedEpsUsd": 7.91
+            },
+            "operatingQualityCrossCheck": {
+              "approxAdjustedGaapTtmEpsUsd": 7.09,
+              "approxPeX": 30.7,
+              "basis": "rough operating-quality cross-check",
+              "status": "assumption_plus_independently_derived"
+            },
+            "userObservedForward": {
+              "impliedEpsUsd": 12.2702,
+              "multipleX": 17.73,
+              "status": "unresolved",
+              "unresolvedFields": [
+                "provider",
+                "observation_timestamp",
+                "forecast_period",
+                "gaap_or_non_gaap",
+                "consensus_vintage"
+              ]
+            }
+          },
+          "recommendedAction": "hold_and_monitor_keep_20_share_cap",
+          "researchMaturity": "research_ready_not_implementation_ready",
+          "sourceRegister": [],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationMaturity": "screen_grade"
+        },
+        "reviewDueAt": null,
+        "reviewDueReason": null,
+        "reviewStatus": "current",
+        "reviewTriggerType": null,
+        "sourceLabel": "NVDA 估值口径与模型附录",
+        "sourceVersion": "nvda-valuation-appendix-v1.0-20260831",
+        "status": "active",
+        "summary": "27.50 倍 GAAP TTM P/E 可复算，但分母含显著权益证券收益；17.73 倍预测 P/E 的提供商、时点、预测期及 GAAP／non-GAAP 口径仍未解决。内部基准值 US$220.07 接近市场且高度依赖终值；Morningstar US$310 是独立外部乐观视角，其可见估值桥仍有 US$220B 未解释差额。",
+        "updatedAt": "2026-09-01T05:11:14.261836Z",
+        "version": 1
+      }
+    ],
+    "researchAppendices": [
+      {
+        "asOfDate": "20260831",
+        "assessmentType": "equity_valuation_appendix",
+        "completedAt": "2026-09-01T05:11:14.261836Z",
+        "frameworkVersion": "equity-valuation-appendix-v1+research-collaboration-v5",
+        "result": {
+          "existingPositionDecision": "hold_15_shares",
+          "internalModelWalkthrough": {
+            "limitations": [
+              "WACC 是情景假设，不是以最新 beta、ERP、债务曲线和目标资本结构重建的决策级 WACC。",
+              "FCFF margin 压缩了 D&A、资本开支、营运资本、股权薪酬和税收驱动。",
+              "基准情景约 80.5% 的经营价值来自终值，输出对 WACC、永续增长和长期 margin 高度敏感。"
+            ],
+            "modelMaturity": "screen_grade",
+            "sensitivityPerShareUsd": {
+              "wacc10_5": {
+                "g3": 195.27,
+                "g4": 220.07,
+                "g5": 253.88
+              },
+              "wacc11_5": {
+                "g3": 171.34,
+                "g4": 189.72,
+                "g5": 213.76
+              },
+              "wacc9_5": {
+                "g3": 226.63,
+                "g4": 261.5,
+                "g5": 311.88
+              }
+            },
+            "terminalGrowthPct": 4.0,
+            "terminalValueSharePct": 80.4839,
+            "valuePerShareUsd": 220.0675,
+            "waccPct": 10.5
+          },
+          "missingEvidence": [
+            "17.73 倍预测 P/E 的精确定义仍未解决，不得显示成唯一、已确认的动态 P/E。",
+            "Morningstar 可见估值桥的 US$220B 差额及精确稀释股数口径未解决。",
+            "完整、驱动级 FCFF 模型和自底向上的最新 WACC 仍缺失。"
+          ],
+          "monitoring": [
+            "在任何新增资金判断前确认 17.73 倍预测 P/E 的提供商、时点、预测期和 GAAP／non-GAAP 口径。",
+            "用下一份 10-Q 复核 DSO、应收、现金转换、权益证券收益和生态融资敞口。",
+            "若 Morningstar 提供可完全勾稽的企业价值至股权价值桥，重新复核 US$220B 差额。"
+          ],
+          "morningstarComparison": {
+            "classification": "external_estimate",
+            "fairValuePerShareUsd": 310,
+            "internalValuePerShareUsd": 220.0675,
+            "internalWaccPct": 10.5,
+            "judgment": "Morningstar 的后期 FCFF 更高、WACC 低 70bp，并采用长期淡化期和回购减股；它是独立的偏乐观外部情景，不与内部 US$220.07 基准值平均。",
+            "morningstarWaccPct": 9.8,
+            "priceToFairValue": 0.68,
+            "publishedTableReconciliationGap": {
+              "publishedFairValueUsd": 310,
+              "status": "unresolved",
+              "treatment": "保留发布方可见数值，不猜测缺失项目、符号或股数口径。",
+              "unexplainedDifferenceUsdB": -220.0
+            },
+            "reportPriceUsd": 209.66,
+            "stage2And3SharePct": 66.9352
+          },
+          "newMoneyDecision": "no_add_now",
+          "peAudit": {
+            "currentDefinitionNonGaapTtm": {
+              "basis": "current-definition non-GAAP TTM",
+              "peXApprox": 31.1676,
+              "status": "model_derived",
+              "ttmDilutedEpsUsdApprox": 6.98
+            },
+            "gaapTtm": {
+              "basis": "GAAP TTM",
+              "peX": 27.5032,
+              "priceUsd": 217.55,
+              "status": "confirmed",
+              "ttmDilutedEpsUsd": 7.91
+            },
+            "operatingQualityCrossCheck": {
+              "approxAdjustedGaapTtmEpsUsd": 7.09,
+              "approxPeX": 30.7,
+              "basis": "rough operating-quality cross-check",
+              "status": "assumption_plus_independently_derived"
+            },
+            "userObservedForward": {
+              "impliedEpsUsd": 12.2702,
+              "multipleX": 17.73,
+              "status": "unresolved",
+              "unresolvedFields": [
+                "provider",
+                "observation_timestamp",
+                "forecast_period",
+                "gaap_or_non_gaap",
+                "consensus_vintage"
+              ]
+            }
+          },
+          "recommendedAction": "hold_and_monitor_keep_20_share_cap",
+          "researchMaturity": "research_ready_not_implementation_ready",
+          "sourceRegister": [],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationMaturity": "screen_grade"
+        },
+        "reviewDueAt": null,
+        "reviewDueReason": null,
+        "reviewStatus": "current",
+        "reviewTriggerType": null,
+        "sourceLabel": "NVDA 估值口径与模型附录",
+        "sourceVersion": "nvda-valuation-appendix-v1.0-20260831",
+        "status": "active",
+        "summary": "27.50 倍 GAAP TTM P/E 可复算，但分母含显著权益证券收益；17.73 倍预测 P/E 的提供商、时点、预测期及 GAAP／non-GAAP 口径仍未解决。内部基准值 US$220.07 接近市场且高度依赖终值；Morningstar US$310 是独立外部乐观视角，其可见估值桥仍有 US$220B 未解释差额。",
+        "updatedAt": "2026-09-01T05:11:14.261836Z",
+        "version": 1
+      }
+    ],
+    "researchHistory": [
+      {
+        "asOfDate": "20260831",
+        "assessmentType": "equity_research",
+        "completedAt": "UTC 2026-08-31 08:07",
+        "frameworkVersion": "equity-research-strategy-v1+research-collaboration-v5",
+        "historyEntryKind": "research_version",
+        "result": {
+          "cashDecision": "watchlist",
+          "decisionHinge": "经营论点继续成立，但新增资金需要更好的估值安全边际，并需由现金转换、应收质量和生态融资风险证明需求质量；低于 20 股上限本身不是增持理由。",
+          "existingPositionAction": "hold",
+          "newMoneyDecision": "no_add_now",
+          "sourceRegister": [],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "fair",
+          "valuationStateLabelZh": "接近内部筛查级基准值，尚无新增资金安全边际"
+        },
+        "sourceLabel": "NVDA FY2027 Q2 财报后完整研究",
+        "sourceVersion": "nvda-post-earnings-v2.0-20260831",
+        "status": "superseded",
+        "summary": "营收、数据中心增长和指引显著强化经营论点，但应收、DSO、库存、战略投资、采购承诺与担保使需求质量和现金转换风险实质上升。完成收盘价 US$217.55 接近内部筛查级基准值 US$220.07，没有足够安全边际支持新增资金；当前 15 股只占 NAV 约 3.16%，维持持有、暂不新增并保留 20 股硬上限。",
+        "supersededAt": "2026-09-01T13:17:31.656850Z",
+        "supersededByVersion": 4,
+        "supersededReason": "NVDA v2.4 五层概括与 Morningstar 解读修订替代旧 Dashboard 投影；投资结论不变",
+        "updatedAt": "2026-09-01T13:17:31.656850Z",
+        "version": 3
+      },
+      {
+        "asOfDate": "20260729",
+        "assessmentType": "equity_research",
+        "completedAt": "2026-07-29T12:42:14.909317Z",
+        "frameworkVersion": "equity-research-strategy-v1",
+        "historyEntryKind": "research_version",
+        "result": {
+          "cashDecision": "watchlist",
+          "decisionHinge": "NVIDIA 必须在 AI 基础设施支出继续扩张的同时守住全栈平台份额与 70% 以上毛利率，并把巨额采购和云容量承诺转化为可持续自由现金流。",
+          "existingPositionAction": "hold",
+          "newMoneyDecision": null,
+          "sourceRegister": [],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "fair",
+          "valuationStateLabelZh": null
+        },
+        "sourceLabel": "NVDA 发起覆盖研究",
+        "sourceVersion": "v1.0",
+        "status": "superseded",
+        "summary": "NVDA 的全栈加速计算平台、CUDA 生态和网络互连能力支持强护城河判断，但 2026-07-28 正式收盘价 US$197.01 已要求自由现金流继续高速增长。自建 DCF 悲观、基准、乐观情景约为 US$128、US$213、US$326；基准安全边际不足。现有 1.00% 小仓位维持持有，新增现金列入观察名单，等待 2026-08-26 FY2027 Q2 财报验证收入、毛利率、库存、采购承诺与中国业务。",
+        "supersededAt": "2026-09-01T05:11:14.261055Z",
+        "supersededByVersion": 2,
+        "supersededReason": "FY2027 Q2 财报后正式研究替代 2026-07-29 发起覆盖",
+        "updatedAt": "2026-09-01T05:11:14.261055Z",
+        "version": 1
+      }
+    ],
+    "summary": {
+      "research": {
+        "count": 3,
+        "internalCount": 2,
+        "providerCount": 1
+      }
+    }
+  },
+  "generatedAt": "2026-09-05T01:49:58.208393Z",
+  "packageType": "research",
+  "schemaVersion": 1,
+  "symbol": "NVDA"
+}

@@ -1,0 +1,354 @@
+{
+  "detail": {
+    "dataAsOf": {
+      "research": {
+        "latestAsOfDate": "20260730",
+        "providerPublishedDate": "20260715",
+        "providerVerifiedAt": "2026-07-30T10:34:06Z"
+      }
+    },
+    "dataQuality": {
+      "domains": {
+        "research": {
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "warning"
+        }
+      }
+    },
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Lan Anh Tran",
+          "role": "Manager Research Analyst · Prospects H1 2026"
+        },
+        "freshness": {
+          "ageDays": 36.636028807546296,
+          "maximumDays": 7,
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
+        },
+        "interpretation": "Morningstar 对 BOXX 的覆盖并非个股式公允价值研报，而是基金研究。当前分析页给出截至 2026-05-31 的量化衍生 Neutral Medalist Rating，含义是模型对其完整周期相对同类既无明确跑赢、也无明确跑输预期；这不是“差评”，也不是现金安全保证。2026 年上半年 Prospects 的人工专题仍由 Lan Anh Tran 署名，确认其突出之处是以 SPY、QQQ 等指数 ETF 的欧式期权构造箱式价差，并通过亏损收割尽量减少应税分配；截至 2025-12-31 的传统历史星级为两星。晨星认为这种流程对需要税务效率的现金类用途有吸引力，但明确提醒税务效率不保证，2024 年 8 月曾因早期使用 SPX 期权产生非周期资本利得分配，之后已切换到指数 ETF 期权。我们的结论是：晨星确实覆盖 BOXX，而且其最新量化评级与人工研究应分开理解；基金是否适合作为机会储备，仍须由当前短端收益、费用、流动性、税务适用性和组合用途共同决定。",
+        "metrics": {
+          "historicalStarRating": 2,
+          "historicalStarRatingAsOf": "20251231",
+          "managerResearchAnalyst": "Lan Anh Tran",
+          "managerResearchAsOf": "20251231",
+          "medalistMethod": "quantitatively_derived",
+          "medalistRatedDate": "20260531",
+          "medalistRating": "neutral",
+          "morningstarCategory": "Ultrashort Bond",
+          "researchType": "fund_medalist",
+          "supportingSources": [
+            {
+              "label": "BOXX ETF: Cashlike Returns Without the Tax Bill",
+              "publishedAt": "20240712",
+              "url": "https://www.morningstar.com/funds/boxx-etf-cashlike-returns-without-tax-bill"
+            },
+            {
+              "label": "This Bond ETF Promises T-Bill Returns Without Taxable Income",
+              "publishedAt": "20240305",
+              "url": "https://www.morningstar.com/funds/this-bond-etf-promises-t-bill-returns-without-taxable-income"
+            }
+          ]
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20260715",
+        "sections": {
+          "investmentMerit": [
+            "产品适合作为需要短久期、可交易和潜在税务递延的现金类工具候选，而不是权益上行资产。",
+            "Morningstar 的人工研究认可独特流程与现金类用途，量化 Neutral 则提醒投资者不要期待稳定跑赢同类。",
+            "在税务优势不适用的账户中，应直接与国库券、货币基金和其他超短债工具比较净收益、担保结构、流动性与复杂度。"
+          ],
+          "parent": [
+            "Alpha Architect 负责基金发起与产品结构，Arin Risk Advisors 负责主要期权组合执行。",
+            "截至 2026 年 Prospects 的公开材料没有提供可安全引用的独立 Parent Pillar 分数，本项目不自行补造。",
+            "基金规模快速增长有利于交易与产品存续，但也要求申赎、税务和风险控制随规模同步成熟。"
+          ],
+          "people": [
+            "Morningstar Prospects 列示 Arin Risk Advisors 与 Alpha Architect 共同管理；Ryan Bailey、Joseph DeSipio、Lawrence Lempert 执行期权交易。",
+            "人工专题由 Lan Anh Tran 署名，资料截止 2025-12-31；当前 Medalist 页面则由 Morningstar Automated Analysis 生成。",
+            "管理流程需要持续证明大规模下的执行、展期、申赎和税务处理能力。"
+          ],
+          "process": [
+            "以 SPY、QQQ 等指数 ETF 的欧式期权构造多组箱式价差，目标是接近短期国库券总回报，同时尽量减少应税收入分配。",
+            "管理人通过不同价差的损益与实物申赎安排管理已实现收益；该税务流程比单纯持有国库券复杂。",
+            "当前 Medalist Rating 为量化衍生 Neutral，表示没有明确的同类相对超额回报预期。"
+          ],
+          "risks": [
+            "箱式价差、FLEX／交易所期权流动性、OCC 履约、ETF 溢折价和现金申赎均带来传统国库券没有的结构风险。",
+            "短端利率下降会直接压低预期收益；费用与交易成本可能使净回报落后于目标基准。",
+            "税务优势不是保证，法规或实务变化可能导致普通收入重分类、补税、罚金或额外分配。"
+          ],
+          "taxEfficiency": [
+            "Morningstar 认为税务递延是主要吸引力，但只在投资者税务身份、账户类型、持有期和当时法规适用时才有意义。",
+            "2024-08-13 的每份 US$0.29 资本利得分配证明“零分配”不是合同保证；此后流程已转向指数 ETF 期权。",
+            "税法、IRS 或法院解释发生变化时，历史税务结果不能自动外推。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/etfs/bats/boxx/analysis",
+        "title": "Alpha Architect 1-3 Month Box ETF BOXX ETF Analysis",
+        "verifiedAt": "2026-07-30T10:34:06Z",
+        "version": 2
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
+    "research": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "cash_equivalent_etf_review",
+        "completedAt": "2026-07-30T10:41:38.474881Z",
+        "frameworkVersion": "cash-equivalent-etf-research-v1",
+        "result": {
+          "bearCase": [
+            "短端利率下降使箱式价差收益接近或低于费用、佣金和替代工具回报，机会成本上升。",
+            "IRS、法院或监管机构改变对 Section 1256、Section 1258、RIC 资格或实物申赎的解释，导致普通收入重分类、补税、罚金或额外分配。",
+            "期权或 ETF 市场压力导致价差扩大、NAV 偏离、现金申赎成本上升，投资者在需要资金时无法以接近 NAV 退出。",
+            "OCC 履约或关键交易基础设施发生极端事件，基金承受直接国库券没有的结算风险。",
+            "机会储备长期过高，而权益或其他资产提供显著更高的风险调整预期回报，持有 BOXX 造成可观机会成本。"
+          ],
+          "bullCase": [
+            "短端利率维持具有吸引力，箱式价差净收益在扣费后继续接近 1–3 个月国库券。",
+            "基金规模、AP 与期权流动性支持低价差交易，申赎和展期在压力市场中仍有序。",
+            "管理人持续以指数 ETF 欧式期权和损益配对减少应税分配，没有新的意外资本利得分配。",
+            "基金费用维持 0.1949%或更低，跟踪差异稳定且没有不透明的额外交易成本。",
+            "组合出现高质量、低估且符合政策的机会时，BOXX 可以迅速、低摩擦地转化为投资资金。"
+          ],
+          "cashDecision": "watchlist",
+          "decisionHinge": "BOXX 的投资价值不取决于股价是否“便宜”，而取决于箱式价差净收益能否持续接近短期国库券、ETF 二级市场与期权组合能否在压力期保持可交易、税务结构是否继续成立，以及这笔机会储备相对于已确认投资机会的机会成本。当前证据支持产品继续充当现金等价物，但不支持仅因 38.79% 权重高便机械减持，也不支持把预计约 3.94% 的短端净收益当作固定利率或无风险承诺。",
+          "evidenceConfidence": "high",
+          "existingPositionAction": "hold",
+          "facts": [
+            {
+              "asOf": "20260201",
+              "label": "fund_fact",
+              "sourceRef": "boxx-summary-prospectus-20260201",
+              "text": "基金目标是在费用前达到或超过跟踪美国 1–3 个月国库券市场的投资价格与收益表现；主要通过平均到期不足 90 天的多组欧式交易所或 FLEX 期权箱式价差实现。"
+            },
+            {
+              "asOf": "20260201",
+              "label": "fund_fact",
+              "sourceRef": "boxx-summary-prospectus-20260201",
+              "text": "总费用率为 0.2449%，合同减免 0.05 个百分点后净费用率为 0.1949%；减免至少维持到 2027-02-01，只能由董事会终止。"
+            },
+            {
+              "asOf": "20251231",
+              "label": "fund_fact",
+              "sourceRef": "boxx-summary-prospectus-20260201",
+              "text": "招募说明书列示 2025 年基金回报 4.33%、Solactive 1-3 Month US T-Bill Index 4.30%；自成立年化基金 4.87%、指数 4.91%，说明长期结果接近但并不保证持续超过基准。"
+            },
+            {
+              "asOf": "20260331",
+              "label": "fund_fact",
+              "sourceRef": "boxx-semiannual-20260331",
+              "text": "半年度报告净资产 US$10.704B，较 2025-09-30 的 US$8.080B 增加，六个月净资本交易约 US$2.434B；所有投资按 Level 2 计量，没有 Level 3。"
+            },
+            {
+              "asOf": "20260331",
+              "label": "fund_fact",
+              "sourceRef": "boxx-semiannual-20260331",
+              "text": "六个月净投资损失约 US$9.1M，但期权已实现收益约 US$189.3M、未实现增值约 US$10.6M，运营净增加约 US$190.8M且没有分配；会计上的净投资收入不能代表该基金的总回报来源。"
+            },
+            {
+              "asOf": "20260729",
+              "label": "fund_fact",
+              "sourceRef": "boxx-official-product",
+              "text": "基金官网列示 AUM US$13.221B、112.39M 份，NAV US$117.64、市价 US$117.62；截至 2026-07-28 的 30 日中位买卖价差为 US$0.01。"
+            },
+            {
+              "asOf": "20260716",
+              "label": "fund_fact",
+              "sourceRef": "boxx-official-product",
+              "text": "官网平均到期期权期限为 66 天、0.18 年，若持有至到期的市场价值加权预期年化收益率为 4.13%，该数字未扣费用、支出或佣金。"
+            },
+            {
+              "asOf": "20260730",
+              "label": "fund_fact",
+              "sourceRef": "boxx-official-product",
+              "text": "官网持仓主要是同到期 SPY 欧式期权的四腿箱式组合，并有极小 QQQ 测试组合、货币基金和现金；单腿名义权重不能解释为方向性 SPY 或 QQQ 风险敞口。"
+            },
+            {
+              "asOf": "20240813",
+              "label": "fund_fact",
+              "sourceRef": "boxx-official-distributions",
+              "text": "官方分配表显示每份 US$0.29 资本利得分配，其中 US$0.12 为短期、US$0.17 为长期；这证明零分配和税务递延不是合同保证。"
+            },
+            {
+              "asOf": "20260531",
+              "label": "external_research",
+              "sourceRef": "morningstar-boxx-analysis-20260715",
+              "text": "Morningstar 当前给出量化衍生 Neutral Medalist Rating，表示对完整周期相对同类既无明确跑赢、也无明确跑输预期；2026 年 Prospects 人工专题仍认可独特流程和税务效率用途，同时明确税务结果不保证。"
+            }
+          ],
+          "falsifiers": [
+            "连续两个完整季度的 NAV 回报显著落后 1–3 个月国库券基准，且差异不能由费用或已披露交易时点解释。",
+            "30 日中位买卖价差持续扩大至明显高于 US$0.01，或二级市场出现重复、显著的 NAV 偏离。",
+            "基金产生新的非预期大额应税分配，或税务／监管结论实质削弱其税务递延结构。",
+            "费用减免在 2027-02-01 后终止且净费用率上升，导致净收益竞争力下降。",
+            "基金改变主要策略、提高平均期限、加入实质性方向性权益风险，或无法证明四腿箱式组合保持完整。",
+            "组合已有符合政策、证据和估值要求的高质量部署机会，却因惯性长期保留过多 BOXX。"
+          ],
+          "missingEvidence": [
+            "没有取得针对用户税务居民身份、账户类型、持有期和具体交易方式的专业税务意见；本研究不把 BOXX 的潜在税务优势作为确定税后收益。",
+            "尚未建立同一交易日、同一总回报口径下 BOXX 与 1–3 个月国库券、货币基金和其他超短工具的完整本地日线对照；当前比较使用基金正式基准结果与产品披露。",
+            "Morningstar 当前 Medalist 页面没有公开可安全引用的独立 Process、People、Parent 分数；本项目仅记录 Neutral 总评级、自动分析方法和 2026 Prospects 的人工专题。",
+            "极端 OCC 故障、FLEX 流动性冻结、现金申赎冲击和税务追溯的联合压力测试尚未量化；低历史波动不能覆盖这些尾部情形。",
+            "2027-02-01 后费用减免是否延续尚未确认，必须以届时新的正式招募说明书为准。",
+            "Morningstar 基金研究不在现有 GitHub Pages 公开授权范围内；该部分只在本地展示，不进入公开家人版。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "2026-07-16 平均到期期权收益 4.13%；简单扣净费用后约 3.94%",
+              "challengingDirection": "连续显著落后同期限国库券或其他现金工具，且没有透明解释。",
+              "confirmingDirection": "净收益继续接近或优于同期限国库券，跟踪差异可由费用和时点解释。",
+              "metric": "净箱式价差收益",
+              "nextReview": "monthly_or_material_rate_change"
+            },
+            {
+              "baseline": "2026-07-29 市价 US$117.62、NAV US$117.64；30 日中位价差 US$0.01；本地近 30 个交易日平均量约 1.64M",
+              "challengingDirection": "价差持续扩大、NAV 偏离或交易量骤降，尤其发生在市场压力期。",
+              "confirmingDirection": "价差维持窄、成交量充足、溢折价短暂且可逆。",
+              "metric": "NAV、价差与交易量",
+              "nextReview": "each_material_liquidity_event"
+            },
+            {
+              "baseline": "2024-08-13 曾分配 US$0.29；2025 年无正分配",
+              "challengingDirection": "新增大额分配、税务重分类、IRS／法院／监管变化或基金披露的税务保留意见扩大。",
+              "confirmingDirection": "没有新的意外应税分配，税务披露和实务保持一致。",
+              "metric": "税务与分配",
+              "nextReview": "each_distribution_or_tax_update"
+            },
+            {
+              "baseline": "平均期限 66 天；当前主要为 SPY 欧式四腿组合，少量 QQQ 测试组合",
+              "challengingDirection": "组合腿不完整、期限拉长、出现方向性权益暴露、估值层级下降或 OCC／交易所事件。",
+              "confirmingDirection": "四腿完整、期限维持短、展期和申赎有序、无 Level 3 资产。",
+              "metric": "期权结构与运营",
+              "nextReview": "each_financial_report_and_material_holdings_change"
+            },
+            {
+              "baseline": "净费用率 0.1949%，减免至少至 2027-02-01；AUM US$13.22B",
+              "challengingDirection": "费用减免结束、额外成本上升，或规模使执行与税务管理恶化。",
+              "confirmingDirection": "费用维持或下降，规模增长没有损害跟踪和流动性。",
+              "metric": "费用与规模",
+              "nextReview": "20270201_or_new_prospectus"
+            },
+            {
+              "baseline": "BOXX 38.79% NAV；扣除最近一次已验证挂单后机会资金约 31.17% NAV",
+              "challengingDirection": "出现经验证的高质量部署机会，或 BOXX 净收益下降而机会成本显著上升。",
+              "confirmingDirection": "没有更高质量、估值合适且符合政策的部署机会，流动性需求保持较高。",
+              "metric": "组合机会储备",
+              "nextReview": "each_completed_close_and_investment_decision"
+            },
+            {
+              "baseline": "2026-05-31 量化衍生 Neutral Medalist；2025-12-31 人工 Prospects 仍认可独特流程但强调税务不保证",
+              "challengingDirection": "Medalist 转为 Negative、人工流程评价恶化，或评级变化来自费用、人员、Parent 与执行问题。",
+              "confirmingDirection": "流程、团队与 Parent 评价稳定，评级改善由可验证的执行与净回报支持。",
+              "metric": "Morningstar 基金研究",
+              "nextReview": "each_medalist_or_manager_research_update"
+            }
+          ],
+          "myJudgments": [
+            {
+              "basis": "四腿欧式期权在共同到期时形成固定差额，平均期限 66 天，基金目标和历史回报均围绕 1–3 个月国库券。",
+              "challenge": "基金会提前交易和展期、持有多组不同价差，且 ETF 层还有费用、申赎和二级市场，因此份额回报不是单一到期固定债权。",
+              "label": "my_judgment",
+              "text": "BOXX 的经济本质更接近由期权复制的短期零息融资工具，而不是普通债券基金或权益 ETF。"
+            },
+            {
+              "basis": "US$13.22B 规模、US$0.01 中位价差、近 900 个本地日线交易日的低波动，以及官网和财报显示的成对期权执行。",
+              "challenge": "OCC、FLEX 流动性、现金申赎、估值、管理与税务风险都是直接国库券不存在或程度不同的风险。",
+              "label": "my_judgment",
+              "text": "当前产品质量足以支持现金等价物角色，但不能升级为与美国国库券相同的信用和法律安全等级。"
+            },
+            {
+              "basis": "4.13%是 2026-07-16 当前组合若持有至到期的加权年化值；历史回报来自更高或不同的短端利率环境。",
+              "challenge": "该简单扣减尚未计入佣金、滑点、税务、提前展期和组合持有期，实际回报可高可低。",
+              "label": "my_judgment",
+              "text": "基金官网 4.13%到期期权收益减去 0.1949%费用后约 3.94%，是当前较合理的短期回报锚，而不是历史 4.68%或账户 3.92% XIRR。"
+            },
+            {
+              "basis": "IPS 与 Playbook 把 BOXX 定义为动态机会储备，扣除已验证挂单后现金及 BOXX 仍约占 NAV 31.17%，没有流动性紧张。",
+              "challenge": "若出现估值更有吸引力且符合政策的资产、短端净收益显著下降、结构风险上升或家庭现金需求变化，机会成本可以迅速超过持有收益。",
+              "label": "my_judgment",
+              "text": "现有 38.79%权重看起来很高，但单凭权重并不足以形成减持结论。"
+            },
+            {
+              "basis": "Morningstar、招募说明书和 2024 年分配都说明税务效率具有条件且不保证。",
+              "challenge": "若经专业税务意见确认用户的账户、税务居民身份和持有方式适用，BOXX 相对普通利息工具的税后优势可能很重要。",
+              "label": "my_judgment",
+              "text": "税务潜力是附加价值，不应进入基本产品合格性的必要前提。"
+            }
+          ],
+          "researchMaturity": "active",
+          "sourceRegister": [
+            {
+              "asOf": "20260730",
+              "label": "Alpha Architect BOXX official product page",
+              "url": "https://funds.alphaarchitect.com/boxetf/"
+            },
+            {
+              "label": "BOXX Summary Prospectus",
+              "publishedAt": "20260201",
+              "url": "https://etfarchitect.com/wp-content/uploads/compliance/etf/summary_prospectus/BOXX_Summary_Prospectus.pdf"
+            },
+            {
+              "asOf": "20260331",
+              "label": "Alpha Architect BOXX Semi-Annual Financials",
+              "url": "https://etfarchitect.com/wp-content/uploads/compliance/etf/TSR/Alpha%20Architect_Financials-SAR.pdf"
+            },
+            {
+              "asOf": "20260728",
+              "label": "Alpha Architect BOXX official distributions",
+              "url": "https://funds.alphaarchitect.com/boxetf/"
+            },
+            {
+              "label": "BOXX SEC 497K filing",
+              "publishedAt": "20260202",
+              "url": "https://www.sec.gov/Archives/edgar/data/1592900/000159290026000392/alphaarchitect1-3monthboxe.htm"
+            },
+            {
+              "asOf": "20260531",
+              "label": "Morningstar BOXX Fund Analysis",
+              "publishedAt": "20260715",
+              "url": "https://www.morningstar.com/etfs/bats/boxx/analysis"
+            },
+            {
+              "label": "Morningstar BOXX ETF: Cashlike Returns Without the Tax Bill",
+              "publishedAt": "20240712",
+              "url": "https://www.morningstar.com/funds/boxx-etf-cashlike-returns-without-tax-bill"
+            }
+          ],
+          "underwritingStatus": "active",
+          "valuation": {
+            "dcf": {},
+            "method": "yield_nav_and_opportunity_cost"
+          },
+          "valuationState": "nav_aligned"
+        },
+        "reviewDueAt": null,
+        "reviewDueReason": null,
+        "reviewStatus": "current",
+        "reviewTriggerType": null,
+        "sourceLabel": "BOXX 2026 年产品与组合角色完整研究",
+        "sourceVersion": "v1.0",
+        "status": "active",
+        "summary": "BOXX 不是普通超短债基金，而是以欧式交易所期权构造 1–3 个月箱式价差、争取在费用前达到或超过 1–3 个月美国国库券价格与收益表现的主动 ETF。基金规模、价差、历史跟踪和本项目授权日线均支持其作为可交易现金等价物：2026-07-29 AUM 约 US$13.22B、30 日中位买卖价差 US$0.01；基金官网 2026-07-16 的平均到期期权收益率为 4.13%，扣除 0.1949%费用率后约 3.94%，与本账户截至 2026-07-28 的完整生命周期 XIRR 3.92%相近。但它没有国库券的直接主权债权结构，仍承受 OCC、期权流动性、ETF 溢折价、展期、管理与税务解释风险。现有 325 股占 NAV 38.79%，属于机会储备而非需要因权重自动减持的风险资产；扣除最近一次已验证挂单名义金额后，现金及 BOXX 仍约占 NAV 31.17%。结论为继续持有，新增现金列入观察名单，按机会质量和流动性需求部署，不把税务优势、Neutral Medalist Rating 或低波动误解为本金保证。",
+        "updatedAt": "2026-07-30T10:41:38.474881Z",
+        "version": 1
+      }
+    ],
+    "researchAppendices": [],
+    "researchHistory": [],
+    "summary": {
+      "research": {
+        "count": 2,
+        "internalCount": 1,
+        "providerCount": 1
+      }
+    }
+  },
+  "generatedAt": "2026-09-05T01:49:58.208393Z",
+  "packageType": "research",
+  "schemaVersion": 1,
+  "symbol": "BOXX"
+}
