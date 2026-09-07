@@ -2131,10 +2131,6 @@
         }).format(date).replace(/\//g, "-");
       }
 
-      function shortUtcDate(raw) {
-        return fullUtcDate(raw);
-      }
-
       function fullUtcDate(raw) {
         var date = typeof raw === "string" && /^\d{8}$/.test(raw) ? parseIbkrDate(raw) : new Date(raw);
         if (Number.isNaN(date.getTime())) return String(raw || "—");
@@ -2150,10 +2146,6 @@
           year: "numeric", month: "2-digit", day: "2-digit",
           hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "UTC"
         }).format(date).replace(/\//g, "-");
-      }
-
-      function longDateTime(raw) {
-        return utcDateTimeMinute(raw);
       }
 
       function setSignedText(element, value, formatter) {
@@ -3094,7 +3086,7 @@
             ratio: orderRatio,
             renderDetail: function (element) {
               appendText(element, "分母：现金 + BOXX");
-              if (ordersSnapshot.validTime) appendText(element, " · 更新于 " + longDateTime(ordersSnapshot.asOf));
+              if (ordersSnapshot.validTime) appendText(element, " · 更新于 " + utcDateTimeMinute(ordersSnapshot.asOf));
               if (ordersSnapshot.stale) appendText(element, " · 可能不是最新情况");
               if (!ordersSnapshot.validTime) appendText(element, " · 暂无已验证挂单快照");
             },
@@ -3894,7 +3886,7 @@
         var snapshot = currentOrdersSnapshot();
         var note = document.getElementById("ordersNote");
         note.replaceChildren();
-        appendText(note, "挂单核验：" + (snapshot.validTime ? longDateTime(snapshot.asOf) : "—"));
+        appendText(note, "挂单核验：" + (snapshot.validTime ? utcDateTimeMinute(snapshot.asOf) : "—"));
         if (snapshot.stale) appendText(note, " · 可能不是最新情况");
         appendText(note, " · REPLACED 且有剩余数量仍计为有效");
         var rows = state.data.orders.slice().sort(function (a, b) {
@@ -3957,7 +3949,7 @@
           tr.appendChild(status);
 
           var time = document.createElement("td");
-          time.textContent = order.time ? longDateTime(order.time) : "—";
+          time.textContent = order.time ? utcDateTimeMinute(order.time) : "—";
           tr.appendChild(time);
           body.appendChild(tr);
         });
@@ -4039,9 +4031,9 @@
         var benchmarkDeltaName = document.getElementById("returnTooltipDeltaName");
         var benchmarkLegendValue = document.getElementById("benchmarkLegendValue");
         document.getElementById("returnSubtitle").textContent = allBenchmarkCoverageMissing
-          ? "账户 TWR 自 " + shortUtcDate(period.dates[0]) + "；三指数同期完整历史尚未覆盖"
+          ? "账户 TWR 自 " + fullUtcDate(period.dates[0]) + "；三指数同期完整历史尚未覆盖"
           : state.period === "ALL"
-            ? "账户 TWR 自 " + shortUtcDate(period.dates[0]) + "；三指数已按同期完成收盘对齐"
+            ? "账户 TWR 自 " + fullUtcDate(period.dates[0]) + "；三指数已按同期完成收盘对齐"
             : "账户 TWR；SPX／NDX 为价格回报，MXACW 为净总回报";
         if (benchmark) {
           benchmarkLegendName.textContent = benchmark.label;
@@ -4229,11 +4221,11 @@
         if (regularSession && regularSession.valuationDate) {
           asOfLine1.textContent = "估值口径：" + fullUtcDate(regularSession.valuationDate) + " · RTH 完成收盘";
           asOfLine1.style.display = "block";
-          asOfLine2.textContent = "采集时间：" + longDateTime(collectedAt);
+          asOfLine2.textContent = "采集时间：" + utcDateTimeMinute(collectedAt);
         } else {
           asOfLine1.textContent = "";
           asOfLine1.style.display = "none";
-          asOfLine2.textContent = "采集时间：" + longDateTime(collectedAt);
+          asOfLine2.textContent = "采集时间：" + utcDateTimeMinute(collectedAt);
         }
         document.getElementById("dataScopeTitle").textContent = "当前显示最近完成 RTH 收盘。";
         document.getElementById("dataScopeBody").textContent =
@@ -4247,24 +4239,24 @@
           ? regularSession.valuationDate
           : state.data.fetchedAt;
         document.getElementById("footerAccountData").innerText =
-          accountSource + "\n估值 " + shortUtcDate(valuationDate) +
-          "\n本机同步 " + longDateTime(state.data.fetchedAt);
+          accountSource + "\n估值 " + fullUtcDate(valuationDate) +
+          "\n本机同步 " + utcDateTimeMinute(state.data.fetchedAt);
         var lifecycleThrough = lifecycleMetrics.statementThrough || lifecycleMetrics.asOf;
         var fixedIncomeReturnThrough = lifecycleMetrics.fixedIncomeReturnThrough || lifecycleThrough;
         var benchmarkThrough = benchmarkHistory.completedThrough || benchmarkHistory.asOf;
-        var lifecycleLabel = shortUtcDate(fixedIncomeReturnThrough) === shortUtcDate(lifecycleThrough)
-          ? "IBKR 生命周期至 " + shortUtcDate(lifecycleThrough)
-          : "IBKR 股票生命周期至 " + shortUtcDate(lifecycleThrough) +
-            "\n债券实际持有期收益至 " + shortUtcDate(fixedIncomeReturnThrough);
+        var lifecycleLabel = fullUtcDate(fixedIncomeReturnThrough) === fullUtcDate(lifecycleThrough)
+          ? "IBKR 生命周期至 " + fullUtcDate(lifecycleThrough)
+          : "IBKR 股票生命周期至 " + fullUtcDate(lifecycleThrough) +
+            "\n债券实际持有期收益至 " + fullUtcDate(fixedIncomeReturnThrough);
         document.getElementById("footerStatementHistory").innerText =
-          lifecycleLabel + "\n三指数完成收盘至 " + shortUtcDate(benchmarkThrough);
+          lifecycleLabel + "\n三指数完成收盘至 " + fullUtcDate(benchmarkThrough);
         var governanceParts = [];
         ["ips", "playbook"].forEach(function (key) {
           var source = governanceSources && governanceSources[key];
           if (!source) { governanceParts.push((key === "ips" ? "IPS" : "Playbook") + "：当前资料不可用"); return; }
           var label = String(source.label || (key === "ips" ? "IPS" : "Playbook"));
           if (source.version) label += " " + source.version;
-          if (source.asOf) label += " · " + shortUtcDate(source.asOf);
+          if (source.asOf) label += " · " + fullUtcDate(source.asOf);
           governanceParts.push(label);
         });
         document.getElementById("footerGovernanceSources").innerText =
