@@ -123,7 +123,9 @@
     .corporate-weekday { margin-top: 3px; color: var(--muted); font: 10px var(--sans); }
     .corporate-event-title { color: var(--navy); font-size: 13px; font-weight: 750; }
     .corporate-event-description { margin-top: 4px; color: var(--muted); font-size: 10px; line-height: 1.45; }
-    .corporate-source { justify-self: end; color: #506575; font-size: 10px; text-decoration: none; }
+    .corporate-event-meta { min-width: 0; max-width: 260px; justify-self: end; text-align: right; }
+    .corporate-event-updated { display: block; margin-top: 4px; color: var(--muted); font: 10px/1.45 var(--mono); }
+    .corporate-source { color: #506575; font-size: 10px; text-decoration: none; }
     .corporate-source:hover, .corporate-source:focus-visible { color: var(--blue); text-decoration: underline; outline: none; }
     .corporate-history-details > summary { padding: 11px 16px; border-top: 1px solid #e4e9ec; color: #52636f; font-size: 10px; font-weight: 720; cursor: pointer; }
     .corporate-history-details > summary:hover, .corporate-history-details > summary:focus-visible { background: var(--blue-soft); outline: none; }
@@ -556,7 +558,7 @@
       .two-col { grid-template-columns: 1fr; }
       .account-kpi-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
       .corporate-event-row { grid-template-columns: 128px 78px minmax(0,1fr); }
-      .corporate-source { grid-column: 3; justify-self: start; }
+      .corporate-event-meta { grid-column: 3; justify-self: start; text-align: left; }
       .morningstar-metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .morningstar-metric:last-child:nth-child(odd) { grid-column: 1 / -1; }
     }
@@ -596,8 +598,7 @@
       .external-view { grid-template-columns: 1fr; }
       .external-view-link { justify-self: start; }
       .corporate-event-row { grid-template-columns: 1fr auto; gap: 8px 12px; padding-left: 22px; }
-      .corporate-event-copy, .corporate-source { grid-column: 1 / -1; }
-      .corporate-source { justify-self: start; }
+      .corporate-event-copy, .corporate-event-meta { grid-column: 1 / -1; }
       .research-subhead { flex-wrap: wrap; align-items: flex-start; gap-block: 10px; }
       .research-subhead-meta { width: 100%; max-width: none; }
       .morningstar-overview { grid-template-columns: 1fr; }
@@ -979,7 +980,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v5.1.0</span><time class="footer-meta-value" datetime="2026-09-05T14:10:01Z">2026-09-05 14:10 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v5.2.0</span><time class="footer-meta-value" datetime="2026-09-08T07:10:13Z">2026-09-08 07:10 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -988,7 +989,7 @@
   <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:START -->
   <script id="instrumentStaticConfig" type="application/json">{"mode":"public-static-v1","manifest":"data/instruments/manifest.json","catalog":"data/instruments/catalog.json"}</script>
   <!-- FAMILY:INSTRUMENT_STATIC_CONFIG:END -->
-  <script src="assets/accounting-money.js?v=4ad974b28457"></script>
+  <script src="assets/accounting-money.js?v=0c7453222a77"></script>
   <script>
     (function () {
       "use strict";
@@ -3367,10 +3368,20 @@
         var description = document.createElement("div"); description.className = "corporate-event-description";
         description.textContent = event.description || "没有额外说明。";
         copy.append(title, description);
+        var updated = document.createElement("time"); updated.className = "corporate-event-updated";
+        updated.title = "当前事件版本的来源获取／核验时间，不是事件发生、公告发布或页面访问时间。";
+        if (event.retrievedAt && Number.isFinite(Date.parse(event.retrievedAt))) {
+          updated.dateTime = event.retrievedAt;
+          updated.textContent = "资料更新 " + utcDateTime(event.retrievedAt);
+        } else {
+          updated.textContent = "资料更新时间未提供";
+        }
         var source = document.createElement("a"); source.className = "corporate-source";
         source.href = event.sourceUrl; source.target = "_blank"; source.rel = "noreferrer";
         source.textContent = (event.sourceName || "来源") + " ↗";
-        row.append(date, status, copy, source);
+        var meta = document.createElement("div"); meta.className = "corporate-event-meta";
+        meta.append(source, updated);
+        row.append(date, status, copy, meta);
         return row;
       }
       function corporateEventPublicKey(event) {
