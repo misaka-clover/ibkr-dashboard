@@ -12,7 +12,7 @@
         "research": {
           "count": 3,
           "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
-          "status": "pass"
+          "status": "warning"
         }
       }
     },
@@ -23,10 +23,10 @@
           "role": "Senior Equity Analyst"
         },
         "freshness": {
-          "ageDays": 5.119029238854167,
+          "ageDays": 7.840296115266203,
           "maximumDays": 7,
-          "status": "current",
-          "warning": null
+          "status": "stale",
+          "warning": "资料超过七天未重新核验"
         },
         "interpretation": "Morningstar 在 FY2027 Q2 后把公允价值由 US$280 上调至 US$310，并继续以宽护城河、很高不确定性和优秀资本配置评价 NVIDIA。其三阶段模型比本项目内部筛查模型更乐观：后期收入与 FCFF 更高，WACC 约 9.8%，还通过长期淡化期与回购减股支持每股价值；约 66.9% 的公司价值来自后两个阶段。可见估值表从企业价值到股权价值仍存在约 US$220B 未解释差额，因此本项目把 US$310 视为独立外部偏乐观情景，不与内部 US$220.07 基准值平均，也不据此形成新增资金或交易结论。",
         "metrics": {
@@ -579,7 +579,7 @@
       }
     }
   },
-  "generatedAt": "2026-09-05T14:10:20.720317Z",
+  "generatedAt": "2026-09-08T07:28:57.429628Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "NVDA"

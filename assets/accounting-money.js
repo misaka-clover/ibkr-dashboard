@@ -102,7 +102,22 @@
     });
   }
 
-  var observer = new MutationObserver(scheduleAlignment);
+  // Chart tooltips and unrelated copy do not change table amount tracks.
+  function affectsTable(mutation) {
+    var target = mutation.target.nodeType === 1 ? mutation.target : mutation.target.parentElement;
+    if (target && target.closest("table")) return true;
+    if (mutation.type === "attributes") {
+      return Boolean(target && target.querySelector("table [data-accounting-money]"));
+    }
+    return mutation.type === "childList" && Array.from(mutation.addedNodes)
+      .concat(Array.from(mutation.removedNodes)).some(function (node) {
+        return node.nodeType === 1 && (node.matches("table") || node.querySelector("table [data-accounting-money]"));
+      });
+  }
+
+  var observer = new MutationObserver(function (mutations) {
+    if (mutations.some(affectsTable)) scheduleAlignment();
+  });
   observeChanges();
   window.addEventListener("resize", scheduleAlignment, { passive: true });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleAlignment);
