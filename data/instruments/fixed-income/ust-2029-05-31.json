@@ -1,32 +1,32 @@
 {
   "detail": {
     "accountPerformance": {
-      "aggregateReturn": -69.33,
-      "annualizedReturnMethodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。",
-      "annualizedTotalReturn": -0.05713169677780783,
-      "cashFlowQuality": "complete",
-      "closedPositionTotal": -61.06,
+      "aggregateReturn": null,
+      "annualizedReturnMethodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。",
+      "annualizedTotalReturn": null,
+      "cashFlowQuality": "complete_pending_accrual",
+      "closedPositionTotal": -54.03,
       "comprehensiveCost": 4814.25,
       "costBasisResidual": null,
       "costBasisXirr": null,
       "costBasisXirrMethodology": null,
       "costBasisXirrQuality": "not_applicable",
       "currency": "USD",
-      "currentCost": 4805.9800000000005,
+      "currentCost": 4805.98,
       "dividendTotal": 0.0,
       "excludedNoPositionDays": 0,
       "feeTotal": 5.0,
-      "holdingCalendarDays": 90,
+      "holdingCalendarDays": 91,
       "holdingClockQuality": "complete",
-      "holdingPeriodDays": 90,
-      "holdingPeriodEndDate": "20260916",
+      "holdingPeriodDays": 91,
+      "holdingPeriodEndDate": "20260917",
       "holdingPeriodStartDate": "20260618",
-      "methodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
+      "methodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "realizedPnl": 0.0,
       "realizedPnlYtd": 0.0,
-      "totalReturn": -0.014400997040098451,
+      "totalReturn": null,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
-      "valuationDate": "20260916"
+      "valuationDate": "20260917"
     },
     "barSelection": {
       "series": []
@@ -42,17 +42,17 @@
     },
     "coverage": [],
     "currentHolding": {
-      "closePrice": 94.898438,
+      "closePrice": 95.039063,
       "currency": "USD",
-      "dailyPnl": -6.64,
-      "dailyPnlPct": -0.13975613,
-      "marketValue": 4744.92,
-      "portfolioWeightPct": 4.084025862411006,
+      "dailyPnl": 7.03,
+      "dailyPnlPct": 0.14818474,
+      "marketValue": 4751.95,
+      "portfolioWeightPct": 4.071058258481999,
       "quantity": 5000.0,
-      "sourceAt": "2026-09-17T06:11:49.529578Z",
+      "sourceAt": "2026-09-18T06:00:09.534011Z",
       "status": "official",
-      "unrealizedPnl": -61.06,
-      "valuationDate": "20260916"
+      "unrealizedPnl": -54.03,
+      "valuationDate": "20260917"
     },
     "dataAsOf": {
       "lifecycle": {
@@ -62,13 +62,13 @@
         "statementThrough": "20260723"
       },
       "portfolioClose": {
-        "sourceAt": "2026-09-17T06:11:49.529578Z",
+        "sourceAt": "2026-09-18T06:00:09.534011Z",
         "status": "official",
-        "valuationDate": "20260916"
+        "valuationDate": "20260917"
       },
       "positionLots": {
-        "asOf": "20260916",
-        "sourceAt": "2026-09-17T06:11:49.529578Z",
+        "asOf": "20260917",
+        "sourceAt": "2026-09-18T06:00:09.534011Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete"
       },
@@ -91,9 +91,9 @@
             "completedClose": "pass",
             "contract": "pass",
             "interest": "pass",
-            "lifecycleReturn": "pass"
+            "lifecycleReturn": "warning"
           },
-          "status": "pass"
+          "status": "warning"
         },
         "fundamentals": {
           "status": "not_available"
@@ -110,7 +110,7 @@
           "status": "unavailable"
         },
         "positionLots": {
-          "asOf": "20260916",
+          "asOf": "20260917",
           "count": 1,
           "coverageStatus": "complete",
           "message": null,
@@ -226,18 +226,20 @@
       }
     ],
     "fixedIncome": {
+      "accruedInterest": null,
+      "accruedInterestStatus": "missing",
       "acquisitionCashOutflow": 4814.25,
-      "actualTotalReturn": -0.014400997040098451,
-      "actualYield": 0.04188662965512695,
+      "actualTotalReturn": null,
+      "actualYield": 0.04188552386087123,
       "actualYieldQuality": "complete",
-      "aggregateReturn": -69.33,
-      "annualizedReturnMethodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。",
-      "annualizedReturnQuality": "complete",
-      "annualizedReturnRootCount": 1,
-      "annualizedTotalReturn": -0.05713169677780783,
+      "aggregateReturn": null,
+      "annualizedReturnMethodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。",
+      "annualizedReturnQuality": "incomplete",
+      "annualizedReturnRootCount": 0,
+      "annualizedTotalReturn": null,
       "cashFlowMethodology": "按代码所载票面息率、到期日和当前持有面值生成合同半年现金流；日期是合同日，不推断周末或假日导致的实际入账日。",
-      "cashFlowQuality": "complete",
-      "cashFlowReconciliationResidual": 7.105427357601002e-14,
+      "cashFlowQuality": "complete_pending_accrual",
+      "cashFlowReconciliationResidual": -1.8474111129762605e-13,
       "cashFlows": [
         {
           "coupon": 68.75,
@@ -248,7 +250,7 @@
         },
         {
           "coupon": 68.75,
-          "date": "2027-05-30",
+          "date": "2027-05-31",
           "kind": "coupon",
           "principal": 0.0,
           "total": 68.75
@@ -262,7 +264,7 @@
         },
         {
           "coupon": 68.75,
-          "date": "2028-05-30",
+          "date": "2028-05-31",
           "kind": "coupon",
           "principal": 0.0,
           "total": 68.75
@@ -283,13 +285,13 @@
         }
       ],
       "completedCloseValueMethod": "完成收盘净清算值除以持有面值，再换算为每 US$100 面值；不把该值宣称为独立核验的 clean price 或 dirty price。",
-      "completedCloseValuePer100": 94.898438,
+      "completedCloseValuePer100": 95.039063,
       "contractCode": "T 2 3/4 05/31/29",
       "contractName": "United States Treasury 2.750% due 2029-05-31",
       "contractNameZh": "美国财政部附息国债 · 票面利率 2.750% · 2029-05-31 到期",
       "couponRate": 0.0275,
-      "currentCost": 4805.9800000000005,
-      "currentCouponIncomeYield": 0.028978360014499716,
+      "currentCost": 4805.98,
+      "currentCouponIncomeYield": 0.02893548964109471,
       "displayAcquisitionYield": null,
       "displayAcquisitionYieldLabel": null,
       "displayAcquisitionYieldQualifier": null,
@@ -300,15 +302,15 @@
       "expectedCouponTotal": 412.5,
       "faceValue": 5000.0,
       "feeTotal": 5.0,
-      "holdingCalendarDays": 90,
+      "holdingCalendarDays": 91,
       "holdingClockQuality": "complete",
-      "holdingPeriodDays": 90,
-      "holdingPeriodEndDate": "20260916",
+      "holdingPeriodDays": 91,
+      "holdingPeriodEndDate": "20260917",
       "holdingPeriodStartDate": "20260618",
       "instrumentType": "coupon_treasury",
       "issuer": "United States Department of the Treasury",
       "issuerLabelZh": "美国财政部",
-      "marketValue": 4744.92,
+      "marketValue": 4751.95,
       "marketYieldAsOf": "2026-08-24T09:31:25.585763Z",
       "marketYieldAsk": null,
       "marketYieldBid": null,
@@ -349,22 +351,23 @@
       "remainingCashFlowTotal": 5412.5,
       "remainingCouponTotal": 412.5,
       "remainingPrincipal": 5000.0,
-      "remainingTermDays": 988,
-      "remainingTermYears": 2.7050521229046454,
+      "remainingTermDays": 987,
+      "remainingTermYears": 2.702314215897657,
+      "returnBasis": "accrual_inclusive_v1",
       "sources": {
         "acquisition": "IBKR Activity Flex trade and cost basis",
         "completedClose": "IBKR Activity Flex official completed close",
         "contract": "IBKR 美国国债证券描述",
         "interest": "IBKR Activity Flex bond-interest cash transactions"
       },
-      "status": "pass",
-      "totalReturn": -0.014400997040098451,
+      "status": "warning",
+      "totalReturn": null,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
-      "totalReturnQuality": "complete",
-      "totalReturnRootCount": 1,
+      "totalReturnQuality": "incomplete",
+      "totalReturnRootCount": 0,
       "tradeCostTotal": 4805.98,
-      "unrealizedPnl": -61.06,
-      "valuationDate": "2026-09-16",
+      "unrealizedPnl": -54.03,
+      "valuationDate": "2026-09-17",
       "yieldReference": {
         "closestSeriesId": "DGS2",
         "message": "已载入三条附近期限序列。",
@@ -372,268 +375,272 @@
         "purchaseYield": {
           "label": "购入实际息率",
           "startDate": "20260618",
-          "valuePct": 4.188663
+          "valuePct": 4.188552
         },
         "securityYieldSeries": {
-          "coverageEnd": "2026-09-16",
+          "coverageEnd": "2026-09-17",
           "coverageStart": "2026-06-18",
           "label": "本债券持有期估算 YTM",
           "message": "个券线来自买入后的 Statement／Flex 完成收盘价格链；TWS 直接 YIELD_BID_ASK 仅用于重叠残差验收，未与主序列拼接。",
           "methodVersion": "treasury_clean_price_ytm_v1",
-          "pointCount": 62,
+          "pointCount": 63,
           "points": [
             [
               "2026-06-18",
-              4.185043
+              4.183938
             ],
             [
               "2026-06-22",
-              4.247805
+              4.246657
             ],
             [
               "2026-06-23",
-              4.208068
+              4.206956
             ],
             [
               "2026-06-24",
-              4.136115
+              4.135064
             ],
             [
               "2026-06-25",
-              4.119769
+              4.118736
             ],
             [
               "2026-06-26",
-              4.085269
+              4.084279
             ],
             [
               "2026-06-29",
-              4.104055
+              4.103056
             ],
             [
               "2026-06-30",
-              4.137586
+              4.136567
             ],
             [
               "2026-07-01",
-              4.180054
+              4.179009
             ],
             [
               "2026-07-02",
-              4.158535
+              4.157528
             ],
             [
               "2026-07-06",
-              4.142046
+              4.141056
             ],
             [
               "2026-07-07",
-              4.196602
+              4.195579
             ],
             [
               "2026-07-08",
-              4.227581
+              4.226542
             ],
             [
               "2026-07-09",
-              4.184346
+              4.183343
             ],
             [
               "2026-07-10",
-              4.235871
+              4.23485
             ],
             [
               "2026-07-13",
-              4.287975
+              4.286924
             ],
             [
               "2026-07-14",
-              4.232575
+              4.231569
             ],
             [
               "2026-07-15",
-              4.165251
+              4.164296
             ],
             [
               "2026-07-16",
-              4.19639
+              4.19542
             ],
             [
               "2026-07-17",
-              4.200321
+              4.199366
             ],
             [
               "2026-07-20",
-              4.243645
+              4.242668
             ],
             [
               "2026-07-21",
-              4.293126
+              4.292123
             ],
             [
               "2026-07-22",
-              4.327689
+              4.32667
             ],
             [
               "2026-07-23",
-              4.383515
+              4.382466
             ],
             [
               "2026-07-24",
-              4.354658
+              4.353647
             ],
             [
               "2026-07-27",
-              4.340971
+              4.339976
             ],
             [
               "2026-07-28",
-              4.293933
+              4.292974
             ],
             [
               "2026-07-29",
-              4.274138
+              4.273198
             ],
             [
               "2026-07-30",
-              4.275538
+              4.274604
             ],
             [
               "2026-07-31",
-              4.343678
+              4.342722
             ],
             [
               "2026-08-03",
-              4.305529
+              4.304603
             ],
             [
               "2026-08-04",
-              4.233885
+              4.233008
             ],
             [
               "2026-08-05",
-              4.226127
+              4.225261
             ],
             [
               "2026-08-06",
-              4.294586
+              4.293686
             ],
             [
               "2026-08-07",
-              4.256065
+              4.255208
             ],
             [
               "2026-08-10",
-              4.297276
+              4.296402
             ],
             [
               "2026-08-11",
-              4.274193
+              4.273339
             ],
             [
               "2026-08-12",
-              4.257218
+              4.25638
             ],
             [
               "2026-08-13",
-              4.197318
+              4.19652
             ],
             [
               "2026-08-14",
-              4.232118
+              4.23132
             ],
             [
               "2026-08-17",
-              4.242743
+              4.241946
             ],
             [
               "2026-08-18",
-              4.237986
+              4.237198
             ],
             [
               "2026-08-19",
-              4.236305
+              4.235525
             ],
             [
               "2026-08-20",
-              4.250052
+              4.249272
             ],
             [
               "2026-08-21",
-              4.291483
+              4.290702
             ],
             [
               "2026-08-24",
-              4.292945
+              4.29217
             ],
             [
               "2026-08-25",
-              4.244763
+              4.244019
             ],
             [
               "2026-08-26",
-              4.267915
+              4.267166
             ],
             [
               "2026-08-27",
-              4.281796
+              4.281048
             ],
             [
               "2026-08-28",
-              4.38614
+              4.385362
             ],
             [
               "2026-08-31",
-              4.397101
+              4.396326
             ],
             [
               "2026-09-01",
-              4.442605
+              4.441817
             ],
             [
               "2026-09-02",
-              4.437944
+              4.437165
             ],
             [
               "2026-09-03",
-              4.386141
+              4.385394
             ],
             [
               "2026-09-04",
-              4.430302
+              4.429567
             ],
             [
               "2026-09-08",
-              4.457207
+              4.456468
             ],
             [
               "2026-09-09",
-              4.490519
+              4.489774
             ],
             [
               "2026-09-10",
-              4.619281
+              4.61849
             ],
             [
               "2026-09-11",
-              4.704646
+              4.703847
             ],
             [
               "2026-09-14",
-              4.700144
+              4.699355
             ],
             [
               "2026-09-15",
-              4.727704
+              4.726914
             ],
             [
               "2026-09-16",
-              4.784281
+              4.783478
+            ],
+            [
+              "2026-09-17",
+              4.727585
             ]
           ],
           "providerValidation": {
-            "maxAbsoluteResidualBp": 5.7349,
-            "medianAbsoluteResidualBp": 2.1891,
+            "maxAbsoluteResidualBp": 5.8304,
+            "medianAbsoluteResidualBp": 2.1066,
             "overlapCount": 20,
             "overlapEnd": "20260807",
             "overlapStart": "20260713",
@@ -654,13 +661,9 @@
           {
             "closestTenor": true,
             "coverageEnd": "2026-09-16",
-            "coverageStart": "2016-09-16",
+            "coverageStart": "2016-09-19",
             "label": "2 年期",
             "points": [
-              [
-                "2016-09-16",
-                0.77
-              ],
               [
                 "2016-09-19",
                 0.79
@@ -10663,13 +10666,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-09-16",
-            "coverageStart": "2016-09-16",
+            "coverageStart": "2016-09-19",
             "label": "5 年期",
             "points": [
-              [
-                "2016-09-16",
-                1.21
-              ],
               [
                 "2016-09-19",
                 1.22
@@ -20672,13 +20671,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-09-16",
-            "coverageStart": "2016-09-16",
+            "coverageStart": "2016-09-19",
             "label": "10 年期",
             "points": [
-              [
-                "2016-09-16",
-                1.7
-              ],
               [
                 "2016-09-19",
                 1.7
@@ -30680,8 +30675,8 @@
           }
         ],
         "status": "pass",
-        "windowEnd": "2026-09-16",
-        "windowStart": "2016-09-16"
+        "windowEnd": "2026-09-17",
+        "windowStart": "2016-09-17"
       }
     },
     "fundProfile": {
@@ -30690,7 +30685,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-09-17T15:44:07.374469Z",
+    "generatedAt": "2026-09-18T10:17:59.013288Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BOND",
@@ -30701,7 +30696,7 @@
       "englishName": "T 2 3/4 05/31/29",
       "firstSeenDate": "20260618",
       "instrumentKind": "us_treasury",
-      "lastSeenDate": "20260916",
+      "lastSeenDate": "20260917",
       "primaryExchange": null,
       "status": "active",
       "symbols": [
@@ -30710,7 +30705,7 @@
           "exchange": null,
           "firstSeenDate": "20260618",
           "isPrimary": true,
-          "lastSeenDate": "20260916",
+          "lastSeenDate": "20260917",
           "symbol": "T 2 3/4 05/31/29"
         }
       ]
@@ -30722,29 +30717,29 @@
       "status": "not_collected"
     },
     "positionLots": {
-      "asOf": "20260916",
+      "asOf": "20260917",
       "items": [
         {
           "acquisitionDate": "20260618",
           "averagePrice": 96.1196,
           "costBasisMoney": 4805.98,
           "currency": "USD",
-          "marketPrice": 94.898438,
-          "marketValue": 4744.92,
+          "marketPrice": 95.039063,
+          "marketValue": 4751.95,
           "pnlCurrency": "USD",
           "quantity": 5000.0,
-          "totalPnl": -61.06,
-          "totalPnlPct": -0.012705005014585996
+          "totalPnl": -54.03,
+          "totalPnlPct": -0.011242244037636446
         }
       ],
-      "sourceAt": "2026-09-17T06:11:49.529578Z",
+      "sourceAt": "2026-09-18T06:00:09.534011Z",
       "sourceMode": "official_activity_flex_lot",
       "status": "complete",
       "summary": {
         "costBasis": 4805.98,
         "quantity": 5000.0,
-        "totalPnl": -61.06,
-        "totalPnlPct": -0.012705005014585996
+        "totalPnl": -54.03,
+        "totalPnlPct": -0.011242244037636446
       }
     },
     "providerResearch": [],
@@ -30964,8 +30959,8 @@
         "totals": {
           "costBasis": 4805.98,
           "quantity": 5000.0,
-          "totalPnl": -61.06,
-          "totalPnlPct": -0.012705005014585996
+          "totalPnl": -54.03,
+          "totalPnlPct": -0.011242244037636446
         }
       },
       "research": {
@@ -30977,7 +30972,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-09-17T15:44:00.936566Z",
+  "generatedAt": "2026-09-18T10:17:53.114138Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "UST-2029-05-31"
