@@ -248275,6 +248275,12 @@
           "currency": "USD",
           "eventDate": "20260618",
           "eventType": "cash_dividend"
+        },
+        {
+          "amountPerShare": 0.2224,
+          "currency": "USD",
+          "eventDate": "20260918",
+          "eventType": "cash_dividend"
         }
       ]
     },
@@ -248801,17 +248807,30 @@
           "title": "基金分配除息"
         },
         {
-          "currency": null,
-          "description": "Vanguard 2026 年分配日程列示的第三季度预估除息／登记日；金额尚未宣告，日期可变，须在正式宣告后重新确认。",
+          "currency": "USD",
+          "description": "Vanguard 官方已公布分配表确认每份 USD 0.2224，2026-09-18 除息及登记，2026-09-22 支付。除息事实已核实；本地完成收盘仅至 2026-09-17，尚无本周期账户权益或到账证据。",
           "eventDate": "20260918",
           "eventTime": null,
-          "eventTimezone": null,
+          "eventTimezone": "America/New_York",
           "eventType": "ex_dividend",
-          "publicKey": "ebc9560594d3b24d2c62597f325c2cf057e48aa583bcda3399c7d1f3cebbcebb",
+          "publicKey": "e5715c7b4d2029365b0e662e0492b094b9ebd259c52c9d4cd108f6836b9463ad",
           "sourceName": "Reviewed Official Issuer and Sponsor Events",
-          "sourceUrl": "https://advisors.vanguard.com/content/dam/fas/pdfs/DIVDAT_2026.pdf",
-          "status": "estimated",
-          "title": "VGK 第三季度预估除息日"
+          "sourceUrl": "https://advisors.vanguard.com/investments/products/vgk/vanguard-ftse-europe-etf",
+          "status": "occurred",
+          "title": "VGK 第三季度除息日"
+        },
+        {
+          "currency": "USD",
+          "description": "Vanguard 官方分配表确认 2026-09-22 支付每份 USD 0.2224。发行人未提供宣告日期；本地完成收盘截止 2026-09-17，账户权益和实际到账尚待对应 Flex 验证。",
+          "eventDate": "20260922",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "dividend_payment",
+          "publicKey": "aea322176516f886aa1405b69bd208fce2ed5da7eee3e4aff33132bd3a656fe5",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://advisors.vanguard.com/investments/products/vgk/vanguard-ftse-europe-etf",
+          "status": "confirmed",
+          "title": "VGK 第三季度分配支付日"
         },
         {
           "currency": null,
@@ -248845,10 +248864,10 @@
         {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-07-30T17:31:02Z",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-09-19T04:40:16Z",
+      "warning": "Vanguard 官方年度分配日程尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方日程。"
     },
     "coverage": [
       {
@@ -248868,9 +248887,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-07-30T17:31:02Z"
+        "updatedAt": "2026-09-19T04:40:16Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -248887,11 +248906,11 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 43,
-          "stale": true,
+          "count": 44,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-07-30T17:31:02Z",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-09-19T04:40:16Z",
+          "warning": "Vanguard 官方年度分配日程尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方日程。"
         },
         "fundamentals": {
           "asOfDate": "20260814",
@@ -248980,7 +248999,7 @@
       "englishName": "Vanguard FTSE Europe ETF",
       "firstSeenDate": "20251010",
       "instrumentKind": "etf",
-      "lastSeenDate": "20260917",
+      "lastSeenDate": "20260918",
       "primaryExchange": "ARCA",
       "status": "active",
       "symbols": [
@@ -248989,7 +249008,7 @@
           "exchange": null,
           "firstSeenDate": "20251010",
           "isPrimary": true,
-          "lastSeenDate": "20260917",
+          "lastSeenDate": "20260918",
           "symbol": "VGK"
         }
       ]
@@ -249007,7 +249026,7 @@
         "TRADES": 5391
       },
       "corporateEvents": {
-        "count": 43,
+        "count": 44,
         "sourceCount": 3
       }
     },
@@ -249046,7 +249065,7 @@
       }
     }
   },
-  "generatedAt": "2026-09-18T10:17:53.114138Z",
+  "generatedAt": "2026-09-19T10:03:15.514771Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "VGK"

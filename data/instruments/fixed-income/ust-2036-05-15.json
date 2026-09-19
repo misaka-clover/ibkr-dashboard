@@ -1,11 +1,11 @@
 {
   "detail": {
     "accountPerformance": {
-      "aggregateReturn": null,
+      "aggregateReturn": -22.050000000000004,
       "annualizedReturnMethodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。",
-      "annualizedTotalReturn": null,
-      "cashFlowQuality": "complete_pending_accrual",
-      "closedPositionTotal": -12.5,
+      "annualizedTotalReturn": -0.2917487730573348,
+      "cashFlowQuality": "complete",
+      "closedPositionTotal": -25.62,
       "comprehensiveCost": 2927.44,
       "costBasisResidual": null,
       "costBasisXirr": null,
@@ -16,17 +16,17 @@
       "dividendTotal": 0.0,
       "excludedNoPositionDays": 0,
       "feeTotal": 5.0,
-      "holdingCalendarDays": 7,
+      "holdingCalendarDays": 8,
       "holdingClockQuality": "complete",
-      "holdingPeriodDays": 7,
-      "holdingPeriodEndDate": "20260917",
+      "holdingPeriodDays": 8,
+      "holdingPeriodEndDate": "20260918",
       "holdingPeriodStartDate": "20260910",
       "methodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "realizedPnl": 0.0,
       "realizedPnlYtd": 0.0,
-      "totalReturn": null,
+      "totalReturn": 0.007067590988126371,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
-      "valuationDate": "20260917"
+      "valuationDate": "20260918"
     },
     "barSelection": {
       "series": []
@@ -42,17 +42,17 @@
     },
     "coverage": [],
     "currentHolding": {
-      "closePrice": 95.75,
+      "closePrice": 95.3125,
       "currency": "USD",
-      "dailyPnl": 15.0,
-      "dailyPnlPct": 0.52493438,
-      "marketValue": 2872.5,
-      "portfolioWeightPct": 2.4609086475004034,
+      "dailyPnl": -13.12,
+      "dailyPnlPct": -0.45691906,
+      "marketValue": 2859.38,
+      "portfolioWeightPct": 2.451749482387302,
       "quantity": 3000.0,
-      "sourceAt": "2026-09-18T06:00:09.534011Z",
-      "status": "official",
-      "unrealizedPnl": -12.5,
-      "valuationDate": "20260917"
+      "sourceAt": "2026-09-19T09:49:32.425914Z",
+      "status": "reconciled",
+      "unrealizedPnl": -25.62,
+      "valuationDate": "20260918"
     },
     "dataAsOf": {
       "lifecycle": {
@@ -62,13 +62,13 @@
         "statementThrough": "20260723"
       },
       "portfolioClose": {
-        "sourceAt": "2026-09-18T06:00:09.534011Z",
-        "status": "official",
-        "valuationDate": "20260917"
+        "sourceAt": "2026-09-19T09:49:32.425914Z",
+        "status": "reconciled",
+        "valuationDate": "20260918"
       },
       "positionLots": {
-        "asOf": "20260917",
-        "sourceAt": "2026-09-18T06:00:09.534011Z",
+        "asOf": "20260918",
+        "sourceAt": "2026-09-19T09:49:32.425914Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete"
       },
@@ -91,9 +91,9 @@
             "completedClose": "pass",
             "contract": "pass",
             "interest": "pass",
-            "lifecycleReturn": "warning"
+            "lifecycleReturn": "pass"
           },
-          "status": "warning"
+          "status": "pass"
         },
         "fundamentals": {
           "status": "not_available"
@@ -110,7 +110,7 @@
           "status": "unavailable"
         },
         "positionLots": {
-          "asOf": "20260917",
+          "asOf": "20260918",
           "count": 1,
           "coverageStatus": "complete",
           "message": null,
@@ -226,20 +226,20 @@
       }
     ],
     "fixedIncome": {
-      "accruedInterest": null,
-      "accruedInterestStatus": "missing",
+      "accruedInterest": 46.01,
+      "accruedInterestStatus": "reported",
       "acquisitionCashOutflow": 2927.44,
-      "actualTotalReturn": null,
+      "actualTotalReturn": 0.007067590988126371,
       "actualYield": 0.04930575117869182,
       "actualYieldQuality": "complete",
-      "aggregateReturn": null,
+      "aggregateReturn": -22.050000000000004,
       "annualizedReturnMethodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。",
-      "annualizedReturnQuality": "incomplete",
-      "annualizedReturnRootCount": 0,
-      "annualizedTotalReturn": null,
+      "annualizedReturnQuality": "complete",
+      "annualizedReturnRootCount": 1,
+      "annualizedTotalReturn": -0.2917487730573348,
       "cashFlowMethodology": "按代码所载票面息率、到期日和当前持有面值生成合同半年现金流；日期是合同日，不推断周末或假日导致的实际入账日。",
-      "cashFlowQuality": "complete_pending_accrual",
-      "cashFlowReconciliationResidual": -5.684341886080802e-14,
+      "cashFlowQuality": "complete",
+      "cashFlowReconciliationResidual": 2.7711166694643907e-13,
       "cashFlows": [
         {
           "coupon": 65.625,
@@ -383,13 +383,13 @@
         }
       ],
       "completedCloseValueMethod": "完成收盘净清算值除以持有面值，再换算为每 US$100 面值；不把该值宣称为独立核验的 clean price 或 dirty price。",
-      "completedCloseValuePer100": 95.75,
+      "completedCloseValuePer100": 95.3125,
       "contractCode": "T 4 3/8 05/15/36",
       "contractName": "United States Treasury 4.375% due 2036-05-15",
       "contractNameZh": "美国财政部附息国债 · 票面利率 4.375% · 2036-05-15 到期",
       "couponRate": 0.04375,
       "currentCost": 2885.0,
-      "currentCouponIncomeYield": 0.04569190600522193,
+      "currentCouponIncomeYield": 0.045901559079240956,
       "displayAcquisitionYield": null,
       "displayAcquisitionYieldLabel": null,
       "displayAcquisitionYieldQualifier": null,
@@ -400,15 +400,15 @@
       "expectedCouponTotal": 1312.5,
       "faceValue": 3000.0,
       "feeTotal": 5.0,
-      "holdingCalendarDays": 7,
+      "holdingCalendarDays": 8,
       "holdingClockQuality": "complete",
-      "holdingPeriodDays": 7,
-      "holdingPeriodEndDate": "20260917",
+      "holdingPeriodDays": 8,
+      "holdingPeriodEndDate": "20260918",
       "holdingPeriodStartDate": "20260910",
       "instrumentType": "coupon_treasury",
       "issuer": "United States Department of the Treasury",
       "issuerLabelZh": "美国财政部",
-      "marketValue": 2872.5,
+      "marketValue": 2859.38,
       "marketYieldAsOf": null,
       "marketYieldAsk": null,
       "marketYieldBid": null,
@@ -449,8 +449,8 @@
       "remainingCashFlowTotal": 4312.5,
       "remainingCouponTotal": 1312.5,
       "remainingPrincipal": 3000.0,
-      "remainingTermDays": 3528,
-      "remainingTermYears": 9.659335920655455,
+      "remainingTermDays": 3527,
+      "remainingTermYears": 9.656598013648466,
       "returnBasis": "accrual_inclusive_v1",
       "sources": {
         "acquisition": "IBKR Activity Flex trade and cost basis",
@@ -458,14 +458,14 @@
         "contract": "IBKR 美国国债证券描述",
         "interest": "IBKR Activity Flex bond-interest cash transactions"
       },
-      "status": "warning",
-      "totalReturn": null,
+      "status": "pass",
+      "totalReturn": 0.007067590988126371,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
-      "totalReturnQuality": "incomplete",
-      "totalReturnRootCount": 0,
+      "totalReturnQuality": "complete",
+      "totalReturnRootCount": 1,
       "tradeCostTotal": 2885.0,
-      "unrealizedPnl": -12.5,
-      "valuationDate": "2026-09-17",
+      "unrealizedPnl": -25.62,
+      "valuationDate": "2026-09-18",
       "yieldReference": {
         "closestSeriesId": "DGS10",
         "message": "已载入三条附近期限序列。",
@@ -30510,8 +30510,8 @@
           }
         ],
         "status": "pass",
-        "windowEnd": "2026-09-17",
-        "windowStart": "2016-09-17"
+        "windowEnd": "2026-09-18",
+        "windowStart": "2016-09-18"
       }
     },
     "fundProfile": {
@@ -30520,7 +30520,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-09-18T10:17:59.942961Z",
+    "generatedAt": "2026-09-19T10:03:22.308661Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BOND",
@@ -30531,7 +30531,7 @@
       "englishName": "T 4 3/8 05/15/36",
       "firstSeenDate": "20260910",
       "instrumentKind": "us_treasury",
-      "lastSeenDate": "20260917",
+      "lastSeenDate": "20260918",
       "primaryExchange": null,
       "status": "active",
       "symbols": [
@@ -30540,7 +30540,7 @@
           "exchange": null,
           "firstSeenDate": "20260910",
           "isPrimary": true,
-          "lastSeenDate": "20260917",
+          "lastSeenDate": "20260918",
           "symbol": "T 4 3/8 05/15/36"
         }
       ]
@@ -30552,29 +30552,29 @@
       "status": "not_collected"
     },
     "positionLots": {
-      "asOf": "20260917",
+      "asOf": "20260918",
       "items": [
         {
           "acquisitionDate": "20260910",
           "averagePrice": 96.166666667,
           "costBasisMoney": 2885.0,
           "currency": "USD",
-          "marketPrice": 95.75,
-          "marketValue": 2872.5,
+          "marketPrice": 95.3125,
+          "marketValue": 2859.38,
           "pnlCurrency": "USD",
           "quantity": 3000.0,
-          "totalPnl": -12.5,
-          "totalPnlPct": -0.004332755632582322
+          "totalPnl": -25.62,
+          "totalPnlPct": -0.008880415944540728
         }
       ],
-      "sourceAt": "2026-09-18T06:00:09.534011Z",
+      "sourceAt": "2026-09-19T09:49:32.425914Z",
       "sourceMode": "official_activity_flex_lot",
       "status": "complete",
       "summary": {
         "costBasis": 2885.0,
         "quantity": 3000.0,
-        "totalPnl": -12.5,
-        "totalPnlPct": -0.004332755632582322
+        "totalPnl": -25.62,
+        "totalPnlPct": -0.008880415944540728
       }
     },
     "providerResearch": [],
@@ -30604,8 +30604,8 @@
         "totals": {
           "costBasis": 2885.0,
           "quantity": 3000.0,
-          "totalPnl": -12.5,
-          "totalPnlPct": -0.004332755632582322
+          "totalPnl": -25.62,
+          "totalPnlPct": -0.008880415944540728
         }
       },
       "research": {
@@ -30617,7 +30617,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-09-18T10:17:53.114138Z",
+  "generatedAt": "2026-09-19T10:03:15.514771Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "UST-2036-05-15"

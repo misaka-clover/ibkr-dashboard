@@ -263387,28 +263387,28 @@
         },
         {
           "currency": "USD",
-          "description": "每股 US$0.0875 季度现金股息的正式登记日。",
+          "description": "每股 US$0.0875 季度现金股息的正式登记日。 发行人登记日与既有有效 Flex 的同日权益形成、每股金额及支付日交叉确认；登记完成不表示股息已到账。",
           "eventDate": "20260901",
           "eventTime": null,
-          "eventTimezone": null,
+          "eventTimezone": "America/New_York",
           "eventType": "dividend_record",
-          "publicKey": "6a4fb5b1bd522da1c08499d4a6d5b820be98f31aacbf0d68ee799294a173f943",
+          "publicKey": "849aced2109ae4327f610d63b910b87541f8c70a95eb972a906d7c535168f1c7",
           "sourceName": "Reviewed Official Issuer and Sponsor Events",
           "sourceUrl": "https://ndcdyn.interactivebrokers.com/mkt/getFileNew.php?file=2026Q2_Earnings_Release.pdf",
-          "status": "confirmed",
+          "status": "occurred",
           "title": "Interactive Brokers 季度股息登记日"
         },
         {
           "currency": "USD",
-          "description": "每股 US$0.0875 季度现金股息的正式支付日。",
+          "description": "每股 US$0.0875 季度现金股息的正式支付日。 发行人日程已复核，并与既有有效 Flex 的同币种、同支付日和每股金额到账及权益冲回证据交叉确认；账户到账仍由实际流水独立展示。",
           "eventDate": "20260914",
           "eventTime": null,
-          "eventTimezone": null,
+          "eventTimezone": "America/New_York",
           "eventType": "dividend_payment",
-          "publicKey": "618663bc0bfdb9c6ebef6086fa6d960a65e59cc5f4d93795858e3c531b037ef6",
+          "publicKey": "ce196720f5f63069128a402393439b3dbf55397188e3b27d06d554a163b9b0eb",
           "sourceName": "Reviewed Official Issuer and Sponsor Events",
           "sourceUrl": "https://ndcdyn.interactivebrokers.com/mkt/getFileNew.php?file=2026Q2_Earnings_Release.pdf",
-          "status": "confirmed",
+          "status": "occurred",
           "title": "Interactive Brokers 季度股息支付日"
         }
       ],
@@ -263417,10 +263417,10 @@
         {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-07-30T05:51:23Z",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-09-19T04:40:16Z",
+      "warning": "Interactive Brokers 官方投资者事件页尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方页面。"
     },
     "coverage": [
       {
@@ -263440,9 +263440,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-07-30T05:51:23Z"
+        "updatedAt": "2026-09-19T04:40:16Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -263460,10 +263460,10 @@
       "domains": {
         "corporateEvents": {
           "count": 78,
-          "stale": true,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-07-30T05:51:23Z",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-09-19T04:40:16Z",
+          "warning": "Interactive Brokers 官方投资者事件页尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方页面。"
         },
         "fundamentals": {
           "asOfDate": "20260814",
@@ -263555,7 +263555,7 @@
       "englishName": "Interactive Brokers Group, Inc. Class A",
       "firstSeenDate": "20241202",
       "instrumentKind": "common_stock",
-      "lastSeenDate": "20260917",
+      "lastSeenDate": "20260918",
       "primaryExchange": "NASDAQ",
       "status": "active",
       "symbols": [
@@ -263564,7 +263564,7 @@
           "exchange": null,
           "firstSeenDate": "20241202",
           "isPrimary": true,
-          "lastSeenDate": "20260917",
+          "lastSeenDate": "20260918",
           "symbol": "IBKR"
         }
       ]
@@ -325909,7 +325909,7 @@
       }
     }
   },
-  "generatedAt": "2026-09-18T10:17:53.114138Z",
+  "generatedAt": "2026-09-19T10:03:15.514771Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "IBKR"
