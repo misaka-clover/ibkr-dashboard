@@ -375846,15 +375846,15 @@
         },
         {
           "currency": "USD",
-          "description": "每股 US$0.25 季度现金股息的正式登记日。",
+          "description": "每股 US$0.25 季度现金股息的正式登记日。 发行人登记日与既有有效 Flex 的同日权益形成、每股金额及支付日交叉确认；登记完成不表示股息已到账。",
           "eventDate": "20260910",
           "eventTime": null,
-          "eventTimezone": null,
+          "eventTimezone": "America/New_York",
           "eventType": "dividend_record",
-          "publicKey": "c6fdb62df93c31ea444edf850f6e09834257361c6a9bd50107faa824c544299f",
+          "publicKey": "e8be9941edb9d65d9bfabe8b08b70c980725c0955d53a28de6b667209f86d25a",
           "sourceName": "Reviewed Official Issuer and Sponsor Events",
           "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/q2fy27pr.htm",
-          "status": "confirmed",
+          "status": "occurred",
           "title": "NVIDIA 季度现金股息登记日"
         },
         {
@@ -375876,10 +375876,10 @@
         {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-09-07T11:56:55Z",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-09-19T04:40:16Z",
+      "warning": "NVIDIA Q4 事件入口持续返回 HTTP 429；官方 Newsroom 已建立机器发现回退，但候选仍须人工复核事件详情，在无人值守适配器（语义确认层）获审前保持 pending。"
     },
     "coverage": [
       {
@@ -375899,9 +375899,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-09-07T11:56:55Z"
+        "updatedAt": "2026-09-19T04:40:16Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -375919,10 +375919,10 @@
       "domains": {
         "corporateEvents": {
           "count": 78,
-          "stale": true,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-09-07T11:56:55Z",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-09-19T04:40:16Z",
+          "warning": "NVIDIA Q4 事件入口持续返回 HTTP 429；官方 Newsroom 已建立机器发现回退，但候选仍须人工复核事件详情，在无人值守适配器（语义确认层）获审前保持 pending。"
         },
         "fundamentals": {
           "asOfDate": "20260814",
@@ -376018,7 +376018,7 @@
       "englishName": "NVIDIA Corporation",
       "firstSeenDate": "20250127",
       "instrumentKind": "common_stock",
-      "lastSeenDate": "20260917",
+      "lastSeenDate": "20260918",
       "primaryExchange": "NASDAQ",
       "status": "active",
       "symbols": [
@@ -376027,7 +376027,7 @@
           "exchange": null,
           "firstSeenDate": "20250127",
           "isPrimary": true,
-          "lastSeenDate": "20260917",
+          "lastSeenDate": "20260918",
           "symbol": "NVDA"
         }
       ]
@@ -442236,7 +442236,7 @@
       }
     }
   },
-  "generatedAt": "2026-09-18T10:17:53.114138Z",
+  "generatedAt": "2026-09-19T10:03:15.514771Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "NVDA"
