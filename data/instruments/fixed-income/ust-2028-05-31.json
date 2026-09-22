@@ -7,7 +7,7 @@
       "cashFlowQuality": "complete",
       "closedPositionTotal": -3.21,
       "comprehensiveCost": 1903.07,
-      "costBasisResidual": 0.0,
+      "costBasisResidual": null,
       "costBasisXirr": null,
       "costBasisXirrMethodology": null,
       "costBasisXirrQuality": "not_applicable",
@@ -21,9 +21,9 @@
       "holdingPeriodDays": 315,
       "holdingPeriodEndDate": "20260921",
       "holdingPeriodStartDate": "20251110",
-      "methodology": "以 IBKR 当前成本基础（含手续费）与购买应计利息作为实际投入，按精确日历、未来半年票息及到期本金计算年化持有到期 XIRR；不是券商报价页的债券等价收益率。发生卖出后若剩余批次无法精确归属，实际息率失败关闭；持有期年化收益与总回报率继续按完整生命周期现金流独立计算。",
+      "methodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "realizedPnl": 0.0,
-      "realizedPnlYtd": 0,
+      "realizedPnlYtd": 0.0,
       "totalReturn": 0.009703353629403999,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "valuationDate": "20260921"
@@ -57,7 +57,7 @@
     "dataAsOf": {
       "lifecycle": {
         "latestEventDate": "20260601",
-        "latestSourceAt": "2026-09-22T04:55:13.560222Z",
+        "latestSourceAt": "2026-07-24T09:42:47.049929Z",
         "statementCoverageStart": "20241112",
         "statementThrough": "20260921"
       },
@@ -113,6 +113,7 @@
           "asOf": "20260921",
           "count": 1,
           "coverageStatus": "complete",
+          "message": null,
           "sourceMode": "official_activity_flex_lot",
           "status": "pass"
         },
@@ -334,7 +335,7 @@
       "annualizedTotalReturn": 0.011252203790985016,
       "cashFlowMethodology": "按代码所载票面息率、到期日和当前持有面值生成合同半年现金流；日期是合同日，不推断周末或假日导致的实际入账日。",
       "cashFlowQuality": "complete",
-      "cashFlowReconciliationResidual": -7.105427357601002e-14,
+      "cashFlowReconciliationResidual": -5.3290705182007514e-14,
       "cashFlows": [
         {
           "coupon": 12.5,
@@ -459,12 +460,12 @@
           "valuePct": 3.5067
         },
         "securityYieldSeries": {
-          "coverageEnd": "2026-09-18",
+          "coverageEnd": "2026-09-21",
           "coverageStart": "2025-11-10",
           "label": "本债券持有期估算 YTM",
           "message": "个券线来自买入后的 Statement／Flex 完成收盘价格链；TWS 直接 YIELD_BID_ASK 仅用于重叠残差验收，未与主序列拼接。",
           "methodVersion": "treasury_clean_price_ytm_v1",
-          "pointCount": 215,
+          "pointCount": 216,
           "points": [
             [
               "2025-11-10",
@@ -1325,6 +1326,10 @@
             [
               "2026-09-18",
               4.716734
+            ],
+            [
+              "2026-09-21",
+              4.719809
             ]
           ],
           "providerValidation": {
@@ -1350,17 +1355,9 @@
           {
             "closestTenor": true,
             "coverageEnd": "2026-09-18",
-            "coverageStart": "2016-09-19",
+            "coverageStart": "2016-09-21",
             "label": "2 年期",
             "points": [
-              [
-                "2016-09-19",
-                0.79
-              ],
-              [
-                "2016-09-20",
-                0.79
-              ],
               [
                 "2016-09-21",
                 0.79
@@ -11363,17 +11360,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-09-18",
-            "coverageStart": "2016-09-19",
+            "coverageStart": "2016-09-21",
             "label": "5 年期",
             "points": [
-              [
-                "2016-09-19",
-                1.22
-              ],
-              [
-                "2016-09-20",
-                1.2
-              ],
               [
                 "2016-09-21",
                 1.2
@@ -21376,17 +21365,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-09-18",
-            "coverageStart": "2016-09-19",
+            "coverageStart": "2016-09-21",
             "label": "10 年期",
             "points": [
-              [
-                "2016-09-19",
-                1.7
-              ],
-              [
-                "2016-09-20",
-                1.69
-              ],
               [
                 "2016-09-21",
                 1.66
@@ -31388,8 +31369,8 @@
           }
         ],
         "status": "pass",
-        "windowEnd": "2026-09-18",
-        "windowStart": "2016-09-18"
+        "windowEnd": "2026-09-21",
+        "windowStart": "2016-09-21"
       }
     },
     "fundProfile": {
@@ -31398,7 +31379,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-09-21T01:57:54.499601Z",
+    "generatedAt": "2026-09-22T15:02:24.197871Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BOND",
@@ -31409,7 +31390,7 @@
       "englishName": "T 1 1/4 05/31/28",
       "firstSeenDate": "20251110",
       "instrumentKind": "us_treasury",
-      "lastSeenDate": "20260918",
+      "lastSeenDate": "20260921",
       "primaryExchange": null,
       "status": "active",
       "symbols": [
@@ -31418,7 +31399,7 @@
           "exchange": null,
           "firstSeenDate": "20251110",
           "isPrimary": true,
-          "lastSeenDate": "20260918",
+          "lastSeenDate": "20260921",
           "symbol": "T 1 1/4 05/31/28"
         }
       ]
@@ -31685,7 +31666,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-09-21T01:57:48.969069Z",
+  "generatedAt": "2026-09-22T15:02:18.429003Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "UST-2028-05-31"

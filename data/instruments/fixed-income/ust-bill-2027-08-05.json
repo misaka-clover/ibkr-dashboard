@@ -7,7 +7,7 @@
       "cashFlowQuality": "complete",
       "closedPositionTotal": -8.83,
       "comprehensiveCost": 4823.05,
-      "costBasisResidual": 0.0,
+      "costBasisResidual": null,
       "costBasisXirr": null,
       "costBasisXirrMethodology": null,
       "costBasisXirrQuality": "not_applicable",
@@ -21,9 +21,9 @@
       "holdingPeriodDays": 24,
       "holdingPeriodEndDate": "20260921",
       "holdingPeriodStartDate": "20260828",
-      "methodology": "国库券以含手续费的 IBKR 成本基础与到期面值计算合同回报；页面主收益率另以模型未舍入成交价款加佣金，从成交日起算有效 XIRR，并明确标为估算。计划结算日不等于实际结算，实际结算证据缺失时不会生成结算日起算 XIRR。",
+      "methodology": "按国库券成交净现金流与期末完成收盘市值，以真实日期计算资金加权年化 XIRR；成交日与估值日相同时没有可年化的已流逝期间，结果保持缺失。使用与年化收益相同的国库券现金流，以面值数量重建持仓时钟；成交日与估值日相同时没有可计算的持有期，非年化总回报保持缺失。",
       "realizedPnl": 0.0,
-      "realizedPnlYtd": 0,
+      "realizedPnlYtd": 0.0,
       "totalReturn": -0.0018307917191057177,
       "totalReturnMethodology": "使用与年化收益相同的国库券现金流，以面值数量重建持仓时钟；成交日与估值日相同时没有可计算的持有期，非年化总回报保持缺失。",
       "valuationDate": "20260921"
@@ -57,7 +57,7 @@
     "dataAsOf": {
       "lifecycle": {
         "latestEventDate": "20260828",
-        "latestSourceAt": "2026-09-22T04:55:13.560222Z",
+        "latestSourceAt": "2026-08-29T09:19:05.649785Z",
         "statementCoverageStart": "20241112",
         "statementThrough": "20260921"
       },
@@ -113,6 +113,7 @@
           "asOf": "20260921",
           "count": 1,
           "coverageStatus": "complete",
+          "message": null,
           "sourceMode": "official_activity_flex_lot",
           "status": "pass"
         },
@@ -348,10 +349,10 @@
             "value": null
           },
           "scheduledSettlementDateTarget": {
-            "asOf": null,
-            "completionState": null,
-            "status": "missing",
-            "value": null
+            "asOf": "2026-09-22T04:55:13.560222Z",
+            "completionState": "scheduled_not_actual",
+            "status": "provided",
+            "value": "2026-08-31"
           }
         },
         "status": "pass",
@@ -440,17 +441,9 @@
           {
             "closestTenor": true,
             "coverageEnd": "2026-09-18",
-            "coverageStart": "2016-09-19",
+            "coverageStart": "2016-09-21",
             "label": "2 年期",
             "points": [
-              [
-                "2016-09-19",
-                0.79
-              ],
-              [
-                "2016-09-20",
-                0.79
-              ],
               [
                 "2016-09-21",
                 0.79
@@ -10453,17 +10446,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-09-18",
-            "coverageStart": "2016-09-19",
+            "coverageStart": "2016-09-21",
             "label": "5 年期",
             "points": [
-              [
-                "2016-09-19",
-                1.22
-              ],
-              [
-                "2016-09-20",
-                1.2
-              ],
               [
                 "2016-09-21",
                 1.2
@@ -20466,17 +20451,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-09-18",
-            "coverageStart": "2016-09-19",
+            "coverageStart": "2016-09-21",
             "label": "10 年期",
             "points": [
-              [
-                "2016-09-19",
-                1.7
-              ],
-              [
-                "2016-09-20",
-                1.69
-              ],
               [
                 "2016-09-21",
                 1.66
@@ -30478,8 +30455,8 @@
           }
         ],
         "status": "pass",
-        "windowEnd": "2026-09-18",
-        "windowStart": "2016-09-18"
+        "windowEnd": "2026-09-21",
+        "windowStart": "2016-09-21"
       }
     },
     "fundProfile": {
@@ -30488,7 +30465,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-09-21T01:58:01.536366Z",
+    "generatedAt": "2026-09-22T15:02:31.369527Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BILL",
@@ -30499,7 +30476,7 @@
       "englishName": "United States Treasury Bill due 2027-08-05",
       "firstSeenDate": "20260828",
       "instrumentKind": "us_treasury_bill",
-      "lastSeenDate": "20260918",
+      "lastSeenDate": "20260921",
       "primaryExchange": null,
       "status": "active",
       "symbols": [
@@ -30508,7 +30485,7 @@
           "exchange": null,
           "firstSeenDate": "20260828",
           "isPrimary": true,
-          "lastSeenDate": "20260918",
+          "lastSeenDate": "20260921",
           "symbol": "912797VR5"
         }
       ]
@@ -30781,7 +30758,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-09-21T01:57:48.969069Z",
+  "generatedAt": "2026-09-22T15:02:18.429003Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "UST-BILL-2027-08-05"
