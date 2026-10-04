@@ -319831,7 +319831,7 @@
     ],
     "chartEvents": {
       "dividendCoverage": {
-        "coverageEnd": "20260921",
+        "coverageEnd": "20261002",
         "coverageStart": "20241112",
         "issuerCoverageStart": null,
         "lifetimeHistoryComplete": true,
@@ -320506,6 +320506,12 @@
           "amountPerShare": 0.187083,
           "currency": "USD",
           "eventDate": "20260622",
+          "eventType": "cash_dividend"
+        },
+        {
+          "amountPerShare": 0.196537,
+          "currency": "USD",
+          "eventDate": "20260921",
           "eventType": "cash_dividend"
         }
       ]
@@ -321956,17 +321962,30 @@
           "title": "基金分配除息"
         },
         {
-          "currency": null,
-          "description": "SPDR 官方 2026 年分派日程列示的第三季度预估除息日；金额尚未宣告，日程可变。",
+          "currency": "USD",
+          "description": "State Street 官方历史分配表列示每份 USD 0.196537，2026-09-21 除息及登记，2026-09-23 支付。发行人未提供宣告日期；基金分配记录不代表账户权益或实际到账。",
           "eventDate": "20260921",
           "eventTime": null,
-          "eventTimezone": null,
+          "eventTimezone": "America/New_York",
           "eventType": "ex_dividend",
-          "publicKey": "4901a4f501842d3e1329b8f419efd99c3b15a7c0c1594ed573402e6cefb6eb37",
+          "publicKey": "29e99c67f279b41fb762b633c74473627b734f916ecff88d2af53144ca940f24",
           "sourceName": "Reviewed Official Issuer and Sponsor Events",
-          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/us/distribution/SPDR_Dividend_Distribution_Schedule.pdf",
-          "status": "estimated",
-          "title": "XLF 第三季度预估除息日"
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-etf-historical-distributions.xlsx",
+          "status": "occurred",
+          "title": "XLF 第三季度除息日"
+        },
+        {
+          "currency": "USD",
+          "description": "State Street 官方历史分配表列示每份 USD 0.196537，2026-09-21 除息及登记，2026-09-23 支付。发行人未提供宣告日期；基金分配记录不代表账户权益或实际到账。",
+          "eventDate": "20260923",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "dividend_payment",
+          "publicKey": "b909223cd7f502c1bfd0330905ab319d1994e88d581df0a10f19ffeb725765c5",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-etf-historical-distributions.xlsx",
+          "status": "confirmed",
+          "title": "XLF 第三季度分配支付日"
         },
         {
           "currency": null,
@@ -322002,7 +322021,7 @@
       ],
       "stale": true,
       "status": "warning",
-      "updatedAt": "2026-08-19T07:03:53Z",
+      "updatedAt": "2026-09-22T16:32:57Z",
       "warning": "公司事件来源超过 7 天未核验。"
     },
     "coverage": [
@@ -322025,7 +322044,7 @@
       "corporateEvents": {
         "stale": true,
         "status": "warning",
-        "updatedAt": "2026-08-19T07:03:53Z"
+        "updatedAt": "2026-09-22T16:32:57Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -322042,10 +322061,10 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 114,
+          "count": 115,
           "stale": true,
           "status": "warning",
-          "updatedAt": "2026-08-19T07:03:53Z",
+          "updatedAt": "2026-09-22T16:32:57Z",
           "warning": "公司事件来源超过 7 天未核验。"
         },
         "fundamentals": {
@@ -322162,7 +322181,7 @@
         "TRADES": 6952
       },
       "corporateEvents": {
-        "count": 114,
+        "count": 115,
         "sourceCount": 3
       }
     },
@@ -322201,7 +322220,7 @@
       }
     }
   },
-  "generatedAt": "2026-09-22T15:50:09.039618Z",
+  "generatedAt": "2026-10-04T01:34:25.546290Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "XLF"
