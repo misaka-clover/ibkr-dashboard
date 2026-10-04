@@ -7,7 +7,7 @@
       "cashFlowQuality": "complete",
       "closedPositionTotal": -87.97,
       "comprehensiveCost": 2927.44,
-      "costBasisResidual": 0.0,
+      "costBasisResidual": null,
       "costBasisXirr": null,
       "costBasisXirrMethodology": null,
       "costBasisXirrQuality": "not_applicable",
@@ -21,9 +21,9 @@
       "holdingPeriodDays": 22,
       "holdingPeriodEndDate": "20261002",
       "holdingPeriodStartDate": "20260910",
-      "methodology": "以 IBKR 当前成本基础（含手续费）与购买应计利息作为实际投入，按精确日历、未来半年票息及到期本金计算年化持有到期 XIRR；不是券商报价页的债券等价收益率。发生卖出后若剩余批次无法精确归属，实际息率失败关闭；持有期年化收益与总回报率继续按完整生命周期现金流独立计算。",
+      "methodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "realizedPnl": 0.0,
-      "realizedPnlYtd": 0,
+      "realizedPnlYtd": 0.0,
       "totalReturn": -0.027126089689513133,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "valuationDate": "20261002"
@@ -57,7 +57,7 @@
     "dataAsOf": {
       "lifecycle": {
         "latestEventDate": "20260910",
-        "latestSourceAt": "2026-10-03T05:21:49.606980Z",
+        "latestSourceAt": "2026-09-11T08:14:56.795211Z",
         "statementCoverageStart": "20241112",
         "statementThrough": "20261002"
       },
@@ -113,6 +113,7 @@
           "asOf": "20261002",
           "count": 1,
           "coverageStatus": "complete",
+          "message": null,
           "sourceMode": "official_activity_flex_lot",
           "status": "pass"
         },
@@ -176,30 +177,6 @@
     ],
     "events": [
       {
-        "amount": -2885.0,
-        "currency": "USD",
-        "details": {
-          "closePrice": 95.671875,
-          "commission": -5.0,
-          "costBasis": 2885.0,
-          "description": "T 4 3/8 05/15/36",
-          "metadata": {
-            "buySell": "BUY",
-            "transactionType": "ExchTrade"
-          },
-          "mtmPnl": -9.8438,
-          "price": 96.0,
-          "proceeds": -2880.0,
-          "realizedPnl": 0.0,
-          "taxes": 0.0
-        },
-        "eventTime": "20260910;084207",
-        "eventType": "trade",
-        "quantity": 3000.0,
-        "symbol": "T 4 3/8 05/15/36",
-        "tradeDate": "20260910"
-      },
-      {
         "amount": -42.44,
         "currency": "USD",
         "details": {
@@ -222,6 +199,30 @@
         "quantity": null,
         "symbol": "T 4 3/8 05/15/36",
         "tradeDate": "20260910"
+      },
+      {
+        "amount": -2885.0,
+        "currency": "USD",
+        "details": {
+          "closePrice": 95.671875,
+          "commission": -5.0,
+          "costBasis": 2885.0,
+          "description": "T 4 3/8 05/15/36",
+          "metadata": {
+            "buySell": "BUY",
+            "transactionType": "ExchTrade"
+          },
+          "mtmPnl": -9.8438,
+          "price": 96.0,
+          "proceeds": -2880.0,
+          "realizedPnl": 0.0,
+          "taxes": 0.0
+        },
+        "eventTime": "20260910;084207",
+        "eventType": "trade",
+        "quantity": 3000.0,
+        "symbol": "T 4 3/8 05/15/36",
+        "tradeDate": "20260910"
       }
     ],
     "fixedIncome": {
@@ -238,7 +239,7 @@
       "annualizedTotalReturn": -0.3663529413868333,
       "cashFlowMethodology": "按代码所载票面息率、到期日和当前持有面值生成合同半年现金流；日期是合同日，不推断周末或假日导致的实际入账日。",
       "cashFlowQuality": "complete",
-      "cashFlowReconciliationResidual": 1.9895196601282805e-13,
+      "cashFlowReconciliationResidual": 1.4210854715202004e-13,
       "cashFlows": [
         {
           "coupon": 65.625,
@@ -483,41 +484,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-10-01",
-            "coverageStart": "2016-09-21",
+            "coverageStart": "2016-10-03",
             "label": "5 年期",
             "points": [
-              [
-                "2016-09-21",
-                1.2
-              ],
-              [
-                "2016-09-22",
-                1.18
-              ],
-              [
-                "2016-09-23",
-                1.16
-              ],
-              [
-                "2016-09-26",
-                1.13
-              ],
-              [
-                "2016-09-27",
-                1.12
-              ],
-              [
-                "2016-09-28",
-                1.13
-              ],
-              [
-                "2016-09-29",
-                1.12
-              ],
-              [
-                "2016-09-30",
-                1.14
-              ],
               [
                 "2016-10-03",
                 1.18
@@ -10524,41 +10493,9 @@
           {
             "closestTenor": true,
             "coverageEnd": "2026-10-01",
-            "coverageStart": "2016-09-21",
+            "coverageStart": "2016-10-03",
             "label": "10 年期",
             "points": [
-              [
-                "2016-09-21",
-                1.66
-              ],
-              [
-                "2016-09-22",
-                1.63
-              ],
-              [
-                "2016-09-23",
-                1.62
-              ],
-              [
-                "2016-09-26",
-                1.59
-              ],
-              [
-                "2016-09-27",
-                1.56
-              ],
-              [
-                "2016-09-28",
-                1.57
-              ],
-              [
-                "2016-09-29",
-                1.56
-              ],
-              [
-                "2016-09-30",
-                1.6
-              ],
               [
                 "2016-10-03",
                 1.63
@@ -20565,41 +20502,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-10-01",
-            "coverageStart": "2016-09-21",
+            "coverageStart": "2016-10-03",
             "label": "20 年期",
             "points": [
-              [
-                "2016-09-21",
-                2.06
-              ],
-              [
-                "2016-09-22",
-                2.02
-              ],
-              [
-                "2016-09-23",
-                2.02
-              ],
-              [
-                "2016-09-26",
-                2.0
-              ],
-              [
-                "2016-09-27",
-                1.96
-              ],
-              [
-                "2016-09-28",
-                1.96
-              ],
-              [
-                "2016-09-29",
-                1.95
-              ],
-              [
-                "2016-09-30",
-                1.99
-              ],
               [
                 "2016-10-03",
                 2.01
@@ -30605,8 +30510,8 @@
           }
         ],
         "status": "pass",
-        "windowEnd": "2026-10-01",
-        "windowStart": "2016-09-21"
+        "windowEnd": "2026-10-02",
+        "windowStart": "2016-10-02"
       }
     },
     "fundProfile": {
@@ -30615,7 +30520,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-09-22T15:50:16.513439Z",
+    "generatedAt": "2026-10-04T01:34:32.671911Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BOND",
@@ -30626,7 +30531,7 @@
       "englishName": "T 4 3/8 05/15/36",
       "firstSeenDate": "20260910",
       "instrumentKind": "us_treasury",
-      "lastSeenDate": "20260921",
+      "lastSeenDate": "20261002",
       "primaryExchange": null,
       "status": "active",
       "symbols": [
@@ -30635,7 +30540,7 @@
           "exchange": null,
           "firstSeenDate": "20260910",
           "isPrimary": true,
-          "lastSeenDate": "20260921",
+          "lastSeenDate": "20261002",
           "symbol": "T 4 3/8 05/15/36"
         }
       ]
@@ -30712,7 +30617,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-09-22T15:50:09.039618Z",
+  "generatedAt": "2026-10-04T01:34:25.546290Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "UST-2036-05-15"

@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": "20260804",
+        "latestAsOfDate": "20260925",
         "providerPublishedDate": "20260804",
         "providerVerifiedAt": "2026-08-08T04:12:28Z"
       }
@@ -23,7 +23,7 @@
           "role": "Equity Analyst"
         },
         "freshness": {
-          "ageDays": 45.484533130925925,
+          "ageDays": 56.89027876113426,
           "maximumDays": 7,
           "status": "stale",
           "warning": "资料超过七天未重新核验"
@@ -92,285 +92,103 @@
     "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
-        "asOfDate": "20260804",
+        "asOfDate": "20260925",
         "assessmentType": "equity_research",
-        "completedAt": "2026-08-08T04:22:36.643778Z",
-        "frameworkVersion": "equity-research-strategy-v1",
+        "completedAt": "UTC 2026-09-29 14:08",
+        "frameworkVersion": "equity-research-strategy-v2.5",
         "result": {
-          "bearCase": [
-            "美国低收入消费者继续减少交易，增长主要依赖客单价和促销。",
-            "加盟商为保护现金流提高价格或减少优惠参与，价值平台更加碎片化。",
-            "高资本开支和门店目标后移伴随新店回报下降、成熟店蚕食和中国增长质量不足。",
-            "NEXT 与数字化增加 SG&A 和重组成本，却未改善客流和单位经济。",
-            "股息与回购持续超过自由现金流，债务和租赁义务限制战略弹性。"
-          ],
-          "bullCase": [
-            "一致的价值平台、忠诚度优惠和核心菜单创新使美国客流转正。",
-            "加盟餐厅利润与系统销售同步增长，不需要总部长期补贴促销。",
-            "全球开店和改造形成可验证的 cohort AUV、回收期和增量 FCFF。",
-            "NEXT、GBS、自动化和数字会员改善速度、准确率、频次与单位利润。",
-            "固定汇率营业利润和自由现金流增长重新超过资本开支与股东分配压力。"
-          ],
-          "cashDecision": "do_not_buy",
-          "decisionHinge": "MCD 能否以一致的价值平台和数字化执行使美国客流恢复，同时证明 US$3.7B–US$3.9B 资本开支、全球开店与 NEXT 投入具有可持续的加盟商和股东回报。",
-          "evidenceConfidence": "medium_high",
-          "existingPositionAction": "hold",
-          "facts": [
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "mcd-q2-2026-8k",
-              "text": "第二季度全球同店销售增长 1.3%；美国、国际直营市场和国际发展许可市场分别增长 0.8%、1.5%和 1.9%。"
+          "existingPositionDecision": "review_for_reduction",
+          "fiveLayerDecisionSummary": {
+            "actionFalsifiersAndGaps": {
+              "summary": "旧缺口继续有效：NEXT按年／市场现金、税务与真实回报；官方幻灯片／回放未完整验证；9月净债务、融资租赁和稀释；成本分配／再加盟对价；独立加盟商回报和忠诚增量；事件微观流量和完整公司行动；无更新可复算机构模型；年报FCF叙述与表格算术差异。新缺口为MCD专属beta、租赁统一口径以及同期限边际债务报价。公开来源缺口和实际账户未请求分别记录，不用0填补。\n\n下一验证窗口为Q3正式披露及NEXT预算／批次效果，未在本次查询中确认财报日，不虚构日程。如果总部真实增量回报持续超过资本成本、MCD可比beta支持0.7附近且客流改善，则复核8.5%WACC与零终值超额回报；若支持成本、净借款和现金分配缺口继续扩大，则加强减持论证。最迟2026-12-25重检适用性，提前出现重大证据则提前；本报告没有创建自动化。"
             },
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "mcd-q2-2026-8k",
-              "text": "美国同店销售由正客单价和有利组合推动，但顾客交易量为负，显示价值平台尚未恢复客流。"
+            "latestEvidenceDelta": {
+              "summary": "| 项目 | 已报基线或现况 | 新内容及判断 |\n|---|---|---|\n| 客流/同店 | Q2全球同店+1.3%，美国+0.8%；美国由客单支撑、客流为负 | 投资者日管理层预计美国Q3略负，9月转正仍是预期；不是Q3已报业绩。 |\n| 销售扩张 | H1系统销售按报告货币+8%、不变汇率+5% | 新店销售贡献2027约2.5%、2030约2%；门店数量增长不能直接当销售增长。 |\n| 加盟比重 | 全球约95%单位数 | 转录目标2028年底98%；直营收入退出会缩小收入分母并抬高利润率，不能把利润率改善全部解释成经营效率。 |\n| 餐厅生产率 | 尚无整网NEXT已实现结果 | 250bp为餐厅层面的毛效率目标，大部分拟留给门店；不是总部利润率直接增加250bp。 |\n| 资金支持 | 历史也存在加盟商合作投入 | 总部2027—2036支持现金85亿美元，其中2030前50亿美元，包含租金及资本。不是额外85亿再加50亿。 |\n| 资本支出 | FY2025为33.65亿美元；2026指引37亿—39亿美元 | 2027—2030基础capex每年约30亿美元，另加**四年累计**15亿—20亿美元资本支持，后者属于85亿/50亿之内。 |\n| 目标利润/转换 | 2025 EBIT/收入约46.1%，FCF/NI约83.9% | 2030调整后营业利润率50%出头至50%中段、FCF转换80%中至高段；两者均为company_claim。 |\n\n基线来自[Q2补充资料](https://www.sec.gov/Archives/edgar/data/63908/000006390826000067/exhibit992-6302026.htm)，新目标来自[公司NEXT公告](https://mcdonalds.mediaroom.com/2026-09-23-McDONALDS-ADVANCES-NEXT-STRATEGY-TO-BECOME-FIRST-CHOICE-FOR-MORE-CUSTOMERS%2C-MORE-OFTEN)。\n\n加盟商通常仍需承担常规翻新与NEXT新增投资。转录中，美国NEXT增量约80万美元/典型门店，正常翻新约40万—45万美元，二者口径不同；加盟商约4年回收期是支持后的公司估计，总部约5—6年回收期也是预测，不是同一投资者的同一现金流。问答还说明85亿美元采用现金口径，账面支持通常按剩余加盟期限摊销、平均约10年。这是本次模型需要把现金节奏与会计利润拆开的原因。[Quartr转录，CFO部分及相关问答](https://stockanalysis.com/stocks/mcd/transcripts/746101-investor-day-2026/)\n\n官方选择性幻灯片链接未成功取得，官方页面浏览器呈现也缺少该资料区，回放未逐句核验；上述特定问答据可信提供商转录，不能声称完成官方音视频复核。年度/市场支持分配、税务处理、净加盟商支出与实际新增收入仍未披露，保留关键缺口。"
             },
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "mcd-q2-2026-8k",
-              "text": "全球系统销售额约 US$37B，同比增长 5%、固定汇率增长 4%；公司收入 US$7.099B，同比增长 4%、固定汇率增长 2%。"
+            "longTermThesisAndStatus": {
+              "summary": "MCD主要通过加盟商门店销售获取租金与特许权使用费，也经营少量直营餐厅。传统加盟模式下，总部通常控制土地/建筑，加盟商承担门店设备、运营和人员。品牌、选址、供应链、数字化和规模网络相互支持；2025年加盟业务提供约90%的餐厅利润，轻运营属性是长期现金流论点的基础。其物业收入不是独立于餐厅客流的债券现金流：顾客减少、加盟商负担过重或重大翻新都会反馈到总部。[2025年报：商业模式及餐厅利润](https://www.sec.gov/Archives/edgar/data/63908/000006390826000035/mcd-20251231.htm)\n\n两个行为维度给出混合而非单向证据。其一，价格/客流：Q2美国同店销售仅+0.8%，平均客单提升而客流为负；独立Placer样本估计Q2美国访问量同比−4.5%，与“需求已恢复”不一致。该样本估计不是收银交易数据，不能直接减在同店销售上或外推全球。其二，参与/复购：公司披露活跃忠诚计划规模继续扩大，转录提及忠诚销售约30%及频率差异；这尚不能排除本来高频顾客自选入会，也缺少独立留存/增量回购验证。因此不能把忠诚人数增长当成已证明的客流增量。[10-Q](https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm)；[Placer原始研究](https://www.placer.ai/anchor/articles/why-chipotle-and-mcdonalds-took-different-paths-in-q2-2026)\n\n我的判断是**长期现金流论点维持，但竞争优势兑现受压**。品牌和加盟体系的存在不足以证明新增投资回报；需要观察低价供给、服务与厨房复杂度能否改善真实客流，同时保住加盟商利润。未取得新的独立加盟商资本回报/违约/退出序列，故不把“加盟商经济性强”升级为充分验证事实。"
             },
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "mcd-q2-2026-8k",
-              "text": "营业利润 US$3.338B，同比增长 3%、固定汇率增长 2%；净利润 US$2.362B，同比增长 5%、固定汇率增长 4%。"
+            "portfolioRoleExistingAndNewMoney": {
+              "summary": "**现有持仓进入减持复核，尚不等于建议立即卖出。** 从236.50到171.21的差额约27.61%，即使保留12%ROIC也缺乏安全边际；这使资本继续占用的论证责任提高。另一方面低beta与高终值回报存在可能，但没有被这次代理数据证实。应由主要讨论在确认最新价格、实际持仓、税费及替代机会后，比较继续持有和部分减持；没有交易数量或定时指令。\n\n**等额新钱暂缓。** 旧成本是沉没成本，已有仓位并不会改变同一边际美元的经济回报；两类行动不同仅在于已有风险暴露需要复核，而新钱可先保留选择。VOO是分散化参照，BOXX是等待参照，均未作新独立估值或承诺未来收益。以本版159.77—171.21再打15%折让约135.81—145.53，只是数学演示；它既不是公允价值置信区间，也不是买入价格授权，经营证据不足时即使更低也可能继续等待。\n\n等待会失去上涨及股息，也保留免受下行和等待证据的选择权。不因过去回撤或害怕卖飞而豁免持仓复核，不因新审慎基准较低就当作已经证明公司受损。\n\n## 11. 一般组合角色及现行政策\n\n公司加盟／品牌现金流论点尚未证伪；新增投资回报未充分验证。证券层行动改变与一般消费权益角色可以同时成立。低历史波动、股息和物业租金并不证明MCD能对冲长端利率或极端权益回撤。"
             },
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "mcd-q2-2026-8k",
-              "text": "GAAP 稀释 EPS US$3.32，同比增长 6%、固定汇率增长 5%；剔除 ATO 等重组费用后调整后 EPS US$3.38。"
-            },
-            {
-              "asOf": "20260630",
-              "formula": "margin dollars divided by related revenue; restaurant margin mix",
-              "label": "model_derived",
-              "sourceRef": "mcd-q2-2026-8k",
-              "text": "加盟餐厅利润美元额 US$3.713B，推导利润率约 84.52%，占餐厅利润约 90%；公司自营利润 US$0.387B，推导利润率约 15.33%，美国自营利润美元额下降 6%。"
-            },
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "mcd-q2-2026-10q",
-              "text": "Q2 经营现金流 US$2.807B、资本开支 US$0.831B、自由现金流 US$1.976B；股息 US$1.317B、回购 US$0.856B，合计超过自由现金流约 US$0.197B。"
-            },
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "mcd-q2-2026-10q",
-              "text": "H1 经营现金流 US$5.222B、资本开支 US$1.516B、自由现金流 US$3.706B；股息 US$2.640B、回购 US$1.251B，合计超过自由现金流约 US$0.185B。"
-            },
-            {
-              "asOf": "20260630",
-              "formula": "long-term debt - cash; plus current and long-term lease liabilities",
-              "label": "model_derived",
-              "sourceRef": "mcd-q2-2026-10q",
-              "text": "期末现金 US$0.822B、长期债务 US$39.863B，推导净债务约 US$39.041B；流动与长期租赁负债 US$14.729B，计入租赁的义务约 US$53.770B。"
-            },
-            {
-              "asOf": "20260807",
-              "label": "company_claim",
-              "sourceRef": "mcd-q2-2026-10q",
-              "text": "2026 年书面展望维持资本开支 US$3.7B–US$3.9B、全球开店约 2,600 家、净增约 2,100 家、自由现金流转换率低至中 80%区间和营业利润率中高 40%区间。"
-            },
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "mcd-q2-2026-10q",
-              "text": "全球餐厅 46,028 家，同比增加 1,915 家；中国增加 887 家、约占同比净增 46%，但中国同店销售为负。"
-            },
-            {
-              "asOf": "20260807",
-              "label": "fact",
-              "sourceRef": "mcd-q2-2026-10q",
-              "text": "正式 10-Q 把 50,000 家全球门店目标写为 2028 年；此前官方材料曾写 2027 年，正式文件未解释桥接。"
-            },
-            {
-              "asOf": "20260804",
-              "label": "company_claim",
-              "sourceRef": "mcd-q2-2026-8k",
-              "text": "忠诚度过去十二个月销售额超过 US$40B，90 天活跃用户约 220M；平台规模不能单独证明增量客流、促销利润或门店回报。"
-            },
-            {
-              "asOf": "20260804",
-              "label": "external_estimate",
-              "sourceRef": "morningstar-mcd-20260804",
-              "text": "Morningstar 仍显示四星、US$295 正式公允价值、宽护城河、低不确定性和优秀资本配置；分析师已表示计划低个位数下调公允价值，但精确新值尚未发布。"
+            "valuationAndPricedExpectations": {
+              "summary": "旧9/4增长代理模型约$249.74是历史结果；v4.1经营驱动结果$221.76也是历史版本。当前只改变已声明的折现和终值情景，保留97/365年stub、2027—2036显式经营路径、净债务／股数代理。2030模型利润率约56.3%仍高于公司目标区间；以额外未分配现金成本压至54%的交叉检查为$159.77，不是新增已确认费用，也不能声称整个基准经营预测保守。\n\n| 单向变化桥 | 每股价值 | 与前一步差额 |\n|---|---:|---:|\n| v4.1：WACC7.75%、ROIC12% | $221.76 | — |\n| 仅WACC改8.5%，ROIC仍12% | $186.19 | -$35.58 |\n| 再改ROIC8.5% | $171.21 | -$14.98 |\n\n因果是模型归因，不是市场跌幅归因。保留经营、只换两个判断就明显改变结果，正是不能把“公式通过”当作“充分研究”的原因。基准终值占企业价值53.69%，依然重要。\n\n| 情景 | WACC | g | 增量ROIC | 每股价值 | 对研究价差额 | 终值占EV |\n|---|---:|---:|---:|---:|---:|---:|\n| 经营偏弱 | 9.50% | 2.00% | 8.00% | $102.27 | -56.76% | 46.55% |\n| 审慎基准 | 8.50% | 2.50% | 8.50% | $171.21 | -27.61% | 53.69% |\n| NEXT兑现较好 | 7.50% | 2.75% | 12.00% | $283.61 | 19.92% | 63.82% |\n| 持续高利率 | 9.50% | 2.50% | 9.50% | $143.11 | -39.49% | 49.82% |\n| 结构性永久损失压力 | 10.50% | 0.00% | 7.50% | $25.00 | -89.43% | 36.45% |\n\n\n各路径没有概率，不机械平均。悲观路径是客流／收费率／固定成本的共同压力；结构性压力保留前三年客流每年-5%、之后-1%等假设，2030股息覆盖仍约0.64倍。本次$25只说明持续现金流受损与财务杠杆如何放大损失，不是崩盘概率或对NKE路径的类比预测。\n\n| WACC／ROIC，g=2.5% | 7.5% | 8.5% | 10% | 12% | 15% |\n|---|---:|---:|---:|---:|---:|\n| 7.50% | $207.18 | $216.22 | $226.38 | $235.98 | $245.58 |\n| 8.00% | $183.86 | $191.70 | $200.51 | $208.83 | $217.15 |\n| 8.50% | $164.36 | $171.21 | $178.91 | $186.19 | $193.46 |\n| 9.00% | $147.80 | $153.83 | $160.61 | $167.02 | $173.42 |\n| 9.50% | $133.56 | $138.90 | $144.90 | $150.58 | $156.25 |\n\n\n矩阵仅固定基准经营和g2.5%，变WACC／增量ROIC；不是统计置信区间。较低WACC和持续超额回报可以覆盖研究价，但须找到证据支持，不能因已经持有而选用。\n\n| 参数单独变化 | 参数区间 | 对应未取整WACC | 每股价值区间 |\n|---|---|---|---|\n| ERP | 3.56%—6.05% | 7.80%—9.69% | $133.69—$200.79 |\n| beta | 0.60—1.10 | 7.26%—9.06% | $152.06—$229.87 |\n| 税前债务成本 | 4.00%—8.00% | 8.17%—8.80% | $160.48—$184.29 |\n\n\n单因素表固定终值ROIC8.5%，并使用未取整WACC；因此中央4.5%／0.95／6.2%的单因素值与8.5%取整基准略有差异。配套JSON另列每次令终值ROIC=WACC的结果，以及完整g2%／2.5%／3%矩阵；拒绝把多个有利假设的叠加说成单项改善。\n\n固定ROIC8.5%及基准经营，研究价需要WACC约7.15%；固定WACC8.5%则需每年额外约2.74%客流增幅持续进入十年路径。这不是市场共识，也非唯一能解释价格的组合。无超额回报时提高g须同步增加再投资，价值对g的资本化效应大体抵消，避免用永续增长率凭空创造价值。"
             }
-          ],
-          "falsifiers": [
-            "美国同店销售继续主要由客单价驱动，客流连续多个季度为负。",
-            "加盟利润率或加盟商现金回报恶化，并需要更高总部补贴。",
-            "2026 约 2,600 家开店／2,100 家净新增目标下调或资本开支超出 US$3.9B。",
-            "新店 cohort AUV、成熟店蚕食和回收期显示边际回报低于资本成本。",
-            "固定汇率营业利润增长持续落后系统销售，SG&A 和利息压力扩大。",
-            "自由现金流持续低于股息加回购，净债务与租赁负担进一步上升。",
-            "NEXT、忠诚度和自动化缺乏服务速度、订单准确率、频次、客流和加盟商回报证据。"
-          ],
-          "missingEvidence": [
-            "截至 2026-08-08，MCD 官方 transcript、prepared remarks 和逐项 Q&A 未取得；本版本不使用二手电话会摘要填补。",
-            "公司未披露新店 cohort AUV、成熟店蚕食、加盟商现金回报、建设成本、回收期和增量 FCFF。",
-            "忠诚度超过 US$40B 销售额和 220M 活跃用户证明平台规模，不证明增量客流、促销利润或餐厅回报。",
-            "NEXT、GBS、AI 与自动化缺少服务速度、订单准确率、成本、客流和加盟商回报 KPI。",
-            "财报前内部 DCF 尚未按 Q2 后美国客流、门店目标、资本开支和单位经济假设重建。",
-            "Morningstar 已预告低个位数下调 US$295，但精确新公允价值尚未发布，不能自行估算。",
-            "Morningstar PDF 已全文提取并完成关键页独立视觉抽查；候选仅保存 SHA-256 与结构化转述，不复制报告正文、图片或表格。"
-          ],
-          "monitoring": [
-            {
-              "baseline": "Q2 美国同店销售 +0.8%，正客单价但客流为负；7 月趋势仍为负为 Morningstar 观察",
-              "challengingDirection": "客流继续负增长，价值平台参与不一致。",
-              "confirmingDirection": "客流转正且不再主要依赖客单价或更深折扣。",
-              "metric": "美国同店销售、客流与客单价",
-              "nextReview": "each_month_or_quarter_when_officially_disclosed"
-            },
-            {
-              "baseline": "Q2 加盟利润率推导约 84.52%；公司自营约 15.33%，美国自营利润美元额 -6%",
-              "challengingDirection": "促销、人工、牛肉和租金使加盟或自营单位经济继续恶化。",
-              "confirmingDirection": "加盟利润跟上系统销售，公司自营利润率改善。",
-              "metric": "加盟与公司自营利润",
-              "nextReview": "each_quarter"
-            },
-            {
-              "baseline": "2026 约 2,600 家总开店、约 2,100 家净新增、资本开支 US$3.7B–US$3.9B；50,000 家目标为 2028 年",
-              "challengingDirection": "目标继续后移、资本开支超支或新店回报下降。",
-              "confirmingDirection": "进度按计划且披露新店 cohort AUV、建设成本、回收期和增量 FCFF。",
-              "metric": "开店、资本开支与 50,000 家目标",
-              "nextReview": "20260923 investor day and each quarter"
-            },
-            {
-              "baseline": "TTM 忠诚度销售额超过 US$40B、90 天活跃用户约 220M",
-              "challengingDirection": "平台规模增长但美国客流和单位利润不改善。",
-              "confirmingDirection": "披露同群频次、促销 ROI、客流和餐厅利润改善。",
-              "metric": "忠诚度与价值平台",
-              "nextReview": "each_official_strategy_update"
-            },
-            {
-              "baseline": "Q2 固定汇率营业利润 +2%；EPS 受税率、股数、FX 和处置收益帮助",
-              "challengingDirection": "EPS 增长继续主要依赖税率、股数、汇率或处置收益。",
-              "confirmingDirection": "核心营业利润增速提高，非经营支持占比下降。",
-              "metric": "固定汇率营业利润与 EPS 质量",
-              "nextReview": "each_quarter"
-            },
-            {
-              "baseline": "H1 FCF US$3.706B；股息加回购 US$3.891B；净债务约 US$39.041B，租赁调整义务约 US$53.770B",
-              "challengingDirection": "分配持续超过 FCF，债务和利息负担上升。",
-              "confirmingDirection": "全年转换率达到低至中 80%区间，股东分配由 FCF 覆盖，净债务稳定或下降。",
-              "metric": "自由现金流、股息、回购与净债务",
-              "nextReview": "each_quarter"
-            },
-            {
-              "baseline": "累计 ATO 重组费用 US$0.795B；2026 预计约 US$0.250B、H1 已 US$0.098B",
-              "challengingDirection": "SG&A 和复杂度上升，却没有可量化经营收益。",
-              "confirmingDirection": "披露服务速度、成本、订单准确率、客流和加盟商回报的改善。",
-              "metric": "NEXT 与 GBS 量化回报",
-              "nextReview": "20260923 investor day"
-            },
-            {
-              "baseline": "截至 2026-08-08 未取得官方 transcript／prepared remarks／逐项 Q&A",
-              "challengingDirection": "出现新的 call-only guidance、重大执行偏差或与书面文件冲突。",
-              "confirmingDirection": "后续文本不改变价值平台、门店目标、法国／中国和 NEXT 的书面证据解释。",
-              "metric": "官方电话会文本补充复核",
-              "nextReview": "upon_official_transcript_availability"
-            }
-          ],
-          "myJudgments": [
-            {
-              "basis": "加盟利润美元额继续增长、系统销售仍正增长；美国同店销售仅 +0.8%且客流为负。",
-              "challenge": "若美国客流在不依赖更高客单价的情况下恢复，近期负面可降为周期性波动。",
-              "label": "my_judgment",
-              "text": "加盟／地产／品牌模式没有被第二季度破坏，但美国需求和价值执行明显弱于长期论点所需。"
-            },
-            {
-              "basis": "固定汇率营业利润仅增长 2%，税率、股数、汇率和资产处置收益均提供帮助，SG&A 增长 17%、利息支出增长 5%。",
-              "challenge": "若后续固定汇率营业利润、客流和单位利润同步加速，EPS 质量可改善。",
-              "label": "my_judgment",
-              "text": "EPS 6%增长的质量弱于 headline。"
-            },
-            {
-              "basis": "Q2 10-Q 明确写 2028 年，而此前官方材料写 2027 年，且没有提供新店 cohort 经济性桥接。",
-              "challenge": "若净新增、成熟店销售和加盟商现金回报优于计划，时间后移可能只是更审慎的资本纪律。",
-              "label": "my_judgment",
-              "text": "50,000 家门店目标后移是开发路径放缓的正式证据，不能以目标仍在为由忽略。"
-            },
-            {
-              "basis": "价格仍高于旧基准、位于敏感区间内；美国客流与新店回报证据不足。",
-              "challenge": "正式重建模型后，若长期单位增长、利润率和 FCFF 证据上调，基准价值可提高。",
-              "label": "my_judgment",
-              "text": "财报前内部 DCF 仍可作为历史参照，但 Q2 没有降低当前价格所要求的中期增长。"
-            },
-            {
-              "basis": "单股与消费篮子均未触线，业务模式仍具韧性；但估值没有为当前证据缺口提供足够安全边际。",
-              "challenge": "价格显著低于重建后的基准价值且客流、加盟商经济性和开店回报同步改善时，可重新评估新增现金。",
-              "label": "my_judgment",
-              "text": "现有 10.56%仓位继续持有合理，新增资金应等待客流和单位经济证明。"
-            }
-          ],
-          "portfolioRole": "pending",
-          "researchMaturity": "preliminary",
-          "sourceRegister": [
-            {
-              "label": "McDonald's 2026 Q2 Form 8-K and earnings exhibits",
-              "publishedAt": "20260804",
-              "url": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000067/0000063908-26-000067-index.html"
-            },
-            {
-              "label": "McDonald's 2026 Q2 Form 10-Q",
-              "publishedAt": "20260807",
-              "url": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000073/mcd-20260630.htm"
-            }
-          ],
-          "underwritingStatus": "preliminary",
-          "valuation": {
-            "dcf": {
-              "coreSensitivityRangeUsd": [
-                214,
-                297
-              ],
-              "scenarios": [
-                {
-                  "assumptionSummary": "低增长、较高资本成本和开发回报下行。",
-                  "name": "bear",
-                  "valuePerShareUsd": 149.44
-                },
-                {
-                  "assumptionSummary": "中期 FCFF 增长约 5%，加盟模式和利润率保持韧性。",
-                  "name": "base",
-                  "valuePerShareUsd": 251.14
-                },
-                {
-                  "assumptionSummary": "数字化、门店增长和利润率提升共同推动更高 FCFF。",
-                  "name": "bull",
-                  "valuePerShareUsd": 421.4
-                }
-              ]
-            },
-            "priceUsd": 268.34
           },
-          "valuationConfidence": "medium",
-          "valuationMaturity": "conditional",
-          "valuationState": "fair",
-          "valuationStateLabelZh": "接近基准价值且处于核心敏感区间内，但美国客流与新店回报不足以提供新增资金安全边际"
+          "newMoneyDecision": "defer_do_not_add_yet",
+          "recommendedAction": "At September25 research price, re-underwrite holding versus partial reduction; defer equal new cash. Conditional securities research, no quantity, timing, user decision or trade authority.",
+          "researchCompletedAt": "UTC 2026-09-29 14:08",
+          "researchMaturity": "conditional",
+          "researchMethodVersion": "6.0.1",
+          "reviewedDisplay": {
+            "formatId": "reviewed-frozen-research-paraphrase-v1",
+            "layers": {
+              "actionFalsifiersAndGaps": {
+                "summary": "下一窗口为 Q3 正式披露与 NEXT 投入效果。总部真实增量回报持续超过资本成本、MCD 可比 beta 支持 0.7 附近且客流改善时，复核折现率与终值假设；支持成本、净借款和现金分配缺口继续扩大时，加强减持论证。NEXT 现金与回报、资本结构、公司专属 beta 和债务成本仍有缺口；重大证据出现时提前复核，最迟 2026-12-25 重检适用性。"
+              },
+              "latestEvidenceDelta": {
+                "summary": "Q2 美国同店销售主要由客单价支撑、客流仍承压。NEXT 的效率和回收期属于公司目标或预测，门店投入、总部支持现金与会计摊销需要分开核验。"
+              },
+              "longTermThesisAndStatus": {
+                "summary": "品牌、加盟网络与物业仍支撑长期现金流论点，竞争优势的兑现受到客流和加盟商经济性的约束；公司论点尚未证伪，新增投资回报尚未充分验证。"
+              },
+              "portfolioRoleExistingAndNewMoney": {
+                "summary": "仍属消费品牌与加盟现金流权益。现有持仓进入持有／减持复核，新增资金暂缓；继续持有与部分减持须结合实际组合、税费和替代机会比较。"
+              },
+              "valuationAndPricedExpectations": {
+                "summary": "以 2026-09-25 研究价 US$236.50 比较，审慎参数下基准为 US$171.21，将模型营业利润率压至 54% 的交叉检查为 US$159.77。两者均是条件模型结果，经营基准并非全面保守。较低折现率与持续超额回报可抬高价值，经营与现金流持续受压可进一步压低价值；估值和研究成熟度均为有条件。"
+              }
+            },
+            "overview": "MCD 的长期论点仍建立在品牌、加盟网络和餐厅物业所支撑的现金流之上，但客流修复、加盟商经济性和 NEXT 增量回报尚未得到充分验证。冻结研究中的股息及回购后现金缓冲偏薄，NEXT 支持与到期债务需共同衡量；正常再融资本身尚不足以推出必然削息。\n\n以 2026-09-25 研究基准价 US$236.50 比较，本版审慎参数下基准为 US$171.21，将模型营业利润率压至 54% 的交叉检查为 US$159.77。估值下降主要来自参数改变，经营预测未随之下修；经营基准并非全面保守。较低折现率与持续超额回报可抬高价值，经营与现金流持续受压可进一步压低价值；资本结构仍采用代理，估值与研究成熟度均为有条件。\n\n现有持仓进入持有／减持复核，尚非立即卖出判断；新增资金暂缓，一般角色仍为消费品牌与加盟现金流权益。若总部真实增量回报持续超过资本成本、MCD 可比 beta 支持 0.7 附近且客流改善，则复核折现率与终值假设；若支持成本、净借款和现金分配缺口继续扩大，则加强减持论证。NEXT 年度现金与实际回报、公司专属 beta 和资本结构仍是关键缺口。"
+          },
+          "sourceRegister": [],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationMaturity": "conditional"
         },
         "reviewDueAt": null,
         "reviewDueReason": null,
         "reviewStatus": "current",
         "reviewTriggerType": null,
-        "sourceLabel": "MCD 2026 年第二季度财报后复核研究",
-        "sourceVersion": "v2.0",
+        "sourceLabel": "MCD v5.0 frozen-package technical candidate",
+        "sourceVersion": "v5.0",
         "status": "active",
-        "summary": "MCD 第二季度全球同店销售增长 1.3%，美国仅增长 0.8%且客流为负；收入 US$7.099B、固定汇率营业利润仅增长 2%，GAAP／调整后 EPS 为 US$3.32／US$3.38。加盟利润美元额继续增长，但公司自营利润率略降，美国自营利润下降 6%；税率、股数、汇率和资产处置收益使 EPS 增长质量弱于 headline。H1 自由现金流 US$3.706B，股息与回购合计超过自由现金流约 US$0.185B；净债务约 US$39.04B，计入租赁后义务约 US$53.77B。公司维持 2026 指引，却把 50,000 家全球门店目标由 2027 年延至 2028 年。UTC 2026-08-04 完成收盘 US$268.34 高于财报前内部 DCF 基准 US$251.14、仍在 US$214–US$297 核心区间；晨星正式 US$295 仍为 7 月模型且已预告低个位数下调。现有 40 股继续持有；新增资金不买入，等待美国客流和新店单位经济证明，本研究不构成交易授权。",
-        "updatedAt": "2026-08-08T04:22:36.643778Z",
-        "version": 2
+        "summary": "**现有持仓：进入持有／减持复核（`review_for_reduction`）；等额新增现金：暂缓（`defer_do_not_add_yet`）。** 这是证券层研究建议，尚未形成用户持仓决定或卖出指令。研究价仍是 **2026-09-25 收盘$236.50**；本次复核发生在9月29日，不将旧价当成今天可成交报价。\n\n经营路径不变，新的审慎基准为 **$171.21**，54%营业利润率交叉检查为 **$159.77**。前者比研究价低27.61%。估值／研究成熟度均为 **`conditional`**；完整研究交付不等于假设已获充分证实。\n\n为什么升级持仓复核：即使终值仍用原12%增量ROIC，只把WACC从7.75%提高至8.5%，价值也只有$186.19；这使“惯性持有、只等复苏”的机会成本更值得审查。进一步假设2037起新增资本只赚取资本成本，价值降至$171.21。变化来自新选值，不是经营实绩又恶化，也不是承认旧版当时已记录了这些理由。\n\n为什么尚不建议机械卖出：餐饮行业beta并非MCD实测beta，未来增量回报也未可观察。较低折现率与持续超额回报能明显抬高价值；模型营业利润率偏高、季度资本结构陈旧等反向误差亦存在。研究现在支持**认真比较继续持有、部分减持和替代资产**，不足以决定卖几股、什么时候卖。税费、集中度和实际资金需求由主要讨论另行整合；不能以既有成本或已持有这一事实豁免机会成本检验。\n\n新钱仍暂缓：研究价没有在本次可辩护的审慎假设下显示安全边际。价格低于2024或分红历史长都不能补足证据。一般组合角色仍为消费品牌／加盟现金流权益，非现金或国债替代。",
+        "updatedAt": "2026-10-04T00:54:13.620025Z",
+        "version": 4
       }
     ],
     "researchAppendices": [],
     "researchHistory": [
+      {
+        "asOfDate": "20260804",
+        "assessmentType": "equity_research",
+        "completedAt": "2026-08-08T04:22:36.643778Z",
+        "frameworkVersion": "equity-research-strategy-v1",
+        "historyEntryKind": "research_version",
+        "result": {
+          "cashDecision": "do_not_buy",
+          "decisionHinge": "MCD 能否以一致的价值平台和数字化执行使美国客流恢复，同时证明 US$3.7B–US$3.9B 资本开支、全球开店与 NEXT 投入具有可持续的加盟商和股东回报。",
+          "existingPositionAction": "hold",
+          "newMoneyDecision": null,
+          "sourceRegister": [],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "fair",
+          "valuationStateLabelZh": "接近基准价值且处于核心敏感区间内，但美国客流与新店回报不足以提供新增资金安全边际"
+        },
+        "sourceLabel": "MCD 2026 年第二季度财报后复核研究",
+        "sourceVersion": "v2.0",
+        "status": "superseded",
+        "summary": "MCD 第二季度全球同店销售增长 1.3%，美国仅增长 0.8%且客流为负；收入 US$7.099B、固定汇率营业利润仅增长 2%，GAAP／调整后 EPS 为 US$3.32／US$3.38。加盟利润美元额继续增长，但公司自营利润率略降，美国自营利润下降 6%；税率、股数、汇率和资产处置收益使 EPS 增长质量弱于 headline。H1 自由现金流 US$3.706B，股息与回购合计超过自由现金流约 US$0.185B；净债务约 US$39.04B，计入租赁后义务约 US$53.77B。公司维持 2026 指引，却把 50,000 家全球门店目标由 2027 年延至 2028 年。UTC 2026-08-04 完成收盘 US$268.34 高于财报前内部 DCF 基准 US$251.14、仍在 US$214–US$297 核心区间；晨星正式 US$295 仍为 7 月模型且已预告低个位数下调。现有 40 股继续持有；新增资金不买入，等待美国客流和新店单位经济证明，本研究不构成交易授权。",
+        "supersededAt": "2026-10-03T09:12:05.160670Z",
+        "supersededByVersion": 3,
+        "supersededReason": "已接受的正式研究替代前次本地版本；来源版本、研究完成时间、条件成熟度及权限保持。",
+        "updatedAt": "2026-10-03T09:12:05.160670Z",
+        "version": 2
+      },
       {
         "asOfDate": "20260730",
         "assessmentType": "equity_research",
@@ -408,7 +226,7 @@
       }
     }
   },
-  "generatedAt": "2026-09-22T15:50:09.039618Z",
+  "generatedAt": "2026-10-04T01:34:25.546290Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "MCD"

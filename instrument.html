@@ -433,7 +433,7 @@
     .external-view-note { margin-top: 6px; color: var(--muted); font-size: 10px; line-height: 1.6; }
     .external-view-link { align-self: center; padding: 8px 10px; border: 1px solid #cbd9e2; color: var(--blue); font-size: 10px; font-weight: 750; text-decoration: none; white-space: nowrap; }
     .external-view-link:hover, .external-view-link:focus-visible { background: var(--blue-soft); outline: none; }
-    .research-stack { display: grid; gap: 18px; }
+    .research-stack { display: grid; grid-template-columns: minmax(0,1fr); gap: 18px; }
     .research-subhead { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; padding: 17px 20px 14px; border-bottom: 1px solid #e0e6ea; }
     .research-subtitle { margin: 0; color: var(--navy); font-size: 16px; font-weight: 750; }
     .research-subhead-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 7px 10px; min-width: 0; }
@@ -621,6 +621,14 @@
     @media (max-width: 560px) {
       .tax-lot-surface { min-width: 440px; }
     }
+    .research-excerpt p { margin: 0 0 8px; white-space: pre-line; }
+    .research-excerpt p:last-child { margin-bottom: 0; }
+    .research-excerpt h4 { margin: 12px 0 7px; font-size: 12px; }
+    .research-excerpt a { color: var(--blue); overflow-wrap: anywhere; }
+    .research-excerpt code { font-family: inherit; color: var(--muted); }
+    .research-excerpt-table { max-width: 100%; overflow-x: auto; margin: 8px 0; }
+    .research-excerpt-table table { width: 100%; border-collapse: collapse; font-size: 11px; line-height: 1.55; }
+    .research-excerpt-table th, .research-excerpt-table td { padding: 6px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; min-width: 58px; }
   </style>
   <link rel="stylesheet" href="assets/workspace-shell.css?v=ed7f50f35dbe">
 </head>
@@ -980,7 +988,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.3.3</span><time class="footer-meta-value" datetime="2026-09-22T15:29:03Z">2026-09-22 15:29 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.4.0</span><time class="footer-meta-value" datetime="2026-10-04T01:34:21Z">2026-10-04 01:34 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1096,7 +1104,8 @@
         return ["周日", "周一", "周二", "周三", "周四", "周五", "周六"][date.getUTCDay()];
       }
       function utcDateTime(value) {
-        var date = new Date(value);
+        var explicitUtc = /^UTC\s+(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}(?::\d{2})?)$/.exec(String(value || ""));
+        var date = new Date(explicitUtc ? explicitUtc[1] + "T" + explicitUtc[2] + "Z" : value);
         if (Number.isNaN(date.getTime())) return value || "—";
         return "UTC " + new Intl.DateTimeFormat("zh-CN", {
           year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit",
@@ -1250,6 +1259,7 @@
           expensive: "估值偏贵", watchlist: "观察名单", active: "正式复核",
           review_due: "待复核", superseded: "已被取代", archived: "历史归档", current: "当前版本",
           add_eligible: "符合增持研究条件", trim_review: "复核减持",
+          review_for_reduction: "持有／减持复核", defer_do_not_add_yet: "暂缓新增资金",
           exit_review: "复核退出", wait_for_proof: "等待验证", pass: "暂不参与",
           buy: "可买入研究状态", do_not_buy: "不宜新买", no_add_now: "暂不新增", wait_for_price_and_proof: "等待价格与证据",
           research_ready: "研究已就绪", research_ready_not_implementation_ready: "研究完成 · 尚未进入实施准备",
@@ -3810,9 +3820,57 @@
         scroll.appendChild(surface);
         body.appendChild(scroll);
       }
-      function renderList(items) {
+      function appendResearchInline(parent, value) {
+        var text = normalizeUtcDisplayText(value);
+        var tokens = /\*\*([^*]+)\*\*|\x60([^\x60]+)\x60|\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g, match, offset = 0;
+        while ((match = tokens.exec(text))) {
+          parent.appendChild(document.createTextNode(text.slice(offset, match.index)));
+          var node;
+          if (match[1]) { node = document.createElement("strong"); appendResearchInline(node, match[1]); }
+          else if (match[2]) { node = document.createElement("code"); node.textContent = match[2]; }
+          else {
+            var url = null;
+            try { url = new URL(match[4]); } catch (error) { /* Render malformed URLs as text. */ }
+            var safe = url && url.protocol === "https:" && !url.username && !url.password;
+            node = document.createElement(safe ? "a" : "span"); node.textContent = match[3];
+            if (safe) { node.href = url.href; node.target = "_blank"; node.rel = "noopener noreferrer"; }
+          }
+          parent.appendChild(node); offset = tokens.lastIndex;
+        }
+        parent.appendChild(document.createTextNode(text.slice(offset)));
+      }
+      function renderResearchExcerpt(parent, value) {
+        String(value || "").split(/\n\n/).forEach(function (block) {
+          if (!block.trim()) return;
+          var lines = block.trim().split("\n");
+          if (lines.length >= 2 && /^\|/.test(lines[0]) && /^\|(?:\s*:?-+:?\s*\|)+\s*$/.test(lines[1])) {
+            var wrapper = document.createElement("div"); wrapper.className = "research-excerpt-table";
+            var table = document.createElement("table"), head = document.createElement("thead"), body = document.createElement("tbody");
+            lines.filter(function (_, i) { return i !== 1; }).forEach(function (line, i) {
+              var row = document.createElement("tr");
+              line.replace(/^\|/, "").replace(/\|$/, "").split("|").forEach(function (cell) {
+                var node = document.createElement(i ? "td" : "th");
+                appendResearchInline(node, cell.trim()); row.appendChild(node);
+              });
+              (i ? body : head).appendChild(row);
+            });
+            table.append(head, body); wrapper.appendChild(table); parent.appendChild(wrapper);
+          } else {
+            var heading = /^#{1,6}\s+/.test(block.trim());
+            var node = document.createElement(heading ? "h4" : "p");
+            appendResearchInline(node, heading ? block.trim().replace(/^#{1,6}\s+/, "") : block.trim());
+            parent.appendChild(node);
+          }
+        });
+      }
+      function renderList(items, excerpts) {
         var ul = document.createElement("ul");
-        (items || []).forEach(function (item) { var li = document.createElement("li"); li.textContent = normalizeUtcDisplayText(zh(item)); ul.appendChild(li); });
+        (items || []).forEach(function (item) {
+          var li = document.createElement("li");
+          if (excerpts) { li.className = "research-excerpt"; renderResearchExcerpt(li, zh(item)); }
+          else li.textContent = normalizeUtcDisplayText(zh(item));
+          ul.appendChild(li);
+        });
         return ul;
       }
       function renderResearchOverview(body, result, dcf) {
@@ -3849,7 +3907,7 @@
           ].filter(Boolean))],
           ["组合角色与资金判断", layerItems("portfolioRoleExistingAndNewMoney", [
             result.portfolioRole ? portfolioRoleLabel(result.portfolioRole) : null,
-            actionText("现有持仓：", result.existingPositionAction),
+            actionText("现有持仓：", (result.existingPositionDecision || result.existingPositionAction)),
             actionText("新增资金：", result.newMoneyDecision || result.cashDecision)
           ].filter(Boolean))],
           ["当前建议、反证与缺口", layerItems("actionFalsifiersAndGaps", [
@@ -3865,9 +3923,50 @@
           var items = layer[1].length
             ? layer[1]
             : ["当前版本未单列此层；等待下一次正式研究更新补齐。"];
-          card.append(title, renderList(items)); grid.appendChild(card);
+          card.append(title, renderList(items, true)); grid.appendChild(card);
         });
         body.appendChild(grid);
+      }
+      function reviewedResearchDisplay(result) {
+        if (result.reviewedDisplay == null) return null;
+        var display = result.reviewedDisplay;
+        var keys = ["longTermThesisAndStatus", "latestEvidenceDelta", "valuationAndPricedExpectations", "portfolioRoleExistingAndNewMoney", "actionFalsifiersAndGaps"];
+        var whitespace = /[\u0009-\u000d\u001c-\u0020\u0085\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000]/;
+        if (!display || typeof display !== "object" || Array.isArray(display)
+            || Object.keys(display).sort().join(",") !== "formatId,layers,overview"
+            || display.formatId !== "reviewed-frozen-research-paraphrase-v1"
+            || typeof display.overview !== "string" || !display.overview.trim()
+            || Array.from(display.overview).filter(function (char) { return !whitespace.test(char); }).length > 1000
+            || !display.layers || typeof display.layers !== "object" || Array.isArray(display.layers)
+            || Object.keys(display.layers).sort().join(",") !== keys.slice().sort().join(",")
+            || keys.some(function (key) {
+              var layer = display.layers[key];
+              return !layer || typeof layer !== "object" || Array.isArray(layer)
+                || Object.keys(layer).join(",") !== "summary"
+                || typeof layer.summary !== "string" || !layer.summary.trim();
+            })) throw new Error("研究展示格式未通过校验；请检查已审阅来源。");
+        return display;
+      }
+      function renderResearchDetailedExcerpts(body, assessment, result) {
+        var details = document.createElement("details"); details.className = "research-details research-excerpt";
+        var toggle = document.createElement("summary"); toggle.textContent = "查看完整研究选段与估值细节";
+        details.appendChild(toggle);
+        var original = document.createElement("div"); original.className = "research-summary";
+        renderResearchExcerpt(original, assessment.summary); details.appendChild(original);
+        [
+          ["longTermThesisAndStatus", "长期论点与当前状态"],
+          ["latestEvidenceDelta", "最新重要证据"],
+          ["valuationAndPricedExpectations", "估值、预期与成熟度"],
+          ["portfolioRoleExistingAndNewMoney", "组合角色与资金判断"],
+          ["actionFalsifiersAndGaps", "当前建议、反证与缺口"]
+        ].forEach(function (entry) {
+          var layer = (result.fiveLayerDecisionSummary || {})[entry[0]];
+          if (!layer || !layer.summary) return;
+          var section = document.createElement("section");
+          var title = document.createElement("h4"); title.textContent = entry[1]; section.appendChild(title);
+          renderResearchExcerpt(section, layer.summary); details.appendChild(section);
+        });
+        body.appendChild(details);
       }
       function primaryResearchAssessment() {
         var research = state.detail.research || [];
@@ -4136,13 +4235,14 @@
         var badges = document.createElement("div"); badges.className = "badge-row";
         var maturity = result.researchMaturity || result.underwritingStatus || "preliminary";
         var badgeEntries = [
+          { value: assessment.sourceVersion || assessment.version, label: researchSourceVersionLabel(assessment) },
           { value: assessment.reviewStatus },
           maturity !== "active" ? { value: maturity } : null,
           result.valuationMaturity
             ? { value: result.valuationMaturity, label: valuationMaturityLabel(result.valuationMaturity) }
             : null,
           { value: result.valuationState, label: result.valuationStateLabelZh || researchLabel(result.valuationState) },
-          { value: result.existingPositionAction },
+          { value: (result.existingPositionDecision || result.existingPositionAction) },
           result.newMoneyDecision
             ? { value: result.newMoneyDecision, label: researchLabel(result.newMoneyDecision) }
             : { value: result.cashDecision },
@@ -4161,7 +4261,7 @@
           });
         }
         var seenBadgeLabels = new Set();
-        badgeEntries.filter(Boolean).forEach(function (entry) {
+        badgeEntries.filter(function (entry) { return entry && entry.value; }).forEach(function (entry) {
           var value = entry.value;
           var label = entry.label || researchLabel(value);
           if (seenBadgeLabels.has(label)) return;
@@ -4176,15 +4276,29 @@
           span.textContent = label; badges.appendChild(span);
         });
         body.appendChild(badges);
-        var summary = document.createElement("p"); summary.className = "research-summary"; summary.textContent = normalizeUtcDisplayText(assessment.summary); body.appendChild(summary);
-        renderResearchOverview(body, result, dcf);
-        var hinge = document.createElement("div"); hinge.className = "research-hinge"; hinge.innerHTML = "<strong>关键判断：</strong> " + zh(result.decisionHinge); body.appendChild(hinge);
+        var reviewedDisplay;
+        try { reviewedDisplay = reviewedResearchDisplay(result); }
+        catch (error) {
+          var displayWarning = document.createElement("p"); displayWarning.className = "section-note";
+          displayWarning.textContent = error.message; body.appendChild(displayWarning); return;
+        }
+        var summary = document.createElement("div"); summary.className = "research-summary research-excerpt";
+        renderResearchExcerpt(summary, reviewedDisplay ? reviewedDisplay.overview : assessment.summary); body.appendChild(summary);
+        renderResearchOverview(body, reviewedDisplay
+          ? Object.assign({}, result, { fiveLayerDecisionSummary: reviewedDisplay.layers }) : result, dcf);
+        if (reviewedDisplay) renderResearchDetailedExcerpts(body, assessment, result);
+        if (result.decisionHinge) {
+          var hinge = document.createElement("div"); hinge.className = "research-hinge";
+          var hingeTitle = document.createElement("strong"); hingeTitle.textContent = "关键判断：";
+          hinge.append(hingeTitle, document.createTextNode(" " + zh(result.decisionHinge))); body.appendChild(hinge);
+        }
         var cases = document.createElement("div"); cases.className = "case-grid";
         [["支持论据", result.bullCase], ["反方论据", result.bearCase]].forEach(function (entry) {
+          if (!Array.isArray(entry[1]) || !entry[1].length) return;
           var card = document.createElement("article"); card.className = "case-card";
           var title = document.createElement("h3"); title.textContent = entry[0]; card.appendChild(title); card.appendChild(renderList(entry[1])); cases.appendChild(card);
         });
-        body.appendChild(cases);
+        if (cases.children.length) body.appendChild(cases);
         if (Array.isArray(dcf.scenarios) && dcf.scenarios.length) {
           var valuations = document.createElement("div"); valuations.className = "valuation-grid";
           dcf.scenarios.forEach(function (scenario) {
@@ -4256,12 +4370,23 @@
           var date = document.createElement("span"); date.className = "source-date"; date.textContent = compactToIso(source.publishedAt || source.asOf);
           link.append(label, date); sources.appendChild(link);
         });
-        details.appendChild(sources); body.appendChild(details);
+        if ((result.missingEvidence || []).length || sources.children.length) {
+          details.appendChild(sources); body.appendChild(details);
+        }
         renderValuationAppendix(body);
         var history = (state.detail.researchHistory || []).filter(function (entry) {
           return entry.assessmentType !== "equity_valuation_appendix";
         });
         if (history.length) {
+          if (result.researchCollaboration) {
+            var previous = history.find(function (entry) { return entry.assessmentType === "equity_research"; });
+            if (previous) {
+              var lineageNote = document.createElement("p"); lineageNote.className = "section-note";
+              lineageNote.textContent = "上次入库：" + researchSourceVersionLabel(previous)
+                + "；本地历史只列已入库版本，中间未入库版本不计入历史数量。";
+              body.appendChild(lineageNote);
+            }
+          }
           var historyDetails = document.createElement("details"); historyDetails.className = "research-history";
           var historySummary = document.createElement("summary");
           historySummary.textContent = "历史研究（" + number(history.length, 0) + " 个已被取代版本）";
