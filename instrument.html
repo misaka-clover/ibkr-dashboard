@@ -420,6 +420,7 @@
     .badge.warn { border-color: #ead9aa; background: var(--amber-soft); color: var(--amber); }
     .badge.risk { border-color: #ecc6ca; background: var(--red-soft); color: var(--red); }
     .research-summary { margin: 18px 0 0; color: #2c3d4b; font-size: 15px; line-height: 1.75; }
+    p.research-summary { white-space: pre-line; }
     .research-overview-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 18px; }
     .research-overview-item { min-width: 0; padding: 14px; border: 1px solid #e0e6ea; background: #fbfcfd; }
     .research-overview-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
@@ -629,6 +630,7 @@
     .research-excerpt-table { max-width: 100%; overflow-x: auto; margin: 8px 0; }
     .research-excerpt-table table { width: 100%; border-collapse: collapse; font-size: 11px; line-height: 1.55; }
     .research-excerpt-table th, .research-excerpt-table td { padding: 6px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; min-width: 58px; }
+    .research-excerpt-table .number { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
   </style>
   <link rel="stylesheet" href="assets/workspace-shell.css?v=ed7f50f35dbe">
 </head>
@@ -988,7 +990,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.4.0</span><time class="footer-meta-value" datetime="2026-10-04T01:34:21Z">2026-10-04 01:34 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.4.1</span><time class="footer-meta-value" datetime="2026-10-05T07:23:34Z">2026-10-05 07:23 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1303,6 +1305,9 @@
       }
       function valuationConfidenceValue(result) {
         if (result.valuationConfidence) return result.valuationConfidence;
+        // Reviewed frozen displays retain the source's explicit maturity. Adding
+        // missing components must not synthesize a new confidence assessment.
+        if (result.reviewedDisplay) return null;
         var dcf = result.valuation && result.valuation.dcf;
         var scenarios = dcf && Array.isArray(dcf.scenarios) ? dcf.scenarios : [];
         var gaps = Array.isArray(result.missingEvidence) ? result.missingEvidence : [];
@@ -3846,11 +3851,25 @@
           if (lines.length >= 2 && /^\|/.test(lines[0]) && /^\|(?:\s*:?-+:?\s*\|)+\s*$/.test(lines[1])) {
             var wrapper = document.createElement("div"); wrapper.className = "research-excerpt-table";
             var table = document.createElement("table"), head = document.createElement("thead"), body = document.createElement("tbody");
-            lines.filter(function (_, i) { return i !== 1; }).forEach(function (line, i) {
+            var rows = lines.filter(function (_, i) { return i !== 1; }).map(function (line) {
+              return line.replace(/^\|/, "").replace(/\|$/, "").split("|").map(function (cell) { return cell.trim(); });
+            });
+            var numericColumns = rows[0].map(function (_, column) {
+              var values = rows.slice(1).map(function (row) { return row[column] || ""; }).filter(function (cell) {
+                return cell && !/^(?:—|–|-|N\/A)$/i.test(cell);
+              });
+              return values.length > 0 && values.every(function (cell) {
+                return cell.split(/\s*(?:\/|[—–])\s*/).every(function (value) {
+                  return /^[+\-−]?(?:US\$|\$)?\s*\d[\d,]*(?:\.\d+)?\s*(?:%|x|bp|倍|亿|[BM])?$/i.test(value);
+                });
+              });
+            });
+            rows.forEach(function (cells, i) {
               var row = document.createElement("tr");
-              line.replace(/^\|/, "").replace(/\|$/, "").split("|").forEach(function (cell) {
+              cells.forEach(function (cell, column) {
                 var node = document.createElement(i ? "td" : "th");
-                appendResearchInline(node, cell.trim()); row.appendChild(node);
+                if (numericColumns[column]) node.className = "number";
+                appendResearchInline(node, cell); row.appendChild(node);
               });
               (i ? body : head).appendChild(row);
             });
@@ -3867,11 +3886,14 @@
         var ul = document.createElement("ul");
         (items || []).forEach(function (item) {
           var li = document.createElement("li");
-          if (excerpts) { li.className = "research-excerpt"; renderResearchExcerpt(li, zh(item)); }
+          if (excerpts && researchTextHasMarkup(zh(item))) { li.className = "research-excerpt"; renderResearchExcerpt(li, zh(item)); }
           else li.textContent = normalizeUtcDisplayText(zh(item));
           ul.appendChild(li);
         });
         return ul;
+      }
+      function researchTextHasMarkup(value) {
+        return /(^|\n)(?:#{1,6}\s|\|)|\*\*[^*]+\*\*|\x60[^\x60]+\x60|\[[^\]]+\]\(https:\/\//.test(String(value || ""));
       }
       function renderResearchOverview(body, result, dcf) {
         function textItems(values) {
@@ -3946,6 +3968,34 @@
                 || typeof layer.summary !== "string" || !layer.summary.trim();
             })) throw new Error("研究展示格式未通过校验；请检查已审阅来源。");
         return display;
+      }
+      function validateReviewedResearchComponents(result) {
+        if (!result.reviewedDisplay) return;
+        var fields = ["decisionHinge", "bullCase", "bearCase", "valuation", "monitoring", "missingEvidence", "sourceRegister"];
+        if (!fields.some(function (key) { return result[key] != null; })) return;
+        var nonempty = function (value) { return typeof value === "string" && !!value.trim(); };
+        var texts = function (value) { return Array.isArray(value) && value.length > 0 && value.every(nonempty); };
+        var valuation = result.valuation, dcf = valuation && valuation.dcf;
+        if (!fields.every(function (key) { return result[key] != null; })
+            || !nonempty(result.decisionHinge) || !texts(result.bullCase) || !texts(result.bearCase) || !texts(result.missingEvidence)
+            || !Array.isArray(result.monitoring) || !result.monitoring.length
+            || result.monitoring.some(function (row) {
+              return !row || !["metric", "baseline", "confirmingDirection", "challengingDirection"].every(function (key) { return nonempty(row[key]); });
+            })
+            || !valuation || valuation.currency !== "USD" || typeof valuation.priceUsd !== "number" || !Number.isFinite(valuation.priceUsd)
+            || valuation.priceUsd <= 0 || !nonempty(valuation.priceContextLabel)
+            || !dcf || !Array.isArray(dcf.scenarios) || dcf.scenarios.length !== 3
+            || !nonempty(dcf.sensitivityNote) || !nonempty(dcf.modelSummary)
+            || dcf.scenarios.some(function (row) {
+              return !row || !nonempty(row.name) || !nonempty(row.assumptionSummary)
+                || ["valuePerShareUsd", "waccPct", "terminalGrowthPct"].some(function (key) { return typeof row[key] !== "number" || !Number.isFinite(row[key]); });
+            })
+            || !Array.isArray(result.sourceRegister) || !result.sourceRegister.length
+            || result.sourceRegister.some(function (row) {
+              if (!row || !nonempty(row.label) || !nonempty(row.url)) return true;
+              try { var url = new URL(row.url); return url.protocol !== "https:" || !!url.username || !!url.password; }
+              catch (_) { return true; }
+            })) throw new Error("研究组件展示未通过校验；请检查完整的已审阅投影。");
       }
       function renderResearchDetailedExcerpts(body, assessment, result) {
         var details = document.createElement("details"); details.className = "research-details research-excerpt";
@@ -4224,6 +4274,11 @@
           body.appendChild(empty); updateResearchTimestamps(); return;
         }
         var result = assessment.result || {}, valuation = result.valuation || {}, dcf = valuation.dcf || {};
+        try { validateReviewedResearchComponents(result); }
+        catch (error) {
+          var componentWarning = document.createElement("p"); componentWarning.className = "section-note";
+          componentWarning.textContent = error.message; body.appendChild(componentWarning); updateResearchTimestamps(); return;
+        }
         var completedCloseHolding = state.detail.currentHolding || {};
         var completedClosePrice = finite(completedCloseHolding.closePrice);
         var completedCloseAsOf = completedCloseHolding.valuationDate;
@@ -4231,6 +4286,7 @@
           completedClosePrice = finite(state.detail.fundamentals && state.detail.fundamentals.price);
           completedCloseAsOf = state.detail.fundamentals && state.detail.fundamentals.asOfDate;
         }
+        if (result.reviewedDisplay && !/^\d{8}$/.test(String(completedCloseAsOf || ""))) completedClosePrice = null;
         updateResearchTimestamps();
         var badges = document.createElement("div"); badges.className = "badge-row";
         var maturity = result.researchMaturity || result.underwritingStatus || "preliminary";
@@ -4268,7 +4324,7 @@
           seenBadgeLabels.add(label);
           var span = document.createElement("span"); span.className = "badge";
           if (value === "fair" || value === "undervalued" || value === "nav_aligned" || value === "hold") span.classList.add("good");
-          if (value === "watchlist" || value === "no_add_now" || value === "preliminary" || value === "expensive" || value === "review_due") span.classList.add("warn");
+          if (value === "watchlist" || value === "no_add_now" || value === "preliminary" || value === "expensive" || value === "review_due" || value === "review_for_reduction" || value === "defer_do_not_add_yet") span.classList.add("warn");
           if (label.indexOf("标签待适配") >= 0) {
             span.classList.add("warn");
             span.title = "研究字段存在尚未适配的人类标签；原始机器枚举不会直接显示。";
@@ -4282,11 +4338,15 @@
           var displayWarning = document.createElement("p"); displayWarning.className = "section-note";
           displayWarning.textContent = error.message; body.appendChild(displayWarning); return;
         }
-        var summary = document.createElement("div"); summary.className = "research-summary research-excerpt";
-        renderResearchExcerpt(summary, reviewedDisplay ? reviewedDisplay.overview : assessment.summary); body.appendChild(summary);
+        var summaryText = reviewedDisplay ? reviewedDisplay.overview : assessment.summary;
+        var summary = document.createElement(researchTextHasMarkup(summaryText) ? "div" : "p");
+        summary.className = "research-summary";
+        if (researchTextHasMarkup(summaryText)) {
+          summary.classList.add("research-excerpt"); renderResearchExcerpt(summary, summaryText);
+        } else summary.textContent = normalizeUtcDisplayText(summaryText);
+        body.appendChild(summary);
         renderResearchOverview(body, reviewedDisplay
           ? Object.assign({}, result, { fiveLayerDecisionSummary: reviewedDisplay.layers }) : result, dcf);
-        if (reviewedDisplay) renderResearchDetailedExcerpts(body, assessment, result);
         if (result.decisionHinge) {
           var hinge = document.createElement("div"); hinge.className = "research-hinge";
           var hingeTitle = document.createElement("strong"); hingeTitle.textContent = "关键判断：";
@@ -4359,6 +4419,7 @@
           });
           body.appendChild(monitoring);
         }
+        if (reviewedDisplay) renderResearchDetailedExcerpts(body, assessment, result);
         var details = document.createElement("details"); details.className = "research-details";
         var detailsSummary = document.createElement("summary"); detailsSummary.textContent = "查看缺失证据与外部来源登记"; details.appendChild(detailsSummary);
         var missingTitle = document.createElement("p"); missingTitle.className = "section-note"; missingTitle.textContent = "尚未取得或尚待更新的证据"; details.appendChild(missingTitle);
