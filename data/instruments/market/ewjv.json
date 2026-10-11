@@ -86105,7 +86105,7 @@
     ],
     "chartEvents": {
       "dividendCoverage": {
-        "coverageEnd": "20261005",
+        "coverageEnd": "20261009",
         "coverageStart": "20241112",
         "issuerCoverageStart": null,
         "lifetimeHistoryComplete": true,
@@ -86430,6 +86430,19 @@
           "sourceUrl": "https://www.ishares.com/us/literature/shareholder-letters/isharesandblackrocketfsdistributionschedule.pdf",
           "status": "estimated",
           "title": "EWJV 年末潜在收益分配预估日期"
+        },
+        {
+          "currency": null,
+          "description": "iShares 2026-10-05 官方日程列示 2027-06-09 计划宣告、06-10 除息及登记、06-16 支付；金额尚未宣告，日期可调整或省略分配，不代表账户到账。",
+          "eventDate": "20270610",
+          "eventTime": null,
+          "eventTimezone": null,
+          "eventType": "ex_dividend",
+          "publicKey": "46d67ba5a61ce7ac50805f0fee36c2bb2b33655ce2842fb7f8ba6bb76467d487",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://www.ishares.com/us/literature/shareholder-letters/isharesandblackrocketfsdistributionschedule.pdf",
+          "status": "estimated",
+          "title": "EWJV 2027年上半年计划除息日"
         }
       ],
       "sources": [
@@ -86437,10 +86450,10 @@
         {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-09-07T11:56:55Z",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-10-06T12:24:13Z",
+      "warning": "iShares 官方年度分配日程尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方日程。"
     },
     "coverage": [
       {
@@ -86460,9 +86473,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-09-07T11:56:55Z"
+        "updatedAt": "2026-10-06T12:24:13Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -86479,11 +86492,11 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 17,
-          "stale": true,
+          "count": 18,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-09-07T11:56:55Z",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-10-06T12:24:13Z",
+          "warning": "iShares 官方年度分配日程尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方日程。"
         },
         "fundamentals": {
           "asOfDate": "20260814",
@@ -86572,7 +86585,7 @@
       "englishName": "iShares MSCI Japan Value ETF",
       "firstSeenDate": "20250715",
       "instrumentKind": "etf",
-      "lastSeenDate": "20261005",
+      "lastSeenDate": "20261009",
       "primaryExchange": "NASDAQ",
       "status": "active",
       "symbols": [
@@ -86581,7 +86594,7 @@
           "exchange": null,
           "firstSeenDate": "20250715",
           "isPrimary": true,
-          "lastSeenDate": "20261005",
+          "lastSeenDate": "20261009",
           "symbol": "EWJV"
         }
       ]
@@ -86599,7 +86612,7 @@
         "TRADES": 1871
       },
       "corporateEvents": {
-        "count": 17,
+        "count": 18,
         "sourceCount": 3
       }
     },
@@ -86638,7 +86651,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-06T09:15:43.962102Z",
+  "generatedAt": "2026-10-11T02:30:11.517856Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "EWJV"

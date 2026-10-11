@@ -261993,7 +261993,7 @@
     ],
     "chartEvents": {
       "dividendCoverage": {
-        "coverageEnd": "20261005",
+        "coverageEnd": "20261009",
         "coverageStart": "20241112",
         "issuerCoverageStart": null,
         "lifetimeHistoryComplete": true,
@@ -263410,6 +263410,19 @@
           "sourceUrl": "https://ndcdyn.interactivebrokers.com/mkt/getFileNew.php?file=2026Q2_Earnings_Release.pdf",
           "status": "occurred",
           "title": "Interactive Brokers 季度股息支付日"
+        },
+        {
+          "currency": null,
+          "description": "IBKR 2026年第三季度财报发布；仅记录发行人公开事实，研究和账户数据保持独立。",
+          "eventDate": "20261015",
+          "eventTime": "16:00",
+          "eventTimezone": "America/New_York",
+          "eventType": "earnings_release",
+          "publicKey": "6f827d500ae119c990e6ecd33e8267be0176bf4d14549ddf192bc6f3945a0190",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://investors.interactivebrokers.com/en/general/about/mediaRelations/7-24-26.php",
+          "status": "confirmed",
+          "title": "IBKR 2026年第三季度财报发布"
         }
       ],
       "sources": [
@@ -263417,10 +263430,10 @@
         {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-09-19T04:40:16Z",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-10-06T12:24:13Z",
+      "warning": "Interactive Brokers 官方投资者事件页尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方页面。"
     },
     "coverage": [
       {
@@ -263440,9 +263453,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-09-19T04:40:16Z"
+        "updatedAt": "2026-10-06T12:24:13Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -263459,11 +263472,11 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 78,
-          "stale": true,
+          "count": 79,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-09-19T04:40:16Z",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-10-06T12:24:13Z",
+          "warning": "Interactive Brokers 官方投资者事件页尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方页面。"
         },
         "fundamentals": {
           "asOfDate": "20260814",
@@ -263555,7 +263568,7 @@
       "englishName": "Interactive Brokers Group, Inc. Class A",
       "firstSeenDate": "20241202",
       "instrumentKind": "common_stock",
-      "lastSeenDate": "20261005",
+      "lastSeenDate": "20261009",
       "primaryExchange": "NASDAQ",
       "status": "active",
       "symbols": [
@@ -263564,7 +263577,7 @@
           "exchange": null,
           "firstSeenDate": "20241202",
           "isPrimary": true,
-          "lastSeenDate": "20261005",
+          "lastSeenDate": "20261009",
           "symbol": "IBKR"
         }
       ]
@@ -263582,7 +263595,7 @@
         "TRADES": 4851
       },
       "corporateEvents": {
-        "count": 78,
+        "count": 79,
         "sourceCount": 3
       }
     },
@@ -325909,7 +325922,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-06T09:15:43.962102Z",
+  "generatedAt": "2026-10-11T02:30:11.517856Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "IBKR"

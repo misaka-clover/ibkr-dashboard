@@ -216417,7 +216417,7 @@
     ],
     "chartEvents": {
       "dividendCoverage": {
-        "coverageEnd": "20261005",
+        "coverageEnd": "20261009",
         "coverageStart": "20241112",
         "issuerCoverageStart": "20160913",
         "lifetimeHistoryComplete": false,
@@ -217217,17 +217217,30 @@
           "title": "基金分配除息"
         },
         {
-          "currency": null,
-          "description": "Vanguard 年度分配日历列示的预估除息／再投资日期；金额尚未宣告，日期可变，须在基金宣告后重新确认。",
+          "currency": "USD",
+          "description": "Vanguard 官方历史分配表确认每份 USD 1.8226，2026-09-28 除息及登记、2026-09-30 支付；宣告日期未提供。基金分配记录与账户实际到账分开。",
           "eventDate": "20260928",
           "eventTime": null,
           "eventTimezone": null,
           "eventType": "ex_dividend",
-          "publicKey": "033535cdd0ef343afa29a3a1455861bf5677c81e8faaee042152a5d7f587ae2a",
+          "publicKey": "e34b44f4cc814e609da9e80d18444e87eb34eea0959d865d5986b49430c9de04",
           "sourceName": "Reviewed Official Issuer and Sponsor Events",
-          "sourceUrl": "https://advisors.vanguard.com/content/dam/fas/pdfs/DIVDAT_2026.pdf",
-          "status": "estimated",
-          "title": "VOO 第三季度预估除息日"
+          "sourceUrl": "https://advisors.vanguard.com/investments/products/voo/vanguard-sp-500-etf",
+          "status": "occurred",
+          "title": "VOO 第三季度除息日"
+        },
+        {
+          "currency": "USD",
+          "description": "Vanguard 官方历史分配表确认每份 USD 1.8226，2026-09-28 除息及登记、2026-09-30 支付；宣告日期未提供。基金分配记录与账户实际到账分开。",
+          "eventDate": "20260930",
+          "eventTime": null,
+          "eventTimezone": null,
+          "eventType": "dividend_payment",
+          "publicKey": "b0e7c81fe16c42e2b2d838c85279b1e9dc15d49cea2b7fafcd513371efa3c681",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://advisors.vanguard.com/investments/products/voo/vanguard-sp-500-etf",
+          "status": "occurred",
+          "title": "VOO 第三季度分配支付日"
         },
         {
           "currency": null,
@@ -217261,10 +217274,10 @@
         {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-07-30T16:31:02Z",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-10-06T12:24:13Z",
+      "warning": "Vanguard 官方年度分配日程尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方日程。"
     },
     "coverage": [
       {
@@ -217284,9 +217297,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-07-30T16:31:02Z"
+        "updatedAt": "2026-10-06T12:24:13Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -217303,11 +217316,11 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 44,
-          "stale": true,
+          "count": 45,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-07-30T16:31:02Z",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-10-06T12:24:13Z",
+          "warning": "Vanguard 官方年度分配日程尚未建立获审的无人值守适配器；人工全标的复核仍须访问官方日程。"
         },
         "fundamentals": {
           "asOfDate": "20260814",
@@ -217396,7 +217409,7 @@
       "englishName": "Vanguard S&P 500 ETF",
       "firstSeenDate": "20251210",
       "instrumentKind": "etf",
-      "lastSeenDate": "20261005",
+      "lastSeenDate": "20261009",
       "primaryExchange": "ARCA",
       "status": "active",
       "symbols": [
@@ -217405,7 +217418,7 @@
           "exchange": null,
           "firstSeenDate": "20251210",
           "isPrimary": true,
-          "lastSeenDate": "20261005",
+          "lastSeenDate": "20261009",
           "symbol": "VOO"
         }
       ]
@@ -217423,7 +217436,7 @@
         "TRADES": 4007
       },
       "corporateEvents": {
-        "count": 44,
+        "count": 45,
         "sourceCount": 3
       }
     },
@@ -217462,7 +217475,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-06T09:15:43.962102Z",
+  "generatedAt": "2026-10-11T02:30:11.517856Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "VOO"
