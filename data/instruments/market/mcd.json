@@ -631650,7 +631650,7 @@
     ],
     "chartEvents": {
       "dividendCoverage": {
-        "coverageEnd": "20261005",
+        "coverageEnd": "20261009",
         "coverageStart": "20241112",
         "issuerCoverageStart": null,
         "lifetimeHistoryComplete": true,
@@ -635341,17 +635341,70 @@
           "sourceUrl": "https://corporate.mcdonalds.com/content/dam/sites/corp/nfl/pdf/Q326%20Dividend%20Release.pdf",
           "status": "occurred",
           "title": "McDonald's 季度股息支付日"
+        },
+        {
+          "currency": "USD",
+          "description": "MCD 第四季度股息宣告；仅记录发行人公开事实，研究和账户数据保持独立。",
+          "eventDate": "20260917",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "dividend_declaration",
+          "publicKey": "f0b0b3c6372217646e5858d51d859e29c3ebca936c4d863ed2de923b7e90e149",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://mcdonalds.mediaroom.com/2026-09-17-McDONALDS-MARKS-50-CONSECUTIVE-YEARS-OF-DIVIDEND-INCREASES,-JOINING-THE-RANKS-OF-DIVIDEND-KINGS",
+          "status": "occurred",
+          "title": "MCD 第四季度股息宣告"
+        },
+        {
+          "currency": null,
+          "description": "MCD NEXT 战略公告 Form 8-K；仅记录发行人公开事实，研究和账户数据保持独立。",
+          "eventDate": "20260923",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "regulatory_filing",
+          "publicKey": "062faaf25155b56ec5614d6d8161a6c7f9f9b8d58e82b592b45a303efb1f24ce",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/63908/000006390826000076/mcd-20260923.htm",
+          "status": "occurred",
+          "title": "MCD NEXT 战略公告 Form 8-K"
+        },
+        {
+          "currency": "USD",
+          "description": "MCD 第四季度股权登记；仅记录发行人公开事实，研究和账户数据保持独立。",
+          "eventDate": "20261201",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "dividend_record",
+          "publicKey": "f495ee33a916d27f6f039ba2a71a937c895d5a17deb7ca0fee744ae19e5d284f",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://mcdonalds.mediaroom.com/2026-09-17-McDONALDS-MARKS-50-CONSECUTIVE-YEARS-OF-DIVIDEND-INCREASES,-JOINING-THE-RANKS-OF-DIVIDEND-KINGS",
+          "status": "confirmed",
+          "title": "MCD 第四季度股权登记"
+        },
+        {
+          "currency": "USD",
+          "description": "MCD 第四季度股息支付；仅记录发行人公开事实，研究和账户数据保持独立。",
+          "eventDate": "20261215",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "dividend_payment",
+          "publicKey": "ef781277c7ab22ebba049818792f51b6cc9fa82878dab10dfb3006d0eab2de00",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://mcdonalds.mediaroom.com/2026-09-17-McDONALDS-MARKS-50-CONSECUTIVE-YEARS-OF-DIVIDEND-INCREASES,-JOINING-THE-RANKS-OF-DIVIDEND-KINGS",
+          "status": "confirmed",
+          "title": "MCD 第四季度股息支付"
         }
       ],
       "sources": [
         {},
         {},
+        {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-09-19T04:40:16Z",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-10-06T12:24:13Z",
+      "warning": "McDonald's 官方页面以内嵌事件服务提供资料；机器事件入口持续受限且尚无获审无人值守适配器，SEC 只补充已发生申报，人工全标的复核仍须访问官方页面。"
     },
     "coverage": [
       {
@@ -635371,9 +635424,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-09-19T04:40:16Z"
+        "updatedAt": "2026-10-06T12:24:13Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -635390,11 +635443,11 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 198,
-          "stale": true,
+          "count": 202,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-09-19T04:40:16Z",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-10-06T12:24:13Z",
+          "warning": "McDonald's 官方页面以内嵌事件服务提供资料；机器事件入口持续受限且尚无获审无人值守适配器，SEC 只补充已发生申报，人工全标的复核仍须访问官方页面。"
         },
         "fundamentals": {
           "asOfDate": "20260814",
@@ -635490,7 +635543,7 @@
       "englishName": "McDonald's Corporation",
       "firstSeenDate": "20250203",
       "instrumentKind": "common_stock",
-      "lastSeenDate": "20261005",
+      "lastSeenDate": "20261009",
       "primaryExchange": "NYSE",
       "status": "active",
       "symbols": [
@@ -635499,7 +635552,7 @@
           "exchange": null,
           "firstSeenDate": "20250203",
           "isPrimary": true,
-          "lastSeenDate": "20261005",
+          "lastSeenDate": "20261009",
           "symbol": "MCD"
         }
       ]
@@ -635517,8 +635570,8 @@
         "TRADES": 11696
       },
       "corporateEvents": {
-        "count": 198,
-        "sourceCount": 3
+        "count": 202,
+        "sourceCount": 4
       }
     },
     "valuationAnalysis": {
@@ -701940,7 +701993,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-06T09:15:43.962102Z",
+  "generatedAt": "2026-10-11T02:30:11.517856Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "MCD"

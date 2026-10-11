@@ -631650,7 +631650,7 @@
     ],
     "chartEvents": {
       "dividendCoverage": {
-        "coverageEnd": "20261005",
+        "coverageEnd": "20261009",
         "coverageStart": "20241112",
         "issuerCoverageStart": null,
         "lifetimeHistoryComplete": true,
@@ -635466,27 +635466,41 @@
         },
         {
           "currency": "USD",
-          "description": "每股 US$0.53 常规季度现金股息的正式支付日。",
+          "description": "每股 US$0.53 常规季度现金股息的正式支付日。 本次逐项复核发行人官方证据确认该事项已经发生；账户到账仍由既有实际流水独立展示。",
           "eventDate": "20261001",
           "eventTime": null,
           "eventTimezone": null,
           "eventType": "dividend_payment",
-          "publicKey": "8432b7cd52f588e06d052b773fcd25115226c9469cc7b429110578f036618246",
+          "publicKey": "849862c4176a030907027b27500f4311138886d770f8bbddaa1959f18664d7c4",
           "sourceName": "Reviewed Official Issuer and Sponsor Events",
-          "sourceUrl": "https://investors.coca-colacompany.com/news-events/press-releases/detail/1165/board-of-directors-of-the-coca-cola-company-elects-new-officer-and-declares-regular-quarterly-dividend",
-          "status": "confirmed",
+          "sourceUrl": "https://investors.coca-colacompany.com/filings-reports/all-sec-filings/content/0001628280-26-050503/ko-20260703.htm",
+          "status": "occurred",
           "title": "Coca-Cola 季度股息支付日"
+        },
+        {
+          "currency": null,
+          "description": "KO 2026年第三季度财报发布；仅记录发行人公开事实，研究和账户数据保持独立。",
+          "eventDate": "20261027",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "earnings_release",
+          "publicKey": "c7006f276331685992b9980b0cbc7510850d49a303f6a10c8e194b35ec958f2a",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://investors.coca-colacompany.com/news-events/press-releases/detail/1173/the-coca-cola-company-announces-timing-of-third-quarter-2026-earnings-release",
+          "status": "confirmed",
+          "title": "KO 2026年第三季度财报发布"
         }
       ],
       "sources": [
         {},
         {},
+        {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-09-19T04:40:16Z",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-10-06T12:24:13Z",
+      "warning": "Coca-Cola 官方事件页尚未建立结构变化失败关闭的无人值守适配器；人工全标的复核仍须访问官方事件页。"
     },
     "coverage": [
       {
@@ -635506,9 +635520,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-09-19T04:40:16Z"
+        "updatedAt": "2026-10-06T12:24:13Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -635525,11 +635539,11 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 205,
-          "stale": true,
+          "count": 206,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-09-19T04:40:16Z",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-10-06T12:24:13Z",
+          "warning": "Coca-Cola 官方事件页尚未建立结构变化失败关闭的无人值守适配器；人工全标的复核仍须访问官方事件页。"
         },
         "fundamentals": {
           "asOfDate": "20260814",
@@ -635625,7 +635639,7 @@
       "englishName": "The Coca-Cola Company",
       "firstSeenDate": "20241202",
       "instrumentKind": "common_stock",
-      "lastSeenDate": "20261005",
+      "lastSeenDate": "20261009",
       "primaryExchange": "NYSE",
       "status": "active",
       "symbols": [
@@ -635634,7 +635648,7 @@
           "exchange": null,
           "firstSeenDate": "20241202",
           "isPrimary": true,
-          "lastSeenDate": "20261005",
+          "lastSeenDate": "20261009",
           "symbol": "KO"
         }
       ]
@@ -635652,8 +635666,8 @@
         "TRADES": 11696
       },
       "corporateEvents": {
-        "count": 205,
-        "sourceCount": 3
+        "count": 206,
+        "sourceCount": 4
       }
     },
     "valuationAnalysis": {
@@ -702059,7 +702073,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-06T09:15:43.962102Z",
+  "generatedAt": "2026-10-11T02:30:11.517856Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "KO"
