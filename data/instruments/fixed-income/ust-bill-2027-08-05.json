@@ -3,11 +3,11 @@
     "accountPerformance": {
       "aggregateReturn": 3.78,
       "annualizedReturnMethodology": "按国库券成交净现金流与期末完成收盘市值，以真实日期计算资金加权年化 XIRR；成交日与估值日相同时没有可年化的已流逝期间，结果保持缺失。",
-      "annualizedTotalReturn": 0.006831604840974004,
+      "annualizedTotalReturn": 0.006374716054099228,
       "cashFlowQuality": "complete",
       "closedPositionTotal": 3.78,
       "comprehensiveCost": 4823.05,
-      "costBasisResidual": null,
+      "costBasisResidual": 0.0,
       "costBasisXirr": null,
       "costBasisXirrMethodology": null,
       "costBasisXirrQuality": "not_applicable",
@@ -16,17 +16,17 @@
       "dividendTotal": 0.0,
       "excludedNoPositionDays": 0,
       "feeTotal": 5.0,
-      "holdingCalendarDays": 42,
+      "holdingCalendarDays": 45,
       "holdingClockQuality": "complete",
-      "holdingPeriodDays": 42,
-      "holdingPeriodEndDate": "20261009",
+      "holdingPeriodDays": 45,
+      "holdingPeriodEndDate": "20261012",
       "holdingPeriodStartDate": "20260828",
-      "methodology": "按国库券成交净现金流与期末完成收盘市值，以真实日期计算资金加权年化 XIRR；成交日与估值日相同时没有可年化的已流逝期间，结果保持缺失。使用与年化收益相同的国库券现金流，以面值数量重建持仓时钟；成交日与估值日相同时没有可计算的持有期，非年化总回报保持缺失。",
+      "methodology": "国库券以含手续费的 IBKR 成本基础与到期面值计算合同回报；页面主收益率另以模型未舍入成交价款加佣金，从成交日起算有效 XIRR，并明确标为估算。计划结算日不等于实际结算，实际结算证据缺失时不会生成结算日起算 XIRR。",
       "realizedPnl": 0.0,
-      "realizedPnlYtd": 0.0,
+      "realizedPnlYtd": 0,
       "totalReturn": 0.0007837364322209606,
       "totalReturnMethodology": "使用与年化收益相同的国库券现金流，以面值数量重建持仓时钟；成交日与估值日相同时没有可计算的持有期，非年化总回报保持缺失。",
-      "valuationDate": "20261009"
+      "valuationDate": "20261012"
     },
     "barSelection": {
       "series": []
@@ -44,31 +44,31 @@
     "currentHolding": {
       "closePrice": 96.536553,
       "currency": "USD",
-      "dailyPnl": 1.05,
-      "dailyPnlPct": 0.02164001,
+      "dailyPnl": 0.0,
+      "dailyPnlPct": 0.0,
       "marketValue": 4826.83,
-      "portfolioWeightPct": 3.8897818228361714,
+      "portfolioWeightPct": 3.883840413650461,
       "quantity": 5000.0,
-      "sourceAt": "2026-10-10T05:59:13.901935Z",
+      "sourceAt": "2026-10-13T06:46:27.874077Z",
       "status": "official",
       "unrealizedPnl": 3.78,
-      "valuationDate": "20261009"
+      "valuationDate": "20261012"
     },
     "dataAsOf": {
       "lifecycle": {
         "latestEventDate": "20260828",
-        "latestSourceAt": "2026-08-29T09:19:05.649785Z",
+        "latestSourceAt": "2026-10-13T06:46:27.874077Z",
         "statementCoverageStart": "20241112",
-        "statementThrough": "20261009"
+        "statementThrough": "20261012"
       },
       "portfolioClose": {
-        "sourceAt": "2026-10-10T05:59:13.901935Z",
+        "sourceAt": "2026-10-13T06:46:27.874077Z",
         "status": "official",
-        "valuationDate": "20261009"
+        "valuationDate": "20261012"
       },
       "positionLots": {
-        "asOf": "20261009",
-        "sourceAt": "2026-10-10T05:59:13.901935Z",
+        "asOf": "20261012",
+        "sourceAt": "2026-10-13T06:46:27.874077Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete"
       },
@@ -99,7 +99,7 @@
           "status": "not_available"
         },
         "lifecycle": {
-          "ingestionWindows": 62,
+          "ingestionWindows": 63,
           "responseTruncated": false,
           "status": "pass"
         },
@@ -110,10 +110,9 @@
           "status": "unavailable"
         },
         "positionLots": {
-          "asOf": "20261009",
+          "asOf": "20261012",
           "count": 1,
           "coverageStatus": "complete",
-          "message": null,
           "sourceMode": "official_activity_flex_lot",
           "status": "pass"
         },
@@ -188,7 +187,7 @@
       "annualizedReturnMethodology": "按国库券成交净现金流与期末完成收盘市值，以真实日期计算资金加权年化 XIRR；成交日与估值日相同时没有可年化的已流逝期间，结果保持缺失。",
       "annualizedReturnQuality": "complete",
       "annualizedReturnRootCount": 1,
-      "annualizedTotalReturn": 0.006831604840974004,
+      "annualizedTotalReturn": 0.006374716054099228,
       "cashFlowMethodology": "国库券按零票息合同生成唯一到期本金；日期是合同日，不把计划结算日或未来支付日冒充证据截止时间。",
       "cashFlowQuality": "complete",
       "cashFlowReconciliationResidual": -2.544631172440859e-13,
@@ -219,10 +218,10 @@
       "expectedCouponTotal": 0.0,
       "faceValue": 5000.0,
       "feeTotal": 5.0,
-      "holdingCalendarDays": 42,
+      "holdingCalendarDays": 45,
       "holdingClockQuality": "complete",
-      "holdingPeriodDays": 42,
-      "holdingPeriodEndDate": "20261009",
+      "holdingPeriodDays": 45,
+      "holdingPeriodEndDate": "20261012",
       "holdingPeriodStartDate": "20260828",
       "instrumentType": "treasury_bill",
       "issuer": "United States Department of the Treasury",
@@ -268,8 +267,8 @@
       "remainingCashFlowTotal": 5000.0,
       "remainingCouponTotal": 0.0,
       "remainingPrincipal": 5000.0,
-      "remainingTermDays": 300,
-      "remainingTermYears": 0.8213721020965523,
+      "remainingTermDays": 297,
+      "remainingTermYears": 0.8131583810755868,
       "returnBasis": "accrual_inclusive_v1",
       "sources": {
         "acquisition": "IBKR Activity Flex trade and cost basis",
@@ -324,15 +323,15 @@
         },
         "risk": {
           "basis": "clean_market_value",
-          "closeEffectiveAnnualYield": 0.0438185049599189,
+          "closeEffectiveAnnualYield": 0.0442707727361169,
           "completedCloseCleanMarketValue": 4826.82765,
           "completedCloseCleanPricePer100": 96.536553,
-          "convexity": 1.0408972272618666,
-          "dv01UsdPerBp": 0.38830920541923275,
-          "modifiedDuration": 0.8044811904962729,
-          "remainingDays": 300,
+          "convexity": 1.0236375503974977,
+          "dv01UsdPerBp": 0.3843428579600003,
+          "modifiedDuration": 0.7962638938641206,
+          "remainingDays": 297,
           "status": "pass",
-          "valuationDate": "2026-10-09"
+          "valuationDate": "2026-10-12"
         },
         "schemaVersion": 1,
         "settlementEvidence": {
@@ -349,10 +348,10 @@
             "value": null
           },
           "scheduledSettlementDateTarget": {
-            "asOf": "2026-10-10T05:59:13.901935Z",
-            "completionState": "scheduled_not_actual",
-            "status": "provided",
-            "value": "2026-08-31"
+            "asOf": null,
+            "completionState": null,
+            "status": "missing",
+            "value": null
           }
         },
         "status": "pass",
@@ -422,7 +421,7 @@
         }
       },
       "unrealizedPnl": 3.78,
-      "valuationDate": "2026-10-09",
+      "valuationDate": "2026-10-12",
       "yieldReference": {
         "closestSeriesId": "DGS2",
         "message": "已载入三条附近期限序列。",
@@ -30509,7 +30508,7 @@
       "status": "not_collected"
     },
     "positionLots": {
-      "asOf": "20261009",
+      "asOf": "20261012",
       "items": [
         {
           "acquisitionDate": "20260828",
@@ -30524,7 +30523,7 @@
           "totalPnlPct": 0.0007837364323405314
         }
       ],
-      "sourceAt": "2026-10-10T05:59:13.901935Z",
+      "sourceAt": "2026-10-13T06:46:27.874077Z",
       "sourceMode": "official_activity_flex_lot",
       "status": "complete",
       "summary": {
