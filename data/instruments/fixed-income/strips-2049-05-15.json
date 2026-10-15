@@ -1,32 +1,32 @@
 {
   "detail": {
     "accountPerformance": {
-      "aggregateReturn": -93.12,
+      "aggregateReturn": -77.33,
       "annualizedReturnMethodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。",
-      "annualizedTotalReturn": -0.08553475868589144,
+      "annualizedTotalReturn": -0.07061575551052834,
       "cashFlowQuality": "complete",
-      "closedPositionTotal": -93.12,
+      "closedPositionTotal": -77.33,
       "comprehensiveCost": 927.29,
-      "costBasisResidual": 0.0,
+      "costBasisResidual": null,
       "costBasisXirr": null,
       "costBasisXirrMethodology": null,
       "costBasisXirrQuality": "not_applicable",
       "currency": "USD",
-      "currentCost": 927.29,
+      "currentCost": 927.2900000000001,
       "dividendTotal": 0.0,
       "excludedNoPositionDays": 0,
       "feeTotal": 5.0,
-      "holdingCalendarDays": 432,
+      "holdingCalendarDays": 434,
       "holdingClockQuality": "complete",
-      "holdingPeriodDays": 432,
-      "holdingPeriodEndDate": "20261012",
+      "holdingPeriodDays": 434,
+      "holdingPeriodEndDate": "20261014",
       "holdingPeriodStartDate": "20250806",
-      "methodology": "以 IBKR 当前成本基础（含手续费）与购买应计利息作为实际投入，按精确日历、未来半年票息及到期本金计算年化持有到期 XIRR；不是券商报价页的债券等价收益率。发生卖出后若剩余批次无法精确归属，实际息率失败关闭；持有期年化收益与总回报率继续按完整生命周期现金流独立计算。",
+      "methodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "realizedPnl": 0.0,
-      "realizedPnlYtd": 0,
-      "totalReturn": -0.10042165881235332,
+      "realizedPnlYtd": 0.0,
+      "totalReturn": -0.08339354462979709,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
-      "valuationDate": "20261012"
+      "valuationDate": "20261014"
     },
     "barSelection": {
       "series": []
@@ -42,33 +42,33 @@
     },
     "coverage": [],
     "currentHolding": {
-      "closePrice": 27.805786,
+      "closePrice": 28.332136,
       "currency": "USD",
-      "dailyPnl": 0.36,
-      "dailyPnlPct": 0.043927419999999995,
-      "marketValue": 834.17,
-      "portfolioWeightPct": 0.6712030790093716,
+      "dailyPnl": 8.67,
+      "dailyPnlPct": 1.03072814,
+      "marketValue": 849.96,
+      "portfolioWeightPct": 0.6841946059838164,
       "quantity": 3000.0,
-      "sourceAt": "2026-10-13T06:46:27.874077Z",
+      "sourceAt": "2026-10-15T04:35:29.071261Z",
       "status": "official",
-      "unrealizedPnl": -93.12,
-      "valuationDate": "20261012"
+      "unrealizedPnl": -77.33,
+      "valuationDate": "20261014"
     },
     "dataAsOf": {
       "lifecycle": {
         "latestEventDate": "20250904",
-        "latestSourceAt": "2026-10-13T06:46:27.874077Z",
+        "latestSourceAt": "2026-07-24T09:42:46.547101Z",
         "statementCoverageStart": "20241112",
-        "statementThrough": "20261012"
+        "statementThrough": "20261014"
       },
       "portfolioClose": {
-        "sourceAt": "2026-10-13T06:46:27.874077Z",
+        "sourceAt": "2026-10-15T04:35:29.071261Z",
         "status": "official",
-        "valuationDate": "20261012"
+        "valuationDate": "20261014"
       },
       "positionLots": {
-        "asOf": "20261012",
-        "sourceAt": "2026-10-13T06:46:27.874077Z",
+        "asOf": "20261014",
+        "sourceAt": "2026-10-15T04:35:29.071261Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete"
       },
@@ -99,7 +99,7 @@
           "status": "not_available"
         },
         "lifecycle": {
-          "ingestionWindows": 63,
+          "ingestionWindows": 65,
           "responseTruncated": false,
           "status": "pass"
         },
@@ -110,9 +110,10 @@
           "status": "unavailable"
         },
         "positionLots": {
-          "asOf": "20261012",
+          "asOf": "20261014",
           "count": 1,
           "coverageStatus": "complete",
+          "message": null,
           "sourceMode": "official_activity_flex_lot",
           "status": "pass"
         },
@@ -380,17 +381,17 @@
       "accruedInterest": 0.0,
       "accruedInterestStatus": "not_applicable_zero_coupon",
       "acquisitionCashOutflow": 927.29,
-      "actualTotalReturn": -0.10042165881235332,
+      "actualTotalReturn": -0.08339354462979709,
       "actualYield": 0.0505929400107443,
       "actualYieldQuality": "complete",
-      "aggregateReturn": -93.12,
+      "aggregateReturn": -77.33,
       "annualizedReturnMethodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。",
       "annualizedReturnQuality": "complete",
       "annualizedReturnRootCount": 1,
-      "annualizedTotalReturn": -0.08553475868589144,
+      "annualizedTotalReturn": -0.07061575551052834,
       "cashFlowMethodology": "按代码所载票面息率、到期日和当前持有面值生成合同半年现金流；日期是合同日，不推断周末或假日导致的实际入账日。",
       "cashFlowQuality": "complete",
-      "cashFlowReconciliationResidual": 0.0,
+      "cashFlowReconciliationResidual": 7.105427357601002e-14,
       "cashFlows": [
         {
           "coupon": 0.0,
@@ -401,12 +402,12 @@
         }
       ],
       "completedCloseValueMethod": "完成收盘净清算值除以持有面值，再换算为每 US$100 面值；不把该值宣称为独立核验的 clean price 或 dirty price。",
-      "completedCloseValuePer100": 27.805786,
+      "completedCloseValuePer100": 28.332136,
       "contractCode": "SP 0 05/15/49",
       "contractName": "United States Treasury STRIPS due 2049-05-15",
       "contractNameZh": "美国国债 STRIPS 本金券 2049-05-15",
       "couponRate": 0.0,
-      "currentCost": 927.29,
+      "currentCost": 927.2900000000001,
       "currentCouponIncomeYield": 0.0,
       "displayAcquisitionYield": null,
       "displayAcquisitionYieldLabel": null,
@@ -418,15 +419,15 @@
       "expectedCouponTotal": 0.0,
       "faceValue": 3000.0,
       "feeTotal": 5.0,
-      "holdingCalendarDays": 432,
+      "holdingCalendarDays": 434,
       "holdingClockQuality": "complete",
-      "holdingPeriodDays": 432,
-      "holdingPeriodEndDate": "20261012",
+      "holdingPeriodDays": 434,
+      "holdingPeriodEndDate": "20261014",
       "holdingPeriodStartDate": "20250806",
       "instrumentType": "treasury_strips",
       "issuer": "United States Department of the Treasury",
       "issuerLabelZh": "美国财政部",
-      "marketValue": 834.17,
+      "marketValue": 849.96,
       "marketYieldAsOf": "2026-08-24T09:31:25.585763Z",
       "marketYieldAsk": null,
       "marketYieldBid": null,
@@ -467,8 +468,8 @@
       "remainingCashFlowTotal": 3000.0,
       "remainingCouponTotal": 0.0,
       "remainingPrincipal": 3000.0,
-      "remainingTermDays": 8251,
-      "remainingTermYears": 22.590470714662175,
+      "remainingTermDays": 8249,
+      "remainingTermYears": 22.584994900648198,
       "returnBasis": "accrual_inclusive_v1",
       "sources": {
         "acquisition": "IBKR Activity Flex trade and cost basis",
@@ -477,13 +478,13 @@
         "interest": "IBKR Activity Flex bond-interest cash transactions"
       },
       "status": "pass",
-      "totalReturn": -0.10042165881235332,
+      "totalReturn": -0.08339354462979709,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "totalReturnQuality": "complete",
       "totalReturnRootCount": 1,
       "tradeCostTotal": 927.29,
-      "unrealizedPnl": -93.12,
-      "valuationDate": "2026-10-12",
+      "unrealizedPnl": -77.33,
+      "valuationDate": "2026-10-14",
       "yieldReference": {
         "closestSeriesId": "DGS20",
         "message": "已载入三条附近期限序列。",
@@ -494,12 +495,12 @@
           "valuePct": 5.059294
         },
         "securityYieldSeries": {
-          "coverageEnd": "2026-10-09",
+          "coverageEnd": "2026-10-14",
           "coverageStart": "2025-08-06",
           "label": "本债券持有期估算 YTM",
           "message": "个券线来自买入后的 Statement／Flex 完成收盘价格链；TWS 直接 YIELD_BID_ASK 仅用于重叠残差验收，未与主序列拼接。",
           "methodVersion": "treasury_clean_price_ytm_v1",
-          "pointCount": 296,
+          "pointCount": 299,
           "points": [
             [
               "2025-08-06",
@@ -1684,6 +1685,18 @@
             [
               "2026-10-09",
               5.748299
+            ],
+            [
+              "2026-10-12",
+              5.747
+            ],
+            [
+              "2026-10-13",
+              5.709
+            ],
+            [
+              "2026-10-14",
+              5.663
             ]
           ],
           "providerValidation": {
@@ -1708,22 +1721,10 @@
         "series": [
           {
             "closestTenor": false,
-            "coverageEnd": "2026-10-08",
-            "coverageStart": "2016-10-11",
+            "coverageEnd": "2026-10-13",
+            "coverageStart": "2016-10-14",
             "label": "10 年期",
             "points": [
-              [
-                "2016-10-11",
-                1.77
-              ],
-              [
-                "2016-10-12",
-                1.79
-              ],
-              [
-                "2016-10-13",
-                1.75
-              ],
               [
                 "2016-10-14",
                 1.8
@@ -11707,6 +11708,14 @@
               [
                 "2026-10-08",
                 5.22
+              ],
+              [
+                "2026-10-09",
+                5.24
+              ],
+              [
+                "2026-10-13",
+                5.21
               ]
             ],
             "seriesId": "DGS10",
@@ -11717,22 +11726,10 @@
           },
           {
             "closestTenor": true,
-            "coverageEnd": "2026-10-08",
-            "coverageStart": "2016-10-11",
+            "coverageEnd": "2026-10-13",
+            "coverageStart": "2016-10-14",
             "label": "20 年期",
             "points": [
-              [
-                "2016-10-11",
-                2.17
-              ],
-              [
-                "2016-10-12",
-                2.19
-              ],
-              [
-                "2016-10-13",
-                2.15
-              ],
               [
                 "2016-10-14",
                 2.22
@@ -21716,6 +21713,14 @@
               [
                 "2026-10-08",
                 5.64
+              ],
+              [
+                "2026-10-09",
+                5.65
+              ],
+              [
+                "2026-10-13",
+                5.6
               ]
             ],
             "seriesId": "DGS20",
@@ -21726,22 +21731,10 @@
           },
           {
             "closestTenor": false,
-            "coverageEnd": "2026-10-08",
-            "coverageStart": "2016-10-11",
+            "coverageEnd": "2026-10-13",
+            "coverageStart": "2016-10-14",
             "label": "30 年期",
             "points": [
-              [
-                "2016-10-11",
-                2.5
-              ],
-              [
-                "2016-10-12",
-                2.51
-              ],
-              [
-                "2016-10-13",
-                2.48
-              ],
               [
                 "2016-10-14",
                 2.55
@@ -31725,6 +31718,14 @@
               [
                 "2026-10-08",
                 5.6
+              ],
+              [
+                "2026-10-09",
+                5.6
+              ],
+              [
+                "2026-10-13",
+                5.56
               ]
             ],
             "seriesId": "DGS30",
@@ -31735,8 +31736,8 @@
           }
         ],
         "status": "pass",
-        "windowEnd": "2026-10-09",
-        "windowStart": "2016-10-09"
+        "windowEnd": "2026-10-14",
+        "windowStart": "2016-10-14"
       }
     },
     "fundProfile": {
@@ -31745,7 +31746,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-10-11T02:30:23.137682Z",
+    "generatedAt": "2026-10-15T05:56:57.620188Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BOND",
@@ -31756,7 +31757,7 @@
       "englishName": "SP 0 05/15/49",
       "firstSeenDate": "20250806",
       "instrumentKind": "us_treasury",
-      "lastSeenDate": "20261009",
+      "lastSeenDate": "20261014",
       "primaryExchange": null,
       "status": "active",
       "symbols": [
@@ -31765,7 +31766,7 @@
           "exchange": null,
           "firstSeenDate": "20250806",
           "isPrimary": true,
-          "lastSeenDate": "20261009",
+          "lastSeenDate": "20261014",
           "symbol": "SP 0 05/15/49"
         }
       ]
@@ -31777,29 +31778,29 @@
       "status": "not_collected"
     },
     "positionLots": {
-      "asOf": "20261012",
+      "asOf": "20261014",
       "items": [
         {
           "acquisitionDate": "20250806",
           "averagePrice": 30.909666667,
           "costBasisMoney": 927.29,
           "currency": "USD",
-          "marketPrice": 27.805786,
-          "marketValue": 834.17,
+          "marketPrice": 28.332136,
+          "marketValue": 849.96,
           "pnlCurrency": "USD",
           "quantity": 3000.0,
-          "totalPnl": -93.12,
-          "totalPnlPct": -0.10042165881223782
+          "totalPnl": -77.33,
+          "totalPnlPct": -0.08339354463005101
         }
       ],
-      "sourceAt": "2026-10-13T06:46:27.874077Z",
+      "sourceAt": "2026-10-15T04:35:29.071261Z",
       "sourceMode": "official_activity_flex_lot",
       "status": "complete",
       "summary": {
         "costBasis": 927.29,
         "quantity": 3000.0,
-        "totalPnl": -93.12,
-        "totalPnlPct": -0.10042165881223782
+        "totalPnl": -77.33,
+        "totalPnlPct": -0.08339354463005101
       }
     },
     "providerResearch": [],
@@ -32019,8 +32020,8 @@
         "totals": {
           "costBasis": 927.29,
           "quantity": 3000.0,
-          "totalPnl": -93.12,
-          "totalPnlPct": -0.10042165881223782
+          "totalPnl": -77.33,
+          "totalPnlPct": -0.08339354463005101
         }
       },
       "research": {
@@ -32032,7 +32033,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-10-11T02:30:11.517856Z",
+  "generatedAt": "2026-10-15T05:56:45.858476Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "STRIPS-2049-05-15"
