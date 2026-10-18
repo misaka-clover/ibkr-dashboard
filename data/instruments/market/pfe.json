@@ -635485,6 +635485,19 @@
           "title": "Pfizer 第三季度股息支付日"
         },
         {
+          "currency": "USD",
+          "description": "PFE 第四季度股息宣告；发行人公开事项，账户到账及研究结论独立。",
+          "eventDate": "20261006",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "dividend_declaration",
+          "publicKey": "02909b83833091ea8ab440f596ad8bff194c91e851d2a88b3f952f2c368b083b",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-declares-fourth-quarter-2026-dividend",
+          "status": "occurred",
+          "title": "PFE 第四季度股息宣告"
+        },
+        {
           "currency": null,
           "description": "Pfizer 9 月 22 日公告确认于 11 月 3 日上午发布第三季度业绩，业绩电话会于同日纽约时间 10:00（EST，UTC 15:00）举行。报告发布具体时刻未提供；电话会时间不作为财报发布时间。",
           "eventDate": "20261103",
@@ -635496,6 +635509,32 @@
           "sourceUrl": "https://s206.q4cdn.com/795948973/files/doc_events/2026/Nov/03/Pfizer-Invites-Public-Q3-2026-Earnings_FINAL.pdf",
           "status": "confirmed",
           "title": "Pfizer 2026 年第三季度业绩发布"
+        },
+        {
+          "currency": "USD",
+          "description": "PFE 第四季度股权登记；发行人公开事项，账户到账及研究结论独立。",
+          "eventDate": "20261106",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "dividend_record",
+          "publicKey": "da7695e57d05c082c32d4aa7847950248b0931b9403d1776fc54e6ea2b5c41bb",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-declares-fourth-quarter-2026-dividend",
+          "status": "confirmed",
+          "title": "PFE 第四季度股权登记"
+        },
+        {
+          "currency": "USD",
+          "description": "PFE 第四季度股息支付；发行人公开事项，账户到账及研究结论独立。",
+          "eventDate": "20261207",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "dividend_payment",
+          "publicKey": "3ee66f98ed4aa01c45dde0309f34549d963b74cd4c41b0178c2aee4a5f4f84d8",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-declares-fourth-quarter-2026-dividend",
+          "status": "confirmed",
+          "title": "PFE 第四季度股息支付"
         }
       ],
       "sources": [
@@ -635503,10 +635542,10 @@
         {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-09-22T16:32:57Z",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-10-17T17:51:02Z",
+      "warning": "Pfizer 动态投资者事件页持续受限；官方 Newsroom 已建立机器发现回退，但候选仍须回到一手公告人工复核，在无人值守适配器（语义确认层）获审前保持 pending。"
     },
     "coverage": [
       {
@@ -635526,9 +635565,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-09-22T16:32:57Z"
+        "updatedAt": "2026-10-17T17:51:02Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -635545,11 +635584,11 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 207,
-          "stale": true,
+          "count": 210,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-09-22T16:32:57Z",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-10-17T17:51:02Z",
+          "warning": "Pfizer 动态投资者事件页持续受限；官方 Newsroom 已建立机器发现回退，但候选仍须回到一手公告人工复核，在无人值守适配器（语义确认层）获审前保持 pending。"
         },
         "fundamentals": {
           "asOfDate": "20260814",
@@ -635672,7 +635711,7 @@
         "TRADES": 11696
       },
       "corporateEvents": {
-        "count": 207,
+        "count": 210,
         "sourceCount": 3
       }
     },
@@ -702079,7 +702118,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-17T17:25:04.902340Z",
+  "generatedAt": "2026-10-18T05:58:00.923760Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "PFE"
