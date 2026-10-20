@@ -10,8 +10,53 @@
     if (!["number", "string"].includes(typeof value) || (typeof value === "string" && !value.trim())) return null;
     var parsed = Number(value); return Number.isFinite(parsed) ? parsed : null;
   }
-  function validDate(value) { return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value; }
-  function validUtc(value) { return typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?Z$/.test(value) && Number.isFinite(Date.parse(value)) && validDate(value.slice(0, 10)); }
+  function validDate(value) { return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value) && value.slice(0,4) !== "0000" && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value; }
+  function validUtc(value) { return typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?Z$/.test(value) && Number(value.slice(11,13)) < 24 && Number(value.slice(14,16)) < 60 && Number(value.slice(17,19)) < 60 && Number.isFinite(Date.parse(value)) && validDate(value.slice(0, 10)); }
+  // Schema UTC timestamps allow six fractional digits; Date alone truncates
+  // microseconds. Use integer microseconds for all admission/order comparisons.
+  function utcMicros(value) {
+    if (!validUtc(value)) fail("utc");
+    var fraction = value.slice(19, -1);
+    return BigInt(Date.parse(value.slice(0,19) + "Z")) * 1000n + BigInt((fraction ? fraction.slice(1) : "").padEnd(6,"0"));
+  }
+  function compareUtc(a, b) { var x = utcMicros(a), y = utcMicros(b); return x < y ? -1 : x > y ? 1 : 0; }
+  function clockMicros(now) {
+    if (validUtc(now)) return utcMicros(now);
+    var clock = now === undefined ? Date.now() : +new Date(now);
+    if (!Number.isFinite(clock)) fail("clock");
+    return BigInt(clock) * 1000n;
+  }
+  function parseJson(text) {
+    // Validate JSON grammar first, then inspect every raw key before returning
+    // the parsed object. JSON.parse alone silently discards earlier duplicates.
+    var parsed = JSON.parse(text), at = 0;
+    function space() { while (/\s/.test(text[at] || "") && at < text.length) at++; }
+    function string() {
+      var start = at++;
+      while (text[at] !== '"') { if (text[at] === "\\") at++; at++; }
+      at++; return JSON.parse(text.slice(start,at));
+    }
+    function value() {
+      space(); var c = text[at];
+      if (c === '"') { string(); return; }
+      if (c === "{") {
+        at++; space(); var keys = new Set();
+        if (text[at] === "}") { at++; return; }
+        while (true) {
+          space(); var key = string();
+          if (keys.has(key)) fail("duplicate_key"); keys.add(key);
+          space(); at++; value(); space();
+          if (text[at++] === "}") return;
+        }
+      }
+      if (c === "[") {
+        at++; space(); if (text[at] === "]") { at++; return; }
+        while (true) { value(); space(); if (text[at++] === "]") return; }
+      }
+      while (at < text.length && !/[\s,}\]]/.test(text[at])) at++;
+    }
+    value(); return parsed;
+  }
   function https(value) { try { var u = new URL(value); return u.protocol === "https:" && !u.username && !u.password && !/^(?:localhost|127\.|\[::1\])/.test(u.hostname) && !/(?:token|secret|signature|api_key)=/i.test(u.search); } catch (_) { return false; } }
   function shape(value, rule, contract, path) {
     path = path || "$";
@@ -35,28 +80,34 @@
     }
   }
   function fixtureUrl(value) { return https(value) && new URL(value).hostname.endsWith(".invalid"); }
+  function admittedUrl(value, hosts) {
+    if (!https(value)) return false;
+    var u = new URL(value);
+    return (!u.port || u.port === "443") && hosts.includes(u.hostname) && !u.hash && !u.search;
+  }
+  function sourceAdmission(source, contract) {
+    var admission = contract.sourceAdmissions && contract.sourceAdmissions[source.id];
+    return admission && ["name", "url", "role", "redistribution"].every(function (k) { return source[k] === admission[k]; }) ? admission : null;
+  }
   function validateManifest(manifest, contract, now) {
     var production = contract && contract.contractId === "market-content-public-v1" && contract.status === "public_existing_sources_only";
     if (!production && (!contract || contract.contractId !== "market-content-candidate-v1" || contract.status !== "synthetic_candidate_not_publication_authority")) fail("contract");
     if (!manifest || manifest.synthetic !== !production || domains.some(function (d) { return contract.paths[d] !== "data/market/" + d + ".json"; })) fail("candidate_scope");
     shape(manifest, contract.definitions.manifest, contract, "manifest");
-    if (Date.parse(manifest.generatedAt) > (now === undefined ? Date.now() : +new Date(now))) fail("manifest.future_generation");
+    if (utcMicros(manifest.generatedAt) > clockMicros(now)) fail("manifest.future_generation");
     if (manifest.contentVersion === 1 ? manifest.previousVersion !== null || manifest.previousManifestSha256 !== null : manifest.previousVersion !== manifest.contentVersion - 1 || !manifest.previousManifestSha256) fail("manifest.predecessor");
     var ids = new Set();
-    manifest.sources.forEach(function (s) { if (production ? s.id !== "fred-dgs10" || s.name !== "FRED DGS10" || s.url !== "https://fred.stlouisfed.org/series/DGS10" || s.role !== "official_primary" || s.redistribution !== "public" || ids.has(s.id) : !/^synthetic-[a-z0-9-]+$/.test(s.id) || ids.has(s.id) || !fixtureUrl(s.url)) fail("manifest.sources"); ids.add(s.id); });
+    manifest.sources.forEach(function (s) { if (production ? !sourceAdmission(s, contract) || ids.has(s.id) : !/^synthetic-[a-z0-9-]+$/.test(s.id) || ids.has(s.id) || !fixtureUrl(s.url)) fail("manifest.sources"); ids.add(s.id); });
     return manifest;
   }
   function validateDomain(domain, payload, manifest, contract) {
     shape(payload, contract.definitions[domain], contract, domain);
-    if (manifest.synthetic === false) {
-      if (domain === "snapshot") Object.keys(payload.data.series).forEach(function (key) { if (key !== "tenYear" && payload.data.series[key].points.length || key === "tenYear" && payload.data.series[key].points.some(function (p) { return p[2] !== "fred-dgs10"; })) fail("public.source_scope"); });
-      else if (payload.status !== "unavailable" || payload.data.items.length || payload.verifiedAt !== null || payload.observedThrough !== null) fail("public.unadmitted_domain");
-    }
+    var production = manifest.synthetic === false;
     var meta = manifest.packages[domain];
     ["revision", "observedThrough", "verifiedAt", "status"].forEach(function (key) { if (payload[key] !== meta[key]) fail(domain + ".metadata"); });
-    var generated = Date.parse(manifest.generatedAt), verified = payload.verifiedAt && Date.parse(payload.verifiedAt);
-    if (verified && verified > generated || payload.observedThrough && (!verified || payload.observedThrough > payload.verifiedAt.slice(0, 10))) fail(domain + ".cutoff");
-    if ((payload.status === "pass" || payload.status === "warning" || payload.status === "empty") && !verified) fail(domain + ".verification");
+    var generated = utcMicros(manifest.generatedAt), verified = payload.verifiedAt === null ? null : utcMicros(payload.verifiedAt);
+    if (verified !== null && verified > generated || payload.observedThrough && (verified === null || payload.observedThrough > payload.verifiedAt.slice(0, 10))) fail(domain + ".cutoff");
+    if ((payload.status === "pass" || payload.status === "warning" || payload.status === "empty") && verified === null) fail(domain + ".verification");
     if (payload.status === "pass" && !payload.observedThrough) fail(domain + ".cutoff_missing");
     var sources = new Map(manifest.sources.map(function (s) { return [s.id, s]; }));
     if (domain === "snapshot") {
@@ -66,10 +117,20 @@
         if (series.unit !== (key === "twoYear" || key === "tenYear" || key === "thirtyYear" ? "percent" : key === "cnnFearGreed" ? "points" : "index")) fail("snapshot.unit");
         series.points.forEach(function (p) {
           var source = sources.get(p[key === "cnnFearGreed" ? 4 : 2]);
+          var admission = source && production && sourceAdmission(source, contract);
+          if (production && (!admission || admission.series !== key || !admission.uses.includes("series"))) fail("public.source_scope");
           if (!source || p[0] <= prior || !payload.observedThrough || p[0] > payload.observedThrough || p[1] <= 0 && key !== "cnnFearGreed") fail("snapshot.observation");
           if (key === "cnnFearGreed" && (p[3] !== source.role || (p[3] === "legacy" ? p[0] >= contract.cnnBoundaryDate : p[0] < contract.cnnBoundaryDate))) fail("snapshot.cnn_source_boundary");
           prior = p[0]; total++;
         });
+      });
+      (payload.data.valuationObservations || []).forEach(function (v, i, list) {
+        var rule = contract.valuationSourceAdmissions && contract.valuationSourceAdmissions[v.sourceId];
+        var definition = contract.valuationDefinitions && contract.valuationDefinitions[v.metric];
+        if (!production || !rule || !definition || !rule.metrics.includes(v.metric) || !admittedUrl(v.sourceUrl, rule.hosts) || !sources.has(v.sourceId)) fail("valuation.public_use");
+        if (Object.keys(definition).some(function (k) { return v[k] !== definition[k]; }) || !payload.observedThrough || verified === null || v.date > payload.observedThrough || utcMicros(v.verifiedAt) > verified || v.date > v.verifiedAt.slice(0,10)) fail("valuation.definition_or_cutoff");
+        if (list.slice(0,i).some(function (p) { return p.metric === v.metric && p.date === v.date; })) fail("valuation.duplicate");
+        total++;
       });
       if (manifest.synthetic === false && (total ? payload.status !== "warning" : payload.status !== "unavailable")) fail("public.snapshot_status");
       if ((payload.status === "empty" || payload.status === "unavailable") && total) fail("snapshot.empty");
@@ -78,18 +139,36 @@
       var ids = new Set(), items = payload.data.items;
       if ((payload.status === "empty" || payload.status === "unavailable") && items.length || payload.status === "pass" && !items.length) fail(domain + ".empty");
       items.forEach(function (item) {
-        if (ids.has(item.eventId)) fail(domain + ".duplicate"); ids.add(item.eventId);
+        if (!item.eventId.trim() || ids.has(item.eventId)) fail(domain + ".duplicate"); ids.add(item.eventId);
         if (domain === "news") {
-          if (item.accessStatus === "metadata_only") fail("news.full_review_required");
-          if (!fixtureUrl(item.canonicalUrl) || payload.observedThrough && item.publishedAt.slice(0, 10) > payload.observedThrough || Date.parse(item.publishedAt) > Date.parse(item.verifiedAt) || Date.parse(item.verifiedAt) > verified || item.updatedAt && Date.parse(item.updatedAt) > Date.parse(item.verifiedAt)) fail("news.times");
-          item.sourceVerification.forEach(function (v) { if (!fixtureUrl(v.url) || Date.parse(v.checkedAt) > verified) fail("news.source"); });
-        } else {
-          if (!sources.has(item.sourceId) || !fixtureUrl(item.sourceUrl) || !fixtureUrl(item.originatingAgencyUrl) || Date.parse(item.lastVerifiedAt) > verified) fail("calendar.source");
-          if (item.status === "released" || item.status === "revised") { if (!item.result || item.result.status !== item.status) fail("calendar.result_missing"); }
-          if (item.result) {
-            if (!fixtureUrl(item.result.sourceUrl) || Date.parse(item.result.publishedAt) > Date.parse(item.result.retrievedAt) || Date.parse(item.result.retrievedAt) > verified || !item.result.metrics.length || item.result.metrics.some(function (m) { return m.actual === null; })) fail("calendar.result");
+          if (production) {
+            var publisher = contract.newsPublishers[item.publisher];
+            if (!publisher || !admittedUrl(item.canonicalUrl, publisher.hosts) || !item.title.trim() || !item.titleZh.trim() || !item.summaryZh.trim() || !item.factBasis.trim() || !item.inference.trim() || !item.transmissionPath.trim()) fail("news.publisher_or_summary");
+            if (item.accessStatus === "primary_release_reviewed" && !["Federal Reserve","BLS","BEA","Census"].includes(item.publisher)) fail("news.access_role");
+            var matchedPrimary = false;
+            item.sourceVerification.forEach(function (v) {
+              var hosts = v.sourceType === "media_crosscheck" ? [].concat.apply([], Object.values(contract.newsPublishers).map(function (p) { return p.hosts; })) : contract.verificationHosts[v.sourceType] || [];
+              if (!admittedUrl(v.url, hosts) || compareUtc(v.checkedAt,item.verifiedAt) > 0) fail("news.source");
+              if (["primary_official","issuer_official"].includes(v.sourceType) && v.status === "matched") matchedPrimary = true;
+            });
+            if (item.factStatus === "confirmed_primary" && !matchedPrimary || item.sourceVerification.some(function (v) { return v.status === "conflict"; })) fail("news.evidence_status");
           }
-          if (item.expectation && (!fixtureUrl(item.expectation.sourceUrl) || Date.parse(item.expectation.retrievedAt) > verified)) fail("calendar.expectation");
+          if (item.accessStatus === "metadata_only") fail("news.full_review_required");
+          if (!production && !fixtureUrl(item.canonicalUrl) || !payload.observedThrough || item.publishedAt.slice(0, 10) > payload.observedThrough || compareUtc(item.publishedAt,item.verifiedAt) > 0 || (verified === null || utcMicros(item.verifiedAt) > verified) || item.updatedAt && (compareUtc(item.updatedAt,item.verifiedAt) > 0 || compareUtc(item.updatedAt,item.publishedAt) < 0)) fail("news.times");
+          item.sourceVerification.forEach(function (v) { if (!production && !fixtureUrl(v.url) || (verified === null || utcMicros(v.checkedAt) > verified)) fail("news.source"); });
+        } else {
+          var calendarAdmission = production && sources.has(item.sourceId) && sourceAdmission(sources.get(item.sourceId), contract);
+          if (production && payload.status === "pass" && (["source_conflict","unverified"].includes(item.verificationStatus) || item.status === "unverified")) fail("calendar.conflicted_domain");
+          if (production && (!calendarAdmission || !calendarAdmission.uses.includes("calendar") || calendarAdmission.agency !== item.originatingAgency || contract.calendarTypes[item.eventType] !== item.originatingAgency || !admittedUrl(item.sourceUrl, calendarAdmission.hosts) || !admittedUrl(item.originatingAgencyUrl, calendarAdmission.hosts) || !["primary_official","cross_checked_primary","source_conflict","unverified"].includes(item.verificationStatus) || item.originalTimezone !== "America/New_York" || item.status === "scheduled" && !item.scheduledAtUtc)) fail("calendar.admission");
+          if (!sources.has(item.sourceId) || !production && (!fixtureUrl(item.sourceUrl) || !fixtureUrl(item.originatingAgencyUrl)) || (verified === null || utcMicros(item.lastVerifiedAt) > verified)) fail("calendar.source");
+          if (item.status === "released" || item.status === "revised") { if (!item.result || item.result.status !== item.status) fail("calendar.result_missing"); }
+          if (production && item.result && (!admittedUrl(item.result.sourceUrl, calendarAdmission.hosts) || item.result.sourceRole !== "official_primary" || !["released","revised"].includes(item.status))) fail("calendar.result_admission");
+          if (production && item.result && (!contract.publicResultAssessment || Object.keys(item.result.assessment).length !== Object.keys(contract.publicResultAssessment).length || Object.keys(contract.publicResultAssessment).some(function (k) { return item.result.assessment[k] !== contract.publicResultAssessment[k]; }))) fail("calendar.expectation_assessment_pending");
+          if (item.result) {
+            if (!production && !fixtureUrl(item.result.sourceUrl) || compareUtc(item.result.publishedAt,item.result.retrievedAt) > 0 || (verified === null || utcMicros(item.result.retrievedAt) > verified) || !item.result.metrics.length || item.result.metrics.some(function (m) { return m.actual === null; })) fail("calendar.result");
+          }
+          if (production && item.expectation) fail("calendar.expectation_public_use_pending");
+          if (item.expectation && (!fixtureUrl(item.expectation.sourceUrl) || (verified === null || utcMicros(item.expectation.retrievedAt) > verified))) fail("calendar.expectation");
         }
       });
     }
@@ -129,6 +208,9 @@
       snap.oneWeek = before(7); snap.oneMonth = before(30); snap.oneYear = before(365);
       var legacy = cnn.filter(function (p) { return p[3] === "legacy"; });
       archive.quality.cnnFearGreed = { boundaryDate: contract.cnnBoundaryDate, legacy: { through: legacy.length ? legacy[legacy.length - 1][0] : null } };
+      archive.publicValuationObservations = (payload.data.valuationObservations || []).map(function (v) {
+        return Object.assign({}, v, { sourceName: contract.sourceAdmissions[v.sourceId].name });
+      });
       return archive;
     }
     if (domain === "news") return { status: payload.status, retrievedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, viewSummaries: { market_headlines: payload.data.summaryZh }, items: payload.data.items };
@@ -138,7 +220,7 @@
   async function load(config) {
     if (!config || !["market-static-candidate-v1", "market-static-public-v1"].includes(config.mode) || config.manifest !== "data/market/manifest.json" || config.contract !== "assets/market-content-contract.json") fail("configuration");
     async function bytes(path) { var r = await fetch(path, { credentials: "omit", cache: "no-store", redirect: "error" }); if (!r.ok) throw new Error("content_unavailable"); var b = await r.arrayBuffer(); if (b.byteLength > 8 * 1024 * 1024) fail("size"); return new Uint8Array(b); }
-    function decode(b) { return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(b)); }
+    function decode(b) { return parseJson(new TextDecoder("utf-8", { fatal: true }).decode(b)); }
     var initial = await Promise.all([bytes(config.manifest), bytes(config.contract)]), contract = decode(initial[1]), manifest = validateManifest(decode(initial[0]), contract), result = {};
     await Promise.all(domains.map(async function (domain) {
       try { var raw = await bytes(contract.paths[domain]); if (await digest(raw) !== manifest.packages[domain].sha256) fail("digest"); result[domain] = adapt(domain, validateDomain(domain, decode(raw), manifest, contract), contract, manifest.generatedAt); }
@@ -147,5 +229,5 @@
     if (manifest.synthetic !== (config.mode === "market-static-candidate-v1")) fail("mode_scope");
     result.synthetic = manifest.synthetic; return result;
   }
-  return { number: number, validDate: validDate, validUtc: validUtc, shape: shape, validateManifest: validateManifest, validateDomain: validateDomain, freshness: freshness, eventOrder: eventOrder, nextEvent: nextEvent, emptyArchive: emptyArchive, adapt: adapt, load: load };
+  return { parseJson: parseJson, compareUtc: compareUtc, number: number, validDate: validDate, validUtc: validUtc, shape: shape, validateManifest: validateManifest, validateDomain: validateDomain, freshness: freshness, eventOrder: eventOrder, nextEvent: nextEvent, emptyArchive: emptyArchive, adapt: adapt, load: load };
 }));
