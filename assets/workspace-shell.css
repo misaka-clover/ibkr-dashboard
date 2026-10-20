@@ -63,37 +63,11 @@ body.workspace-inner .workspace-brand {
 }
 
 body.workspace-inner .workspace-brand-mark {
-  position: relative;
+  display: block;
   width: 35px;
   height: 35px;
-  border: 1px solid rgba(22,59,89,.72);
-  border-radius: 0;
-  background: rgba(255,255,255,.55);
-  box-shadow: none;
-}
-
-body.workspace-inner .workspace-brand-mark::before,
-body.workspace-inner .workspace-brand-mark::after {
-  content: "";
-  position: absolute;
-  right: auto;
-  height: 2px;
-  background: var(--gold);
-  transform-origin: left center;
-}
-
-body.workspace-inner .workspace-brand-mark::before {
-  width: 17px;
-  left: 7px;
-  top: 22px;
-  transform: rotate(-31deg);
-}
-
-body.workspace-inner .workspace-brand-mark::after {
-  width: 10px;
-  left: 19px;
-  top: 14px;
-  transform: rotate(37deg);
+  object-fit: contain;
+  flex: 0 0 35px;
 }
 
 body.workspace-inner .workspace-brand-text { display: grid; line-height: 1.08; }

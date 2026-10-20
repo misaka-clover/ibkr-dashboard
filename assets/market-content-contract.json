@@ -658,6 +658,13 @@
             "thirtyYear",
             "cnnFearGreed"
           ]
+        },
+        "valuationObservations": {
+          "type": "array",
+          "items": {
+            "$ref": "valuationObservation"
+          },
+          "maxItems": 1000
         }
       },
       "required": [
@@ -727,7 +734,7 @@
               },
               "summaryZh": {
                 "type": "string",
-                "maxLength": 4000
+                "maxLength": 220
               },
               "factStatus": {
                 "enum": [
@@ -739,11 +746,11 @@
               },
               "factBasis": {
                 "type": "string",
-                "maxLength": 4000
+                "maxLength": 700
               },
               "inference": {
                 "type": "string",
-                "maxLength": 4000
+                "maxLength": 700
               },
               "relatedSymbols": {
                 "type": "array",
@@ -763,7 +770,7 @@
               },
               "transmissionPath": {
                 "type": "string",
-                "maxLength": 4000
+                "maxLength": 700
               },
               "horizon": {
                 "enum": [
@@ -792,7 +799,7 @@
                     },
                     "note": {
                       "type": "string",
-                      "maxLength": 4000
+                      "maxLength": 500
                     },
                     "sourceType": {
                       "enum": [
@@ -1490,6 +1497,335 @@
         "message",
         "data"
       ]
+    },
+    "valuationObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "metric": {
+          "enum": [
+            "SPX_TTM_PE",
+            "SPX_FORWARD_PE",
+            "NDX_FORWARD_PE"
+          ]
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "value": {
+          "type": "number",
+          "minimum": 1e-06
+        },
+        "sourceId": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "https"
+        },
+        "verifiedAt": {
+          "type": "string",
+          "format": "utc"
+        },
+        "evidenceSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "indexIdentity": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "metricDefinitionId": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "horizon": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "earningsBasis": {
+          "type": "string",
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "metric",
+        "date",
+        "value",
+        "sourceId",
+        "sourceUrl",
+        "verifiedAt",
+        "evidenceSha256",
+        "indexIdentity",
+        "metricDefinitionId",
+        "horizon",
+        "earningsBasis"
+      ]
+    }
+  },
+  "admissionRevision": 2,
+  "sourceAdmissions": {
+    "fred-dgs2": {
+      "name": "FRED DGS2",
+      "url": "https://fred.stlouisfed.org/series/DGS2",
+      "role": "official_primary",
+      "redistribution": "public",
+      "series": "twoYear",
+      "uses": [
+        "series"
+      ],
+      "hosts": [
+        "fred.stlouisfed.org"
+      ],
+      "publicUseEvidence": "https://www.federalreserve.gov/disclaimer.htm"
+    },
+    "fred-dgs10": {
+      "name": "FRED DGS10",
+      "url": "https://fred.stlouisfed.org/series/DGS10",
+      "role": "official_primary",
+      "redistribution": "public",
+      "series": "tenYear",
+      "uses": [
+        "series"
+      ],
+      "hosts": [
+        "fred.stlouisfed.org"
+      ],
+      "publicUseEvidence": "https://www.federalreserve.gov/disclaimer.htm"
+    },
+    "fred-dgs30": {
+      "name": "FRED DGS30",
+      "url": "https://fred.stlouisfed.org/series/DGS30",
+      "role": "official_primary",
+      "redistribution": "public",
+      "series": "thirtyYear",
+      "uses": [
+        "series"
+      ],
+      "hosts": [
+        "fred.stlouisfed.org"
+      ],
+      "publicUseEvidence": "https://www.federalreserve.gov/disclaimer.htm"
+    },
+    "fed-fomc-calendar": {
+      "name": "Federal Reserve FOMC calendar",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "role": "official_primary",
+      "redistribution": "public",
+      "agency": "Federal Reserve",
+      "uses": [
+        "calendar",
+        "news"
+      ],
+      "hosts": [
+        "www.federalreserve.gov"
+      ],
+      "publicUseEvidence": "https://www.federalreserve.gov/disclaimer.htm"
+    },
+    "bls-release-calendar": {
+      "name": "BLS release calendar",
+      "url": "https://www.bls.gov/schedule/",
+      "role": "official_primary",
+      "redistribution": "public",
+      "agency": "BLS",
+      "uses": [
+        "calendar",
+        "news"
+      ],
+      "hosts": [
+        "www.bls.gov"
+      ],
+      "publicUseEvidence": "https://www.bls.gov/bls/linksite.htm"
+    },
+    "bea-release-calendar": {
+      "name": "BEA release schedule",
+      "url": "https://www.bea.gov/news/schedule",
+      "role": "official_primary",
+      "redistribution": "public",
+      "agency": "BEA",
+      "uses": [
+        "calendar",
+        "news"
+      ],
+      "hosts": [
+        "www.bea.gov"
+      ],
+      "publicUseEvidence": "https://www.bea.gov/about/policies-and-information"
+    },
+    "census-release-calendar": {
+      "name": "Census economic indicators calendar",
+      "url": "https://www.census.gov/economic-indicators/calendar-listview.html",
+      "role": "official_primary",
+      "redistribution": "public",
+      "agency": "Census",
+      "uses": [
+        "calendar",
+        "news"
+      ],
+      "hosts": [
+        "www.census.gov"
+      ],
+      "publicUseEvidence": "https://www.census.gov/about/policies/quality/guidelines.html"
+    }
+  },
+  "newsPublishers": {
+    "The Wall Street Journal": {
+      "hosts": [
+        "www.wsj.com",
+        "wsj.com"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "The New York Times": {
+      "hosts": [
+        "www.nytimes.com",
+        "nytimes.com"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "Reuters": {
+      "hosts": [
+        "www.reuters.com",
+        "reuters.com"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "Associated Press": {
+      "hosts": [
+        "apnews.com",
+        "www.apnews.com"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "Financial Times": {
+      "hosts": [
+        "www.ft.com",
+        "ft.com"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "Bloomberg": {
+      "hosts": [
+        "www.bloomberg.com",
+        "bloomberg.com"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "CNBC": {
+      "hosts": [
+        "www.cnbc.com",
+        "cnbc.com"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "Axios": {
+      "hosts": [
+        "www.axios.com",
+        "axios.com"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "Federal Reserve": {
+      "hosts": [
+        "www.federalreserve.gov"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "BLS": {
+      "hosts": [
+        "www.bls.gov"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "BEA": {
+      "hosts": [
+        "www.bea.gov"
+      ],
+      "use": "original_summary_and_link_only"
+    },
+    "Census": {
+      "hosts": [
+        "www.census.gov"
+      ],
+      "use": "original_summary_and_link_only"
+    }
+  },
+  "verificationHosts": {
+    "primary_official": [
+      "www.bea.gov",
+      "www.bls.gov",
+      "www.census.gov",
+      "www.federalreserve.gov",
+      "home.treasury.gov",
+      "www.sec.gov",
+      "www.mof.go.jp"
+    ],
+    "official_secondary": [
+      "fred.stlouisfed.org",
+      "www.newyorkfed.org"
+    ],
+    "issuer_official": [
+      "www.microsoft.com",
+      "microsoft.com",
+      "news.microsoft.com",
+      "www.bankofamerica.com",
+      "investor.bankofamerica.com",
+      "www.berkshirehathaway.com",
+      "www.coca-colacompany.com",
+      "investors.coca-colacompany.com",
+      "corporate.mcdonalds.com",
+      "corporate.mcdonalds.com",
+      "nvidianews.nvidia.com",
+      "investor.nvidia.com",
+      "www.pfizer.com",
+      "investors.pfizer.com",
+      "ir.kraftheinzcompany.com",
+      "www.interactivebrokers.com"
+    ]
+  },
+  "calendarTypes": {
+    "fomc_sep": "Federal Reserve",
+    "fomc_press_conference": "Federal Reserve",
+    "fomc_minutes": "Federal Reserve",
+    "employment_situation": "BLS",
+    "cpi": "BLS",
+    "ppi": "BLS",
+    "jolts": "BLS",
+    "personal_income_outlays": "BEA",
+    "gdp_advance": "BEA",
+    "retail_sales": "Census",
+    "fomc_decision": "Federal Reserve"
+  },
+  "valuationDefinitions": {
+    "SPX_TTM_PE": {
+      "indexIdentity": "S&P 500 Index",
+      "metricDefinitionId": "spx_ttm_reported_v1",
+      "horizon": "trailing_12_months",
+      "earningsBasis": "reported"
+    },
+    "SPX_FORWARD_PE": {
+      "indexIdentity": "S&P 500 Index",
+      "metricDefinitionId": "spx_forward_consensus_ntm_v1",
+      "horizon": "next_12_months",
+      "earningsBasis": "provider_consensus"
+    },
+    "NDX_FORWARD_PE": {
+      "indexIdentity": "Nasdaq-100 Index",
+      "metricDefinitionId": "ndx_forward_consensus_ntm_v1",
+      "horizon": "next_12_months",
+      "earningsBasis": "provider_consensus"
+    }
+  },
+  "valuationSourceAdmissions": {},
+  "valuationPendingSources": {
+    "factset-spx-valuation": {
+      "status": "pending_public_use_evidence",
+      "localObservationDoesNotAuthorizePublicUse": true
+    },
+    "nasdaq-ndx-valuation": {
+      "status": "pending_public_use_evidence"
     }
   }
 }

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/site-favicon-v1.png?v=42b0c8343339">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
@@ -578,7 +579,7 @@
     }
     @media (prefers-reduced-motion: reduce) { .phase3-loading::after { animation: none; } }
   </style>
-  <link rel="stylesheet" href="assets/workspace-shell.css?v=ed7f50f35dbe">
+  <link rel="stylesheet" href="assets/workspace-shell.css?v=66dd518dd87c">
 <script src="assets/mixed-typography.js?v=c60f08a7a998" defer></script>
 <meta name="market-content-stage" content="Public · Family · Read-only market monitor">
 </head>
@@ -586,7 +587,7 @@
   <main class="shell">
     <nav class="workspace-nav" aria-label="全局导航">
       <a class="workspace-brand" href="index.html" aria-label="投资组合透明计划首页">
-        <span class="workspace-brand-mark" aria-hidden="true"></span>
+        <img class="workspace-brand-mark" src="assets/site-brand-v1.png?v=591e1d44d12f" width="35" height="35" alt="" aria-hidden="true" style="display:block;object-fit:contain;border:0;background:transparent;flex:0 0 35px">
         <span class="workspace-brand-text"><span class="workspace-brand-title">投资组合透明计划</span><span class="workspace-brand-subtitle">PORTFOLIO TRANSPARENCY PROGRAM</span></span>
       </a>
       <div class="workspace-nav-scroll">
@@ -801,7 +802,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">市场快照</span><span class="footer-meta-value" id="footerTimestamp">—</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label">价格与利率</span><span class="footer-meta-value">指数完成收盘<br>Cboe 波动率<br>FRED 收益率<br>分别保留来源截止日</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label">来源边界</span><span class="footer-meta-value">CNN：独立观察<br>估值须经口径、证据与权限门禁<br>宏观：官方排期与结果<br>新闻：人工定向核验</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.7.2</span><time class="footer-meta-value" datetime="2026-10-20T05:28:09Z">2026-10-20 05:28 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.8.0</span><time class="footer-meta-value" datetime="2026-10-20T06:19:37Z">2026-10-20 06:19 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer">各资料域保留独立截止日；异常与降级在对应资料域显示。本页提供判断背景，不构成交易授权。</p>
     </footer>
@@ -925,7 +926,7 @@
     }());
   </script>
   <!-- FAMILY:MARKET_RUNTIME:START -->
-<script src="assets/market-content.js?v=e4477e92a70c"></script>
+<script src="assets/market-content.js?v=965b2e5484c7"></script>
 <!-- FAMILY:MARKET_RUNTIME:END -->
   <!-- FAMILY:MARKET_STATIC_CONFIG:START -->
 <script id="marketStaticConfig" type="application/json">{"mode":"market-static-public-v1","manifest":"data/market/manifest.json","contract":"assets/market-content-contract.json"}</script>
@@ -1042,7 +1043,18 @@
         var valuationQuality = archive.quality && archive.quality.currentValuation && archive.quality.currentValuation.spxTtmPe;
         var eligible = valuationQuality && valuationQuality.status === "pass" && valuation && valuation.eligibleForDisplay === true;
         var fresh = valuation && ageDays(valuation.date) <= 45;
-        if (valuation && eligible && fresh && valuation.quality === "published") {
+        var publicObservations = archive.publicValuationObservations || [];
+        var publicTtm = publicObservations.filter(function (v) { return v.metric === "SPX_TTM_PE" && ageDays(v.date) <= 45; }).sort(function (a,b) { return a.date.localeCompare(b.date); }).pop();
+        var publicForward = publicObservations.filter(function (v) { return v.metric === "SPX_FORWARD_PE"; }).sort(function (a,b) { return a.date.localeCompare(b.date); }).pop();
+        var publicObservation = publicTtm || publicForward;
+        if (publicObservation) {
+          document.getElementById("overviewValuationCard").hidden = false;
+          document.getElementById("overviewValuationLabel").textContent = "估值背景 · " + (publicTtm ? "SPX TTM P/E" : "SPX Forward 12M P/E");
+          document.getElementById("overviewValuation").textContent = fixed(publicObservation.value, 2) + "×";
+          document.getElementById("overviewValuationStatus").textContent = publicTtm ? "当前观察通过完整门槛" : ageDays(publicObservation.date) > 45 ? "发布方历史参考 · 已过当前门槛" : "发布方相关观察 · 非 TTM";
+          document.getElementById("overviewValuationExplain").textContent = publicTtm ? "已核验来源、口径与公开使用范围的过去 12 个月市盈率观察。" : "已核验的未来 12 个月一致预期市盈率；只作相关估值背景，不替代 TTM 观察或进入趋势。";
+          document.getElementById("overviewValuationCutoff").textContent = utcDate(publicObservation.date) + " · " + publicObservation.sourceName;
+        } else if (valuation && eligible && fresh && valuation.quality === "published") {
           document.getElementById("overviewValuationCard").hidden = false;
           document.getElementById("overviewValuationLabel").textContent = "估值背景 · SPX TTM P/E";
           document.getElementById("overviewValuation").textContent = fixed(valuation.value, 2) + "×";

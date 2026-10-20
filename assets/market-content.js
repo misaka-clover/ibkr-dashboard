@@ -11,7 +11,7 @@
     var parsed = Number(value); return Number.isFinite(parsed) ? parsed : null;
   }
   function validDate(value) { return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value; }
-  function validUtc(value) { return typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?Z$/.test(value) && Number.isFinite(Date.parse(value)) && validDate(value.slice(0, 10)); }
+  function validUtc(value) { return typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?Z$/.test(value) && Number(value.slice(11,13)) < 24 && Number(value.slice(14,16)) < 60 && Number(value.slice(17,19)) < 60 && Number.isFinite(Date.parse(value)) && validDate(value.slice(0, 10)); }
   function https(value) { try { var u = new URL(value); return u.protocol === "https:" && !u.username && !u.password && !/^(?:localhost|127\.|\[::1\])/.test(u.hostname) && !/(?:token|secret|signature|api_key)=/i.test(u.search); } catch (_) { return false; } }
   function shape(value, rule, contract, path) {
     path = path || "$";
@@ -35,6 +35,15 @@
     }
   }
   function fixtureUrl(value) { return https(value) && new URL(value).hostname.endsWith(".invalid"); }
+  function admittedUrl(value, hosts) {
+    if (!https(value)) return false;
+    var u = new URL(value);
+    return (!u.port || u.port === "443") && hosts.includes(u.hostname) && !u.hash && !u.search;
+  }
+  function sourceAdmission(source, contract) {
+    var admission = contract.sourceAdmissions && contract.sourceAdmissions[source.id];
+    return admission && ["name", "url", "role", "redistribution"].every(function (k) { return source[k] === admission[k]; }) ? admission : null;
+  }
   function validateManifest(manifest, contract, now) {
     var production = contract && contract.contractId === "market-content-public-v1" && contract.status === "public_existing_sources_only";
     if (!production && (!contract || contract.contractId !== "market-content-candidate-v1" || contract.status !== "synthetic_candidate_not_publication_authority")) fail("contract");
@@ -43,15 +52,12 @@
     if (Date.parse(manifest.generatedAt) > (now === undefined ? Date.now() : +new Date(now))) fail("manifest.future_generation");
     if (manifest.contentVersion === 1 ? manifest.previousVersion !== null || manifest.previousManifestSha256 !== null : manifest.previousVersion !== manifest.contentVersion - 1 || !manifest.previousManifestSha256) fail("manifest.predecessor");
     var ids = new Set();
-    manifest.sources.forEach(function (s) { if (production ? s.id !== "fred-dgs10" || s.name !== "FRED DGS10" || s.url !== "https://fred.stlouisfed.org/series/DGS10" || s.role !== "official_primary" || s.redistribution !== "public" || ids.has(s.id) : !/^synthetic-[a-z0-9-]+$/.test(s.id) || ids.has(s.id) || !fixtureUrl(s.url)) fail("manifest.sources"); ids.add(s.id); });
+    manifest.sources.forEach(function (s) { if (production ? !sourceAdmission(s, contract) || ids.has(s.id) : !/^synthetic-[a-z0-9-]+$/.test(s.id) || ids.has(s.id) || !fixtureUrl(s.url)) fail("manifest.sources"); ids.add(s.id); });
     return manifest;
   }
   function validateDomain(domain, payload, manifest, contract) {
     shape(payload, contract.definitions[domain], contract, domain);
-    if (manifest.synthetic === false) {
-      if (domain === "snapshot") Object.keys(payload.data.series).forEach(function (key) { if (key !== "tenYear" && payload.data.series[key].points.length || key === "tenYear" && payload.data.series[key].points.some(function (p) { return p[2] !== "fred-dgs10"; })) fail("public.source_scope"); });
-      else if (payload.status !== "unavailable" || payload.data.items.length || payload.verifiedAt !== null || payload.observedThrough !== null) fail("public.unadmitted_domain");
-    }
+    var production = manifest.synthetic === false;
     var meta = manifest.packages[domain];
     ["revision", "observedThrough", "verifiedAt", "status"].forEach(function (key) { if (payload[key] !== meta[key]) fail(domain + ".metadata"); });
     var generated = Date.parse(manifest.generatedAt), verified = payload.verifiedAt && Date.parse(payload.verifiedAt);
@@ -66,10 +72,20 @@
         if (series.unit !== (key === "twoYear" || key === "tenYear" || key === "thirtyYear" ? "percent" : key === "cnnFearGreed" ? "points" : "index")) fail("snapshot.unit");
         series.points.forEach(function (p) {
           var source = sources.get(p[key === "cnnFearGreed" ? 4 : 2]);
+          var admission = source && production && sourceAdmission(source, contract);
+          if (production && (!admission || admission.series !== key || !admission.uses.includes("series"))) fail("public.source_scope");
           if (!source || p[0] <= prior || !payload.observedThrough || p[0] > payload.observedThrough || p[1] <= 0 && key !== "cnnFearGreed") fail("snapshot.observation");
           if (key === "cnnFearGreed" && (p[3] !== source.role || (p[3] === "legacy" ? p[0] >= contract.cnnBoundaryDate : p[0] < contract.cnnBoundaryDate))) fail("snapshot.cnn_source_boundary");
           prior = p[0]; total++;
         });
+      });
+      (payload.data.valuationObservations || []).forEach(function (v, i, list) {
+        var rule = contract.valuationSourceAdmissions && contract.valuationSourceAdmissions[v.sourceId];
+        var definition = contract.valuationDefinitions && contract.valuationDefinitions[v.metric];
+        if (!production || !rule || !definition || !rule.metrics.includes(v.metric) || !admittedUrl(v.sourceUrl, rule.hosts) || !sources.has(v.sourceId)) fail("valuation.public_use");
+        if (Object.keys(definition).some(function (k) { return v[k] !== definition[k]; }) || !payload.observedThrough || !verified || v.date > payload.observedThrough || Date.parse(v.verifiedAt) > verified || v.date > v.verifiedAt.slice(0,10)) fail("valuation.definition_or_cutoff");
+        if (list.slice(0,i).some(function (p) { return p.metric === v.metric && p.date === v.date; })) fail("valuation.duplicate");
+        total++;
       });
       if (manifest.synthetic === false && (total ? payload.status !== "warning" : payload.status !== "unavailable")) fail("public.snapshot_status");
       if ((payload.status === "empty" || payload.status === "unavailable") && total) fail("snapshot.empty");
@@ -78,17 +94,33 @@
       var ids = new Set(), items = payload.data.items;
       if ((payload.status === "empty" || payload.status === "unavailable") && items.length || payload.status === "pass" && !items.length) fail(domain + ".empty");
       items.forEach(function (item) {
-        if (ids.has(item.eventId)) fail(domain + ".duplicate"); ids.add(item.eventId);
+        if (!item.eventId.trim() || ids.has(item.eventId)) fail(domain + ".duplicate"); ids.add(item.eventId);
         if (domain === "news") {
-          if (item.accessStatus === "metadata_only") fail("news.full_review_required");
-          if (!fixtureUrl(item.canonicalUrl) || payload.observedThrough && item.publishedAt.slice(0, 10) > payload.observedThrough || Date.parse(item.publishedAt) > Date.parse(item.verifiedAt) || Date.parse(item.verifiedAt) > verified || item.updatedAt && Date.parse(item.updatedAt) > Date.parse(item.verifiedAt)) fail("news.times");
-          item.sourceVerification.forEach(function (v) { if (!fixtureUrl(v.url) || Date.parse(v.checkedAt) > verified) fail("news.source"); });
-        } else {
-          if (!sources.has(item.sourceId) || !fixtureUrl(item.sourceUrl) || !fixtureUrl(item.originatingAgencyUrl) || Date.parse(item.lastVerifiedAt) > verified) fail("calendar.source");
-          if (item.status === "released" || item.status === "revised") { if (!item.result || item.result.status !== item.status) fail("calendar.result_missing"); }
-          if (item.result) {
-            if (!fixtureUrl(item.result.sourceUrl) || Date.parse(item.result.publishedAt) > Date.parse(item.result.retrievedAt) || Date.parse(item.result.retrievedAt) > verified || !item.result.metrics.length || item.result.metrics.some(function (m) { return m.actual === null; })) fail("calendar.result");
+          if (production) {
+            var publisher = contract.newsPublishers[item.publisher];
+            if (!publisher || !admittedUrl(item.canonicalUrl, publisher.hosts) || !item.title.trim() || !item.titleZh.trim() || !item.summaryZh.trim() || !item.factBasis.trim() || !item.inference.trim() || !item.transmissionPath.trim()) fail("news.publisher_or_summary");
+            if (item.accessStatus === "primary_release_reviewed" && !["Federal Reserve","BLS","BEA","Census"].includes(item.publisher)) fail("news.access_role");
+            var matchedPrimary = false;
+            item.sourceVerification.forEach(function (v) {
+              var hosts = v.sourceType === "media_crosscheck" ? [].concat.apply([], Object.values(contract.newsPublishers).map(function (p) { return p.hosts; })) : contract.verificationHosts[v.sourceType] || [];
+              if (!admittedUrl(v.url, hosts) || Date.parse(v.checkedAt) > Date.parse(item.verifiedAt)) fail("news.source");
+              if (["primary_official","issuer_official"].includes(v.sourceType) && v.status === "matched") matchedPrimary = true;
+            });
+            if (item.factStatus === "confirmed_primary" && !matchedPrimary || item.sourceVerification.some(function (v) { return v.status === "conflict"; })) fail("news.evidence_status");
           }
+          if (item.accessStatus === "metadata_only") fail("news.full_review_required");
+          if (!production && !fixtureUrl(item.canonicalUrl) || !payload.observedThrough || item.publishedAt.slice(0, 10) > payload.observedThrough || Date.parse(item.publishedAt) > Date.parse(item.verifiedAt) || Date.parse(item.verifiedAt) > verified || item.updatedAt && Date.parse(item.updatedAt) > Date.parse(item.verifiedAt)) fail("news.times");
+          item.sourceVerification.forEach(function (v) { if (!production && !fixtureUrl(v.url) || Date.parse(v.checkedAt) > verified) fail("news.source"); });
+        } else {
+          var calendarAdmission = production && sources.has(item.sourceId) && sourceAdmission(sources.get(item.sourceId), contract);
+          if (production && (!calendarAdmission || !calendarAdmission.uses.includes("calendar") || calendarAdmission.agency !== item.originatingAgency || contract.calendarTypes[item.eventType] !== item.originatingAgency || !admittedUrl(item.sourceUrl, calendarAdmission.hosts) || !admittedUrl(item.originatingAgencyUrl, calendarAdmission.hosts) || !["primary_official","cross_checked_primary","source_conflict","unverified"].includes(item.verificationStatus) || item.originalTimezone !== "America/New_York" || item.status === "scheduled" && !item.scheduledAtUtc)) fail("calendar.admission");
+          if (!sources.has(item.sourceId) || !production && (!fixtureUrl(item.sourceUrl) || !fixtureUrl(item.originatingAgencyUrl)) || Date.parse(item.lastVerifiedAt) > verified) fail("calendar.source");
+          if (item.status === "released" || item.status === "revised") { if (!item.result || item.result.status !== item.status) fail("calendar.result_missing"); }
+          if (production && item.result && (!admittedUrl(item.result.sourceUrl, calendarAdmission.hosts) || item.result.sourceRole !== "official_primary" || !["released","revised"].includes(item.status))) fail("calendar.result_admission");
+          if (item.result) {
+            if (!production && !fixtureUrl(item.result.sourceUrl) || Date.parse(item.result.publishedAt) > Date.parse(item.result.retrievedAt) || Date.parse(item.result.retrievedAt) > verified || !item.result.metrics.length || item.result.metrics.some(function (m) { return m.actual === null; })) fail("calendar.result");
+          }
+          if (production && item.expectation) fail("calendar.expectation_public_use_pending");
           if (item.expectation && (!fixtureUrl(item.expectation.sourceUrl) || Date.parse(item.expectation.retrievedAt) > verified)) fail("calendar.expectation");
         }
       });
@@ -129,6 +161,9 @@
       snap.oneWeek = before(7); snap.oneMonth = before(30); snap.oneYear = before(365);
       var legacy = cnn.filter(function (p) { return p[3] === "legacy"; });
       archive.quality.cnnFearGreed = { boundaryDate: contract.cnnBoundaryDate, legacy: { through: legacy.length ? legacy[legacy.length - 1][0] : null } };
+      archive.publicValuationObservations = (payload.data.valuationObservations || []).map(function (v) {
+        return Object.assign({}, v, { sourceName: contract.sourceAdmissions[v.sourceId].name });
+      });
       return archive;
     }
     if (domain === "news") return { status: payload.status, retrievedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, viewSummaries: { market_headlines: payload.data.summaryZh }, items: payload.data.items };
