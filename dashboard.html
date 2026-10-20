@@ -1361,7 +1361,7 @@
   <main class="shell">
     <nav class="workspace-nav" aria-label="全局导航">
       <a class="workspace-brand" href="index.html" aria-label="投资组合透明计划首页">
-        <img class="workspace-brand-mark" src="assets/site-brand-v1.png?v=591e1d44d12f" width="35" height="35" alt="" aria-hidden="true" style="display:block;object-fit:contain;border:0;background:transparent;flex:0 0 35px">
+        <img class="workspace-brand-mark" src="assets/site-brand-v1.png?v=591e1d44d12f" width="35" height="35" alt="" aria-hidden="true">
         <span class="workspace-brand-text"><span class="workspace-brand-title">投资组合透明计划</span><span class="workspace-brand-subtitle">PORTFOLIO TRANSPARENCY PROGRAM</span></span>
       </a>
       <div class="workspace-nav-scroll">
@@ -1373,7 +1373,9 @@
           <a class="workspace-nav-link" href="instrument.html">证券研究</a>
           <!-- FAMILY:DASHBOARD_INSTRUMENT_NAV:END -->
           <!-- FAMILY:DASHBOARD_DECISION_NAV:START --><span class="workspace-nav-link" aria-disabled="true">交易决策</span><!-- FAMILY:DASHBOARD_DECISION_NAV:END -->
-          <!-- FAMILY:DASHBOARD_MARKET_NAV:START --><a class="workspace-nav-link" href="market.html">市场监控</a><!-- FAMILY:DASHBOARD_MARKET_NAV:END -->
+          <!-- FAMILY:DASHBOARD_MARKET_NAV:START -->
+          <a class="workspace-nav-link" href="market.html">市场监控</a>
+          <!-- FAMILY:DASHBOARD_MARKET_NAV:END -->
           <span class="workspace-nav-link" aria-disabled="true">期权雷达</span>
           <!-- FAMILY:DASHBOARD_HISTORY_NAV:START -->
           <a class="workspace-nav-link" href="history.html">历史档案</a>
@@ -1479,24 +1481,24 @@
         <article class="card">
           <div class="card-head">
             <div>
-              <h3 class="card-title" id="navChartTitle">IBKR 投资组合净值</h3>
-              <p class="card-subtitle" id="navSubtitle"><span id="navSubtitleText">组合 NAV · 静态快照</span><span class="capital-event-legend" id="navDepositWithdrawalEventLegend" hidden><span class="capital-event-legend-key" aria-hidden="true"></span>出入金</span></p>
+              <h3 class="card-title" id="navChartTitle">IBKR 投资组合收益</h3>
+              <p class="card-subtitle" id="navSubtitle"><span id="navSubtitleText">完成收盘 NAV − 累计净投入本金</span><span class="capital-event-legend" id="navDepositWithdrawalEventLegend" hidden><span class="capital-event-legend-key" aria-hidden="true"></span>出入金</span></p>
             </div>
             <div class="nav-metric-toggle" role="group" aria-label="切换净值或美元收益图表">
-              <button class="nav-metric-btn" type="button" data-nav-metric="nav" aria-pressed="true">净值</button>
-              <button class="nav-metric-btn" type="button" data-nav-metric="result" aria-pressed="false">收益</button>
+              <button class="nav-metric-btn" type="button" data-nav-metric="nav" aria-pressed="false">净值</button>
+              <button class="nav-metric-btn" type="button" data-nav-metric="result" aria-pressed="true">收益</button>
             </div>
           </div>
           <div class="chart-summary">
             <span class="chart-summary-value" id="navValue">—</span>
-            <span class="chart-summary-label" id="navLabel">所选区间净资产变化</span>
+            <span class="chart-summary-label" id="navLabel">所选区间综合投资结果变化</span>
           </div>
           <div class="chart-wrap" id="navChartWrap">
-            <svg class="chart" id="navChart" role="img" aria-label="IBKR 投资组合净值曲线"></svg>
+            <svg class="chart" id="navChart" role="img" aria-label="IBKR 投资组合累计综合投资结果曲线"></svg>
             <div class="tooltip" id="navTooltip">
               <div class="tooltip-date"></div>
               <div class="tooltip-comparison">
-                <div class="tooltip-series-row"><span class="tooltip-series-key"></span><span id="navTooltipMetricName">净值</span><span class="tooltip-series-value" id="navTooltipValue"></span></div>
+                <div class="tooltip-series-row"><span class="tooltip-series-key"></span><span id="navTooltipMetricName">收益</span><span class="tooltip-series-value" id="navTooltipValue"></span></div>
                 <div class="tooltip-series-row delta"><span class="tooltip-delta-key">Δ</span><span id="navTooltipDayDeltaName">较上一收盘</span><span class="tooltip-series-value" id="navTooltipDayDelta"></span></div>
                 <div class="tooltip-series-row capital" id="navTooltipDepositWithdrawalRow" hidden><span class="tooltip-delta-key capital">↕</span><span id="navTooltipDepositWithdrawalName">其中出入金</span><span class="tooltip-series-value" id="navTooltipDepositWithdrawalDelta"></span></div>
               </div>
@@ -1776,7 +1778,7 @@
           <span class="footer-meta-label">收益率口径</span>
           <span class="footer-meta-value" id="footerReturnMethod">—</span>
         </div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.8.2</span><time class="footer-meta-value" datetime="2026-10-20T07:29:34Z">2026-10-20 07:29 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.8.3</span><time class="footer-meta-value" datetime="2026-10-20T08:23:37Z">2026-10-20 08:23 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer">组合事实统一使用完成 RTH 收盘，不以盘中或夜盘补值；挂单另行标注最近验证时间。风险监控不显示保证金。本机只读，不保存账户号、订单 ID、成交 ID 或凭证；不构成交易建议。</p>
     </footer>
@@ -1845,7 +1847,7 @@
         data: null,
         period: "YTD",
         benchmark: "SPX",
-        navMetric: "nav",
+        navMetric: "result",
         positionSort: null,
         instrumentCatalogBySymbol: {},
         localHistory: [],
@@ -4093,7 +4095,7 @@
           navChart.setAttribute("aria-label", "IBKR 投资组合累计综合投资结果曲线");
         } else {
           navTitle.textContent = "IBKR 投资组合净值";
-          navSubtitleText.textContent = "IBKR NAV · RTH 口径";
+          navSubtitleText.textContent = "组合 NAV · 静态快照";
           navDepositWithdrawalEventLegend.hidden = !hasDepositWithdrawalEvents;
           appendText(navLabel, "从 ");
           appendAccountingMoney(navLabel, startNav, { digits: 2 });
