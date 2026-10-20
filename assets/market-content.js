@@ -109,14 +109,16 @@
             if (item.factStatus === "confirmed_primary" && !matchedPrimary || item.sourceVerification.some(function (v) { return v.status === "conflict"; })) fail("news.evidence_status");
           }
           if (item.accessStatus === "metadata_only") fail("news.full_review_required");
-          if (!production && !fixtureUrl(item.canonicalUrl) || !payload.observedThrough || item.publishedAt.slice(0, 10) > payload.observedThrough || Date.parse(item.publishedAt) > Date.parse(item.verifiedAt) || Date.parse(item.verifiedAt) > verified || item.updatedAt && Date.parse(item.updatedAt) > Date.parse(item.verifiedAt)) fail("news.times");
+          if (!production && !fixtureUrl(item.canonicalUrl) || !payload.observedThrough || item.publishedAt.slice(0, 10) > payload.observedThrough || Date.parse(item.publishedAt) > Date.parse(item.verifiedAt) || Date.parse(item.verifiedAt) > verified || item.updatedAt && (Date.parse(item.updatedAt) > Date.parse(item.verifiedAt) || Date.parse(item.updatedAt) < Date.parse(item.publishedAt))) fail("news.times");
           item.sourceVerification.forEach(function (v) { if (!production && !fixtureUrl(v.url) || Date.parse(v.checkedAt) > verified) fail("news.source"); });
         } else {
           var calendarAdmission = production && sources.has(item.sourceId) && sourceAdmission(sources.get(item.sourceId), contract);
+          if (production && payload.status === "pass" && (["source_conflict","unverified"].includes(item.verificationStatus) || item.status === "unverified")) fail("calendar.conflicted_domain");
           if (production && (!calendarAdmission || !calendarAdmission.uses.includes("calendar") || calendarAdmission.agency !== item.originatingAgency || contract.calendarTypes[item.eventType] !== item.originatingAgency || !admittedUrl(item.sourceUrl, calendarAdmission.hosts) || !admittedUrl(item.originatingAgencyUrl, calendarAdmission.hosts) || !["primary_official","cross_checked_primary","source_conflict","unverified"].includes(item.verificationStatus) || item.originalTimezone !== "America/New_York" || item.status === "scheduled" && !item.scheduledAtUtc)) fail("calendar.admission");
           if (!sources.has(item.sourceId) || !production && (!fixtureUrl(item.sourceUrl) || !fixtureUrl(item.originatingAgencyUrl)) || Date.parse(item.lastVerifiedAt) > verified) fail("calendar.source");
           if (item.status === "released" || item.status === "revised") { if (!item.result || item.result.status !== item.status) fail("calendar.result_missing"); }
           if (production && item.result && (!admittedUrl(item.result.sourceUrl, calendarAdmission.hosts) || item.result.sourceRole !== "official_primary" || !["released","revised"].includes(item.status))) fail("calendar.result_admission");
+          if (production && item.result && (item.result.assessment.surpriseClass !== "not_comparable" || /超预期|(?:高于|低于|好于|弱于|强于|符合|不及).{0,8}(?:预期|共识)|(?:beat|miss|above|below|exceed|in.line.with).{0,30}(?:expect|consensus)|surpris(?:e|ed)/i.test(item.result.assessment.summaryZh + " " + item.result.assessment.transmissionPathZh))) fail("calendar.expectation_assessment_pending");
           if (item.result) {
             if (!production && !fixtureUrl(item.result.sourceUrl) || Date.parse(item.result.publishedAt) > Date.parse(item.result.retrievedAt) || Date.parse(item.result.retrievedAt) > verified || !item.result.metrics.length || item.result.metrics.some(function (m) { return m.actual === null; })) fail("calendar.result");
           }
