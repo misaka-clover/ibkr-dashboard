@@ -1200,32 +1200,26 @@
                         "properties": {
                           "surpriseClass": {
                             "enum": [
-                              "stronger_than_expected",
-                              "broadly_in_line",
-                              "weaker_than_expected",
-                              "mixed",
                               "not_comparable"
                             ]
                           },
                           "summaryZh": {
-                            "type": "string",
-                            "maxLength": 4000
+                            "enum": [
+                              "官方结果已核验；暂无获准公开的一致预期，不进行预期差比较。"
+                            ]
                           },
                           "transmissionPathZh": {
-                            "type": "string",
-                            "maxLength": 4000
+                            "enum": [
+                              "仅记录官方事实，影响判断待独立证据补充。"
+                            ]
                           },
                           "horizon": {
                             "enum": [
-                              "immediate",
-                              "near_term",
-                              "medium_term"
+                              "near_term"
                             ]
                           },
                           "confidence": {
                             "enum": [
-                              "high",
-                              "medium",
                               "low"
                             ]
                           }
@@ -1827,5 +1821,12 @@
     "nasdaq-ndx-valuation": {
       "status": "pending_public_use_evidence"
     }
+  },
+  "publicResultAssessment": {
+    "surpriseClass": "not_comparable",
+    "summaryZh": "官方结果已核验；暂无获准公开的一致预期，不进行预期差比较。",
+    "transmissionPathZh": "仅记录官方事实，影响判断待独立证据补充。",
+    "horizon": "near_term",
+    "confidence": "low"
   }
 }
