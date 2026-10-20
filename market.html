@@ -801,7 +801,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">市场快照</span><span class="footer-meta-value" id="footerTimestamp">—</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label">价格与利率</span><span class="footer-meta-value">指数完成收盘<br>Cboe 波动率<br>FRED 收益率<br>分别保留来源截止日</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label">来源边界</span><span class="footer-meta-value">CNN：独立观察<br>估值须经口径、证据与权限门禁<br>宏观：官方排期与结果<br>新闻：人工定向核验</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.7.1</span><time class="footer-meta-value" datetime="2026-10-20T04:10:58Z">2026-10-20 04:10 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.7.2</span><time class="footer-meta-value" datetime="2026-10-20T05:28:09Z">2026-10-20 05:28 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer">各资料域保留独立截止日；异常与降级在对应资料域显示。本页提供判断背景，不构成交易授权。</p>
     </footer>
@@ -1059,7 +1059,12 @@
             document.getElementById("overviewValuationExplain").textContent = "FactSet 发布的未来 12 个月一致预期市盈率；只作相关估值背景，不替代 TTM 观察或进入趋势。";
             document.getElementById("overviewValuationCutoff").textContent = utcDate(reference.date) + " · " + reference.sourceName;
           } else {
-            document.getElementById("overviewValuationCard").hidden = true;
+            document.getElementById("overviewValuationCard").hidden = false;
+            document.getElementById("overviewValuationLabel").textContent = "估值背景";
+            document.getElementById("overviewValuation").textContent = "—";
+            document.getElementById("overviewValuationStatus").textContent = "估值观察暂不可用";
+            document.getElementById("overviewValuationExplain").textContent = "缺少可用的已核验估值观察，暂不判断估值水平。";
+            document.getElementById("overviewValuationCutoff").textContent = "观察截止 —";
           }
         }
       }
