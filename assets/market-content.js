@@ -31,7 +31,7 @@
     } else if (type === "string") {
       if (value.length > (rule.maxLength || 10000) || (rule.pattern && !new RegExp(rule.pattern).test(value))) fail(path);
       if (rule.format === "date" && !validDate(value) || rule.format === "utc" && !validUtc(value) || rule.format === "https" && !https(value)) fail(path);
-      if (/data\/private|\/Users\/|account(?:Id|Number|Alias)|orderId|tradeId|contractId|connectorEnvelope|bearer\s+|(?:access|refresh)[_-]?token|<\/?(?:script|iframe|img)\b|\b[UD]\d{5,}\b/i.test(value)) fail(path);
+      if (/data\/private|\/Users\/|account(?:Id|Number|Alias)|orderId|tradeId|contractId|connectorEnvelope|bearer\s+|(?:access|refresh)[_-]?token|<\/?(?:script|iframe|img)\b|\b[UDF]\d{5,}\b/i.test(value)) fail(path);
     }
   }
   function fixtureUrl(value) { return https(value) && new URL(value).hostname.endsWith(".invalid"); }
@@ -71,6 +71,7 @@
           prior = p[0]; total++;
         });
       });
+      if (manifest.synthetic === false && (total ? payload.status !== "warning" : payload.status !== "unavailable")) fail("public.snapshot_status");
       if ((payload.status === "empty" || payload.status === "unavailable") && total) fail("snapshot.empty");
       if (payload.status === "pass" && Object.values(payload.data.series).some(function (s) { return !s.points.length; })) fail("snapshot.incomplete");
     } else {
@@ -131,7 +132,7 @@
       return archive;
     }
     if (domain === "news") return { status: payload.status, retrievedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, viewSummaries: { market_headlines: payload.data.summaryZh }, items: payload.data.items };
-    return { status: payload.status, verifiedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, events: { upcoming: payload.data.items, recent: [], undated: [] } };
+    return { status: payload.status, verifiedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, events: { upcoming: payload.data.items.map(function (event) { return event.expectation && event.expectation.status === "reviewed" ? Object.assign({}, event, { expectation: Object.assign({}, event.expectation, { status: "reviewed_single_secondary" }) }) : event; }), recent: [], undated: [] } };
   }
   async function digest(bytes) { var hash = await globalThis.crypto.subtle.digest("SHA-256", bytes); return Array.from(new Uint8Array(hash), function (x) { return x.toString(16).padStart(2, "0"); }).join(""); }
   async function load(config) {
