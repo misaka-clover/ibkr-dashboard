@@ -1,0 +1,1506 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <!-- FAMILY:PRIVACY_META:START --><!-- FAMILY:PRIVACY_META:END -->
+  <title>市场监控 · 投资组合透明计划</title>
+  <style>
+    :root {
+      --paper: #f4f1ea;
+      --card: #fbfaf6;
+      --card-strong: #ffffff;
+      --ink: #17231f;
+      --muted: #68726d;
+      --line: #d9ddd6;
+      --green: #1f6a55;
+      --green-soft: #e1eee8;
+      --blue: #3f6f88;
+      --blue-soft: #e6eff3;
+      --gold: #a8762d;
+      --gold-soft: #f4ead7;
+      --red: #a34f45;
+      --red-soft: #f5e5e1;
+      --shadow: 0 18px 50px rgba(37, 48, 43, 0.08);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    button, a { font: inherit; }
+    a { color: inherit; }
+    .shell { width: min(100% - 36px, 1420px); margin: 0 auto; padding: 18px 0 48px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.7fr); gap: 30px; align-items: end; padding: 38px 8px 34px; }
+    .eyebrow { margin: 0 0 13px; color: var(--green); font-size: 12px; font-weight: 750; letter-spacing: 0.16em; text-transform: uppercase; }
+    h1 { max-width: 760px; margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: clamp(38px, 6vw, 76px); font-weight: 500; line-height: 1.05; letter-spacing: -0.04em; }
+    .hero-copy { max-width: 720px; margin: 22px 0 0; color: var(--muted); font-size: 16px; line-height: 1.75; }
+    .notice { display: none; margin: 0 0 18px; padding: 13px 16px; border: 1px solid #e5c2bb; border-radius: 14px; background: var(--red-soft); color: #793c34; font-size: 13px; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 10px 0 20px; padding: 13px 14px 13px 20px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); }
+    .window-copy { color: var(--muted); font-size: 13px; }
+    .window-copy strong { color: var(--ink); }
+    .window-buttons { display: flex; gap: 6px; padding: 4px; border-radius: 14px; background: #eceae4; }
+    .window-button { min-width: 48px; padding: 8px 11px; border: 0; border-radius: 10px; background: transparent; color: var(--muted); cursor: pointer; }
+    .window-button:hover { color: var(--ink); }
+    .window-button.active { background: var(--card-strong); color: var(--green); box-shadow: 0 3px 10px rgba(37, 48, 43, 0.08); font-weight: 720; }
+    .section { margin-top: 26px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin: 0 6px 13px; }
+    .section-kicker { margin: 0 0 6px; color: var(--green); font-size: 11px; font-weight: 750; letter-spacing: 0.14em; text-transform: uppercase; }
+    h2 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: clamp(24px, 3vw, 38px); font-weight: 500; letter-spacing: -0.025em; }
+    .chart-head { display: flex; align-items: start; justify-content: space-between; gap: 18px; margin-bottom: 14px; }
+    .chart-title { margin: 0; font-size: 16px; }
+    .chart-meta { max-width: 56%; color: var(--muted); font-size: 10px; line-height: 1.45; text-align: right; }
+    .chart-wrap { position: relative; height: 280px; }
+    canvas { width: 100% !important; height: 100% !important; }
+    @media (max-width: 1050px) { .hero { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) { .shell { width: min(100% - 24px, 1420px); padding-top: 8px; } .hero { padding: 24px 4px; } .toolbar { align-items: stretch; flex-direction: column; } .window-buttons { overflow-x: auto; } .window-button { flex: 1; } .section-head { align-items: start; flex-direction: column; } }
+    @media (max-width: 520px) { h1 { font-size: 40px; } .chart-wrap { height: 250px; } .chart-head { flex-direction: column; } .chart-meta { max-width: none; text-align: left; } }
+  </style>
+  <style id="dashboardAlignedTheme">
+    :root {
+      --page: #f4f6f8;
+      --card: #ffffff;
+      --surface-soft: #eef3f6;
+      --ink: #17212b;
+      --muted: #66717d;
+      --soft: #8d98a4;
+      --border: #dfe4e8;
+      --navy: #163b59;
+      --blue: #2f6f9f;
+      --blue-soft: #e8f1f7;
+      --gold: #bd8c28;
+      --gold-soft: #f7efd9;
+      --green: #14804a;
+      --green-soft: #e8f5ed;
+      --red: #c7353b;
+      --red-soft: #fbeaec;
+      --shadow: 0 10px 30px rgba(21, 43, 62, 0.06);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    html { background: var(--page); }
+    body { min-width: 320px; color: var(--ink); background: var(--page); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    .shell { width: min(1440px, calc(100% - 40px)); margin: 0 auto; padding: 18px 0 48px; }
+
+    .hero { display: flex; align-items: flex-start; justify-content: space-between; gap: 30px; padding: 0; margin-bottom: 18px; }
+    .hero > div { min-width: 0; }
+    .eyebrow { margin: 0 0 6px; color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { max-width: none; margin: 0; color: var(--navy); font-family: var(--sans); font-size: clamp(27px, 3vw, 38px); font-weight: 800; line-height: 1.12; letter-spacing: -.035em; }
+    .hero-copy { max-width: 760px; margin: 10px 0 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+    .notice { margin: 0 0 18px; padding: 12px 14px; border: 1px solid #e9cdd0; border-radius: 12px; background: #fff7f8; color: #8f2b31; font-size: 12px; }
+    .notice.info { border-color: #cbd9e3; background: #f4f8fb; color: #405a6d; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 18px; padding: 12px 14px; border: 1px solid #d8e3eb; border-radius: 12px; background: #f7fafc; }
+    .window-copy { color: var(--muted); font-size: 12px; }
+    .window-copy strong { color: var(--navy); font-size: 13px; }
+    .window-buttons { display: inline-flex; gap: 5px; padding: 3px; border: 1px solid var(--border); border-radius: 10px; background: #f7f8f9; }
+    .window-button { min-width: 50px; padding: 6px 8px; border: 0; border-radius: 7px; background: transparent; color: var(--muted); cursor: pointer; font-size: 12px; font-weight: 700; }
+    .window-button:hover { color: var(--ink); background: #fff; }
+    .window-button.active { color: #fff; background: var(--navy); box-shadow: 0 2px 6px rgba(22, 59, 89, .18); }
+
+    .section { margin-top: 18px; }
+    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; margin: 0 2px 10px; }
+    .section-kicker { display: none; }
+    h2 { margin: 0; color: var(--navy); font-family: var(--sans); font-size: 18px; font-weight: 750; letter-spacing: -.015em; }
+
+    .chart-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+    .chart-title { margin: 0; color: var(--ink); font-size: 15px; font-weight: 750; }
+    .chart-meta { max-width: 60%; color: var(--muted); font: 10px/1.45 var(--mono); text-align: right; }
+    .chart-wrap { height: 294px; }
+
+    @media (max-width: 1050px) {
+      .hero { align-items: flex-start; flex-direction: column; gap: 14px; }
+    }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 24px, 1440px); padding-top: 10px; }
+      .hero { margin-bottom: 16px; }
+      .toolbar { align-items: stretch; flex-direction: column; }
+      .window-buttons { overflow-x: auto; }
+      .window-button { flex: 1 0 auto; }
+      .section { margin-top: 28px; }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 5px; }
+    }
+    @media (max-width: 520px) {
+      .chart-head { flex-direction: column; }
+      .chart-meta { max-width: none; text-align: left; }
+      .chart-wrap { height: 260px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+  </style>
+  <style id="editorialInnerPageTheme">
+    body {
+      background:
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(22,59,89,.022) calc(100% - 1px)),
+        var(--page);
+      background-size: 25% 100%;
+    }
+    .shell { width: min(1520px, 100%); padding: 0 clamp(22px, 3.4vw, 52px) 64px; }
+    .hero { margin: 0 0 24px; padding: 8px 2px 20px; border-bottom: 1px solid rgba(22,59,89,.13); }
+    .hero h1 { font-weight: 700; }
+    .toolbar {
+      margin: 0 0 28px;
+      padding: 12px 14px;
+      border: 0;
+      border-left: 3px solid rgba(189,140,40,.68);
+      border-radius: 0;
+      background: rgba(255,255,255,.52);
+    }
+    .window-buttons { border-radius: 2px; background: #f2f5f7; }
+    .window-button { border-radius: 1px; }
+    .section { margin-top: 34px; }
+    .section-head { margin: 0 0 14px; padding: 0 2px 12px; border-bottom: 1px solid rgba(22,59,89,.13); }
+    h2 { font-size: 21px; font-weight: 760; letter-spacing: -.025em; }
+    @media (max-width: 760px) {
+      body { background-size: 50% 100%; }
+      .shell { width: 100%; padding: 0 12px 44px; }
+      .hero { padding-top: 10px; }
+    }
+  </style>
+  <style id="marketPhase3Theme">
+    .phase3-domain-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      margin: 0 0 30px;
+      border-block: 1px solid rgba(22,59,89,.13);
+      background: rgba(255,255,255,.45);
+    }
+    .domain-card {
+      min-width: 0;
+      padding: 14px 16px;
+      border-right: 1px solid rgba(22,59,89,.13);
+    }
+    .domain-card:last-child { border-right: 0; }
+    .domain-label, .overview-label {
+      color: var(--soft);
+      font-size: 10px;
+      font-weight: 760;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .cnn-brand-label { color: #cc0000; }
+    .domain-value {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 7px;
+      color: var(--navy);
+      font: 700 12px/1.4 var(--mono);
+    }
+    .domain-note { margin-top: 5px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .status-dot { flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%; background: var(--soft); }
+    .status-dot.pass { background: var(--green); }
+    .status-dot.warning { background: var(--gold); }
+    .status-dot.fail { background: var(--red); }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid rgba(22,59,89,.14);
+      border-left: 1px solid rgba(22,59,89,.14);
+    }
+    .overview-card {
+      min-width: 0;
+      min-height: 184px;
+      padding: 20px;
+      border-right: 1px solid rgba(22,59,89,.14);
+      border-bottom: 1px solid rgba(22,59,89,.14);
+      background: rgba(255,255,255,.78);
+    }
+    .overview-card.event { grid-column: 1 / -1; min-height: 148px; }
+    .event-overview-grid { display: grid; grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr); gap: 24px; }
+    .event-analysis { min-width: 0; padding-left: 24px; border-left: 1px solid rgba(22,59,89,.12); }
+    .event-analysis.is-unavailable { display: grid; min-height: 108px; align-content: center; justify-items: center; padding: 18px 24px; text-align: center; }
+    .event-analysis.is-unavailable .overview-explain { max-width: 560px; }
+    .expectation-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .expectation-title { margin: 0; color: var(--navy); font-size: 12px; font-weight: 780; }
+    .expectation-source { color: var(--soft); font: 9px/1.45 var(--mono); }
+    .expectation-source a { color: var(--blue); text-decoration: none; }
+    .expectation-source a:hover, .expectation-source a:focus-visible { color: var(--navy); text-decoration: underline; outline: none; }
+    .expectation-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 10px; border-top: 1px solid rgba(22,59,89,.1); border-left: 1px solid rgba(22,59,89,.1); }
+    .expectation-metric { min-width: 0; padding: 9px 10px; border-right: 1px solid rgba(22,59,89,.1); border-bottom: 1px solid rgba(22,59,89,.1); }
+    .expectation-metric-label { color: var(--soft); font-size: 8px; line-height: 1.35; }
+    .expectation-metric-value { margin-top: 4px; color: var(--navy); font: 720 13px/1.2 var(--mono); }
+    .expectation-metric-compare { margin-top: 4px; color: var(--muted); font: 8px/1.45 var(--mono); }
+    .scenario-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 12px; border-top: 1px solid rgba(22,59,89,.11); border-left: 1px solid rgba(22,59,89,.11); }
+    .scenario-card { min-width: 0; padding: 10px; border-right: 1px solid rgba(22,59,89,.11); border-bottom: 1px solid rgba(22,59,89,.11); background: rgba(247,249,250,.54); }
+    .scenario-card h4 { margin: 0; color: var(--navy); font-size: 10px; }
+    .scenario-card p { margin: 6px 0 0; color: var(--muted); font-size: 9px; line-height: 1.55; }
+    .scenario-card strong { color: var(--ink); font-weight: 720; }
+    .scenario-note { margin: 8px 0 0; color: var(--soft); font-size: 8px; line-height: 1.5; }
+    .overview-value {
+      margin: 18px 0 8px;
+      color: var(--navy);
+      font: 720 clamp(25px, 2.7vw, 38px)/1 var(--mono);
+      letter-spacing: -.045em;
+    }
+    .overview-value.compact { font-size: clamp(20px, 2.1vw, 30px); letter-spacing: -.035em; }
+    #overviewTrend { white-space: nowrap; font-size: clamp(17px, 1.55vw, 22px); font-variant-numeric: tabular-nums; }
+    .overview-pair { display: flex; align-items: baseline; gap: 12px; margin: 18px 0 8px; }
+    .overview-pair strong { color: var(--navy); font: 720 30px/1 var(--mono); }
+    .overview-pair span { color: var(--blue); font: 700 15px/1 var(--mono); }
+    .overview-status { color: var(--ink); font-size: 12px; font-weight: 720; line-height: 1.45; }
+    .overview-explain { margin: 7px 0 0; color: var(--muted); font-size: 11px; line-height: 1.62; }
+    .overview-cutoff { margin-top: 13px; color: var(--soft); font: 9px/1.45 var(--mono); }
+
+    .sentiment-layout {
+      display: grid;
+      grid-template-columns: minmax(260px, .68fr) minmax(0, 1.72fr);
+      border-top: 1px solid rgba(22,59,89,.14);
+      border-left: 1px solid rgba(22,59,89,.14);
+    }
+    .sentiment-card, .sentiment-chart-card {
+      min-width: 0;
+      padding: 20px;
+      border-right: 1px solid rgba(22,59,89,.14);
+      border-bottom: 1px solid rgba(22,59,89,.14);
+      background: rgba(255,255,255,.78);
+    }
+    .sentiment-current { display: flex; align-items: baseline; gap: 12px; margin: 18px 0 14px; }
+    .sentiment-current strong { color: var(--navy); font: 720 clamp(34px, 4vw, 52px)/1 var(--mono); letter-spacing: -.045em; }
+    .sentiment-current span { color: var(--blue); font-size: 13px; font-weight: 760; }
+    .sentiment-comparisons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid rgba(22,59,89,.1); border-left: 1px solid rgba(22,59,89,.1); }
+    .sentiment-comparison { min-width: 0; padding: 9px 10px; border-right: 1px solid rgba(22,59,89,.1); border-bottom: 1px solid rgba(22,59,89,.1); }
+    .sentiment-comparison-label { color: var(--soft); font-size: 8px; line-height: 1.35; }
+    .sentiment-comparison-value { margin-top: 4px; color: var(--navy); font: 720 13px/1.25 var(--mono); }
+    .sentiment-comparison-date { margin-top: 3px; color: var(--muted); font: 8px/1.4 var(--mono); }
+    .sentiment-chart-card .chart-wrap { height: 312px; }
+    .cnn-source-boundary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 11px; padding-top: 10px; border-top: 1px solid rgba(22,59,89,.1); color: var(--muted); font-size: 9px; }
+    .cnn-source-boundary span { display: inline-flex; align-items: center; gap: 6px; }
+    .cnn-source-boundary i { display: inline-block; width: 22px; border-top: 2px solid var(--gold); }
+    .cnn-source-boundary i.legacy { border-top-color: #c7b88f; border-top-style: dashed; }
+    .cnn-source-boundary strong { margin-left: auto; color: var(--soft); font: 9px/1.45 var(--mono); font-weight: 500; }
+
+    .timeline-shell, .news-shell {
+      border: 1px solid rgba(22,59,89,.14);
+      border-radius: 3px;
+      background: rgba(255,255,255,.72);
+    }
+    .timeline-group + .timeline-group { border-top: 1px solid rgba(22,59,89,.13); }
+    .timeline-group-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(22,59,89,.1);
+      background: rgba(238,243,246,.58);
+    }
+    .timeline-group-head h3 { margin: 0; color: var(--navy); font-size: 13px; }
+    .timeline-count { color: var(--soft); font: 10px var(--mono); }
+    .event-list { display: grid; }
+    .event-row {
+      display: grid;
+      grid-template-columns: minmax(142px, .52fr) 8px minmax(0, 2fr) minmax(145px, .72fr);
+      gap: 16px;
+      align-items: start;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(22,59,89,.09);
+    }
+    .event-row:last-child { border-bottom: 0; }
+    .event-time { color: var(--navy); font: 700 11px/1.5 var(--mono); }
+    .event-time small { display: block; margin-top: 4px; color: var(--soft); font: 9px/1.45 var(--mono); }
+    .event-pin { width: 8px; height: 8px; margin-top: 4px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px rgba(47,111,159,.10); }
+    .event-pin.critical { background: var(--gold); box-shadow: 0 0 0 4px rgba(189,140,40,.12); }
+    .event-title { margin: 0; color: var(--ink); font-size: 13px; font-weight: 760; line-height: 1.45; }
+    .event-copy { margin: 5px 0 0; color: var(--muted); font-size: 10px; line-height: 1.58; }
+    .event-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .event-result { margin-top: 12px; border-top: 1px solid rgba(22,59,89,.11); background: rgba(247,249,250,.58); }
+    .event-result.pending { padding: 10px 11px; border-left: 2px solid rgba(189,140,40,.58); }
+    .event-result-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 8px 10px; border-bottom: 1px solid rgba(22,59,89,.09); }
+    .event-result-head strong { color: var(--navy); font-size: 10px; }
+    .event-result-head span { color: var(--soft); font: 8px/1.4 var(--mono); text-align: right; }
+    .event-result.pending .event-result-head { padding: 0; border-bottom: 0; }
+    .event-result.pending p { margin: 6px 0 0; color: var(--muted); font-size: 9px; line-height: 1.55; }
+    .event-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-left: 1px solid rgba(22,59,89,.08); }
+    .event-result-grid.four-up { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .event-result-metric { min-width: 0; padding: 9px 10px; border-right: 1px solid rgba(22,59,89,.08); border-bottom: 1px solid rgba(22,59,89,.08); }
+    .event-result-label { color: var(--soft); font-size: 8px; line-height: 1.4; }
+    .event-result-value { margin-top: 4px; color: var(--navy); font: 720 13px/1.25 var(--mono); }
+    .event-result-compare { margin-top: 4px; color: var(--muted); font: 8px/1.45 var(--mono); }
+    .event-impact { padding: 10px; }
+    .event-impact p { margin: 6px 0 0; color: var(--muted); font-size: 9px; line-height: 1.58; }
+    .event-impact strong { color: var(--ink); font-weight: 720; }
+    .event-source { color: var(--muted); font-size: 9px; line-height: 1.55; text-align: right; }
+    .event-source a, .news-title a, .quality-link { color: var(--blue); text-decoration: none; }
+    .event-source a:hover, .event-source a:focus-visible,
+    .news-title a:hover, .news-title a:focus-visible,
+    .quality-link:hover, .quality-link:focus-visible { color: var(--navy); text-decoration: underline; outline: none; }
+    .event-source small { display: block; margin-top: 5px; color: var(--soft); font: 9px/1.45 var(--mono); }
+    .micro-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 20px;
+      padding: 2px 6px;
+      border: 1px solid #d4dfe6;
+      border-radius: 999px;
+      color: #526777;
+      background: #f7fafc;
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .micro-tag.gold { border-color: #ead8a8; color: #806018; background: #fffaf0; }
+    .micro-tag.green { border-color: #cfe0d6; color: #0e6840; background: #f2faf5; }
+    .micro-tag.red { border-color: #e9cdd0; color: #8f2b31; background: #fff7f8; }
+    details.recent-events { border-top: 1px solid rgba(22,59,89,.13); }
+    details.recent-events > summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      color: var(--navy);
+      background: rgba(247,249,250,.8);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 760;
+      list-style: none;
+    }
+    details.recent-events > summary::-webkit-details-marker { display: none; }
+    details.recent-events > summary::after { content: "+"; color: var(--gold); font: 18px/1 var(--mono); }
+    details.recent-events[open] > summary::after { content: "−"; }
+    .event-page-details { scroll-margin-top: 88px; }
+    .event-pagination {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      border-top: 1px solid rgba(22,59,89,.1);
+      background: rgba(247,249,250,.72);
+    }
+    .event-page-progress { grid-column: 1; justify-self: start; color: var(--soft); font: 10px/1.45 var(--mono); }
+    .event-page-button {
+      min-height: 28px;
+      padding: 5px 9px;
+      border: 1px solid #cad6df;
+      border-radius: 2px;
+      color: var(--navy);
+      background: #fff;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 740;
+    }
+    .event-page-button.more { grid-column: 2; justify-self: center; min-width: 104px; }
+    .event-page-button.collapse { grid-column: 3; justify-self: end; color: var(--muted); background: transparent; }
+    .event-page-button:hover, .event-page-button:focus-visible { border-color: var(--blue); background: #f3f8fb; outline: none; }
+    .event-page-button.collapse:hover, .event-page-button.collapse:focus-visible { color: var(--navy); }
+    .event-page-button[hidden] { display: none; }
+
+    .news-shell { padding: 0; overflow: hidden; }
+    .news-overview {
+      padding: 15px 18px;
+      border-bottom: 1px solid rgba(22,59,89,.1);
+      background: rgba(238,243,246,.58);
+    }
+    .news-overview-label { margin: 0 0 5px; color: var(--navy); font-size: 11px; font-weight: 780; letter-spacing: .04em; }
+    .news-overview-copy { margin: 0; max-width: 920px; color: #344552; font-size: 12px; line-height: 1.7; }
+    .news-list { display: grid; }
+    details.news-story { border-bottom: 1px solid rgba(22,59,89,.11); background: rgba(255,255,255,.5); }
+    details.news-story:last-child { border-bottom: 0; }
+    details.news-story > summary {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr) 22px;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 18px;
+      list-style: none;
+      cursor: pointer;
+    }
+    details.news-story > summary::-webkit-details-marker { display: none; }
+    details.news-story > summary:hover { background: rgba(247,249,250,.72); }
+    details.news-story > summary:focus-visible { outline: 2px solid rgba(47,111,159,.42); outline-offset: -2px; }
+    .news-story-rank { padding-top: 2px; color: var(--gold); font: 700 11px/1.45 var(--mono); }
+    .news-story-main { min-width: 0; }
+    .news-story-meta { color: var(--soft); font: 10px/1.5 var(--mono); }
+    .news-story-title { margin: 6px 0 0; color: var(--ink); font-size: 16px; font-weight: 780; line-height: 1.45; }
+    .news-story-lead { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .news-story-toggle { color: var(--gold); font: 18px/1 var(--mono); text-align: right; }
+    .news-story-toggle::before { content: "+"; }
+    details.news-story[open] .news-story-toggle::before { content: "−"; }
+    details.news-story[open] > summary { background: rgba(247,249,250,.72); }
+    .news-detail {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(240px, .75fr);
+      border-top: 1px solid rgba(22,59,89,.1);
+      background: rgba(247,249,250,.45);
+    }
+    .news-detail-main, .news-detail-aside { min-width: 0; padding: 18px; }
+    .news-detail-aside { border-left: 1px solid rgba(22,59,89,.1); background: rgba(255,255,255,.45); }
+    .news-detail-section + .news-detail-section { margin-top: 15px; padding-top: 14px; border-top: 1px solid rgba(22,59,89,.09); }
+    .news-detail-label { margin: 0; color: var(--navy); font-size: 11px; font-weight: 780; letter-spacing: .04em; }
+    .news-detail-copy { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.72; }
+    .news-detail-section.inference {
+      margin: 15px -18px 0;
+      padding: 14px 18px 15px;
+      border-top: 1px solid rgba(22,59,89,.09);
+      background: #fffdf7;
+      box-shadow: inset 3px 0 0 var(--gold);
+    }
+    .news-detail-section.inference .news-detail-label { color: #765817; }
+    .news-detail-section.inference + .news-detail-section { margin-top: 0; }
+    .news-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .news-source-list { display: grid; gap: 7px; margin-top: 8px; }
+    .news-source-item { color: var(--muted); font-size: 11px; line-height: 1.62; overflow-wrap: anywhere; }
+    .news-source-item a, .news-original-link { color: var(--blue); text-decoration: none; }
+    .news-source-item a:hover, .news-source-item a:focus-visible,
+    .news-original-link:hover, .news-original-link:focus-visible { color: var(--navy); text-decoration: underline; outline: none; }
+    .news-source-note { display: block; margin-top: 2px; color: var(--soft); }
+    .empty-state { padding: 24px 18px; color: var(--muted); font-size: 11px; line-height: 1.65; }
+
+    .chart-toolbar { margin-bottom: 12px; }
+    .important-charts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      border-top: 1px solid rgba(22,59,89,.14);
+      border-left: 1px solid rgba(22,59,89,.14);
+      background: rgba(255,255,255,.45);
+    }
+    .important-chart-card {
+      min-width: 0;
+      padding: 20px;
+      border: 0;
+      border-right: 1px solid rgba(22,59,89,.14);
+      border-bottom: 1px solid rgba(22,59,89,.14);
+      border-radius: 0;
+      background: rgba(255,255,255,.78);
+      box-shadow: none;
+    }
+    .important-chart-card.wide { grid-column: span 2; }
+    .important-chart-card .chart-wrap { height: 300px; }
+    .market-chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 18px;
+      margin: 12px -20px -20px;
+      padding: 10px 20px;
+      border-top: 1px solid rgba(22,59,89,.09);
+      background: #fafbfc;
+      color: #53616c;
+      font-size: 10px;
+    }
+    .market-chart-legend-item { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .market-chart-legend-line { width: 24px; height: 0; border-top: 2px solid var(--navy); }
+    .market-chart-legend-line.blue { border-top-color: var(--blue); }
+    .market-chart-legend-line.gold { border-top-color: var(--gold); }
+    .market-chart-legend-line.dashed { border-top-style: dashed; border-top-width: 1px; }
+    .market-chart-tooltip {
+      position: absolute;
+      z-index: 5;
+      width: max-content;
+      min-width: 188px;
+      max-width: calc(100% - 16px);
+      padding: 9px 10px;
+      border: 1px solid #cfd7dd;
+      border-radius: 3px;
+      background: rgba(255,255,255,.97);
+      box-shadow: 0 8px 22px rgba(20,36,50,.14);
+      color: var(--ink);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 90ms ease;
+      white-space: nowrap;
+    }
+    .market-chart-tooltip.visible { opacity: 1; }
+    .market-tooltip-date { color: var(--muted); font-size: 11px; }
+    .market-tooltip-comparison { display: grid; gap: 4px; margin-top: 7px; padding-top: 7px; border-top: 1px solid #e8ecef; }
+    .market-tooltip-series-row { display: grid; grid-template-columns: 18px minmax(72px, 1fr) auto; align-items: center; gap: 6px; font-size: 11px; }
+    .market-tooltip-series-key { width: 16px; border-top: 2px solid var(--blue); }
+    .market-tooltip-series-label { color: var(--muted); }
+    .market-tooltip-series-value { color: var(--ink); font: 750 12px var(--mono); text-align: right; }
+    .market-tooltip-series-row.delta { margin-top: 2px; padding-top: 5px; border-top: 1px solid #e6ebef; }
+    .market-tooltip-delta-key { display: inline-grid; width: 16px; height: 16px; place-items: center; border-radius: 50%; background: #edf2f5; color: #4d6575; font: 800 10px var(--mono); }
+    .market-tooltip-series-value.positive { color: var(--green); }
+    .market-tooltip-series-value.negative { color: var(--red); }
+    .market-tooltip-source { margin-top: 6px; padding-top: 6px; border-top: 1px solid #e8ecef; color: var(--soft); font: 9px/1.45 var(--mono); }
+
+    .legacy-panel .legacy-content { padding: 0 18px 18px; border-top: 1px solid rgba(22,59,89,.1); }
+    .legacy-panel .toolbar { margin-top: 18px; }
+    .legacy-panel .section { margin-top: 24px; }
+    .legacy-panel .section:first-of-type { margin-top: 18px; }
+
+    .phase3-loading { position: relative; overflow: hidden; color: transparent !important; min-height: 1em; }
+    .phase3-loading::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #edf1f4, #f8fafb, #edf1f4); background-size: 200% 100%; animation: phase3-pulse 1.2s linear infinite; }
+    @keyframes phase3-pulse { to { background-position: -200% 0; } }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+    @media (max-width: 1050px) {
+      .phase3-domain-grid, .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .domain-card:nth-child(2) { border-right: 0; }
+      .domain-card:nth-child(-n+2) { border-bottom: 1px solid rgba(22,59,89,.13); }
+      .overview-card.event { grid-column: 1 / -1; }
+    }
+    @media (max-width: 760px) {
+      .phase3-domain-grid { margin-bottom: 26px; }
+      .event-row { grid-template-columns: 8px minmax(0, 1fr); gap: 10px 12px; }
+      .event-time { grid-column: 2; grid-row: 1; }
+      .event-pin { grid-column: 1; grid-row: 1; }
+      .event-body { grid-column: 2; }
+      .event-source { grid-column: 2; text-align: left; }
+      .important-charts, .sentiment-layout { grid-template-columns: 1fr; }
+      .event-overview-grid { grid-template-columns: 1fr; }
+      .event-analysis { padding: 16px 0 0; border-left: 0; border-top: 1px solid rgba(22,59,89,.12); }
+      .event-analysis.is-unavailable { min-height: 112px; padding: 16px; }
+      .scenario-grid { grid-template-columns: 1fr; }
+      .event-result-grid, .event-result-grid.four-up { grid-template-columns: 1fr; }
+      .news-detail { grid-template-columns: 1fr; }
+      .news-detail-aside { border-top: 1px solid rgba(22,59,89,.1); border-left: 0; }
+      .important-chart-card.wide { grid-column: auto; }
+      .important-chart-card .chart-wrap { height: 268px; }
+      .sentiment-chart-card .chart-wrap { height: 278px; }
+    }
+    @media (max-width: 520px) {
+      .phase3-domain-grid, .overview-grid { grid-template-columns: 1fr; }
+      .domain-card, .domain-card:nth-child(2) { border-right: 0; border-bottom: 1px solid rgba(22,59,89,.13); }
+      .domain-card:last-child { border-bottom: 0; }
+      .overview-card.event { grid-column: auto; }
+      .overview-card { min-height: 158px; padding: 17px; }
+      .sentiment-card, .sentiment-chart-card { padding: 17px 14px; }
+      .sentiment-comparisons { grid-template-columns: 1fr; }
+      .cnn-source-boundary strong { width: 100%; margin-left: 0; }
+      .expectation-metrics { grid-template-columns: 1fr; }
+      .timeline-group-head, details.recent-events > summary { padding-inline: 14px; }
+      .event-row, .important-chart-card { padding: 16px 14px; }
+      .market-chart-legend { margin: 12px -14px -16px; padding-inline: 14px; }
+      .event-pagination { grid-template-columns: 1fr; align-items: stretch; gap: 8px; padding-inline: 14px; }
+      .event-page-progress, .event-page-button.more, .event-page-button.collapse { grid-column: 1; justify-self: stretch; text-align: center; }
+      .event-page-progress { grid-row: 1; }
+      .event-page-button.more { grid-row: 2; }
+      .event-page-button.collapse { grid-row: 3; }
+      details.news-story > summary { grid-template-columns: 26px minmax(0, 1fr) 18px; gap: 10px; padding: 15px 14px; }
+      .news-overview, .news-detail-main, .news-detail-aside { padding-inline: 14px; }
+      .news-story-title { font-size: 15px; }
+      .news-detail-section.inference { margin-inline: -14px; padding-inline: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .phase3-loading::after { animation: none; } }
+  </style>
+  <link rel="stylesheet" href="assets/workspace-shell.css?v=ed7f50f35dbe">
+<script src="assets/mixed-typography.js?v=c60f08a7a998" defer></script>
+<meta name="market-content-stage" content="Public · Family · Read-only market monitor">
+</head>
+<body class="workspace-inner workspace-bp-760 workspace-mobile-gap-10">
+  <main class="shell">
+    <nav class="workspace-nav" aria-label="全局导航">
+      <a class="workspace-brand" href="index.html" aria-label="投资组合透明计划首页">
+        <span class="workspace-brand-mark" aria-hidden="true"></span>
+        <span class="workspace-brand-text"><span class="workspace-brand-title">投资组合透明计划</span><span class="workspace-brand-subtitle">PORTFOLIO TRANSPARENCY PROGRAM</span></span>
+      </a>
+      <div class="workspace-nav-scroll">
+        <div class="workspace-nav-links">
+          <a class="workspace-nav-link" href="index.html">首页</a>
+          <!-- FAMILY:MARKET_CASH_FLOW_NAV:START -->
+<span class="workspace-nav-link" aria-disabled="true">现金流量</span>
+<!-- FAMILY:MARKET_CASH_FLOW_NAV:END -->
+          <a class="workspace-nav-link" href="dashboard.html">投资组合</a>
+          <a class="workspace-nav-link" href="instrument.html">证券研究</a>
+          <!-- FAMILY:MARKET_DECISION_NAV:START -->
+<span class="workspace-nav-link" aria-disabled="true">交易决策</span>
+<!-- FAMILY:MARKET_DECISION_NAV:END -->
+          <a class="workspace-nav-link" href="market.html" aria-current="page">市场监控</a>
+          <span class="workspace-nav-link" aria-disabled="true">期权雷达</span>
+          <!-- FAMILY:MARKET_HISTORY_NAV:START -->
+<a class="workspace-nav-link" href="history.html">历史档案</a>
+<!-- FAMILY:MARKET_HISTORY_NAV:END -->
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero workspace-page-header">
+      <div class="workspace-page-heading">
+        <p class="eyebrow workspace-page-eyebrow">Market monitoring</p>
+        <h1 class="workspace-page-title">市场监控</h1>
+        <p class="hero-copy workspace-page-subtitle">聚合市场环境、美国核心宏观日历与人工核验新闻，为组合判断提供背景。</p>
+      </div>
+      <aside class="workspace-page-context" id="marketPageContext" data-context-state="loading" aria-label="市场行情档案状态">
+        <div class="workspace-page-context-label">公开家庭版市场资料</div>
+        <div class="workspace-page-context-value"><span class="workspace-page-context-dot" aria-hidden="true"></span><span id="freshnessValue">正在读取</span></div>
+        <div class="workspace-page-context-meta">
+          <div class="workspace-page-context-line" id="freshnessNote">正在读取生成时间。</div>
+        </div>
+      </aside>
+    </header>
+
+    <div class="notice" id="errorNotice" role="alert"></div>
+
+    <section class="phase3-domain-grid" aria-label="各资料域截止时间与质量">
+      <article class="domain-card">
+        <div class="domain-label">市场行情</div>
+        <div class="domain-value"><span class="status-dot" id="marketDomainDot"></span><span id="marketDomainValue">正在读取</span></div>
+        <div class="domain-note" id="marketDomainNote">指数、波动率与利率分别保留真实截止日。</div>
+      </article>
+      <article class="domain-card">
+        <div class="domain-label">组合完成收盘</div>
+        <div class="domain-value"><span class="status-dot" id="portfolioDomainDot"></span><span id="portfolioDomainValue">正在读取</span></div>
+        <div class="domain-note">新闻相关性锚点</div>
+      </article>
+      <article class="domain-card">
+        <div class="domain-label">宏观日历核验</div>
+        <div class="domain-value"><span class="status-dot" id="macroDomainDot"></span><span id="macroDomainValue">正在读取</span></div>
+        <div class="domain-note" id="macroDomainNote">正在读取事件数量与来源状态。</div>
+      </article>
+      <article class="domain-card">
+        <div class="domain-label">新闻核验</div>
+        <div class="domain-value"><span class="status-dot" id="newsDomainDot"></span><span id="newsDomainValue">正在读取</span></div>
+        <div class="domain-note" id="newsDomainNote">正在读取入选数量与组合锚点。</div>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="environmentHeading">
+      <div class="section-head">
+        <div><p class="section-kicker">Environment</p><h2 id="environmentHeading">市场环境概览</h2></div>
+      </div>
+      <div class="overview-grid">
+        <article class="overview-card">
+          <div class="overview-label">风险温度</div>
+          <div class="overview-pair"><strong id="overviewVix">—</strong><span id="overviewVxn">VXN —</span></div>
+          <div class="overview-status" id="overviewRiskStatus">正在读取波动率</div>
+          <p class="overview-explain" id="overviewRiskExplain">VIX 为主，VXN 仅作为科技股风险辅助。</p>
+          <div class="overview-cutoff" id="overviewRiskCutoff">—</div>
+        </article>
+        <article class="overview-card">
+          <div class="overview-label">指数趋势 · 5 年对数回归</div>
+          <div class="overview-value compact" id="overviewTrend">—</div>
+          <div class="overview-status" id="overviewTrendStatus">正在重建可复现趋势</div>
+          <p class="overview-explain">偏离只描述价格相对长期趋势的位置，不等同于公允价值。</p>
+          <div class="overview-cutoff" id="overviewTrendCutoff">—</div>
+        </article>
+        <article class="overview-card">
+          <div class="overview-label">利率环境 · DGS10</div>
+          <div class="overview-value" id="overviewRate">—</div>
+          <div class="overview-status" id="overviewRateStatus">正在读取十年期美债收益率</div>
+          <p class="overview-explain">长端利率是权益折现率与现金替代资产机会成本的重要背景。</p>
+          <div class="overview-cutoff" id="overviewRateCutoff">—</div>
+        </article>
+        <article class="overview-card" id="overviewValuationCard">
+          <div class="overview-label" id="overviewValuationLabel">估值背景</div>
+          <div class="overview-value" id="overviewValuation">—</div>
+          <div class="overview-status" id="overviewValuationStatus">正在检查来源与新鲜度</div>
+          <p class="overview-explain" id="overviewValuationExplain">只有当前观察、口径与新鲜度全部合格时才显示。</p>
+          <div class="overview-cutoff" id="overviewValuationCutoff">—</div>
+        </article>
+        <article class="overview-card event">
+          <div class="event-overview-grid">
+            <div>
+              <div class="overview-label">下一关键事件</div>
+              <div class="overview-value compact" id="overviewNextEvent">正在读取宏观日历</div>
+              <div class="overview-status" id="overviewNextEventTime">—</div>
+              <p class="overview-explain" id="overviewNextEventExplain">优先选择距离最近的 critical／high 已确认排期。</p>
+              <div class="overview-cutoff" id="overviewNextEventCutoff">—</div>
+            </div>
+            <aside class="event-analysis is-unavailable" id="overviewEventAnalysis" aria-live="polite">
+              <div class="expectation-title">正在读取市场一致预期</div>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="sentimentHeading">
+      <div class="section-head">
+        <div><p class="section-kicker">Sentiment &amp; valuation watch</p><h2 id="sentimentHeading">情绪与估值观察</h2></div>
+      </div>
+      <div class="toolbar chart-toolbar" aria-label="CNN 恐惧与贪婪观察窗口">
+        <div class="window-copy"><strong id="cnnWindowTitle">1 年观察窗口</strong><br><span id="cnnWindowDetail">正在读取来源边界与观察数量</span></div>
+        <div class="window-buttons" role="group" aria-label="切换 CNN 恐惧与贪婪时间窗口">
+          <button class="window-button cnn-window active" type="button" data-range="1">1 年</button>
+          <button class="window-button cnn-window" type="button" data-range="3">3 年</button>
+          <button class="window-button cnn-window" type="button" data-range="5">5 年</button>
+          <button class="window-button cnn-window" type="button" data-range="10">10 年</button>
+          <button class="window-button cnn-window" type="button" data-range="all">全部</button>
+        </div>
+      </div>
+      <div class="sentiment-layout">
+        <article class="sentiment-card">
+          <div class="overview-label cnn-brand-label">CNN Fear &amp; Greed</div>
+          <div class="sentiment-current"><strong id="cnnCurrentValue">—</strong><span id="cnnCurrentRating">正在读取</span></div>
+          <div class="sentiment-comparisons" id="cnnComparisons" aria-label="CNN 恐惧与贪婪历史比较"></div>
+          <div class="overview-cutoff" id="cnnCurrentCutoff">—</div>
+        </article>
+        <article class="sentiment-chart-card">
+          <div class="chart-head"><h3 class="chart-title"><span class="cnn-brand-label">CNN Fear &amp; Greed</span> 长期轨迹</h3><div class="chart-meta" id="cnnHistoryMeta">—</div></div>
+          <div class="chart-wrap"><canvas id="cnnHistoryChart"></canvas></div>
+          <div class="cnn-source-boundary" id="cnnSourceBoundary">
+            <span><i class="legacy" aria-hidden="true"></i>旧历史参考</span>
+            <span><i class="publisher" aria-hidden="true"></i>CNN 发布方</span>
+            <strong id="cnnBoundaryCopy">正在核对来源切换日</strong>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="macroHeading">
+      <div class="section-head">
+        <div><p class="section-kicker">Macro calendar</p><h2 id="macroHeading">宏观数据日历</h2></div>
+      </div>
+      <div class="timeline-shell" id="macroCalendar" aria-live="polite">
+        <div class="empty-state">正在读取已核验宏观日历候选。</div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="newsHeading">
+      <div class="section-head">
+        <div><p class="section-kicker">Market news &amp; portfolio</p><h2 id="newsHeading">市场新闻与投资组合</h2></div>
+      </div>
+      <div class="news-shell" id="marketNews" aria-live="polite">
+        <div class="empty-state">正在读取人工核验新闻候选。</div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="importantChartsHeading">
+      <div class="section-head">
+        <div><p class="section-kicker">Important charts</p><h2 id="importantChartsHeading">重要市场图表</h2></div>
+      </div>
+      <div class="toolbar chart-toolbar" aria-label="重要图表观察窗口">
+        <div class="window-copy"><strong id="importantWindowTitle">5 年观察窗口</strong><br><span id="importantWindowDetail">正在读取观察数量</span></div>
+        <div class="window-buttons" role="group" aria-label="切换重要图表时间窗口">
+          <button class="window-button phase3-window" type="button" data-years="1">1 年</button>
+          <button class="window-button phase3-window" type="button" data-years="3">3 年</button>
+          <button class="window-button phase3-window active" type="button" data-years="5">5 年</button>
+          <button class="window-button phase3-window" type="button" data-years="10">10 年</button>
+          <button class="window-button phase3-window" type="button" data-years="20">20 年</button>
+        </div>
+      </div>
+      <div class="important-charts">
+        <article class="important-chart-card">
+          <div class="chart-head"><h3 class="chart-title">VIX／VXN 风险温度</h3><div class="chart-meta" id="riskTemperatureMeta">—</div></div>
+          <div class="chart-wrap"><canvas id="riskTemperatureChart"></canvas></div>
+          <div class="market-chart-legend" aria-label="VIX 与 VXN 图例">
+            <span class="market-chart-legend-item"><span class="market-chart-legend-line" aria-hidden="true"></span>VIX</span>
+            <span class="market-chart-legend-item"><span class="market-chart-legend-line gold" aria-hidden="true"></span>VXN</span>
+          </div>
+        </article>
+        <article class="important-chart-card">
+          <div class="chart-head"><h3 class="chart-title">美国国债收益率路径</h3><div class="chart-meta" id="ratePathMeta">—</div></div>
+          <div class="chart-wrap"><canvas id="ratePathChart"></canvas></div>
+          <div class="market-chart-legend" aria-label="美国国债收益率图例">
+            <span class="market-chart-legend-item"><span class="market-chart-legend-line gold" aria-hidden="true"></span>2Y</span>
+            <span class="market-chart-legend-item"><span class="market-chart-legend-line blue" aria-hidden="true"></span>10Y</span>
+            <span class="market-chart-legend-item"><span class="market-chart-legend-line" aria-hidden="true"></span>30Y</span>
+          </div>
+        </article>
+        <article class="important-chart-card wide">
+          <div class="chart-head"><h3 class="chart-title">SPX／NDX 对数趋势</h3><div class="chart-meta" id="indexTrendMeta">—</div></div>
+          <div class="chart-wrap"><canvas id="indexTrendChart"></canvas></div>
+          <div class="market-chart-legend" aria-label="SPX 与 NDX 对数趋势图例">
+            <span class="market-chart-legend-item"><span class="market-chart-legend-line" aria-hidden="true"></span>SPX</span>
+            <span class="market-chart-legend-item"><span class="market-chart-legend-line dashed" aria-hidden="true"></span>SPX 趋势</span>
+            <span class="market-chart-legend-item"><span class="market-chart-legend-line blue" aria-hidden="true"></span>NDX</span>
+            <span class="market-chart-legend-item"><span class="market-chart-legend-line blue dashed" aria-hidden="true"></span>NDX 趋势</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-head"><p class="footer-kicker">DATA &amp; METHOD</p><h2 class="footer-title">数据口径</h2></div>
+      <div class="footer-meta-grid">
+        <div class="footer-meta-item"><span class="footer-meta-label">市场快照</span><span class="footer-meta-value" id="footerTimestamp">—</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label">价格与利率</span><span class="footer-meta-value">指数完成收盘<br>Cboe 波动率<br>FRED 收益率<br>分别保留来源截止日</span></div>
+        <div class="footer-meta-item"><span class="footer-meta-label">来源边界</span><span class="footer-meta-value">CNN：独立观察<br>估值须经口径、证据与权限门禁<br>宏观：官方排期与结果<br>新闻：人工定向核验</span></div>
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.7.0</span><time class="footer-meta-value" datetime="2026-10-20T03:43:29Z">2026-10-20 03:43 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+      </div>
+      <p class="footer-disclaimer">各资料域保留独立截止日；异常与降级在对应资料域显示。本页提供判断背景，不构成交易授权。</p>
+    </footer>
+  </main>
+
+  <script src="assets/vendor/chart.umd.min.js"></script>
+  <script id="marketChartTooltipController">
+    (function () {
+      "use strict";
+
+      function finite(value) {
+        if (value === null || value === undefined || typeof value === "boolean" || (typeof value === "string" && !value.trim())) return null;
+        var parsed = Number(value);
+        return Number.isFinite(parsed) ? parsed : null;
+      }
+      function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
+      function tooltipNode(chart) {
+        var wrap = chart.canvas.closest(".chart-wrap");
+        var node = wrap.querySelector(".market-chart-tooltip");
+        if (!node) {
+          node = document.createElement("div");
+          node.className = "market-chart-tooltip";
+          node.setAttribute("aria-hidden", "true");
+          wrap.appendChild(node);
+        }
+        return { wrap: wrap, node: node };
+      }
+      function appendSeriesRow(container, label, value, color, dashed) {
+        var row = document.createElement("div");
+        row.className = "market-tooltip-series-row";
+        var key = document.createElement("span");
+        key.className = "market-tooltip-series-key";
+        key.style.borderTopColor = color || "#2f6f9f";
+        key.style.borderTopStyle = dashed ? "dashed" : "solid";
+        var name = document.createElement("span");
+        name.className = "market-tooltip-series-label";
+        name.textContent = label;
+        var display = document.createElement("span");
+        display.className = "market-tooltip-series-value";
+        display.textContent = value;
+        row.append(key, name, display);
+        container.appendChild(row);
+      }
+      function appendSpreadRow(container, label, value) {
+        var row = document.createElement("div");
+        row.className = "market-tooltip-series-row delta";
+        var key = document.createElement("span");
+        key.className = "market-tooltip-delta-key";
+        key.textContent = "Δ";
+        var name = document.createElement("span");
+        name.className = "market-tooltip-series-label";
+        name.textContent = label;
+        var display = document.createElement("span");
+        display.className = "market-tooltip-series-value" + (value > 0 ? " positive" : value < 0 ? " negative" : "");
+        display.textContent = (value > 0 ? "+" : "") + value.toFixed(0) + " bp";
+        row.append(key, name, display);
+        container.appendChild(row);
+      }
+      function formattedValue(chartId, point) {
+        var value = finite(point && point.parsed && point.parsed.y);
+        if (value === null) return "—";
+        if (chartId === "ratePathChart") return value.toFixed(2) + "%";
+        return point.formattedValue || value.toFixed(2);
+      }
+
+      window.marketChartTooltipExternal = function (context) {
+        var chart = context.chart;
+        var model = context.tooltip;
+        var resolved = tooltipNode(chart);
+        var wrap = resolved.wrap;
+        var node = resolved.node;
+        if (!model || model.opacity === 0 || !(model.dataPoints || []).length) {
+          node.classList.remove("visible");
+          node.setAttribute("aria-hidden", "true");
+          return;
+        }
+
+        node.replaceChildren();
+        var date = document.createElement("div");
+        date.className = "market-tooltip-date";
+        var title = model.title && model.title[0] || "—";
+        date.textContent = /^\d{4}-\d{2}-\d{2}$/.test(title) ? "UTC " + title : title;
+        node.appendChild(date);
+
+        var grid = document.createElement("div");
+        grid.className = "market-tooltip-comparison";
+        var values = Object.create(null);
+        model.dataPoints.forEach(function (point) {
+          var dataset = point.dataset || {};
+          var label = dataset.label || "序列";
+          values[label] = finite(point.parsed && point.parsed.y);
+          appendSeriesRow(grid, label, formattedValue(chart.canvas.id, point), dataset.borderColor, Boolean(dataset.borderDash && dataset.borderDash.length));
+        });
+        if (chart.canvas.id === "ratePathChart" && [values.DGS2, values.DGS10, values.DGS30].every(Number.isFinite)) {
+          appendSpreadRow(grid, "2Y→10Y", (values.DGS10 - values.DGS2) * 100);
+          appendSpreadRow(grid, "10Y→30Y", (values.DGS30 - values.DGS10) * 100);
+        }
+        node.appendChild(grid);
+        if (chart.canvas.id === "cnnHistoryChart") {
+          var raw = model.dataPoints[0] && model.dataPoints[0].raw || {};
+          var source = document.createElement("div");
+          source.className = "market-tooltip-source";
+          source.textContent = raw.source === "publisher" ? "来源 · CNN 发布方" : "来源 · 旧历史参考";
+          node.appendChild(source);
+        }
+
+        node.classList.add("visible");
+        node.setAttribute("aria-hidden", "false");
+        var canvasRect = chart.canvas.getBoundingClientRect();
+        var wrapRect = wrap.getBoundingClientRect();
+        var pointX = canvasRect.left - wrapRect.left + model.caretX;
+        var pointY = canvasRect.top - wrapRect.top + model.caretY;
+        var width = node.offsetWidth;
+        var height = node.offsetHeight;
+        var gap = 12;
+        var left = pointX + gap;
+        if (left + width > wrap.clientWidth - 8) left = pointX - width - gap;
+        node.style.left = clamp(left, 8, Math.max(8, wrap.clientWidth - width - 8)) + "px";
+        node.style.top = clamp(pointY - height / 2, 8, Math.max(8, wrap.clientHeight - height - 8)) + "px";
+      };
+    }());
+  </script>
+  <!-- FAMILY:MARKET_RUNTIME:START -->
+<script src="assets/market-content.js?v=329db0030d54"></script>
+<!-- FAMILY:MARKET_RUNTIME:END -->
+  <!-- FAMILY:MARKET_STATIC_CONFIG:START -->
+<script id="marketStaticConfig" type="application/json">{"mode":"market-static-public-v1","manifest":"data/market/manifest.json","contract":"assets/market-content-contract.json"}</script>
+<!-- FAMILY:MARKET_STATIC_CONFIG:END -->
+  <script id="marketMonitorData" type="application/json">{"status":"unavailable","series":{"spx":[],"ndx":[],"vix":[],"vxn":[],"twoYear":[],"tenYear":[],"thirtyYear":[],"cnnFearGreed":[]},"snapshot":{},"marketDataThrough":{},"quality":{}}</script>
+  <script id="marketPhase3Controller">
+    (function () {
+      "use strict";
+
+      var staticConfig = JSON.parse(document.getElementById("marketStaticConfig").textContent);
+      var archive = staticConfig ? MarketContent.emptyArchive() : JSON.parse(document.getElementById("marketMonitorData").textContent);
+      var phase3State = { years: 5, cnnRange: "1", charts: {}, macro: null, news: null, portfolio: null };
+      var coreLimits = { spx: 5, ndx: 5, vix: 5, vxn: 5, twoYear: 7, tenYear: 7, thirtyYear: 7 };
+      var colors = { navy: "#163b59", blue: "#2f6f9f", gold: "#bd8c28", red: "#c7353b", muted: "#82909b", grid: "rgba(22,59,89,.09)" };
+
+      function number(value) { return MarketContent.number(value); }
+      function deviationPercent(value) { return number(value) === null ? null : value * 100; }
+      function trendLabel(name, value) { return number(value) === null ? name + " 趋势不可用" : name + (value > 0 ? " 高于" : value < 0 ? " 低于" : " 位于") + " 5 年趋势"; }
+      function fixed(value, digits) { return number(value) === null ? "—" : Number(value).toFixed(digits == null ? 2 : digits); }
+      function signedPercent(value) { return number(value) === null ? "—" : (value >= 0 ? "+" : "") + Number(value).toFixed(1) + "%"; }
+      function escapeHtml(value) { return String(value == null ? "" : value).replace(/[&<>"']/g, function (character) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]; }); }
+      function safeUrl(value) { try { var url = new URL(String(value)); return url.protocol === "https:" ? url.href : ""; } catch (_) { return ""; } }
+      function utcDate(value) {
+        if (!value) return "—";
+        var date = new Date(String(value).length === 8 ? String(value).slice(0,4) + "-" + String(value).slice(4,6) + "-" + String(value).slice(6,8) + "T00:00:00Z" : value);
+        return Number.isNaN(date.valueOf()) ? "—" : "UTC " + date.toISOString().slice(0, 10);
+      }
+      function utcTimestamp(value) {
+        if (!value) return "—";
+        var date = new Date(value);
+        return Number.isNaN(date.valueOf()) ? "—" : "UTC " + date.toISOString().slice(0, 16).replace("T", " ");
+      }
+      function ageDays(value) {
+        if (!value) return Infinity;
+        var date = new Date(String(value).slice(0,10) + "T23:59:59Z");
+        return Number.isNaN(date.valueOf()) ? Infinity : Math.max(0, Math.floor((Date.now() - date.valueOf()) / 86400000));
+      }
+      function latest(series) { return series && series.length ? series[series.length - 1] : null; }
+      function cutoffDate(years) { var date = new Date((archive.asOf || new Date().toISOString().slice(0,10)) + "T00:00:00Z"); date.setUTCFullYear(date.getUTCFullYear() - years); return date.toISOString().slice(0,10); }
+      function filterWindow(series, years) { var cutoff = cutoffDate(years); return (series || []).filter(function (point) { return point[0] >= cutoff; }); }
+      function setDot(id, status) { var dot = document.getElementById(id); dot.classList.remove("pass", "warning", "fail"); dot.classList.add(status === "pass" ? "pass" : status === "warning" ? "warning" : "fail"); }
+      function compactCutoffs(entries) {
+        var groups = [];
+        entries.forEach(function (entry) {
+          var key = entry[1] || "";
+          var group = groups.find(function (candidate) { return candidate.key === key; });
+          if (!group) { group = { key: key, labels: [] }; groups.push(group); }
+          group.labels.push(entry[0]);
+        });
+        return groups.map(function (group) { return group.labels.join("／") + " " + utcDate(group.key); }).join(" · ");
+      }
+      function fetchJson(url) {
+        return fetch(url, { headers: { "Accept": "application/json" }, cache: "no-store" })
+          .then(function (response) { return response.json().catch(function () { return {}; }).then(function (payload) { if (!response.ok) return { status: "unavailable", message: "该资料域暂时不可用；未将失败当作空结果。" }; if (!payload.status) payload.status = "pass"; return payload; }); })
+          .catch(function () { return { schemaVersion: 1, status: "unavailable", message: "本地只读接口暂时不可用。" }; });
+      }
+      function regression(series) {
+        var clean = (series || []).filter(function (point) { return number(point[1]) !== null && number(point[1]) > 0; });
+        if (clean.length < 2) return { trend: [], deviation: null };
+        var sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+        clean.forEach(function (point, index) { var value = Math.log(point[1]); sumX += index; sumY += value; sumXY += index * value; sumXX += index * index; });
+        var count = clean.length;
+        var slope = (count * sumXY - sumX * sumY) / (count * sumXX - sumX * sumX);
+        var intercept = (sumY - slope * sumX) / count;
+        var trend = clean.map(function (point, index) { return [point[0], Math.exp(intercept + slope * index)]; });
+        return { trend: trend, deviation: clean[clean.length - 1][1] / trend[trend.length - 1][1] - 1 };
+      }
+
+      function renderMarketDomain() {
+        var through = archive.marketDataThrough || {};
+        var cutoffs = compactCutoffs([["SPX", through.spx], ["NDX", through.ndx], ["VIX", through.vix], ["VXN", through.vxn], ["DGS2", through.twoYear], ["DGS10", through.tenYear], ["DGS30", through.thirtyYear]]);
+        var stale = Object.keys(coreLimits).filter(function (key) { return ageDays(through[key]) > coreLimits[key]; });
+        setDot("marketDomainDot", archive.status === "unavailable" ? "fail" : stale.length ? "warning" : "pass");
+        document.getElementById("marketDomainValue").textContent = archive.status === "unavailable" ? "行情内容不可用" : stale.length ? "真实截止日保留 · " + stale.length + " 项过期或缺失" : "核心序列通过新鲜度检查";
+        document.getElementById("marketDomainNote").textContent = cutoffs;
+      }
+
+      function renderPortfolioDomain(payload) {
+        phase3State.portfolio = payload;
+        var pass = payload.status === "pass";
+        setDot("portfolioDomainDot", pass ? "pass" : payload.status === "warning" ? "warning" : "fail");
+        document.getElementById("portfolioDomainValue").textContent = payload.valuationDate ? utcDate(payload.valuationDate) + " · " + (payload.sessionQualifier || "RTH").replace(/^RTH 完成收盘$/, "RTH") : "组合完成收盘不可用";
+      }
+
+      function riskLabel(value) {
+        if (number(value) === null) return ["风险温度不可用", "缺少有效波动率观察，暂不判断风险温度。"];
+        if (value >= 30) return ["风险温度显著升高", "波动率进入高压区，需优先复核组合下行情景与相关性。"];
+        if (value >= 20) return ["风险温度偏高", "波动率高于平静区间，但尚不能单独证明市场趋势反转。"];
+        if (value >= 15) return ["风险温度中性", "波动率处于常见区间，仍需结合事件与指数趋势判断。"];
+        return ["风险温度偏低", "市场较平静；低波动不等同于低风险，需防止自满。"];
+      }
+
+      function renderEnvironment() {
+        var snapshot = archive.snapshot || {};
+        var risk = riskLabel(number(snapshot.vix && snapshot.vix.value));
+        document.getElementById("overviewVix").textContent = "VIX " + fixed(snapshot.vix && snapshot.vix.value, 2);
+        document.getElementById("overviewVxn").textContent = "VXN " + fixed(snapshot.vxn && snapshot.vxn.value, 2);
+        document.getElementById("overviewRiskStatus").textContent = risk[0];
+        document.getElementById("overviewRiskExplain").textContent = risk[1];
+        document.getElementById("overviewRiskCutoff").textContent = "VIX " + utcDate(snapshot.vix && snapshot.vix.date) + " · VXN " + utcDate(snapshot.vxn && snapshot.vxn.date);
+
+        var spx = regression(filterWindow(archive.series.spx, 5));
+        var ndx = regression(filterWindow(archive.series.ndx, 5));
+        document.getElementById("overviewTrend").textContent = "SPX " + signedPercent(deviationPercent(spx.deviation)) + " · NDX " + signedPercent(deviationPercent(ndx.deviation));
+        document.getElementById("overviewTrendStatus").textContent = trendLabel("SPX", spx.deviation) + "，" + trendLabel("NDX", ndx.deviation);
+        document.getElementById("overviewTrendCutoff").textContent = "SPX " + utcDate(snapshot.spx && snapshot.spx.date) + " · NDX " + utcDate(snapshot.ndx && snapshot.ndx.date);
+
+        var rate = number(snapshot.tenYear && snapshot.tenYear.value);
+        document.getElementById("overviewRate").textContent = fixed(rate, 2) + "%";
+        document.getElementById("overviewRateStatus").textContent = rate === null ? "利率观察不可用" : rate >= 4.5 ? "长端利率处于较高水平" : rate >= 3.5 ? "长端利率仍偏高" : "长端利率处于中低区间";
+        document.getElementById("overviewRateCutoff").textContent = utcDate(snapshot.tenYear && snapshot.tenYear.date) + " · FRED DGS10";
+
+        var valuation = archive.anchors && archive.anchors.spxTtmPe;
+        var valuationQuality = archive.quality && archive.quality.currentValuation && archive.quality.currentValuation.spxTtmPe;
+        var eligible = valuationQuality && valuationQuality.status === "pass" && valuation && valuation.eligibleForDisplay === true;
+        var fresh = valuation && ageDays(valuation.date) <= 45;
+        if (valuation && eligible && fresh && valuation.quality === "published") {
+          document.getElementById("overviewValuationCard").hidden = false;
+          document.getElementById("overviewValuationLabel").textContent = "估值背景 · SPX TTM P/E";
+          document.getElementById("overviewValuation").textContent = fixed(valuation.value, 2) + "×";
+          document.getElementById("overviewValuationStatus").textContent = "当前观察通过完整门槛";
+          document.getElementById("overviewValuationExplain").textContent = "这是经指数身份、估值口径、原始证据、使用权限与新鲜度核验的 SPX TTM PE 当前观察。";
+          document.getElementById("overviewValuationCutoff").textContent = utcDate(valuation.date) + " · " + valuation.source;
+        } else {
+          var reference = archive.valuationReferences && archive.valuationReferences.spxForwardPe;
+          if (reference && number(reference.value) != null && reference.displayRole === "related_valuation_reference" && reference.eligibleForCurrentTtm === false && reference.eligibleForTrend === false) {
+            document.getElementById("overviewValuationCard").hidden = false;
+            document.getElementById("overviewValuationLabel").textContent = "估值背景 · SPX Forward 12M P/E";
+            document.getElementById("overviewValuation").textContent = fixed(reference.value, 2) + "×";
+            document.getElementById("overviewValuationStatus").textContent = ageDays(reference.date) > 45 ? "发布方历史参考 · 已过当前门槛" : "发布方相关观察 · 非 TTM";
+            document.getElementById("overviewValuationExplain").textContent = "FactSet 发布的未来 12 个月一致预期市盈率；只作相关估值背景，不替代 TTM 观察或进入趋势。";
+            document.getElementById("overviewValuationCutoff").textContent = utcDate(reference.date) + " · " + reference.sourceName;
+          } else {
+            document.getElementById("overviewValuationCard").hidden = true;
+          }
+        }
+      }
+
+      function cnnRatingLabel(value) {
+        var key = String(value || "").toLowerCase().replace(/[^a-z]/g, "_");
+        return ({ extreme_fear: "极度恐惧", fear: "恐惧", neutral: "中性", greed: "贪婪", extreme_greed: "极度贪婪" })[key] || value || "评级未提供";
+      }
+      function cnnWindowSeries() {
+        var series = archive.series && archive.series.cnnFearGreed || [];
+        if (phase3State.cnnRange === "all") return series.slice();
+        return filterWindow(series, Number(phase3State.cnnRange));
+      }
+      function cnnComparison(label, observation) {
+        var value = observation && number(observation.value);
+        return '<div class="sentiment-comparison"><div class="sentiment-comparison-label">' + escapeHtml(label) + '</div><div class="sentiment-comparison-value">' + escapeHtml(fixed(value, 1)) + '</div><div class="sentiment-comparison-date">' + escapeHtml(utcDate(observation && observation.date)) + '</div></div>';
+      }
+      function renderCnnWatch() {
+        var snapshot = archive.snapshot && archive.snapshot.cnnFearGreed || {};
+        var quality = archive.quality && archive.quality.cnnFearGreed || {};
+        var selected = cnnWindowSeries().filter(function (point) {
+          return /^\d{4}-\d{2}-\d{2}$/.test(String(point && point[0] || "")) && number(point && point[1]) !== null && (point[3] === "legacy" || point[3] === "publisher");
+        });
+        document.getElementById("cnnCurrentValue").textContent = fixed(snapshot.value, 1);
+        var cnnFreshness = MarketContent.freshness(snapshot.date, 3);
+        document.getElementById("cnnCurrentRating").textContent = number(snapshot.value) === null ? "观察不可用" : cnnRatingLabel(snapshot.rating) + (cnnFreshness === "stale" ? " · 观察已过期" : cnnFreshness === "unavailable" ? " · 日期待核验" : "");
+        document.getElementById("cnnCurrentCutoff").textContent = utcDate(snapshot.date) + (cnnFreshness === "fresh" ? " · CNN 发布方观察" : " · 保留原始截止");
+        document.getElementById("cnnComparisons").innerHTML = [
+          cnnComparison("前收", snapshot.previousClose),
+          cnnComparison("1 周前", snapshot.oneWeek),
+          cnnComparison("1 月前", snapshot.oneMonth),
+          cnnComparison("1 年前", snapshot.oneYear)
+        ].join("");
+        var legacyPoints = selected.filter(function (point) { return point[3] === "legacy"; }).length;
+        var publisherPoints = selected.length - legacyPoints;
+        var rangeLabel = phase3State.cnnRange === "all" ? "全部历史" : phase3State.cnnRange + " 年观察窗口";
+        document.getElementById("cnnWindowTitle").textContent = rangeLabel;
+        document.getElementById("cnnWindowDetail").textContent = selected.length + " 个观察 · CNN 发布方 " + publisherPoints + " · 旧历史参考 " + legacyPoints;
+        document.getElementById("cnnHistoryMeta").textContent = selected.length ? utcDate(selected[0][0]) + " — " + utcDate(selected[selected.length - 1][0]) + " · 当前 " + fixed(snapshot.value, 1) : "所选窗口没有可用观察";
+        document.getElementById("cnnBoundaryCopy").textContent = quality.boundaryDate ? "来源切换 " + utcDate(quality.boundaryDate) + " · 旧历史截至 " + utcDate(quality.legacy && quality.legacy.through) : "当前没有可核验的来源切换日";
+        document.querySelectorAll(".cnn-window").forEach(function (button) { button.classList.toggle("active", button.dataset.range === phase3State.cnnRange); });
+        if (typeof Chart === "undefined" || !selected.length) return;
+        makeChart("cnnHistoryChart", [{
+          label: "CNN Fear & Greed",
+          data: selected.map(function (point) { return { x: point[0], y: point[1], rating: point[2], source: point[3] }; }),
+          borderColor: colors.gold,
+          backgroundColor: colors.gold,
+          borderWidth: 1.8,
+          pointRadius: 0,
+          pointHoverRadius: 3,
+          tension: .16,
+          segment: {
+            borderColor: function (context) { return context.p1.raw.source === "publisher" ? colors.gold : "#c7b88f"; },
+            borderDash: function (context) { return context.p1.raw.source === "publisher" ? [] : [5, 4]; }
+          }
+        }], {
+          plugins: { legend: { display: false }, tooltip: { enabled: false, external: window.marketChartTooltipExternal } },
+          scales: {
+            x: { type: "category", grid: { display: false }, ticks: { color: colors.muted, maxTicksLimit: 8, font: { size: 9 } } },
+            y: { min: 0, max: 100, grid: { color: colors.grid }, ticks: { color: colors.muted, stepSize: 25, font: { size: 9 } } }
+          }
+        });
+      }
+
+      var statusLabels = { scheduled: "已排期", released: "已公布", revised: "已修订", delayed: "已延后", cancelled: "已取消", unverified: "待核验", past_due_unverified: "日期已过 · 待结果核验" };
+      var importanceLabels = { critical: "关键", high: "重要" };
+      var verificationLabels = { primary_official: "一手官方", cross_checked_primary: "一手交叉核验", single_official_secondary: "官方二级排期", source_conflict: "来源冲突" };
+      var surpriseLabels = { stronger_than_expected: "整体强于预期", broadly_in_line: "大致符合预期", weaker_than_expected: "整体弱于预期", mixed: "信号混合", not_comparable: "暂无可比预期" };
+      var resultHorizonLabels = { immediate: "即时", near_term: "近期", medium_term: "中期" };
+      var resultConfidenceLabels = { high: "高置信度", medium: "中等置信度", low: "低置信度" };
+      function metricExpectation(event, metricKey) {
+        var metrics = event && event.expectation && event.expectation.metrics || [];
+        return metrics.find(function (metric) { return metric.metricKey === metricKey; }) || null;
+      }
+      function surpriseDelta(actual, consensus, unit) {
+        if (consensus === null || consensus === undefined || consensus === "") return "一致预期不可用";
+        var actualValue = number(actual);
+        var consensusValue = number(consensus);
+        if (actualValue === null || consensusValue === null) return "一致预期不可用";
+        var delta = actualValue - consensusValue;
+        var tolerance = unit === "K" ? .05 : .0005;
+        if (Math.abs(delta) <= tolerance) return "符合预期";
+        return "较预期 " + (delta > 0 ? "+" : "") + formatExpectationValue(delta, unit);
+      }
+      function eventResultBlock(event) {
+        var result = event && event.result;
+        var isPast = event && (event.displayStatus === "past_due_unverified" || event.status === "released" || event.status === "revised");
+        if (!result) {
+          if (!isPast) return "";
+          return '<div class="event-result pending"><div class="event-result-head"><strong>实际结果</strong><span>待一手来源核验</span></div><p>尚未导入完整官方结果；不以排期或二手报道补写。</p></div>';
+        }
+        var metrics = result.metrics || [];
+        var metricHtml = metrics.map(function (metric) {
+          var expectation = metricExpectation(event, metric.metricKey);
+          var consensus = expectation && expectation.consensus;
+          var prior = metric.revisedPrevious !== null && metric.revisedPrevious !== undefined ? metric.revisedPrevious : metric.previous;
+          var priorLabel = metric.revisedPrevious !== null && metric.revisedPrevious !== undefined ? "修订前值" : "前值";
+          return '<div class="event-result-metric"><div class="event-result-label">' + escapeHtml(metric.label) + ' · ' + escapeHtml(metric.periodLabel || "") + '</div><div class="event-result-value">实际 ' + escapeHtml(formatExpectationValue(metric.actual, metric.unit)) + '</div><div class="event-result-compare">' + escapeHtml(surpriseDelta(metric.actual, consensus, metric.unit)) + ' · ' + escapeHtml(priorLabel) + ' ' + escapeHtml(formatExpectationValue(prior, metric.unit)) + '</div></div>';
+        }).join("");
+        var assessment = result.assessment || {};
+        var resultSourceLabel = result.sourceRole === "official_secondary_result" ? "正式结果 · 联储官方镜像" : "正式结果 · 一手官方";
+        var metricGridClass = metrics.length === 4 ? "event-result-grid four-up" : "event-result-grid";
+        return '<div class="event-result"><div class="event-result-head"><strong>' + escapeHtml(resultSourceLabel) + '</strong><span>发布 ' + escapeHtml(utcTimestamp(result.publishedAt)) + '</span></div><div class="' + metricGridClass + '">' + metricHtml + '</div><div class="event-impact"><span class="micro-tag green">' + escapeHtml(surpriseLabels[assessment.surpriseClass] || "项目复核") + '</span><p><strong>项目判断：</strong>' + escapeHtml(assessment.summaryZh || "结果影响尚待复核。") + '</p><p><strong>传导路径：</strong>' + escapeHtml(assessment.transmissionPathZh || "尚待补充。") + ' · ' + escapeHtml(resultHorizonLabels[assessment.horizon] || assessment.horizon || "期限待定") + '影响 · ' + escapeHtml(resultConfidenceLabels[assessment.confidence] || assessment.confidence || "置信度待定") + '</p></div></div>';
+      }
+      function eventRow(event) {
+        var period = event.periodLabel || (event.referencePeriodStatus === "unavailable_from_calendar" ? "统计周期待一手来源补充" : "统计周期未提供");
+        var displayStatus = event.displayStatus || event.status;
+        var verificationClass = event.verificationStatus === "source_conflict" ? "red" : event.verificationStatus === "primary_official" || event.verificationStatus === "cross_checked_primary" ? "green" : "gold";
+        var scheduleUrl = safeUrl(event.sourceUrl);
+        var agencyUrl = safeUrl(event.originatingAgencyUrl);
+        var resultUrl = safeUrl(event.result && event.result.sourceUrl);
+        var meetingMaterials = (event.meetingMaterials || []).length ? '<p class="event-copy"><strong>同次会议材料：</strong>' + escapeHtml(event.meetingMaterials.map(function (item) { return item.label; }).join(" · ")) + '。材料留在底层档案，页面只把利率决定作为本次会议的结果主体。</p>' : '';
+        return '<article class="event-row">' +
+          '<div class="event-time">' + escapeHtml(utcTimestamp(event.scheduledAtUtc)) + '<small>' + escapeHtml(event.originalTimeLabel || "原始时区时间未提供") + (event.originalTimezone ? " · " + escapeHtml(event.originalTimezone) : "") + '</small></div>' +
+          '<span class="event-pin ' + (event.importance === "critical" ? "critical" : "") + '" aria-hidden="true"></span>' +
+          '<div class="event-body"><h4 class="event-title">' + escapeHtml(event.title) + '</h4><p class="event-copy">' + escapeHtml(period) + '</p>' + meetingMaterials + '<div class="event-meta"><span class="micro-tag ' + (event.importance === "critical" ? "gold" : "") + '">' + escapeHtml(importanceLabels[event.importance] || event.importance) + '</span><span class="micro-tag">' + escapeHtml(statusLabels[displayStatus] || displayStatus) + '</span><span class="micro-tag ' + verificationClass + '">' + escapeHtml(verificationLabels[event.verificationStatus] || event.verificationStatus) + '</span></div>' + eventResultBlock(event) + '</div>' +
+          '<div class="event-source">' + (scheduleUrl ? '<a href="' + escapeHtml(scheduleUrl) + '" target="_blank" rel="noreferrer">排期来源</a>' : '排期来源不可用') + (agencyUrl ? ' · <a href="' + escapeHtml(agencyUrl) + '" target="_blank" rel="noreferrer">' + escapeHtml(event.originatingAgency || event.agency) + ' 官方发布页</a>' : '') + (resultUrl ? '<br><a href="' + escapeHtml(resultUrl) + '" target="_blank" rel="noreferrer">正式结果来源</a>' : '') + '<small>排期核验 ' + escapeHtml(utcTimestamp(event.lastVerifiedAt)) + (event.result ? '<br>结果核验 ' + escapeHtml(utcTimestamp(event.result.retrievedAt)) : '') + '</small></div>' +
+        '</article>';
+      }
+      function timelineGroup(title, events) {
+        return '<section class="timeline-group"><div class="timeline-group-head"><h3>' + escapeHtml(title) + '</h3><span class="timeline-count">' + events.length + ' 条</span></div><div class="event-list">' + (events.length ? events.map(eventRow).join("") : '<div class="empty-state">当前没有符合此分组的已核验事件。</div>') + '</div></section>';
+      }
+      function pagedEventDetails(title, events, prefix, collapseLabel) {
+        return '<details class="recent-events event-page-details" id="' + prefix + 'Details"><summary><span>' + escapeHtml(title) + '</span><span class="timeline-count">' + events.length + ' 条</span></summary><div class="event-list" id="' + prefix + 'List"></div><div class="event-pagination" id="' + prefix + 'Pagination"><span class="event-page-progress" id="' + prefix + 'Progress" aria-live="polite"></span><button class="event-page-button collapse" id="' + prefix + 'Collapse" type="button" aria-controls="' + prefix + 'List">' + escapeHtml(collapseLabel) + '</button><button class="event-page-button more" id="' + prefix + 'More" type="button" aria-controls="' + prefix + 'List">载入更多</button></div></details>';
+      }
+      function wirePagedEventList(events, prefix) {
+        var eventPageSize = 5;
+        var eventVisibleCount = Math.min(eventPageSize, events.length);
+        var list = document.getElementById(prefix + "List");
+        var pagination = document.getElementById(prefix + "Pagination");
+        var progress = document.getElementById(prefix + "Progress");
+        var more = document.getElementById(prefix + "More");
+        var collapse = document.getElementById(prefix + "Collapse");
+        function renderEventPage() {
+          list.innerHTML = events.length ? events.slice(0, eventVisibleCount).map(eventRow).join("") : '<div class="empty-state">当前没有记录。</div>';
+          progress.textContent = events.length ? "已显示 " + eventVisibleCount + " / " + events.length + " 条" : "当前没有记录";
+          more.hidden = eventVisibleCount >= events.length;
+          more.setAttribute("aria-label", "再显示 " + Math.min(eventPageSize, Math.max(events.length - eventVisibleCount, 0)) + " 条事件");
+          collapse.hidden = eventVisibleCount <= Math.min(eventPageSize, events.length);
+          pagination.hidden = events.length === 0;
+        }
+        more.addEventListener("click", function () {
+          eventVisibleCount = Math.min(eventVisibleCount + eventPageSize, events.length);
+          renderEventPage();
+        });
+        collapse.addEventListener("click", function () {
+          eventVisibleCount = Math.min(eventPageSize, events.length);
+          renderEventPage();
+          document.getElementById(prefix + "Details").scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        });
+        renderEventPage();
+      }
+      function startOfUtcWeek(value) {
+        var date = new Date(value || Date.now());
+        var day = date.getUTCDay();
+        var offset = day === 0 ? 6 : day - 1;
+        date.setUTCDate(date.getUTCDate() - offset);
+        date.setUTCHours(0,0,0,0);
+        return date;
+      }
+      function formatExpectationValue(value, unit) {
+        var parsed = number(value);
+        if (parsed === null) return "—";
+        if (unit === "K") return fixed(parsed, parsed % 1 ? 1 : 0) + "K";
+        if (unit === "%") return fixed(parsed, 1) + "%";
+        return fixed(parsed, 1);
+      }
+      function renderEventAnalysis(event) {
+        var panel = document.getElementById("overviewEventAnalysis");
+        var expectation = event && event.expectation;
+        if (!event) {
+          panel.classList.add("is-unavailable");
+          panel.innerHTML = '<div class="expectation-title">市场一致预期暂不可用</div><p class="overview-explain">尚无可用的已核验排期，不补写预期或情景阈值。</p>';
+          return;
+        }
+        if (!expectation || expectation.status !== "reviewed_single_secondary") {
+          panel.classList.add("is-unavailable");
+          panel.innerHTML = '<div class="expectation-title">市场一致预期暂不可用</div><p class="overview-explain">排期仍可使用，但本项目不会在缺少已核验来源时补写预期或情景阈值。</p>';
+          return;
+        }
+        panel.classList.remove("is-unavailable");
+        var sourceUrl = safeUrl(expectation.sourceUrl);
+        var metrics = expectation.metrics || [];
+        var metricHtml = metrics.map(function (metric) {
+          return '<div class="expectation-metric"><div class="expectation-metric-label">' + escapeHtml(metric.label) + ' · ' + escapeHtml(metric.periodLabel || "") + '</div><div class="expectation-metric-value">一致预期 ' + escapeHtml(formatExpectationValue(metric.consensus, metric.unit)) + '</div><div class="expectation-metric-compare">前值 ' + escapeHtml(formatExpectationValue(metric.previous, metric.unit)) + ' · 发布方预测 ' + escapeHtml(formatExpectationValue(metric.forecast, metric.unit)) + '</div></div>';
+        }).join("");
+        var payroll = metrics.find(function (metric) { return metric.metricKey === "nonfarm_payrolls"; });
+        var unemployment = metrics.find(function (metric) { return metric.metricKey === "unemployment_rate"; });
+        var wage = metrics.find(function (metric) { return metric.metricKey === "average_hourly_earnings_mom"; });
+        var isInflationEvent = ["cpi", "ppi", "personal_income_outlays"].indexOf(event.eventType) >= 0 || metrics.some(function (metric) { return /^(core_)?(?:cpi|pce)_/.test(metric.metricKey); });
+        var metricCenters = metrics.map(function (metric) { return metric.label + "约 " + formatExpectationValue(metric.consensus, metric.unit); }).join("、");
+        var threshold = payroll && unemployment && wage
+          ? "以非农约 " + formatExpectationValue(payroll.consensus, payroll.unit) + "、失业率约 " + formatExpectationValue(unemployment.consensus, unemployment.unit) + "、工资环比约 " + formatExpectationValue(wage.consensus, wage.unit) + " 为中心，三项可能给出相反信号。"
+          : "以" + metricCenters + "为中心，多项指标可能给出相反信号。";
+        var scenarios = isInflationEvent ? '<div class="scenario-grid">' +
+          '<section class="scenario-card"><h4>通胀高于预期</h4><p><strong>美股／成长：</strong>折现率与成本压力上升通常压低估值；定价权只能部分抵消需求和利润率风险。</p><p><strong>美债／BOXX：</strong>长端收益率上行会压久期债券价格，BOXX 后续可获得收益率相对受支撑。</p><p><strong>贵金属／国际：</strong>若实质利率和美元同步上行，金银与未对冲国际资产的美元回报通常承压。</p></section>' +
+          '<section class="scenario-card"><h4>大致符合预期</h4><p><strong>美股／成长：</strong>广泛重定价动力有限，市场更可能回到公司盈利与估值差异。</p><p><strong>美债／BOXX：</strong>政策利率路径基线变化较小，票息与期限结构继续主导。</p><p><strong>贵金属／国际：</strong>美元与实质利率缺乏新方向，资产自身催化剂更重要。</p></section>' +
+          '<section class="scenario-card"><h4>通胀低于预期</h4><p><strong>美股／成长：</strong>收益率回落通常支持久期估值；若低通胀源于需求骤弱，盈利担忧可能抵消利好。</p><p><strong>美债／BOXX：</strong>久期债券价格受益，但 BOXX 后续可获得收益率可能下移。</p><p><strong>贵金属／国际：</strong>实质利率和美元走弱通常支持黄金及国际资产；白银仍需结合增长信号判断。</p></section>' +
+        '</div>' : '<div class="scenario-grid">' +
+          '<section class="scenario-card"><h4>整体强于预期</h4><p><strong>美股／成长：</strong>长端收益率上行会压估值，需求韧性则部分支撑盈利。</p><p><strong>美债／BOXX：</strong>久期债券价格承压；BOXX 的现金替代收益率较受支撑。</p><p><strong>贵金属／国际：</strong>美元与实质利率偏强通常压金银，也可能拖累未对冲国际资产的美元回报。</p></section>' +
+          '<section class="scenario-card"><h4>大致符合预期</h4><p><strong>美股／成长：</strong>广泛重定价动力有限，MSFT、NVDA 等更回归公司基本面。</p><p><strong>美债／BOXX：</strong>利率路径基线变化较小，票息与期限结构继续主导。</p><p><strong>贵金属／国际：</strong>美元与实质利率缺乏新方向，资产自身催化剂更重要。</p></section>' +
+          '<section class="scenario-card"><h4>整体弱于预期</h4><p><strong>美股／成长：</strong>收益率回落利好久期估值；若弱幅过大，盈利担忧会反向压制 VOO 与周期资产。</p><p><strong>美债／BOXX：</strong>久期债券价格受益，但 BOXX 后续可获得收益率可能下移。</p><p><strong>贵金属／国际：</strong>美元与实质利率走弱通常利好黄金；白银仍受增长担忧牵制，国际资产可能获汇率换算支持。</p></section>' +
+        '</div>';
+        panel.innerHTML = '<div class="expectation-head"><h3 class="expectation-title">市场一致预期 · 单一二级来源</h3><div class="expectation-source">' + (sourceUrl ? '<a href="' + escapeHtml(sourceUrl) + '" target="_blank" rel="noreferrer">' + escapeHtml(expectation.provider) + '</a>' : escapeHtml(expectation.provider)) + ' · 核验 ' + escapeHtml(utcTimestamp(expectation.retrievedAt)) + '</div></div><div class="expectation-metrics">' + metricHtml + '</div>' + scenarios + '<p class="scenario-note">' + escapeHtml(threshold) + ' 情景描述的是方向与传导渠道，不是价格预测或交易指令；实际值发布后还需核对修订、参与率与各分项。</p>';
+      }
+      function renderMacro(payload) {
+        phase3State.macro = payload;
+        var container = document.getElementById("macroCalendar");
+        var okay = payload.status === "pass" || payload.status === "warning" || payload.status === "empty";
+        var macroFreshness = MarketContent.freshness(payload.verifiedAt, 7);
+        setDot("macroDomainDot", payload.status === "pass" && macroFreshness === "fresh" ? "pass" : okay ? "warning" : "fail");
+        document.getElementById("macroDomainValue").textContent = payload.verifiedAt ? utcTimestamp(payload.verifiedAt) : "宏观日历不可用";
+        if (!okay || !payload.events) {
+          document.getElementById("overviewNextEvent").textContent = "宏观日历不可用";
+          document.getElementById("overviewNextEventTime").textContent = "—";
+          document.getElementById("overviewNextEventExplain").textContent = "尚无可用的已核验排期，暂不选择下一关键事件。";
+          document.getElementById("overviewNextEventCutoff").textContent = "核验不可用";
+          document.getElementById("macroDomainNote").textContent = payload.message || "上一核验版本不可读取；未伪造空日历。";
+          container.innerHTML = '<div class="empty-state">' + escapeHtml(payload.message || "宏观日历候选暂时不可用；页面不会以空白冒充没有事件。") + '</div>';
+          renderEventAnalysis(null);
+          return;
+        }
+        var allEvents = [].concat(payload.events.upcoming || [], payload.events.recent || [], payload.events.undated || []);
+        var seenEvents = new Set();
+        allEvents = allEvents.filter(function (event) { var id = event.eventId || event.eventKey || event.title + "|" + event.scheduledAtUtc; if (seenEvents.has(id)) return false; seenEvents.add(id); return true; });
+        var asOfTime = new Date();
+        var upcoming = allEvents.filter(function (event) { return Date.parse(event.scheduledAtUtc) >= asOfTime.getTime(); }).sort(MarketContent.eventOrder);
+        var recent = allEvents.filter(function (event) { return Date.parse(event.scheduledAtUtc) < asOfTime.getTime(); }).map(function (event) { return event.status === "scheduled" && !event.result ? Object.assign({}, event, { displayStatus: "past_due_unverified" }) : event; });
+        var undated = allEvents.filter(function (event) { return !Number.isFinite(Date.parse(event.scheduledAtUtc)); });
+        if (!Number.isFinite(asOfTime.getTime())) asOfTime = new Date();
+        var horizonEnd = new Date(asOfTime.getTime() + 30 * 24 * 60 * 60 * 1000);
+        var weekStart = startOfUtcWeek(asOfTime.toISOString());
+        var archiveStart = new Date(asOfTime.getTime() - 365 * 86400000);
+        recent = recent.filter(function (event) { return new Date(event.scheduledAtUtc) >= archiveStart; });
+        var thisWeek = recent.filter(function (event) { return new Date(event.scheduledAtUtc) >= weekStart; }).sort(function (left, right) { return new Date(right.scheduledAtUtc) - new Date(left.scheduledAtUtc); });
+        var older = recent.filter(function (event) { return new Date(event.scheduledAtUtc) < weekStart; }).sort(function (left, right) { return new Date(right.scheduledAtUtc) - new Date(left.scheduledAtUtc); });
+        var visibleUpcoming = upcoming.filter(function (event) { return new Date(event.scheduledAtUtc) <= horizonEnd; });
+        var laterUpcoming = upcoming.filter(function (event) { return new Date(event.scheduledAtUtc) > horizonEnd; });
+        container.innerHTML = timelineGroup("本周发布与结果", thisWeek) + timelineGroup("即将公布", visibleUpcoming) + (laterUpcoming.length ? pagedEventDetails("远期事件", laterUpcoming, "farEvent", "收起至最近 5 条") : "") + pagedEventDetails("事件存档", older, "eventArchive", "收起至最新 5 条") + (undated.length ? timelineGroup("排期待核验", undated) : "");
+        if (laterUpcoming.length) wirePagedEventList(laterUpcoming, "farEvent");
+        wirePagedEventList(older, "eventArchive");
+        var optional = payload.quality && payload.quality.optionalSourceFailures || [];
+        document.getElementById("macroDomainNote").textContent = "30 日 " + visibleUpcoming.length + " 条 · 远期 " + laterUpcoming.length + " 条 · 本周 " + thisWeek.length + " 条" + (optional.length ? " · BLS 一手复核不可用" : "") + (macroFreshness !== "fresh" ? " · 核验已过期或日期缺失" : "");
+        var next = MarketContent.nextEvent(upcoming, asOfTime);
+        if (next) {
+          document.getElementById("overviewNextEvent").textContent = next.title;
+          document.getElementById("overviewNextEventTime").textContent = utcTimestamp(next.scheduledAtUtc) + " · " + (next.originalTimeLabel || "原始时区时间未提供");
+          document.getElementById("overviewNextEventExplain").textContent = next.verificationStatus === "single_official_secondary" ? "纽约联储官方日历列示；BLS 一手日历仍未完成交叉核验。" : "发布机构一手日历已核验；预期来源与官方排期保持独立。";
+          document.getElementById("overviewNextEventCutoff").textContent = "日历核验 " + utcTimestamp(payload.verifiedAt);
+          renderEventAnalysis(next);
+        } else {
+          document.getElementById("overviewNextEvent").textContent = "未来窗口没有已核验关键事件";
+          document.getElementById("overviewNextEventTime").textContent = "—";
+          document.getElementById("overviewNextEventCutoff").textContent = payload.verifiedAt ? "日历核验 " + utcTimestamp(payload.verifiedAt) : "日历不可用";
+          renderEventAnalysis(null);
+        }
+      }
+
+      var factLabels = { confirmed_primary: "一手确认", reported_secondary: "二手报道", mixed: "证据混合", unverified: "待核验" };
+      var horizonLabels = { immediate: "即时影响", near_term: "近期影响", medium_term: "中期影响", structural: "结构性影响" };
+      var confidenceLabels = { high: "高置信度", medium: "中等置信度", low: "低置信度" };
+      var assetLabels = { CASH_EQUIVALENT: "现金等价物", CONSUMER_STAPLES: "消费必需品", EUROPE_EQUITY: "欧洲权益", HEALTHCARE: "医疗保健", PRECIOUS_METALS: "贵金属", SWISS_EQUITY: "瑞士权益", US_EQUITY: "美国权益", US_GROWTH_EQUITY: "美国成长股", US_TREASURY: "美国国债", USDJPY: "美元／日元", JAPAN_EQUITY: "日本权益", GLOBAL_EQUITY: "全球权益", SEMICONDUCTORS: "半导体" };
+      function proseCurrency(value) { return String(value == null ? "" : value).replace(/US\$(?=[+\-\d])/g, "US$\u202f"); }
+      function firstSentence(value) {
+        var copy = proseCurrency(value || "文章目前不可访问，未生成推测性摘要。");
+        var match = copy.match(/^.*?[。！？](?:[”’」』】])?/);
+        return match ? match[0] : copy;
+      }
+      function newsSourceItems(item) {
+        return (item.sourceVerification || []).map(function (entry) {
+          var url = safeUrl(entry.url);
+          var status = entry.status === "matched" ? "已匹配" : entry.status === "not_found" ? "尚未发布／未找到" : entry.status === "conflict" ? "存在冲突" : "未尝试";
+          var source = entry.sourceType === "issuer_official" ? "发行人一手" : entry.sourceType === "primary_official" ? "官方一手" : entry.sourceType === "official_secondary" ? "官方镜像" : "媒体交叉核验";
+          var heading = source + " · " + status;
+          return '<div class="news-source-item">' + (url ? '<a href="' + escapeHtml(url) + '" target="_blank" rel="noreferrer">' + escapeHtml(heading) + '</a>' : escapeHtml(heading)) + '<span class="news-source-note">' + escapeHtml(proseCurrency(entry.note || "未提供核验说明。")) + '</span></div>';
+        }).join("");
+      }
+      function newsStory(item, index) {
+        var url = safeUrl(item.canonicalUrl);
+        var factClass = item.factStatus === "confirmed_primary" ? "green" : item.factStatus === "unverified" ? "red" : "gold";
+        var tags = ['<span class="micro-tag ' + factClass + '">' + escapeHtml(factLabels[item.factStatus] || item.factStatus) + '</span>', '<span class="micro-tag">' + escapeHtml(horizonLabels[item.horizon] || item.horizon) + '</span>', '<span class="micro-tag">' + escapeHtml(confidenceLabels[item.confidence] || item.confidence) + '</span>'];
+        (item.relatedSymbols || []).forEach(function (symbol) { tags.push('<span class="micro-tag">' + escapeHtml(symbol) + '</span>'); });
+        (item.relatedAssetClasses || []).forEach(function (asset) { tags.push('<span class="micro-tag">' + escapeHtml(assetLabels[asset] || asset) + '</span>'); });
+        var sources = newsSourceItems(item);
+        var publisher = item.publisher || "来源未提供";
+        var authors = (item.authors || []).join("、") || "作者未提供";
+        var hasProjectTitle = Boolean(item.titleZh && item.titleZh !== item.title);
+        var displayTitle = hasProjectTitle ? item.titleZh : item.title;
+        var titleQualifier = hasProjectTitle ? " · 项目译题" : "";
+        var originalTitle = hasProjectTitle ? '<div class="news-detail-section"><p class="news-detail-label">原文标题</p><p class="news-detail-copy" lang="en">' + escapeHtml(item.title) + '</p></div>' : '';
+        var original = url ? '<a class="news-original-link" href="' + escapeHtml(url) + '" target="_blank" rel="noreferrer">打开原始报道</a>' : '原始报道链接不可用';
+        return '<details class="news-story"><summary><span class="news-story-rank">' + String(index + 1).padStart(2, "0") + '</span><span class="news-story-main"><span class="news-story-meta">' + escapeHtml(publisher) + ' · 报道 ' + escapeHtml(utcTimestamp(item.publishedAt)) + ' · ' + escapeHtml(confidenceLabels[item.confidence] || item.confidence) + escapeHtml(titleQualifier) + '</span><h3 class="news-story-title">' + escapeHtml(displayTitle) + '</h3><p class="news-story-lead">' + escapeHtml(firstSentence(item.summaryZh)) + '</p></span><span class="news-story-toggle" aria-hidden="true"></span></summary><div class="news-detail"><div class="news-detail-main"><div class="news-detail-section"><p class="news-detail-label">简要结论</p><p class="news-detail-copy">' + escapeHtml(proseCurrency(item.summaryZh || "文章目前不可访问，未生成推测性摘要。")) + '</p></div><div class="news-detail-section"><p class="news-detail-label">已确认事实</p><p class="news-detail-copy">' + escapeHtml(proseCurrency(item.factBasis || "尚无可独立确认的事实基础。")) + '</p></div><div class="news-detail-section inference"><p class="news-detail-label">项目判断</p><p class="news-detail-copy">' + escapeHtml(proseCurrency(item.inference || "当前没有可独立成立的项目判断。")) + '</p></div><div class="news-detail-section"><p class="news-detail-label">影响传导</p><p class="news-detail-copy">' + escapeHtml(proseCurrency(item.transmissionPath || "尚未形成可复核的传导路径。")) + '</p></div></div><aside class="news-detail-aside"><div class="news-detail-section"><p class="news-detail-label">相关范围与证据边界</p><div class="news-tags">' + tags.join("") + '</div></div><div class="news-detail-section"><p class="news-detail-label">来源与作者</p><p class="news-detail-copy">' + escapeHtml(publisher) + ' · ' + escapeHtml(authors) + '<br>' + original + '</p></div>' + originalTitle + '<div class="news-detail-section"><p class="news-detail-label">交叉核验</p><div class="news-source-list">' + (sources || '<div class="news-source-item">本次没有独立来源核验记录。</div>') + '</div></div></aside></div></details>';
+      }
+      function renderNewsList() {
+        var payload = phase3State.news || {};
+        var items = payload.items || [];
+        var summary = payload.viewSummaries && payload.viewSummaries.market_headlines || "本次尚未形成可复核的新闻主线。";
+        var available = (payload.status === "pass" || payload.status === "warning" || payload.status === "empty") && Boolean(payload.retrievedAt);
+        var body = !available ? '<div class="empty-state">' + escapeHtml(payload.message || "新闻尚未完成核验或暂时不可用。") + '</div>' : items.length ? '<div class="news-list">' + items.map(newsStory).join("") + '</div>' : '<div class="empty-state">本次没有达到入选门槛的已核验新闻。</div>';
+        document.getElementById("marketNews").innerHTML = '<div class="news-overview"><p class="news-overview-label">本轮主线</p><p class="news-overview-copy">' + escapeHtml(proseCurrency(summary)) + '</p></div>' + body;
+      }
+      function renderNews(payload) {
+        phase3State.news = payload;
+        var items = payload.items || [];
+        var pass = (payload.status === "pass" || payload.status === "warning" || payload.status === "empty") && Boolean(payload.retrievedAt);
+        var newsFreshness = MarketContent.freshness(payload.retrievedAt, 7);
+        setDot("newsDomainDot", pass && payload.status === "pass" && newsFreshness === "fresh" ? "pass" : pass ? "warning" : "fail");
+        document.getElementById("newsDomainValue").textContent = payload.retrievedAt ? utcTimestamp(payload.retrievedAt) : "新闻候选不可用";
+        document.getElementById("newsDomainNote").textContent = pass ? items.length + " 条入选" + (payload.portfolioValuationDate ? " · 独立新闻审阅锚点 " + utcDate(payload.portfolioValuationDate) : "") + (newsFreshness !== "fresh" ? " · 核验已过期或日期缺失" : "") : (payload.message || "未核验内容不会补位");
+        renderNewsList();
+      }
+
+      function normalizeSeries(series, requirePositive) {
+        var byDate = Object.create(null);
+        (series || []).forEach(function (point) {
+          var value = number(point && point[1]);
+          var date = point && String(point[0] || "");
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || value === null || (requirePositive && value <= 0)) return;
+          byDate[date] = [date, value];
+        });
+        return Object.keys(byDate).sort().map(function (date) { return byDate[date]; });
+      }
+      function alignSeries(left, right) {
+        var leftDates = new Set(left.map(function (point) { return point[0]; }));
+        var rightDates = new Set(right.map(function (point) { return point[0]; }));
+        return {
+          left: left.filter(function (point) { return rightDates.has(point[0]); }),
+          right: right.filter(function (point) { return leftDates.has(point[0]); })
+        };
+      }
+      function alignSeriesGroup(seriesList) {
+        var commonDates = null;
+        seriesList.filter(function (series) { return series.length; }).forEach(function (series) {
+          var dates = new Set(series.map(function (point) { return point[0]; }));
+          commonDates = commonDates === null
+            ? dates
+            : new Set(Array.from(commonDates).filter(function (date) { return dates.has(date); }));
+        });
+        return seriesList.map(function (series) {
+          return series.filter(function (point) { return commonDates && commonDates.has(point[0]); });
+        });
+      }
+      function chartDataset(label, series, color, extra) {
+        return Object.assign({ label: label, data: (series || []).filter(function (point) { return number(point[1]) !== null; }).map(function (point) { return { x: point[0], y: point[1] }; }), borderColor: color, backgroundColor: color, borderWidth: 1.7, pointRadius: 0, pointHoverRadius: 3, tension: .14 }, extra || {});
+      }
+      function destroyChart(id) { if (phase3State.charts[id]) phase3State.charts[id].destroy(); }
+      function makeChart(id, datasets, options) {
+        destroyChart(id);
+        phase3State.charts[id] = new Chart(document.getElementById(id), {
+          type: "line",
+          data: { datasets: datasets },
+          options: Object.assign({
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: "index", intersect: false },
+            plugins: { legend: { display: false }, tooltip: { enabled: false, external: window.marketChartTooltipExternal } },
+            scales: { x: { type: "category", grid: { display: false }, ticks: { color: colors.muted, maxTicksLimit: 8, font: { size: 9 } } }, y: { grid: { color: colors.grid }, ticks: { color: colors.muted, font: { size: 9 } } } }
+          }, options || {})
+        });
+      }
+      function renderImportantCharts() {
+        if (typeof Chart === "undefined") return;
+        var years = phase3State.years;
+        var risk = alignSeries(normalizeSeries(filterWindow(archive.series.vix, years)), normalizeSeries(filterWindow(archive.series.vxn, years)));
+        var vix = risk.left;
+        var vxn = risk.right;
+        var spx = normalizeSeries(filterWindow(archive.series.spx, years), true);
+        var ndx = normalizeSeries(filterWindow(archive.series.ndx, years), true);
+        var alignedRates = alignSeriesGroup([
+          normalizeSeries(filterWindow(archive.series.twoYear, years), true),
+          normalizeSeries(filterWindow(archive.series.tenYear, years), true),
+          normalizeSeries(filterWindow(archive.series.thirtyYear, years), true)
+        ]);
+        var twoYear = alignedRates[0];
+        var tenYear = alignedRates[1];
+        var thirtyYear = alignedRates[2];
+        var spxRegression = regression(spx);
+        var ndxRegression = regression(ndx);
+        makeChart("riskTemperatureChart", [chartDataset("VIX", vix, colors.navy), chartDataset("VXN", vxn, colors.gold)]);
+        makeChart("ratePathChart", [
+          chartDataset("DGS2", twoYear, colors.gold, { borderWidth: 1.35 }),
+          chartDataset("DGS10", tenYear, colors.blue, { borderWidth: 2.25 }),
+          chartDataset("DGS30", thirtyYear, colors.navy, { borderWidth: 1.35 })
+        ], {
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: false,
+              external: window.marketChartTooltipExternal
+            }
+          },
+          scales: { x: { type: "category", grid: { display: false }, ticks: { color: colors.muted, maxTicksLimit: 8, font: { size: 9 } } }, y: { grid: { color: colors.grid }, ticks: { color: colors.muted, callback: function (value) { return value + "%"; }, font: { size: 9 } } } }
+        });
+        makeChart("indexTrendChart", [chartDataset("SPX", spx, colors.navy), chartDataset("SPX 趋势", spxRegression.trend, colors.navy, { borderDash: [6,5], borderWidth: 1 }), chartDataset("NDX", ndx, colors.blue), chartDataset("NDX 趋势", ndxRegression.trend, colors.blue, { borderDash: [6,5], borderWidth: 1 })], { scales: { x: { type: "category", grid: { display: false }, ticks: { color: colors.muted, maxTicksLimit: 8, font: { size: 9 } } }, y: { type: "logarithmic", grid: { color: colors.grid }, ticks: { color: colors.muted, font: { size: 9 } } } } });
+        document.getElementById("riskTemperatureMeta").textContent = "VIX " + fixed(latest(vix) && latest(vix)[1], 2) + " · VXN " + fixed(latest(vxn) && latest(vxn)[1], 2) + " · " + utcDate(latest(vix) && latest(vix)[0]);
+        document.getElementById("ratePathMeta").textContent = "2Y " + fixed(latest(twoYear) && latest(twoYear)[1], 2) + "% · 10Y " + fixed(latest(tenYear) && latest(tenYear)[1], 2) + "% · 30Y " + fixed(latest(thirtyYear) && latest(thirtyYear)[1], 2) + "% · " + (twoYear.length && thirtyYear.length ? "共同截止 " : "已载入序列截止 ") + utcDate(latest(tenYear) && latest(tenYear)[0]);
+        document.getElementById("indexTrendMeta").textContent = "SPX 偏离 " + signedPercent(deviationPercent(spxRegression.deviation)) + " · NDX 偏离 " + signedPercent(deviationPercent(ndxRegression.deviation)) + " · " + utcDate(latest(spx) && latest(spx)[0]);
+        document.getElementById("importantWindowTitle").textContent = years + " 年观察窗口";
+        document.getElementById("importantWindowDetail").textContent = "波动率 " + vix.length + " 点 · 指数 " + spx.length + " 点 · 利率 " + tenYear.length + " 点";
+        document.querySelectorAll(".phase3-window").forEach(function (button) { button.classList.toggle("active", Number(button.dataset.years) === years); });
+      }
+
+      function renderArchive() {
+        document.getElementById("marketPageContext").dataset.contextState = archive.status === "unavailable" ? "unavailable" : "pass";
+        document.getElementById("freshnessValue").textContent = "市场归档已载入";
+        document.getElementById("freshnessNote").textContent = "生成 " + utcTimestamp(archive.generatedAt);
+        document.getElementById("footerTimestamp").textContent = "快照生成：" + utcTimestamp(archive.generatedAt);
+        renderMarketDomain();
+        renderEnvironment();
+        renderCnnWatch();
+        renderImportantCharts();
+      }
+      renderArchive();
+      document.addEventListener("keydown", function (event) {
+        var summary = event.target && event.target.closest ? event.target.closest("details > summary") : null;
+        if (!summary || !summary.parentElement.classList.contains("recent-events")) return;
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          summary.parentElement.open = !summary.parentElement.open;
+        }
+      });
+      document.querySelectorAll(".phase3-window").forEach(function (button) { button.addEventListener("click", function () { phase3State.years = Number(button.dataset.years); renderImportantCharts(); }); });
+      document.querySelectorAll(".cnn-window").forEach(function (button) { button.addEventListener("click", function () { phase3State.cnnRange = button.dataset.range; renderCnnWatch(); }); });
+
+      function loadStaticMarket() {
+        MarketContent.load(staticConfig).then(function (data) {
+          archive = data.snapshot;
+          renderArchive();
+          if (data.synthetic) document.getElementById("freshnessValue").textContent = "合成技术候选 · 非市场事实";
+          if (data.synthetic) document.getElementById("marketPageContext").dataset.contextState = "candidate";
+          renderMacro(data.calendar);
+          renderNews(data.news);
+          renderPortfolioDomain({ status: "unavailable" });
+        }).catch(function () {
+          archive = MarketContent.emptyArchive(); renderArchive();
+          document.getElementById("freshnessValue").textContent = staticConfig.mode === "market-static-candidate-v1" ? "合成技术候选 · 静态内容不可用" : "静态内容不可用";
+          renderMacro({ status: "unavailable" }); renderNews({ status: "unavailable" }); renderPortfolioDomain({ status: "unavailable" });
+        });
+      }
+      loadStaticMarket();
+    }());
+  </script>
+</body>
+</html>
