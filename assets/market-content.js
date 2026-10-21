@@ -85,7 +85,8 @@
     var u = new URL(value);
     return (!u.port || u.port === "443") && hosts.includes(u.hostname) && !u.hash && !u.search;
   }
-  function evidenceUrl(value, hosts, contract) {
+  function evidenceUrl(value, hosts, contract, calendarResult) {
+    if (!calendarResult && admittedUrl(value,hosts)) return true;
     if (!https(value)) return false;
     var u=new URL(value), rule=contract.calendarResultAdmissions && contract.calendarResultAdmissions.BLS || {};
     if (u.hostname!=='fred.stlouisfed.org') return admittedUrl(value,hosts);
@@ -100,6 +101,18 @@
     var expectation=event.expectation,result=event.result,definition=contract && contract.metricDefinitions && contract.metricDefinitions[metric.metricKey] || {unit:metric.unit,observationBasis:metric.metricKey+'_v1'};
     if (!expectation || expectation.status!=='reviewed' && expectation.status!=='reviewed_single_secondary' || !result || compareUtc(expectation.retrievedAt,result.publishedAt)>0 || !definition || metric.unit!==definition.unit || !metric.periodLabel) return null;
     return expectation.metrics.find(function(forecast){return forecast.metricKey===metric.metricKey && forecast.periodLabel===metric.periodLabel && forecast.unit===metric.unit && (forecast.observationBasis||definition.observationBasis)===(metric.observationBasis||definition.observationBasis) && (metric.observationBasis||definition.observationBasis)===definition.observationBasis && forecast.consensus!==null;}) || null;
+  }
+  function sameValue(a,b) {
+    if (a===b) return true;
+    if (!a || !b || typeof a!==typeof b || typeof a!=='object' || Array.isArray(a)!==Array.isArray(b)) return false;
+    var keys=Object.keys(a),other=Object.keys(b);
+    return keys.length===other.length && keys.every(function(k){return Object.prototype.hasOwnProperty.call(b,k) && sameValue(a[k],b[k]);});
+  }
+  function legacyProjectAssessment(item,contract) {
+    var result=item.result||{},expected=(contract.legacyProjectResultAssessments||{})[item.eventId];
+    if (item.expectation!==null || result.assessmentOrigin!=='reviewed_project_analysis' || !result.assessment || result.assessment.surpriseClass!=='not_comparable' || !expected) return false;
+    var current={};['eventId','originatingAgency','eventType','periodLabel','result'].forEach(function(k){current[k]=item[k];});
+    return sameValue(current,expected);
   }
   function validateCalendarItem(item, admission, sources, contract, verified) {
     var allowed=admission && admission.role==='official_secondary'?['single_official_secondary','cross_checked_primary','source_conflict','unverified']:['primary_official','cross_checked_primary','source_conflict','unverified'];
@@ -116,10 +129,11 @@
     if (['released','revised'].includes(item.status) && (!result || result.status!==item.status)) fail('calendar.result_missing');
     if (!result) return;
     var rule=contract.calendarResultAdmissions && contract.calendarResultAdmissions[item.originatingAgency] || {}, secondary=result.sourceRole==='official_secondary_result', hosts=(secondary?rule.secondaryHosts:rule.primaryHosts)||admission.hosts;
-    if (secondary && (result.sourceId!=='fred-bls-results'||!sources.has('fred-bls-results')) || !evidenceUrl(result.sourceUrl,hosts,contract) || !['released','revised'].includes(item.status) || compareUtc(result.publishedAt,result.retrievedAt)>0 || utcMicros(result.retrievedAt)>verified || !result.metrics.length || result.metrics.some(function(m){return m.actual===null;})) fail('calendar.result');
+    if (secondary && (result.sourceId!=='fred-bls-results'||!sources.has('fred-bls-results')) || !evidenceUrl(result.sourceUrl,hosts,contract,true) || !['released','revised'].includes(item.status) || compareUtc(result.publishedAt,result.retrievedAt)>0 || utcMicros(result.retrievedAt)>verified || !result.metrics.length || result.metrics.some(function(m){return m.actual===null;})) fail('calendar.result');
     var keys=new Set();result.metrics.forEach(function(m){var d=contract.metricDefinitions && contract.metricDefinitions[m.metricKey];if(keys.has(m.metricKey)||!d||m.unit!==d.unit||(m.observationBasis!==undefined&&m.observationBasis!==d.observationBasis))fail('calendar.result_metric');keys.add(m.metricKey);});
     var assessment=result.assessment,neutral=contract.publicResultAssessment;
     if (!neutral || Object.keys(assessment).length!==Object.keys(neutral).length || Object.keys(neutral).some(function(k){return assessment[k]!==neutral[k];})) {
+      if (!expectation && !legacyProjectAssessment(item,contract)) fail('calendar.expectation_assessment_pending');
       if (result.assessmentOrigin!=='reviewed_project_analysis' || !result.evidenceSha256 || !assessment.summaryZh.trim() || !assessment.transmissionPathZh.trim()) fail('calendar.expectation_assessment_pending');
       if (assessment.surpriseClass!=='not_comparable' && !result.metrics.some(function(m){return comparableMetric(item,m,contract);})) fail('calendar.comparison_basis');
     }
@@ -280,5 +294,5 @@
     if (manifest.synthetic !== (config.mode === "market-static-candidate-v1")) fail("mode_scope");
     result.synthetic = manifest.synthetic; return result;
   }
-  return { utcMicros: utcMicros, groupMeetings: groupMeetings, comparableMetric: comparableMetric, parseJson: parseJson, compareUtc: compareUtc, number: number, validDate: validDate, validUtc: validUtc, shape: shape, validateManifest: validateManifest, validateDomain: validateDomain, freshness: freshness, eventOrder: eventOrder, nextEvent: nextEvent, emptyArchive: emptyArchive, adapt: adapt, load: load };
+  return { legacyProjectAssessment: legacyProjectAssessment, utcMicros: utcMicros, groupMeetings: groupMeetings, comparableMetric: comparableMetric, parseJson: parseJson, compareUtc: compareUtc, number: number, validDate: validDate, validUtc: validUtc, shape: shape, validateManifest: validateManifest, validateDomain: validateDomain, freshness: freshness, eventOrder: eventOrder, nextEvent: nextEvent, emptyArchive: emptyArchive, adapt: adapt, load: load };
 }));
