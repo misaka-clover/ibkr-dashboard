@@ -682,188 +682,48 @@
         "items": {
           "type": "array",
           "items": {
+            "$ref": "newsItem"
+          },
+          "maxItems": 5
+        },
+        "archivedItems": {
+          "type": "array",
+          "items": {
+            "$ref": "newsItem"
+          },
+          "maxItems": 1000
+        },
+        "attributions": {
+          "type": "array",
+          "items": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "eventId": {
+              "sourceId": {
                 "type": "string",
                 "maxLength": 100
               },
-              "title": {
+              "text": {
                 "type": "string",
-                "maxLength": 500
+                "maxLength": 1000
               },
-              "titleZh": {
-                "type": "string",
-                "maxLength": 500
-              },
-              "publisher": {
-                "type": "string",
-                "maxLength": 150
-              },
-              "authors": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "maxLength": 150
-                },
-                "maxItems": 20
-              },
-              "canonicalUrl": {
+              "termsUrl": {
                 "type": "string",
                 "format": "https"
               },
-              "publishedAt": {
+              "modificationNotice": {
                 "type": "string",
-                "format": "utc"
-              },
-              "updatedAt": {
-                "anyOf": [
-                  {
-                    "type": "null"
-                  },
-                  {
-                    "type": "string",
-                    "format": "utc"
-                  }
-                ]
-              },
-              "verifiedAt": {
-                "type": "string",
-                "format": "utc"
-              },
-              "summaryZh": {
-                "type": "string",
-                "maxLength": 220
-              },
-              "factStatus": {
-                "enum": [
-                  "confirmed_primary",
-                  "reported_secondary",
-                  "mixed",
-                  "unverified"
-                ]
-              },
-              "factBasis": {
-                "type": "string",
-                "maxLength": 700
-              },
-              "inference": {
-                "type": "string",
-                "maxLength": 700
-              },
-              "relatedSymbols": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "maxLength": 30
-                },
-                "maxItems": 30
-              },
-              "relatedAssetClasses": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "maxLength": 60
-                },
-                "maxItems": 30
-              },
-              "transmissionPath": {
-                "type": "string",
-                "maxLength": 700
-              },
-              "horizon": {
-                "enum": [
-                  "immediate",
-                  "near_term",
-                  "medium_term",
-                  "structural"
-                ]
-              },
-              "confidence": {
-                "enum": [
-                  "high",
-                  "medium",
-                  "low"
-                ]
-              },
-              "sourceVerification": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "checkedAt": {
-                      "type": "string",
-                      "format": "utc"
-                    },
-                    "note": {
-                      "type": "string",
-                      "maxLength": 500
-                    },
-                    "sourceType": {
-                      "enum": [
-                        "issuer_official",
-                        "primary_official",
-                        "official_secondary",
-                        "media_crosscheck"
-                      ]
-                    },
-                    "status": {
-                      "enum": [
-                        "matched",
-                        "not_found",
-                        "conflict",
-                        "not_attempted"
-                      ]
-                    },
-                    "url": {
-                      "type": "string",
-                      "format": "https"
-                    }
-                  },
-                  "required": [
-                    "checkedAt",
-                    "note",
-                    "sourceType",
-                    "status",
-                    "url"
-                  ]
-                },
-                "maxItems": 20
-              },
-              "accessStatus": {
-                "enum": [
-                  "full_text_reviewed",
-                  "primary_release_reviewed",
-                  "metadata_only"
-                ]
+                "maxLength": 1000
               }
             },
             "required": [
-              "eventId",
-              "title",
-              "titleZh",
-              "publisher",
-              "authors",
-              "canonicalUrl",
-              "publishedAt",
-              "updatedAt",
-              "verifiedAt",
-              "summaryZh",
-              "factStatus",
-              "factBasis",
-              "inference",
-              "relatedSymbols",
-              "relatedAssetClasses",
-              "transmissionPath",
-              "horizon",
-              "confidence",
-              "sourceVerification",
-              "accessStatus"
+              "sourceId",
+              "text",
+              "termsUrl",
+              "modificationNotice"
             ]
           },
-          "maxItems": 5
+          "maxItems": 20
         }
       },
       "required": [
@@ -878,413 +738,48 @@
         "items": {
           "type": "array",
           "items": {
+            "$ref": "calendarItem"
+          },
+          "maxItems": 1000
+        },
+        "archivedItems": {
+          "type": "array",
+          "items": {
+            "$ref": "calendarItem"
+          },
+          "maxItems": 1000
+        },
+        "attributions": {
+          "type": "array",
+          "items": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "eventId": {
-                "type": "string",
-                "maxLength": 100
-              },
               "sourceId": {
                 "type": "string",
                 "maxLength": 100
               },
-              "title": {
+              "text": {
                 "type": "string",
-                "maxLength": 300
+                "maxLength": 1000
               },
-              "eventType": {
-                "type": "string",
-                "maxLength": 100
-              },
-              "scheduledAtUtc": {
-                "anyOf": [
-                  {
-                    "type": "null"
-                  },
-                  {
-                    "type": "string",
-                    "format": "utc"
-                  }
-                ]
-              },
-              "originalTimezone": {
-                "type": "string",
-                "maxLength": 100
-              },
-              "originalTimeLabel": {
-                "type": "string",
-                "maxLength": 150
-              },
-              "status": {
-                "enum": [
-                  "scheduled",
-                  "released",
-                  "revised",
-                  "delayed",
-                  "cancelled",
-                  "unverified"
-                ]
-              },
-              "importance": {
-                "enum": [
-                  "critical",
-                  "high"
-                ]
-              },
-              "periodLabel": {
-                "anyOf": [
-                  {
-                    "type": "null"
-                  },
-                  {
-                    "type": "string",
-                    "maxLength": 100
-                  }
-                ]
-              },
-              "sourceUrl": {
+              "termsUrl": {
                 "type": "string",
                 "format": "https"
               },
-              "lastVerifiedAt": {
+              "modificationNotice": {
                 "type": "string",
-                "format": "utc"
-              },
-              "verificationStatus": {
-                "enum": [
-                  "primary_official",
-                  "cross_checked_primary",
-                  "single_official_secondary",
-                  "source_conflict",
-                  "unverified"
-                ]
-              },
-              "originatingAgency": {
-                "type": "string",
-                "maxLength": 100
-              },
-              "originatingAgencyUrl": {
-                "type": "string",
-                "format": "https"
-              },
-              "expectation": {
-                "anyOf": [
-                  {
-                    "type": "null"
-                  },
-                  {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                      "provider": {
-                        "type": "string",
-                        "maxLength": 150
-                      },
-                      "sourceUrl": {
-                        "type": "string",
-                        "format": "https"
-                      },
-                      "sourcePageUpdatedDate": {
-                        "anyOf": [
-                          {
-                            "type": "null"
-                          },
-                          {
-                            "type": "string",
-                            "format": "date"
-                          }
-                        ]
-                      },
-                      "retrievedAt": {
-                        "type": "string",
-                        "format": "utc"
-                      },
-                      "status": {
-                        "enum": [
-                          "reviewed"
-                        ]
-                      },
-                      "metrics": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "additionalProperties": false,
-                          "properties": {
-                            "metricKey": {
-                              "type": "string",
-                              "maxLength": 80
-                            },
-                            "label": {
-                              "type": "string",
-                              "maxLength": 150
-                            },
-                            "periodLabel": {
-                              "anyOf": [
-                                {
-                                  "type": "null"
-                                },
-                                {
-                                  "type": "string",
-                                  "maxLength": 100
-                                }
-                              ]
-                            },
-                            "unit": {
-                              "type": "string",
-                              "maxLength": 30
-                            },
-                            "previous": {
-                              "anyOf": [
-                                {
-                                  "type": "null"
-                                },
-                                {
-                                  "type": "number"
-                                }
-                              ]
-                            },
-                            "consensus": {
-                              "anyOf": [
-                                {
-                                  "type": "null"
-                                },
-                                {
-                                  "type": "number"
-                                }
-                              ]
-                            },
-                            "forecast": {
-                              "anyOf": [
-                                {
-                                  "type": "null"
-                                },
-                                {
-                                  "type": "number"
-                                }
-                              ]
-                            }
-                          },
-                          "required": [
-                            "metricKey",
-                            "label",
-                            "periodLabel",
-                            "unit",
-                            "previous",
-                            "consensus",
-                            "forecast"
-                          ]
-                        },
-                        "maxItems": 20
-                      }
-                    },
-                    "required": [
-                      "provider",
-                      "sourceUrl",
-                      "sourcePageUpdatedDate",
-                      "retrievedAt",
-                      "status",
-                      "metrics"
-                    ]
-                  }
-                ]
-              },
-              "result": {
-                "anyOf": [
-                  {
-                    "type": "null"
-                  },
-                  {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                      "sourceUrl": {
-                        "type": "string",
-                        "format": "https"
-                      },
-                      "sourceRole": {
-                        "enum": [
-                          "official_primary",
-                          "official_secondary_result"
-                        ]
-                      },
-                      "publishedAt": {
-                        "type": "string",
-                        "format": "utc"
-                      },
-                      "retrievedAt": {
-                        "type": "string",
-                        "format": "utc"
-                      },
-                      "status": {
-                        "enum": [
-                          "released",
-                          "revised"
-                        ]
-                      },
-                      "metrics": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "additionalProperties": false,
-                          "properties": {
-                            "metricKey": {
-                              "type": "string",
-                              "maxLength": 80
-                            },
-                            "label": {
-                              "type": "string",
-                              "maxLength": 150
-                            },
-                            "periodLabel": {
-                              "anyOf": [
-                                {
-                                  "type": "null"
-                                },
-                                {
-                                  "type": "string",
-                                  "maxLength": 100
-                                }
-                              ]
-                            },
-                            "unit": {
-                              "type": "string",
-                              "maxLength": 30
-                            },
-                            "actual": {
-                              "anyOf": [
-                                {
-                                  "type": "null"
-                                },
-                                {
-                                  "type": "number"
-                                }
-                              ]
-                            },
-                            "previous": {
-                              "anyOf": [
-                                {
-                                  "type": "null"
-                                },
-                                {
-                                  "type": "number"
-                                }
-                              ]
-                            },
-                            "revisedPrevious": {
-                              "anyOf": [
-                                {
-                                  "type": "null"
-                                },
-                                {
-                                  "type": "number"
-                                }
-                              ]
-                            }
-                          },
-                          "required": [
-                            "metricKey",
-                            "label",
-                            "periodLabel",
-                            "unit",
-                            "actual",
-                            "previous",
-                            "revisedPrevious"
-                          ]
-                        },
-                        "maxItems": 20
-                      },
-                      "assessment": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "properties": {
-                          "surpriseClass": {
-                            "enum": [
-                              "not_comparable"
-                            ]
-                          },
-                          "summaryZh": {
-                            "enum": [
-                              "官方结果已核验；暂无获准公开的一致预期，不进行预期差比较。"
-                            ]
-                          },
-                          "transmissionPathZh": {
-                            "enum": [
-                              "仅记录官方事实，影响判断待独立证据补充。"
-                            ]
-                          },
-                          "horizon": {
-                            "enum": [
-                              "near_term"
-                            ]
-                          },
-                          "confidence": {
-                            "enum": [
-                              "low"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "surpriseClass",
-                          "summaryZh",
-                          "transmissionPathZh",
-                          "horizon",
-                          "confidence"
-                        ]
-                      }
-                    },
-                    "required": [
-                      "sourceUrl",
-                      "sourceRole",
-                      "publishedAt",
-                      "retrievedAt",
-                      "status",
-                      "metrics",
-                      "assessment"
-                    ]
-                  }
-                ]
-              },
-              "meetingMaterials": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "maxLength": 300
-                    }
-                  },
-                  "required": [
-                    "label"
-                  ]
-                },
-                "maxItems": 10
+                "maxLength": 1000
               }
             },
             "required": [
-              "eventId",
               "sourceId",
-              "title",
-              "eventType",
-              "scheduledAtUtc",
-              "originalTimezone",
-              "originalTimeLabel",
-              "status",
-              "importance",
-              "periodLabel",
-              "sourceUrl",
-              "lastVerifiedAt",
-              "verificationStatus",
-              "originatingAgency",
-              "originatingAgencyUrl",
-              "expectation",
-              "result",
-              "meetingMaterials"
+              "text",
+              "termsUrl",
+              "modificationNotice"
             ]
           },
-          "maxItems": 1000
+          "maxItems": 20
         }
       },
       "required": [
@@ -1557,9 +1052,675 @@
         "horizon",
         "earningsBasis"
       ]
+    },
+    "newsItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "titleZh": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "publisher": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 150
+          },
+          "maxItems": 20
+        },
+        "canonicalUrl": {
+          "type": "string",
+          "format": "https"
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "utc"
+        },
+        "updatedAt": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "format": "utc"
+            }
+          ]
+        },
+        "verifiedAt": {
+          "type": "string",
+          "format": "utc"
+        },
+        "summaryZh": {
+          "type": "string",
+          "maxLength": 220
+        },
+        "factStatus": {
+          "enum": [
+            "confirmed_primary",
+            "reported_secondary",
+            "mixed",
+            "unverified"
+          ]
+        },
+        "factBasis": {
+          "type": "string",
+          "maxLength": 700
+        },
+        "inference": {
+          "type": "string",
+          "maxLength": 700
+        },
+        "relatedSymbols": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 30
+          },
+          "maxItems": 30
+        },
+        "relatedAssetClasses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "maxItems": 30
+        },
+        "transmissionPath": {
+          "type": "string",
+          "maxLength": 700
+        },
+        "horizon": {
+          "enum": [
+            "immediate",
+            "near_term",
+            "medium_term",
+            "structural"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "sourceVerification": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "checkedAt": {
+                "type": "string",
+                "format": "utc"
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 500
+              },
+              "sourceType": {
+                "enum": [
+                  "issuer_official",
+                  "primary_official",
+                  "official_secondary",
+                  "media_crosscheck"
+                ]
+              },
+              "status": {
+                "enum": [
+                  "matched",
+                  "not_found",
+                  "conflict",
+                  "not_attempted"
+                ]
+              },
+              "url": {
+                "type": "string",
+                "format": "https"
+              }
+            },
+            "required": [
+              "checkedAt",
+              "note",
+              "sourceType",
+              "status",
+              "url"
+            ]
+          },
+          "maxItems": 20
+        },
+        "accessStatus": {
+          "enum": [
+            "full_text_reviewed",
+            "primary_release_reviewed",
+            "metadata_only"
+          ]
+        }
+      },
+      "required": [
+        "eventId",
+        "title",
+        "titleZh",
+        "publisher",
+        "authors",
+        "canonicalUrl",
+        "publishedAt",
+        "updatedAt",
+        "verifiedAt",
+        "summaryZh",
+        "factStatus",
+        "factBasis",
+        "inference",
+        "relatedSymbols",
+        "relatedAssetClasses",
+        "transmissionPath",
+        "horizon",
+        "confidence",
+        "sourceVerification",
+        "accessStatus"
+      ]
+    },
+    "calendarItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "sourceId": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "eventType": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "scheduledAtUtc": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "format": "utc"
+            }
+          ]
+        },
+        "originalTimezone": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "originalTimeLabel": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "released",
+            "revised",
+            "delayed",
+            "cancelled",
+            "unverified"
+          ]
+        },
+        "importance": {
+          "enum": [
+            "critical",
+            "high"
+          ]
+        },
+        "periodLabel": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "maxLength": 100
+            }
+          ]
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "https"
+        },
+        "lastVerifiedAt": {
+          "type": "string",
+          "format": "utc"
+        },
+        "verificationStatus": {
+          "enum": [
+            "primary_official",
+            "cross_checked_primary",
+            "single_official_secondary",
+            "source_conflict",
+            "unverified"
+          ]
+        },
+        "originatingAgency": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "originatingAgencyUrl": {
+          "type": "string",
+          "format": "https"
+        },
+        "expectation": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "provider": {
+                  "type": "string",
+                  "maxLength": 150
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "https"
+                },
+                "sourcePageUpdatedDate": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "string",
+                      "format": "date"
+                    }
+                  ]
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "utc"
+                },
+                "status": {
+                  "enum": [
+                    "reviewed"
+                  ]
+                },
+                "metrics": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "metricKey": {
+                        "type": "string",
+                        "maxLength": 80
+                      },
+                      "label": {
+                        "type": "string",
+                        "maxLength": 150
+                      },
+                      "periodLabel": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "string",
+                            "maxLength": 100
+                          }
+                        ]
+                      },
+                      "unit": {
+                        "type": "string",
+                        "maxLength": 30
+                      },
+                      "previous": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
+                      },
+                      "consensus": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
+                      },
+                      "forecast": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
+                      },
+                      "observationBasis": {
+                        "type": "string",
+                        "maxLength": 100
+                      }
+                    },
+                    "required": [
+                      "metricKey",
+                      "label",
+                      "periodLabel",
+                      "unit",
+                      "previous",
+                      "consensus",
+                      "forecast"
+                    ]
+                  },
+                  "maxItems": 20
+                }
+              },
+              "required": [
+                "provider",
+                "sourceUrl",
+                "sourcePageUpdatedDate",
+                "retrievedAt",
+                "status",
+                "metrics"
+              ]
+            }
+          ]
+        },
+        "result": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "https"
+                },
+                "sourceRole": {
+                  "enum": [
+                    "official_primary",
+                    "official_secondary_result"
+                  ]
+                },
+                "publishedAt": {
+                  "type": "string",
+                  "format": "utc"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "utc"
+                },
+                "status": {
+                  "enum": [
+                    "released",
+                    "revised"
+                  ]
+                },
+                "metrics": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "metricKey": {
+                        "type": "string",
+                        "maxLength": 80
+                      },
+                      "label": {
+                        "type": "string",
+                        "maxLength": 150
+                      },
+                      "periodLabel": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "string",
+                            "maxLength": 100
+                          }
+                        ]
+                      },
+                      "unit": {
+                        "type": "string",
+                        "maxLength": 30
+                      },
+                      "actual": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
+                      },
+                      "previous": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
+                      },
+                      "revisedPrevious": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "number"
+                          }
+                        ]
+                      },
+                      "observationBasis": {
+                        "type": "string",
+                        "maxLength": 100
+                      }
+                    },
+                    "required": [
+                      "metricKey",
+                      "label",
+                      "periodLabel",
+                      "unit",
+                      "actual",
+                      "previous",
+                      "revisedPrevious"
+                    ]
+                  },
+                  "maxItems": 20
+                },
+                "assessment": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "surpriseClass": {
+                      "enum": [
+                        "stronger_than_expected",
+                        "broadly_in_line",
+                        "weaker_than_expected",
+                        "mixed",
+                        "not_comparable"
+                      ]
+                    },
+                    "summaryZh": {
+                      "type": "string",
+                      "maxLength": 2000
+                    },
+                    "transmissionPathZh": {
+                      "type": "string",
+                      "maxLength": 2500
+                    },
+                    "horizon": {
+                      "enum": [
+                        "immediate",
+                        "near_term",
+                        "medium_term"
+                      ]
+                    },
+                    "confidence": {
+                      "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "surpriseClass",
+                    "summaryZh",
+                    "transmissionPathZh",
+                    "horizon",
+                    "confidence"
+                  ]
+                },
+                "assessmentOrigin": {
+                  "enum": [
+                    "reviewed_project_analysis"
+                  ]
+                },
+                "evidenceSha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "sourceId": {
+                  "type": "string",
+                  "maxLength": 100
+                }
+              },
+              "required": [
+                "sourceUrl",
+                "sourceRole",
+                "publishedAt",
+                "retrievedAt",
+                "status",
+                "metrics",
+                "assessment"
+              ]
+            }
+          ]
+        },
+        "meetingMaterials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "eventType": {
+                "type": "string",
+                "maxLength": 80
+              },
+              "scheduledAtUtc": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "format": "utc"
+                  }
+                ]
+              },
+              "status": {
+                "enum": [
+                  "scheduled",
+                  "released",
+                  "revised",
+                  "delayed",
+                  "cancelled",
+                  "unverified"
+                ]
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "https"
+              }
+            },
+            "required": [
+              "label"
+            ]
+          },
+          "maxItems": 10
+        },
+        "identityPeriod": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "sourceReportedStatus": {
+          "enum": [
+            "scheduled",
+            "released",
+            "revised",
+            "delayed",
+            "cancelled",
+            "unverified"
+          ]
+        },
+        "resultAvailability": {
+          "enum": [
+            "not_collected",
+            "available",
+            "not_applicable"
+          ]
+        }
+      },
+      "required": [
+        "eventId",
+        "sourceId",
+        "title",
+        "eventType",
+        "scheduledAtUtc",
+        "originalTimezone",
+        "originalTimeLabel",
+        "status",
+        "importance",
+        "periodLabel",
+        "sourceUrl",
+        "lastVerifiedAt",
+        "verificationStatus",
+        "originatingAgency",
+        "originatingAgencyUrl",
+        "expectation",
+        "result",
+        "meetingMaterials"
+      ]
     }
   },
-  "admissionRevision": 2,
+  "admissionRevision": 3,
   "sourceAdmissions": {
     "fred-dgs2": {
       "name": "FRED DGS2",
@@ -1662,6 +1823,39 @@
         "www.census.gov"
       ],
       "publicUseEvidence": "https://www.copyright.gov/title17/92chap1.html#105"
+    },
+    "nyfed-economic-calendar": {
+      "name": "New York Fed Economic Indicators Calendar",
+      "url": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
+      "role": "official_secondary",
+      "redistribution": "public",
+      "agency": "BLS",
+      "uses": [
+        "calendar"
+      ],
+      "hosts": [
+        "www.newyorkfed.org"
+      ],
+      "originatingHosts": [
+        "www.bls.gov"
+      ],
+      "publicUseEvidence": "https://www.newyorkfed.org/privacy/termsofuse",
+      "attribution": "© 2026 Federal Reserve Bank of New York. Content from the New York Fed subject to the Terms of Use at newyorkfed.org.",
+      "modifiedContentLabel": "项目规范化排期；原始发布机构为 BLS；不代表纽约联储认可。"
+    },
+    "fred-bls-results": {
+      "name": "BLS official observations via FRED",
+      "url": "https://fred.stlouisfed.org/",
+      "role": "official_secondary",
+      "redistribution": "public",
+      "agency": "BLS",
+      "uses": [
+        "result"
+      ],
+      "hosts": [
+        "fred.stlouisfed.org"
+      ],
+      "publicUseEvidence": "https://fred.stlouisfed.org/legal/"
     }
   },
   "newsPublishers": {
@@ -1828,5 +2022,141 @@
     "transmissionPathZh": "仅记录官方事实，影响判断待独立证据补充。",
     "horizon": "near_term",
     "confidence": "low"
+  },
+  "calendarResultAdmissions": {
+    "Federal Reserve": {
+      "primaryHosts": [
+        "www.federalreserve.gov"
+      ],
+      "secondaryHosts": [],
+      "publicUseEvidence": "https://www.federalreserve.gov/disclaimer.htm"
+    },
+    "BEA": {
+      "primaryHosts": [
+        "www.bea.gov"
+      ],
+      "secondaryHosts": [],
+      "publicUseEvidence": "https://www.bea.gov/help/faq/147"
+    },
+    "Census": {
+      "primaryHosts": [
+        "www.census.gov",
+        "www2.census.gov"
+      ],
+      "secondaryHosts": [],
+      "publicUseEvidence": "https://www.census.gov/about/policies/quality/copyright.html"
+    },
+    "BLS": {
+      "primaryHosts": [
+        "www.bls.gov"
+      ],
+      "secondaryHosts": [
+        "fred.stlouisfed.org"
+      ],
+      "publicUseEvidence": "https://www.bls.gov/bls/linksite.htm",
+      "secondaryPaths": [
+        "/graph/fredgraph.csv"
+      ],
+      "series": [
+        "PAYEMS",
+        "UNRATE",
+        "CES0500000003",
+        "CPIAUCSL",
+        "CPIAUCNS",
+        "CPILFESL",
+        "CPILFENS",
+        "JTSJOL"
+      ],
+      "secondaryPublicUseEvidence": "https://fred.stlouisfed.org/legal/",
+      "attribution": "Source: U.S. Bureau of Labor Statistics via FRED, Federal Reserve Bank of St. Louis. Derived changes are calculated from the identified BLS series; no Federal Reserve endorsement."
+    }
+  },
+  "expectationSourceAdmissions": {},
+  "expectationPendingSources": {
+    "Trading Economics": {
+      "status": "pending_public_display_or_redistribution_permission",
+      "termsUrl": "https://tradingeconomics.com/terms.aspx",
+      "userDisplayAuthorizedOn": "2026-10-21",
+      "providerLicenseConfirmed": false,
+      "localHistoricalSetsRetained": true
+    }
+  },
+  "metricDefinitions": {
+    "nonfarm_payrolls": {
+      "unit": "K",
+      "observationBasis": "nonfarm_payrolls_v1"
+    },
+    "unemployment_rate": {
+      "unit": "%",
+      "observationBasis": "unemployment_rate_v1"
+    },
+    "average_hourly_earnings_mom": {
+      "unit": "%",
+      "observationBasis": "average_hourly_earnings_mom_v1"
+    },
+    "cpi_mom": {
+      "unit": "%",
+      "observationBasis": "cpi_mom_v1"
+    },
+    "core_cpi_mom": {
+      "unit": "%",
+      "observationBasis": "core_cpi_mom_v1"
+    },
+    "cpi_yoy": {
+      "unit": "%",
+      "observationBasis": "cpi_yoy_v1"
+    },
+    "core_cpi_yoy": {
+      "unit": "%",
+      "observationBasis": "core_cpi_yoy_v1"
+    },
+    "jolts_openings": {
+      "unit": "K",
+      "observationBasis": "jolts_openings_v1"
+    },
+    "personal_income_mom": {
+      "unit": "%",
+      "observationBasis": "personal_income_mom_v1"
+    },
+    "personal_spending_mom": {
+      "unit": "%",
+      "observationBasis": "personal_spending_mom_v1"
+    },
+    "pce_mom": {
+      "unit": "%",
+      "observationBasis": "pce_mom_v1"
+    },
+    "core_pce_mom": {
+      "unit": "%",
+      "observationBasis": "core_pce_mom_v1"
+    },
+    "pce_yoy": {
+      "unit": "%",
+      "observationBasis": "pce_yoy_v1"
+    },
+    "core_pce_yoy": {
+      "unit": "%",
+      "observationBasis": "core_pce_yoy_v1"
+    },
+    "real_gdp_qoq_saar": {
+      "unit": "%",
+      "observationBasis": "real_gdp_qoq_saar_v1"
+    },
+    "retail_sales_mom": {
+      "unit": "%",
+      "observationBasis": "retail_sales_mom_v1"
+    },
+    "retail_sales_control_group_mom": {
+      "unit": "%",
+      "observationBasis": "retail_sales_control_group_mom_v1"
+    },
+    "fed_funds_target_lower": {
+      "unit": "%",
+      "observationBasis": "fed_funds_target_lower_v1"
+    },
+    "fed_funds_target_upper": {
+      "unit": "%",
+      "observationBasis": "fed_funds_target_upper_v1"
+    }
   }
 }
