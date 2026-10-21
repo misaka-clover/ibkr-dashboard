@@ -190,7 +190,8 @@
       if (payload.status === "pass" && Object.values(payload.data.series).some(function (s) { return !s.points.length; })) fail("snapshot.incomplete");
     } else {
       var ids = new Set(), items = payload.data.items.concat(payload.data.archivedItems || []);
-      if ((payload.status === "empty" || payload.status === "unavailable") && items.length || payload.status === "pass" && !items.length) fail(domain + ".empty");
+      var windowItems=domain === "news" ? payload.data.items : items;
+      if (payload.status === "empty" && windowItems.length || payload.status === "unavailable" && items.length || payload.status === "pass" && !windowItems.length) fail(domain + ".empty");
       items.forEach(function (item) {
         if (!item.eventId.trim() || ids.has(item.eventId)) fail(domain + ".duplicate"); ids.add(item.eventId);
         if (domain === "news") {
