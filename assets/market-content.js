@@ -86,10 +86,10 @@
     return (!u.port || u.port === "443") && hosts.includes(u.hostname) && !u.hash && !u.search;
   }
   function evidenceUrl(value, hosts, contract) {
-    if (admittedUrl(value,hosts)) return true;
     if (!https(value)) return false;
     var u=new URL(value), rule=contract.calendarResultAdmissions && contract.calendarResultAdmissions.BLS || {};
-    if (u.hostname!=='fred.stlouisfed.org' || !hosts.includes(u.hostname) || u.port && u.port!=='443' || u.hash || !(rule.secondaryPaths||[]).includes(u.pathname)) return false;
+    if (u.hostname!=='fred.stlouisfed.org') return admittedUrl(value,hosts);
+    if (!hosts.includes(u.hostname) || u.port && u.port!=='443' || u.hash || !(rule.secondaryPaths||[]).includes(u.pathname)) return false;
     var keys=[...u.searchParams.keys()];
     if (keys.some(function(k){return !['id','cosd','coed'].includes(k) || u.searchParams.getAll(k).length!==1;}) || !u.searchParams.get('id')) return false;
     var series=u.searchParams.get('id').split(',');
@@ -117,7 +117,7 @@
     if (!result) return;
     var rule=contract.calendarResultAdmissions && contract.calendarResultAdmissions[item.originatingAgency] || {}, secondary=result.sourceRole==='official_secondary_result', hosts=(secondary?rule.secondaryHosts:rule.primaryHosts)||admission.hosts;
     if (secondary && (result.sourceId!=='fred-bls-results'||!sources.has('fred-bls-results')) || !evidenceUrl(result.sourceUrl,hosts,contract) || !['released','revised'].includes(item.status) || compareUtc(result.publishedAt,result.retrievedAt)>0 || utcMicros(result.retrievedAt)>verified || !result.metrics.length || result.metrics.some(function(m){return m.actual===null;})) fail('calendar.result');
-    var keys=new Set();result.metrics.forEach(function(m){var d=contract.metricDefinitions && contract.metricDefinitions[m.metricKey];if(keys.has(m.metricKey)||!d||m.unit!==d.unit)fail('calendar.result_metric');keys.add(m.metricKey);});
+    var keys=new Set();result.metrics.forEach(function(m){var d=contract.metricDefinitions && contract.metricDefinitions[m.metricKey];if(keys.has(m.metricKey)||!d||m.unit!==d.unit||(m.observationBasis!==undefined&&m.observationBasis!==d.observationBasis))fail('calendar.result_metric');keys.add(m.metricKey);});
     var assessment=result.assessment,neutral=contract.publicResultAssessment;
     if (!neutral || Object.keys(assessment).length!==Object.keys(neutral).length || Object.keys(neutral).some(function(k){return assessment[k]!==neutral[k];})) {
       if (result.assessmentOrigin!=='reviewed_project_analysis' || !result.evidenceSha256 || !assessment.summaryZh.trim() || !assessment.transmissionPathZh.trim()) fail('calendar.expectation_assessment_pending');
@@ -209,10 +209,11 @@
         }
       });
     }
-    if (production && domain==='calendar') {
+    if (production && (domain==='calendar'||domain==='news')) {
       var expected=[],all=payload.data.items.concat(payload.data.archivedItems||[]);
-      new Set(all.map(function(e){return e.sourceId;})).forEach(function(id){var a=sourceAdmission(sources.get(id),contract);if(a.attribution)expected.push([id,a.attribution,a.publicUseEvidence,a.modifiedContentLabel]);});
-      if(all.some(function(e){return e.result&&e.result.sourceRole==='official_secondary_result';})){var a=contract.calendarResultAdmissions.BLS;expected.push(['fred-bls-results',a.attribution,a.secondaryPublicUseEvidence,'项目计算的 BLS 统计变化；通过 FRED 取得，不代表直接审阅 BLS 发布页。']);}
+      if(domain==='calendar') new Set(all.map(function(e){return e.sourceId;})).forEach(function(id){var a=sourceAdmission(sources.get(id),contract);if(a.attribution)expected.push([id,a.attribution,a.publicUseEvidence,a.modifiedContentLabel]);});
+      if(domain==='calendar' && all.some(function(e){return e.result&&e.result.sourceRole==='official_secondary_result';})){var a=contract.calendarResultAdmissions.BLS;expected.push(['fred-bls-results',a.attribution,a.secondaryPublicUseEvidence,'项目计算的 BLS 统计变化；通过 FRED 取得，不代表直接审阅 BLS 发布页。']);}
+      if((payload.data.attributions||[]).length!==expected.length)fail('source_attribution');
       expected.forEach(function(a){if(!(payload.data.attributions||[]).some(function(x){return x.sourceId===a[0]&&x.text===a[1]&&x.termsUrl===a[2]&&x.modificationNotice===a[3];}))fail('source_attribution');});
     }
 
@@ -263,7 +264,8 @@
       return archive;
     }
     if (domain === "news") return { status: payload.status, retrievedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, viewSummaries: { market_headlines: payload.data.summaryZh }, items: payload.data.items, archivedItems: payload.data.archivedItems || [], attributions: payload.data.attributions || [] };
-    return { status: payload.status, verifiedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, attributions: payload.data.attributions || [], events: { upcoming: payload.data.items.map(function (event) { return event.expectation && event.expectation.status === "reviewed" ? Object.assign({}, event, { expectation: Object.assign({}, event.expectation, { status: "reviewed_single_secondary" }) }) : event; }), recent: [], undated: [] } };
+    function adaptedEvent(event) { return event.expectation && event.expectation.status === "reviewed" ? Object.assign({}, event, { expectation: Object.assign({}, event.expectation, { status: "reviewed_single_secondary" }) }) : event; }
+    return { status: payload.status, verifiedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, attributions: payload.data.attributions || [], events: { upcoming: payload.data.items.map(adaptedEvent), recent: (payload.data.archivedItems || []).map(adaptedEvent), undated: [] } };
   }
   async function digest(bytes) { var hash = await globalThis.crypto.subtle.digest("SHA-256", bytes); return Array.from(new Uint8Array(hash), function (x) { return x.toString(16).padStart(2, "0"); }).join(""); }
   async function load(config) {
