@@ -250,7 +250,7 @@
   function groupMeetings(events) {
     var labels={fomc_sep:'经济预测摘要',fomc_press_conference:'主席发布会',fomc_minutes:'会议纪要'},decisions=new Map();
     events.forEach(function(e){if(e.eventType==='fomc_decision' && (e.identityPeriod||e.periodLabel))decisions.set(e.identityPeriod||e.periodLabel,e);});
-    var grouped=[];events.forEach(function(e){var decision=labels[e.eventType]&&decisions.get(e.identityPeriod||e.periodLabel);if(!decision){grouped.push(e);return;}var material={label:labels[e.eventType],eventType:e.eventType,scheduledAtUtc:e.scheduledAtUtc,status:e.status,sourceUrl:e.sourceUrl};decision.meetingMaterials=(decision.meetingMaterials||[]).filter(function(m){return m.eventType!==e.eventType;}).concat([material]);});return grouped;
+    var grouped=[],clocks=new Map();events.forEach(function(e){var decision=labels[e.eventType]&&decisions.get(e.identityPeriod||e.periodLabel);if(!decision){grouped.push(e);return;}var material={label:labels[e.eventType],eventType:e.eventType,scheduledAtUtc:e.scheduledAtUtc,status:e.status,sourceUrl:e.sourceUrl},materials=decision.meetingMaterials||[],previous=materials.find(function(m){return m.eventType===e.eventType;}),known=clocks.get(decision)||new Map(),incoming=validUtc(e.lastVerifiedAt)?utcMicros(e.lastVerifiedAt):null,prior=known.has(e.eventType)?known.get(e.eventType):(validUtc(decision.lastVerifiedAt)?utcMicros(decision.lastVerifiedAt):null);if(!previous || incoming!==null&&prior!==null&&incoming>=prior){decision.meetingMaterials=materials.filter(function(m){return m.eventType!==e.eventType;}).concat([material]);known.set(e.eventType,incoming);clocks.set(decision,known);}});return grouped;
   }
   function nextEvent(events, now) {
     var clock = now === undefined ? Date.now() : +new Date(now);
