@@ -481,6 +481,11 @@
     .valuation-gap { font-size: 11px; white-space: nowrap; }
     .valuation-reference { margin-top: 5px; color: var(--muted); font-size: 9px; line-height: 1.45; }
     .valuation-assumptions { margin-top: 6px; color: var(--muted); font: 9px/1.5 var(--mono); }
+    .valuation-context { margin: 0; padding: 12px 14px; border: 1px solid #dfe5e9; border-top: 0; background: #fbfcfd; }
+    .valuation-context-row { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 14px; align-items: start; }
+    .valuation-context-row + .valuation-context-row { margin-top: 8px; }
+    .valuation-context-label { color: var(--muted); font-size: 10px; font-weight: 700; }
+    .valuation-context-copy { margin: 0; color: #52616d; font-size: 11px; line-height: 1.75; overflow-wrap: anywhere; }
     .monitoring-list { display: grid; gap: 1px; margin-top: 18px; border: 1px solid #dfe5e9; background: #dfe5e9; }
     .monitoring-item { display: grid; grid-template-columns: minmax(180px, .7fr) minmax(0, 1.3fr); gap: 18px; padding: 13px 14px; background: #fff; }
     .monitoring-metric { color: var(--navy); font-size: 11px; font-weight: 750; }
@@ -596,6 +601,7 @@
       .price-window-nav-btn.older { left: 2px; }
       .price-window-nav-btn.newer { right: 2px; }
       .valuation-grid { grid-template-columns: 1fr; }
+      .valuation-context-row { grid-template-columns: 1fr; gap: 4px; }
       .monitoring-item { grid-template-columns: 1fr; gap: 8px; }
       .external-view { grid-template-columns: 1fr; }
       .external-view-link { justify-self: start; }
@@ -679,7 +685,7 @@
   <main class="shell">
     <nav class="workspace-nav" aria-label="全局导航">
       <a class="workspace-brand" href="index.html" aria-label="投资组合透明计划首页">
-        <img class="workspace-brand-mark" src="assets/site-brand-v1.png?v=591e1d44d12f" width="35" height="35" alt="" aria-hidden="true" style="display:block;object-fit:contain;border:0;background:transparent;flex:0 0 35px">
+        <img class="workspace-brand-mark" src="assets/site-brand-v1.png?v=591e1d44d12f" width="35" height="35" alt="" aria-hidden="true">
         <span class="workspace-brand-text"><span class="workspace-brand-title">投资组合透明计划</span><span class="workspace-brand-subtitle">PORTFOLIO TRANSPARENCY PROGRAM</span></span>
       </a>
       <div class="workspace-nav-scroll">
@@ -689,7 +695,9 @@
           <a class="workspace-nav-link" href="dashboard.html">投资组合</a>
           <a class="workspace-nav-link" href="instrument.html" aria-current="page">证券研究</a>
           <!-- FAMILY:INSTRUMENT_DECISION_NAV:START --><span class="workspace-nav-link" aria-disabled="true">交易决策</span><!-- FAMILY:INSTRUMENT_DECISION_NAV:END -->
-          <!-- FAMILY:INSTRUMENT_MARKET_NAV:START --><a class="workspace-nav-link" href="market.html">市场监控</a><!-- FAMILY:INSTRUMENT_MARKET_NAV:END -->
+          <!-- FAMILY:INSTRUMENT_MARKET_NAV:START -->
+          <a class="workspace-nav-link" href="market.html">市场监控</a>
+          <!-- FAMILY:INSTRUMENT_MARKET_NAV:END -->
           <span class="workspace-nav-link" aria-disabled="true">期权雷达</span>
           <!-- FAMILY:INSTRUMENT_HISTORY_NAV:START -->
           <a class="workspace-nav-link" href="history.html">历史档案</a>
@@ -1031,7 +1039,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.9.8</span><time class="footer-meta-value" datetime="2026-10-22T03:14:41Z">2026-10-22 03:14 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.10.0</span><time class="footer-meta-value" datetime="2026-10-22T15:31:59Z">2026-10-22 15:31 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1341,6 +1349,7 @@
           consumer_defensive_quality_holding: "组合角色：消费防守型优质持仓",
           eight_security_fixed_income_barbell_with_short_term_bill_layer: "组合角色：含短期国库券层的八券固定收益杠铃",
           long_term_diversified_capital_allocator_equity: "组合角色：长期多元资本配置型权益",
+          "金融平台成长股；角色暂定，暴露于客户交易、利差及金融科技估值共同因子": "组合角色：金融平台成长股（暂定）",
           strategic_gold_tail_risk_buffer: "组合角色：战略黄金与尾部风险缓冲"
         }[value] || "组合角色：标签待适配";
       }
@@ -4482,7 +4491,8 @@
             var assumptions = document.createElement("div"); assumptions.className = "valuation-assumptions";
             if (scenario.assumptionSummary) {
               assumptions.textContent = reviewedDisplay && reviewedDisplay.formatId === "ordinary-frozen-native-reader-v1"
-                ? (valuation.method === "bank_normalized_earnings_required_capital_FCFE_and_residual_income" ? "股权成本 " : "WACC ")
+                ? (valuation.method === "bank_normalized_earnings_required_capital_FCFE_and_residual_income"
+                    || (valuation.method == null && valuation.dcf && valuation.dcf.discountRateType === "cost_of_equity") ? "股权成本 " : "WACC ")
                   + percent(scenario.waccPct, 2) + " · 永续增长 " + percent(scenario.terminalGrowthPct, 2) + " · " + scenario.assumptionSummary
                 : scenario.assumptionSummary;
             } else {
@@ -4497,18 +4507,24 @@
             item.append(name, price, reference, assumptions); valuations.appendChild(item);
           });
           body.appendChild(valuations);
-          var range = document.createElement("p"); range.className = "section-note";
+          var valuationContext = document.createElement("dl"); valuationContext.className = "valuation-context";
+          var rangeRow = document.createElement("div"); rangeRow.className = "valuation-context-row";
+          var rangeLabel = document.createElement("dt"); rangeLabel.className = "valuation-context-label"; rangeLabel.textContent = "估值参照";
+          var range = document.createElement("dd"); range.className = "valuation-context-copy";
           var sensitivityRange = Array.isArray(dcf.coreSensitivityRangeUsd) && dcf.coreSensitivityRangeUsd.length >= 2
             ? dcf.coreSensitivityRangeUsd
             : null;
           range.textContent = sensitivityRange
             ? (dcf.sensitivityLabel || "核心 DCF 敏感区间") + "：" + money(sensitivityRange[0], "USD", 0) + " — " + money(sensitivityRange[1], "USD", 0) + "；" + (valuation.priceContextLabel || "当前行情完成收盘") + " " + money(valuation.priceUsd, "USD", 2) + "。"
             : (dcf.sensitivityNote || "未定义可审计的核心敏感区间。") + " " + (valuation.priceContextLabel || "当前行情完成收盘") + " " + money(valuation.priceUsd, "USD", 2) + "。";
-          body.appendChild(range);
+          rangeRow.append(rangeLabel, range); valuationContext.appendChild(rangeRow);
           if (dcf.modelSummary) {
-            var modelSummary = document.createElement("p"); modelSummary.className = "section-note";
-            modelSummary.textContent = dcf.modelSummary; body.appendChild(modelSummary);
+            var modelRow = document.createElement("div"); modelRow.className = "valuation-context-row";
+            var modelLabel = document.createElement("dt"); modelLabel.className = "valuation-context-label"; modelLabel.textContent = "模型说明";
+            var modelSummary = document.createElement("dd"); modelSummary.className = "valuation-context-copy";
+            modelSummary.textContent = dcf.modelSummary; modelRow.append(modelLabel, modelSummary); valuationContext.appendChild(modelRow);
           }
+          body.appendChild(valuationContext);
         }
         if (Array.isArray(result.monitoring) && result.monitoring.length) {
           var monitoring = document.createElement("div"); monitoring.className = "monitoring-list";

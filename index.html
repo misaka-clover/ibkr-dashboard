@@ -54,10 +54,7 @@
 
     .topbar { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; min-height: 82px; padding: 18px clamp(22px, 4vw, 58px); border-bottom: 1px solid rgba(22,59,89,.11); background: rgba(255,255,255,.72); backdrop-filter: blur(14px); }
     .brand { display: inline-flex; align-items: center; gap: 13px; text-decoration: none; }
-    .brand-mark { position: relative; width: 35px; height: 35px; border: 1px solid rgba(22,59,89,.72); background: rgba(255,255,255,.55); }
-    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; left: 7px; height: 2px; border-radius: 2px; background: var(--gold); transform-origin: left center; }
-    .brand-mark::before { width: 17px; top: 22px; transform: rotate(-31deg); }
-    .brand-mark::after { width: 10px; left: 19px; top: 14px; transform: rotate(37deg); }
+    .brand-mark { display: block; width: 35px; height: 35px; object-fit: contain; flex: 0 0 35px; }
     .brand-copy { display: grid; line-height: 1.08; }
     .brand-title { color: var(--ink-strong); font-size: 13px; font-weight: 760; letter-spacing: .01em; }
     .brand-subtitle { margin-top: 4px; color: var(--muted); font-size: 8px; font-weight: 700; letter-spacing: .16em; }
@@ -129,7 +126,7 @@
   <div class="page">
     <header class="topbar">
       <a class="brand" href="index.html" aria-label="投资组合透明计划首页">
-        <img class="brand-mark" src="assets/site-brand-v1.png?v=591e1d44d12f" width="35" height="35" alt="" aria-hidden="true" style="display:block;object-fit:contain;border:0;background:transparent;flex:0 0 35px">
+        <img class="brand-mark" src="assets/site-brand-v1.png?v=591e1d44d12f" width="35" height="35" alt="" aria-hidden="true">
         <span class="brand-copy"><span class="brand-title">投资组合透明计划</span><span class="brand-subtitle">PORTFOLIO TRANSPARENCY PROGRAM</span></span>
       </a>
       <div class="top-actions">
@@ -166,7 +163,9 @@
         <a class="menu-item" href="instrument.html"><span class="menu-item-name">证券研究</span><span class="menu-item-meta">进入 →</span></a>
         <!-- FAMILY:INDEX_INSTRUMENT_MENU:END -->
         <!-- FAMILY:INDEX_DECISION_MENU:START --><span class="menu-item" aria-disabled="true"><span class="menu-item-name">交易决策</span><span class="menu-item-meta">本地专属</span></span><!-- FAMILY:INDEX_DECISION_MENU:END -->
-        <!-- FAMILY:INDEX_MARKET_MENU:START --><a class="menu-item" href="market.html"><span class="menu-item-name">市场监控</span><span class="menu-item-meta">进入 →</span></a><!-- FAMILY:INDEX_MARKET_MENU:END -->
+        <!-- FAMILY:INDEX_MARKET_MENU:START -->
+        <a class="menu-item" href="market.html"><span class="menu-item-name">市场监控</span><span class="menu-item-meta">进入 →</span></a>
+        <!-- FAMILY:INDEX_MARKET_MENU:END -->
         <span class="menu-item" aria-disabled="true"><span class="menu-item-name">期权雷达</span><span class="menu-item-meta">规划中</span></span>
         <!-- FAMILY:INDEX_HISTORY_MENU:START -->
         <a class="menu-item" href="history.html"><span class="menu-item-name">历史档案</span><span class="menu-item-meta">进入 →</span></a>
@@ -176,7 +175,7 @@
     </aside>
   </div>
 
-  <script id="familyPortfolioSummary" type="application/json">{"asOf":"2026-10-22T04:52:35.296450Z","currency":"USD","netLiquidation":125084.093239667}</script>
+  <script id="familyPortfolioSummary" type="application/json">{"netLiquidation":125084.093239667,"currency":"USD","asOf":"2026-10-22T04:52:35.296450Z"}</script>
   <script>
     (function () {
       "use strict";
