@@ -278,6 +278,10 @@
       border-radius: 3px;
       background: rgba(255,255,255,.72);
     }
+    .macro-source-notes { display: grid; gap: 6px; padding: 12px 18px 14px; border-top: 1px solid rgba(22,59,89,.1); }
+    .macro-source-note { margin: 0; color: var(--muted); font: 11px/1.65 var(--sans); overflow-wrap: anywhere; }
+    .macro-source-note a { color: var(--blue); text-decoration: none; white-space: nowrap; }
+    .macro-source-note a:hover, .macro-source-note a:focus-visible { color: var(--navy); text-decoration: underline; text-underline-offset: 2px; }
     .timeline-group + .timeline-group { border-top: 1px solid rgba(22,59,89,.13); }
     .timeline-group-head {
       display: flex;
@@ -564,7 +568,7 @@
       .sentiment-comparisons { grid-template-columns: 1fr; }
       .cnn-source-boundary strong { width: 100%; margin-left: 0; }
       .expectation-metrics { grid-template-columns: 1fr; }
-      .timeline-group-head, details.recent-events > summary { padding-inline: 14px; }
+      .timeline-group-head, details.recent-events > summary, .macro-source-notes { padding-inline: 14px; }
       .event-row, .important-chart-card { padding: 16px 14px; }
       .market-chart-legend { margin: 12px -14px -16px; padding-inline: 14px; }
       .event-pagination { grid-template-columns: 1fr; align-items: stretch; gap: 8px; padding-inline: 14px; }
@@ -802,7 +806,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">市场快照</span><span class="footer-meta-value" id="footerTimestamp">—</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label">价格与利率</span><span class="footer-meta-value">指数完成收盘<br>Cboe 波动率<br>FRED 收益率<br>分别保留来源截止日</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label">来源边界</span><span class="footer-meta-value">CNN：独立观察<br>估值须经口径、证据与权限门禁<br>宏观：官方排期与结果<br>新闻：人工定向核验</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.8.3</span><time class="footer-meta-value" datetime="2026-10-20T08:23:37Z">2026-10-20 08:23 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.9.8</span><time class="footer-meta-value" datetime="2026-10-22T03:14:41Z">2026-10-22 03:14 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer">各资料域保留独立截止日；异常与降级在对应资料域显示。本页提供判断背景，不构成交易授权。</p>
     </footer>
@@ -926,7 +930,7 @@
     }());
   </script>
   <!-- FAMILY:MARKET_RUNTIME:START -->
-<script src="assets/market-content.js?v=f5294872945f"></script>
+<script src="assets/market-content.js?v=28cbfe97a521"></script>
 <!-- FAMILY:MARKET_RUNTIME:END -->
   <!-- FAMILY:MARKET_STATIC_CONFIG:START -->
 <script id="marketStaticConfig" type="application/json">{"mode":"market-static-public-v1","manifest":"data/market/manifest.json","contract":"assets/market-content-contract.json"}</script>
@@ -1147,9 +1151,8 @@
       var surpriseLabels = { stronger_than_expected: "整体强于预期", broadly_in_line: "大致符合预期", weaker_than_expected: "整体弱于预期", mixed: "信号混合", not_comparable: "暂无可比预期" };
       var resultHorizonLabels = { immediate: "即时", near_term: "近期", medium_term: "中期" };
       var resultConfidenceLabels = { high: "高置信度", medium: "中等置信度", low: "低置信度" };
-      function metricExpectation(event, metricKey) {
-        var metrics = event && event.expectation && event.expectation.metrics || [];
-        return metrics.find(function (metric) { return metric.metricKey === metricKey; }) || null;
+      function metricExpectation(event, metric) {
+        return MarketContent.comparableMetric(event, metric);
       }
       function surpriseDelta(actual, consensus, unit) {
         if (consensus === null || consensus === undefined || consensus === "") return "一致预期不可用";
@@ -1165,16 +1168,18 @@
         var result = event && event.result;
         var isPast = event && (event.displayStatus === "past_due_unverified" || event.status === "released" || event.status === "revised");
         if (!result) {
+          isPast = isPast || (Date.parse(event.scheduledAtUtc) < Date.now() && ["fomc_decision", "employment_situation", "cpi", "ppi", "jolts", "personal_income_outlays", "gdp_advance", "retail_sales"].includes(event.eventType));
           if (!isPast) return "";
           return '<div class="event-result pending"><div class="event-result-head"><strong>实际结果</strong><span>待一手来源核验</span></div><p>尚未导入完整官方结果；不以排期或二手报道补写。</p></div>';
         }
         var metrics = result.metrics || [];
         var metricHtml = metrics.map(function (metric) {
-          var expectation = metricExpectation(event, metric.metricKey);
+          var expectation = metricExpectation(event, metric);
           var consensus = expectation && expectation.consensus;
           var prior = metric.revisedPrevious !== null && metric.revisedPrevious !== undefined ? metric.revisedPrevious : metric.previous;
-          var priorLabel = metric.revisedPrevious !== null && metric.revisedPrevious !== undefined ? "修订前值" : "前值";
-          return '<div class="event-result-metric"><div class="event-result-label">' + escapeHtml(metric.label) + ' · ' + escapeHtml(metric.periodLabel || "") + '</div><div class="event-result-value">实际 ' + escapeHtml(formatExpectationValue(metric.actual, metric.unit)) + '</div><div class="event-result-compare">' + escapeHtml(surpriseDelta(metric.actual, consensus, metric.unit)) + ' · ' + escapeHtml(priorLabel) + ' ' + escapeHtml(formatExpectationValue(prior, metric.unit)) + '</div></div>';
+          var priorLabel = metric.revisedPrevious !== null && metric.revisedPrevious !== undefined ? "前值（修订）" : "前值";
+          var beforeRevision = metric.revisedPrevious !== null && metric.revisedPrevious !== undefined ? " · 修订前 " + formatExpectationValue(metric.previous, metric.unit) : "";
+          return '<div class="event-result-metric"><div class="event-result-label">' + escapeHtml(metric.label) + ' · ' + escapeHtml(metric.periodLabel || "") + '</div><div class="event-result-value">实际 ' + escapeHtml(formatExpectationValue(metric.actual, metric.unit)) + '</div><div class="event-result-compare">' + escapeHtml(surpriseDelta(metric.actual, consensus, metric.unit)) + ' · ' + escapeHtml(priorLabel) + ' ' + escapeHtml(formatExpectationValue(prior, metric.unit) + beforeRevision) + '</div></div>';
         }).join("");
         var assessment = result.assessment || {};
         var resultSourceLabel = result.sourceRole === "official_secondary_result" ? "正式结果 · 联储官方镜像" : "正式结果 · 一手官方";
@@ -1282,6 +1287,20 @@
         '</div>';
         panel.innerHTML = '<div class="expectation-head"><h3 class="expectation-title">市场一致预期 · 单一二级来源</h3><div class="expectation-source">' + (sourceUrl ? '<a href="' + escapeHtml(sourceUrl) + '" target="_blank" rel="noreferrer">' + escapeHtml(expectation.provider) + '</a>' : escapeHtml(expectation.provider)) + ' · 核验 ' + escapeHtml(utcTimestamp(expectation.retrievedAt)) + '</div></div><div class="expectation-metrics">' + metricHtml + '</div>' + scenarios + '<p class="scenario-note">' + escapeHtml(threshold) + ' 情景描述的是方向与传导渠道，不是价格预测或交易指令；实际值发布后还需核对修订、参与率与各分项。</p>';
       }
+      function marketAttributions(payload, compactCalendar) {
+        var notes = (payload.attributions || []).map(function (a) {
+          var link = safeUrl(a.termsUrl);
+          var terms = link ? '<a href="' + escapeHtml(link) + '" target="_blank" rel="noreferrer">Terms of Use</a>' : '';
+          if (compactCalendar && a.sourceId === "nyfed-economic-calendar" && link === "https://www.newyorkfed.org/privacy/termsofuse") {
+            return '<p class="macro-source-note">' + escapeHtml(a.text).replace("Terms of Use", terms) + ' BLS schedule normalized by the project.</p>';
+          }
+          if (compactCalendar && a.sourceId === "fred-bls-results" && link === "https://fred.stlouisfed.org/legal/") {
+            return '<p class="macro-source-note">Source: U.S. Bureau of Labor Statistics via FRED, Federal Reserve Bank of St. Louis. Changes calculated by the project. ' + terms + '.</p>';
+          }
+          return '<p class="' + (compactCalendar ? 'macro-source-note' : 'module-note') + '">' + escapeHtml(a.text) + (link ? ' · <a href="' + escapeHtml(link) + '" target="_blank" rel="noreferrer">' + (compactCalendar ? 'Terms of Use' : '来源使用条件') + '</a>' : '') + ' · ' + escapeHtml(a.modificationNotice) + '</p>';
+        }).join('');
+        return compactCalendar && notes ? '<div id="macroSourceAttributions" class="macro-source-notes" lang="en" aria-label="Calendar sources">' + notes + '</div>' : notes;
+      }
       function renderMacro(payload) {
         phase3State.macro = payload;
         var container = document.getElementById("macroCalendar");
@@ -1311,11 +1330,13 @@
         var weekStart = startOfUtcWeek(asOfTime.toISOString());
         var archiveStart = new Date(asOfTime.getTime() - 365 * 86400000);
         recent = recent.filter(function (event) { return new Date(event.scheduledAtUtc) >= archiveStart; });
+        upcoming = MarketContent.groupMeetings(upcoming);
+        recent = MarketContent.groupMeetings(recent);
         var thisWeek = recent.filter(function (event) { return new Date(event.scheduledAtUtc) >= weekStart; }).sort(function (left, right) { return new Date(right.scheduledAtUtc) - new Date(left.scheduledAtUtc); });
         var older = recent.filter(function (event) { return new Date(event.scheduledAtUtc) < weekStart; }).sort(function (left, right) { return new Date(right.scheduledAtUtc) - new Date(left.scheduledAtUtc); });
         var visibleUpcoming = upcoming.filter(function (event) { return new Date(event.scheduledAtUtc) <= horizonEnd; });
         var laterUpcoming = upcoming.filter(function (event) { return new Date(event.scheduledAtUtc) > horizonEnd; });
-        container.innerHTML = timelineGroup("本周发布与结果", thisWeek) + timelineGroup("即将公布", visibleUpcoming) + (laterUpcoming.length ? pagedEventDetails("远期事件", laterUpcoming, "farEvent", "收起至最近 5 条") : "") + pagedEventDetails("事件存档", older, "eventArchive", "收起至最新 5 条") + (undated.length ? timelineGroup("排期待核验", undated) : "");
+        container.innerHTML = timelineGroup("本周发布与结果", thisWeek) + timelineGroup("即将公布", visibleUpcoming) + (laterUpcoming.length ? pagedEventDetails("远期事件", laterUpcoming, "farEvent", "收起至最近 5 条") : "") + pagedEventDetails("事件存档", older, "eventArchive", "收起至最新 5 条") + marketAttributions(payload, true) + (undated.length ? timelineGroup("排期待核验", undated) : "");
         if (laterUpcoming.length) wirePagedEventList(laterUpcoming, "farEvent");
         wirePagedEventList(older, "eventArchive");
         var optional = payload.quality && payload.quality.optionalSourceFailures || [];
@@ -1376,7 +1397,7 @@
         var summary = payload.viewSummaries && payload.viewSummaries.market_headlines || "本次尚未形成可复核的新闻主线。";
         var available = (payload.status === "pass" || payload.status === "warning" || payload.status === "empty") && Boolean(payload.retrievedAt);
         var body = !available ? '<div class="empty-state">' + escapeHtml(payload.message || "新闻尚未完成核验或暂时不可用。") + '</div>' : items.length ? '<div class="news-list">' + items.map(newsStory).join("") + '</div>' : '<div class="empty-state">本次没有达到入选门槛的已核验新闻。</div>';
-        document.getElementById("marketNews").innerHTML = '<div class="news-overview"><p class="news-overview-label">本轮主线</p><p class="news-overview-copy">' + escapeHtml(proseCurrency(summary)) + '</p></div>' + body;
+        document.getElementById("marketNews").innerHTML = '<div class="news-overview"><p class="news-overview-label">本轮主线</p><p class="news-overview-copy">' + escapeHtml(proseCurrency(summary)) + '</p></div>' + body + ((payload.archivedItems || []).length ? '<details class="recent-events"><summary><span>新闻档案</span><span class="timeline-count">' + payload.archivedItems.length + ' 条</span></summary><div class="news-list">' + payload.archivedItems.map(newsStory).join('') + '</div></details>' : '') + marketAttributions(payload);
       }
       function renderNews(payload) {
         phase3State.news = payload;
