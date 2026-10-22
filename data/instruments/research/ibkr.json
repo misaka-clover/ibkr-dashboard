@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": "20260730",
+        "latestAsOfDate": "20261016",
         "providerPublishedDate": "20260722",
         "providerVerifiedAt": "2026-07-30T06:16:40Z"
       }
@@ -92,213 +92,261 @@
     "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
-        "asOfDate": "20260730",
+        "asOfDate": "20261016",
         "assessmentType": "equity_research",
-        "completedAt": "2026-07-30T06:20:33.194728Z",
-        "frameworkVersion": "equity-research-strategy-v1",
+        "completedAt": "2026-10-22T13:01:34.091337Z",
+        "frameworkVersion": "research-workflow-10.0.0",
         "result": {
           "bearCase": [
-            "账户高速增长主要来自较小、较低活跃度的零售客户，每户资产、交易、融资和收入持续下降。",
-            "客服、合规和软件人才投入成为零售扩张的必要条件，使接近 80%的利润率假设过于乐观。",
-            "降息与净息差下降和交易量正常化同时发生，余额增长不足以抵消双重压力。",
-            "佣金费率持续压缩，交易增长不能完全转化为收入增长。",
-            "保证金贷款快速增长伴随市场压力，坏账、客户补偿或风险处置费用显著上升。",
-            "创办人控制、非控股权益转换和缺乏回购使每股价值增长落后于公司整体利润。",
-            "2027 EPS 仅 US$2.40 且估值回到 20 倍，对应约 US$48.00。"
+            "活动疲弱若是结构性，叠加利差回落、资本最低要求及缓冲上升，价值可能接近18美元。",
+            "基准仍需十年账户CAGR16.4%、EPS约14.1%及较高利润率；终值占73%，不具备精确目标价的置信度。",
+            "客户负债、地区限制和监管超额均不是公共股可自由分配现金；长期税收、TRA与控制权仍影响兑现。"
           ],
           "bullCase": [
-            "自动化、执行质量和全球产品覆盖持续吸引个人、专业、机构与介绍经纪客户，账户和客户资产高双位数增长。",
-            "零售账户占比提高但每户资产、交易和保证金融资的稀释低于预期，规模效应仍能覆盖客服与软件人才投入。",
-            "客户现金和保证金余额增长抵消中周期净息差下降，净利息收入维持高双位数增长。",
-            "AI 工具提高市场参与和交易频率，ForecastEx 与国际产品扩展增加选择权。",
-            "风险控制、自动清算和短久期资产组合继续使信用与久期损失保持很低。",
-            "2027 EPS 达到 US$3.36 且市场维持 32 倍估值，对应约 US$107.52。"
+            "全球接入、自动化与账户增长支持每股价值复利；增长质量需由经济佣金、留存及资产积累检验。",
+            "若每户资产企稳、活动温和恢复且资本缓冲可逐渐释放增长空间，乐观价值约115美元；不单列AI或预测市场可选价值。"
           ],
-          "cashDecision": "watchlist",
-          "decisionHinge": "关键不再只是 IBKR 能否继续高速增加账户，而是新增零售与国际账户能否在每户资产、交易频率、保证金融资、收入和服务成本上形成足够经济性，使余额增长持续抵消净息差与费率下降，并让利润率维持高位；若账户总数增长而单位经济性持续稀释，当前估值仍会压缩。",
-          "evidenceConfidence": "medium",
-          "existingPositionAction": "hold",
-          "facts": [
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "ibkr-q2-2026-release",
-              "text": "Q2 GAAP／调整后净收入为 US$1.896B／US$1.883B，GAAP／调整后税前利润为 US$1.456B／US$1.443B，调整后税前利润率约 76.6%。"
+          "decisionHinge": "客户规模能否转化为扣除必要资本后的每股现金；历史82.69美元需要比工作基准更持久的增长。",
+          "existingPositionDecision": "trim_review",
+          "fiveLayerDecisionSummary": {
+            "actionFalsifiersAndGaps": {
+              "summary": "跟踪单位活动企稳、利差、资本最低要求和普通股兑现。工作基准包含代理，不升为decision_grade；重大事实先复核，最迟2027-01-14。当前账户与实施证据未取得。"
             },
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "ibkr-q2-2026-release",
-              "text": "GAAP 与调整后稀释 EPS 均为 US$0.69；佣金增长 30%、净利息收入增长 23%，核心收入和利润同向改善。"
+            "latestEvidenceDelta": {
+              "summary": "v3.1核对发行人原表：9个月调整后EPS为1.96，1.87为综合收益EPS。修正盈利倍数参照至52.27–67.19；FCFE各情景未变。纳入用户已增持的表述，未刷新账户或价格。"
             },
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "ibkr-q2-2026-release",
-              "text": "账户 5.185M、同比增长 34%；客户权益 US$930.3B、增长 40%；DARTs 4.824M、增长 36%；客户保证金贷款 US$108.5B、增长 67%。"
+            "longTermThesisAndStatus": {
+              "summary": "公司论点维持：自动化、全球接入和规模效率，回报来自扣除资本成本后的每股经营价值复利；不单列新产品可选价值。"
             },
-            {
-              "asOf": "20260630",
-              "label": "fact",
-              "sourceRef": "ibkr-q2-2026-release",
-              "text": "净息差由 2.07%降至 1.93%，平均计息资产由 US$166.6B 增至 US$228.6B；坏账由 US$1M 增至 US$10M。"
+            "portfolioRoleExistingAndNewMoney": {
+              "summary": "暂定金融平台成长股。用户表示已增持；本版仍以历史价锚判断现有持仓trim_review、新增资金do_not_buy。最新数量、成本、权重及税费未核验，不给实施数量。"
             },
-            {
-              "asOf": "20260722",
-              "label": "external_estimate",
-              "sourceRef": "morningstar-ibkr-full-report",
-              "text": "Morningstar 把公允价值由 US$64 上调至 US$70，给予两星、宽护城河、高不确定性和标准资本配置；报告价为 US$93.42。"
-            },
-            {
-              "asOf": "20260722",
-              "label": "external_estimate",
-              "sourceRef": "morningstar-ibkr-full-report",
-              "text": "Morningstar 预测五年／十年账户 CAGR 为 25.6%／17.3%，2035 年约 2,100 万账户，十年收入／营业利润／EPS CAGR 为 14.2%／14.7%／14.7%。"
-            },
-            {
-              "asOf": "20260722",
-              "label": "external_estimate",
-              "sourceRef": "morningstar-ibkr-full-report",
-              "text": "Morningstar 采用 10.8%资本成本、中周期净息差 1.89%和约 0.6%每年佣金／订单下降假设，并预计新增零售账户会稀释每户资产、交易和保证金融资。"
+            "valuationAndPricedExpectations": {
+              "summary": "条件性FCFE工作基准55.10，悲观18.38、乐观114.70；历史82.69约为基准1.50倍。独立盈利倍数参照52.27–67.19，不取平均；价格一维反推账户CAGR23.3%。"
             }
-          ],
-          "falsifiers": [
-            "账户增长维持高位，但客户权益、DARTs、保证金贷款或收入连续两个季度明显落后于账户增速。",
-            "员工与客服成本增速明显高于收入，使调整后税前利润率持续跌破 70%。",
-            "净利息收入转为下降，同时净息差和融资／客户现金余额共同恶化。",
-            "坏账、客户补偿或风险处置费用显著上升，证明快速融资增长削弱风险质量。",
-            "重大系统、执行质量、监管或网络安全事件导致客户流失或业务限制。",
-            "稀释和非控股权益转换使每股盈利、每股账面价值长期明显落后于合并利润增长。"
-          ],
+          },
           "missingEvidence": [
-            "截至 2026-07-30 06:16 UTC，IBKR 尚未提交 2026 年第二季度 10-Q；客户资产保护、监管资本、承诺、诉讼、风险集中与脚注仍待正式复核。",
-            "本地页面最新正式申报 TTM EPS 仍截止 Q1，为 US$2.33；本研究用 Q2 正式半年 EPS 推导 US$2.52，二者截止时间不同。",
-            "Morningstar 完整报告已核验，但它是外部估值与假设，不替代本项目对公司正式财务事实和组合动作的独立判断。",
-            "同一冻结时间、同一资本结构口径的 SCHW、HOOD、CME、CBOE 可比公司集合仍未建立。",
-            "利率下降、交易量正常化和市场压力同时发生时的公司正式敏感度仍未披露。",
-            "单位经济性需要公司未来披露或可重复代理指标支持；目前无法直接得到每类新增账户的资产、交易、融资与服务成本。"
+            "未披露逐实体边际监管资本、压力缓冲及资金转移预测。本版以历史资本增长、缓冲底线和资金损失情景约束，仍限制估值为conditional，不能认证分配可执行。",
+            "未披露成熟客群留存、净入金、平均生息资产与交易序列。本版采用分资产及活动衰减至稳定的工作假设，非已证明的客群恢复；持续恶化须改用压力路径。",
+            "Morningstar最新完整FVE及模型未取得；旧70美元、P1第17页股权价值/股数、20年阶段和投资率仍不能完整桥接。已有FY2026 EPS2.73/股息0.35，12.82%仅为7月版预测比率，非当前或实际值。",
+            "没有当前持仓、NAV、ETF穿透、税费、资金、订单与价格证据，无法给出实施数量；本次未访问账户。",
+            "2026-07-30旧83.16美元的完整模型缺失，无法可靠拆分该旧值到新值的贡献。",
+            "税收/公共股归属、长期TRA、经济稀释、跨国资金及单季度年化仍是代理；不是逐实体监管模型或完整三表。",
+            "事件窗期权、被动资金与实际出售证据仍缺；不将同步价格变化写成确认因果。",
+            "相对估值仅有SCHW这一不完全可比参照；20–25倍为独立判断，非同业中位数或已取得一致预期。"
           ],
           "monitoring": [
             {
-              "baseline": "Q2 账户 5.185M、同比 +34%；季度净增 431,000；Morningstar 预计五年／十年账户 CAGR 25.6%／17.3%",
-              "challengingDirection": "账户增长快，但每户资产、交易、融资、收入和员工生产率持续下降。",
-              "confirmingDirection": "客户权益、DARTs、保证金贷款和收入至少大致跟上账户增长，服务成本没有明显上升。",
-              "metric": "账户增长与单位经济性",
-              "nextReview": "each_month_and_quarter"
+              "baseline": "Q3每户客户权益约−5.8%；平均EA/期末账户代理−4.44%、其中保证金贷款+8.75%、隔离资产−14.07%，口径不同。年度平均账户代理2023/24/25约51254/46419/45426美元，非客群事实。",
+              "challengingDirection": "客户数增长伴成熟群体资产和净贡献持续变差。",
+              "confirmingDirection": "取得平均账户与客群序列，成熟群体积累改善而非仅聚合混合。",
+              "falsifier": "若新增客户长期不能覆盖服务/资本成本，削弱规模复利论点",
+              "metric": "客群成熟与每户生息资产",
+              "nextVerificationWindow": "下一次月度及Q4披露；确切发布日期未核",
+              "sourceId": "I1/I3",
+              "thresholdStatus": "analyst review condition; not IPS rule or automatic trade"
             },
             {
-              "baseline": "Q2 佣金 US$673M、+30%；DARTs 4.824M、+36%；Morningstar 假设每笔佣金每年约 -0.6%",
-              "challengingDirection": "交易量正常化与费率压缩叠加，佣金增长显著落后。",
-              "confirmingDirection": "交易增长充分抵消费率下降，交易收入保持高双位数增长。",
-              "metric": "佣金、交易量与费率压力",
-              "nextReview": "each_month_and_quarter"
+              "baseline": "季度每户年化DART168，同比−13.8%；剔除监管转收佣金同比+6.5%年度2022–2025为206/172/213/203；工作基准活动先降至约158再稳定。",
+              "challengingDirection": "连续两季每户活动同比降幅仍超过10%，经济佣金停滞",
+              "confirmingDirection": "每户活动企稳，净费用收入不只随监管转收增长",
+              "falsifier": "账户增长若不形成可持续利润，撤回高增长价值假设",
+              "metric": "每户交易及经济佣金",
+              "nextVerificationWindow": "下一季度，月度先行观察",
+              "sourceId": "I1/I2",
+              "thresholdStatus": "analyst review condition; not IPS rule or automatic trade"
             },
             {
-              "baseline": "Q2 NII US$1.057B、+23%；NIM 1.93%对 2.07%；Morningstar 中周期 NIM 1.89%",
-              "challengingDirection": "净息差与余额同时恶化，NII 转为下降。",
-              "confirmingDirection": "客户现金和融资余额增长继续抵消净息差下降。",
-              "metric": "净利息收入、净息差与余额",
-              "nextReview": "each_quarter_and_rate_change"
+              "baseline": "NIM1.99%；平均生息资产237.246bn；GAAP NII1154m季度",
+              "challengingDirection": "NIM持续低于1.85%且余额补偿不足",
+              "confirmingDirection": "余额增长覆盖合理利差回落",
+              "falsifier": "持续落至1.60%附近并伴单位活动弱，转入悲观路径",
+              "metric": "利差与生息资产",
+              "nextVerificationWindow": "下一次财报及利率敏感性披露",
+              "sourceId": "I1/I2",
+              "thresholdStatus": "analyst review condition; not IPS rule or automatic trade"
             },
             {
-              "baseline": "Q2 调整后税前利润率约 76.6%；Morningstar 中周期接近 80%的假设取决于低接触服务模式",
-              "challengingDirection": "客服和工程成本成为结构性投入，利润率持续下行。",
-              "confirmingDirection": "零售扩张不需要显著提高每户服务成本，利润率维持 70%以上。",
-              "metric": "客服、软件人才与利润率",
-              "nextReview": "each_quarter"
+              "baseline": "Q2监管资本/最低要求4.946倍；2023/24/25为8.426/6.915/5.800倍。工作基准c0.75、缓冲4倍及资金损失4%均为假设。",
+              "challengingDirection": "实际约束要求按旧压力同比扩张资本，或融资/利息损失抵销分配收益。",
+              "confirmingDirection": "取得按资产/辖区的边际要求及压力缓冲，较低留存能支持同样盈利且资金成本可控。",
+              "falsifier": "若最低要求持续快于客户余额或需保留至少5倍缓冲，降低资本效率判断并加强减持复核。",
+              "metric": "边际资本、缓冲与盈利资金来源",
+              "nextVerificationWindow": "Q3 10-Q（本次尚未取得）或下一监管资本披露",
+              "sourceId": "I1/I5",
+              "thresholdStatus": "analyst review condition; not IPS rule or automatic trade"
             },
             {
-              "baseline": "Q2 坏账 US$10M，对比上年 US$1M；保证金贷款同比 +67%",
-              "challengingDirection": "坏账、补偿或集中风险损失显著增加。",
-              "confirmingDirection": "坏账和客户补偿保持很低，压力市场中自动清算有效。",
-              "metric": "保证金风险与坏账",
-              "nextReview": "each_quarter_and_stress_event"
+              "baseline": "Q3 adjusted EPS0.67；新季度股息0.15；TRA H1现金14m",
+              "challengingDirection": "EPS长期落后集团利润，关联义务或稀释扩大",
+              "confirmingDirection": "税后每股收益增长，稀释和关联现金成本可控",
+              "falsifier": "控制股东安排实质损害普通股经济性，启动退出复核",
+              "metric": "股东收益与治理",
+              "nextVerificationWindow": "下一季与年度股权/关联交易披露",
+              "sourceId": "I1/I5",
+              "thresholdStatus": "analyst review condition; not IPS rule or automatic trade"
             },
             {
-              "baseline": "Q2 稀释股数同比约 +2%；Morningstar 资本配置为标准且认为短期回购受所有权结构限制",
-              "challengingDirection": "非控股权益转换和有限增量投资机会降低每股回报。",
-              "confirmingDirection": "每股盈利和每股账面价值持续快于稀释，留存资本产生高回报。",
-              "metric": "每股价值、资本配置与稀释",
-              "nextReview": "each_quarter"
-            },
-            {
-              "baseline": "US$86.26；推导 TTM P/E 34.2 倍；本项目基准 US$83.16；Morningstar 公允价值 US$70",
-              "challengingDirection": "盈利预期下修或股价提前上涨，估值进一步脱离基本面。",
-              "confirmingDirection": "盈利增长使前瞻 P/E 快速回到常态带，或价格提供明显安全边际。",
-              "metric": "估值与新增资金门槛",
-              "nextReview": "each_completed_close_and_earnings"
+              "baseline": "历史82.69；条件性悲观18.38/基准55.10/乐观114.70；独立盈利参照52.27–67.19。Morningstar70旧值且桥接未解。",
+              "challengingDirection": "价格要求持续增长而实际收益/资本效率无法支持。",
+              "confirmingDirection": "未来客户、现金回报与资本效率支持高于基准路径，或价格下降并形成可辩护安全边际。",
+              "falsifier": "任何重大价格/方法/新文件触发研究复核，不自动买卖",
+              "metric": "估值与外部更新",
+              "nextVerificationWindow": "重大披露先复核；最迟2027-01-14，未设置自动监听。",
+              "sourceId": "MODEL/P1/M1",
+              "thresholdStatus": "analyst review condition; not IPS rule or automatic trade"
             }
           ],
-          "myJudgments": [
-            {
-              "basis": "本项目观察到五年收入、税前利润和权益快速复合增长；Morningstar 另以自动化成本优势、执行质量和约 25%历史 ROIC 对约 9%资本成本支持宽护城河。",
-              "challenge": "若执行质量优势缩小、客服和合规成本上升，或竞争者改善融资利率与全球交易工具，护城河强度需要下调。",
-              "label": "my_judgment",
-              "text": "IBKR 的宽护城河判断得到更充分的外部交叉支持，但不应把 Morningstar 的护城河评级当作本项目结论的替代。"
+          "newMoneyDecision": "do_not_buy",
+          "portfolioRole": "金融平台成长股；角色暂定，暴露于客户交易、利差及金融科技估值共同因子",
+          "recommendedAction": "以2026-10-16历史收盘82.69美元为估值锚，现有持仓进入减持复核（trim_review），比较继续持有与部分减持；等额新增资金不买入（do_not_buy）。尚未判断具体减持数量或实施时机。",
+          "researchCompletedAt": "2026-10-22T13:01:34.091337Z",
+          "researchMaturity": "research_ready_not_implementation_ready",
+          "researchMethodVersion": "10.0.0",
+          "reviewedDisplay": {
+            "formatId": "ordinary-frozen-native-reader-v1",
+            "layers": {
+              "actionFalsifiersAndGaps": {
+                "summary": "跟踪单位活动企稳、利差、资本最低要求和普通股兑现。工作基准包含代理，不升为decision_grade；重大事实先复核，最迟2027-01-14。当前账户与实施证据未取得。"
+              },
+              "latestEvidenceDelta": {
+                "summary": "v3.1核对发行人原表：9个月调整后EPS为1.96，1.87为综合收益EPS。修正盈利倍数参照至52.27–67.19；FCFE各情景未变。纳入用户已增持的表述，未刷新账户或价格。"
+              },
+              "longTermThesisAndStatus": {
+                "summary": "公司论点维持：自动化、全球接入和规模效率，回报来自扣除资本成本后的每股经营价值复利；不单列新产品可选价值。"
+              },
+              "portfolioRoleExistingAndNewMoney": {
+                "summary": "暂定金融平台成长股。用户表示已增持；本版仍以历史价锚判断现有持仓trim_review、新增资金do_not_buy。最新数量、成本、权重及税费未核验，不给实施数量。"
+              },
+              "valuationAndPricedExpectations": {
+                "summary": "条件性FCFE工作基准55.10，悲观18.38、乐观114.70；历史82.69约为基准1.50倍。独立盈利倍数参照52.27–67.19，不取平均；价格一维反推账户CAGR23.3%。"
+              }
             },
-            {
-              "basis": "Morningstar 明确指出零售账户增长可能稀释每户资产、交易频率、保证金融资和员工生产率，并需要更多客服投入。",
-              "challenge": "如果客户权益、DARTs、保证金贷款和收入持续至少跟上账户增长，且服务成本没有破坏利润率，这项风险会被证伪。",
-              "label": "my_judgment",
-              "text": "账户增长质量是此前分析最需要补强的部分。"
-            },
-            {
-              "basis": "Morningstar 2027 EPS US$3.25 高于本项目基准 US$3.08，但其 10.8%资本成本 DCF 只得到 US$70；本项目基准为 US$83.16。",
-              "challenge": "若 IBKR 能长期以超过 14%的速度增长、维持接近 80%的利润率和高 ROIC，则市场可能持续给予高于 Morningstar DCF 的倍数。",
-              "label": "my_judgment",
-              "text": "Morningstar 比本项目更乐观地预测账户和 EPS，却给出更低公允价值，说明估值分歧主要来自要求回报与长期现金流折现，而不是短期盈利。"
-            },
-            {
-              "basis": "仓位仅约 1.20%；US$86.26 高于本项目基准值并较 Morningstar 公允价值高约 23.2%。",
-              "challenge": "价格进入更有利区间，或单位经济性、净息差与服务成本证据使基准盈利和合理倍数同步上修。",
-              "label": "my_judgment",
-              "text": "现有小仓位持有、新增现金观察的结论不变，但新增资金门槛更明确。"
-            }
-          ],
-          "researchMaturity": "preliminary",
+            "overview": "IBKR的长期论点维持：自动化和全球交易接入推动客户规模与每股经营价值复利。Q3账户增35%、净利息收入增19%，但每户交易转弱，增长不等于股价便宜。沿用v3.0的2023–2025年资本及客户历史与条件性工作基准约55美元，悲观约18、乐观约115。基准让每户指标数年后稳定，保留全部初始资本，以历史增长约束增量留存，另设监管缓冲底线并扣除少留资本的收益损失。它优于十年永久下降或立即全面恢复的单边外推，但不是管理层预测或统计中位数；终值占73%，估值成熟度为conditional。以2026-10-16历史收盘82.69为锚，价格约为基准1.50倍；其他参数固定时，需十年账户CAGR约23.3%，高于基准16.4%。本版纠正9个月调整EPS口径后，独立盈利倍数参照约52–67美元，局限是仅一家具差异的同业及判断性溢价。角色仍暂定金融平台成长股；现有持仓进入减持复核，新增资金不买入，具体实施尚不就绪。若单位经济持续下降或资本要求加速，转向压力情景；若客户成熟和资本效率持续兑现，可上修。晨星70仍为旧已发布值，当前值及完整桥接未证；用户新近表示已增持IBKR，本轮未核验最新账户。"
+          },
           "sourceRegister": [
             {
-              "label": "Interactive Brokers 2026 Q2 official earnings release and financial tables",
-              "publishedAt": "20260721",
-              "url": "https://ndcdyn.interactivebrokers.com/mkt/getFileNew.php?file=2026Q2_Earnings_Release.pdf"
+              "label": "I1 IBKR 2026 Q3 earnings release",
+              "url": "https://ndcdyn.interactivebrokers.com/mkt/getFileNew.php?file=2026Q3_Earnings_Release.pdf"
             },
             {
-              "label": "Interactive Brokers 2025 Form 10-K",
-              "publishedAt": "20260227",
-              "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000062/ibkr-20251231.htm"
+              "label": "I2 IBKR Q3 2026 management call transcript",
+              "url": "https://investors.interactivebrokers.com/download/ir/3Q26_Earnings_Call_Transcript.pdf"
             },
             {
-              "label": "Interactive Brokers 2026 Q1 Form 10-Q",
-              "publishedAt": "20260507",
-              "url": "https://www.sec.gov/Archives/edgar/data/1381197/000138119726000093/ibkr-20260331.htm"
+              "label": "I3 IBKR September 2026 brokerage metrics",
+              "url": "https://www.interactivebrokers.com/mkt/getFileNew.php?file=202609MetricsPressRelease.pdf"
             },
             {
-              "label": "Morningstar Equity Analyst Report: Interactive Brokers Group Class A",
-              "publishedAt": "20260722",
-              "url": "https://www.morningstar.com/company-reports/1489066-accelerating-client-growth-and-superior-order-execution-underpin-strong-interactive-brokers-outlook"
+              "label": "I4 IBKR 2025 Form 10-K annual report",
+              "url": "https://investors.interactivebrokers.com/download/2025_IBG_AR.pdf"
+            },
+            {
+              "label": "I5 IBKR 2026 Q2 Form 10-Q",
+              "url": "https://www.interactivebrokers.com/en/getSECFileNew.php?id=101&type=10-Q&date_field=2026-08-06&date_added=2026-08-06%2016:11:28.412304&format=pdf"
+            },
+            {
+              "label": "M1 StockAnalysis historical closes (S&P Global data attribution)",
+              "url": "https://stockanalysis.com/stocks/ibkr/history/"
+            },
+            {
+              "label": "M2 US Treasury daily par yield curve",
+              "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2026"
+            },
+            {
+              "label": "C1 Charles Schwab Q3 2026 earnings release filed with SEC",
+              "url": "https://www.sec.gov/Archives/edgar/data/316709/000031670926000035/a3q26exhibit991.htm"
+            },
+            {
+              "label": "W2 晨星官方页面与本轮读取限制",
+              "url": "https://www.morningstar.com/company-reports/1499726-interactive-brokers-looks-well-poised-to-benefit-from-growing-global-interest-in-investing"
+            },
+            {
+              "label": "I6 IBKR 2024 annual report",
+              "url": "https://investors.interactivebrokers.com/download/2024_IBG_AR.pdf"
+            },
+            {
+              "label": "I7 IBKR 2023 annual report",
+              "url": "https://investors.interactivebrokers.com/download/2023_IBG_AR.pdf"
             }
           ],
-          "underwritingStatus": "preliminary",
           "valuation": {
-            "dcf": {},
-            "priceUsd": 86.26
+            "currency": "USD",
+            "dcf": {
+              "discountRateType": "cost_of_equity",
+              "modelSummary": "分资产经营驱动FCFE代理，以Ke折现；条件性工作基准，有历史校准区间、缓冲底线、资金损失和独立盈利倍数参照；不是实体监管资本预测。",
+              "scenarios": [
+                {
+                  "assumptionSummary": "工作情景，非统计概率。十年账户CAGR10.4%、EPS CAGR3.1%；增量资本系数1、最低要求缓冲5倍；年末折现，保留全部起始资本。",
+                  "name": "悲观",
+                  "terminalGrowthPct": 2.5,
+                  "valuePerShareUsd": 18.380604213907617,
+                  "waccPct": 12.09
+                },
+                {
+                  "assumptionSummary": "工作情景，非统计概率。十年账户CAGR16.4%、EPS CAGR14.1%；增量资本系数0.75、最低要求缓冲4倍；年末折现，保留全部起始资本。",
+                  "name": "基准（条件性工作判断）",
+                  "terminalGrowthPct": 3.5000000000000004,
+                  "valuePerShareUsd": 55.10135328705979,
+                  "waccPct": 11.09
+                },
+                {
+                  "assumptionSummary": "工作情景，非统计概率。十年账户CAGR20.5%、EPS CAGR19.8%；增量资本系数0.6、最低要求缓冲3.5倍；年末折现，保留全部起始资本。",
+                  "name": "乐观",
+                  "terminalGrowthPct": 4.0,
+                  "valuePerShareUsd": 114.69558792676649,
+                  "waccPct": 10.09
+                }
+              ],
+              "sensitivityNote": "Ke×g、资本留存/缓冲/最低要求增速/资金损失/资产结构、利差、稀释、归属、每户路径及五年延长衰减均分列；无概率加权目标价。"
+            },
+            "priceContextLabel": "2026-10-16美国常规收盘；历史估值基准，非实时交易报价",
+            "priceUsd": 82.69
           },
-          "valuationState": "expensive"
+          "valuationMaturity": "conditional"
         },
         "reviewDueAt": null,
         "reviewDueReason": null,
         "reviewStatus": "current",
         "reviewTriggerType": null,
-        "sourceLabel": "IBKR 2026 年第二季度财报后完整 Morningstar 研报复核",
-        "sourceVersion": "v2.0",
+        "sourceLabel": "Independent reviewed frozen equity research",
+        "sourceVersion": "IBKR 2026-10-22 formal v3.1",
         "status": "active",
-        "summary": "IBKR 的公司质量论点维持增强，但完整 Morningstar 研报使证券论点更清晰：晨星把公允价值由 US$64 上调至 US$70、给予两星、宽护城河、高不确定性和标准资本配置；报告价 US$93.42 对应 Price/FVE 1.33。其五年／十年账户 CAGR 假设高达 25.6%／17.3%，仍只得到 US$70 公允价值，说明市场价格不仅要求账户增长，还要求新增零售账户的每户资产、交易、保证金融资和服务成本保持良好经济性。2026-07-29 收盘 US$86.26 对应本项目推导 TTM EPS US$2.52 的 34.2 倍 P/E，也较晨星公允价值高约 23.2%。本项目悲观／基准／乐观情景维持 US$48／US$83.16／US$107.52；现有约 1.20% 仓位继续持有，新增现金继续观察。",
-        "updatedAt": "2026-07-30T06:20:33.194728Z",
-        "version": 2
+        "summary": "IBKR的长期论点维持：自动化和全球交易接入推动客户规模与每股经营价值复利。Q3账户增35%、净利息收入增19%，但每户交易转弱，增长不等于股价便宜。沿用v3.0的2023–2025年资本及客户历史与条件性工作基准约55美元，悲观约18、乐观约115。基准让每户指标数年后稳定，保留全部初始资本，以历史增长约束增量留存，另设监管缓冲底线并扣除少留资本的收益损失。它优于十年永久下降或立即全面恢复的单边外推，但不是管理层预测或统计中位数；终值占73%，估值成熟度为conditional。以2026-10-16历史收盘82.69为锚，价格约为基准1.50倍；其他参数固定时，需十年账户CAGR约23.3%，高于基准16.4%。本版纠正9个月调整EPS口径后，独立盈利倍数参照约52–67美元，局限是仅一家具差异的同业及判断性溢价。角色仍暂定金融平台成长股；现有持仓进入减持复核，新增资金不买入，具体实施尚不就绪。若单位经济持续下降或资本要求加速，转向压力情景；若客户成熟和资本效率持续兑现，可上修。晨星70仍为旧已发布值，当前值及完整桥接未证；用户新近表示已增持IBKR，本轮未核验最新账户。",
+        "updatedAt": "2026-10-22T13:59:17.380738Z",
+        "version": 3
       }
     ],
     "researchAppendices": [],
     "researchHistory": [
+      {
+        "asOfDate": "20260730",
+        "assessmentType": "equity_research",
+        "completedAt": "2026-07-30T06:20:33.194728Z",
+        "frameworkVersion": "equity-research-strategy-v1",
+        "historyEntryKind": "research_version",
+        "result": {
+          "cashDecision": "watchlist",
+          "decisionHinge": "关键不再只是 IBKR 能否继续高速增加账户，而是新增零售与国际账户能否在每户资产、交易频率、保证金融资、收入和服务成本上形成足够经济性，使余额增长持续抵消净息差与费率下降，并让利润率维持高位；若账户总数增长而单位经济性持续稀释，当前估值仍会压缩。",
+          "existingPositionAction": "hold",
+          "newMoneyDecision": null,
+          "sourceRegister": [],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "expensive",
+          "valuationStateLabelZh": null
+        },
+        "sourceLabel": "IBKR 2026 年第二季度财报后完整 Morningstar 研报复核",
+        "sourceVersion": "v2.0",
+        "status": "superseded",
+        "summary": "IBKR 的公司质量论点维持增强，但完整 Morningstar 研报使证券论点更清晰：晨星把公允价值由 US$64 上调至 US$70、给予两星、宽护城河、高不确定性和标准资本配置；报告价 US$93.42 对应 Price/FVE 1.33。其五年／十年账户 CAGR 假设高达 25.6%／17.3%，仍只得到 US$70 公允价值，说明市场价格不仅要求账户增长，还要求新增零售账户的每户资产、交易、保证金融资和服务成本保持良好经济性。2026-07-29 收盘 US$86.26 对应本项目推导 TTM EPS US$2.52 的 34.2 倍 P/E，也较晨星公允价值高约 23.2%。本项目悲观／基准／乐观情景维持 US$48／US$83.16／US$107.52；现有约 1.20% 仓位继续持有，新增现金继续观察。",
+        "supersededAt": "2026-10-22T13:59:17.380738Z",
+        "supersededByVersion": 3,
+        "supersededReason": "Authorized frozen research replacement",
+        "updatedAt": "2026-10-22T13:59:17.380738Z",
+        "version": 2
+      },
       {
         "asOfDate": "20260730",
         "assessmentType": "equity_research",
@@ -336,7 +384,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-19T05:57:53.117335Z",
+  "generatedAt": "2026-10-22T15:46:59Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "IBKR"
