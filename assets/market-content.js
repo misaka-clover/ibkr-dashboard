@@ -111,6 +111,9 @@
   function legacyProjectAssessment(item,contract) {
     var result=item.result||{},expected=(contract.legacyProjectResultAssessments||{})[item.eventId];
     if (item.expectation!==null || result.assessmentOrigin!=='reviewed_project_analysis' || !result.assessment || result.assessment.surpriseClass!=='not_comparable' || !expected) return false;
+    var periods=[...new Set(expected.result.metrics.map(function(m){return m.periodLabel;}).filter(Boolean))];
+    var period=expected.periodLabel || (periods.length===1?periods[0]:null);
+    if (period===null || item.identityPeriod!==period) return false;
     var current={};['eventId','originatingAgency','eventType','periodLabel','result'].forEach(function(k){current[k]=item[k];});
     return sameValue(current,expected);
   }
