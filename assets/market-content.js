@@ -259,12 +259,26 @@
   function emptyArchive() {
     return { status: "unavailable", series: { spx: [], ndx: [], vix: [], vxn: [], twoYear: [], tenYear: [], thirtyYear: [], cnnFearGreed: [] }, snapshot: {}, marketDataThrough: {}, quality: {} };
   }
+  function weeklyChartPoints(points) {
+    // Match the local archive's ISO-week sampling. Keep the complete daily
+    // history in the content package and choose real dates, never week labels.
+    var weeks = new Map();
+    points.forEach(function (point) {
+      var date = new Date(point[0] + "T00:00:00Z");
+      date.setUTCDate(date.getUTCDate() - (date.getUTCDay() + 6) % 7);
+      var key = date.toISOString().slice(0, 10), previous = weeks.get(key);
+      if (!previous || point[0] > previous[0]) weeks.set(key, point);
+    });
+    return Array.from(weeks.values()).filter(function (p) { return p[0] >= "2006-01-01"; })
+      .sort(function (a, b) { return a[0].localeCompare(b[0]); })
+      .map(function (p) { return p.slice(0, 2); });
+  }
   function adapt(domain, payload, contract, generatedAt) {
     if (domain === "snapshot") {
       var archive = emptyArchive(); archive.status = payload.status; archive.asOf = payload.observedThrough; archive.generatedAt = generatedAt || null; archive.verifiedAt = payload.verifiedAt;
       Object.keys(payload.data.series).forEach(function (key) {
         var points = payload.data.series[key].points;
-        archive.series[key] = points.map(function (p) { return p.slice(0, key === "cnnFearGreed" ? 4 : 2); });
+        archive.series[key] = key === "cnnFearGreed" ? points.map(function (p) { return p.slice(0, 4); }) : weeklyChartPoints(points);
         var last = points[points.length - 1]; archive.snapshot[key] = last ? { date: last[0], value: last[1], rating: key === "cnnFearGreed" ? last[2] : null } : {};
         archive.marketDataThrough[key] = last ? last[0] : null;
       });
