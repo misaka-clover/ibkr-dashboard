@@ -1039,7 +1039,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.11.1</span><time class="footer-meta-value" datetime="2026-10-23T09:45:57Z">2026-10-23 09:45 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.11.2</span><time class="footer-meta-value" datetime="2026-10-23T10:06:24Z">2026-10-23 10:06 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1794,6 +1794,28 @@
           return String(left.date).localeCompare(String(right.date))
             || String(left.barType).localeCompare(String(right.barType));
         });
+        var valuationSeries = market.valuationSeries;
+        if (valuationSeries && !Array.isArray(valuationSeries)) {
+          var valuationDates = new Set(selectedBars.filter(function (row) {
+            return row.barType === "TRADES";
+          }).map(function (row) { return String(row.date); }));
+          var valuationItems = (valuationSeries.items || []).filter(function (row) {
+            return valuationDates.has(String(row.date));
+          });
+          valuationSeries = Object.assign({}, valuationSeries, {
+            status: valuationItems.length ? "available" : "not_available",
+            items: valuationItems,
+            coverageStart: valuationItems.length ? valuationItems[0].date : null,
+            coverageEnd: valuationItems.length ? valuationItems[valuationItems.length - 1].date : null,
+            summary: Object.assign({}, valuationSeries.summary || {}, {
+              availablePoints: valuationItems.filter(function (row) { return row.status === "available"; }).length,
+              negativeEpsPoints: valuationItems.filter(function (row) { return row.status === "negative_eps"; }).length,
+              zeroEpsPoints: valuationItems.filter(function (row) { return row.status === "zero_eps"; }).length,
+              preEpsPricePoints: valuationDates.size - valuationItems.length
+                + valuationItems.filter(function (row) { return row.status === "not_available"; }).length
+            })
+          });
+        }
         var dataAsOf = Object.assign(
           {},
           market.dataAsOf || {},
@@ -1845,7 +1867,7 @@
           ordersSnapshot: { status: "not_collected", asOf: null, stale: false },
           fundamentals: market.fundamentals || { status: "not_available" },
           fundProfile: market.fundProfile || { status: "not_available" },
-          valuationSeries: market.valuationSeries || [],
+          valuationSeries: valuationSeries || [],
           valuationAnalysis: market.valuationAnalysis || {},
           corporateEvents: market.corporateEvents || { status: "not_available", items: [], sources: [] },
           chartEvents: market.chartEvents || { items: [] },
