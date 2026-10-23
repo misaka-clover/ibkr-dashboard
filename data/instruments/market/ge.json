@@ -1,0 +1,201 @@
+{
+  "detail": {
+    "barSelection": {
+      "maxPointsPerType": 15000,
+      "requestedFrom": null,
+      "requestedTo": null,
+      "series": [
+        {
+          "availableEnd": null,
+          "availablePoints": 0,
+          "availableStart": null,
+          "barType": "ADJUSTED_LAST",
+          "priceBasis": "source",
+          "returnedEnd": null,
+          "returnedPoints": 0,
+          "returnedStart": null,
+          "splitNormalizationAnchorDate": null,
+          "splitNormalizationMethod": null,
+          "splitNormalizationStatus": "not_applicable",
+          "truncated": false
+        },
+        {
+          "availableEnd": null,
+          "availablePoints": 0,
+          "availableStart": null,
+          "barType": "TRADES",
+          "priceBasis": "source",
+          "returnedEnd": null,
+          "returnedPoints": 0,
+          "returnedStart": null,
+          "splitNormalizationAnchorDate": null,
+          "splitNormalizationMethod": null,
+          "splitNormalizationStatus": "not_applicable",
+          "truncated": false
+        }
+      ]
+    },
+    "bars": [],
+    "chartEvents": {
+      "dividendCoverage": {
+        "coverageEnd": "20261022",
+        "coverageStart": "20241112",
+        "issuerCoverageStart": null,
+        "lifetimeHistoryComplete": false,
+        "note": "Only reviewed issuer events and available Activity Flex position-entitlement history are shown; this is not a complete issuer-lifetime dividend calendar.",
+        "pageReadinessImpact": "blocking",
+        "reviewStatus": "pending",
+        "reviewedThrough": null,
+        "status": "partial"
+      },
+      "items": []
+    },
+    "corporateEvents": {
+      "items": [],
+      "sources": [],
+      "stale": true,
+      "status": "not_available",
+      "updatedAt": null,
+      "warning": "该标的尚未声明未来事件来源覆盖策略。"
+    },
+    "coverage": [],
+    "dataAsOf": {
+      "corporateEvents": {
+        "stale": true,
+        "status": "not_available",
+        "updatedAt": null
+      },
+      "market": {}
+    },
+    "dataGaps": [],
+    "dataQuality": {
+      "domains": {
+        "corporateEvents": {
+          "count": 0,
+          "stale": true,
+          "status": "not_available",
+          "updatedAt": null,
+          "warning": "该标的尚未声明未来事件来源覆盖策略。"
+        },
+        "fundamentals": {
+          "asOfDate": null,
+          "status": "unavailable",
+          "unavailable": []
+        },
+        "market": {
+          "calendarMismatchPoints": 0,
+          "distributionIssuerCoverageStart": null,
+          "distributionLifetimeHistoryComplete": false,
+          "distributionPageReadinessImpact": "blocking",
+          "distributionReviewStatus": "pending",
+          "distributionReviewedThrough": null,
+          "openGaps": 0,
+          "responseTruncated": false,
+          "splitNormalization": {
+            "ADJUSTED_LAST": {
+              "anchorDate": null,
+              "methodVersion": null,
+              "priceBasis": "source",
+              "status": "not_applicable"
+            },
+            "TRADES": {
+              "anchorDate": null,
+              "methodVersion": null,
+              "priceBasis": "source",
+              "status": "not_applicable"
+            }
+          },
+          "status": "unavailable",
+          "unexplainedAdjustmentDateCount": 0,
+          "warningRows": 0
+        }
+      }
+    },
+    "fundProfile": {
+      "message": "尚未取得经过审核的基金发行人资料。",
+      "status": "not_available"
+    },
+    "fundamentals": {
+      "asOfDate": null,
+      "betaMethodology": {},
+      "metricDates": {},
+      "metrics": {},
+      "status": "unavailable"
+    },
+    "instrument": {
+      "assetClass": "STK",
+      "chineseName": null,
+      "countryCode": null,
+      "currency": "USD",
+      "displayName": "GE",
+      "englishName": "GE",
+      "firstSeenDate": "20261020",
+      "instrumentKind": null,
+      "lastSeenDate": "20261022",
+      "primaryExchange": null,
+      "status": "active",
+      "symbols": [
+        {
+          "currency": "USD",
+          "exchange": null,
+          "firstSeenDate": "20261020",
+          "isPrimary": true,
+          "lastSeenDate": "20261022",
+          "symbol": "GE"
+        }
+      ]
+    },
+    "publicationStatus": "written_authorization_verified",
+    "releaseBasis": {
+      "decision": "written_authorization_verified",
+      "expiresOn": null,
+      "perpetual": true,
+      "reviewedAt": "2026-08-23T16:02:45Z"
+    },
+    "summary": {
+      "barPoints": {},
+      "corporateEvents": {
+        "count": 0,
+        "sourceCount": 0
+      }
+    },
+    "valuationAnalysis": {
+      "comparators": {
+        "igv": {
+          "reason": "尚无可审计、同口径的 IGV 组合历史 TTM PE。",
+          "status": "not_available"
+        },
+        "spx": {
+          "reason": "现有 SPX TTM PE 历史以 legacy 为主，不进入标的估值比较。",
+          "status": "not_available"
+        }
+      },
+      "current": null,
+      "message": "尚无股息未调整完成日线。",
+      "methodologyVersion": "filing_effective_source_aware_pe_distribution_v2",
+      "metric": "pe_ttm",
+      "referenceWindow": null,
+      "statistics": null,
+      "status": "unavailable"
+    },
+    "valuationSeries": {
+      "coverageEnd": null,
+      "coverageStart": null,
+      "displayPolicy": "All price views reuse the same date-aligned TTM PE calculated from the retained TRADES close after aligning filing-effective EPS to the source series' reviewed split basis. Zero or negative EPS is disclosed as a gap and never plotted as a negative PE.",
+      "items": [],
+      "methodologyVersion": "filing_effective_source_aware_pe_distribution_v2",
+      "priceBasis": "trades_point_in_time_close",
+      "status": "not_available",
+      "summary": {
+        "availablePoints": 0,
+        "negativeEpsPoints": 0,
+        "preEpsPricePoints": 0,
+        "zeroEpsPoints": 0
+      }
+    }
+  },
+  "generatedAt": "2026-10-23T06:24:20Z",
+  "packageType": "market",
+  "schemaVersion": 1,
+  "symbol": "GE"
+}
