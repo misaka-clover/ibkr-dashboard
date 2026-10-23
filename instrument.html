@@ -1039,7 +1039,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.10.0</span><time class="footer-meta-value" datetime="2026-10-22T15:31:59Z">2026-10-22 15:31 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.11.0</span><time class="footer-meta-value" datetime="2026-10-23T06:21:53Z">2026-10-23 06:21 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -4032,7 +4032,7 @@
         var whitespace = /[\u0009-\u000d\u001c-\u0020\u0085\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000]/;
         if (!display || typeof display !== "object" || Array.isArray(display)
             || Object.keys(display).sort().join(",") !== "formatId,layers,overview"
-            || ["reviewed-frozen-research-paraphrase-v1", "ordinary-frozen-native-reader-v1"].indexOf(display.formatId) < 0
+            || ["reviewed-frozen-research-paraphrase-v1", "ordinary-frozen-native-reader-v1", "reviewed-native-research-paraphrase-v1"].indexOf(display.formatId) < 0
             || typeof display.overview !== "string" || !display.overview.trim()
             || Array.from(display.overview).filter(function (char) { return !whitespace.test(char); }).length > 1000
             || !display.layers || typeof display.layers !== "object" || Array.isArray(display.layers)
@@ -4069,7 +4069,7 @@
             || !Array.isArray(result.sourceRegister) || !result.sourceRegister.length
             || result.sourceRegister.some(function (row) {
               if (!row || !nonempty(row.label)) return true;
-              if (result.reviewedDisplay.formatId === "ordinary-frozen-native-reader-v1" && Object.prototype.hasOwnProperty.call(row, "file")) {
+              if (["ordinary-frozen-native-reader-v1", "reviewed-native-research-paraphrase-v1"].indexOf(result.reviewedDisplay.formatId) >= 0 && Object.prototype.hasOwnProperty.call(row, "file")) {
                 return Object.prototype.hasOwnProperty.call(row, "url") || !nativeArchivedResearchSource(row);
               }
               if (!nonempty(row.url)) return true;
@@ -4490,7 +4490,7 @@
               : "完成收盘基准不可用";
             var assumptions = document.createElement("div"); assumptions.className = "valuation-assumptions";
             if (scenario.assumptionSummary) {
-              assumptions.textContent = reviewedDisplay && reviewedDisplay.formatId === "ordinary-frozen-native-reader-v1"
+              assumptions.textContent = reviewedDisplay && ["ordinary-frozen-native-reader-v1", "reviewed-native-research-paraphrase-v1"].indexOf(reviewedDisplay.formatId) >= 0
                 ? (valuation.method === "bank_normalized_earnings_required_capital_FCFE_and_residual_income"
                     || (valuation.method == null && valuation.dcf && valuation.dcf.discountRateType === "cost_of_equity") ? "股权成本 " : "WACC ")
                   + percent(scenario.waccPct, 2) + " · 永续增长 " + percent(scenario.terminalGrowthPct, 2) + " · " + scenario.assumptionSummary
@@ -4547,7 +4547,7 @@
         var missingTitle = document.createElement("p"); missingTitle.className = "section-note"; missingTitle.textContent = "尚未取得或尚待更新的证据"; details.appendChild(missingTitle);
         var missing = renderList(result.missingEvidence); missing.className = "missing-list"; details.appendChild(missing);
         var sources = document.createElement("div"); sources.className = "source-list";
-        if (result.reviewedDisplay && result.reviewedDisplay.formatId === "ordinary-frozen-native-reader-v1") {
+        if (result.reviewedDisplay && ["ordinary-frozen-native-reader-v1", "reviewed-native-research-paraphrase-v1"].indexOf(result.reviewedDisplay.formatId) >= 0) {
           renderNativeResearchSources(sources, result);
         } else {
         (result.sourceRegister || []).filter(function (source) { return source.url; }).forEach(function (source) {

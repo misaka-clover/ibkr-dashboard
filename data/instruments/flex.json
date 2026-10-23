@@ -4658,6 +4658,185 @@
         }
       }
     },
+    "GE": {
+      "accountPerformance": {
+        "aggregateReturn": -14.962287,
+        "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
+        "annualizedTotalReturn": -0.6046066308351643,
+        "cashFlowQuality": "complete",
+        "closedPositionTotal": 0.0,
+        "comprehensiveCost": 295.0362287,
+        "costBasisResidual": -2.5000008463393897e-07,
+        "costBasisXirr": -0.604606624723363,
+        "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
+        "costBasisXirrQuality": "complete",
+        "currency": "USD",
+        "currentCost": 2950.362287,
+        "dividendTotal": 0.0,
+        "excludedNoPositionDays": 0,
+        "feeTotal": -0.36228725,
+        "holdingCalendarDays": 2,
+        "holdingClockQuality": "complete",
+        "holdingPeriodDays": 2,
+        "holdingPeriodEndDate": "20261022",
+        "holdingPeriodStartDate": "20261020",
+        "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
+        "realizedPnl": 0.0,
+        "realizedPnlYtd": 0.0,
+        "totalReturn": -0.005071338972276625,
+        "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
+        "valuationDate": "20261022"
+      },
+      "currentHolding": {
+        "closePrice": 293.54,
+        "currency": "USD",
+        "dailyPnl": -23.4,
+        "dailyPnlPct": -0.7908611600000001,
+        "marketValue": 2935.4,
+        "portfolioWeightPct": 2.3456240391178445,
+        "quantity": 10.0,
+        "sourceAt": "2026-10-23T04:54:53.378069Z",
+        "status": "official",
+        "unrealizedPnl": -14.962287,
+        "valuationDate": "20261022"
+      },
+      "dataAsOf": {
+        "lifecycle": {
+          "latestEventDate": "20261020",
+          "latestSourceAt": "2026-10-21T04:53:28.378557Z",
+          "statementCoverageStart": "20241112",
+          "statementThrough": "20261022"
+        },
+        "portfolioClose": {
+          "sourceAt": "2026-10-23T04:54:53.378069Z",
+          "status": "official",
+          "valuationDate": "20261022"
+        },
+        "positionLots": {
+          "asOf": "20261022",
+          "sourceAt": "2026-10-23T04:54:53.378069Z",
+          "sourceMode": "official_activity_flex_lot",
+          "status": "complete"
+        }
+      },
+      "dataQuality": {
+        "domains": {
+          "lifecycle": {
+            "ingestionWindows": 71,
+            "responseTruncated": false,
+            "status": "pass"
+          },
+          "positionLots": {
+            "asOf": "20261022",
+            "count": 1,
+            "coverageStatus": "complete",
+            "message": null,
+            "sourceMode": "official_activity_flex_lot",
+            "status": "pass"
+          }
+        }
+      },
+      "eventTimeline": [
+        {
+          "amount": -2950.36228725,
+          "currency": "USD",
+          "details": {
+            "closePrice": 299.87,
+            "commission": -0.36228725,
+            "costBasis": 2950.36228725,
+            "description": "GENERAL ELECTRIC",
+            "metadata": {
+              "buySell": "BUY",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": 48.7,
+            "price": 295.0,
+            "proceeds": -2950.0,
+            "realizedPnl": 0.0,
+            "taxes": 0.0
+          },
+          "eventTime": "20261020;093030",
+          "eventType": "trade",
+          "quantity": 10.0,
+          "symbol": "GE",
+          "tradeDate": "20261020"
+        }
+      ],
+      "events": [
+        {
+          "amount": -2950.36228725,
+          "currency": "USD",
+          "details": {
+            "closePrice": 299.87,
+            "commission": -0.36228725,
+            "costBasis": 2950.36228725,
+            "description": "GENERAL ELECTRIC",
+            "metadata": {
+              "buySell": "BUY",
+              "transactionType": "ExchTrade"
+            },
+            "mtmPnl": 48.7,
+            "price": 295.0,
+            "proceeds": -2950.0,
+            "realizedPnl": 0.0,
+            "taxes": 0.0
+          },
+          "eventTime": "20261020;093030",
+          "eventType": "trade",
+          "quantity": 10.0,
+          "symbol": "GE",
+          "tradeDate": "20261020"
+        }
+      ],
+      "positionLots": {
+        "asOf": "20261022",
+        "items": [
+          {
+            "acquisitionDate": "20261020",
+            "averagePrice": 295.0362287,
+            "costBasisMoney": 2950.362287,
+            "currency": "USD",
+            "marketPrice": 293.54,
+            "marketValue": 2935.4,
+            "pnlCurrency": "USD",
+            "quantity": 10.0,
+            "totalPnl": -14.962287,
+            "totalPnlPct": -0.005071338888084154
+          }
+        ],
+        "sourceAt": "2026-10-23T04:54:53.378069Z",
+        "sourceMode": "official_activity_flex_lot",
+        "status": "complete",
+        "summary": {
+          "costBasis": 2950.362287,
+          "quantity": 10.0,
+          "totalPnl": -14.962287,
+          "totalPnlPct": -0.005071338888084154
+        }
+      },
+      "summary": {
+        "isCurrentlyHeld": true,
+        "lifecycle": {
+          "displayEventCount": 1,
+          "earliestTradeDate": "20261020",
+          "eventCount": 1,
+          "latestTradeDate": "20261020",
+          "returnedEventCount": 1,
+          "truncated": false
+        },
+        "positionLots": {
+          "count": 1,
+          "sourceMode": "official_activity_flex_lot",
+          "status": "complete",
+          "totals": {
+            "costBasis": 2950.362287,
+            "quantity": 10.0,
+            "totalPnl": -14.962287,
+            "totalPnlPct": -0.005071338888084154
+          }
+        }
+      }
+    },
     "GLDM": {
       "accountPerformance": {
         "aggregateReturn": -170.828519,
