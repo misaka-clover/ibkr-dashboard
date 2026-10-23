@@ -886,7 +886,7 @@
         </div>
         <div class="valuation-legend" id="valuationLegend" hidden>
           <span class="valuation-legend-item"><span class="valuation-legend-mark" aria-hidden="true"></span>市盈率 TTM</span>
-          <span class="valuation-legend-item"><span class="valuation-legend-mark mean" aria-hidden="true"></span>十年缩尾均值</span>
+          <span class="valuation-legend-item"><span class="valuation-legend-mark mean" aria-hidden="true"></span>历史缩尾均值</span>
           <span class="valuation-legend-item"><span class="valuation-legend-mark band" aria-hidden="true"></span>历史估值常态带（P25–P75）</span>
           <span class="valuation-comparator-note">IGV／SPX：合格历史估值来源尚未建立</span>
         </div>
@@ -1039,7 +1039,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.11.0</span><time class="footer-meta-value" datetime="2026-10-23T06:21:53Z">2026-10-23 06:21 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.11.1</span><time class="footer-meta-value" datetime="2026-10-23T09:45:57Z">2026-10-23 09:45 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1586,7 +1586,7 @@
         el("valuationLegend").hidden = state.chartView !== "valuation";
         syncPricePanControls();
         el("marketHistoryNote").textContent = state.chartView === "valuation"
-          ? "TTM PE 使用股息未调整完成日线与当时已申报生效的正数 diluted EPS；2010 年前仅按当时提交的 10-K 年报频率重建并显示警示，均值与常态带只代表十年历史参照，不是合理价值。"
+          ? "TTM PE 使用股息未调整完成日线与当时已申报生效的正数 diluted EPS；年报频率重建另有警示。均值与常态带使用近十年内已有的可用观察，实际覆盖期另列，不是合理价值。"
           : (
             isEtf
               ? "ETF 价格视图保留三套独立口径；基金不套用单一公司的 TTM PE，长窗口只在图形层聚合。"
@@ -1595,7 +1595,7 @@
         el("instrumentChart").setAttribute(
           "aria-label",
           state.chartView === "valuation"
-            ? "标的历史 TTM 市盈率、十年缩尾均值与历史估值常态带"
+            ? "标的历史 TTM 市盈率、历史缩尾均值与历史估值常态带"
             : "标的历史 K 线、成交量" + (activeAverages.length
               ? "与" + movingAverageDefinition.label + "方案的 " + activeAverages.join("、") + " 日简单移动平均线"
               : "") + (hasTradeMarkers ? "；包含 Activity Flex 买入和卖出日期标记" : "") +
@@ -2624,6 +2624,9 @@
           : (sourceRows[0].sourceName || "IBKR Historical Bars") + " · ";
         el("chartSource").textContent = sourcePrefix + modeDescription + " · " + splitBasis + " · PE 统一按股息未调整实际收盘计算" + tradeMarkerMethod;
       }
+      function isAnnualReconstructedEps(row) {
+        return Boolean(row && row.epsEffectiveDatePolicy === "filing_date_point_in_time_annual");
+      }
       function renderValuationChart() {
         var valuationSeries = state.detail && state.detail.valuationSeries || {};
         var sourceRows = (valuationSeries.items || []).filter(function (row) {
@@ -2752,11 +2755,11 @@
           var epsSplitFactor = finite(row.peEpsSplitFactorApplied) || 1;
           var labels = [
             ["市盈率 TTM", number(row.peTtm, 2) + "×"],
-            ["十年缩尾均值", number(mean, 2) + "×"],
+            ["历史缩尾均值", number(mean, 2) + "×"],
             ["常态带 P25", number(bandLow, 2) + "×"],
             ["常态带 P75", number(bandHigh, 2) + "×"],
             ["股息未调整收盘", money(row.close, state.detail.instrument.currency, 2)],
-            ["EPS 口径", (row.peEpsEvidenceLabel === "annual_diluted_eps" ? "⚠️ 年报频率重建" : "申报日生效") + (epsSplitFactor > 1 ? " · 拆股桥接×" + number(epsSplitFactor, 0) : "")]
+            ["EPS 口径", (isAnnualReconstructedEps(row) ? "⚠️ 年报频率重建" : "申报日生效") + (epsSplitFactor > 1 ? " · 拆股桥接×" + number(epsSplitFactor, 0) : "")]
           ];
           var grid = tooltip.querySelector(".tooltip-primary-grid");
           grid.replaceChildren();
@@ -2807,19 +2810,17 @@
         svg.appendChild(overlay);
 
         var referenceWindow = analysis.referenceWindow || {};
-        var hasAnnualReconstruction = rows.some(function (row) {
-          return row.peEpsEvidenceLabel === "annual_diluted_eps";
-        });
+        var hasAnnualReconstruction = rows.some(isAnnualReconstructedEps);
         el("chartCoverage").textContent = compactToIso(rows[0].date) + " — " + compactToIso(rows[rows.length - 1].date) + " · " + number(rows.length, 0) + " 个 PE 观察";
         var valuationSummary = valuationSeries.summary || {};
         var gapNotes = [];
         if (finite(valuationSummary.negativeEpsPoints) > 0) {
-          gapNotes.push(number(valuationSummary.negativeEpsPoints, 0) + " 个交易日 PE 为负并留空");
+          gapNotes.push("EPS 为负的日期 PE 留空");
         }
         if (finite(valuationSummary.zeroEpsPoints) > 0) {
-          gapNotes.push(number(valuationSummary.zeroEpsPoints, 0) + " 个交易日 EPS 为 0 并留空");
+          gapNotes.push("EPS 为 0 的日期 PE 留空");
         }
-        el("chartAggregation").textContent = "十年参考 " + compactToIso(referenceWindow.startDate) + " — " + compactToIso(referenceWindow.endDate) + " · " + number(referenceWindow.observations, 0) + " 个交易日" + (hasAnnualReconstruction ? " · ⚠️ 2010 年前为年报频率" : "") + (gapNotes.length ? " · " + gapNotes.join(" · ") : "");
+        el("chartAggregation").textContent = "历史参考（目标近十年） " + compactToIso(referenceWindow.startDate) + " — " + compactToIso(referenceWindow.endDate) + " · " + number(referenceWindow.observations, 0) + " 个正 PE 交易日" + (analysis.status === "partial" ? " · " + (analysis.message || "实际覆盖不足，仅供有限参考") : "") + (hasAnnualReconstruction ? " · ⚠️ 年报频率重建" : "") + (gapNotes.length ? " · " + gapNotes.join(" · ") : "");
         el("chartSource").textContent = "IBKR TRADES 当日实际收盘 + SEC 申报文件／Company Facts · 三种价格视图共用同日 PE · EPS 自申报日起生效";
       }
       function renderBondYieldChart(bond) {
