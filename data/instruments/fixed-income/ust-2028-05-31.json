@@ -83,7 +83,7 @@
           "status": "not_available"
         },
         "fixedIncome": {
-          "marketYieldStatus": "live_bid_ask",
+          "marketYieldStatus": "stale_quote",
           "message": null,
           "quality": {
             "acquisition": "pass",
@@ -394,14 +394,14 @@
       "issuerLabelZh": "美国财政部",
       "marketValue": 1897.11,
       "marketYieldAsOf": "2026-10-23T14:30:33.442204Z",
-      "marketYieldAsk": 0.046364999999999996,
-      "marketYieldBid": 0.046418,
+      "marketYieldAsk": null,
+      "marketYieldBid": null,
       "marketYieldConvention": "TWS bid/ask yield-to-worst; equals yield-to-maturity for these noncallable U.S. Treasury securities",
-      "marketYieldMessage": "TWS 当前买卖收益率为独立读取时点的报价；美国国债不可赎回，因此该 Yield-to-Worst 与到期收益率相同。它不是完成收盘 YTM。",
-      "marketYieldRangeHigh": 0.046418,
-      "marketYieldRangeLow": 0.046364999999999996,
+      "marketYieldMessage": "最近一次 TWS 买卖收益率读取已超过 24 小时，只保留日期提示，不再把数值标作当前报价。",
+      "marketYieldRangeHigh": null,
+      "marketYieldRangeLow": null,
       "marketYieldSource": "IBKR TWS API one-shot market-data snapshot",
-      "marketYieldStatus": "live_bid_ask",
+      "marketYieldStatus": "stale_quote",
       "marketYieldToMaturity": null,
       "maturityDate": "2028-05-31",
       "methodology": "以 IBKR 当前成本基础（含手续费）与购买应计利息作为实际投入，按精确日历、未来半年票息及到期本金计算年化持有到期 XIRR；不是券商报价页的债券等价收益率。发生卖出后若剩余批次无法精确归属，实际息率失败关闭；持有期年化收益与总回报率继续按完整生命周期现金流独立计算。",
@@ -31487,7 +31487,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-10-24T12:48:07.929830Z",
+    "generatedAt": "2026-10-25T06:30:12.616810Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BOND",
@@ -31774,7 +31774,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-10-24T12:47:58.155285Z",
+  "generatedAt": "2026-10-25T06:30:02.388804Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "UST-2028-05-31"

@@ -1039,7 +1039,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.13.0</span><time class="footer-meta-value" datetime="2026-10-24T12:45:27Z">2026-10-24 12:45 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.14.1</span><time class="footer-meta-value" datetime="2026-10-25T06:29:57Z">2026-10-25 06:29 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -4163,7 +4163,9 @@
       }
       function primaryResearchAssessment() {
         var research = state.detail.research || [];
-        return research.find(function (row) {
+        var funds = research.filter(function (row) { return row.assessmentType === "fund_research"; });
+        if (funds.length > 1 || (funds.length && research.some(function (row) { return row.assessmentType === "equity_research"; }))) throw new Error("主研究类型冲突。");
+        return funds[0] || research.find(function (row) {
           return row.assessmentType === "equity_research";
         }) || research.find(function (row) {
           return row.assessmentType !== "equity_valuation_appendix"
@@ -4171,7 +4173,7 @@
         }) || null;
       }
       function updateResearchTimestamps() {
-        var assessment = primaryResearchAssessment();
+        var assessment = primaryResearchAssessment() || (state.detail.research || []).find(function (row) { return row.assessmentType === "fixed_income_research"; });
         var provider = (state.detail.providerResearch || []).find(function (row) {
           return String(row.provider || "").toLowerCase() === "morningstar";
         });
@@ -4417,6 +4419,11 @@
           body.appendChild(empty); updateResearchTimestamps(); return;
         }
         var result = assessment.result || {}, valuation = result.valuation || {}, dcf = valuation.dcf || {};
+        if (assessment.assessmentType === "fund_research") {
+          try { renderAssetResearch(body, assessment); }
+          catch (error) { body.replaceChildren(); var warning = document.createElement("p"); warning.className = "section-note"; warning.textContent = error.message; body.appendChild(warning); }
+          updateResearchTimestamps(); return;
+        }
         try { validateReviewedResearchComponents(result); }
         catch (error) {
           var componentWarning = document.createElement("p"); componentWarning.className = "section-note";
@@ -4709,6 +4716,164 @@
         var missing = renderList(result.missingEvidence); missing.className = "missing-list"; details.appendChild(missing);
         body.appendChild(details);
       }
+      function assetReadinessLabel(key, value) {
+        var labels = {
+          valuationMaturity: {decision_grade:"决策级",conditional:"有条件",screen_grade:"筛查级",not_decision_ready:"未达决策级"},
+          researchMaturity: {research_ready:"研究已就绪",research_ready_not_implementation_ready:"研究完成，尚未进入实施准备",conditional:"有条件",preliminary:"初步研究",not_research_ready:"研究尚未就绪"},
+          portfolioDecisionReadiness: {decision_grade:"决策级",conditional:"有条件",pending_reconciliation:"待对账",not_decision_grade:"未达决策级",not_applicable:"不适用"},
+          dashboardReconciliationStatus: {not_required:"无需对账",pending:"待对账",completed_no_meaning_change:"已对账，研究含义未变",research_revision_required:"需要研究修订",not_authorized:"尚未授权",not_applicable:"不适用"},
+          implementationReadiness: {ready_for_user_review:"可供投资讨论",not_ready:"尚未就绪",not_applicable:"不适用"}
+        };
+        if (value == null || value === "missing") return "缺失（未推断）";
+        return labels[key] && labels[key][value] || "状态待核对";
+      }
+      function renderBillResearchYields(body, result) {
+        var data = result.billYields;
+        if (!data || !data.metrics) throw new Error("国库券六种收益率口径缺失。");
+        var details = document.createElement("details"); details.className = "research-details";
+        var toggle = document.createElement("summary"); toggle.textContent = "国库券收益率与成本口径"; details.appendChild(toggle);
+        var note = document.createElement("p"); note.className = "section-note";
+        note.textContent = "观察时间 " + utcDateTime(data.metrics.discountRate.asOf) + " · 模型起算 " + data.metrics.discountRate.startDate
+          + " · 到期 " + data.metrics.discountRate.maturityDate + " · " + data.days + " 天 · 发行年基础 "
+          + (data.issueYearDays == null ? "缺失" : data.issueYearDays + " 天") + "。以下为模型代理，计划日期不证明实际结算。";
+        details.appendChild(note);
+        var metrics = document.createElement("div"); metrics.className = "morningstar-metrics fixed-income-research-metrics";
+        [["discountRate","Discount rate","360 日／面值"],["treasuryInvestmentRate","Treasury investment rate / CEY","Appendix B 短／长券公式"],
+         ["bey","BEY","明确采用 Treasury CEY 定义"],["effectiveXirr","有效 XIRR","ACT/365 · 未含佣金"],
+         ["simple365","365 日简单年化","按购买价 · 不复利"],["moneyMarket360","360 日 money-market 代理","按购买价，非贴现率"]].forEach(function (entry) {
+          var row=data.metrics[entry[0]]; if (!row || row.unit !== "percent_per_year") throw new Error("国库券收益率单位或标签缺失。");
+          var item=document.createElement("article");item.className="morningstar-metric";
+          var label=document.createElement("div");label.className="morningstar-metric-label";label.textContent=entry[1];
+          var value=document.createElement("div");value.className="morningstar-metric-value";value.textContent=percent(row.valuePct,6);
+          var method=document.createElement("div");method.className="morningstar-metric-note";method.textContent=entry[2]+" · "+(row.valuePct==null?row.reason:"模型代理，非官方报值");
+          item.append(label,value,method);metrics.appendChild(item);
+        });details.appendChild(metrics);
+        var reported=document.createElement("p");reported.className="section-note";
+        reported.textContent="官方公布值：Investment rate "+percent(data.reportedRates.treasuryInvestmentRate.valuePct,6)+" · BEY "+percent(data.reportedRates.bey.valuePct,6)+"；缺失值不由模型补为官方报值。";details.appendChild(reported);
+        var costs=data.costSeparation;var line=document.createElement("p");line.className="section-note";
+        line.textContent="未舍入证券价款 "+money(costs.unroundedConsiderationUsd,"USD",6)+" · 模型佣金 "+money(costs.commissionUsd,"USD",6)
+          +" · 结构性零应计 "+money(costs.accruedInterestUsd,"USD",2)+" · 提供商成本／实际结算／账本舍入／现金账本：缺失或未核实。含费模型有效 XIRR "
+          +percent(data.feeInclusiveEffectiveXirr.valuePct,6)+"；并非账户实际回报。价格风险仍使用原有效年收益率的一基点冲击。";
+        details.appendChild(line);body.appendChild(details);
+      }
+      function renderAssetResearch(body, assessment) {
+        var result = assessment.result || {}, asset = result.assetResearch, bond = result.fixedIncomeProjection;
+        var fund = assessment.assessmentType === "fund_research";
+        var data = fund ? asset : bond;
+        if (!data || (fund ? (!data.researchObject || data.researchObject.assetKind !== "fund" || data.researchObject.symbol !== "BOXX")
+            : data.formatId !== "ordinary-asset-native-reader-v1" || data.assetKind !== "us_treasury_basket")) {
+          throw new Error("资产研究展示字段不完整，请核对已审阅投影。");
+        }
+        ["existingPositionDecision", "newMoneyDecision", "recommendedAction"].forEach(function (key) {
+          if (typeof result[key] !== "string" || !result[key].trim()) throw new Error("资产研究结论缺失。");
+        });
+        var display = result.reviewedDisplay || {};
+        if (display.formatId !== "ordinary-asset-native-reader-v1" || !display.overview || !display.layers) throw new Error("资产研究概述缺失。");
+        var badges = document.createElement("div"); badges.className = "badge-row";
+        [fund ? "基金研究" : "固定收益研究", researchVersionLabel(assessment), valuationMaturityLabel(result.valuationMaturity), researchLabel(result.researchMaturity)].forEach(function (label) {
+          var badge = document.createElement("span"); badge.className = "badge"; badge.textContent = label; badges.appendChild(badge);
+        }); body.appendChild(badges);
+        var summary = document.createElement("p"); summary.className = "research-summary";
+        summary.textContent = assessment.summary; body.appendChild(summary);
+        var hinge = document.createElement("div"); hinge.className = "research-hinge";
+        var strong = document.createElement("strong"); strong.textContent = fund ? "关键判断：" : "篮子关键判断：";
+        hinge.append(strong, document.createTextNode(result.decisionHinge || "—")); body.appendChild(hinge);
+        if (!fund) {
+          var common = document.createElement("p"); common.className = "section-note";
+          common.textContent = "篮子概述：" + (result.basketSummary || "—"); body.appendChild(common);
+        }
+        if (fund) renderResearchOverview(body, Object.assign({}, result, {fiveLayerDecisionSummary:display.layers}), null);
+        var decisions = document.createElement("div"); decisions.className = "case-grid";
+        [["现有持仓", result.existingPositionDecision], ["新增资金", result.newMoneyDecision], ["当前建议", result.recommendedAction]].forEach(function (entry) {
+          var card = document.createElement("article"); card.className = "case-card";
+          var label = document.createElement("h3"); label.textContent = entry[0];
+          var value = document.createElement("p"); value.textContent = entry[1]; card.append(label, value); decisions.appendChild(card);
+        }); body.appendChild(decisions);
+        if (!fund) {
+          var readiness = document.createElement("div"); readiness.className = "research-overview-grid";
+          [["valuationMaturity","个券估值成熟度"],["researchMaturity","个券研究成熟度"],
+           ["portfolioDecisionReadiness","个券组合准备度"],["dashboardReconciliationStatus","个券对账状态"],
+           ["implementationReadiness","个券实施准备度"]].forEach(function (entry) {
+            var item = document.createElement("article"); item.className = "research-overview-item";
+            var title = document.createElement("h3"); title.textContent = entry[1];
+            var value = document.createElement("p"); value.textContent = assetReadinessLabel(entry[0],result[entry[0]]);
+            item.append(title,value); readiness.appendChild(item);
+          }); body.appendChild(readiness);
+          var securityGaps = document.createElement("div"); securityGaps.className = "missing-list";
+          var gapTitle = document.createElement("h3"); gapTitle.textContent = "个券缺失证据";
+          securityGaps.appendChild(gapTitle);
+          if (Array.isArray(data.evidenceGaps)) {
+            if (data.evidenceGaps.length) securityGaps.appendChild(renderList(data.evidenceGaps));
+            else { var noGaps = document.createElement("p"); noGaps.textContent = "本券未列出独立缺口。"; securityGaps.appendChild(noGaps); }
+          } else { var missingGaps = document.createElement("p"); missingGaps.textContent = "本券缺口字段缺失，不能视为无缺口。"; securityGaps.appendChild(missingGaps); }
+          body.appendChild(securityGaps);
+          var basketTitle = document.createElement("h3"); basketTitle.className = "research-subtitle"; basketTitle.textContent = "篮子共同研究"; body.appendChild(basketTitle);
+          renderResearchOverview(body, Object.assign({}, result, {fiveLayerDecisionSummary:display.layers}), null);
+        }
+        var cases = document.createElement("div"); cases.className = "case-grid";
+        [["支持论据", result.bullCase], ["反方论据", result.bearCase]].forEach(function (entry) {
+          var card = document.createElement("article"); card.className = "case-card";
+          var title = document.createElement("h3"); title.textContent = entry[0]; card.append(title, renderList(entry[1])); cases.appendChild(card);
+        }); body.appendChild(cases);
+        var model = fund ? data.model : data.modelInputs, output = fund ? data.modelResult : data.modelResult;
+        if (!model || !output) throw new Error("必要资产模型缺失。");
+        var metrics = document.createElement("div"); metrics.className = "morningstar-metrics fixed-income-research-metrics";
+        var entries = fund ? [
+          ["NAV", money(model.navUsd,"USD",4), model.navAsOf],
+          ["市价", money(model.marketPriceUsd,"USD",4), model.marketAsOf],
+          ["溢折价", percent(output.premiumDiscountPct,4), "市价相对 NAV"],
+          ["费用率", percent(model.expenseRatioPct,4), "年费用率，情景按 ACT/365 分摊"]
+        ] : [
+          ["净价", number(output.cleanPricePer100,4), "US$100 面值"],
+          ["应计利息", number(output.accruedInterestPer100,4), "US$100 面值"],
+          ["全价", number(output.dirtyPricePer100,4), "US$100 面值"],
+          ["DV01", money(output.dv01UsdPerBp,"USD",4), "每 bp · 情景面值 · 全价模型基础"]
+        ];
+        entries.forEach(function (entry) {
+          var item = document.createElement("article"); item.className = "morningstar-metric";
+          ["morningstar-metric-label","morningstar-metric-value","morningstar-metric-note"].forEach(function (cls,index) {
+            var node = document.createElement("div"); node.className = cls; node.textContent = entry[index]; item.appendChild(node);
+          }); metrics.appendChild(item);
+        }); body.appendChild(metrics);
+        var explanation = document.createElement("p"); explanation.className = "section-note";
+        explanation.textContent = fund ? model.structure + " · " + output.qualifier
+          : "结算假设 " + model.settlementDate + " · " + model.settlementAssumption + " · " + (model.yieldConvention === "effective_xirr_act365" ? "有效年化 XIRR（ACT/365）" : "半年复利名义收益率（实际/实际）") + " " + percent(model.yieldPct,4) + " · 修正久期 " + number(output.modifiedDurationYears,4)
+            + " 年 · 凸性 " + number(output.convexityYears2,4) + " 年² · 情景面值 " + money(model.faceValueUsd,"USD",2)
+            + " · 手续费 " + money(model.feeUsd,"USD",2) + "。研究收益率不表示可执行报价。";
+        body.appendChild(explanation);
+        if (!fund && data.identity && data.identity.instrumentType === "treasury_bill") renderBillResearchYields(body, output);
+        var scenarios = document.createElement("div"); scenarios.className = "valuation-grid";
+        (fund ? output.scenarios : output.stress).forEach(function (row) {
+          var item = document.createElement("article"); item.className = "valuation-item";
+          var name = document.createElement("div"); name.className = "valuation-name";
+          name.textContent = fund ? row.name + " · " + row.horizonDays + " 天" : "利率 " + (row.shiftBp > 0 ? "+" : "") + row.shiftBp + " bp";
+          var value = document.createElement("div"); value.className = "valuation-price";
+          value.textContent = fund ? percent(row.netReturnPct,4) : money(row.changeUsd,"USD",2);
+          var note = document.createElement("div"); note.className = "valuation-reference";
+          note.textContent = fund ? row.assumptions + " · 扣除情景费用，非保证收益或概率" : "固定合同现金流完整重估 · 全价模型基础";
+          item.append(name,value,note); scenarios.appendChild(item);
+        }); body.appendChild(scenarios);
+        if (!fund) {
+          var inflation = document.createElement("div"); inflation.className = "section-note";
+          inflation.appendChild(document.createTextNode("购买力情景（不含税及再投资）："));
+          inflation.appendChild(renderList((output.purchasingPower || []).map(function (row) {
+            return "通胀 " + percent(row.inflationPct,2) + " · 实际合同现金流 " + money(row.realCashFlowUsd,"USD",2);
+          }))); body.appendChild(inflation);
+        }
+        var missing = document.createElement("div"); missing.className = "missing-list";
+        missing.appendChild(renderList(result.missingEvidence));
+        if (!fund) { var basketGapTitle = document.createElement("h3"); basketGapTitle.textContent = "篮子缺失证据"; missing.prepend(basketGapTitle); }
+        body.appendChild(missing);
+        var monitoring = document.createElement("div"); monitoring.className = "monitoring-list";
+        (result.monitoring || []).forEach(function (row) {
+          var item = document.createElement("article"); item.className = "monitoring-item";
+          item.textContent = row.metric + " · " + row.baseline + " · 确认：" + row.confirmingDirection + " · 挑战：" + row.challengingDirection;
+          monitoring.appendChild(item);
+        }); body.appendChild(monitoring);
+        var sources = document.createElement("div"); sources.className = "source-list";
+        renderNativeResearchSources(sources,result); body.appendChild(sources);
+        renderResearchDetailedExcerpts(body, {summary:fund ? assessment.summary : result.basketSummary}, result);
+      }
       function renderFixedIncomeResearch() {
         var body = el("researchBody");
         body.replaceChildren();
@@ -4721,6 +4886,13 @@
           body.appendChild(empty); updateResearchTimestamps(); return;
         }
         var result = assessment.result || {};
+        if (Object.prototype.hasOwnProperty.call(result, "fixedIncomeProjection")
+            || (result.reviewedDisplay && result.reviewedDisplay.formatId === "ordinary-asset-native-reader-v1")
+            || (result.researchCollaboration && result.researchCollaboration.routeId === "dashboard-research-ordinary-v1")) {
+          try { renderAssetResearch(body, assessment); }
+          catch (error) { body.replaceChildren(); var warning = document.createElement("p"); warning.className = "section-note"; warning.textContent = error.message; body.appendChild(warning); }
+          updateResearchTimestamps(); return;
+        }
         var securityRisk = result.securityRisk || {};
         var portfolioRisk = result.portfolioRisk || {};
         updateResearchTimestamps();
