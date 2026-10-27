@@ -806,7 +806,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">市场快照</span><span class="footer-meta-value" id="footerTimestamp">—</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label">价格与利率</span><span class="footer-meta-value">指数完成收盘<br>Cboe 波动率<br>FRED 收益率<br>分别保留来源截止日</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label">来源边界</span><span class="footer-meta-value">CNN：独立观察<br>估值须经口径、证据与权限门禁<br>宏观：官方排期与结果<br>新闻：人工定向核验</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.14.1</span><time class="footer-meta-value" datetime="2026-10-25T06:29:57Z">2026-10-25 06:29 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.15.1</span><time class="footer-meta-value" datetime="2026-10-27T03:04:02Z">2026-10-27 03:04 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer">各资料域保留独立截止日；异常与降级在对应资料域显示。本页提供判断背景，不构成交易授权。</p>
     </footer>
@@ -930,7 +930,7 @@
     }());
   </script>
   <!-- FAMILY:MARKET_RUNTIME:START -->
-<script src="assets/market-content.js?v=df71a15661b2"></script>
+<script src="assets/market-content.js?v=6f152ffa6cab"></script>
 <!-- FAMILY:MARKET_RUNTIME:END -->
   <!-- FAMILY:MARKET_STATIC_CONFIG:START -->
 <script id="marketStaticConfig" type="application/json">{"mode":"market-static-public-v1","manifest":"data/market/manifest.json","contract":"assets/market-content-contract.json"}</script>
@@ -969,7 +969,7 @@
         return Number.isNaN(date.valueOf()) ? Infinity : Math.max(0, Math.floor((Date.now() - date.valueOf()) / 86400000));
       }
       function latest(series) { return series && series.length ? series[series.length - 1] : null; }
-      function cutoffDate(years) { var date = new Date((archive.asOf || new Date().toISOString().slice(0,10)) + "T00:00:00Z"); date.setUTCFullYear(date.getUTCFullYear() - years); return date.toISOString().slice(0,10); }
+      function cutoffDate(years) { var date = new Date((archive.windowAsOf || archive.asOf || new Date().toISOString().slice(0,10)) + "T00:00:00Z"); date.setUTCFullYear(date.getUTCFullYear() - years); return date.toISOString().slice(0,10); }
       function filterWindow(series, years) { var cutoff = cutoffDate(years); return (series || []).filter(function (point) { return point[0] >= cutoff; }); }
       function setDot(id, status) { var dot = document.getElementById(id); dot.classList.remove("pass", "warning", "fail"); dot.classList.add(status === "pass" ? "pass" : status === "warning" ? "warning" : "fail"); }
       function compactCutoffs(entries) {
@@ -1495,6 +1495,10 @@
         document.getElementById("riskTemperatureMeta").textContent = "VIX " + fixed(latest(vix) && latest(vix)[1], 2) + " · VXN " + fixed(latest(vxn) && latest(vxn)[1], 2) + " · " + utcDate(latest(vix) && latest(vix)[0]);
         document.getElementById("ratePathMeta").textContent = "2Y " + fixed(latest(twoYear) && latest(twoYear)[1], 2) + "% · 10Y " + fixed(latest(tenYear) && latest(tenYear)[1], 2) + "% · 30Y " + fixed(latest(thirtyYear) && latest(thirtyYear)[1], 2) + "% · " + (twoYear.length && thirtyYear.length ? "共同截止 " : "已载入序列截止 ") + utcDate(latest(tenYear) && latest(tenYear)[0]);
         document.getElementById("indexTrendMeta").textContent = "SPX 偏离 " + signedPercent(deviationPercent(spxRegression.deviation)) + " · NDX 偏离 " + signedPercent(deviationPercent(ndxRegression.deviation)) + " · " + utcDate(latest(spx) && latest(spx)[0]);
+        var provenance = archive.quality && archive.quality.indexProvenance || {};
+        if (Object.keys(provenance).some(function (key) { return provenance[key].unresolvedPoints > 0; })) document.getElementById("indexTrendMeta").textContent += " · 保留原采样，部分来源待核验";
+        var quarantined = archive.quality && archive.quality.quarantinedObservations && archive.quality.quarantinedObservations.DGS30;
+        if (quarantined && quarantined.count) document.getElementById("ratePathMeta").textContent += " · DGS30 停发区间 " + quarantined.count + " 条争议观察已隔离，原始记录保留";
         document.getElementById("importantWindowTitle").textContent = years + " 年观察窗口";
         document.getElementById("importantWindowDetail").textContent = "波动率 " + vix.length + " 点 · 指数 " + spx.length + " 点 · 利率 " + tenYear.length + " 点";
         document.querySelectorAll(".phase3-window").forEach(function (button) { button.classList.toggle("active", Number(button.dataset.years) === years); });
@@ -1530,7 +1534,7 @@
           if (data.synthetic) document.getElementById("marketPageContext").dataset.contextState = "candidate";
           renderMacro(data.calendar);
           renderNews(data.news);
-          renderPortfolioDomain({ status: "unavailable" });
+          renderPortfolioDomain(data.snapshot.completedClose || { status: "unavailable" });
         }).catch(function () {
           archive = MarketContent.emptyArchive(); renderArchive();
           document.getElementById("freshnessValue").textContent = staticConfig.mode === "market-static-candidate-v1" ? "合成技术候选 · 静态内容不可用" : "静态内容不可用";
