@@ -665,6 +665,9 @@
             "$ref": "valuationObservation"
           },
           "maxItems": 1000
+        },
+        "completedClose": {
+          "$ref": "completedClose"
         }
       },
       "required": [
@@ -724,6 +727,9 @@
             ]
           },
           "maxItems": 20
+        },
+        "reviewAnchor": {
+          "$ref": "reviewAnchor"
         }
       },
       "required": [
@@ -1717,6 +1723,60 @@
         "expectation",
         "result",
         "meetingMaterials"
+      ]
+    },
+    "completedClose": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "pass"
+          ]
+        },
+        "valuationDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "sessionQualifier": {
+          "enum": [
+            "RTH 完成收盘"
+          ]
+        },
+        "retrievedAt": {
+          "type": "string",
+          "format": "utc"
+        },
+        "source": {
+          "enum": [
+            "validated_completed_close"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "valuationDate",
+        "sessionQualifier",
+        "retrievedAt",
+        "source"
+      ]
+    },
+    "reviewAnchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "valuationDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "verifiedAt": {
+          "type": "string",
+          "format": "utc"
+        }
+      },
+      "required": [
+        "valuationDate",
+        "verifiedAt"
       ]
     }
   },

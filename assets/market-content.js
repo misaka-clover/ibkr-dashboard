@@ -165,11 +165,18 @@
     if (verified !== null && verified > generated || payload.observedThrough && (verified === null || payload.observedThrough > payload.verifiedAt.slice(0, 10))) fail(domain + ".cutoff");
     if ((payload.status === "pass" || payload.status === "warning" || payload.status === "empty") && verified === null) fail(domain + ".verification");
     if (payload.status === "pass" && !payload.observedThrough) fail(domain + ".cutoff_missing");
+    var anchor = payload.data[domain === "snapshot" ? "completedClose" : domain === "news" ? "reviewAnchor" : ""];
+    if (anchor) {
+      var anchorClock = anchor[domain === "snapshot" ? "retrievedAt" : "verifiedAt"];
+      if (anchor.valuationDate > anchorClock.slice(0,10) || utcMicros(anchorClock) > generated) fail("independent_anchor.cutoff");
+      if (domain === "news" && (verified === null || utcMicros(anchorClock) > verified)) fail("news.anchor_cutoff");
+    }
     var sources = new Map(manifest.sources.map(function (s) { return [s.id, s]; }));
     if (domain === "snapshot") {
       var total = 0;
       Object.keys(payload.data.series).forEach(function (key) {
         var series = payload.data.series[key], prior = "";
+        if (production && key === "thirtyYear" && series.points.some(function (p) { return p[0] >= "2002-02-18" && p[0] < "2006-02-09"; })) fail("snapshot.dgs30_discontinuation");
         if (series.unit !== (key === "twoYear" || key === "tenYear" || key === "thirtyYear" ? "percent" : key === "cnnFearGreed" ? "points" : "index")) fail("snapshot.unit");
         series.points.forEach(function (p) {
           var source = sources.get(p[key === "cnnFearGreed" ? 4 : 2]);
@@ -275,7 +282,8 @@
   }
   function adapt(domain, payload, contract, generatedAt) {
     if (domain === "snapshot") {
-      var archive = emptyArchive(); archive.status = payload.status; archive.asOf = payload.observedThrough; archive.generatedAt = generatedAt || null; archive.verifiedAt = payload.verifiedAt;
+      var archive = emptyArchive(); archive.status = payload.status; archive.asOf = payload.observedThrough; archive.windowAsOf = payload.observedThrough; archive.generatedAt = generatedAt || null; archive.verifiedAt = payload.verifiedAt;
+      if (payload.data.completedClose) archive.completedClose = Object.assign({}, payload.data.completedClose);
       Object.keys(payload.data.series).forEach(function (key) {
         var points = payload.data.series[key].points;
         archive.series[key] = key === "cnnFearGreed" ? points.map(function (p) { return p.slice(0, 4); }) : weeklyChartPoints(points);
@@ -295,7 +303,11 @@
       });
       return archive;
     }
-    if (domain === "news") return { status: payload.status, retrievedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, viewSummaries: { market_headlines: payload.data.summaryZh }, items: payload.data.items, archivedItems: payload.data.archivedItems || [], attributions: payload.data.attributions || [] };
+    if (domain === "news") {
+      var news = { status: payload.status, retrievedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, viewSummaries: { market_headlines: payload.data.summaryZh }, items: payload.data.items, archivedItems: payload.data.archivedItems || [], attributions: payload.data.attributions || [] };
+      if (payload.data.reviewAnchor) { news.portfolioValuationDate = payload.data.reviewAnchor.valuationDate; news.portfolioAnchorVerifiedAt = payload.data.reviewAnchor.verifiedAt; }
+      return news;
+    }
     function adaptedEvent(event) { return event.expectation && event.expectation.status === "reviewed" ? Object.assign({}, event, { expectation: Object.assign({}, event.expectation, { status: "reviewed_single_secondary" }) }) : event; }
     return { status: payload.status, verifiedAt: payload.verifiedAt, observedThrough: payload.observedThrough, message: payload.message, attributions: payload.data.attributions || [], events: { upcoming: payload.data.items.map(adaptedEvent), recent: (payload.data.archivedItems || []).map(adaptedEvent), undated: [] } };
   }
