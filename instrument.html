@@ -1039,7 +1039,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.15.3</span><time class="footer-meta-value" datetime="2026-10-29T01:19:51Z">2026-10-29 01:19 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.15.6</span><time class="footer-meta-value" datetime="2026-10-31T06:47:01Z">2026-10-31 06:47 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1306,6 +1306,7 @@
         if (!value) return "—";
         return {
           preliminary: "初步评价", conditional: "有条件评价", fair: "估值合理", undervalued: "估值偏低", nav_aligned: "价格贴近 NAV", hold: "持有",
+          hold_15_shares: "持有（原研究15股）",
           nav_aligned_wrapper_but_no_intrinsic_value_anchor: "包装层价格贴近净值，但缺少内在价值锚",
           expensive: "估值偏贵", watchlist: "观察名单", active: "正式复核",
           review_due: "待复核", superseded: "已被取代", archived: "历史归档", current: "当前版本",
@@ -3906,8 +3907,79 @@
         scroll.appendChild(surface);
         body.appendChild(scroll);
       }
+      function researchReaderText(value) {
+        // This is a reader projection, not an edit to the frozen research. Keep
+        // numbers, source URLs and substantive limitations; never guess a status.
+        var unmapped = false;
+        var labels = {
+          do_not_buy: "不宜新买", no_add_now: "暂不新增资金",
+          trim_review: "复核减持", review_for_reduction: "复核减持",
+          defer_do_not_add_yet: "暂缓新增资金", wait_for_price_and_proof: "等待价格与证据",
+          not_decision_grade: "尚不足以支持决策", decision_grade: "可用于决策",
+          not_decision_ready: "尚不足以支持决策", screen_grade: "仅供初步筛查",
+          research_ready: "研究已就绪", not_research_ready: "研究尚未就绪",
+          research_ready_not_implementation_ready: "研究已完成，实施条件仍待核实",
+          not_ready: "尚未就绪", not_applicable: "不适用",
+          pending_reconciliation: "尚待对账", not_decided: "尚未决定",
+          company_claim: "公司说法", external_estimate: "外部估计", intact_conditional: "有条件成立",
+          hold_15_shares: "持有原研究所列的15股",
+          reviewed_partial: "已复核部分", ADJUSTED_LAST: "股息调整价格",
+          each_quarter: "每季度复核", on_official_decision: "正式决定公布时复核",
+          each_material_update: "每次重大更新后复核", before_each_active_add: "每次考虑增持前复核"
+        };
+        var text = String(value == null ? "" : value).split(/(\[[^\]]+\]\(https:\/\/[^\s)]+\)|https?:\/\/[^\s<>"\x60，。；、（）\[\]()]+)/g).map(function (part) {
+          if (/^(?:https?:\/\/|\[[^\]]+\]\(https:\/\/)/.test(part)) return part;
+          // Remove only explicit workflow clauses already excluded by the card
+          // contract. A qualified risk or a missing-account explanation stays.
+          part = part.replace(/([，,；;、。]\s*|^)(?:本版\s*)?userDecisionStatus\s*=\s*(?:not_decided|reviewed|user_approved_with_scope)(?=[。；;、]|$)/g,
+            function (_, separator) { return separator.indexOf("。") >= 0 ? "。" : ""; });
+          part = part.replace(/([，,；;、。]\s*|^)(?:implementationReadiness\s*=\s*|implementation\s*|实施\s*)(?:not_ready|not_applicable)(?=[。；;、]|$)/g,
+            function (_, separator) { return separator.indexOf("。") >= 0 ? "。" : ""; });
+          part = part.replace(/(^|[。；;\n])\s*(?:用户尚未决定|用户已审阅并认可研究|无交易授权)[。；;]/g, "$1");
+          part = part.replace(/仅授权[A-Za-z0-9 .-]{1,32}本地研究及晨星两栏更新[，,]\s*未授权交易[。；;]?/g, "");
+          part = part.replace(/([，,；;、。]\s*|^)(?:brokerExecutionAuthorization|tradeAuthorization)\s*=\s*none(?=[。；;、]|$)/g,
+            function (_, separator) { return separator.indexOf("。") >= 0 ? "。" : ""; });
+          part = part.replace(/portfolioDecisionReadiness\s*=\s*not_decision_grade/g, "现有证据尚不足以支持组合决策");
+          part = part.replace(/((?:研究(?:与估值)?|估值(?:与研究)?)(?:均)?)\s*conditional\b/g, "$1仍取决于所列条件");
+          var chineseProse = /[\u3400-\u9fff]/.test(part);
+          part = part.replace(/[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+/g, function (token) {
+            if (Object.prototype.hasOwnProperty.call(labels, token)) return labels[token];
+            unmapped = true; return "标签待适配";
+          });
+          part = part.replace(/(^|[^A-Za-z0-9_-])(hold|watchlist|conditional|pending|unresolved|preliminary)(?=$|[^A-Za-z0-9_-])/g,
+            function (match, prefix, token) {
+              if (!chineseProse) return match;
+              return prefix + { hold: "继续持有", watchlist: "继续观察", conditional: "有条件",
+                pending: "待确认", unresolved: "尚待核实", preliminary: "初步" }[token];
+            });
+          return part.replace(/。\s*[；;]+/g, "。");
+        }).join("");
+        return { text: text, unmapped: unmapped };
+      }
+      function applyResearchReadability(root) {
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), nodes = [], node;
+        while ((node = walker.nextNode())) nodes.push(node);
+        var unmapped = !!root.querySelector('[data-research-unmapped="true"]')
+          || root.textContent.indexOf("标签待适配") >= 0;
+        nodes.forEach(function (textNode) {
+          // Source titles can legitimately contain document identifiers. They
+          // are source metadata, not research decisions or status prose.
+          if (textNode.parentElement && textNode.parentElement.closest(".source-link")) return;
+          var rendered = researchReaderText(textNode.nodeValue);
+          textNode.nodeValue = rendered.text;
+          unmapped = unmapped || rendered.unmapped;
+        });
+        root.setAttribute("data-research-readability", unmapped ? "warning" : "pass");
+        if (unmapped) {
+          var warning = document.createElement("p"); warning.className = "section-note";
+          warning.textContent = "部分研究术语尚未适配，请复核后再使用。";
+          root.prepend(warning);
+        }
+      }
       function appendResearchInline(parent, value) {
-        var text = normalizeUtcDisplayText(value);
+        var rendered = researchReaderText(value);
+        if (rendered.unmapped) parent.setAttribute("data-research-unmapped", "true");
+        var text = normalizeUtcDisplayText(rendered.text);
         var tokens = /\*\*([^*]+)\*\*|\x60([^\x60]+)\x60|\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g, match, offset = 0;
         while ((match = tokens.exec(text))) {
           parent.appendChild(document.createTextNode(text.slice(offset, match.index)));
@@ -4118,9 +4190,11 @@
       }
       function renderNativeResearchSources(parent, result) {
         (result.sourceRegister || []).forEach(function (source) {
-          var archived = source.file != null;
+          var sourceHref = /morningstar|晨星/i.test(String(source.label || source.sourceName || source.sourceLabel || source.provider || ""))
+            ? morningstarPublicSourceHref(source.url) : source.url;
+          var archived = source.file != null || !sourceHref;
           var item = document.createElement(archived ? "div" : "a"); item.className = "source-link";
-          if (!archived) { item.href = source.url; item.target = "_blank"; item.rel = "noreferrer"; }
+          if (!archived) { item.href = sourceHref; item.target = "_blank"; item.rel = "noreferrer"; }
           var label = document.createElement("span"); label.textContent = source.label;
           var date = document.createElement("span"); date.className = "source-date"; date.textContent = compactToIso(source.publishedAt || source.asOf);
           item.append(label, date); parent.appendChild(item);
@@ -4161,6 +4235,19 @@
         details.appendChild(report);
         body.appendChild(details);
       }
+      function researchHistoryEntries(detail) {
+        var history = (detail.researchHistory || []).slice();
+        var research = detail.research || [];
+        if (!research.some(function (row) { return row.assessmentType === "equity_research"; })) return history;
+        research.filter(function (row) { return row.assessmentType === "long_only_equity_review"; }).forEach(function (row) {
+          if (!history.some(function (entry) {
+            return entry.assessmentType === row.assessmentType && entry.version === row.version;
+          })) history.push(Object.assign({}, row, { legacyReference: true }));
+        });
+        return history.sort(function (a, b) {
+          return String(b.asOfDate || "").localeCompare(String(a.asOfDate || "")) || Number(b.version || 0) - Number(a.version || 0);
+        });
+      }
       function primaryResearchAssessment() {
         var research = state.detail.research || [];
         var funds = research.filter(function (row) { return row.assessmentType === "fund_research"; });
@@ -4185,6 +4272,40 @@
           : "研究时间尚未建立";
       }
       /* FAMILY:INSTRUMENT_DECISION_RUNTIME:START *//* FAMILY:INSTRUMENT_DECISION_RUNTIME:END */
+      function morningstarPublicSourceHref(value) {
+        var raw = String(value || "").trim();
+        try {
+          var parsed = new URL(raw);
+          var host = parsed.hostname.toLowerCase();
+          if (parsed.protocol !== "https:" || parsed.username || parsed.password
+            || !(host === "morningstar.com" || host.endsWith(".morningstar.com"))) return null;
+          var decode = function (text) {
+            for (var i = 0; i < 3; i += 1) {
+              var next = decodeURIComponent(text);
+              if (next === text) break;
+              text = next;
+            }
+            return text.toLowerCase();
+          };
+          var path = decode(parsed.pathname);
+          if (path.endsWith(".pdf") || path.split("/").some(function (part) { return part === "download" || part === "downloads"; })) return null;
+          var blocked = false;
+          parsed.searchParams.forEach(function (text, key) {
+            if (["file", "filename", "download", "url", "sourceurl", "document", "path"].indexOf(key.toLowerCase()) < 0) return;
+            var target = new URL(decode(text), parsed.origin);
+            if (decode(target.pathname).endsWith(".pdf")) blocked = true;
+          });
+          return blocked ? null : raw;
+        } catch (error) { return null; }
+      }
+      function morningstarEquitySourceLabels(sourceHref) {
+        var companyPage = /^https:\/\/(?:www\.)?morningstar\.com\/stocks\/x(?:nas|nys)\/[a-z0-9.-]+(?:\/(?:analysis|quote(?:\.html)?))?\/?(?:[?#].*)?$/i.test(sourceHref || "");
+        return {
+          link: companyPage ? "晨星公司研究页 ↗" : "研报速览 ↗",
+          publication: sourceHref && !companyPage ? "官网文章发布 " : "研报发布 ",
+          source: companyPage ? "Morningstar 公司研究页" : sourceHref ? "Morningstar 官网文章" : "Morningstar 研报"
+        };
+      }
       function renderProviderResearch() {
         var body = el("providerResearchBody");
         body.replaceChildren();
@@ -4215,22 +4336,25 @@
         freshnessBadge.textContent = freshness.status === "stale" ? "超过 7 天未核验" : "7 天内已核验";
         var overview = document.createElement("div"); overview.className = "morningstar-overview";
         var copy = document.createElement("div");
+        var sourceHref = morningstarPublicSourceHref(provider.sourceUrl);
+        var equitySourceLabels = morningstarEquitySourceLabels(sourceHref);
         var reportLink = document.createElement("a"); reportLink.className = "morningstar-report-link";
-        reportLink.href = provider.sourceUrl; reportLink.target = "_blank"; reportLink.rel = "noreferrer";
+        if (sourceHref) { reportLink.href = sourceHref; reportLink.target = "_blank"; reportLink.rel = "noreferrer"; }
         reportLink.textContent = isFundMedalist
           ? "基金研究速览 ↗"
           : isFundArticle
             ? "晨星专题速览 ↗"
             : isCoverageStatus
               ? "晨星覆盖页 ↗"
-              : "研报速览 ↗";
+              : equitySourceLabels.link;
         var reportTitle = document.createElement("div"); reportTitle.className = "section-note";
         reportTitle.textContent = provider.title;
         var analystLine = document.createElement("div"); analystLine.className = "morningstar-analyst";
         analystLine.textContent = isCoverageStatus && !analyst.name
           ? "分析师 · 当前无覆盖"
           : "分析师 " + (analyst.name || "未标注") + (analyst.role ? " · " + analyst.role : "");
-        copy.append(reportLink, reportTitle, analystLine);
+        if (sourceHref) copy.appendChild(reportLink);
+        copy.append(reportTitle, analystLine);
         var dateBlock = document.createElement("div"); dateBlock.className = "section-note";
         var reportAsOf = metrics.reportAsOf ? utcDateTime(metrics.reportAsOf) : null;
         dateBlock.textContent = isFundMedalist
@@ -4238,7 +4362,7 @@
             + (metrics.medalistRatedDate ? " · 评级日期 " + compactToIso(metrics.medalistRatedDate) : "")
           : isCoverageStatus
             ? "覆盖状态核验 " + utcDateOnly(provider.publishedDate)
-            : "官网文章发布 " + utcDateOnly(provider.publishedDate)
+            : equitySourceLabels.publication + utcDateOnly(provider.publishedDate)
               + (reportAsOf ? " · 完整报告截止 " + reportAsOf : "");
         overview.append(copy, dateBlock); body.appendChild(overview);
 
@@ -4388,14 +4512,14 @@
         });
         details.appendChild(sectionGrid);
         var sourceList = document.createElement("div"); sourceList.className = "source-list";
-        var source = document.createElement("a"); source.className = "source-link";
-        source.href = provider.sourceUrl; source.target = "_blank"; source.rel = "noreferrer";
+        var source = document.createElement(sourceHref ? "a" : "div"); source.className = "source-link";
+        if (sourceHref) { source.href = sourceHref; source.target = "_blank"; source.rel = "noreferrer"; }
         var sourceName = document.createElement("span");
         sourceName.textContent = isFundMedalist
           ? "Morningstar 基金分析"
           : isFundResearch
             ? "Morningstar 基金研究"
-            : "Morningstar 官网文章";
+              : equitySourceLabels.source;
         var sourceDate = document.createElement("span"); sourceDate.className = "source-date"; sourceDate.textContent = utcDateOnly(provider.publishedDate);
         source.append(sourceName, sourceDate); sourceList.appendChild(source); details.appendChild(sourceList);
         (Array.isArray(metrics.supportingSources) ? metrics.supportingSources : []).forEach(function (entry) {
@@ -4411,6 +4535,10 @@
         updateResearchTimestamps();
       }
       function renderResearch() {
+        renderResearchBody();
+        applyResearchReadability(el("researchBody"));
+      }
+      function renderResearchBody() {
         var body = el("researchBody");
         body.replaceChildren();
         var assessment = primaryResearchAssessment();
@@ -4599,7 +4727,7 @@
           details.appendChild(sources); body.appendChild(details);
         }
         renderValuationAppendix(body);
-        var history = (state.detail.researchHistory || []).filter(function (entry) {
+        var history = researchHistoryEntries(state.detail).filter(function (entry) {
           return entry.assessmentType !== "equity_valuation_appendix";
         });
         if (history.length) {
@@ -4614,7 +4742,8 @@
           }
           var historyDetails = document.createElement("details"); historyDetails.className = "research-history";
           var historySummary = document.createElement("summary");
-          historySummary.textContent = "历史研究（" + number(history.length, 0) + " 个已被取代版本）";
+          historySummary.textContent = "历史研究（" + number(history.length, 0)
+            + (history.some(function (entry) { return entry.legacyReference; }) ? " 个历史版本）" : " 个已被取代版本）");
           historyDetails.appendChild(historySummary);
           var historyList = document.createElement("div"); historyList.className = "research-history-list";
           history.forEach(function (entry) {
@@ -4624,7 +4753,7 @@
             [
               researchAnalysisTimeLabel(entry),
               researchSourceVersionLabel(entry),
-              researchLabel(entry.status),
+              entry.legacyReference ? "历史研究参考" : researchLabel(entry.status),
               archivedResult.valuationStateLabelZh || researchLabel(archivedResult.valuationState),
               researchLabel(archivedResult.existingPositionAction)
             ].filter(Boolean).forEach(function (label) {
@@ -4635,7 +4764,9 @@
             var archivedHinge = document.createElement("div"); archivedHinge.className = "research-history-hinge";
             archivedHinge.textContent = normalizeUtcDisplayText("关键判断：" + zh(archivedResult.decisionHinge));
             var reason = document.createElement("div"); reason.className = "research-history-reason";
-            reason.textContent = entry.supersededAt
+            reason.textContent = entry.legacyReference
+              ? "历史研究保留；当前判断请参阅上方研究。"
+              : entry.supersededAt
               ? normalizeUtcDisplayText("替代于 " + utcDateTime(entry.supersededAt) + " · " + (entry.supersededReason || "新研究版本正式发布"))
               : "替代时间未记录 · " + (entry.supersededReason || "替代理由待补");
             card.append(meta, archivedSummary, archivedHinge, reason); historyList.appendChild(card);
@@ -5042,7 +5173,7 @@
           ["生命周期", domains.lifecycle, "回填窗口 " + number(domains.lifecycle && domains.lifecycle.ingestionWindows, 0)],
           ["公司事件", domains.corporateEvents, domains.corporateEvents && domains.corporateEvents.updatedAt ? utcDateTime(domains.corporateEvents.updatedAt) : "尚无来源核验"],
             ["持仓批次", domains.positionLots, domains.positionLots && domains.positionLots.asOf ? compactToIso(domains.positionLots.asOf) + " · " + number(domains.positionLots.count, 0) + " 个存续批次" : "尚未取得 Lot 粒度日结"],
-          ["研究", domains.research, "当前版本 " + number(domains.research && domains.research.count, 0)]
+          ["研究", domains.research, "资料记录 " + number(domains.research && domains.research.count, 0) + " 份"]
         ];
         var grid = qualityGrid; grid.replaceChildren();
         configurations.forEach(function (configuration) {

@@ -7,7 +7,7 @@
       "cashFlowQuality": "complete",
       "closedPositionTotal": -14.17,
       "comprehensiveCost": 815.0,
-      "costBasisResidual": 0.0,
+      "costBasisResidual": null,
       "costBasisXirr": null,
       "costBasisXirrMethodology": null,
       "costBasisXirrQuality": "not_applicable",
@@ -21,9 +21,9 @@
       "holdingPeriodDays": 423,
       "holdingPeriodEndDate": "20261030",
       "holdingPeriodStartDate": "20250902",
-      "methodology": "以 IBKR 当前成本基础（含手续费）与购买应计利息作为实际投入，按精确日历、未来半年票息及到期本金计算年化持有到期 XIRR；不是券商报价页的债券等价收益率。发生卖出后若剩余批次无法精确归属，实际息率失败关闭；持有期年化收益与总回报率继续按完整生命周期现金流独立计算。",
+      "methodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "realizedPnl": 0.0,
-      "realizedPnlYtd": 0,
+      "realizedPnlYtd": 0.0,
       "totalReturn": -0.017386503067425285,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "valuationDate": "20261030"
@@ -42,7 +42,7 @@
     },
     "coverage": [],
     "currentHolding": {
-      "closePrice": 26.694472,
+      "closePrice": 26.694471999999998,
       "currency": "USD",
       "dailyPnl": -0.04,
       "dailyPnlPct": -0.00390328,
@@ -57,7 +57,7 @@
     "dataAsOf": {
       "lifecycle": {
         "latestEventDate": "20250904",
-        "latestSourceAt": "2026-10-31T05:47:46.900196Z",
+        "latestSourceAt": "2026-07-24T09:42:46.547101Z",
         "statementCoverageStart": "20241112",
         "statementThrough": "20261030"
       },
@@ -113,6 +113,7 @@
           "asOf": "20261030",
           "count": 1,
           "coverageStatus": "complete",
+          "message": null,
           "sourceMode": "official_activity_flex_lot",
           "status": "pass"
         },
@@ -260,31 +261,6 @@
           "costBasis": 815.0,
           "description": "SP 0 05/15/51",
           "metadata": {
-            "direction": "OUT",
-            "settleDate": "20250905",
-            "type": "INTERNAL"
-          },
-          "mtmPnl": null,
-          "price": 0.0,
-          "proceeds": null,
-          "realizedPnl": null,
-          "taxes": null
-        },
-        "eventTime": "20250904;012324",
-        "eventType": "asset_transfer",
-        "quantity": -3000.0,
-        "symbol": "SP 0 05/15/51",
-        "tradeDate": "20250904"
-      },
-      {
-        "amount": 0.0,
-        "currency": "USD",
-        "details": {
-          "closePrice": null,
-          "commission": null,
-          "costBasis": 815.0,
-          "description": "SP 0 05/15/51",
-          "metadata": {
             "direction": "IN",
             "settleDate": "20250905",
             "type": "INTERNAL"
@@ -298,6 +274,31 @@
         "eventTime": "20250904;012324",
         "eventType": "asset_transfer",
         "quantity": 3000.0,
+        "symbol": "SP 0 05/15/51",
+        "tradeDate": "20250904"
+      },
+      {
+        "amount": 0.0,
+        "currency": "USD",
+        "details": {
+          "closePrice": null,
+          "commission": null,
+          "costBasis": 815.0,
+          "description": "SP 0 05/15/51",
+          "metadata": {
+            "direction": "OUT",
+            "settleDate": "20250905",
+            "type": "INTERNAL"
+          },
+          "mtmPnl": null,
+          "price": 0.0,
+          "proceeds": null,
+          "realizedPnl": null,
+          "taxes": null
+        },
+        "eventTime": "20250904;012324",
+        "eventType": "asset_transfer",
+        "quantity": -3000.0,
         "symbol": "SP 0 05/15/51",
         "tradeDate": "20250904"
       },
@@ -401,7 +402,7 @@
         }
       ],
       "completedCloseValueMethod": "完成收盘净清算值除以持有面值，再换算为每 US$100 面值；不把该值宣称为独立核验的 clean price 或 dirty price。",
-      "completedCloseValuePer100": 26.694472,
+      "completedCloseValuePer100": 26.694471999999998,
       "contractCode": "SP 0 05/15/51",
       "contractName": "United States Treasury STRIPS due 2051-05-15",
       "contractNameZh": "美国国债 STRIPS 本金券 2051-05-15",
@@ -494,12 +495,12 @@
           "valuePct": 5.198374
         },
         "securityYieldSeries": {
-          "coverageEnd": "2026-10-27",
+          "coverageEnd": "2026-10-30",
           "coverageStart": "2025-09-02",
           "label": "本债券持有期估算 YTM",
           "message": "个券线来自买入后的 Statement／Flex 完成收盘价格链；TWS 直接 YIELD_BID_ASK 仅用于重叠残差验收，未与主序列拼接。",
           "methodVersion": "treasury_clean_price_ytm_v1",
-          "pointCount": 290,
+          "pointCount": 293,
           "points": [
             [
               "2025-09-02",
@@ -1660,6 +1661,18 @@
             [
               "2026-10-27",
               5.425
+            ],
+            [
+              "2026-10-28",
+              5.496
+            ],
+            [
+              "2026-10-29",
+              5.454
+            ],
+            [
+              "2026-10-30",
+              5.456
             ]
           ],
           "providerValidation": {
@@ -1685,17 +1698,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-10-29",
-            "coverageStart": "2016-10-27",
+            "coverageStart": "2016-10-31",
             "label": "10 年期",
             "points": [
-              [
-                "2016-10-27",
-                1.85
-              ],
-              [
-                "2016-10-28",
-                1.86
-              ],
               [
                 "2016-10-31",
                 1.84
@@ -11702,17 +11707,9 @@
           {
             "closestTenor": true,
             "coverageEnd": "2026-10-29",
-            "coverageStart": "2016-10-27",
+            "coverageStart": "2016-10-31",
             "label": "20 年期",
             "points": [
-              [
-                "2016-10-27",
-                2.26
-              ],
-              [
-                "2016-10-28",
-                2.27
-              ],
               [
                 "2016-10-31",
                 2.25
@@ -21719,17 +21716,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-10-29",
-            "coverageStart": "2016-10-27",
+            "coverageStart": "2016-10-31",
             "label": "30 年期",
             "points": [
-              [
-                "2016-10-27",
-                2.6
-              ],
-              [
-                "2016-10-28",
-                2.62
-              ],
               [
                 "2016-10-31",
                 2.58
@@ -31735,8 +31724,8 @@
           }
         ],
         "status": "pass",
-        "windowEnd": "2026-10-29",
-        "windowStart": "2016-10-27"
+        "windowEnd": "2026-10-30",
+        "windowStart": "2016-10-30"
       }
     },
     "fundProfile": {
@@ -31745,7 +31734,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-10-29T04:32:15.951250Z",
+    "generatedAt": "2026-10-31T06:47:59.028263Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BOND",
@@ -31756,7 +31745,7 @@
       "englishName": "SP 0 05/15/51",
       "firstSeenDate": "20250902",
       "instrumentKind": "us_treasury",
-      "lastSeenDate": "20261027",
+      "lastSeenDate": "20261030",
       "primaryExchange": null,
       "status": "active",
       "symbols": [
@@ -31765,7 +31754,7 @@
           "exchange": null,
           "firstSeenDate": "20250902",
           "isPrimary": true,
-          "lastSeenDate": "20261027",
+          "lastSeenDate": "20261030",
           "symbol": "SP 0 05/15/51"
         }
       ]
@@ -32032,7 +32021,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-10-29T04:31:59.349806Z",
+  "generatedAt": "2026-10-31T06:47:34.708052Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "STRIPS-2051-05-15"

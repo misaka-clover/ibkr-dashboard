@@ -2,95 +2,355 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": "20260803",
-        "providerPublishedDate": "20260722",
-        "providerVerifiedAt": "2026-07-24T13:51:50Z"
+        "latestAsOfDate": "20261029",
+        "providerPublishedDate": "20261029",
+        "providerVerifiedAt": "2026-10-30T06:16:24.078084Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 2,
+          "count": 3,
           "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
-          "status": "warning"
+          "status": "pass"
         }
       }
     },
     "providerResearch": [
       {
         "analyst": {
-          "name": "Dan Romanoff, CPA",
-          "role": "Senior Equity Research Analyst, Technology"
+          "name": "Eric Compton, CFA",
+          "role": "Director"
         },
         "freshness": {
-          "ageDays": 96.61129480133101,
+          "ageDays": 1.021752114224537,
           "maximumDays": 7,
-          "status": "stale",
-          "warning": "资料超过七天未重新核验"
+          "status": "current",
+          "warning": null
         },
-        "interpretation": "晨星把微软视为由企业软件生态与 Azure 驱动的宽护城河公司，并以 600 美元公允价值和五星评级表达明显低估判断。其估值逻辑的核心不是短期硬件或 Windows 增长，而是 Azure、Microsoft 365、Dynamics、LinkedIn 与新兴 AI 商业化共同推动收入，规模效应再支持利润率温和扩张。护城河主要来自客户迁移成本，网络效应与成本优势居次；生产力与业务流程、智能云被视为宽护城河，而个人计算业务相对较弱。晨星认为资产负债表、收入增长、高且扩张的利润率和自由现金流共同构成优秀财务健康度，资本分配也维持优秀评价。主要上行证据是 Azure 在混合云和公有云中的领先位置、Microsoft 365 提价升级能力，以及既有软件入口对 AI 产品采用的放大作用。主要反方证据则是订阅迁移放缓、移动端缺位、Azure 与 Dynamics 并非各自市场第一，以及高额 AI 资本开支可能先压低利润率。近期需要重点核验 Azure 固定汇率增速能否达到 39%至 40%的指引、AI 投入能否转化为 Copilot 席位和其他可计费收入，以及折旧增长是否继续压低云业务毛利率和整体经营利润率；这些观察项比把 600 美元单点估值直接当作买入指令更重要。",
+        "interpretation": "晨星认为，微软嵌入企业文档、身份、安全与工作流的转换成本，配合Azure规模和跨平台客户关系，能支撑长期超额回报。AI通过云算力、Copilot、高级软件与使用收费提供多层变现机会，关键是客户采用转化为有利润的收入。其600美元估值依赖分阶段现金流折现：未来五年收入年复合增长约16.6%，经营利润率保持约47%，现金资本开支占收入比重在扩张后回落，使自由现金流从FY27低谷逐步改善；长期增长及超过资本成本的回报因此十分重要。相较前版，晨星同时上调收入与资本投入预测，近期现金流承压更重，但维持长期估值。上行来自产能利用率提高、AI付费采用加快，以及M365升级与使用收入抵消席位放缓；下行来自高投入持续、价格竞争、设备更新和租赁负担，以及代理式AI削弱付费席位或应用入口。后续重点是Azure收入与利用率、Copilot每客户变现、资本开支强度及自由现金流恢复，并检验客户资金与收款能否支持需求。优秀资本配置评价仍取决于新增投资实际产生现金回报。报告于2026年10月29日更新，公允价值字段仍标2025年7月31日；首页Medium与风险正文High的冲突保留，完整估值时间锚仍未披露。",
         "metrics": {
           "capitalAllocation": "exemplary",
           "economicMoat": "wide",
           "fairValue": 600,
           "fairValueCurrency": "USD",
-          "fairValueUpdatedDate": "20260722",
-          "ratingStars": 5,
-          "ratingUpdatedDate": "20260722",
+          "fairValueUpdatedDate": "20250731",
+          "ratingStars": 3,
+          "ratingUpdatedDate": "20261029",
           "uncertainty": "medium"
         },
         "provider": "Morningstar",
-        "publishedDate": "20260722",
+        "publishedDate": "20261029",
         "sections": {
           "bearish": [
-            "Office 等产品的订阅迁移动能可能放缓。",
-            "微软缺少有意义的移动端平台地位。",
-            "Azure 与 Dynamics 并非各自主要增长市场中的第一名。"
+            "资本投入可能持续高位，新AI需求和资本回报不确定。",
+            "Agents可能在使用费补偿前替代付费席位或应用入口。",
+            "前沿AI客户需求集中且依赖融资，需求下降可能留下闲置容量。"
           ],
           "bullish": [
-            "Azure 受益于企业从混合云向公有云迁移。",
-            "Microsoft 365 可通过安全与 Teams Phone 等高价功能继续升级客单价。",
-            "Windows 与 Office 等成熟业务可为 Azure 和 AI 投资提供现金流。"
+            "Azure产能释放可服务已签需求及企业AI/传统工作负载。",
+            "Copilot、安全升级和使用收费可提高每客户变现，减缓席位增长放慢的影响。",
+            "企业基础设施、平台和应用多层覆盖提供多种AI变现渠道。"
           ],
           "capitalAllocation": [
-            "资本分配评级为优秀。",
-            "再投资优先，同时通过股息、回购和选择性收购回馈股东。",
-            "AI 与 Azure 的高额投入需要以收入增量和利润率表现持续验证。"
+            "资本配置Exemplary；晨星认可软件订阅、云和生态转型的历史执行。",
+            "新AI建设规模更大，历史软件回报不能保证当期资本取得同样回报；评价以利用率、现金形成及承诺管理为条件。",
+            "收购记录并非全部成功；股息与回购需结合现金需求判断，租赁义务不能被普通借款口径掩盖。"
           ],
           "economicMoat": [
-            "整体为宽护城河，主要来源是企业客户的高迁移成本。",
-            "网络效应与成本优势是次要来源；Azure 是当前核心。",
-            "生产力与业务流程、智能云为宽护城河，个人计算业务仅为窄护城河。"
+            "整体Wide，以企业软件转换成本为主，M365/LinkedIn网络及Azure规模优势辅助；大型对手有可比规模，未声称微软优于所有竞争者。",
+            "M365、授权和Azure为Wide，Industry solutions与Windows较弱；Surface/Bing独立业务和Xbox未获持久护城河判断。",
+            "AI可能改变应用入口与席位，晨星仍预期身份、数据、安全和工作流构成长期价值，但新基础设施回报需检验。"
           ],
           "fairValue": [
-            "公允价值为 600 美元，五星评级表示相对当前价格存在显著折价。",
-            "五年收入复合增速假设约 13%，长期驱动来自 Azure、Microsoft 365、Dynamics、LinkedIn 与 AI。",
-            "经营利润率假设由 2024 财年的约 45%温和升至 2029 财年的约 46%。"
+            "公允价值600美元；FY27调整EPS约30倍，未来五年收入年复合增长16.6%。AzureFY27/FY28增长51%/37%，M365为17%/15%。",
+            "FY27/FY31收入预测399.2/715.4bn美元，FY31经营利润率47.4%；现金capexFY27/FY28为189.7/226.3bn，预计FY27现金流低谷后改善。",
+            "表内股权4349543百万美元、股数7430百万直接商585.40美元；完整时间锚未披露，不将表内商冒充晨星新公允价值。"
           ],
           "financialHealth": [
-            "晨星评价其财务健康度优秀，依据是强资产负债表、增长与高利润率。",
-            "截至 2025 年 6 月，现金及等价物约 950 亿美元、债务约 430 亿美元。",
-            "过去三年自由现金流率接近 30%，基准情景预计长期改善。"
+            "晨星认为资产负债表稳健，同时提醒租赁负担；公司预期FY27保持正自由现金流，但这是指引。",
+            "估值表现金76843、债务40294百万美元沿用June30口径，不冒充最新财报余额。",
+            "正自由现金流不意味着完全不需融资；本卡不将“自筹”措辞扩展成无外部融资结论。"
           ],
           "strategyOutlook": [
-            "Azure 是未来十年最重要的收入驱动，混合云能力是关键差异化。",
-            "Office 365、Dynamics 365、LinkedIn 与 AI 采用共同构成增长组合。",
-            "个人计算业务预计仅略高于 GDP 增长，Surface 与 Bing 不被视为护城河来源。"
+            "以企业软件、身份、安全、开发工具与Azure支持多模型AI平台，降低仅依赖单一模型的叙事。",
+            "M365从成熟席位增长转向高级功能与使用收费，非编码场景采用较慢，需逐步验证利润。",
+            "Azure和商业软件预计超过Windows/Xbox的拖累；投资可调节性仍受建设与长期合约约束。"
           ],
           "uncertainty": [
-            "不确定性为中等。",
-            "传统客户端—服务器高利润收入仍面临云迁移与产品替代风险。",
-            "AI 资本开支、数据中心安全、人才竞争与大型并购执行是主要风险。"
+            "首页Medium与第6页风险正文High冲突，均忠实保留，尚无发布方统一更正证据。",
+            "风险来自容量超过有利润的需求、设备更新、电力/租赁成本，以及竞争导致价格或投资压力。",
+            "OpenAI兼具投资与重要客户身份；客户资金、收款和产能利用可能同时受冲击，使用计费的跨周期盈利也未获证明。"
           ]
         },
-        "sourceUrl": "https://global.morningstar.com/en-gb/stocks/going-into-earnings-is-microsoft-stock-buy-sell-or-fairly-valued-5",
-        "title": "Going Into Earnings, Is Microsoft Stock a Buy, a Sell, or Fairly Valued?",
-        "verifiedAt": "2026-07-24T13:51:50Z",
-        "version": 2
+        "sourceUrl": "https://www.morningstar.com/stocks/xnas/msft",
+        "title": "Microsoft Earnings: Azure Accelerates, but Investment Returns Remain the Test",
+        "verifiedAt": "2026-10-30T06:16:24.078084Z",
+        "version": 3
       }
     ],
     "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
+      {
+        "asOfDate": "20261029",
+        "assessmentType": "equity_research",
+        "completedAt": "2026-10-30T16:29:49.936452Z",
+        "frameworkVersion": "research-workflow-10.1.0",
+        "result": {
+          "bearCase": [
+            "资本开支、租赁与组件融资可能长期高于旧模型，收入增长未必转化足够股东现金。",
+            "OpenAI同时是客户、应收和投资敞口，客户融资与定价可共同影响回报。",
+            "代理式AI可能侵蚀席位和应用入口；监管也可能削弱软件捆绑与迁移壁垒。"
+          ],
+          "bullCase": [
+            "企业工作流与身份/数据整合有转换摩擦，M365和Azure的真实收入增长支持需求。",
+            "工程效率与多层变现可能提高现有设施产出；乐观路径626.34说明不宜把低基准点当成确定损失。",
+            "公司仍有强经营现金流与融资能力，现有软件利润提供转型缓冲。"
+          ],
+          "decisionHinge": "更强的Azure收入增长能否在设备更新、租赁和组件融资之后，形成足以支持当前价格的持续股东现金回报。",
+          "existingPositionDecision": "hold",
+          "fiveLayerDecisionSummary": {
+            "actionFalsifiersAndGaps": {
+              "summary": "等待产能转现金、组件回收和租赁桥改善；若付费/收款与投入长期脱节，或软件变现被替代，应重审持有。研究与估值均conditional，组合not_decision_grade，实施not_ready。用户已审阅并认可研究；仅授权MSFT本地研究及晨星两栏更新，未授权交易。"
+            },
+            "latestEvidenceDelta": {
+              "summary": "Q1收入92.279bn、Azure33.165bn；剔除OpenAI的EPS增长18.4%。CFO58.0bn但现金capex39.367bn，cashFCF18.633bn较同比减少27.4%；组件融资与租赁使会计盈利更难直接转成可分配现金。"
+            },
+            "longTermThesisAndStatus": {
+              "summary": "企业软件、身份/数据/工作流与云基础设施的长期需求论点仍成立，收入证据增强。转换成本有M365收入/席位和CMA两类证据；新增AI资本回报仍待证明，不能把Wide等同高价买入。"
+            },
+            "portfolioRoleExistingAndNewMoney": {
+              "summary": "现有持仓hold并加强现金回报监控；等额新增资金do_not_buy。组合角色待讨论，非永久核心。VOO也含MSFT，直接加仓会增加共同因子；账户证据缺失，无法量化当前总暴露或指定减仓。"
+            },
+            "valuationAndPricedExpectations": {
+              "summary": "Oct29收盘530.14美元；独立条件情景56.86/276.84/626.34。旧476.76下降主要来自持续资本投入、折旧/利润路径和租赁，非晨星股数错误。600需更好长期回报/较低资本成本；模型强假设限制估值成熟度为conditional。"
+            }
+          },
+          "missingEvidence": [
+            "Azure/AI分批投资的利用率、单位价格、电力/推理成本与客户净现金回报未完整披露；模型虽可复算，不能升为decision_grade。",
+            "管理层7.4bn租赁capex与GAAP5.192bn新增ROU、45.2bn总capex与39.367bn现金付款未完全对齐；长期租约投产表缺失。",
+            "组件融资35.7bn余额与other-investing现金流缺完整回收/非流动桥，采用明确营运资本代理和压力测试。",
+            "旧资产年龄、在建工程分配、服务器实际更新周期、长期折旧前贡献率依赖假设；悲观情景含最终正常化，非最坏损失下界。",
+            "晨星表内600的精确时间锚和完整分期现金流未披露；时间解释是高度吻合的推断。Medium/High冲突未解决。",
+            "没有同日一致预期/完整同行估值面板；beta沿用June样本；债务成本为券息代理；盈利倍数只作辅助。",
+            "当前账户持仓、NAV、权重、税费、资金与订单未提供。本次privateDataNeeds=false；组合实施、精确增减数量与真实收益排名不能完成。"
+          ],
+          "monitoring": [
+            {
+              "baseline": "Q1收入33.165bn、报告增长48.16%；Q2CC指引49–50%",
+              "challengingDirection": "增长下滑同时应收/承诺上升",
+              "confirmingDirection": "产能交付后增长与收款同步，客户扩散",
+              "falsifier": "连续两个季度新增容量无法形成相称付费收入且公司下修回报/需求，将重估持有论点。",
+              "metric": "Azure增长与客户质量",
+              "nextEvidence": "FY27Q2财报/电话会；发布日期尚未核实",
+              "sourceIds": [
+                "S02",
+                "S03"
+              ]
+            },
+            {
+              "baseline": "商业云CC18%、付费席位+5%；使用计费客户+75%QoQ但基数未披露",
+              "challengingDirection": "席位流失/价格下降、使用量增长但利润率下降",
+              "confirmingDirection": "付费客户绝对基数、ARPU、推理成本和续约改善",
+              "falsifier": "付费替代持续侵蚀订阅利润且使用利润不能抵消，削弱核心软件论点。",
+              "metric": "Copilot与M365利润性变现",
+              "nextEvidence": "FY27Q2披露",
+              "sourceIds": [
+                "S03"
+              ]
+            },
+            {
+              "baseline": "Q1CFO58.0、cashcapex39.367、cashFCF18.633bn；CYcapex约170bn、Q2>50bn",
+              "challengingDirection": "新增承诺增长快于收入/收款，依赖不断加债",
+              "confirmingDirection": "投入后的现金转化改善，FY27FCF保持正",
+              "falsifier": "若高投入与低现金回报持续，撤销高回报AI投资假说，而非等待收入规模自证。",
+              "metric": "FCF与融资需求",
+              "nextEvidence": "FY27Q2现金流及FY27全年",
+              "sourceIds": [
+                "S02",
+                "S03"
+              ]
+            },
+            {
+              "baseline": "GAAP新增financeROU5.192bn；管理层7.4bn未对齐；financePV70.973bn；未开始364.6bn",
+              "challengingDirection": "分类迁移掩盖付款、承诺增长而利用不足",
+              "confirmingDirection": "新增/付款/投产桥可解释，承诺符合收益",
+              "falsifier": "无法将经济投入映射到现金回报时，维持估值conditional并禁止新增合格判断。",
+              "metric": "租赁与资本口径",
+              "nextEvidence": "下一10-Q租赁附注",
+              "sourceIds": [
+                "S02",
+                "S03"
+              ]
+            },
+            {
+              "baseline": "组件应收35.7bn，较June27.8bn增加7.9bn；otherinvesting流出12.949bn",
+              "challengingDirection": "余额继续快于投入增速或发生减值/延期",
+              "confirmingDirection": "余额随交付回收，信用损失可控",
+              "falsifier": "重大回收损失改变流动性与FCFF假设，触发模型重估。",
+              "metric": "组件融资与现金回收",
+              "nextEvidence": "下一10-Q附注和现金流",
+              "sourceIds": [
+                "S02"
+              ]
+            },
+            {
+              "baseline": "相关收入10bn、应收7.2bn；投资收益税后0.207bn；约24%as-converted权益",
+              "challengingDirection": "应收异常、融资失败、集中容量闲置",
+              "confirmingDirection": "收入可收回、客户资金与终端付费可持续",
+              "falsifier": "收款/合同履行实质恶化同时冲击三条风险通道，升级持仓重新判断。",
+              "metric": "OpenAI多重敞口",
+              "nextEvidence": "下一10-Q、重大合同/融资公告",
+              "sourceIds": [
+                "S02"
+              ]
+            },
+            {
+              "baseline": "Q1折旧11.1bn、云GM66%，Q2约65%；建筑寿命15→25年",
+              "challengingDirection": "资产减值、寿命延长伴随实际替换更快",
+              "confirmingDirection": "现金投入效率、单位成本改善可覆盖设备更换",
+              "falsifier": "会计利润改善而现金替换负担持续上升，否定以盈利倍数替代现金估值。",
+              "metric": "经济折旧与利润率",
+              "nextEvidence": "后续资产投产/减值/费用披露",
+              "sourceIds": [
+                "S02",
+                "S03",
+                "S06"
+              ]
+            },
+            {
+              "baseline": "CMAOct16提出软件竞争措施，已确认迁移依赖；尚非最终结果",
+              "challengingDirection": "解绑/可迁移性降低定价能力",
+              "confirmingDirection": "互操作选择增加后续约与定价仍稳",
+              "falsifier": "关键商业模式约束落地且能量化侵蚀现金流，修订护城河和利润路径。",
+              "metric": "竞争与监管",
+              "nextEvidence": "CMA后续正式决定与客户行为",
+              "sourceIds": [
+                "S11"
+              ]
+            }
+          ],
+          "newMoneyDecision": "do_not_buy",
+          "recommendedAction": "Hold existing position with enhanced cash-return monitoring; do not add new money. Revisit portfolio role and potential reduction only with decision-grade economic and current portfolio evidence.",
+          "researchCompletedAt": "2026-10-30T16:29:49.936452Z",
+          "researchMaturity": "conditional",
+          "researchMethodVersion": "10.1.0",
+          "reviewedDisplay": {
+            "formatId": "ordinary-frozen-native-reader-v1",
+            "layers": {
+              "actionFalsifiersAndGaps": {
+                "summary": "等待产能转现金、组件回收和租赁桥改善；若付费/收款与投入长期脱节，或软件变现被替代，应重审持有。研究与估值均conditional，组合not_decision_grade，实施not_ready。用户已审阅并认可研究；仅授权MSFT本地研究及晨星两栏更新，未授权交易。"
+              },
+              "latestEvidenceDelta": {
+                "summary": "Q1收入92.279bn、Azure33.165bn；剔除OpenAI的EPS增长18.4%。CFO58.0bn但现金capex39.367bn，cashFCF18.633bn较同比减少27.4%；组件融资与租赁使会计盈利更难直接转成可分配现金。"
+              },
+              "longTermThesisAndStatus": {
+                "summary": "企业软件、身份/数据/工作流与云基础设施的长期需求论点仍成立，收入证据增强。转换成本有M365收入/席位和CMA两类证据；新增AI资本回报仍待证明，不能把Wide等同高价买入。"
+              },
+              "portfolioRoleExistingAndNewMoney": {
+                "summary": "现有持仓hold并加强现金回报监控；等额新增资金do_not_buy。组合角色待讨论，非永久核心。VOO也含MSFT，直接加仓会增加共同因子；账户证据缺失，无法量化当前总暴露或指定减仓。"
+              },
+              "valuationAndPricedExpectations": {
+                "summary": "Oct29收盘530.14美元；独立条件情景56.86/276.84/626.34。旧476.76下降主要来自持续资本投入、折旧/利润路径和租赁，非晨星股数错误。600需更好长期回报/较低资本成本；模型强假设限制估值成熟度为conditional。"
+              }
+            },
+            "overview": "微软的企业软件与Azure增长论点仍成立，但新增AI资本的回报尚未充分可见。FY27Q1收入92.279bn、Azure增长48.16%；剔除OpenAI后EPS增长18.4%，同时现金资本开支39.367bn使cashFCF降至18.633bn。独立经营模型在530.14美元研究价下给出56.86/276.84/626.34美元条件情景；持续资本强度和现金利润率是关键，不把宽区间当成概率预测。晨星600与股权/股数商585.40可用时间滚动高度吻合地解释，但精确锚点及Medium/High冲突仍未解决。建议现有持仓hold并监控，等额新增资金do_not_buy；估值与研究conditional。当前账户数据缺失，组合判断not_decision_grade，实施not_ready。"
+          },
+          "sourceRegister": [
+            {
+              "label": "S01 Microsoft FY2027 Q1 earnings release",
+              "url": "https://www.microsoft.com/en-us/investor/earnings/fy-2027-q1/press-release-webcast"
+            },
+            {
+              "label": "S02 Microsoft September 2026 Form 10-Q",
+              "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436133/msft-20260930.htm"
+            },
+            {
+              "label": "S03 Microsoft FY2027 Q1 earnings call",
+              "url": "https://www.microsoft.com/en-us/investor/events/fy-2027/earnings-fy-2027-q1"
+            },
+            {
+              "label": "S04 FY2026 quarterly segment/product recast",
+              "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526380280/d291965dex991.htm"
+            },
+            {
+              "label": "S05 Microsoft FY2026 Annual Report",
+              "url": "https://www.microsoft.com/investor/reports/ar26/"
+            },
+            {
+              "label": "S06 Microsoft FY2026 Q4 earnings call",
+              "url": "https://www.microsoft.com/en-us/Investor/events/FY-2026/earnings-fy-2026-q4"
+            },
+            {
+              "label": "S07 Microsoft announces debt offerings",
+              "url": "https://news.microsoft.com/source/2026/10/29/microsoft-announces-debt-offerings-7/"
+            },
+            {
+              "label": "S08 MSFT completed-close price history",
+              "url": "https://stockanalysis.com/stocks/msft/history/"
+            },
+            {
+              "label": "S09 US Treasury nominal par curve",
+              "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202610&type=daily_treasury_yield_curve"
+            },
+            {
+              "label": "S10 Damodaran implied equity risk premium",
+              "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm"
+            },
+            {
+              "label": "S11 CMA business software competition announcement",
+              "url": "https://www.gov.uk/government/news/cma-takes-first-steps-to-ensure-choice-in-business-software"
+            },
+            {
+              "label": "S12 Vanguard VOO factsheet",
+              "url": "https://fund-docs.vanguard.com/F0968.pdf"
+            }
+          ],
+          "valuation": {
+            "currency": "USD",
+            "dcf": {
+              "modelSummary": "Four product revenue drivers and two segment pre-D&A contribution proxies; owned/finance-lease depreciation cohorts; Sep30 anchor with realizedQ1 excluded; ten explicit plus ten funded-fade years, terminal marginalROIC=WACC; equity time-roll29days.",
+              "scenarios": [
+                {
+                  "assumptionSummary": "需求趋缓、持续资本负担、短资产4年及较高折现率；最终利润率恢复至28%的假设仍存在。",
+                  "name": "悲观",
+                  "terminalGrowthPct": 2.5,
+                  "valuePerShareUsd": 56.860153287484515,
+                  "waccPct": 10.582551491059116
+                },
+                {
+                  "assumptionSummary": "Azure48%/35%后递减，FY27cashcapex190bn及finance25bn，长期资本强度持续；终值margin38%。",
+                  "name": "基准",
+                  "terminalGrowthPct": 3.0,
+                  "valuePerShareUsd": 276.8387165147775,
+                  "waccPct": 9.582551491059116
+                },
+                {
+                  "assumptionSummary": "Azure51%/40%及更好变现和投入效率，终值margin48%，资本成本较基准低1个百分点。",
+                  "name": "乐观",
+                  "terminalGrowthPct": 3.5000000000000004,
+                  "valuePerShareUsd": 626.3444707699047,
+                  "waccPct": 8.582551491059116
+                }
+              ],
+              "sensitivityNote": "Conditional56.86/276.84/626.34; WACC/g grid and reverseDCF available. Cashcapex±20% gives333.60/219.40 in base. Life-only stress changes tax shield, not physical replacement economics. No assigned scenario probabilities."
+            },
+            "priceContextLabel": "2026-10-29 20:00 UTC completed close; no executable quote",
+            "priceUsd": 530.14
+          },
+          "valuationMaturity": "conditional"
+        },
+        "reviewDueAt": null,
+        "reviewDueReason": null,
+        "reviewStatus": "current",
+        "reviewTriggerType": null,
+        "sourceLabel": "Independent reviewed frozen equity research",
+        "sourceVersion": "MSFT v4.1（2026-10-29；版本标识更正）",
+        "status": "active",
+        "summary": "微软的企业软件与Azure增长论点仍成立，但新增AI资本的回报尚未充分可见。FY27Q1收入92.279bn、Azure增长48.16%；剔除OpenAI后EPS增长18.4%，同时现金资本开支39.367bn使cashFCF降至18.633bn。独立经营模型在530.14美元研究价下给出56.86/276.84/626.34美元条件情景；持续资本强度和现金利润率是关键，不把宽区间当成概率预测。晨星600与股权/股数商585.40可用时间滚动高度吻合地解释，但精确锚点及Medium/High冲突仍未解决。建议现有持仓hold并监控，等额新增资金do_not_buy；估值与研究conditional。当前账户数据缺失，组合判断not_decision_grade，实施not_ready。",
+        "updatedAt": "2026-10-30T16:46:40.908708Z",
+        "version": 1
+      },
       {
         "asOfDate": "20260803",
         "assessmentType": "long_only_equity_review",
@@ -368,13 +628,13 @@
     ],
     "summary": {
       "research": {
-        "count": 2,
-        "internalCount": 1,
+        "count": 3,
+        "internalCount": 2,
         "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-10-29T04:31:59.349806Z",
+  "generatedAt": "2026-10-31T06:47:34.708052Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "MSFT"
