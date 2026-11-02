@@ -2,34 +2,334 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": null,
-        "providerPublishedDate": null,
-        "providerVerifiedAt": null
+        "latestAsOfDate": "20261030",
+        "providerPublishedDate": "20261030",
+        "providerVerifiedAt": "2026-10-31T11:38:11.763273Z"
       }
     },
     "dataQuality": {
       "domains": {
         "research": {
-          "count": 0,
-          "message": "尚未发布研究评价",
-          "status": "not_available"
+          "count": 2,
+          "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
+          "status": "pass"
         }
       }
     },
-    "providerResearch": [],
-    "publicationStatus": "withheld",
-    "research": [],
+    "providerResearch": [
+      {
+        "analyst": {
+          "name": "Brian Colello, CPA",
+          "role": "Senior Equity Analyst"
+        },
+        "freshness": {
+          "ageDays": 1.588815009849537,
+          "maximumDays": 7,
+          "status": "current",
+          "warning": null
+        },
+        "interpretation": "晨星本期下调估值的主要原因，是个人电脑需求与内存成本压力开始明显压过服务器业务的强劲增长。此前七月报告认为服务器需求足以抵消个人电脑疲弱，现在则认为个人电脑下滑更深、持续更久，收入与盈利恢复需要后移。其长期逻辑仍是稳定个人电脑处理器业务、受益于智能体人工智能带来的服务器需求，并靠外部客户及资金支持重建晶圆代工。\n\n在晨星模型中，服务器需求扩张、外部代工收入增加和制造效率改善共同支撑未来现金流，整体收入未来五年复合增长约17%；这是一条尚待兑现的复苏路径，而非已经锁定的经营结果。它认为芯片设计能力、现有市场地位与先进封装带来机会，但制造环节的成本和技术劣势、持续巨额投入，使整体业务仍难证明能长期获得超额资本回报。\n\n上行取决于服务器供给瓶颈缓解、先进制程推进以及外部客户转化；下行来自个人电脑继续收缩、AMD和Arm竞争、制造执行失误及资金消耗。近期还需观察以色列厂区事故对收入和毛利率的影响能否消退。后续验证重点是服务器增长能否真正转化为现金、个人电脑何时稳定，以及14A能否按计划吸引商业客户；晨星也明确承认，外部代工收入的规模与落地时点高度不确定。",
+        "metrics": {
+          "capitalAllocation": "standard",
+          "economicMoat": "none",
+          "fairValue": 85,
+          "fairValueCurrency": "USD",
+          "fairValueUpdatedDate": "20261030",
+          "ratingStars": 3,
+          "ratingUpdatedDate": "20261030",
+          "uncertainty": "very_high"
+        },
+        "provider": "Morningstar",
+        "publishedDate": "20261030",
+        "sections": {
+          "bearish": [
+            "先进制造目标并无成功保证，14A计划在2028或2029年推出仍有执行风险。",
+            "即使制造路线改善，AMD在x86市场更具竞争力，Arm架构处理器的威胁也高于以往。",
+            "英伟达主导人工智能加速器市场，晨星不预期英特尔近期能在该领域取得显著突破。"
+          ],
+          "bullish": [
+            "英特尔仍是大型半导体企业，在个人电脑和服务器处理器领域保持重要市场地位。",
+            "产品部门具备创新能力和盈利的设计团队；更多采用台积电制造，有望帮助缓解市场份额流失。",
+            "能够接近先进制程制造水平的企业很少；额外资金支持可能帮助英特尔代工业务逐步形成可行的经营基础。"
+          ],
+          "capitalAllocation": [
+            "封面维持Standard（标准）评级；相关正文标注2026年4月24日，不能视为10月重新撰写的资本分配分析。",
+            "晨星的评价组合为资产负债表偏弱、投资政策尚可、股东分配表现参差；其对Mobileye、Habana和Altera等收购的看法并不一致。",
+            "认为先进制程投资具有战略必要性，但将继续造成资金压力并依赖激励和合作伙伴；负自由现金流也迫使公司削减股息。"
+          ],
+          "economicMoat": [
+            "整体评级为无护城河：制造受挫和高额制程投资压低资本回报，晨星暂不预期未来数年持续获得超额回报。",
+            "芯片设计团队若作为独立轻资产业务，可能具有窄护城河；但制造业务的成本和技术劣势抵消了这些优势。",
+            "x86生态仍有价值，但AMD与Arm竞争削弱其历史优势；制造路线成功也不保证短期内恢复护城河。"
+          ],
+          "fairValue": [
+            "公允价值由105美元下调至85美元，主要因下修近期个人电脑处理器收入预期；估值更新时间为2026年10月30日01:39 UTC。",
+            "晨星采用折现现金流框架，摘要列示加权平均资本成本8.9%；正文预计整体收入未来五年和十年复合增速分别约17%和12%。",
+            "其外部代工收入预测为2027年约23亿美元、2030年160亿美元、2035年500亿美元，同时明确承认规模和兑现时间高度不确定。"
+          ],
+          "financialHealth": [
+            "4月24日章节认为，持续现金流不足与重大制造投资使资产负债表偏弱；该评价保留原章节时点。",
+            "该章节引用2025年末现金及投资约374亿美元、债务约466亿美元；这些是报告内历史数字，并非当前财报余额。",
+            "晨星认为政府及战略投资者的支持改善了资金状况，但制造计划仍需大量激励和投资合作，现金回报恢复是关键。"
+          ],
+          "strategyOutlook": [
+            "复苏路径是稳定个人电脑处理器业务，承接智能体人工智能带来的服务器需求，并为代工业务争取外部投资支持。",
+            "晨星模型预计2027年数据中心与人工智能业务增长43%，个人电脑处理器收入下降12.5%；二者均为发布方预测。",
+            "长期关键是14A、先进封装及外部客户商业化；仅靠内部处理器规模难以支撑先进制造的高固定成本，潜在客户讨论不等于已确认订单。"
+          ],
+          "uncertainty": [
+            "不确定性评级为很高，核心在于产品设计、先进制造、客户导入和高资本投入同时存在执行风险。",
+            "18A已推出，但能否取得有规模的外部客户仍不明确；吸引客户可能依赖14A，其推进也存在风险。",
+            "个人电脑疲弱、AMD及Arm竞争，以及人工智能支出向GPU倾斜，都可能妨碍收入增长转化为股东回报。"
+          ]
+        },
+        "sourceUrl": "https://www.morningstar.com/stocks/xnas/intc/analysis",
+        "title": "英特尔：个人电脑低迷抵消人工智能增长，公允价值由105美元降至85美元",
+        "verifiedAt": "2026-10-31T11:38:11.763273Z",
+        "version": 1
+      }
+    ],
+    "publicationStatus": "internal_and_morningstar_research_published",
+    "research": [
+      {
+        "asOfDate": "20261030",
+        "assessmentType": "equity_research",
+        "completedAt": "2026-10-31T07:55:30.690970Z",
+        "frameworkVersion": "research-workflow-10.1.0",
+        "result": {
+          "bearCase": [
+            "PC去库存和内存成本使公司指引弱于机构预期；DCAI不全是可重复的单位增长。",
+            "高capex、基板义务、NCI、SBC和潜在稀释使收入增长不等于每股现金回报。",
+            "外部Foundry大客户量价和绝对良率证据不足；股价大跌不能证明低估或90–100回归。"
+          ],
+          "bullCase": [
+            "DCAI收入、服务器数量和高端组合改善有实际财报支持，供给提升可进一步兑现需求。",
+            "工艺成本改善、客户兴趣、54bn现金短投与15bn额度提供转型时间；并非即时偿债危机。",
+            "若外部Foundry、利用率及长期现金利润达到乐观路径，存在显著上行可选性，但未作为已证事实。"
+          ],
+          "decisionHinge": "服务器强劲需求能否在PC收缩、制造爬坡、基板与扩产资金投入之后，转为足以支持当前每股价格的持续股东现金回报。",
+          "existingPositionDecision": "trim_review",
+          "fiveLayerDecisionSummary": {
+            "actionFalsifiersAndGaps": {
+              "summary": "优先讨论降低反弹押注；保留前须明确损失/期限，不因亏损长期化。DCAI交付、PC库存、复产、正式外部客户和投入后现金回报是反证窗口。研究conditional、估值screen_grade、实施not_ready；无更早事件最迟2027-01-29复核。"
+            },
+            "latestEvidenceDelta": {
+              "summary": "Q3收入16.513bn、DCAI7.318bn；服务器量+10%、ASP+54%，非纯AI/销量增长。Q4中点15.5bn、PC下滑与以色列影响拖累；2027高投入可能无正FCF。现金54.005bn、债50.134bn，8月融资与15bn授信缓冲须和经营现金区分。"
+            },
+            "longTermThesisAndStatus": {
+              "summary": "Intel的CPU生态与制造转型机会仍存在，服务器需求证据增强；先进代工客户规模、单位经济及资本回报尚未充分验证。公司论点是混合改善，未证明已成为长期每股现金复利仓。"
+            },
+            "portfolioRoleExistingAndNewMoney": {
+              "summary": "用户描述短线反弹目的，角色暂定；现有持仓trim_review，新增现金do_not_buy。用户自述增10股不是本研究核验的持仓事实。portfolioClose缺失，无法量化权重/集中度或下达股数指令。"
+            },
+            "valuationAndPricedExpectations": {
+              "summary": "Oct30收盘65.76；自有筛查级条件值0.42/30.36/107.46，不赋概率、不是近期目标或下限。晨星85单列，外部Foundry和长期开支/回报假设显著不同。现价需要比基准更有利的经营/资本路径。"
+            }
+          },
+          "missingEvidence": [
+            "Operating cash-margin allocation, absolute fab yield/utilization and asset vintages not fully disclosed; screen-grade proxies materially affect valuation.",
+            "2027 exact capex and final substrate economic terms unknown; assumed tax-credit eligibility/collection, NCI payout-equivalent claims and lease cash schedules are conditional.",
+            "Bear path requires financing/refinancing or spending response; existing15bn facilities mitigate pressure but are dated and not indefinite funding.",
+            "Original Morningstar current online article and BofA note unavailable; PDF source/secondary report and unavailable consensus snapshot explicitly separated.",
+            "No timestamp-aligned options/dealer/passive/block-sale causality evidence; event return attribution is not identified.",
+            "No certified portfolioClose; actual holdings/weights, funding and orders not in this authorized research. Exact user maximum loss and horizon undecided."
+          ],
+          "monitoring": [
+            {
+              "baseline": "Q3 server units+10%,ASP+54%;Q4 DCAI mid-teens sequential guide",
+              "challengingDirection": "产能/基板延误、组合或需求弱于指引；立即重审",
+              "confirmingDirection": "出货扩大并保留现金贡献；下一财报验证",
+              "metric": "DCAI量价/交付"
+            },
+            {
+              "baseline": "Q4CCPG>20%decline;IsraelQ4~0.3bn revenue/200bp margin effect;restart not verified",
+              "challengingDirection": "影响超指引、延长至更晚季度或进一步下调",
+              "confirmingDirection": "复产和库存影响按公司窗口收敛",
+              "metric": "PC与以色列"
+            },
+            {
+              "baseline": "Q3external0.411bn includes nonrecurring contract;14A0.9PDK",
+              "challengingDirection": "客户延期、成本/负载无改善、资本强度长期升高",
+              "confirmingDirection": "可验证绑定量价客户、量产和现金ROIC；Q12027PDK1.0",
+              "metric": "Foundry客户/资本回报"
+            },
+            {
+              "baseline": "Netcash3.871bn;undrawnfacilities15bn;user loss/horizon undecided",
+              "challengingDirection": "反弹未兑现但继续摊低/长期化；融资负担或期限破坏原命题",
+              "confirmingDirection": "正式预算/回款支持资金闭合，用户明确风险界限",
+              "metric": "资金与角色"
+            }
+          ],
+          "newMoneyDecision": "do_not_buy",
+          "portfolioRole": {
+            "accountEvidence": "missing",
+            "role": "User-described short-term rebound position; long-term conversion requires new underwriting.",
+            "status": "provisional"
+          },
+          "recommendedAction": "优先讨论降低现有短线反弹敞口；若继续保留，先明确最大损失与期限，不等待90–100美元才复核，不因亏损转为长期持有。等额新增现金暂不买入。方向性研究建议不指定账户股数或可执行订单。",
+          "researchCompletedAt": "2026-10-31T07:55:30.690970Z",
+          "researchMaturity": "conditional",
+          "researchMethodVersion": "10.1.0",
+          "reviewedDisplay": {
+            "formatId": "ordinary-frozen-native-reader-v1",
+            "layers": {
+              "actionFalsifiersAndGaps": {
+                "summary": "优先讨论降低反弹押注；保留前须明确损失/期限，不因亏损长期化。DCAI交付、PC库存、复产、正式外部客户和投入后现金回报是反证窗口。研究conditional、估值screen_grade、实施not_ready；无更早事件最迟2027-01-29复核。"
+              },
+              "latestEvidenceDelta": {
+                "summary": "Q3收入16.513bn、DCAI7.318bn；服务器量+10%、ASP+54%，非纯AI/销量增长。Q4中点15.5bn、PC下滑与以色列影响拖累；2027高投入可能无正FCF。现金54.005bn、债50.134bn，8月融资与15bn授信缓冲须和经营现金区分。"
+              },
+              "longTermThesisAndStatus": {
+                "summary": "Intel的CPU生态与制造转型机会仍存在，服务器需求证据增强；先进代工客户规模、单位经济及资本回报尚未充分验证。公司论点是混合改善，未证明已成为长期每股现金复利仓。"
+              },
+              "portfolioRoleExistingAndNewMoney": {
+                "summary": "用户描述短线反弹目的，角色暂定；现有持仓trim_review，新增现金do_not_buy。用户自述增10股不是本研究核验的持仓事实。portfolioClose缺失，无法量化权重/集中度或下达股数指令。"
+              },
+              "valuationAndPricedExpectations": {
+                "summary": "Oct30收盘65.76；自有筛查级条件值0.42/30.36/107.46，不赋概率、不是近期目标或下限。晨星85单列，外部Foundry和长期开支/回报假设显著不同。现价需要比基准更有利的经营/资本路径。"
+              }
+            },
+            "overview": "Intel的CPU生态与制造转型机会仍存在，服务器需求证据增强；先进代工客户规模、单位经济及资本回报尚未充分验证。公司论点是混合改善，未证明已成为长期每股现金复利仓。 Q3收入16.513bn、DCAI7.318bn；服务器量+10%、ASP+54%，非纯AI/销量增长。Q4中点15.5bn、PC下滑与以色列影响拖累；2027高投入可能无正FCF。现金54.005bn、债50.134bn，8月融资与15bn授信缓冲须和经营现金区分。 Oct30收盘65.76；自有筛查级条件值0.42/30.36/107.46，不赋概率、不是近期目标或下限。晨星85单列，外部Foundry和长期开支/回报假设显著不同。现价需要比基准更有利的经营/资本路径。 用户描述短线反弹目的，角色暂定；现有持仓trim_review，新增现金do_not_buy。用户自述增10股不是本研究核验的持仓事实。portfolioClose缺失，无法量化权重/集中度或下达股数指令。 优先讨论降低反弹押注；保留前须明确损失/期限，不因亏损长期化。DCAI交付、PC库存、复产、正式外部客户和投入后现金回报是反证窗口。研究conditional、估值screen_grade、实施not_ready；无更早事件最迟2027-01-29复核。"
+          },
+          "sourceRegister": [
+            {
+              "asOf": null,
+              "label": "Intel Q3 2026 earnings release and reconciliations",
+              "url": "https://www.intc.com/news-events/press-releases/detail/1786/intel-reports-third-quarter-2026-financial-results"
+            },
+            {
+              "asOf": null,
+              "label": "Intel Q3 2026 Form 10-Q",
+              "url": "https://www.intc.com/filings-reports/all-sec-filings/content/0000050863-26-000191/0000050863-26-000191.pdf"
+            },
+            {
+              "asOf": null,
+              "label": "Intel Q3 2026 earnings deck",
+              "url": "https://d1io3yog0oux5.cloudfront.net/_47986fe477a6ac84fe34efbcbf38dd13/intel/db/887/9273/earnings_presentation/Q3_2026_Earnings_Deck.pdf"
+            },
+            {
+              "asOf": null,
+              "label": "Intel Q3 2026 prepared remarks",
+              "url": "https://d1io3yog0oux5.cloudfront.net/_47986fe477a6ac84fe34efbcbf38dd13/intel/db/887/9273/prepared_remarks/Q3%2726_Prepared_Remarks.pdf"
+            },
+            {
+              "asOf": null,
+              "label": "Motley Fool Q3 2026 call transcript",
+              "url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/"
+            },
+            {
+              "asOf": null,
+              "label": "Intel 2025 Form 10-K",
+              "url": "https://www.intc.com/filings-reports/annual-reports/content/0000050863-26-000011/intc-20251227.htm"
+            },
+            {
+              "asOf": null,
+              "label": "US Treasury 2026 daily nominal par curve",
+              "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2026"
+            },
+            {
+              "asOf": "2026-10-30T20:00:00Z",
+              "label": "INTC completed regular-session history",
+              "url": "https://stockanalysis.com/stocks/intc/history/"
+            },
+            {
+              "asOf": "2026-10-30T20:00:00Z",
+              "label": "SOXX same-date close",
+              "url": "https://stockanalysis.com/etf/soxx/history/"
+            },
+            {
+              "asOf": "2026-10-30T20:00:00Z",
+              "label": "SPY same-date close",
+              "url": "https://stockanalysis.com/etf/spy/history/"
+            },
+            {
+              "asOf": "2026-10-30T20:00:00Z",
+              "label": "AMD same-date close, context only",
+              "url": "https://stockanalysis.com/stocks/amd/history/"
+            },
+            {
+              "asOf": "2026-10-30, intraday; exact article revision time not captured",
+              "label": "Reuters: Intel on course for worst day ever, triggers global chip rout",
+              "url": "https://www.investing.com/news/stock-market-news/intel-warning-sparks-chip-rout-as-pc-weakness-clouds-turnaround-4987123"
+            },
+            {
+              "asOf": "2026-10-30; original bank note unavailable",
+              "label": "MarketBeat report of BofA downgrade",
+              "url": "https://www.marketbeat.com/instant-alerts/analyst-intel-nasdaq-intc-stock-rating-lowered-by-bank-of-america-2026-10-30/"
+            },
+            {
+              "asOf": "current page read 2026-10-31",
+              "label": "IRS advanced manufacturing investment credit",
+              "url": "https://www.irs.gov/credits-deductions/advanced-manufacturing-investment-credit"
+            },
+            {
+              "asOf": null,
+              "label": "Cboe delayed chain availability check [retrieval gap]",
+              "url": "https://www.cboe.com/delayed_quotes/INTC/quote_table/"
+            },
+            {
+              "asOf": null,
+              "label": "Morningstar official online article retrieval gap [retrieval gap]",
+              "url": "https://www.morningstar.com/stocks/xnas/intc/analysis"
+            }
+          ],
+          "valuation": {
+            "currency": "USD",
+            "dcf": {
+              "modelSummary": "Operating-driver screen-grade FCFF proxy: volume/mix and segment cash contributions before D&A, internal-foundry eliminations, asset cohorts, net tax-credit basis/cash lag, SBC, capital and NCI claims. Sep26 anchor plus34day equity roll;10 explicit+10 funded fade, terminal marginalROIC=WACC.",
+              "scenarios": [
+                {
+                  "assumptionSummary": "弱PC/供应、较低现金贡献、2027capex35bn；未闭合融资，静态残值不是下限。",
+                  "name": "悲观",
+                  "terminalGrowthPct": 2.0,
+                  "valuePerShareUsd": 0.421498941579783,
+                  "waccPct": 12.968720000000001
+                },
+                {
+                  "assumptionSummary": "2027capex30bn为分析假设；外部Foundry2030/35为8/25bn，现金效率逐步改善。",
+                  "name": "基准",
+                  "terminalGrowthPct": 2.5,
+                  "valuePerShareUsd": 30.361575148493515,
+                  "waccPct": 11.557712000000002
+                },
+                {
+                  "assumptionSummary": "服务器/外部Foundry强兑现、较高长期现金利润与较低风险；所需盈利规模尚未证实。",
+                  "name": "乐观",
+                  "terminalGrowthPct": 3.0,
+                  "valuePerShareUsd": 107.46107986826178,
+                  "waccPct": 10.190312
+                }
+              ],
+              "sensitivityNote": "WACC/g, capex±20%, margin±3pt, foundry, NCI, leases, credits and shares stresses retained. ReverseDCF is nonunique, no scenario probabilities; static warrant/financing/time-roll diagnostics not full capital transaction valuations."
+            },
+            "priceContextLabel": "2026-10-30 20:00 UTC completed regular-session close; afterhours/executable quotes excluded.",
+            "priceUsd": 65.76
+          },
+          "valuationMaturity": "screen_grade"
+        },
+        "reviewDueAt": null,
+        "reviewDueReason": null,
+        "reviewStatus": "current",
+        "reviewTriggerType": null,
+        "sourceLabel": "Independent reviewed frozen equity research",
+        "sourceVersion": "INTC v1.1（2026-10-30财报后；来源归属更正）",
+        "status": "active",
+        "summary": "Intel的CPU生态与制造转型机会仍存在，服务器需求证据增强；先进代工客户规模、单位经济及资本回报尚未充分验证。公司论点是混合改善，未证明已成为长期每股现金复利仓。 Q3收入16.513bn、DCAI7.318bn；服务器量+10%、ASP+54%，非纯AI/销量增长。Q4中点15.5bn、PC下滑与以色列影响拖累；2027高投入可能无正FCF。现金54.005bn、债50.134bn，8月融资与15bn授信缓冲须和经营现金区分。 Oct30收盘65.76；自有筛查级条件值0.42/30.36/107.46，不赋概率、不是近期目标或下限。晨星85单列，外部Foundry和长期开支/回报假设显著不同。现价需要比基准更有利的经营/资本路径。 用户描述短线反弹目的，角色暂定；现有持仓trim_review，新增现金do_not_buy。用户自述增10股不是本研究核验的持仓事实。portfolioClose缺失，无法量化权重/集中度或下达股数指令。 优先讨论降低反弹押注；保留前须明确损失/期限，不因亏损长期化。DCAI交付、PC库存、复产、正式外部客户和投入后现金回报是反证窗口。研究conditional、估值screen_grade、实施not_ready；无更早事件最迟2027-01-29复核。",
+        "updatedAt": "2026-10-31T11:31:45.667397Z",
+        "version": 1
+      }
+    ],
     "researchAppendices": [],
     "researchHistory": [],
     "summary": {
       "research": {
-        "count": 0,
-        "internalCount": 0,
-        "providerCount": 0
+        "count": 2,
+        "internalCount": 1,
+        "providerCount": 1
       }
     }
   },
-  "generatedAt": "2026-10-31T06:47:34.708052Z",
+  "generatedAt": "2026-11-02T01:46:02.097585Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "INTC"
