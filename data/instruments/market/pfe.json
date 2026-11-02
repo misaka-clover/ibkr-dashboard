@@ -637391,6 +637391,13 @@
           "distributionType": "cash_dividend",
           "eventDate": "20260724",
           "eventType": "cash_dividend"
+        },
+        {
+          "amountPerShare": 0.43,
+          "currency": "USD",
+          "distributionType": "cash_dividend",
+          "eventDate": "20261106",
+          "eventType": "cash_dividend"
         }
       ]
     },
@@ -640115,6 +640122,19 @@
         },
         {
           "currency": "USD",
+          "description": null,
+          "eventDate": "20261106",
+          "eventTime": null,
+          "eventTimezone": "America/New_York",
+          "eventType": "ex_dividend",
+          "publicKey": "b7c6df9c90b3d8affc7d4bf339a745daddb45442a941d85a401b0d9fe55cf9dc",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://investors.pfizer.com/Investors/stock-dividend/dividend-split-history/default.aspx",
+          "status": "confirmed",
+          "title": "PFE 第四季度常规股息除息"
+        },
+        {
+          "currency": "USD",
           "description": "PFE 第四季度股息支付；发行人公开事项，账户到账及研究结论独立。",
           "eventDate": "20261207",
           "eventTime": null,
@@ -640132,10 +640152,10 @@
         {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-10-19T04:19:57.289310+00:00",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-10-31T13:49:18Z",
+      "warning": "Pfizer 动态投资者事件页持续受限；官方 Newsroom 已建立机器发现回退，但候选仍须回到一手公告人工复核，在无人值守适配器（语义确认层）获审前保持 pending。"
     },
     "coverage": [
       {
@@ -640155,9 +640175,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-10-19T04:19:57.289310+00:00"
+        "updatedAt": "2026-10-31T13:49:18Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -640174,11 +640194,11 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 210,
-          "stale": true,
+          "count": 211,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-10-19T04:19:57.289310+00:00",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-10-31T13:49:18Z",
+          "warning": "Pfizer 动态投资者事件页持续受限；官方 Newsroom 已建立机器发现回退，但候选仍须回到一手公告人工复核，在无人值守适配器（语义确认层）获审前保持 pending。"
         },
         "fundamentals": {
           "asOfDate": "20261030",
@@ -640301,7 +640321,7 @@
         "TRADES": 11750
       },
       "corporateEvents": {
-        "count": 210,
+        "count": 211,
         "sourceCount": 3
       }
     },
@@ -707572,7 +707592,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-31T06:47:34.708052Z",
+  "generatedAt": "2026-11-02T01:46:02.097585Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "PFE"

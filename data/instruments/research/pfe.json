@@ -23,7 +23,7 @@
           "role": "Director"
         },
         "freshness": {
-          "ageDays": 85.90502491112268,
+          "ageDays": 87.69560903001157,
           "maximumDays": 7,
           "status": "stale",
           "warning": "资料超过七天未重新核验"
@@ -349,10 +349,10 @@
           "valuationState": "fair",
           "valuationStateLabelZh": "接近内部基准价值但缺乏新增资金安全边际"
         },
-        "reviewDueAt": null,
-        "reviewDueReason": null,
-        "reviewStatus": "current",
-        "reviewTriggerType": null,
+        "reviewDueAt": "2026-11-02T00:00:00Z",
+        "reviewDueReason": "自研究基准日起已满 90 天，需进行例行复核",
+        "reviewStatus": "review_due",
+        "reviewTriggerType": "time_backstop_90d",
         "sourceLabel": "PFE 2026 年第二季度财报后复核研究",
         "sourceVersion": "v2.0",
         "status": "active",
@@ -428,7 +428,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-31T06:47:34.708052Z",
+  "generatedAt": "2026-11-02T01:46:02.097585Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "PFE"

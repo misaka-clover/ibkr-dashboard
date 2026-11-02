@@ -379302,6 +379302,19 @@
           "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/q2fy27pr.htm",
           "status": "occurred",
           "title": "NVIDIA 季度现金股息支付日"
+        },
+        {
+          "currency": null,
+          "description": null,
+          "eventDate": "20261117",
+          "eventTime": null,
+          "eventTimezone": "America/Los_Angeles",
+          "eventType": "earnings_release",
+          "publicKey": "068e3009f0a260e11e3dabd91b460a001f3e10543b7cc1384fbb2b717f52719f",
+          "sourceName": "Reviewed Official Issuer and Sponsor Events",
+          "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-sets-conference-call-for-third-quarter-financial-results-6928873",
+          "status": "confirmed",
+          "title": "NVIDIA FY2027 Q3 财报发布"
         }
       ],
       "sources": [
@@ -379309,10 +379322,10 @@
         {},
         {}
       ],
-      "stale": true,
+      "stale": false,
       "status": "warning",
-      "updatedAt": "2026-10-19T04:19:57.289310+00:00",
-      "warning": "公司事件来源超过 7 天未核验。"
+      "updatedAt": "2026-10-31T13:49:18Z",
+      "warning": "NVIDIA Q4 事件入口持续返回 HTTP 429；官方 Newsroom 已建立机器发现回退，但候选仍须人工复核事件详情，在无人值守适配器（语义确认层）获审前保持 pending。"
     },
     "coverage": [
       {
@@ -379332,9 +379345,9 @@
     ],
     "dataAsOf": {
       "corporateEvents": {
-        "stale": true,
+        "stale": false,
         "status": "warning",
-        "updatedAt": "2026-10-19T04:19:57.289310+00:00"
+        "updatedAt": "2026-10-31T13:49:18Z"
       },
       "market": {
         "ADJUSTED_LAST": {
@@ -379351,11 +379364,11 @@
     "dataQuality": {
       "domains": {
         "corporateEvents": {
-          "count": 79,
-          "stale": true,
+          "count": 80,
+          "stale": false,
           "status": "warning",
-          "updatedAt": "2026-10-19T04:19:57.289310+00:00",
-          "warning": "公司事件来源超过 7 天未核验。"
+          "updatedAt": "2026-10-31T13:49:18Z",
+          "warning": "NVIDIA Q4 事件入口持续返回 HTTP 429；官方 Newsroom 已建立机器发现回退，但候选仍须人工复核事件详情，在无人值守适配器（语义确认层）获审前保持 pending。"
         },
         "fundamentals": {
           "asOfDate": "20261030",
@@ -379478,7 +379491,7 @@
         "TRADES": 6988
       },
       "corporateEvents": {
-        "count": 79,
+        "count": 80,
         "sourceCount": 3
       }
     },
@@ -446533,7 +446546,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-31T06:47:34.708052Z",
+  "generatedAt": "2026-11-02T01:46:02.097585Z",
   "packageType": "market",
   "schemaVersion": 1,
   "symbol": "NVDA"

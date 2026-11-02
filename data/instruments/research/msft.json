@@ -23,7 +23,7 @@
           "role": "Director"
         },
         "freshness": {
-          "ageDays": 1.021752114224537,
+          "ageDays": 2.8123376512152776,
           "maximumDays": 7,
           "status": "current",
           "warning": null
@@ -555,10 +555,10 @@
           "valuationState": "fair",
           "valuationStateLabelZh": "接近基准价值但缺乏新增资金安全边际"
         },
-        "reviewDueAt": null,
-        "reviewDueReason": null,
-        "reviewStatus": "current",
-        "reviewTriggerType": null,
+        "reviewDueAt": "2026-11-01T00:00:00Z",
+        "reviewDueReason": "自研究基准日起已满 90 天，需进行例行复核",
+        "reviewStatus": "review_due",
+        "reviewTriggerType": "time_backstop_90d",
         "sourceLabel": "MSFT 十年分部经营型 FCFF-WACC DCF 完整复核",
         "sourceVersion": "2026-08-03-v3",
         "status": "active",
@@ -634,7 +634,7 @@
       }
     }
   },
-  "generatedAt": "2026-10-31T06:47:34.708052Z",
+  "generatedAt": "2026-11-02T01:46:02.097585Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "MSFT"

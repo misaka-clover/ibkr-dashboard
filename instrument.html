@@ -1039,7 +1039,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.15.6</span><time class="footer-meta-value" datetime="2026-10-31T06:47:01Z">2026-10-31 06:47 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.15.8</span><time class="footer-meta-value" datetime="2026-11-01T01:44:28Z">2026-11-01 01:44 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1341,6 +1341,15 @@
       }
       function portfolioRoleLabel(value) {
         if (!value) return "—";
+        if (typeof value === "object") {
+          // The role prose stays in the frozen overview. This badge reports only
+          // the explicit provisional status; unfamiliar shapes remain visible gaps.
+          return !Array.isArray(value)
+            && Object.keys(value).sort().join("|") === "accountEvidence|role|status"
+            && value.status === "provisional" && value.accountEvidence === "missing"
+            && typeof value.role === "string" && value.role.trim()
+            ? "组合角色：暂定" : "组合角色：标签待适配";
+        }
         return {
           pending: "组合角色：待确认",
           core: "组合角色：核心",
@@ -3940,6 +3949,7 @@
           part = part.replace(/([，,；;、。]\s*|^)(?:brokerExecutionAuthorization|tradeAuthorization)\s*=\s*none(?=[。；;、]|$)/g,
             function (_, separator) { return separator.indexOf("。") >= 0 ? "。" : ""; });
           part = part.replace(/portfolioDecisionReadiness\s*=\s*not_decision_grade/g, "现有证据尚不足以支持组合决策");
+          part = part.replace(/\bportfolioClose\b/g, "组合完成收盘证据");
           part = part.replace(/((?:研究(?:与估值)?|估值(?:与研究)?)(?:均)?)\s*conditional\b/g, "$1仍取决于所列条件");
           var chineseProse = /[\u3400-\u9fff]/.test(part);
           part = part.replace(/[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+/g, function (token) {
