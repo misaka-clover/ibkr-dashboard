@@ -7,7 +7,7 @@
       "cashFlowQuality": "complete",
       "closedPositionTotal": 34.91,
       "comprehensiveCost": 1477.46,
-      "costBasisResidual": -2.2737367544323206e-13,
+      "costBasisResidual": null,
       "costBasisXirr": null,
       "costBasisXirrMethodology": null,
       "costBasisXirrQuality": "not_applicable",
@@ -21,9 +21,9 @@
       "holdingPeriodDays": 476,
       "holdingPeriodEndDate": "20261103",
       "holdingPeriodStartDate": "20250715",
-      "methodology": "以 IBKR 当前成本基础（含手续费）与购买应计利息作为实际投入，按精确日历、未来半年票息及到期本金计算年化持有到期 XIRR；不是券商报价页的债券等价收益率。发生卖出后若剩余批次无法精确归属，实际息率失败关闭；持有期年化收益与总回报率继续按完整生命周期现金流独立计算。",
+      "methodology": "按债券买卖净现金流、购买或出售应计利息、已收票息与期末完成收盘市值及期末应计利息，以真实日期计算资金加权年化 XIRR；买入本金不进入归总收益，但作为收益率的负现金流保留。使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "realizedPnl": 0.0,
-      "realizedPnlYtd": 0,
+      "realizedPnlYtd": 0.0,
       "totalReturn": 0.02362838926277555,
       "totalReturnMethodology": "使用与年化收益相同的完整债券现金流，以面值数量重建持仓时钟并压缩中间零持仓日，直接求解实际持有期间的非年化资金加权累计回报率。",
       "valuationDate": "20261103"
@@ -57,7 +57,7 @@
     "dataAsOf": {
       "lifecycle": {
         "latestEventDate": "20250904",
-        "latestSourceAt": "2026-11-04T06:29:08.802838Z",
+        "latestSourceAt": "2026-07-24T09:42:46.547101Z",
         "statementCoverageStart": "20241112",
         "statementThrough": "20261103"
       },
@@ -113,6 +113,7 @@
           "asOf": "20261103",
           "count": 1,
           "coverageStatus": "complete",
+          "message": null,
           "sourceMode": "official_activity_flex_lot",
           "status": "pass"
         },
@@ -494,12 +495,12 @@
           "valuePct": 4.887269
         },
         "securityYieldSeries": {
-          "coverageEnd": "2026-10-30",
+          "coverageEnd": "2026-11-03",
           "coverageStart": "2025-07-15",
           "label": "本债券持有期估算 YTM",
           "message": "个券线来自买入后的 Statement／Flex 完成收盘价格链；TWS 直接 YIELD_BID_ASK 仅用于重叠残差验收，未与主序列拼接。",
           "methodVersion": "treasury_clean_price_ytm_v1",
-          "pointCount": 327,
+          "pointCount": 329,
           "points": [
             [
               "2025-07-15",
@@ -1808,6 +1809,14 @@
             [
               "2026-10-30",
               5.113
+            ],
+            [
+              "2026-11-02",
+              5.077
+            ],
+            [
+              "2026-11-03",
+              5.127
             ]
           ],
           "providerValidation": {
@@ -1833,21 +1842,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-11-02",
-            "coverageStart": "2016-10-31",
+            "coverageStart": "2016-11-03",
             "label": "5 年期",
             "points": [
-              [
-                "2016-10-31",
-                1.31
-              ],
-              [
-                "2016-11-01",
-                1.3
-              ],
-              [
-                "2016-11-02",
-                1.26
-              ],
               [
                 "2016-11-03",
                 1.26
@@ -11850,21 +11847,9 @@
           {
             "closestTenor": true,
             "coverageEnd": "2026-11-02",
-            "coverageStart": "2016-10-31",
+            "coverageStart": "2016-11-03",
             "label": "10 年期",
             "points": [
-              [
-                "2016-10-31",
-                1.84
-              ],
-              [
-                "2016-11-01",
-                1.83
-              ],
-              [
-                "2016-11-02",
-                1.81
-              ],
               [
                 "2016-11-03",
                 1.82
@@ -21867,21 +21852,9 @@
           {
             "closestTenor": false,
             "coverageEnd": "2026-11-02",
-            "coverageStart": "2016-10-31",
+            "coverageStart": "2016-11-03",
             "label": "20 年期",
             "points": [
-              [
-                "2016-10-31",
-                2.25
-              ],
-              [
-                "2016-11-01",
-                2.24
-              ],
-              [
-                "2016-11-02",
-                2.22
-              ],
               [
                 "2016-11-03",
                 2.25
@@ -31883,8 +31856,8 @@
           }
         ],
         "status": "pass",
-        "windowEnd": "2026-11-02",
-        "windowStart": "2016-10-30"
+        "windowEnd": "2026-11-03",
+        "windowStart": "2016-11-03"
       }
     },
     "fundProfile": {
@@ -31893,7 +31866,7 @@
     "fundamentals": {
       "status": "not_available"
     },
-    "generatedAt": "2026-11-03T05:39:17.617747Z",
+    "generatedAt": "2026-11-04T14:49:56.236863Z",
     "historyProbes": [],
     "instrument": {
       "assetClass": "BOND",
@@ -31904,7 +31877,7 @@
       "englishName": "SP 0 05/15/40",
       "firstSeenDate": "20250715",
       "instrumentKind": "us_treasury",
-      "lastSeenDate": "20261030",
+      "lastSeenDate": "20261103",
       "primaryExchange": null,
       "status": "active",
       "symbols": [
@@ -31913,7 +31886,7 @@
           "exchange": null,
           "firstSeenDate": "20250715",
           "isPrimary": true,
-          "lastSeenDate": "20261030",
+          "lastSeenDate": "20261103",
           "symbol": "SP 0 05/15/40"
         }
       ]
@@ -32180,7 +32153,7 @@
     "valuationAnalysis": {},
     "valuationSeries": []
   },
-  "generatedAt": "2026-11-03T05:39:04.820056Z",
+  "generatedAt": "2026-11-04T14:49:43.431681Z",
   "packageType": "fixedIncome",
   "schemaVersion": 1,
   "symbol": "STRIPS-2040-05-15"
