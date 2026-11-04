@@ -86,6 +86,7 @@
       color: #56636e;
       font-size: 12px;
     }
+    .status-line[hidden] { display: none; }
     .status-line.error { border-left-color: var(--red); background: var(--red-soft); color: #8b252a; }
     .status-dot { flex: 0 0 auto; width: 7px; height: 7px; margin-top: 5px; border-radius: 50%; background: var(--blue); }
     .status-line.error .status-dot { background: var(--red); }
@@ -1039,7 +1040,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.16.1</span><time class="footer-meta-value" datetime="2026-11-03T05:38:42Z">2026-11-03 05:38 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v6.18.0</span><time class="footer-meta-value" datetime="2026-11-04T14:48:42Z">2026-11-04 14:48 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1756,14 +1757,15 @@
         el("directoryContextStatus").textContent = "公开证券研究目录已载入";
         el("directoryContextCoverage").textContent = published.length + " 个公开档案 · " + candidates.length + " 个候选";
         el("directoryNotice").classList.remove("error");
-        el("directoryNotice").innerHTML = '<span class="status-dot" aria-hidden="true"></span><span><strong>公开证券研究目录已载入。</strong> 候选研究单独分组，不代表当前持仓、交易决定或买入授权。</span>';
+        el("directoryNotice").hidden = true;
+        el("directoryNotice").replaceChildren();
       }
       function showDirectoryError(error) {
         el("instrumentDetailView").hidden = true; el("instrumentDirectoryView").hidden = false;
         el("instrumentDirectoryContext").dataset.contextState = "error";
         el("directoryContextStatus").textContent = "证券研究目录不可用";
         el("directoryContextCoverage").textContent = "公开档案与候选不可用";
-        var notice = el("directoryNotice"); notice.classList.add("error");
+        var notice = el("directoryNotice"); notice.hidden = false; notice.classList.add("error");
         notice.textContent = "公开证券研究目录载入失败：" + String(error && error.message || error);
       }
       /* FAMILY:INSTRUMENT_DIRECTORY_RUNTIME:END */
@@ -4737,6 +4739,10 @@
           details.appendChild(sources); body.appendChild(details);
         }
         renderValuationAppendix(body);
+        renderResearchHistory(body, assessment);
+      }
+      function renderResearchHistory(body, assessment) {
+        var result = assessment.result || {};
         var history = researchHistoryEntries(state.detail).filter(function (entry) {
           return entry.assessmentType !== "equity_valuation_appendix";
         });
@@ -4928,7 +4934,7 @@
         [["现有持仓", result.existingPositionDecision], ["新增资金", result.newMoneyDecision], ["当前建议", result.recommendedAction]].forEach(function (entry) {
           var card = document.createElement("article"); card.className = "case-card";
           var label = document.createElement("h3"); label.textContent = entry[0];
-          var value = document.createElement("p"); value.textContent = entry[1]; card.append(label, value); decisions.appendChild(card);
+          var value = document.createElement("p"); value.textContent = entry[0] === "当前建议" ? entry[1] : researchLabel(entry[1]); card.append(label, value); decisions.appendChild(card);
         }); body.appendChild(decisions);
         if (!fund) {
           var readiness = document.createElement("div"); readiness.className = "research-overview-grid";
@@ -5014,6 +5020,7 @@
         var sources = document.createElement("div"); sources.className = "source-list";
         renderNativeResearchSources(sources,result); body.appendChild(sources);
         renderResearchDetailedExcerpts(body, {summary:fund ? assessment.summary : result.basketSummary}, result);
+        if (fund) renderResearchHistory(body, assessment);
       }
       function renderFixedIncomeResearch() {
         var body = el("researchBody");
@@ -5243,17 +5250,15 @@
         /* FAMILY:INSTRUMENT_DECISION_RENDER:START *//* FAMILY:INSTRUMENT_DECISION_RENDER:END */
         renderQuality();
         renderMethodFooter();
+        el("serviceNotice").hidden = true;
         el("serviceNotice").classList.remove("error");
-        el("serviceNotice").innerHTML = state.detail.publicStatic
-          ? '<span class="status-dot" aria-hidden="true"></span><span><strong>公开静态资料已载入。</strong> Flex、行情与研究保留各自更新时间；页面不连接券商或本机服务。</span>'
-                  : (isBond
-                    ? '<span class="status-dot" aria-hidden="true"></span><span><strong>本机固定收益资料已载入。</strong> 完成收盘、购入现金流、结算状态与持有到期合同现金流已分别勾稽。</span>'
-            : '<span class="status-dot" aria-hidden="true"></span><span><strong>本机资料已载入。</strong> 所有账户事实均为只读完成收盘；持仓计税单位仅接受 IBKR 官方 Lot 粒度。</span>');
+        el("serviceNotice").replaceChildren();
       }
       function showError(error) {
         el("instrumentPageContext").dataset.contextState = "error";
         el("latestClose").textContent = "—";
         el("latestCloseNote").textContent = "标的完成收盘资料不可用";
+        el("serviceNotice").hidden = false;
         el("serviceNotice").classList.add("error");
         el("serviceNotice").innerHTML = '<span class="status-dot" aria-hidden="true"></span><span><strong>标的资料载入失败。</strong> ' + String(error && error.message || error) + "</span>";
       }
