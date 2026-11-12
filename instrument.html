@@ -441,6 +441,7 @@
     .research-subtitle { margin: 0; color: var(--navy); font-size: 16px; font-weight: 750; }
     .research-subhead-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 7px 10px; min-width: 0; }
     .research-current-heading { margin-bottom: 12px; overflow-wrap: anywhere; }
+    #researchBody .badge-row .badge { max-width: 100%; min-width: 0; white-space: normal; overflow-wrap: anywhere; }
     .research-update-date { color: var(--muted); font: 10px/1.45 var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
     .morningstar-overview { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: end; }
     .morningstar-report-link { color: var(--blue); font-size: 13px; font-weight: 760; text-decoration: none; }
@@ -725,10 +726,7 @@
           </div>
         </aside>
       </header>
-      <aside class="status-line directory-status" id="directoryNotice">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span><strong>正在载入公开证券研究目录。</strong> 目录只读取字段级筛选的公开静态包，不连接券商或本机服务。</span>
-      </aside>
+      <aside class="status-line directory-status" id="directoryNotice" hidden></aside>
       <section class="directory-section" aria-labelledby="heldResearchTitle">
         <div class="section-head">
           <div><p class="section-kicker">Published Research Directory</p><h2 class="section-title" id="heldResearchTitle">公开研究档案</h2><p class="section-note">按个股、ETF 与固定收益排列；研究版本缺失会明确显示，不会补成结论。</p></div>
@@ -771,10 +769,7 @@
       </aside>
     </header>
 
-    <aside class="status-line" id="serviceNotice">
-      <span class="status-dot" aria-hidden="true"></span>
-      <span><strong>投资组合透明计划 · 公开家庭版只读页面。</strong> 正在读取字段级筛选的静态资料；页面不连接券商、本机数据库或任何实时接口，也不能下单。</span>
-    </aside>
+    <aside class="status-line" id="serviceNotice" hidden></aside>
 
     <section class="metric-grid" aria-label="标的关键指标">
       <article class="metric"><div class="metric-label" id="averageCostLabel">平均成本</div><div class="metric-value" id="averageCost">—</div><div class="metric-note" id="averageCostNote">每股持仓成本</div></article>
@@ -1041,7 +1036,7 @@
         <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v7.0.1</span><time class="footer-meta-value" datetime="2026-11-05T12:16:49Z">2026-11-05 12:16 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v7.3.0</span><time class="footer-meta-value" datetime="2026-11-11T14:33:12Z">2026-11-11 14:33 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1317,7 +1312,8 @@
           exit_review: "复核退出", wait_for_proof: "等待验证", pass: "暂不参与",
           buy: "可买入研究状态", do_not_buy: "不宜新买", no_add_now: "暂不新增", wait_for_price_and_proof: "等待价格与证据",
           research_ready: "研究已就绪", research_ready_not_implementation_ready: "研究完成 · 尚未进入实施准备",
-          ready_for_user_review: "可供投资讨论", not_ready: "尚未就绪", not_applicable: "不适用"
+          ready_for_user_review: "可供投资讨论", not_ready: "尚未就绪", not_applicable: "不适用",
+          not_applicable_company_only: "不适用（仅公司研究）"
         }[value] || "标签待适配";
       }
       function evidenceQualityLabel(value) {
@@ -3473,9 +3469,17 @@
         );
         status.textContent = corporateStatusLabel(event.status);
         var copy = document.createElement("div"); copy.className = "corporate-event-copy";
-        var title = document.createElement("div"); title.className = "corporate-event-title"; title.textContent = event.title || "公司事件";
+        var display = event.display || event;
+        var title = document.createElement("div"); title.className = "corporate-event-title";
+        title.textContent = display.title || event.title || "公司事件";
+        var note = typeof display.description === "string" ? display.description.trim() : "";
         var description = document.createElement("div"); description.className = "corporate-event-description";
-        description.textContent = event.description || "没有额外说明。";
+        description.textContent = note || ({
+          estimated: "所列为预估日期，待官方来源确认。",
+          announced: "日期来自已公布的事件安排。",
+          confirmed: "日期来自已确认的事件安排。",
+          cancelled: "所列为原定日期，安排已取消。"
+        }[event.status] || "日期来自该事件的公开记录。");
         copy.append(title, description);
         var updated = document.createElement("time"); updated.className = "corporate-event-updated";
         updated.title = "当前事件版本的来源获取／核验时间，不是事件发生、公告发布或页面访问时间。";
@@ -3487,7 +3491,7 @@
         }
         var source = document.createElement("a"); source.className = "corporate-source";
         source.href = event.sourceUrl; source.target = "_blank"; source.rel = "noreferrer";
-        source.textContent = (event.sourceName || "来源") + " ↗";
+        source.textContent = (display.sourceName || event.sourceName || "来源") + " ↗";
         var meta = document.createElement("div"); meta.className = "corporate-event-meta";
         meta.append(source, updated);
         row.append(date, status, copy, meta);
@@ -3950,6 +3954,8 @@
           part = part.replace(/([，,；;、。]\s*|^)(?:implementationReadiness\s*=\s*|implementation\s*|实施\s*)(?:not_ready|not_applicable)(?=[。；;、]|$)/g,
             function (_, separator) { return separator.indexOf("。") >= 0 ? "。" : ""; });
           part = part.replace(/(^|[。；;\n])\s*(?:用户尚未决定|用户已审阅并认可研究|无交易授权)[。；;]/g, "$1");
+          part = part.replace(/(^|[。；;\n])\s*用户尚未对本版作出决定，也未授权交易(?:[。；;]|$)/g, "$1");
+          part = part.replace(/[，,]\s*(?:本轮不要求私有数据对账，也未具备实施讨论条件|实施尚未具备实施讨论条件)(?=[。；;]|$)/g, "");
           part = part.replace(/仅授权[A-Za-z0-9 .-]{1,32}本地研究及晨星两栏更新[，,]\s*未授权交易[。；;]?/g, "");
           part = part.replace(/([，,；;、。]\s*|^)(?:brokerExecutionAuthorization|tradeAuthorization)\s*=\s*none(?=[。；;、]|$)/g,
             function (_, separator) { return separator.indexOf("。") >= 0 ? "。" : ""; });
@@ -4342,94 +4348,67 @@
             && row.assessmentType !== "fixed_income_research";
         }) || null;
       }
-      var currentResearchAliases = [
-        { symbol: "PFE", type: "equity_research", source: "PFE-v4.1-Targeted-20261103",
-          completed: "2026-11-05T04:00:38.095243Z", basis: "20261103", format: "ordinary-frozen-native-reader-v1",
-          title: "PFE｜FY2026Q3｜正文更正 · v4.1" },
-        { symbol: "MSFT", type: "equity_research", source: "MSFT v4.1（2026-10-29；版本标识更正）",
-          completed: "2026-10-30T16:29:49.936452Z", basis: "20261029", format: "ordinary-frozen-native-reader-v1",
-          title: "MSFT｜FY2027Q1｜版本标识更正 · v4.1" },
-        { symbol: "BOXX", type: "fund_research", source: "BOXX-v2.1-product-20261103",
-          completed: "2026-11-04T04:15:04.167933Z", basis: "20261103", format: "ordinary-asset-native-reader-v1",
-          title: "BOXX｜产品复核 · v2.1" }
-      ];
-      function canonicalResearchTitle(symbol, type, source, completed) {
-        if (symbol === "—" || typeof source !== "string" || !source.startsWith(symbol + "-")) return "";
-        var parts = /^(?:(FY[0-9]{4}(?:Q[1-4])?|财报期未确认)-)?([0-9]{8})-(v[0-9]+\.[0-9]+(?:\.[0-9]+)?)-([^\r\n]+)$/.exec(source.slice(symbol.length + 1));
-        if (!parts || parts[2] !== completed.slice(0, 10).replace(/-/g, "")) return "";
-        var period = parts[1], version = parts[3], topic = parts[4];
-        if (type === "fund_research") {
-          if (period || topic !== "产品复核") return "";
-        } else if (!["首次研究", "财报更新", "估值复核", "事件更新", "正文更正", "版本标识更正"].includes(topic)
-            || (topic === "财报更新" && !period)) return "";
-        return [symbol, period, topic].filter(Boolean).join("｜") + " · " + version;
+      function researchVersionBadge(assessment) {
+        var presentation = assessment.researchPresentation || assessment.localPresentation || {};
+        var version = presentation.researchVersion;
+        if (!version) {
+          var matches = [...String(assessment.sourceVersion || "").matchAll(/(?:^|[^A-Za-z0-9.])(v[0-9]+\.[0-9]+(?:\.[0-9]+)?)(?![A-Za-z0-9.])/g)];
+          if (matches.length === 1) version = matches[0][1];
+        }
+        return version ? "研究版本 " + version : "研究版本待核实";
       }
-      function currentResearchMetadata(detail, assessment) {
-        var type = assessment.assessmentType, result = assessment.result || {};
-        var format = (result.reviewedDisplay || {}).formatId, completed = result.researchCompletedAt;
-        var basis = researchUtcDay(assessment.asOfDate) == null ? "" : compactToIso(assessment.asOfDate);
-        var symbol = primarySymbol(detail);
-        var current = (detail.research || []).filter(function (row) {
-          return row.status === "active" && (row.assessmentType === "equity_research" || row.assessmentType === "fund_research");
-        });
-        var native = type === "equity_research" ? format === "ordinary-frozen-native-reader-v1"
-          : type === "fund_research" && format === "ordinary-asset-native-reader-v1"
-            && result.assetResearch?.researchObject?.assetKind === "fund"
-            && result.assetResearch.researchObject.symbol === symbol;
-        var verifiedFormat = native || (type === "equity_research"
-          && ["reviewed-native-research-paraphrase-v1", "reviewed-frozen-research-paraphrase-v1"].includes(format));
-        // The outer API field alone can be the legacy database creation time.
-        var frozen = verifiedFormat && current.length === 1 && current[0] === assessment
-          && completed === assessment.completedAt && typeof completed === "string"
-          && /(?:Z|\+00:00)$/.test(completed) && researchVerifiedTime(completed) != null;
-        var title = "";
-        if (native && frozen && basis) {
-          var approved = currentResearchAliases.find(function (alias) {
-            return alias.symbol === symbol && alias.type === type && alias.source === assessment.sourceVersion
-              && alias.completed === completed && alias.basis === assessment.asOfDate && alias.format === format;
-          });
-          title = approved ? approved.title : canonicalResearchTitle(symbol, type, assessment.sourceVersion, completed);
+      function researchCardMetadata(assessment) {
+        var presentation = assessment.researchPresentation || assessment.localPresentation;
+        var basis = presentation?.basis;
+        var basisLabel = basis
+          ? (basis.kind === "valuation_date" ? "估值日 " : "研究基准 ") + basis.date
+          : (researchUtcDay(assessment.asOfDate) == null ? "" : "研究基准 " + compactToIso(assessment.asOfDate));
+        var completed = presentation?.completion;
+        var completedLabel = "分析完成时间未核实";
+        if (completed?.utc && completed.precision !== "unknown") {
+          var value = completed.precision === "day" ? completed.utc : completed.utc.slice(0, 16).replace("T", " ");
+          completedLabel = "分析完成 UTC " + value;
+        } else if (!presentation) {
+          // The outer API field alone can be a legacy database creation time.
+          var frozen = assessment.result?.researchCompletedAt;
+          if (frozen === assessment.completedAt && researchVerifiedTime(frozen) != null) {
+            completedLabel = "分析完成 " + utcDateTime(frozen);
+          }
         }
         return {
-          title: title,
-          completedLabel: frozen ? "分析完成 " + utcDateTime(completed) : "",
-          basisLabel: basis ? (title ? "估值日 " : "研究基准 ") + basis : ""
+          title: presentation?.displayReportName || presentation?.reportTitle || "",
+          headline: presentation?.researchHeadline || "",
+          fiscalLabel: presentation?.fiscalPeriod ? "财报期 " + presentation.fiscalPeriod : "",
+          completedLabel: completedLabel,
+          basisLabel: basisLabel
         };
       }
-      function researchCardMetadata(detail, assessment, local) {
-        var fixed = assessment.assessmentType === "fixed_income_research";
-        var baseline = fixed ? null : currentResearchMetadata(detail, assessment);
-        if (!local || (baseline && baseline.title)) return baseline;
-        var presentation = assessment.localPresentation;
-        if (presentation) {
-          var completion = presentation.completion;
-          var completed = completion.precision === "unknown" ? null : completion.utc;
-          if (completed && completion.precision !== "day") completed = completed.slice(0, 16).replace("T", " ");
-          return {
-            title: completed ? presentation.title : null,
-            completedLabel: completed ? "分析完成 UTC " + completed : "",
-            completionUnknown: !completed,
-            basisLabel: (presentation.basis.kind === "valuation_date" ? "估值日 " : "研究基准 ") + presentation.basis.date
-          };
-        }
-        if (baseline && baseline.completedLabel) return baseline;
-        var basis = researchUtcDay(assessment.asOfDate) == null ? "" : compactToIso(assessment.asOfDate);
-        return { title: "", completedLabel: "", completionUnknown: true, basisLabel: basis ? "研究基准 " + basis : "" };
-      }
-      function renderCurrentResearchHeading(body, metadata) {
-        if (!metadata) return;
-        var completion = metadata.completedLabel || (metadata.completionUnknown ? "分析完成时间未核实" : "");
-        var datesText = metadata.title ? [completion, metadata.basisLabel].filter(Boolean).join(" · ")
-          : (metadata.completedLabel ? metadata.basisLabel : completion);
-        if (!metadata.title && !datesText) return;
+      function renderCurrentResearchHeading(body, assessment) {
+        var metadata = researchCardMetadata(assessment);
         var heading = document.createElement("div"); heading.className = "research-current-heading";
-        if (metadata.title) {
+        if (metadata.headline || metadata.title) {
           var title = document.createElement("h4"); title.className = "research-subtitle";
-          title.textContent = metadata.title; heading.appendChild(title);
+          title.textContent = metadata.headline || metadata.title; heading.appendChild(title);
         }
-        var dates = document.createElement("p"); dates.className = "section-note";
-        dates.textContent = datesText;
-        heading.appendChild(dates); body.appendChild(heading);
+        var details = document.createElement("p"); details.className = "section-note";
+        details.textContent = [metadata.headline ? metadata.title : "", metadata.fiscalLabel,
+          metadata.completedLabel, metadata.basisLabel].filter(Boolean).join(" · ");
+        heading.appendChild(details); body.appendChild(heading);
+      }
+      function appendResearchSourceMetadata(details, assessment) {
+        var presentation = assessment.researchPresentation || assessment.localPresentation;
+        var reportTitle = presentation?.reportTitle;
+        var originalTitle = presentation?.displayReportName && reportTitle !== presentation.displayReportName ? reportTitle : "";
+        if (originalTitle) {
+          var original = document.createElement("p"); original.className = "section-note";
+          original.textContent = "报告原题「" + originalTitle + "」"; details.appendChild(original);
+        }
+        var sourceVersion = String(assessment.sourceVersion || "").trim();
+        if (!sourceVersion) return Boolean(originalTitle);
+        var source = document.createElement("p"); source.className = "section-note research-source-version";
+        source.textContent = "原来源标签 " + sourceVersion;
+        details.appendChild(source);
+        return true;
       }
       function updateResearchTimestamps() {
         var primary = primaryResearchAssessment();
@@ -4440,10 +4419,7 @@
         el("morningstarUpdatedAt").textContent = provider && provider.verifiedAt
           ? "最近核验 " + utcDateTime(provider.verifiedAt)
           : "核验时间尚未建立";
-        var metadata = assessment ? researchCardMetadata(state.detail, assessment, state.localResearchPresentation) : null;
-        el("internalResearchUpdatedAt").textContent = metadata
-          ? (metadata.title ? "" : (metadata.completedLabel || metadata.basisLabel || "研究时间尚未建立"))
-          : (assessment ? researchAnalysisTimeLabel(assessment, true) : "研究时间尚未建立");
+        el("internalResearchUpdatedAt").textContent = assessment ? "" : "研究时间尚未建立";
       }
       /* FAMILY:INSTRUMENT_DECISION_RUNTIME:START *//* FAMILY:INSTRUMENT_DECISION_RUNTIME:END */
       function morningstarPublicSourceHref(value) {
@@ -4738,11 +4714,11 @@
         }
         if (result.reviewedDisplay && !/^\d{8}$/.test(String(completedCloseAsOf || ""))) completedClosePrice = null;
         updateResearchTimestamps();
-        renderCurrentResearchHeading(body, researchCardMetadata(state.detail, assessment, state.localResearchPresentation));
+        renderCurrentResearchHeading(body, assessment);
         var badges = document.createElement("div"); badges.className = "badge-row";
         var maturity = result.researchMaturity || result.underwritingStatus || "preliminary";
         var badgeEntries = [
-          { value: assessment.sourceVersion || assessment.version, label: researchSourceVersionLabel(assessment) },
+          { value: "research_version", label: researchVersionBadge(assessment) },
           { value: "review_freshness", freshness: true },
           maturity !== "active" ? { value: maturity } : null,
           result.valuationMaturity
@@ -4830,7 +4806,17 @@
               : "完成收盘基准不可用";
             var assumptions = document.createElement("div"); assumptions.className = "valuation-assumptions";
             if (scenario.assumptionSummary) {
-              assumptions.textContent = reviewedDisplay && ["ordinary-frozen-native-reader-v1", "reviewed-native-research-paraphrase-v1"].indexOf(reviewedDisplay.formatId) >= 0
+              var nativeScenario = reviewedDisplay && ["ordinary-frozen-native-reader-v1", "reviewed-native-research-paraphrase-v1"].indexOf(reviewedDisplay.formatId) >= 0;
+              var segmentParameterNote = "；waccPct技术字段为保险Ke参考，完整分部Ke见模型。";
+              var reviewedBerkshireParameters = nativeScenario
+                && valuation.method === "SOTP plus segment FCFE proxies discounted at cost of equity"
+                && valuation.dcf?.modelSummary === "SOTP/FCFE代理，五年年末折现；金融本金、承保与float融资优势分列，非完整经营驱动DCF。运输旧字段waccPct仅承载各情景保险Ke作为显示参考，实际采用四分部Ke向量，不是集团WACC。"
+                && scenario.assumptionSummary.endsWith(segmentParameterNote);
+              assumptions.textContent = reviewedBerkshireParameters
+                ? "保险分部股权成本（Ke） " + percent(scenario.waccPct, 2)
+                  + " · BNSF 永续增长 " + percent(scenario.terminalGrowthPct, 2)
+                  + " · " + scenario.assumptionSummary.slice(0, -segmentParameterNote.length) + "；各分部股权成本见估值模型。"
+                : nativeScenario
                 ? (valuation.method === "bank_normalized_earnings_required_capital_FCFE_and_residual_income"
                     || (valuation.method == null && valuation.dcf && valuation.dcf.discountRateType === "cost_of_equity") ? "股权成本 " : "WACC ")
                   + percent(scenario.waccPct, 2) + " · 永续增长 " + percent(scenario.terminalGrowthPct, 2) + " · " + scenario.assumptionSummary
@@ -4897,7 +4883,7 @@
           link.append(label, date); sources.appendChild(link);
         });
         }
-        if ((result.missingEvidence || []).length || sources.children.length) {
+        if (appendResearchSourceMetadata(details, assessment) || (result.missingEvidence || []).length || sources.children.length) {
           details.appendChild(sources); body.appendChild(details);
         }
         renderValuationAppendix(body);
@@ -5078,9 +5064,9 @@
         });
         var display = result.reviewedDisplay || {};
         if (display.formatId !== "ordinary-asset-native-reader-v1" || !display.overview || !display.layers) throw new Error("资产研究概述缺失。");
-        renderCurrentResearchHeading(body, researchCardMetadata(state.detail, assessment, state.localResearchPresentation));
+        renderCurrentResearchHeading(body, assessment);
         var badges = document.createElement("div"); badges.className = "badge-row";
-        var versionLabel = fund || state.localResearchPresentation ? researchSourceVersionLabel(assessment) : researchVersionLabel(assessment);
+        var versionLabel = researchVersionBadge(assessment);
         [fund ? "基金研究" : "固定收益研究", versionLabel, valuationMaturityLabel(result.valuationMaturity), researchLabel(result.researchMaturity)].forEach(function (label) {
           var badge = document.createElement("span"); badge.className = "badge"; badge.textContent = label; badges.appendChild(badge);
         });
@@ -5183,8 +5169,12 @@
           item.textContent = row.metric + " · " + row.baseline + " · 确认：" + row.confirmingDirection + " · 挑战：" + row.challengingDirection;
           monitoring.appendChild(item);
         }); body.appendChild(monitoring);
+        var sourceDetails = document.createElement("details"); sourceDetails.className = "research-details";
+        var sourceSummary = document.createElement("summary"); sourceSummary.textContent = "查看来源登记";
+        sourceDetails.appendChild(sourceSummary);
+        appendResearchSourceMetadata(sourceDetails, assessment);
         var sources = document.createElement("div"); sources.className = "source-list";
-        renderNativeResearchSources(sources,result); body.appendChild(sources);
+        renderNativeResearchSources(sources,result); sourceDetails.appendChild(sources); body.appendChild(sourceDetails);
         renderResearchDetailedExcerpts(body, {summary:fund ? assessment.summary : result.basketSummary}, result);
         if (fund) renderResearchHistory(body, assessment);
       }
@@ -5210,14 +5200,13 @@
         var securityRisk = result.securityRisk || {};
         var portfolioRisk = result.portfolioRisk || {};
         updateResearchTimestamps();
-        renderCurrentResearchHeading(body, researchCardMetadata(state.detail, assessment, state.localResearchPresentation));
+        renderCurrentResearchHeading(body, assessment);
 
         var badges = document.createElement("div"); badges.className = "badge-row";
         [
           ["持有到期", "good"],
           ["暂不增加久期", "warn"],
-          [state.localResearchPresentation ? researchSourceVersionLabel(assessment)
-            : "固定收益研究 " + researchVersionLabel(assessment), ""]
+          [researchVersionBadge(assessment), ""]
         ].forEach(function (entry) {
           var badge = document.createElement("span"); badge.className = "badge" + (entry[1] ? " " + entry[1] : "");
           badge.textContent = entry[0]; badges.appendChild(badge);
@@ -5323,6 +5312,7 @@
           var date = document.createElement("span"); date.className = "source-date"; date.textContent = compactToIso(source.asOf);
           link.append(label, date); sources.appendChild(link);
         });
+        appendResearchSourceMetadata(details, assessment);
         details.appendChild(sources); body.appendChild(details);
       }
       function renderQuality() {
