@@ -234,14 +234,28 @@ td .sub { display: block; margin-top: 3px; color: var(--muted); font: 10px/1.35 
 .archive-table tbody tr:hover td:first-child { background: #edf3f7; }
 .archive-table .archive-result-col { background: #f2f6f9; font-weight: 800; }
 .archive-table tbody tr:hover .archive-result-col { background: #e9f0f5; }
+#closedPositionArchive > summary::after {
+      content: "";
+      flex: 0 0 7px;
+      height: 7px;
+      margin-right: 3px;
+      border: solid var(--muted);
+      border-width: 0 1px 1px 0;
+      transform: rotate(45deg);
+    }
+#closedPositionArchive[open] > summary::after { transform: rotate(225deg); }
+#closedArchiveContent .archive-table tbody tr:last-child td { border-bottom: 1px solid transparent; }
 #bondResults tfoot th, #bondResults tfoot td { background:#eef2f5; border-top:1px solid rgba(22,59,89,.22); border-bottom:1px solid rgba(22,59,89,.10); color:var(--navy); font-weight:800; }
 #bondResults tfoot .positive { color:var(--green); }
 #bondResults tfoot .negative { color:var(--red); }
 #bondResults tfoot th .sub { display:block; margin-top:3px; color:var(--muted); font:10px/1.35 var(--sans); }
-.archive-security { display: grid; justify-items: start; gap: 5px; min-width: 148px; }
-.archive-security-primary, .archive-name-line { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 8px; }
+.archive-security { display: grid; grid-template-rows: repeat(2, 16px); align-items: baseline; justify-items: start; gap: 2px; min-width: 148px; white-space: nowrap; }
+.archive-security-primary { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 8px; }
 .archive-symbol { color: var(--navy); font-size: 13px; font-weight: 800; }
+
 .archive-name { color: #536474; font-size: 11px; font-weight: 680; }
+.archive-security .archive-name { white-space: nowrap; }
+.archive-security .archive-cycle-note { margin-left: 6px; }
 .archive-category-tag {
       display: inline-flex;
       align-items: center;
@@ -271,11 +285,14 @@ td .sub { display: block; margin-top: 3px; color: var(--muted); font: 10px/1.35 
       line-height: 1.35;
       white-space: normal;
     }
-.archive-advisory { color: var(--amber); cursor: help; text-decoration: underline dotted rgba(154,106,10,.5); text-underline-offset: 2px; }
-.archive-period { display: grid; grid-template-columns: max-content max-content; gap: 2px 9px; min-width: 184px; }
+.archive-period { display: grid; grid-template-columns: max-content max-content; grid-template-rows: repeat(2, 16px); align-items: baseline; gap: 2px 12px; font-size: 10px; white-space: nowrap; }
+.archive-period-entry { display: grid; grid-template-columns: 5em max-content; align-items: baseline; gap: 5px; }
+.archive-period-entry:first-child { grid-template-columns: 4em max-content; }
+.archive-period-entry:nth-child(3) { grid-column: 2; }
 .archive-period-label { color: var(--muted); font-size: 10px; }
-.archive-period-value { color: var(--ink); font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.archive-period-value { color: var(--ink); font: 12px var(--mono); font-variant-numeric: tabular-nums; }
 .archive-holding { display: grid; justify-items: end; gap: 2px; width: 100%; min-width: 116px; text-align: right; }
+.archive-holding .archive-cell-note { white-space: nowrap; }
 .archive-holding-value { color: var(--ink); font-family: var(--mono); font-weight: 750; font-variant-numeric: tabular-nums; }
 .archive-rate { display: grid; justify-items: end; gap: 2px; width: 100%; min-width: 104px; text-align: right; }
 .archive-rate-value { font-family: var(--mono); font-weight: 800; font-variant-numeric: tabular-nums; }
@@ -286,6 +303,11 @@ td .sub { display: block; margin-top: 3px; color: var(--muted); font: 10px/1.35 
 .detail-item, .table-wrap { border-radius: 2px; }
 @media(max-width:960px){.milestone-grid{grid-template-columns:1fr}.detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.detail-grid,.bridge-summary,.method-grid{grid-template-columns:1fr}.milestone-column-head,.milestone-row{grid-template-columns:minmax(0,1.2fr) minmax(76px,.78fr) minmax(90px,.9fr);gap:8px}.archive-card>summary{align-items:flex-start}.archive-summary-copy{min-width:0}.bridge-equation{overflow-x:auto}}
+@media(max-width:640px) {
+  #closedPositionArchive > summary::after { margin-top: 7px; }
+  #closedArchiveContent .archive-table th:first-child,
+  #closedArchiveContent .archive-table td:first-child { left: auto; }
+}
 
 .cash-ratio-dot { fill:var(--gold); }
 .cash-fund-tooltip { display:grid; gap:5px; }
@@ -489,7 +511,6 @@ td .sub { display: block; margin-top: 3px; color: var(--muted); font: 10px/1.35 
           <strong>已完全平仓标的</strong>
           <span id="closedArchiveSubtitle">按 IBKR 报表重算的证券历史投资结果</span>
         </span>
-        <span class="badge" id="closedArchiveBadge">载入中</span>
       </summary>
       <div class="archive-body">
         <div class="detail-grid" id="closedArchiveMetrics"></div>
@@ -505,7 +526,7 @@ td .sub { display: block; margin-top: 3px; color: var(--muted); font: 10px/1.35 
     <div class="footer-meta-item"><span class="footer-meta-label">回顾范围</span><span class="footer-meta-value" id="footerPeriod">—</span><span class="footer-meta-value" id="footerAnnualCutoff">—</span><span class="footer-meta-value" id="footerBaseline">—</span></div>
     <div class="footer-meta-item"><span class="footer-meta-label">资金与业绩</span><span class="footer-meta-value">美元本位 · 现金流调整 TWR</span><span class="footer-meta-value">收益＝净值变化－净资本流</span></div>
     <div class="footer-meta-item"><span class="footer-meta-label">数据来源</span><span class="footer-meta-value">IBKR Activity Flex</span><span class="footer-meta-value" id="footerTreasuryMethod">—</span></div>
-    <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v7.6.0</span><time class="footer-meta-value" datetime="2026-11-13T06:45:11Z">2026-11-13 06:45 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+    <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v7.8.1</span><time class="footer-meta-value" datetime="2026-11-13T14:18:47Z">2026-11-13 14:18 UTC</time></div><!-- PRODUCT:FOOTER:END -->
   </div>
   <p class="footer-disclaimer">公开家庭版只读取脱敏静态资料；账户日链、利率参照、纪念碑与平仓档案保留独立截止日。本页不连接券商，不构成交易建议。</p>
 </footer>
@@ -1589,15 +1610,16 @@ var quantityFormatter=new Intl.NumberFormat("en-US",{maximumFractionDigits:6});
       }
       function archiveSecurityElement(row) {
         var wrap = document.createElement("span"); wrap.className = "archive-security";
-        var symbol = document.createElement("span"); symbol.className = "archive-symbol"; symbol.textContent = escapeText(row.symbol);
-        var nameLine = document.createElement("span"); nameLine.className = "archive-name-line";
-        var name = document.createElement("span"); name.className = "archive-name"; name.textContent = escapeText(row.displayNameZh || "—");
+        var label = escapeText(row.symbol);
+        var symbol = document.createElement("span");
+
+        symbol.classList.add("archive-symbol");
+        symbol.textContent = label;
+        var nameLine = document.createElement("span");
+        var name = document.createElement("span");
+        name.className = "archive-name";
+        name.textContent = escapeText(row.displayNameZh || "—");
         nameLine.appendChild(name);
-        var primaryLine = document.createElement("span"); primaryLine.className = "archive-security-primary";
-        var category = document.createElement("span");
-        category.className = "archive-category-tag " + (row.category === "bond" ? "bond" : row.category === "etf" ? "etf" : "stock");
-        category.textContent = row.category === "bond" ? "美国国债 STRIPS" : row.category === "etf" ? "ETF" : "股票";
-        primaryLine.append(category, symbol);
         if (Number(row.closedSpellSequence) > 1) {
           var cycle = document.createElement("span"); cycle.className = "archive-cycle-note";
           cycle.textContent = "第 " + Number(row.closedSpellSequence) + " 个已结束周期";
@@ -1607,13 +1629,11 @@ var quantityFormatter=new Intl.NumberFormat("en-US",{maximumFractionDigits:6});
           ? row.quality.advisories.filter(function (code) { return !String(code).includes("mathematically_undefined"); })
           : [];
         if (advisories.length) {
-          var advisory = document.createElement("span"); advisory.className = "archive-cycle-note archive-advisory";
-          advisory.textContent = "需留意";
-          advisory.title = advisories.map(archiveAdvisoryText).join(" ");
-          advisory.tabIndex = 0;
-          primaryLine.appendChild(advisory);
+          var advisory = advisories.map(archiveAdvisoryText).join(" ");
+          symbol.title = advisory;
+          symbol.setAttribute("aria-description", advisory);
         }
-        wrap.append(primaryLine, nameLine);
+        wrap.append(symbol, nameLine);
         return wrap;
       }
       function closedArchiveSortValue(row, key) {
@@ -1664,14 +1684,19 @@ var quantityFormatter=new Intl.NumberFormat("en-US",{maximumFractionDigits:6});
       function archivePeriodElement(row) {
         var dates = row.dates || {};
         var wrap = document.createElement("span"); wrap.className = "archive-period";
-        [
+        var entries = [
           ["首次建仓", dates.firstEstablishment],
-          ["最终平仓", dates.finalExit],
-          ["最后现金流", dates.lastIncludedCashFlow]
-        ].forEach(function (entry) {
+          ["最终平仓", dates.finalExit]
+        ];
+        if (dates.lastIncludedCashFlow && dates.lastIncludedCashFlow !== dates.finalExit) {
+          entries.push(["最后现金流", dates.lastIncludedCashFlow]);
+        }
+        entries.forEach(function (entry) {
+          var pair = document.createElement("span"); pair.className = "archive-period-entry";
           var label = document.createElement("span"); label.className = "archive-period-label"; label.textContent = entry[0];
           var value = document.createElement("span"); value.className = "archive-period-value"; value.textContent = displayDate(entry[1]);
-          wrap.append(label, value);
+          pair.append(label, value);
+          wrap.appendChild(pair);
         });
         return wrap;
       }
@@ -1685,7 +1710,7 @@ var quantityFormatter=new Intl.NumberFormat("en-US",{maximumFractionDigits:6});
         var segments = Number(period.activeSegmentCount || 0);
         if (excluded > 0 || segments > 1) {
           var note = document.createElement("span"); note.className = "archive-cell-note";
-          note.textContent = "排除空仓 " + excluded + " 日 · " + segments + " 个持有段";
+          note.textContent = "排除空仓 " + excluded + " 日 · " + segments + " 段";
           wrap.appendChild(note);
         }
         if (Number.isFinite(Number(period.calendarDays))) wrap.title = "自然日跨度 " + Number(period.calendarDays) + " 日";
@@ -1725,7 +1750,6 @@ var quantityFormatter=new Intl.NumberFormat("en-US",{maximumFractionDigits:6});
       }
       function renderClosedArchiveUnavailable(error) {
         state.closedArchive = null;
-        var badge = document.getElementById("closedArchiveBadge"); badge.textContent = "不可用"; badge.className = "badge provisional";
         document.getElementById("closedArchiveSubtitle").textContent = "正式周期档案未通过本机读取合同";
         document.getElementById("closedArchiveMetrics").replaceChildren();
         var host = document.getElementById("closedArchiveContent"); host.replaceChildren();
@@ -1742,15 +1766,12 @@ var quantityFormatter=new Intl.NumberFormat("en-US",{maximumFractionDigits:6});
         state.closedArchive = archive;
         var items = sortedClosedArchiveItems(archive.items.filter(row=>model.lifetime||String(row.dates.finalExit).startsWith(String(model.period.year))));
         var summary = {...archive.summary,
-          archivedCycleCount:items.length,archivedSecurityCount:new Set(items.map(r=>r.symbol)).size,
+          archivedCycleCount:items.length,
           rateDefinedCycleCount:items.filter(r=>r.returns.annualized.status==='available'&&r.returns.total.status==='available').length};
         for(const key of ['closedPositionTotal','netCashIncome','aggregateReturn'])summary[key]=items.reduce((sum,r)=>sum+r.amounts[key],0);
         if (Number(summary.archivedCycleCount) !== items.length) {
           throw new Error("Closed-position cycle archive count does not reconcile.");
         }
-        var badge = document.getElementById("closedArchiveBadge");
-        badge.textContent = String(summary.archivedSecurityCount) + " 个标的";
-        badge.className = "badge " + (archive.status === "pass" ? "official" : "provisional");
         document.getElementById("closedArchiveSubtitle").textContent =
           (model.lifetime ? "完整已平仓周期" : "按最终平仓年筛选 · 完整周期收益") + " · " + utcTradeDate(archive.asOf) + " · " +
           String(summary.rateDefinedCycleCount) + "／" + String(summary.archivedCycleCount) + " 个周期收益率可定义";
