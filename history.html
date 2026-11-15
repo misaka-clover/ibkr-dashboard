@@ -245,7 +245,19 @@ td .sub { display: block; margin-top: 3px; color: var(--muted); font: 10px/1.35 
     }
 #closedPositionArchive[open] > summary::after { transform: rotate(225deg); }
 #closedArchiveContent .archive-table tbody tr:last-child td { border-bottom: 1px solid transparent; }
-#bondResults tfoot th, #bondResults tfoot td { background:#eef2f5; border-top:1px solid rgba(22,59,89,.22); border-bottom:1px solid rgba(22,59,89,.10); color:var(--navy); font-weight:800; }
+#bondResults .archive-table { border-collapse: separate; border-spacing: 0; }
+#bondResults tfoot { position: relative; }
+#bondResults tfoot::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: #526d82;
+  z-index: 2;
+  pointer-events: none;
+}
+#bondResults tfoot th, #bondResults tfoot td { background:#eef2f5; border-bottom:1px solid rgba(22,59,89,.10); color:var(--navy); font-weight:800; }
+#bondResults tfoot th { top:auto; letter-spacing:normal; }
 #bondResults tfoot .positive { color:var(--green); }
 #bondResults tfoot .negative { color:var(--red); }
 #bondResults tfoot th .sub { display:block; margin-top:3px; color:var(--muted); font:10px/1.35 var(--sans); }
@@ -526,7 +538,7 @@ td .sub { display: block; margin-top: 3px; color: var(--muted); font: 10px/1.35 
     <div class="footer-meta-item"><span class="footer-meta-label">回顾范围</span><span class="footer-meta-value" id="footerPeriod">—</span><span class="footer-meta-value" id="footerAnnualCutoff">—</span><span class="footer-meta-value" id="footerBaseline">—</span></div>
     <div class="footer-meta-item"><span class="footer-meta-label">资金与业绩</span><span class="footer-meta-value">美元本位 · 现金流调整 TWR</span><span class="footer-meta-value">收益＝净值变化－净资本流</span></div>
     <div class="footer-meta-item"><span class="footer-meta-label">数据来源</span><span class="footer-meta-value">IBKR Activity Flex</span><span class="footer-meta-value" id="footerTreasuryMethod">—</span></div>
-    <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v7.8.1</span><time class="footer-meta-value" datetime="2026-11-13T14:18:47Z">2026-11-13 14:18 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+    <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v7.9.1</span><time class="footer-meta-value" datetime="2026-11-14T13:52:07Z">2026-11-14 13:52 UTC</time></div><!-- PRODUCT:FOOTER:END -->
   </div>
   <p class="footer-disclaimer">公开家庭版只读取脱敏静态资料；账户日链、利率参照、纪念碑与平仓档案保留独立截止日。本页不连接券商，不构成交易建议。</p>
 </footer>
@@ -713,7 +725,7 @@ function renderBondResults(data){
   const purchasedTotal=totalOf('purchasedAccruedInterest');
   const held=usable?data.items.filter(row=>row.state==='持仓中').length:0;
   $('bondResultsTotals').innerHTML=usable&&data.items.length?`<tr>
-    <th scope="row">合计<span class="sub">${all?'全部历史':esc(data.period.year)+' 年'} · ${date(data.period.endDate)}</span></th>
+    <th scope="row"><span class="archive-symbol">合计</span><span class="sub">${all?'全部历史':esc(data.period.year)+' 年'} · ${date(data.period.endDate)}</span></th>
     <td>${data.items.length} 项<span class="sub">${held} 持仓 · ${data.items.length-held} 已平仓</span></td>
     <td class="number"><div class="bond-interest">${money(totalOf('paidInterest'))}
       <small>购入应计 US$ ${num(finite(purchasedTotal)?(purchasedTotal===0?0:-purchasedTotal):null)} · 净 US$ ${num(totalOf('netInterest'))}</small>
