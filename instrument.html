@@ -441,6 +441,7 @@
     .research-subtitle { margin: 0; color: var(--navy); font-size: 16px; font-weight: 750; }
     .research-subhead-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 7px 10px; min-width: 0; }
     .research-current-heading { margin-bottom: 12px; overflow-wrap: anywhere; }
+    #researchBody .badge-row .badge { max-width: 100%; min-width: 0; white-space: normal; overflow-wrap: anywhere; }
     .research-update-date { color: var(--muted); font: 10px/1.45 var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
     .morningstar-overview { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: end; }
     .morningstar-report-link { color: var(--blue); font-size: 13px; font-weight: 760; text-decoration: none; }
@@ -520,6 +521,7 @@
     .quality-domain { color: var(--muted); font-size: 10px; }
     .quality-status { margin-top: 5px; color: var(--navy); font: 750 14px var(--mono); }
     .quality-note { margin-top: 5px; color: var(--muted); font-size: 9px; }
+    /* FAMILY:INSTRUMENT_HOLDING_REVIEW_STYLE:START *//* FAMILY:INSTRUMENT_HOLDING_REVIEW_STYLE:END */
     /* FAMILY:INSTRUMENT_DIRECTORY_STYLE:START */
     .research-directory { padding: 0 2px 20px; }
     .directory-hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr); gap: 32px; align-items: end; padding: 26px 0 30px; border-bottom: 1px solid rgba(22,59,89,.13); }
@@ -708,6 +710,7 @@
       </div>
     </nav>
 
+    <!-- FAMILY:INSTRUMENT_HOLDING_REVIEW_VIEW:START --><!-- FAMILY:INSTRUMENT_HOLDING_REVIEW_VIEW:END -->
     <!-- FAMILY:INSTRUMENT_DIRECTORY_VIEW:START -->
     <section class="research-directory" id="instrumentDirectoryView" hidden aria-labelledby="instrumentDirectoryTitle">
       <header class="directory-hero workspace-page-header">
@@ -725,10 +728,7 @@
           </div>
         </aside>
       </header>
-      <aside class="status-line directory-status" id="directoryNotice">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span><strong>正在载入公开证券研究目录。</strong> 目录只读取字段级筛选的公开静态包，不连接券商或本机服务。</span>
-      </aside>
+      <aside class="status-line directory-status" id="directoryNotice" hidden></aside>
       <section class="directory-section" aria-labelledby="heldResearchTitle">
         <div class="section-head">
           <div><p class="section-kicker">Published Research Directory</p><h2 class="section-title" id="heldResearchTitle">公开研究档案</h2><p class="section-note">按个股、ETF 与固定收益排列；研究版本缺失会明确显示，不会补成结论。</p></div>
@@ -771,10 +771,7 @@
       </aside>
     </header>
 
-    <aside class="status-line" id="serviceNotice">
-      <span class="status-dot" aria-hidden="true"></span>
-      <span><strong>投资组合透明计划 · 公开家庭版只读页面。</strong> 正在读取字段级筛选的静态资料；页面不连接券商、本机数据库或任何实时接口，也不能下单。</span>
-    </aside>
+    <aside class="status-line" id="serviceNotice" hidden></aside>
 
     <section class="metric-grid" aria-label="标的关键指标">
       <article class="metric"><div class="metric-label" id="averageCostLabel">平均成本</div><div class="metric-value" id="averageCost">—</div><div class="metric-note" id="averageCostNote">每股持仓成本</div></article>
@@ -1038,10 +1035,10 @@
     <footer>
       <div class="footer-head"><p class="footer-kicker">DATA &amp; METHOD</p><h2 class="footer-title">数据口径</h2></div>
       <div class="footer-meta-grid">
-        <div class="footer-meta-item"><span class="footer-meta-label">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
+      <div class="footer-meta-item"><span class="footer-meta-label" id="footerAccountLabel">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v7.8.1</span><time class="footer-meta-value" datetime="2026-11-13T14:18:47Z">2026-11-13 14:18 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v7.11.1</span><time class="footer-meta-value" datetime="2026-11-16T10:15:01Z">2026-11-16 10:15 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1317,7 +1314,8 @@
           exit_review: "复核退出", wait_for_proof: "等待验证", pass: "暂不参与",
           buy: "可买入研究状态", do_not_buy: "不宜新买", no_add_now: "暂不新增", wait_for_price_and_proof: "等待价格与证据",
           research_ready: "研究已就绪", research_ready_not_implementation_ready: "研究完成 · 尚未进入实施准备",
-          ready_for_user_review: "可供投资讨论", not_ready: "尚未就绪", not_applicable: "不适用"
+          ready_for_user_review: "可供投资讨论", not_ready: "尚未就绪", not_applicable: "不适用",
+          not_applicable_company_only: "不适用（仅公司研究）"
         }[value] || "标签待适配";
       }
       function evidenceQualityLabel(value) {
@@ -1787,10 +1785,23 @@
         if (!staticManifestPromise) staticManifestPromise = fetchJson(config.manifest);
         return staticManifestPromise;
       }
+      function assertNoPrivateTreasuryStatic(value) {
+        if (["treasury-private-local-research-v1", "ordinary-treasury-private-model-v1", "ordinary-treasury-holdings-model-v1"].includes(value)) {
+          throw new Error("公开标的包包含本机专用研究。");
+        }
+        if (!value || typeof value !== "object") return;
+        Object.keys(value).forEach(function (key) {
+          if (["publicationScope", "privateTreasuryResearch", "dashboardTreasuryEvidence", "accountBill", "actual365Comparison"].includes(key)) {
+            throw new Error("公开标的包包含本机专用研究。");
+          }
+          assertNoPrivateTreasuryStatic(value[key]);
+        });
+      }
       function mergeStaticInstrumentDetail(flexPackage, marketPackage, researchPackage, symbol, from, to, maxPoints) {
         var flex = flexPackage && flexPackage.instruments && flexPackage.instruments[symbol] || {};
         var market = marketPackage && marketPackage.detail || {};
         var research = researchPackage && researchPackage.detail || {};
+        assertNoPrivateTreasuryStatic(research);
         var marketBars = Array.isArray(market.bars) ? market.bars : [];
         var selectedBars = marketBars.filter(function (row) {
           return (!from || String(row.date || "") >= from)
@@ -1918,6 +1929,7 @@
           ) {
             throw new Error("公开国债静态数据包版本或身份不受支持。");
           }
+          assertNoPrivateTreasuryStatic(fixedPackage.detail);
           return fixedPackage.detail;
         }
         var packages = await Promise.all([
@@ -1983,9 +1995,9 @@
           ? direction
           : null;
       }
-      function tradeChartEvents() {
+      function tradeChartEvents(executions) {
         if (state.chartView !== "price" || isBondDetail()) return [];
-        var events = state.detail && (state.detail.eventTimeline || state.detail.events) || [];
+        var events = executions || state.detail && (state.detail.eventTimeline || state.detail.events) || [];
         return events.filter(function (event) {
           var details = event && event.details || {};
           var quantity = Math.abs(finite(event && event.quantity) || 0);
@@ -2059,9 +2071,9 @@
           });
         });
       }
-      function latestBars() {
+      function latestBars(bars) {
         var barType = activeBarType();
-        var rows = (state.detail && state.detail.bars || []).filter(function (row) { return row.barType === barType; });
+        var rows = (bars || state.detail && state.detail.bars || []).filter(function (row) { return row.barType === barType; });
         if (state.chartView === "price" && state.barType === "SPLIT_UNADJUSTED") {
           rows = splitUnadjustedBars(rows);
         }
@@ -2201,7 +2213,7 @@
         return compactToIso(event.eventDate) + " · 除息日 · 每股派息 " +
           dividendAmount(event.amountPerShare) + " " + currency;
       }
-      function renderTooltipEvents(container, events) {
+      function renderTooltipEvents(container, events, review) {
         container.replaceChildren();
         container.hidden = !events.length;
         events.forEach(function (event) {
@@ -2215,7 +2227,7 @@
               ? "非现金分派"
               : (event.distributionType === "capital_gain_distribution"
               ? "基金分配"
-              : "分红派息"));
+              : (review ? "除息" : "分红派息")));
           var description = document.createElement("span");
           description.textContent = chartEventDescription(event);
           item.append(kind, description);
@@ -2278,11 +2290,23 @@
         if (tradeEvents) renderTooltipTrades(tradeEvents, [], false);
         if (corporateEvents) renderTooltipEvents(corporateEvents, []);
       }
-      function renderPriceChart() {
-        var visibleFrom = rangeFromDate(state.priceRange);
+      function staggerTradeBadge(center, width, top, buy, obstacles) {
+        var left = center - width / 2;
+        var right = center + width / 2;
+        var neighbors = obstacles.filter(function (box) { return box.left < right + 2 && box.right > left - 2; });
+        neighbors.sort(function (a, b) { return buy ? a.top - b.top : b.bottom - a.bottom; });
+        neighbors.forEach(function (box) {
+          if (top + 15 + 2 > box.top && top < box.bottom + 2) {
+            top = buy ? box.bottom + 2 : box.top - 15 - 2;
+          }
+        });
+        return top;
+      }
+      function renderPriceChart(review) {
+        var visibleFrom = review ? null : rangeFromDate(state.priceRange);
         var movingAverageDefinition = movingAveragePresetDefinitions[state.movingAveragePreset];
-        var calculatedRows = calculateMovingAverages(latestBars(), movingAverageDefinition.periods);
-        var priceWindow = pricePanEligible()
+        var calculatedRows = calculateMovingAverages(latestBars(review && review.bars), movingAverageDefinition.periods);
+        var priceWindow = !review && pricePanEligible()
           ? fixedPriceWindow(calculatedRows, state.priceRange, state.priceWindowEnd)
           : null;
         var sourceRows = priceWindow
@@ -2292,8 +2316,12 @@
             });
         var activeAverages = activeMovingAveragePeriods();
         var barType = activeBarType();
-        var svg = el("instrumentChart");
-        var tooltip = el("chartTooltip");
+        var chart = review ? review.chart : {
+          frame: el("chartFrame"), svg: el("instrumentChart"), tooltip: el("chartTooltip"),
+          coverage: el("chartCoverage"), aggregation: el("chartAggregation"), source: el("chartSource")
+        };
+        var svg = chart.svg;
+        var tooltip = chart.tooltip;
         svg.replaceChildren();
         tooltip.classList.remove("visible");
         resetInstrumentTooltipSections(tooltip);
@@ -2306,7 +2334,44 @@
         var aggregated = aggregateBars(sourceRows);
         var rows = aggregated.rows;
         var width = 1120, height = 448, left = 68, right = 68, top = 20, priceBottom = 320, volumeTop = 346, bottom = 412;
+        if (review) {
+          var chartWidth = Math.max(240, Math.min(1120, Math.round(svg.getBoundingClientRect().width)));
+          var compact = chartWidth < 620;
+          width = chartWidth;
+          height = compact ? 300 : 398;
+          left = compact ? 42 : 62;
+          right = compact ? 12 : 26;
+          top = 28;
+          priceBottom = height - 90;
+          volumeTop = height - 70;
+          bottom = height - 29;
+        }
         var plotWidth = width - left - right;
+        var sourceIndexByDate = {};
+        sourceRows.forEach(function (row, index) { sourceIndexByDate[row.date] = index; });
+        var groupedTrades = new Map();
+        tradeChartEvents(review && review.executions).forEach(function (event) {
+          var sourceIndex = sourceIndexByDate[tradeDateValue(event)];
+          if (sourceIndex == null) return;
+          var aggregateIndex = Math.min(rows.length - 1, Math.floor(sourceIndex / aggregated.bucketSize));
+          var direction = tradeDirection(event);
+          var currency = String(event.currency || state.detail.instrument.currency || "").toUpperCase();
+          var key = (review ? sourceIndex : aggregateIndex) + "|" + direction + "|" + currency;
+          if (!groupedTrades.has(key)) groupedTrades.set(key, {aggregateIndex: aggregateIndex, sourceIndex: sourceIndex, direction: direction, events: []});
+          groupedTrades.get(key).events.push(event);
+        });
+        var tradeGroups = Array.from(groupedTrades.values()).sort(function (a, b) {
+          return (review ? a.sourceIndex - b.sourceIndex : a.aggregateIndex - b.aggregateIndex) || a.direction.localeCompare(b.direction);
+        });
+        var staggerBadges = review && (review.staggerTradeBadges || aggregated.bucketSize > 1);
+        var compactBadges = staggerBadges && width < 620;
+        tradeGroups.forEach(function (group) {
+          group.summary = summarizeTradeEvents(group.events, group.direction);
+          group.label = group.direction === "BUY" ? "买" : "卖";
+          if (!compactBadges && group.summary.count > 1) group.label += "×" + group.summary.count;
+          group.width = compactBadges ? 16 : Math.max(18, group.label.length * 8 + 8);
+          group.x = left + (review ? (group.sourceIndex + .5) / sourceRows.length : (group.aggregateIndex + .5) / rows.length) * plotWidth;
+        });
         var priceHeight = priceBottom - top;
         var lows = rows.map(function (row) { return finite(row.low); }).filter(Number.isFinite);
         var highs = rows.map(function (row) { return finite(row.high); }).filter(Number.isFinite);
@@ -2325,6 +2390,66 @@
         var maxVolume = Math.max.apply(null, rows.map(function (row) { return finite(row.volume) || 0; })) || 1;
         function x(index) { return left + (index + .5) * plotWidth / rows.length; }
         function y(value) { return top + (maxPrice - value) / (maxPrice - minPrice || 1) * priceHeight; }
+        var slot = plotWidth / rows.length;
+        var candleWidth = Math.max(review ? .75 : 1.6, Math.min(7, slot * .62));
+        var badgeTopInset = 0;
+        if (staggerBadges) {
+          var obstacles = rows.map(function (row, index) {
+            var candleX = x(index);
+            return {left: candleX - candleWidth / 2, right: candleX + candleWidth / 2,
+              top: y(finite(row.high)), bottom: y(finite(row.low))};
+          });
+          var hasExMarker = chartEventsForMode().some(function (event) { return sourceIndexByDate[event.eventDate] != null; });
+          var badgeTopLimit = hasExMarker ? 22 : 4;
+          var badgeBottomLimit = volumeTop - 13;
+          var badgeBottomInset = 0;
+          tradeGroups.forEach(function (group) {
+            var buy = group.direction === "BUY";
+            var candle = obstacles[group.aggregateIndex];
+            var preferredTop = buy ? candle.bottom + 7 : candle.top - 22;
+            var preferredCenter = group.x;
+            group.markerTop = staggerTradeBadge(preferredCenter, group.width, preferredTop, buy, obstacles);
+            var bestDistance = Math.abs(group.markerTop - preferredTop);
+            if (bestDistance > 0) {
+              var horizontalStep = Math.min(8, slot);
+              [-horizontalStep, horizontalStep].forEach(function (offset) {
+                var center = preferredCenter + offset;
+                if (center < left || center > width - right) return;
+                var markerTop = staggerTradeBadge(center, group.width, preferredTop, buy, obstacles);
+                var distance = Math.hypot(offset, markerTop - preferredTop);
+                if (distance < bestDistance) {
+                  bestDistance = distance;
+                  group.x = center;
+                  group.markerTop = markerTop;
+                }
+              });
+            }
+            obstacles.push({left: group.x - group.width / 2, right: group.x + group.width / 2,
+              top: group.markerTop, bottom: group.markerTop + 15});
+            badgeTopInset = Math.max(badgeTopInset, badgeTopLimit - group.markerTop);
+            badgeBottomInset = Math.max(badgeBottomInset, group.markerTop + 15 - badgeBottomLimit);
+          });
+          top += badgeTopInset;
+          priceBottom += badgeTopInset;
+          volumeTop += badgeTopInset + badgeBottomInset;
+          bottom += badgeTopInset + badgeBottomInset;
+          height += badgeTopInset + badgeBottomInset;
+        }
+        if (review) svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+        if (review) {
+          var dayWidth = plotWidth / sourceRows.length;
+          review.segments.forEach(function (segment) {
+            var startIndex = sourceRows.findIndex(function (row) { return row.date >= segment.start; });
+            if (startIndex < 0 || sourceRows[startIndex].date > segment.end) return;
+            var afterIndex = sourceRows.findIndex(function (row) { return row.date > segment.end; });
+            if (afterIndex < 0) afterIndex = sourceRows.length;
+            svg.appendChild(svgEl("rect", {
+              x: left + startIndex * dayWidth, y: top,
+              width: (afterIndex - startIndex) * dayWidth, height: bottom - top,
+              fill: "#e8f1f7", class: "chart-holding-segment", "pointer-events": "none"
+            }));
+          });
+        }
         for (var grid = 0; grid <= 4; grid += 1) {
           var gy = top + grid * priceHeight / 4;
           svg.appendChild(svgEl("line", { x1: left, y1: gy, x2: width - right, y2: gy, class: "grid-line" }));
@@ -2333,8 +2458,6 @@
           svg.appendChild(label);
         }
         svg.appendChild(svgEl("line", { x1: left, y1: volumeTop - 9, x2: width - right, y2: volumeTop - 9, class: "grid-line" }));
-        var slot = plotWidth / rows.length;
-        var candleWidth = Math.max(1.6, Math.min(7, slot * .62));
         rows.forEach(function (row, index) {
           var open = finite(row.open), high = finite(row.high), low = finite(row.low), close = finite(row.close);
           if ([open, high, low, close].some(function (value) { return value == null; })) return;
@@ -2383,8 +2506,6 @@
           if (style.dash) attributes["stroke-dasharray"] = style.dash;
           svg.appendChild(svgEl("path", attributes));
         });
-        var sourceIndexByDate = {};
-        sourceRows.forEach(function (row, index) { sourceIndexByDate[row.date] = index; });
         var markerGroups = {};
         var markerHitZones = [];
         chartEventsForMode().forEach(function (event) {
@@ -2403,12 +2524,12 @@
               ? (slot >= 30 ? "非现金分派" : "派")
               : (events[0].distributionType === "capital_gain_distribution"
               ? (slot >= 30 ? "基金分配" : "配")
-              : (slot >= 30 ? "分红派息" : "息")));
+              : (slot >= 30 ? (review ? "除息" : "分红派息") : "息")));
           if (events.length > 1) markerText += "×" + events.length;
           var markerColor = events[0].eventType === "stock_split" ? "#176b9b" : "#a87316";
           var markerFill = events[0].eventType === "stock_split" ? "#e8f1f7" : "#fbf3df";
           var markerWidth = Math.max(16, markerText.length * 8 + 8);
-          var markerY = Math.max(top + 3, y(finite(row.high)) - 25);
+          var markerY = review ? 4 : Math.max(top + 3, y(finite(row.high)) - 25);
           markerHitZones.push({
             markerType: "corporate",
             x: cx,
@@ -2433,62 +2554,39 @@
           eventLabel.textContent = markerText;
           svg.appendChild(eventLabel);
         });
-        var tradeMarkerGroups = {};
         var tradeSummariesByAggregateIndex = {};
-        tradeChartEvents().forEach(function (event) {
-          var tradeDate = tradeDateValue(event);
-          var sourceIndex = sourceIndexByDate[tradeDate];
-          if (sourceIndex == null) return;
-          var aggregateIndex = Math.min(rows.length - 1, Math.floor(sourceIndex / aggregated.bucketSize));
-          var direction = tradeDirection(event);
-          var currency = String(event.currency || state.detail.instrument.currency || "").toUpperCase();
-          var key = aggregateIndex + "|" + direction + "|" + currency;
-          var group = tradeMarkerGroups[key] || (tradeMarkerGroups[key] = {
-            aggregateIndex: aggregateIndex,
-            direction: direction,
-            events: []
-          });
-          group.events.push(event);
-        });
-        Object.keys(tradeMarkerGroups).sort(function (left, right) {
-          var leftGroup = tradeMarkerGroups[left], rightGroup = tradeMarkerGroups[right];
-          return leftGroup.aggregateIndex - rightGroup.aggregateIndex || leftGroup.direction.localeCompare(rightGroup.direction);
-        }).forEach(function (key) {
-          var group = tradeMarkerGroups[key];
-          var summary = summarizeTradeEvents(group.events, group.direction);
+        var tradeStems = staggerBadges ? svg.appendChild(svgEl("g", {"aria-hidden": "true"})) : svg;
+        tradeGroups.forEach(function (group) {
+          var summary = group.summary;
           (tradeSummariesByAggregateIndex[group.aggregateIndex] || (tradeSummariesByAggregateIndex[group.aggregateIndex] = [])).push(summary);
           var row = rows[group.aggregateIndex];
-          var cx = x(group.aggregateIndex);
-          var markerText = group.direction === "BUY" ? "买" : "卖";
-          if (summary.count > 1) markerText += "×" + summary.count;
-          var markerColor = group.direction === "BUY" ? "#176b9b" : "#a14e4e";
-          var markerFill = group.direction === "BUY" ? "#e8f1f7" : "#f8ebeb";
-          var markerWidth = Math.max(18, markerText.length * 8 + 8);
-          var candleY = group.direction === "BUY" ? y(finite(row.low)) : y(finite(row.high));
-          var markerY = group.direction === "BUY"
-            ? Math.min(priceBottom - 17, candleY + 10)
-            : Math.max(top + 3, candleY - 25);
+          var buy = group.direction === "BUY";
+          var cx = group.x;
+          var markerColor = buy ? "#176b9b" : "#a14e4e";
+          var markerFill = buy ? "#e8f1f7" : "#f8ebeb";
+          var candleY = y(finite(buy ? row.low : row.high));
+          var markerY = staggerBadges
+            ? group.markerTop + badgeTopInset
+            : (buy ? Math.min(priceBottom - 17, candleY + 10) : Math.max(top + 3, candleY - 25));
           markerHitZones.push({
             markerType: "trade",
             x: cx,
             y: markerY + 7.5,
-            halfWidth: markerWidth / 2 + 5,
-            halfHeight: 13,
+            halfWidth: group.width / 2 + (staggerBadges ? 1 : 5),
+            halfHeight: staggerBadges ? 8.5 : 13,
             aggregateIndex: group.aggregateIndex,
             events: [summary]
           });
-          svg.appendChild(svgEl("line", {
-            x1: cx,
-            y1: group.direction === "BUY" ? Math.min(markerY - 2, candleY + 2) : markerY + 15,
-            x2: cx,
-            y2: group.direction === "BUY" ? markerY : Math.max(markerY + 17, candleY - 2),
-            class: "chart-event-stem",
-            stroke: markerColor
+          tradeStems.appendChild(svgEl("line", {
+            x1: cx, y1: buy ? markerY : markerY + 15,
+            x2: staggerBadges ? x(group.aggregateIndex) : cx,
+            y2: buy ? Math.min(markerY - 2, candleY + 2) : Math.max(markerY + 17, candleY - 2),
+            class: "chart-event-stem", stroke: markerColor
           }));
           svg.appendChild(svgEl("rect", {
-            x: cx - markerWidth / 2,
+            x: cx - group.width / 2,
             y: markerY,
-            width: markerWidth,
+            width: group.width,
             height: 15,
             rx: 2,
             fill: markerFill,
@@ -2502,38 +2600,40 @@
             fill: markerColor,
             class: "chart-event-label chart-trade-label"
           });
-          tradeLabel.textContent = markerText;
+          tradeLabel.textContent = group.label;
           svg.appendChild(tradeLabel);
         });
         var labelIndexes = [0, Math.floor((rows.length - 1) / 2), rows.length - 1];
         labelIndexes.forEach(function (index) {
-          var label = svgEl("text", { x: x(index), y: 437, "text-anchor": index === 0 ? "start" : (index === rows.length - 1 ? "end" : "middle"), class: "axis-label" });
+          var label = svgEl("text", { x: x(index), y: review ? height - 8 : 437, "text-anchor": index === 0 ? "start" : (index === rows.length - 1 ? "end" : "middle"), class: "axis-label" });
           label.textContent = compactToIso(rows[index].date);
           svg.appendChild(label);
         });
         var focus = svgEl("line", { x1: left, y1: top, x2: left, y2: bottom, class: "focus-line", visibility: "hidden" });
         svg.appendChild(focus);
-        var interactionLeft = Math.max(0, left - slot / 2);
-        var interactionRight = Math.min(width, width - right + slot / 2);
+        var interactionTop = review ? 0 : top;
+        var interactionLeft = review ? left : Math.max(0, left - slot / 2);
+        var interactionRight = review ? width - right : Math.min(width, width - right + slot / 2);
         var overlay = svgEl("rect", {
           x: interactionLeft,
-          y: top,
+          y: interactionTop,
           width: interactionRight - interactionLeft,
-          height: bottom - top,
+          height: bottom - interactionTop,
           fill: "transparent",
           class: "chart-interaction-overlay",
           tabindex: "0",
-          "aria-label": pricePanEligible()
+          "aria-label": review ? "点按或使用方向键查看日线，Escape 关闭详情" : pricePanEligible()
             ? "移动指针查看价格详情；使用较早／较新按钮或方向键切换时间段；Home 回到最新"
             : "移动指针查看市场历史价格详情",
-          "aria-keyshortcuts": pricePanEligible() ? "ArrowLeft ArrowRight Home" : ""
+          "aria-keyshortcuts": review ? "ArrowLeft ArrowRight Home End Escape" : pricePanEligible() ? "ArrowLeft ArrowRight Home" : ""
         });
         function hidePriceTooltip() {
           focus.setAttribute("visibility", "hidden");
           tooltip.classList.remove("visible");
           tooltip.setAttribute("aria-hidden", "true");
         }
-        function showAt(event) {
+        var selectedIndex = null;
+        function showAt(event, keyboardIndex) {
           var interactionRect = overlay.getBoundingClientRect();
           var ratio = interactionRect.width
             ? (event.clientX - interactionRect.left) / interactionRect.width
@@ -2541,10 +2641,10 @@
           ratio = Math.max(0, Math.min(1, ratio));
           var index = Math.max(0, Math.min(rows.length - 1, Math.round(ratio * rows.length - .5)));
           var pointerSvgX = interactionLeft + ratio * (interactionRight - interactionLeft);
-          var pointerSvgY = top + Math.max(0, Math.min(1,
+          var pointerSvgY = interactionTop + Math.max(0, Math.min(1,
             (event.clientY - interactionRect.top) / (interactionRect.height || 1)
-          )) * (bottom - top);
-          var markerHit = markerHitZones.reduce(function (nearest, candidate) {
+          )) * (bottom - interactionTop);
+          var markerHit = keyboardIndex == null && markerHitZones.reduce(function (nearest, candidate) {
             var horizontalDistance = Math.abs(pointerSvgX - candidate.x);
             var verticalDistance = Math.abs(pointerSvgY - candidate.y);
             if (horizontalDistance > candidate.halfWidth || verticalDistance > candidate.halfHeight) return nearest;
@@ -2554,6 +2654,8 @@
               : nearest;
           }, null);
           if (markerHit) index = markerHit.marker.aggregateIndex;
+          if (keyboardIndex != null) index = keyboardIndex;
+          selectedIndex = index;
           var row = rows[index];
           var fx = x(index);
           focus.setAttribute("x1", fx); focus.setAttribute("x2", fx); focus.setAttribute("visibility", "visible");
@@ -2575,9 +2677,9 @@
             ["最低", money(row.low, state.detail.instrument.currency, 2)],
             ["涨跌额", signedMoney(candleChange, state.detail.instrument.currency), candleChange],
             ["涨跌幅", signedPercentRatio(candleChangeRatio, 2), candleChangeRatio],
-            ["量", compactCount(row.volume)],
-            ["市盈率 TTM", peDisplayText(row)]
+            ["量", compactCount(row.volume)]
           ];
+          if (!review) labels.push(["市盈率 TTM", peDisplayText(row)]);
           var grid = tooltip.querySelector(".tooltip-primary-grid");
           grid.replaceChildren();
           labels.forEach(function (item) {
@@ -2603,30 +2705,54 @@
           });
           renderTooltipTrades(
             tooltip.querySelector(".tooltip-trade-events"),
-            tradeSummariesByAggregateIndex[index] || [],
-            row.points > 1
+            review && markerHit && markerHit.marker.markerType === "trade"
+              ? markerHit.marker.events
+              : (tradeSummariesByAggregateIndex[index] || []),
+            Boolean(review) || row.points > 1
           );
           renderTooltipEvents(
             tooltip.querySelector(".tooltip-corporate-events"),
             markerHit && markerHit.marker.markerType === "corporate"
               ? markerHit.marker.events
-              : (row.chartEvents || [])
+              : (row.chartEvents || []),
+            review
           );
-          var frame = el("chartFrame").getBoundingClientRect();
-          var pointerX = event.clientX - frame.left;
+          var frame = chart.frame.getBoundingClientRect();
+          var pointerX = keyboardIndex == null ? event.clientX - frame.left : interactionRect.left - frame.left + (index + .5) * interactionRect.width / rows.length;
           var pointerY = event.clientY - frame.top;
           var tooltipWidth = Math.min(268, Math.max(frame.width - 24, 248));
           var tooltipLeft = pointerX + 14;
           if (tooltipLeft + tooltipWidth > frame.width - 8) tooltipLeft = pointerX - tooltipWidth - 14;
           tooltip.style.width = tooltipWidth + "px";
           tooltip.style.left = Math.max(8, tooltipLeft) + "px";
-          tooltip.style.top = Math.min(Math.max(pointerY, 78), frame.height - 78) + "px";
           tooltip.classList.add("visible");
           tooltip.setAttribute("aria-hidden", "false");
+          tooltip.style.top = (review
+            ? Math.max(8, Math.min(pointerY - 30, frame.height - tooltip.offsetHeight - 8))
+            : Math.min(Math.max(pointerY, 78), frame.height - 78)) + "px";
         }
         overlay.addEventListener("pointermove", showAt);
-        overlay.addEventListener("pointerleave", hidePriceTooltip);
+        overlay.addEventListener("pointerleave", function (event) {
+          if (!review || event.pointerType !== "touch") hidePriceTooltip();
+        });
+        if (review) {
+          overlay.addEventListener("click", showAt);
+          overlay.addEventListener("blur", hidePriceTooltip);
+        }
         overlay.addEventListener("keydown", function (event) {
+          if (review) {
+            if (event.key === "Escape") {
+              hidePriceTooltip();
+              return;
+            }
+            var current = selectedIndex == null ? 0 : selectedIndex;
+            var keyboardTargets = {ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: rows.length - 1};
+            if (!Object.hasOwn(keyboardTargets, event.key)) return;
+            event.preventDefault();
+            var rect = overlay.getBoundingClientRect();
+            showAt({clientX: rect.left, clientY: rect.top + rect.height / 2}, Math.max(0, Math.min(rows.length - 1, keyboardTargets[event.key])));
+            return;
+          }
           if (!pricePanEligible()) return;
           if (event.key === "ArrowLeft") {
             event.preventDefault();
@@ -2641,14 +2767,14 @@
         });
         svg.appendChild(overlay);
         var selection = (state.detail.barSelection.series || []).find(function (row) { return row.barType === barType; }) || {};
-        el("chartCoverage").textContent = compactToIso(sourceRows[0].date) + " — " + compactToIso(sourceRows[sourceRows.length - 1].date) + " · " + number(sourceRows.length, 0) + " 根日线";
+        chart.coverage.textContent = compactToIso(sourceRows[0].date) + " — " + compactToIso(sourceRows[sourceRows.length - 1].date) + " · " + number(sourceRows.length, 0) + " 根日线";
         var movingAverageMethod = activeAverages.length
           ? " · " + movingAverageDefinition.label + " " + activeAverages.join("／") + " 日简单均线先按底层逐日收盘计算，再取图形桶末值"
           : "";
-        var panMethod = pricePanEligible()
+        var panMethod = priceWindow
           ? " · " + state.priceRange + " 固定窗口，使用按钮或方向键切换" + (state.priceWindowEnd ? "，当前为历史截止" : "，当前为最新截止")
           : "";
-        el("chartAggregation").textContent = aggregated.bucketSize > 1
+        chart.aggregation.textContent = aggregated.bucketSize > 1
           ? "图形每根合并最多 " + aggregated.bucketSize + " 个连续交易日；底层日线未改变" + movingAverageMethod + panMethod
           : "逐交易日绘制" + movingAverageMethod + panMethod;
         var splitBasis = selection.splitNormalizationStatus === "pass"
@@ -2659,13 +2785,15 @@
           : (barType === "TRADES"
             ? "股息未调整；分红标记仅覆盖已核验可用期间"
             : "股息调整");
-        var tradeMarkerMethod = Object.keys(tradeMarkerGroups).length
-          ? " · 买卖标记来自脱敏 Activity Flex；按绘图桶与方向聚合，纵向位置不代表成交价"
+        var tradeMarkerMethod = tradeGroups.length
+          ? (review ? " · 买卖标记按 Flex 交易日和方向汇总，纵向位置不代表成交价"
+            : " · 买卖标记来自脱敏 Activity Flex；按绘图桶与方向聚合，纵向位置不代表成交价")
           : "";
         var sourcePrefix = state.detail && state.detail.publicStatic
           ? ""
           : (sourceRows[0].sourceName || "IBKR Historical Bars") + " · ";
-        el("chartSource").textContent = sourcePrefix + modeDescription + " · " + splitBasis + " · PE 统一按股息未调整实际收盘计算" + tradeMarkerMethod;
+        chart.source.textContent = sourcePrefix + modeDescription + " · " + splitBasis
+          + (review ? "" : " · PE 统一按股息未调整实际收盘计算") + tradeMarkerMethod;
       }
       function isAnnualReconstructedEps(row) {
         return Boolean(row && row.epsEffectiveDatePolicy === "filing_date_point_in_time_annual");
@@ -3473,9 +3601,17 @@
         );
         status.textContent = corporateStatusLabel(event.status);
         var copy = document.createElement("div"); copy.className = "corporate-event-copy";
-        var title = document.createElement("div"); title.className = "corporate-event-title"; title.textContent = event.title || "公司事件";
+        var display = event.display || event;
+        var title = document.createElement("div"); title.className = "corporate-event-title";
+        title.textContent = display.title || event.title || "公司事件";
+        var note = typeof display.description === "string" ? display.description.trim() : "";
         var description = document.createElement("div"); description.className = "corporate-event-description";
-        description.textContent = event.description || "没有额外说明。";
+        description.textContent = note || ({
+          estimated: "所列为预估日期，待官方来源确认。",
+          announced: "日期来自已公布的事件安排。",
+          confirmed: "日期来自已确认的事件安排。",
+          cancelled: "所列为原定日期，安排已取消。"
+        }[event.status] || "日期来自该事件的公开记录。");
         copy.append(title, description);
         var updated = document.createElement("time"); updated.className = "corporate-event-updated";
         updated.title = "当前事件版本的来源获取／核验时间，不是事件发生、公告发布或页面访问时间。";
@@ -3487,7 +3623,7 @@
         }
         var source = document.createElement("a"); source.className = "corporate-source";
         source.href = event.sourceUrl; source.target = "_blank"; source.rel = "noreferrer";
-        source.textContent = (event.sourceName || "来源") + " ↗";
+        source.textContent = (display.sourceName || event.sourceName || "来源") + " ↗";
         var meta = document.createElement("div"); meta.className = "corporate-event-meta";
         meta.append(source, updated);
         row.append(date, status, copy, meta);
@@ -3950,6 +4086,8 @@
           part = part.replace(/([，,；;、。]\s*|^)(?:implementationReadiness\s*=\s*|implementation\s*|实施\s*)(?:not_ready|not_applicable)(?=[。；;、]|$)/g,
             function (_, separator) { return separator.indexOf("。") >= 0 ? "。" : ""; });
           part = part.replace(/(^|[。；;\n])\s*(?:用户尚未决定|用户已审阅并认可研究|无交易授权)[。；;]/g, "$1");
+          part = part.replace(/(^|[。；;\n])\s*用户尚未对本版作出决定，也未授权交易(?:[。；;]|$)/g, "$1");
+          part = part.replace(/[，,]\s*(?:本轮不要求私有数据对账，也未具备实施讨论条件|实施尚未具备实施讨论条件)(?=[。；;]|$)/g, "");
           part = part.replace(/仅授权[A-Za-z0-9 .-]{1,32}本地研究及晨星两栏更新[，,]\s*未授权交易[。；;]?/g, "");
           part = part.replace(/([，,；;、。]\s*|^)(?:brokerExecutionAuthorization|tradeAuthorization)\s*=\s*none(?=[。；;、]|$)/g,
             function (_, separator) { return separator.indexOf("。") >= 0 ? "。" : ""; });
@@ -4342,7 +4480,16 @@
             && row.assessmentType !== "fixed_income_research";
         }) || null;
       }
-      var currentResearchAliases = [
+      function researchVersionBadge(assessment) {
+        var presentation = assessment.researchPresentation || assessment.localPresentation || {};
+        var version = presentation.researchVersion;
+        if (!version) {
+          var matches = [...String(assessment.sourceVersion || "").matchAll(/(?:^|[^A-Za-z0-9.])(v[0-9]+\.[0-9]+(?:\.[0-9]+)?)(?![A-Za-z0-9.])/g)];
+          if (matches.length === 1) version = matches[0][1];
+        }
+        return version ? "研究版本 " + version : "研究版本待核实";
+      }
+      var legacyResearchTitleAliases = [
         { symbol: "PFE", type: "equity_research", source: "PFE-v4.1-Targeted-20261103",
           completed: "2026-11-05T04:00:38.095243Z", basis: "20261103", format: "ordinary-frozen-native-reader-v1",
           title: "PFE｜FY2026Q3｜正文更正 · v4.1" },
@@ -4364,72 +4511,80 @@
             || (topic === "财报更新" && !period)) return "";
         return [symbol, period, topic].filter(Boolean).join("｜") + " · " + version;
       }
-      function currentResearchMetadata(detail, assessment) {
+      function verifiedLegacyResearchTitle(detail, assessment) {
+        if (!detail) return "";
         var type = assessment.assessmentType, result = assessment.result || {};
-        var format = (result.reviewedDisplay || {}).formatId, completed = result.researchCompletedAt;
-        var basis = researchUtcDay(assessment.asOfDate) == null ? "" : compactToIso(assessment.asOfDate);
-        var symbol = primarySymbol(detail);
+        var format = result.reviewedDisplay?.formatId, completed = result.researchCompletedAt;
+        var symbol = primarySymbol(detail), object = result.assetResearch?.researchObject;
+        var native = type === "equity_research" ? format === "ordinary-frozen-native-reader-v1"
+          : type === "fund_research" && format === "ordinary-asset-native-reader-v1"
+            && object?.assetKind === "fund" && object.symbol === symbol;
+        if (!native || researchUtcDay(assessment.asOfDate) == null
+            || typeof completed !== "string" || completed !== assessment.completedAt
+            || !/(?:Z|\+00:00)$/.test(completed) || researchVerifiedTime(completed) == null) return "";
         var current = (detail.research || []).filter(function (row) {
           return row.status === "active" && (row.assessmentType === "equity_research" || row.assessmentType === "fund_research");
         });
-        var native = type === "equity_research" ? format === "ordinary-frozen-native-reader-v1"
-          : type === "fund_research" && format === "ordinary-asset-native-reader-v1"
-            && result.assetResearch?.researchObject?.assetKind === "fund"
-            && result.assetResearch.researchObject.symbol === symbol;
-        var verifiedFormat = native || (type === "equity_research"
-          && ["reviewed-native-research-paraphrase-v1", "reviewed-frozen-research-paraphrase-v1"].includes(format));
-        // The outer API field alone can be the legacy database creation time.
-        var frozen = verifiedFormat && current.length === 1 && current[0] === assessment
-          && completed === assessment.completedAt && typeof completed === "string"
-          && /(?:Z|\+00:00)$/.test(completed) && researchVerifiedTime(completed) != null;
-        var title = "";
-        if (native && frozen && basis) {
-          var approved = currentResearchAliases.find(function (alias) {
-            return alias.symbol === symbol && alias.type === type && alias.source === assessment.sourceVersion
-              && alias.completed === completed && alias.basis === assessment.asOfDate && alias.format === format;
-          });
-          title = approved ? approved.title : canonicalResearchTitle(symbol, type, assessment.sourceVersion, completed);
+        if (current.length !== 1 || current[0] !== assessment) return "";
+        var approved = legacyResearchTitleAliases.find(function (alias) {
+          return alias.symbol === symbol && alias.type === type && alias.source === assessment.sourceVersion
+            && alias.completed === completed && alias.basis === assessment.asOfDate && alias.format === format;
+        });
+        return approved ? approved.title : canonicalResearchTitle(symbol, type, assessment.sourceVersion, completed);
+      }
+      function researchCardMetadata(assessment, detail) {
+        var presentation = assessment.researchPresentation || assessment.localPresentation;
+        var legacyTitle = presentation ? "" : verifiedLegacyResearchTitle(detail, assessment);
+        var basis = presentation?.basis;
+        var basisLabel = basis
+          ? (basis.kind === "valuation_date" ? "估值日 " : "研究基准 ") + basis.date
+          : (researchUtcDay(assessment.asOfDate) == null ? "" : (legacyTitle ? "估值日 " : "研究基准 ") + compactToIso(assessment.asOfDate));
+        var completed = presentation?.completion;
+        var completedLabel = "分析完成时间未核实";
+        if (completed?.utc && completed.precision !== "unknown") {
+          var value = completed.precision === "day" ? completed.utc : completed.utc.slice(0, 16).replace("T", " ");
+          completedLabel = "分析完成 UTC " + value;
+        } else if (!presentation) {
+          // The outer API field alone can be a legacy database creation time.
+          var frozen = assessment.result?.researchCompletedAt;
+          if (frozen === assessment.completedAt && researchVerifiedTime(frozen) != null) {
+            completedLabel = "分析完成 " + utcDateTime(frozen);
+          }
         }
         return {
-          title: title,
-          completedLabel: frozen ? "分析完成 " + utcDateTime(completed) : "",
-          basisLabel: basis ? (title ? "估值日 " : "研究基准 ") + basis : ""
+          title: presentation?.displayReportName || presentation?.reportTitle || legacyTitle,
+          headline: presentation?.researchHeadline || "",
+          fiscalLabel: presentation?.fiscalPeriod ? "财报期 " + presentation.fiscalPeriod : "",
+          completedLabel: completedLabel,
+          basisLabel: basisLabel
         };
       }
-      function researchCardMetadata(detail, assessment, local) {
-        var fixed = assessment.assessmentType === "fixed_income_research";
-        var baseline = fixed ? null : currentResearchMetadata(detail, assessment);
-        if (!local || (baseline && baseline.title)) return baseline;
-        var presentation = assessment.localPresentation;
-        if (presentation) {
-          var completion = presentation.completion;
-          var completed = completion.precision === "unknown" ? null : completion.utc;
-          if (completed && completion.precision !== "day") completed = completed.slice(0, 16).replace("T", " ");
-          return {
-            title: completed ? presentation.title : null,
-            completedLabel: completed ? "分析完成 UTC " + completed : "",
-            completionUnknown: !completed,
-            basisLabel: (presentation.basis.kind === "valuation_date" ? "估值日 " : "研究基准 ") + presentation.basis.date
-          };
-        }
-        if (baseline && baseline.completedLabel) return baseline;
-        var basis = researchUtcDay(assessment.asOfDate) == null ? "" : compactToIso(assessment.asOfDate);
-        return { title: "", completedLabel: "", completionUnknown: true, basisLabel: basis ? "研究基准 " + basis : "" };
-      }
-      function renderCurrentResearchHeading(body, metadata) {
-        if (!metadata) return;
-        var completion = metadata.completedLabel || (metadata.completionUnknown ? "分析完成时间未核实" : "");
-        var datesText = metadata.title ? [completion, metadata.basisLabel].filter(Boolean).join(" · ")
-          : (metadata.completedLabel ? metadata.basisLabel : completion);
-        if (!metadata.title && !datesText) return;
+      function renderCurrentResearchHeading(body, assessment, detail) {
+        var metadata = researchCardMetadata(assessment, detail);
         var heading = document.createElement("div"); heading.className = "research-current-heading";
-        if (metadata.title) {
+        if (metadata.headline || metadata.title) {
           var title = document.createElement("h4"); title.className = "research-subtitle";
-          title.textContent = metadata.title; heading.appendChild(title);
+          title.textContent = metadata.headline || metadata.title; heading.appendChild(title);
         }
-        var dates = document.createElement("p"); dates.className = "section-note";
-        dates.textContent = datesText;
-        heading.appendChild(dates); body.appendChild(heading);
+        var details = document.createElement("p"); details.className = "section-note";
+        details.textContent = [metadata.headline ? metadata.title : "", metadata.fiscalLabel,
+          metadata.completedLabel, metadata.basisLabel].filter(Boolean).join(" · ");
+        heading.appendChild(details); body.appendChild(heading);
+      }
+      function appendResearchSourceMetadata(details, assessment) {
+        var presentation = assessment.researchPresentation || assessment.localPresentation;
+        var reportTitle = presentation?.reportTitle;
+        var originalTitle = presentation?.displayReportName && reportTitle !== presentation.displayReportName ? reportTitle : "";
+        if (originalTitle) {
+          var original = document.createElement("p"); original.className = "section-note";
+          original.textContent = "报告原题「" + originalTitle + "」"; details.appendChild(original);
+        }
+        var sourceVersion = String(assessment.sourceVersion || "").trim();
+        if (!sourceVersion) return Boolean(originalTitle);
+        var source = document.createElement("p"); source.className = "section-note research-source-version";
+        source.textContent = "原来源标签 " + sourceVersion;
+        details.appendChild(source);
+        return true;
       }
       function updateResearchTimestamps() {
         var primary = primaryResearchAssessment();
@@ -4440,10 +4595,7 @@
         el("morningstarUpdatedAt").textContent = provider && provider.verifiedAt
           ? "最近核验 " + utcDateTime(provider.verifiedAt)
           : "核验时间尚未建立";
-        var metadata = assessment ? researchCardMetadata(state.detail, assessment, state.localResearchPresentation) : null;
-        el("internalResearchUpdatedAt").textContent = metadata
-          ? (metadata.title ? "" : (metadata.completedLabel || metadata.basisLabel || "研究时间尚未建立"))
-          : (assessment ? researchAnalysisTimeLabel(assessment, true) : "研究时间尚未建立");
+        el("internalResearchUpdatedAt").textContent = assessment ? "" : "研究时间尚未建立";
       }
       /* FAMILY:INSTRUMENT_DECISION_RUNTIME:START *//* FAMILY:INSTRUMENT_DECISION_RUNTIME:END */
       function morningstarPublicSourceHref(value) {
@@ -4720,7 +4872,7 @@
         }
         var result = assessment.result || {}, valuation = result.valuation || {}, dcf = valuation.dcf || {};
         if (assessment.assessmentType === "fund_research") {
-          try { renderAssetResearch(body, assessment); }
+          try { renderAssetResearch(body, assessment, state.detail); }
           catch (error) { body.replaceChildren(); var warning = document.createElement("p"); warning.className = "section-note"; warning.textContent = error.message; body.appendChild(warning); }
           updateResearchTimestamps(); return;
         }
@@ -4738,11 +4890,11 @@
         }
         if (result.reviewedDisplay && !/^\d{8}$/.test(String(completedCloseAsOf || ""))) completedClosePrice = null;
         updateResearchTimestamps();
-        renderCurrentResearchHeading(body, researchCardMetadata(state.detail, assessment, state.localResearchPresentation));
+        renderCurrentResearchHeading(body, assessment, state.detail);
         var badges = document.createElement("div"); badges.className = "badge-row";
         var maturity = result.researchMaturity || result.underwritingStatus || "preliminary";
         var badgeEntries = [
-          { value: assessment.sourceVersion || assessment.version, label: researchSourceVersionLabel(assessment) },
+          { value: "research_version", label: researchVersionBadge(assessment) },
           { value: "review_freshness", freshness: true },
           maturity !== "active" ? { value: maturity } : null,
           result.valuationMaturity
@@ -4830,7 +4982,17 @@
               : "完成收盘基准不可用";
             var assumptions = document.createElement("div"); assumptions.className = "valuation-assumptions";
             if (scenario.assumptionSummary) {
-              assumptions.textContent = reviewedDisplay && ["ordinary-frozen-native-reader-v1", "reviewed-native-research-paraphrase-v1"].indexOf(reviewedDisplay.formatId) >= 0
+              var nativeScenario = reviewedDisplay && ["ordinary-frozen-native-reader-v1", "reviewed-native-research-paraphrase-v1"].indexOf(reviewedDisplay.formatId) >= 0;
+              var segmentParameterNote = "；waccPct技术字段为保险Ke参考，完整分部Ke见模型。";
+              var reviewedBerkshireParameters = nativeScenario
+                && valuation.method === "SOTP plus segment FCFE proxies discounted at cost of equity"
+                && valuation.dcf?.modelSummary === "SOTP/FCFE代理，五年年末折现；金融本金、承保与float融资优势分列，非完整经营驱动DCF。运输旧字段waccPct仅承载各情景保险Ke作为显示参考，实际采用四分部Ke向量，不是集团WACC。"
+                && scenario.assumptionSummary.endsWith(segmentParameterNote);
+              assumptions.textContent = reviewedBerkshireParameters
+                ? "保险分部股权成本（Ke） " + percent(scenario.waccPct, 2)
+                  + " · BNSF 永续增长 " + percent(scenario.terminalGrowthPct, 2)
+                  + " · " + scenario.assumptionSummary.slice(0, -segmentParameterNote.length) + "；各分部股权成本见估值模型。"
+                : nativeScenario
                 ? (valuation.method === "bank_normalized_earnings_required_capital_FCFE_and_residual_income"
                     || (valuation.method == null && valuation.dcf && valuation.dcf.discountRateType === "cost_of_equity") ? "股权成本 " : "WACC ")
                   + percent(scenario.waccPct, 2) + " · 永续增长 " + percent(scenario.terminalGrowthPct, 2) + " · " + scenario.assumptionSummary
@@ -4897,7 +5059,7 @@
           link.append(label, date); sources.appendChild(link);
         });
         }
-        if ((result.missingEvidence || []).length || sources.children.length) {
+        if (appendResearchSourceMetadata(details, assessment) || (result.missingEvidence || []).length || sources.children.length) {
           details.appendChild(sources); body.appendChild(details);
         }
         renderValuationAppendix(body);
@@ -5065,10 +5227,17 @@
           +percent(data.feeInclusiveEffectiveXirr.valuePct,6)+"；并非账户实际回报。价格风险仍使用原有效年收益率的一基点冲击。";
         details.appendChild(line);body.appendChild(details);
       }
-      function renderAssetResearch(body, assessment) {
+      /* FAMILY:INSTRUMENT_PRIVATE_TREASURY_RUNTIME:START */
+      function preparePrivateTreasuryResearch(result) {
+        assertNoPrivateTreasuryStatic(result);
+        return null;
+      }
+      /* FAMILY:INSTRUMENT_PRIVATE_TREASURY_RUNTIME:END */
+      function renderAssetResearch(body, assessment, detail) {
         var result = assessment.result || {}, asset = result.assetResearch, bond = result.fixedIncomeProjection;
         var fund = assessment.assessmentType === "fund_research";
         var data = fund ? asset : bond;
+        var treasury = preparePrivateTreasuryResearch(result, fund);
         if (!data || (fund ? (!data.researchObject || data.researchObject.assetKind !== "fund" || data.researchObject.symbol !== "BOXX")
             : data.formatId !== "ordinary-asset-native-reader-v1" || data.assetKind !== "us_treasury_basket")) {
           throw new Error("资产研究展示字段不完整，请核对已审阅投影。");
@@ -5078,9 +5247,9 @@
         });
         var display = result.reviewedDisplay || {};
         if (display.formatId !== "ordinary-asset-native-reader-v1" || !display.overview || !display.layers) throw new Error("资产研究概述缺失。");
-        renderCurrentResearchHeading(body, researchCardMetadata(state.detail, assessment, state.localResearchPresentation));
+        renderCurrentResearchHeading(body, assessment, detail);
         var badges = document.createElement("div"); badges.className = "badge-row";
-        var versionLabel = fund || state.localResearchPresentation ? researchSourceVersionLabel(assessment) : researchVersionLabel(assessment);
+        var versionLabel = researchVersionBadge(assessment);
         [fund ? "基金研究" : "固定收益研究", versionLabel, valuationMaturityLabel(result.valuationMaturity), researchLabel(result.researchMaturity)].forEach(function (label) {
           var badge = document.createElement("span"); badge.className = "badge"; badge.textContent = label; badges.appendChild(badge);
         });
@@ -5128,50 +5297,55 @@
           var card = document.createElement("article"); card.className = "case-card";
           var title = document.createElement("h3"); title.textContent = entry[0]; card.append(title, renderList(entry[1])); cases.appendChild(card);
         }); body.appendChild(cases);
-        var model = fund ? data.model : data.modelInputs, output = fund ? data.modelResult : data.modelResult;
-        if (!model || !output) throw new Error("必要资产模型缺失。");
-        var metrics = document.createElement("div"); metrics.className = "morningstar-metrics fixed-income-research-metrics";
-        var entries = fund ? [
-          ["NAV", money(model.navUsd,"USD",4), model.navAsOf],
-          ["市价", money(model.marketPriceUsd,"USD",4), model.marketAsOf],
-          ["溢折价", percent(output.premiumDiscountPct,4), "市价相对 NAV"],
-          ["费用率", percent(model.expenseRatioPct,4), "年费用率，情景按 ACT/365 分摊"]
-        ] : [
-          ["净价", number(output.cleanPricePer100,4), "US$100 面值"],
-          ["应计利息", number(output.accruedInterestPer100,4), "US$100 面值"],
-          ["全价", number(output.dirtyPricePer100,4), "US$100 面值"],
-          ["DV01", money(output.dv01UsdPerBp,"USD",4), "每 bp · 情景面值 · 全价模型基础"]
-        ];
-        entries.forEach(function (entry) {
-          var item = document.createElement("article"); item.className = "morningstar-metric";
-          ["morningstar-metric-label","morningstar-metric-value","morningstar-metric-note"].forEach(function (cls,index) {
-            var node = document.createElement("div"); node.className = cls; node.textContent = entry[index]; item.appendChild(node);
-          }); metrics.appendChild(item);
-        }); body.appendChild(metrics);
-        var explanation = document.createElement("p"); explanation.className = "section-note";
-        explanation.textContent = fund ? model.structure + " · " + output.qualifier
-          : "结算假设 " + model.settlementDate + " · " + model.settlementAssumption + " · " + (model.yieldConvention === "effective_xirr_act365" ? "有效年化 XIRR（ACT/365）" : "半年复利名义收益率（实际/实际）") + " " + percent(model.yieldPct,4) + " · 修正久期 " + number(output.modifiedDurationYears,4)
-            + " 年 · 凸性 " + number(output.convexityYears2,4) + " 年² · 情景面值 " + money(model.faceValueUsd,"USD",2)
-            + " · 手续费 " + money(model.feeUsd,"USD",2) + "。研究收益率不表示可执行报价。";
-        body.appendChild(explanation);
-        if (!fund && data.identity && data.identity.instrumentType === "treasury_bill") renderBillResearchYields(body, output);
-        var scenarios = document.createElement("div"); scenarios.className = "valuation-grid";
-        (fund ? output.scenarios : output.stress).forEach(function (row) {
-          var item = document.createElement("article"); item.className = "valuation-item";
-          var name = document.createElement("div"); name.className = "valuation-name";
-          name.textContent = fund ? row.name + " · " + row.horizonDays + " 天" : "利率 " + (row.shiftBp > 0 ? "+" : "") + row.shiftBp + " bp";
-          var value = document.createElement("div"); value.className = "valuation-price";
-          value.textContent = fund ? percent(row.netReturnPct,4) : money(row.changeUsd,"USD",2);
-          var note = document.createElement("div"); note.className = "valuation-reference";
-          note.textContent = fund ? row.assumptions + " · 扣除情景费用，非保证收益或概率" : "固定合同现金流完整重估 · 全价模型基础";
-          item.append(name,value,note); scenarios.appendChild(item);
-        }); body.appendChild(scenarios);
-        if (!fund) {
-          var inflation = document.createElement("div"); inflation.className = "section-note";
-          inflation.appendChild(document.createTextNode("购买力情景（不含税及再投资）："));
-          inflation.appendChild(renderList((output.purchasingPower || []).map(function (row) {
-            return "通胀 " + percent(row.inflationPct,2) + " · 实际合同现金流 " + money(row.realCashFlowUsd,"USD",2);
-          }))); body.appendChild(inflation);
+        if (treasury && treasury.replacesTradeModel) {
+          treasury.render(body);
+        } else {
+          var model = fund ? data.model : data.modelInputs, output = data.modelResult;
+          if (!model || !output) throw new Error("必要资产模型缺失。");
+          var metrics = document.createElement("div"); metrics.className = "morningstar-metrics fixed-income-research-metrics";
+          var entries = fund ? [
+            ["NAV", money(model.navUsd,"USD",4), model.navAsOf],
+            ["市价", money(model.marketPriceUsd,"USD",4), model.marketAsOf],
+            ["溢折价", percent(output.premiumDiscountPct,4), "市价相对 NAV"],
+            ["费用率", percent(model.expenseRatioPct,4), "年费用率，情景按 ACT/365 分摊"]
+          ] : [
+            ["净价", number(output.cleanPricePer100,4), "US$100 面值"],
+            ["应计利息", number(output.accruedInterestPer100,4), "US$100 面值"],
+            ["全价", number(output.dirtyPricePer100,4), "US$100 面值"],
+            ["DV01", money(output.dv01UsdPerBp,"USD",4), "每 bp · 情景面值 · 全价模型基础"]
+          ];
+          entries.forEach(function (entry) {
+            var item = document.createElement("article"); item.className = "morningstar-metric";
+            ["morningstar-metric-label","morningstar-metric-value","morningstar-metric-note"].forEach(function (cls,index) {
+              var node = document.createElement("div"); node.className = cls; node.textContent = entry[index]; item.appendChild(node);
+            }); metrics.appendChild(item);
+          }); body.appendChild(metrics);
+          var explanation = document.createElement("p"); explanation.className = "section-note";
+          explanation.textContent = fund ? model.structure + " · " + output.qualifier
+            : "结算假设 " + model.settlementDate + " · " + model.settlementAssumption + " · " + (model.yieldConvention === "effective_xirr_act365" ? "有效年化 XIRR（ACT/365）" : "半年复利名义收益率（实际/实际）") + " " + percent(model.yieldPct,4) + " · 修正久期 " + number(output.modifiedDurationYears,4)
+              + " 年 · 凸性 " + number(output.convexityYears2,4) + " 年² · 情景面值 " + money(model.faceValueUsd,"USD",2)
+              + " · 手续费 " + money(model.feeUsd,"USD",2) + "。研究收益率不表示可执行报价。";
+          body.appendChild(explanation);
+          if (!fund && data.identity && data.identity.instrumentType === "treasury_bill") renderBillResearchYields(body, output);
+          if (treasury) treasury.render(body);
+          var scenarios = document.createElement("div"); scenarios.className = "valuation-grid";
+          (fund ? output.scenarios : output.stress).forEach(function (row) {
+            var item = document.createElement("article"); item.className = "valuation-item";
+            var name = document.createElement("div"); name.className = "valuation-name";
+            name.textContent = fund ? row.name + " · " + row.horizonDays + " 天" : "利率 " + (row.shiftBp > 0 ? "+" : "") + row.shiftBp + " bp";
+            var value = document.createElement("div"); value.className = "valuation-price";
+            value.textContent = fund ? percent(row.netReturnPct,4) : money(row.changeUsd,"USD",2);
+            var note = document.createElement("div"); note.className = "valuation-reference";
+            note.textContent = fund ? row.assumptions + " · 扣除情景费用，非保证收益或概率" : "固定合同现金流完整重估 · 全价模型基础";
+            item.append(name,value,note); scenarios.appendChild(item);
+          }); body.appendChild(scenarios);
+          if (!fund) {
+            var inflation = document.createElement("div"); inflation.className = "section-note";
+            inflation.appendChild(document.createTextNode("购买力情景（不含税及再投资）："));
+            inflation.appendChild(renderList((output.purchasingPower || []).map(function (row) {
+              return "通胀 " + percent(row.inflationPct,2) + " · 实际合同现金流 " + money(row.realCashFlowUsd,"USD",2);
+            }))); body.appendChild(inflation);
+          }
         }
         var missing = document.createElement("div"); missing.className = "missing-list";
         missing.appendChild(renderList(result.missingEvidence));
@@ -5183,8 +5357,12 @@
           item.textContent = row.metric + " · " + row.baseline + " · 确认：" + row.confirmingDirection + " · 挑战：" + row.challengingDirection;
           monitoring.appendChild(item);
         }); body.appendChild(monitoring);
+        var sourceDetails = document.createElement("details"); sourceDetails.className = "research-details";
+        var sourceSummary = document.createElement("summary"); sourceSummary.textContent = "查看来源登记";
+        sourceDetails.appendChild(sourceSummary);
+        appendResearchSourceMetadata(sourceDetails, assessment);
         var sources = document.createElement("div"); sources.className = "source-list";
-        renderNativeResearchSources(sources,result); body.appendChild(sources);
+        renderNativeResearchSources(sources,result); sourceDetails.appendChild(sources); body.appendChild(sourceDetails);
         renderResearchDetailedExcerpts(body, {summary:fund ? assessment.summary : result.basketSummary}, result);
         if (fund) renderResearchHistory(body, assessment);
       }
@@ -5210,14 +5388,13 @@
         var securityRisk = result.securityRisk || {};
         var portfolioRisk = result.portfolioRisk || {};
         updateResearchTimestamps();
-        renderCurrentResearchHeading(body, researchCardMetadata(state.detail, assessment, state.localResearchPresentation));
+        renderCurrentResearchHeading(body, assessment);
 
         var badges = document.createElement("div"); badges.className = "badge-row";
         [
           ["持有到期", "good"],
           ["暂不增加久期", "warn"],
-          [state.localResearchPresentation ? researchSourceVersionLabel(assessment)
-            : "固定收益研究 " + researchVersionLabel(assessment), ""]
+          [researchVersionBadge(assessment), ""]
         ].forEach(function (entry) {
           var badge = document.createElement("span"); badge.className = "badge" + (entry[1] ? " " + entry[1] : "");
           badge.textContent = entry[0]; badges.appendChild(badge);
@@ -5323,6 +5500,7 @@
           var date = document.createElement("span"); date.className = "source-date"; date.textContent = compactToIso(source.asOf);
           link.append(label, date); sources.appendChild(link);
         });
+        appendResearchSourceMetadata(details, assessment);
         details.appendChild(sources); body.appendChild(details);
       }
       function renderQuality() {
@@ -5431,6 +5609,7 @@
         el("serviceNotice").classList.add("error");
         el("serviceNotice").innerHTML = '<span class="status-dot" aria-hidden="true"></span><span><strong>标的资料载入失败。</strong> ' + String(error && error.message || error) + "</span>";
       }
+      /* FAMILY:INSTRUMENT_HOLDING_REVIEW_RUNTIME:START *//* FAMILY:INSTRUMENT_HOLDING_REVIEW_RUNTIME:END */
       document.querySelectorAll(".bar-type-btn").forEach(function (button) {
         button.addEventListener("click", function () {
           state.barType = button.dataset.barType;
