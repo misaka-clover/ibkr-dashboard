@@ -23,7 +23,7 @@
           "role": "Director, ETF and Passive Strategies, US"
         },
         "freshness": {
-          "ageDays": 96.87553567459491,
+          "ageDays": 112.32852915261574,
           "maximumDays": 7,
           "status": "stale",
           "warning": "资料超过七天未重新核验"
@@ -291,10 +291,10 @@
           "valuationState": "nav_aligned_wrapper_but_no_intrinsic_value_anchor",
           "valuationStateLabelZh": "份额价格贴近 NAV，但黄金没有可审核的内在价值锚"
         },
-        "reviewDueAt": null,
-        "reviewDueReason": null,
-        "reviewStatus": "current",
-        "reviewTriggerType": null,
+        "reviewDueAt": "2026-11-11T00:00:00Z",
+        "reviewDueReason": "自研究基准日起已满 90 天，需进行例行复核",
+        "reviewStatus": "review_due",
+        "reviewTriggerType": "time_backstop_90d",
         "sourceLabel": "GLDM 2026 年第二季度文件后替代研究",
         "sourceVersion": "2026-08-13-v2.0",
         "status": "active",
@@ -342,7 +342,7 @@
       }
     }
   },
-  "generatedAt": "2026-11-04T14:49:43.431681Z",
+  "generatedAt": "2026-11-20T01:42:02.645351Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "GLDM"

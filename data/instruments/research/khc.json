@@ -2,7 +2,7 @@
   "detail": {
     "dataAsOf": {
       "research": {
-        "latestAsOfDate": "20260805",
+        "latestAsOfDate": "20261105",
         "providerPublishedDate": "20260805",
         "providerVerifiedAt": "2026-08-08T04:12:28Z"
       }
@@ -23,7 +23,7 @@
           "role": "Sector Director"
         },
         "freshness": {
-          "ageDays": 88.44260243028936,
+          "ageDays": 103.89559044775463,
           "maximumDays": 7,
           "status": "stale",
           "warning": "资料超过七天未重新核验"
@@ -92,258 +92,291 @@
     "publicationStatus": "internal_and_morningstar_research_published",
     "research": [
       {
-        "asOfDate": "20260805",
+        "asOfDate": "20261105",
         "assessmentType": "equity_research",
-        "completedAt": "2026-08-08T04:22:36.472577Z",
-        "frameworkVersion": "equity-research-strategy-v1",
+        "completedAt": "2026-11-06T17:23:25.344364Z",
+        "frameworkVersion": "research-workflow-10.1.0",
         "result": {
           "bearCase": [
-            "消费者压力和品牌相关性下降使北美销量持续负增长。",
-            "新增投入只能换取短期促销份额，不能形成复购或有利单位经济。",
-            "利润率因永久更高的营销强度、通胀和可变薪酬而低于原路径。",
-            "H2 现金流时点逆转使股息覆盖和去杠杆弱于表面 TTM 数字。",
-            "再次发生重大减值或恢复高风险交易，进一步削弱资本配置可信度。"
+            "北美销量仍下滑，Philly降价失败暴露消费替代；2027成本、税率及持续投入可能使盈利恢复推迟。",
+            "高股息不消除修复失败或资本投入不足的风险；悲观情景11.94，当前约11%的基准价值余量不厚。"
           ],
           "bullCase": [
-            "H2 北美销量和份额持续改善，品牌投入由促销指标转化为复购、量增和毛利。",
-            "Heinz、Taste Elevation、新兴市场与价格架构推动有机销售恢复低个位数增长。",
-            "生产力节约覆盖更高营销与研发投入，调整后营业利润在 2027 年恢复。",
-            "自由现金流在营销现金支出后仍覆盖股息并持续降低净债务。",
-            "不再发生重大品牌减值，资本配置从历史并购毁损转向每股现金流增长。"
+            "Heinz及部分品类、渠道和新兴市场表现提供局部支持，报告自由现金流仍能覆盖股息。",
+            "持续投入若提高消费者复购和分销生产率，真实利润与每股现金可恢复；牛情景37.97需要更广泛经营实证。"
           ],
-          "cashDecision": "do_not_buy",
-          "decisionHinge": "约 US$700M 品牌与能力投入能否在不永久压低利润和现金流的前提下，使北美销量、份额、品牌相关性和可持续 FCFF 同步改善。",
-          "evidenceConfidence": "medium",
-          "existingPositionAction": "hold",
-          "facts": [
-            {
-              "asOf": "20260627",
-              "label": "fact",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "第二季度净销售额同比下降 1.4%；有机销售下降 1.3%，其中价格贡献 1.3 个百分点、销量／组合拖累 2.6 个百分点。"
+          "decisionHinge": "品牌再投资能否带来广泛、持续、投入后有利润的销量与现金修复，而非份额统计、税率或费用时点的表面改善。",
+          "existingPositionDecision": "hold_and_monitor",
+          "fiveLayerDecisionSummary": {
+            "actionFalsifiersAndGaps": {
+              "summary": "维持H2 2026验证窗口。广泛改善未出现、指引下修、份额改善消失、可持续现金或股息覆盖恶化时复核退出；投资者日是待验证事件，不自动启动下一轮。研究有条件，组合证据不足，尚未具备实施准备。"
             },
-            {
-              "asOf": "20260627",
-              "label": "fact",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "北美有机销售下降 2.7%，价格贡献 1.1 个百分点、销量／组合下降 3.8 个百分点；国际发达市场下降 0.7%，新兴市场增长 8.5%。"
+            "latestEvidenceDelta": {
+              "summary": "Q3有机销售−1.1%、北美−3.2%、新兴市场+15.6%；调整后营业利润−15.2%。FY EPS范围上调4美分，但税率下调且营业利润范围不变。现金覆盖股息仍在，营运资本及历史退休福利转入需要剔别。"
             },
-            {
-              "asOf": "20260627",
-              "label": "fact",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "GAAP 毛利 US$2.028B、毛利率 32.4%；调整后毛利 US$2.136B、毛利率 34.1%，同比大致持平。"
+            "longTermThesisAndStatus": {
+              "summary": "强品牌、渠道和制造规模仍有资产价值；北美销量、品类与投入后回报尚不足以证明广泛复苏。公司论点局部改善，整体仍待验证。"
             },
-            {
-              "asOf": "20260627",
-              "label": "fact",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "GAAP 营业亏损 US$6.431B；调整后营业利润 US$1.041B、同比下降 18.4%，调整后营业利润率 16.6%、约下降 350 个基点。"
+            "portfolioRoleExistingAndNewMoney": {
+              "summary": "现有持仓保留并严格监控；等额新增现金暂不买入。消费品牌修复与现金分配角色暂定；当前权重、税费、成本批次及替代机会未获本轮账户证据，不能据此确定数量。"
             },
-            {
-              "asOf": "20260627",
-              "label": "fact",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "GAAP 净亏损 US$5.460B、稀释 EPS -US$4.60；调整后净利润 US$0.661B、调整后 EPS US$0.56。"
-            },
-            {
-              "asOf": "20260627",
-              "label": "fact",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "本季减值 US$7.352B，其中商誉 US$2.441B、无形资产 US$4.911B；这些项目不消耗当季现金，但代表历史收购资本和品牌账面价值的真实毁损。"
-            },
-            {
-              "asOf": "20260627",
-              "label": "fact",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "H1 经营现金流 US$2.088B、资本开支 US$0.429B、自由现金流 US$1.659B；现金股息 US$0.949B，自由现金流覆盖约 1.75 倍。"
-            },
-            {
-              "asOf": "20260627",
-              "formula": "FY2025 - H1 2025 + H1 2026",
-              "label": "model_derived",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "以 2025 全年减 2025 H1 再加 2026 H1 推导，TTM 经营现金流约 US$4.907B、自由现金流约 US$4.100B、现金股息约 US$1.893B，覆盖约 2.17 倍。"
-            },
-            {
-              "asOf": "20260627",
-              "formula": "gross debt - cash - marketable securities",
-              "label": "model_derived",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "期末总债务约 US$19.001B，减现金和有价证券约 US$2.681B，推导净债务约 US$16.320B。"
-            },
-            {
-              "asOf": "20260805",
-              "label": "company_claim",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "公司把全年有机销售指引改善至下降 2.0%–0.5%，把固定汇率调整后营业利润指引收窄至下降 18%–16%，调整后 EPS 改为 US$2.03–US$2.09，自由现金流转换率提高至约 110%。"
-            },
-            {
-              "asOf": "20260805",
-              "label": "company_claim",
-              "sourceRef": "khc-q2-2026-exhibit",
-              "text": "公司把 2026 年增量投资由约 US$600M 提高至约 US$700M；内部指标称维持或提升份额的收入占比升至 36%，促销 ROI 和广告回报均改善。"
-            },
-            {
-              "asOf": "20260805",
-              "label": "external_estimate",
-              "sourceRef": "morningstar-khc-20260805",
-              "text": "Morningstar 维持五星、US$40 公允价值、窄护城河、中等不确定性与标准资本配置；财报附注认可早期投入回报，但正式估值模型仍为 2026-07-07。"
+            "valuationAndPricedExpectations": {
+              "summary": "固定25.32美元收盘；熊／基／牛$11.94／$28.13／$37.97，估值有条件。基准空间约11%，对资本成本和利润修复敏感；晨星41美元独立列示，未作目标答案。"
             }
-          ],
-          "falsifiers": [
-            "Q3／Q4 北美销量／组合在剔除备货逆转后没有改善。",
-            "维持或提升份额的收入占比回落，或只能在高促销期短暂改善。",
-            "营销和研发投入增加，但有机销售、毛利和自由现金流没有对应改善。",
-            "调整后营业利润跌幅超过指引，且不能由明确时点或一次性项目解释。",
-            "H2 营销现金流出后自由现金流覆盖股息显著下降，净债务不再改善。",
-            "Q2 10-Q 披露新的资产级减值、税务、养老金、衍生品或债务风险。",
-            "未来再次发生重大品牌减值或分拆／资产处置方向反复。"
-          ],
+          },
           "missingEvidence": [
-            "截至 2026-08-08，KHC Q2 10-Q 尚未取得；减值资产级对象、完整税务、养老金、衍生品和债务附注仍不能完全审计。",
-            "公司披露的份额、消费、ROI、ROAS 和 7 月趋势缺少完整定义、对照组、增量毛利、复购和现金回收期。",
-            "H2 营销应计现金支出尚未发生，H1 和 TTM 现金流覆盖不能直接永久化。",
-            "财报前内部 DCF 尚未按 Q2 后销量、利润再投入、减值和现金流假设重建。",
-            "Disney 合作、分拆暂停和未来资产处置均缺少可建模的经济条款。",
-            "Morningstar PDF 已全文提取并完成关键页独立视觉抽查；候选仅保存 SHA-256 与结构化转述，不复制报告正文、图片或表格。"
+            "当前账户持仓、NAV、消费篮子权重、税费、订单、资金及结算均未读取；历史持仓不作当前证据，不能确定交易数量。",
+            "品牌投入的绝对ROI、增量毛利／现金、消费者复购和完整零售商货架数据缺失；公司给出的变化幅度不能独立证明护城河或回收期。",
+            "咖啡 carve-out 收入边界、独立利润／FCFF、交割债务、留存权益资本结构、税费及滞留成本未完整披露；模型使用明示假设和有界压力检验。",
+            "晨星完整逐年模型及时间调整不可得，公开官网报告访问403；已完整取得最新24页PDF，但41美元与表中股权价值／股数的1.01美元差额仍未闭合。",
+            "资本成本除11月5日国债率外包含分析假设；长期现金再投资、利润恢复和超额回报衰减期并非公司承诺。",
+            "11月12日投资者日尚未发生；2027年指引与分部路线图不能提前写入事实。无同口径、带时间的卖方一致预期，因此不声称超预期。",
+            "未来合成租赁的最终分类、租金及残值回收未知；已披露625百万美元残值担保，单列最坏回收压力，不能解释为无义务。"
           ],
           "monitoring": [
             {
-              "baseline": "Q2 有机 -1.3%；北美有机 -2.7%、销量／组合 -3.8%",
-              "challengingDirection": "北美量／组继续接近或差于 -3.8%，全年指引重新下调。",
-              "confirmingDirection": "剔除约 80bp 备货逆转后基础销售继续改善，北美量跌幅明显收窄。",
-              "metric": "Q3 有机销售与北美销量／组合",
-              "nextReview": "Q3 2026 results"
+              "baseline": "Q3北美有机销售−3.2%，销量／组合−2.4pp；美国零售Q3约28%收入持平或赢得份额，属公司主张。",
+              "challengingDirection": "份额改善消失、提价导致持续失量，或H2 2026窗口结束仍无广泛验证；不自动延至春季2027。",
+              "confirmingDirection": "跨连续季度改善，消费与出货对齐，投入后利润及现金同步提升。",
+              "metric": "北美销量、货架与份额改善广度"
             },
             {
-              "baseline": "Q2 美国消费约 -2.5%；公司称 7 月约 -1%，维持或提升份额收入占比 36%",
-              "challengingDirection": "份额改善依赖促销且未形成基础量增。",
-              "confirmingDirection": "Oscar Mayer Deli Fresh、Lunchables、Mac & Cheese 的销量、份额与复购持续改善。",
-              "metric": "美国消费、份额与重点品牌",
-              "nextReview": "each_quarter"
+              "baseline": "700m增量投入计划延续；2027输入通胀略高于5%，全年OI指引未上调，EPS提升有税率支持。",
+              "challengingDirection": "投入只有促销短效，税率及费用时点回转后利润继续下修。",
+              "confirmingDirection": "绝对现金ROI、提价、生产率和经常利润共同改善。",
+              "metric": "持续投入、成本与盈利质量"
             },
             {
-              "baseline": "公司称促销 ROI +3.4pp、广告回报 +6pp；H1 营销 +36%、研发 +22%",
-              "challengingDirection": "只有内部效率指标改善，利润和现金回报没有提高。",
-              "confirmingDirection": "ROI／ROAS 与毛利、FCF、复购和持续份额形成可审计对应。",
-              "metric": "营销与促销回报",
-              "nextReview": "each_quarter"
+              "baseline": "9m FCF2361m／股息1423m，覆盖1.66倍；扣393m营运资本贡献示意覆盖1.38倍。",
+              "challengingDirection": "真实FCF下降、股息覆盖持续恶化或债务负担增长时提前退出复核。",
+              "confirmingDirection": "不依赖拉长付款期、退休资产转入或新增借款仍可覆盖投资和分配。",
+              "metric": "可持续自由现金流及股息覆盖"
             },
             {
-              "baseline": "H1 FCF US$1.659B、股息 US$0.949B、覆盖约 1.75 倍",
-              "challengingDirection": "营运资本逆转使全年 FCF 明显低于承诺或覆盖显著下降。",
-              "confirmingDirection": "营销应计现金流出后全年转换率接近 110%，股息覆盖保持充足。",
-              "metric": "H2 自由现金流与股息覆盖",
-              "nextReview": "FY2026 results"
+              "baseline": "尚未完成；净现金约500m、留存30%权益；基础模型交易净效应很小。",
+              "challengingDirection": "高现金业务低价出售、残余负债或滞留成本使价值损失。",
+              "confirmingDirection": "公开独立现金流、交割债务税费和滞留成本，净对价兑现且剩余业务质量提高。",
+              "metric": "咖啡交易及去杠杆"
             },
             {
-              "baseline": "Q2 期末推导净债务约 US$16.320B；2026 净杠杆不高于 3.3 倍为公司目标",
-              "challengingDirection": "投入或股息导致净债务回升，约两年回归目标的公司主张失去可信度。",
-              "confirmingDirection": "净债务持续下降，评级压力缓和。",
-              "metric": "净债务与净杠杆",
-              "nextReview": "each_quarter"
+              "baseline": "固定11月5日收盘25.32；基础28.13，持有监控／新钱不买。",
+              "challengingDirection": "27–28且经营未改善进入减持研究；低于23.30且恶化进入退出复核；负面经营证据不等待价格或回本。",
+              "confirmingDirection": "经营和现金证据提高可辩护价值，结合另行取得的实际账户证据重估。",
+              "metric": "价格与论点复核"
             },
             {
-              "baseline": "截至 2026-08-08 尚未取得 Q2 10-Q",
-              "challengingDirection": "披露新的资产级毁损、重大承诺、口径冲突或现金流风险。",
-              "confirmingDirection": "正式文件未出现改变减值、税务、养老金、衍生品、债务或现金流解释的新事实。",
-              "metric": "Q2 10-Q 补充复核",
-              "nextReview": "upon_q2_10q_filing"
+              "baseline": "未来事件，当前公开日历10:30 EST；没有未来内容或自动研究授权。",
+              "challengingDirection": "无法给出可量化路径或继续延后改善；本研究不据此自动启动任务。",
+              "confirmingDirection": "当实际资料可得且获得后续授权，再检验份额、投入ROI、2027税费及现金桥。",
+              "metric": "11月12日投资者日待验证事项"
             }
           ],
-          "myJudgments": [
-            {
-              "basis": "有机销售指引上调、份额和营销效率指标改善；北美销量／组合仍下降 3.8%，H2 才是持续性检验。",
-              "challenge": "若 H2 基础销量、份额和复购同步改善，可把当前早期信号升级为修复证据。",
-              "label": "my_judgment",
-              "text": "第二季度经营趋势相对财报前预期改善，但品牌修复仍未被证明。"
+          "newMoneyDecision": "do_not_buy",
+          "recommendedAction": "现有持仓保留并严格监控；以11月5日25.32美元参考收盘判断，等额新增现金暂不买入。维持H2 2026验证窗口，广泛修复未现或真实现金、份额、指引恶化时提前复核减持／退出；不以成本或高股息替代理由，不指定未核实的数量。",
+          "researchCompletedAt": "2026-11-06T17:23:25.344364Z",
+          "researchMaturity": "conditional",
+          "researchMethodVersion": "10.1.0",
+          "reviewedDisplay": {
+            "formatId": "ordinary-frozen-native-reader-v1",
+            "layers": {
+              "actionFalsifiersAndGaps": {
+                "summary": "维持H2 2026验证窗口。广泛改善未出现、指引下修、份额改善消失、可持续现金或股息覆盖恶化时复核退出；投资者日是待验证事件，不自动启动下一轮。研究有条件，组合证据不足，尚未具备实施准备。"
+              },
+              "latestEvidenceDelta": {
+                "summary": "Q3有机销售−1.1%、北美−3.2%、新兴市场+15.6%；调整后营业利润−15.2%。FY EPS范围上调4美分，但税率下调且营业利润范围不变。现金覆盖股息仍在，营运资本及历史退休福利转入需要剔别。"
+              },
+              "longTermThesisAndStatus": {
+                "summary": "强品牌、渠道和制造规模仍有资产价值；北美销量、品类与投入后回报尚不足以证明广泛复苏。公司论点局部改善，整体仍待验证。"
+              },
+              "portfolioRoleExistingAndNewMoney": {
+                "summary": "现有持仓保留并严格监控；等额新增现金暂不买入。消费品牌修复与现金分配角色暂定；当前权重、税费、成本批次及替代机会未获本轮账户证据，不能据此确定数量。"
+              },
+              "valuationAndPricedExpectations": {
+                "summary": "固定25.32美元收盘；熊／基／牛$11.94／$28.13／$37.97，估值有条件。基准空间约11%，对资本成本和利润修复敏感；晨星41美元独立列示，未作目标答案。"
+              }
             },
-            {
-              "basis": "继 2025 年大额减值后再次发生，说明历史并购和品牌账面价值继续低于原预期。",
-              "challenge": "若剩余品牌长期 FCFF 和投入回报显著超过重置后的账面基础，部分价值仍可恢复。",
-              "label": "my_judgment",
-              "text": "US$7.352B 减值是资本配置质量的明确负面，而不只是非现金会计噪音。"
-            },
-            {
-              "basis": "H1 覆盖约 1.75 倍、TTM 约 2.17 倍；应付账款和其他流动负债的时点贡献不可永久化。",
-              "challenge": "若 H2 营销现金支出后覆盖仍高于 1.5 倍且净债务下降，现金流质量可上调。",
-              "label": "my_judgment",
-              "text": "现金流能够覆盖股息，但 H1 工作资本帮助和 H2 营销现金流出限制了可持续性判断。"
-            },
-            {
-              "basis": "销售路径改善没有推翻基准情景，但利润再投入、减值和 H2 时点改变了关键输入。",
-              "challenge": "完整 10-Q 与 H2 经营数据取得后，应正式重建现金流和品牌回报假设。",
-              "label": "my_judgment",
-              "text": "财报前内部 DCF 仍可作为历史参照，但不能冒充 Q2 后重算的目标价。"
-            },
-            {
-              "basis": "权重和篮子均未触线，价格有表面折价；但销量、投入回报和资本配置证据不足。",
-              "challenge": "只有经营证据改善且估值仍保留实质安全边际，才重新评估新增现金。",
-              "label": "my_judgment",
-              "text": "现有 2.62%仓位继续持有合理，新增资金应等待 H2 证明。"
-            }
-          ],
-          "portfolioRole": "pending",
-          "researchMaturity": "preliminary",
+            "overview": "KHC 的核心论点仍是：Heinz 等强品牌与分销规模能否在持续投入后，转化为真实销量、可持续利润和股东现金回报。Q3 提供局部支持，尚未证明全面修复：有机销售下降1.1%，北美下降3.2%，新兴市场增长15.6%；调整后营业利润下降15.2%。全年 EPS 指引上调伴随税率下降，营业利润指引没有上调。前三季度自由现金流23.61亿美元覆盖股息1.66倍，但营运资本贡献3.93亿美元；现金质量和投入回报仍需验证。咖啡出售尚未完成，不能把6.5亿美元企业价值、5亿美元净现金和30%权益重复相加。\n以11月5日常规收盘25.32美元作固定基准，经营驱动模型的熊／基／牛价值为$11.94／$28.13／$37.97。基准较旧39.28美元下降，主要来自重建现金路径和长期再投资约束，不等于本季经营突然恶化。晨星维持41美元，但模型及主要分节仍为9月1日，完整计算桥尚不能复现。市场在本模型条件下约对应2030年15.7%的经常营业利润率，低于基准17.0%；这仍不足以证明明显错价。\n一般角色是带股息的消费品牌修复持仓，尚非已确认的稳定防守核心。现有持仓建议保留并监控，等额新增现金不买入。2026年下半年验证窗口不因改善被推至2027年而重置；若销量、份额、现金或股息覆盖恶化，应提前进入退出复核。研究及估值仍有条件，实际组合决定和实施尚不具备证据：未读取当前账户，品牌投入绝对回报、咖啡独立现金流及11月12日投资者日的未来信息仍缺失。"
+          },
           "sourceRegister": [
             {
-              "label": "Kraft Heinz 2026 Q2 earnings release and financial tables",
-              "publishedAt": "20260805",
-              "url": "https://www.sec.gov/Archives/edgar/data/1637459/000163745926000052/ex991-erq22026.htm"
+              "asOf": "quarter/9m ended2026-09-26; cover shares2026-10-31",
+              "label": "S01 KHC FY2026 Q3 10-Q",
+              "publishedAt": "2026-11-04",
+              "url": "https://www.sec.gov/Archives/edgar/data/1637459/000163745926000081/khc-20260926.htm"
             },
             {
-              "label": "Kraft Heinz 2025 Form 10-K",
-              "publishedAt": "20260212",
+              "asOf": "FY2026Q3/9m; FY2026 guidance",
+              "label": "S02 KHC Q3 earnings release",
+              "publishedAt": "2026-11-04",
+              "url": "https://ir-api.eqs.com/redirect/586a6e30-c0ff-4f73-b675-8e61ae4df3a2?disposition=inline&t=1793793747378"
+            },
+            {
+              "asOf": "Q3 reported and management expectations",
+              "label": "S03 KHC Q3 prepared management remarks",
+              "publishedAt": "2026-11-04",
+              "url": "https://ir-api.eqs.com/redirect/8b1daeb8-053a-44cd-9f6b-3190efb130d3?disposition=inline&t=1793793910278"
+            },
+            {
+              "asOf": "all10 analyst questioners,15pages",
+              "label": "S04 KHC Q3 full official Q&A",
+              "publishedAt": "2026-11-04",
+              "url": "https://ir-api.eqs.com/redirect/0d641732-5b5e-4dfa-900e-91e00c079800?disposition=inline&t=1793825812605"
+            },
+            {
+              "asOf": "29pages; source PDF4.96MB retained locally, extracted text bound",
+              "label": "S05 KHC Q3 business update presentation",
+              "publishedAt": "2026-11-04",
+              "url": "https://ir-api.eqs.com/redirect/c033d9f3-1967-4519-a582-fd07fb814b39?disposition=inline&t=1793793884973"
+            },
+            {
+              "asOf": "year ended2025-12-27; historical cash/lease baseline; SEC filing date, distinct from February11 earnings release",
+              "label": "S06 KHC FY2025 10-K",
+              "publishedAt": "2026-02-12",
               "url": "https://www.sec.gov/Archives/edgar/data/1637459/000163745926000009/khc-20251227.htm"
+            },
+            {
+              "asOf": "Q2/H1 comparison; old guidance",
+              "label": "S07 KHC Q2 earnings release",
+              "publishedAt": "2026-08-05",
+              "url": "https://ir-api.eqs.com/redirect/2478f853-cb06-4a63-a10b-4a91fb6e8856?disposition=inline&t=1785883103528"
+            },
+            {
+              "asOf": "agreementNov3; conditional mid2027 close",
+              "label": "S09 KHC North America coffee agreement announcement",
+              "publishedAt": "2026-11-04",
+              "url": "https://news.kraftheinzcompany.com/press-releases-details/2026/Kraft-Heinz-to-Divest-North-America-Coffee-Business-to-One-Rock-Capital-Partners/default.aspx"
+            },
+            {
+              "asOf": "November5 completed daily curve",
+              "label": "S10 U.S. Treasury daily par curve",
+              "publishedAt": "2026-11-05",
+              "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&page&_format=csv"
+            },
+            {
+              "asOf": "dated ERP benchmark, not November market measurement",
+              "label": "S11 Damodaran country/default/ERP reference",
+              "publishedAt": "2026-01-05",
+              "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html"
+            },
+            {
+              "asOf": "16:00 EST regular-session close25.32; use issuer shares",
+              "label": "S12 StockAnalysis KHC market-cap and dated close",
+              "publishedAt": "2026-11-05",
+              "url": "https://stockanalysis.com/stocks/khc/market-cap/"
+            },
+            {
+              "asOf": "November5 history25.33 conflicts with25.32 dated close",
+              "label": "S13 StockAnalysis KHC historical prices",
+              "publishedAt": "2026-11-05",
+              "url": "https://stockanalysis.com/stocks/khc/history/"
+            },
+            {
+              "asOf": "U.S. CPG/food categories; not KHC-specific share",
+              "label": "S14 Circana U.S. private-label research",
+              "publishedAt": "2026-03-31",
+              "url": "https://www.circana.com/post/circana-research-reveals-u-s-private-label-cpg-sales-reach-330-billion"
+            },
+            {
+              "asOf": "EU6 market, not U.S. or KHC product-specific",
+              "label": "S15 Circana EMEA demand signals",
+              "publishedAt": "2026-10-14",
+              "url": "https://www.circana.com/post/emea-demand-signals-report-unlock-cpg-consumer-behavior-insights"
+            },
+            {
+              "asOf": "FY2025 and Q4 GAAP/adjusted history",
+              "label": "S18 KHC FY2025 earnings release",
+              "publishedAt": "2026-02-11",
+              "url": "https://ir-api.eqs.com/redirect/fd598cf0-2b07-4ce9-b9dd-9aa5aa5a5be0?disposition=inline&t=1770774950884"
+            },
+            {
+              "asOf": "September25 payment / September4 record date; prior distribution precedes model anchor",
+              "label": "S19 KHC August dividend declaration",
+              "publishedAt": "2026-08-05",
+              "url": "https://news.kraftheinzcompany.com/press-releases-details/2026/The-Kraft-Heinz-Company-Declares-Regular-Quarterly-Dividend-of-0-40-Per-Share-e37f9f749/"
+            },
+            {
+              "asOf": "Observed calendar: November12 10:30EST futureInvestorDay; no presentation at observation",
+              "label": "S16 KHC current event calendar, web-readable observation",
+              "publishedAt": null,
+              "url": "https://ir.kraftheinzcompany.com/events-and-webcasts"
             }
           ],
-          "underwritingStatus": "preliminary",
           "valuation": {
+            "currency": "USD",
             "dcf": {
-              "coreSensitivityRangeUsd": [
-                32.96,
-                43.28
-              ],
+              "modelSummary": "经营FCFF：Q4剩余期，2027–36经营预测，2037–41新增回报衰减至WACC7.5%，永续g2%。9月26日为数学原点，资产现值50090.144减净索偿16912.000，股权以8.4025%推进40天，再除1,189.828946m稀释股数，基础28.13美元。",
               "scenarios": [
                 {
-                  "assumptionSummary": "品牌投入失败、销量结构性下滑和较高资本成本。",
-                  "name": "bear",
-                  "valuePerShareUsd": 16.27
+                  "assumptionSummary": "修复失效；增长现金资本按新增回报12%约束，2037–41逐步降至资本成本；持续营销/R&D计费用，咖啡按条件交割去并表，具体经营路径见全文。",
+                  "name": "熊：修复失效",
+                  "terminalGrowthPct": 1.0,
+                  "valuePerShareUsd": 11.938825377414677,
+                  "waccPct": 7.5
                 },
                 {
-                  "assumptionSummary": "2026 利润触底后恢复，品牌投入有效且股息与去杠杆持续。",
-                  "name": "base",
-                  "valuePerShareUsd": 39.28
+                  "assumptionSummary": "有限修复；增长现金资本按新增回报18%约束，2037–41逐步降至资本成本；持续营销/R&D计费用，咖啡按条件交割去并表，具体经营路径见全文。",
+                  "name": "基：有限修复",
+                  "terminalGrowthPct": 2.0,
+                  "valuePerShareUsd": 28.132444909493667,
+                  "waccPct": 7.5
                 },
                 {
-                  "assumptionSummary": "量价和品类组合恢复更快，FCFF 进入 US$5B–US$6B。",
-                  "name": "bull",
-                  "valuePerShareUsd": 57.31
+                  "assumptionSummary": "广泛品牌修复；增长现金资本按新增回报22%约束，2037–41逐步降至资本成本；持续营销/R&D计费用，咖啡按条件交割去并表，具体经营路径见全文。",
+                  "name": "牛：广泛品牌修复",
+                  "terminalGrowthPct": 2.5,
+                  "valuePerShareUsd": 37.96721931812227,
+                  "waccPct": 7.5
                 }
-              ]
+              ],
+              "sensitivityNote": "三情景使用同一WACC；另检验6.7%–9.0%资本成本、1%–2.5%增长、增长投资约束、超额回报衰减、税率、现金/债务口径、咖啡成对出售及残值担保压力；这些不是概率或全变量联合极端。晨星41美元仍有未复现的股权/股数/时间桥。"
             },
-            "priceUsd": 26.64
+            "priceContextLabel": "2026年11月5日纽约常规交易时段收盘；固定日期参考价，另一个历史页25.33的1美分差异保留，不是当前可执行报价",
+            "priceUsd": 25.32
           },
-          "valuationConfidence": "medium",
-          "valuationMaturity": "conditional",
-          "valuationState": "undervalued",
-          "valuationStateLabelZh": "表面低于基准价值，但低估取决于品牌投入转化为销量、份额和持续 FCFF；尚不构成新增资金安全边际"
+          "valuationMaturity": "conditional"
         },
-        "reviewDueAt": "2026-11-03T00:00:00Z",
-        "reviewDueReason": "自研究基准日起已满 90 天，需进行例行复核",
-        "reviewStatus": "review_due",
-        "reviewTriggerType": "time_backstop_90d",
-        "sourceLabel": "KHC 2026 年第二季度财报后复核研究",
-        "sourceVersion": "v2.0",
+        "reviewDueAt": null,
+        "reviewDueReason": null,
+        "reviewStatus": "current",
+        "reviewTriggerType": null,
+        "sourceLabel": "Independent reviewed frozen equity research",
+        "sourceVersion": "v3.1",
         "status": "active",
-        "summary": "KHC 第二季度有机销售下降 1.3%，较原先路径改善，但销量／组合仍下降 2.6%，北美下降 3.8%；公司把全年有机销售指引中点上调约 1.25 个百分点，同时把品牌与能力增量投入由约 US$600M 提高至约 US$700M，导致固定汇率调整后营业利润指引中点反而下调约 1 个百分点。H1 自由现金流 US$1.659B、股息覆盖约 1.75 倍，净债务约 US$16.32B；但本季 US$7.352B 商誉及无形资产减值再次削弱对历史资本配置和品牌账面价值的信任。UTC 2026-08-04 完成收盘 US$26.64 低于财报前内部 DCF 基准 US$39.28，但该模型尚未按 Q2 后利润再投入和减值重建。现有 100 股继续持有；新增资金不买入，等待 H2 销量、份额和投入回报证据，本研究不构成交易授权。",
-        "updatedAt": "2026-08-08T04:22:36.472577Z",
-        "version": 2
+        "summary": "KHC 的核心论点仍是：Heinz 等强品牌与分销规模能否在持续投入后，转化为真实销量、可持续利润和股东现金回报。Q3 提供局部支持，尚未证明全面修复：有机销售下降1.1%，北美下降3.2%，新兴市场增长15.6%；调整后营业利润下降15.2%。全年 EPS 指引上调伴随税率下降，营业利润指引没有上调。前三季度自由现金流23.61亿美元覆盖股息1.66倍，但营运资本贡献3.93亿美元；现金质量和投入回报仍需验证。咖啡出售尚未完成，不能把6.5亿美元企业价值、5亿美元净现金和30%权益重复相加。\n以11月5日常规收盘25.32美元作固定基准，经营驱动模型的熊／基／牛价值为$11.94／$28.13／$37.97。基准较旧39.28美元下降，主要来自重建现金路径和长期再投资约束，不等于本季经营突然恶化。晨星维持41美元，但模型及主要分节仍为9月1日，完整计算桥尚不能复现。市场在本模型条件下约对应2030年15.7%的经常营业利润率，低于基准17.0%；这仍不足以证明明显错价。\n一般角色是带股息的消费品牌修复持仓，尚非已确认的稳定防守核心。现有持仓建议保留并监控，等额新增现金不买入。2026年下半年验证窗口不因改善被推至2027年而重置；若销量、份额、现金或股息覆盖恶化，应提前进入退出复核。研究及估值仍有条件，实际组合决定和实施尚不具备证据：未读取当前账户，品牌投入绝对回报、咖啡独立现金流及11月12日投资者日的未来信息仍缺失。",
+        "updatedAt": "2026-11-06T20:28:45.490076Z",
+        "version": 3
       }
     ],
     "researchAppendices": [],
     "researchHistory": [
+      {
+        "asOfDate": "20260805",
+        "assessmentType": "equity_research",
+        "completedAt": "2026-08-08T04:22:36.472577Z",
+        "frameworkVersion": "equity-research-strategy-v1",
+        "historyEntryKind": "research_version",
+        "result": {
+          "cashDecision": "do_not_buy",
+          "decisionHinge": "约 US$700M 品牌与能力投入能否在不永久压低利润和现金流的前提下，使北美销量、份额、品牌相关性和可持续 FCFF 同步改善。",
+          "existingPositionAction": "hold",
+          "newMoneyDecision": null,
+          "sourceRegister": [],
+          "valuation": {
+            "dcf": {}
+          },
+          "valuationState": "undervalued",
+          "valuationStateLabelZh": "表面低于基准价值，但低估取决于品牌投入转化为销量、份额和持续 FCFF；尚不构成新增资金安全边际"
+        },
+        "sourceLabel": "KHC 2026 年第二季度财报后复核研究",
+        "sourceVersion": "v2.0",
+        "status": "superseded",
+        "summary": "KHC 第二季度有机销售下降 1.3%，较原先路径改善，但销量／组合仍下降 2.6%，北美下降 3.8%；公司把全年有机销售指引中点上调约 1.25 个百分点，同时把品牌与能力增量投入由约 US$600M 提高至约 US$700M，导致固定汇率调整后营业利润指引中点反而下调约 1 个百分点。H1 自由现金流 US$1.659B、股息覆盖约 1.75 倍，净债务约 US$16.32B；但本季 US$7.352B 商誉及无形资产减值再次削弱对历史资本配置和品牌账面价值的信任。UTC 2026-08-04 完成收盘 US$26.64 低于财报前内部 DCF 基准 US$39.28，但该模型尚未按 Q2 后利润再投入和减值重建。现有 100 股继续持有；新增资金不买入，等待 H2 销量、份额和投入回报证据，本研究不构成交易授权。",
+        "supersededAt": "2026-11-06T20:28:45.490076Z",
+        "supersededByVersion": 3,
+        "supersededReason": "Authorized frozen research replacement",
+        "updatedAt": "2026-11-06T20:28:45.490076Z",
+        "version": 2
+      },
       {
         "asOfDate": "20260730",
         "assessmentType": "equity_research",
@@ -381,7 +414,7 @@
       }
     }
   },
-  "generatedAt": "2026-11-04T14:49:43.431681Z",
+  "generatedAt": "2026-11-20T01:42:02.645351Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "KHC"
