@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T05:37:31.574993Z",
+  "generatedAt": "2026-11-21T06:43:33.634119Z",
   "instruments": {
     "BAC": {
       "accountPerformance": {
@@ -34,14 +34,14 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261112",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": null,
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_summary",
           "status": "not_applicable"
         }
@@ -49,12 +49,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 0,
             "coverageStatus": "not_applicable",
             "sourceMode": "official_activity_flex_summary",
@@ -163,9 +163,9 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_summary",
         "status": "not_applicable",
         "summary": {
@@ -200,61 +200,61 @@
     },
     "BOXX": {
       "accountPerformance": {
-        "aggregateReturn": 1030.8927449999999,
+        "aggregateReturn": 1048.492745,
         "annualizedReturnMethodology": "生命周期交易成本与官方持仓成本基础无法核对；存在未纳入的非现金取得、转入或其他成本事件。非现金取得不得按零成本伪造负现金流，因此不显示误导性的 XIRR；未实现盈亏率仍按官方 Lot 成本基础单独计算。",
         "annualizedTotalReturn": null,
         "cashFlowQuality": "incomplete",
         "closedPositionTotal": 274.36595499999993,
-        "comprehensiveCost": 115.86346017187498,
-        "costBasisResidual": 698.3849942500092,
-        "costBasisXirr": 0.03993688669678902,
+        "comprehensiveCost": 115.863460171875,
+        "costBasisResidual": 698.3849942500165,
+        "costBasisXirr": 0.04065246825054768,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
-        "currentCost": 37350.67320999999,
+        "currentCost": 37350.67321,
         "dividendTotal": 0.0,
         "excludedNoPositionDays": 1,
         "feeTotal": -18.179864162999994,
-        "holdingCalendarDays": 402,
+        "holdingCalendarDays": 403,
         "holdingClockQuality": "incomplete",
-        "holdingPeriodDays": 401,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 402,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20251013",
         "methodology": "生命周期交易成本与官方持仓成本基础无法核对；存在未纳入的非现金取得、转入或其他成本事件。非现金取得不得按零成本伪造负现金流，因此不显示误导性的 XIRR；未实现盈亏率仍按官方 Lot 成本基础单独计算。第一次建仓以来的交易数量、现金流、持仓时钟或期末数量无法完整勾稽，因此不显示排除空仓日的非年化总回报率。",
         "realizedPnl": 274.36595499999993,
         "realizedPnlYtd": 250.27513399999998,
         "totalReturn": null,
         "totalReturnMethodology": "第一次建仓以来的交易数量、现金流、持仓时钟或期末数量无法完整勾稽，因此不显示排除空仓日的非年化总回报率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 119.085,
+        "closePrice": 119.14000000000001,
         "currency": "USD",
-        "dailyPnl": 0.0,
-        "dailyPnlPct": 0.0,
-        "marketValue": 38107.2,
-        "portfolioWeightPct": 30.92301018007941,
+        "dailyPnl": 17.6,
+        "dailyPnlPct": 0.0461855,
+        "marketValue": 38124.8,
+        "portfolioWeightPct": 31.304404572996297,
         "quantity": 320.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": 756.52679,
-        "valuationDate": "20261119"
+        "unrealizedPnl": 774.12679,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261110",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -262,12 +262,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 6,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -3112,89 +3112,89 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20260304",
             "averagePrice": 115.866256425,
             "costBasisMoney": 4634.650257,
             "currency": "USD",
-            "marketPrice": 119.085,
-            "marketValue": 4763.4,
+            "marketPrice": 119.14,
+            "marketValue": 4765.6,
             "pnlCurrency": "USD",
             "quantity": 40.0,
-            "totalPnl": 128.749743,
-            "totalPnlPct": 0.027779818510693718
+            "totalPnl": 130.949743,
+            "totalPnlPct": 0.028254503735685013
           },
           {
             "acquisitionDate": "20260331",
             "averagePrice": 116.218356425,
             "costBasisMoney": 4648.734257,
             "currency": "USD",
-            "marketPrice": 119.085,
-            "marketValue": 4763.4,
+            "marketPrice": 119.14,
+            "marketValue": 4765.6,
             "pnlCurrency": "USD",
             "quantity": 40.0,
-            "totalPnl": 114.665743,
-            "totalPnlPct": 0.024666013727787928
+            "totalPnl": 116.865743,
+            "totalPnlPct": 0.02513926082654115
           },
           {
             "acquisitionDate": "20260407",
             "averagePrice": 116.273978212,
             "costBasisMoney": 9301.918257,
             "currency": "USD",
-            "marketPrice": 119.085,
-            "marketValue": 9526.8,
+            "marketPrice": 119.14,
+            "marketValue": 9531.2,
             "pnlCurrency": "USD",
             "quantity": 80.0,
-            "totalPnl": 224.881743,
-            "totalPnlPct": 0.024175845969272962
+            "totalPnl": 229.281743,
+            "totalPnlPct": 0.024648866681607092
           },
           {
             "acquisitionDate": "20260416",
             "averagePrice": 116.34611285,
             "costBasisMoney": 2326.922257,
             "currency": "USD",
-            "marketPrice": 119.085,
-            "marketValue": 2381.7,
+            "marketPrice": 119.14,
+            "marketValue": 2382.8,
             "pnlCurrency": "USD",
             "quantity": 20.0,
-            "totalPnl": 54.777743,
-            "totalPnlPct": 0.023540856526346767
+            "totalPnl": 55.877743,
+            "totalPnlPct": 0.024013583965646
           },
           {
             "acquisitionDate": "20260626",
             "averagePrice": 117.14670557,
             "costBasisMoney": 11714.670557,
             "currency": "USD",
-            "marketPrice": 119.085,
-            "marketValue": 11908.5,
+            "marketPrice": 119.14,
+            "marketValue": 11914.0,
             "pnlCurrency": "USD",
             "quantity": 100.0,
-            "totalPnl": 193.829443,
-            "totalPnlPct": 0.0165458722937948
+            "totalPnl": 199.329443,
+            "totalPnlPct": 0.017015369064808435
           },
           {
             "acquisitionDate": "20260902",
             "averagePrice": 118.094440625,
             "costBasisMoney": 4723.777625,
             "currency": "USD",
-            "marketPrice": 119.085,
-            "marketValue": 4763.4,
+            "marketPrice": 119.14,
+            "marketValue": 4765.6,
             "pnlCurrency": "USD",
             "quantity": 40.0,
-            "totalPnl": 39.622375,
-            "totalPnlPct": 0.008387857800566978
+            "totalPnl": 41.822375,
+            "totalPnlPct": 0.008853586751980096
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 37350.67321,
           "quantity": 320.0,
-          "totalPnl": 756.52679,
-          "totalPnlPct": 0.020254702927213986
+          "totalPnl": 774.1267899999999,
+          "totalPnlPct": 0.020725912640116504
         }
       },
       "summary": {
@@ -3214,22 +3214,22 @@
           "totals": {
             "costBasis": 37350.67321,
             "quantity": 320.0,
-            "totalPnl": 756.52679,
-            "totalPnlPct": 0.020254702927213986
+            "totalPnl": 774.1267899999999,
+            "totalPnlPct": 0.020725912640116504
           }
         }
       }
     },
     "BRK B": {
       "accountPerformance": {
-        "aggregateReturn": 311.778734,
+        "aggregateReturn": 305.658734,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": 0.5341288300255767,
+        "annualizedTotalReturn": 0.518758502695567,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 0.0,
         "comprehensiveCost": 468.1137553333333,
         "costBasisResidual": -2.5000008463393897e-07,
-        "costBasisXirr": 0.534128830607653,
+        "costBasisXirr": 0.5187585032703674,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -3237,46 +3237,46 @@
         "dividendTotal": 0.0,
         "excludedNoPositionDays": 0,
         "feeTotal": -0.34126625,
-        "holdingCalendarDays": 171,
+        "holdingCalendarDays": 172,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 171,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 172,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20260601",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 0.0,
         "realizedPnlYtd": 0.0,
-        "totalReturn": 0.22201066168452216,
+        "totalReturn": 0.21765274659098044,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 572.04,
+        "closePrice": 570.0,
         "currency": "USD",
-        "dailyPnl": -7.74,
-        "dailyPnlPct": -0.44899238,
-        "marketValue": 1716.12,
-        "portfolioWeightPct": 1.392587128685337,
+        "dailyPnl": -6.12,
+        "dailyPnlPct": -0.35661842,
+        "marketValue": 1710.0,
+        "portfolioWeightPct": 1.4040868888446276,
         "quantity": 3.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": 311.778734,
-        "valuationDate": "20261119"
+        "unrealizedPnl": 305.658734,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260601",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -3284,12 +3284,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 1,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -3350,29 +3350,29 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20260601",
             "averagePrice": 468.113755333,
             "costBasisMoney": 1404.341266,
             "currency": "USD",
-            "marketPrice": 572.04,
-            "marketValue": 1716.12,
+            "marketPrice": 570.0,
+            "marketValue": 1710.0,
             "pnlCurrency": "USD",
             "quantity": 3.0,
-            "totalPnl": 311.778734,
-            "totalPnlPct": 0.22201066190132165
+            "totalPnl": 305.658734,
+            "totalPnlPct": 0.21765274680748434
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 1404.341266,
           "quantity": 3.0,
-          "totalPnl": 311.778734,
-          "totalPnlPct": 0.22201066190132165
+          "totalPnl": 305.658734,
+          "totalPnlPct": 0.21765274680748434
         }
       },
       "summary": {
@@ -3392,22 +3392,22 @@
           "totals": {
             "costBasis": 1404.341266,
             "quantity": 3.0,
-            "totalPnl": 311.778734,
-            "totalPnlPct": 0.22201066190132165
+            "totalPnl": 305.658734,
+            "totalPnlPct": 0.21765274680748434
           }
         }
       }
     },
     "EWJV": {
       "accountPerformance": {
-        "aggregateReturn": 532.154552,
+        "aggregateReturn": 449.354552,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": 0.2028788784520567,
+        "annualizedTotalReturn": 0.17135412288745688,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 0.0,
         "comprehensiveCost": 35.82075746666666,
         "costBasisResidual": -1.0000003385357559e-06,
-        "costBasisXirr": 0.15199228290876438,
+        "costBasisXirr": 0.12142842138025553,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -3415,46 +3415,46 @@
         "dividendTotal": 120.55,
         "excludedNoPositionDays": 0,
         "feeTotal": -1.445449,
-        "holdingCalendarDays": 492,
+        "holdingCalendarDays": 493,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 492,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 493,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20250715",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 0.0,
         "realizedPnlYtd": 0.0,
-        "totalReturn": 0.2827284413891964,
+        "totalReturn": 0.2381581791170717,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 44.690000000000005,
+        "closePrice": 43.309999999999995,
         "currency": "USD",
-        "dailyPnl": -38.4,
-        "dailyPnlPct": -1.41186852,
-        "marketValue": 2681.4,
-        "portfolioWeightPct": 2.175886958287802,
+        "dailyPnl": -82.8,
+        "dailyPnlPct": -3.08793914,
+        "marketValue": 2598.6,
+        "portfolioWeightPct": 2.1337194089775724,
         "quantity": 60.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": 411.604552,
-        "valuationDate": "20261119"
+        "unrealizedPnl": 328.804552,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260618",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -3462,12 +3462,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 5,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -4434,77 +4434,77 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20250715",
             "averagePrice": 33.778922,
             "costBasisMoney": 101.336766,
             "currency": "USD",
-            "marketPrice": 44.69,
-            "marketValue": 134.07,
+            "marketPrice": 43.31,
+            "marketValue": 129.93,
             "pnlCurrency": "USD",
             "quantity": 3.0,
-            "totalPnl": 32.733234,
-            "totalPnlPct": 0.32301439341373894
+            "totalPnl": 28.593234,
+            "totalPnlPct": 0.2821605141810032
           },
           {
             "acquisitionDate": "20250715",
             "averagePrice": 33.828958714,
             "costBasisMoney": 236.802711,
             "currency": "USD",
-            "marketPrice": 44.69,
-            "marketValue": 312.83,
+            "marketPrice": 43.31,
+            "marketValue": 303.17,
             "pnlCurrency": "USD",
             "quantity": 7.0,
-            "totalPnl": 76.027289,
-            "totalPnlPct": 0.32105751103499824
+            "totalPnl": 66.367289,
+            "totalPnlPct": 0.2802640591390865
           },
           {
             "acquisitionDate": "20250910",
             "averagePrice": 39.34973985,
             "costBasisMoney": 786.994797,
             "currency": "USD",
-            "marketPrice": 44.69,
-            "marketValue": 893.8,
+            "marketPrice": 43.31,
+            "marketValue": 866.2,
             "pnlCurrency": "USD",
             "quantity": 20.0,
-            "totalPnl": 106.805203,
-            "totalPnlPct": 0.13571271806006618
+            "totalPnl": 79.205203,
+            "totalPnlPct": 0.1006426005634698
           },
           {
             "acquisitionDate": "20251002",
             "averagePrice": 38.8332477,
             "costBasisMoney": 388.332477,
             "currency": "USD",
-            "marketPrice": 44.69,
-            "marketValue": 446.9,
+            "marketPrice": 43.31,
+            "marketValue": 433.1,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": 58.567523,
-            "totalPnlPct": 0.15081798837031085
+            "totalPnl": 44.767523,
+            "totalPnlPct": 0.11528142932016473
           },
           {
             "acquisitionDate": "20251010",
             "averagePrice": 37.81643485,
             "costBasisMoney": 756.328697,
             "currency": "USD",
-            "marketPrice": 44.69,
-            "marketValue": 893.8,
+            "marketPrice": 43.31,
+            "marketValue": 866.2,
             "pnlCurrency": "USD",
             "quantity": 20.0,
-            "totalPnl": 137.471303,
-            "totalPnlPct": 0.18176132089828664
+            "totalPnl": 109.871303,
+            "totalPnlPct": 0.14526925057294235
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 2269.795448,
           "quantity": 60.0,
-          "totalPnl": 411.604552,
-          "totalPnlPct": 0.18133993191442863
+          "totalPnl": 328.804552,
+          "totalPnlPct": 0.14486087382443286
         }
       },
       "summary": {
@@ -4524,8 +4524,8 @@
           "totals": {
             "costBasis": 2269.795448,
             "quantity": 60.0,
-            "totalPnl": 411.604552,
-            "totalPnlPct": 0.18133993191442863
+            "totalPnl": 328.804552,
+            "totalPnlPct": 0.14486087382443286
           }
         }
       }
@@ -4563,14 +4563,14 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261113",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": null,
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_summary",
           "status": "not_applicable"
         }
@@ -4578,12 +4578,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 0,
             "coverageStatus": "not_applicable",
             "sourceMode": "official_activity_flex_summary",
@@ -4925,9 +4925,9 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_summary",
         "status": "not_applicable",
         "summary": {
@@ -4962,61 +4962,61 @@
     },
     "GE": {
       "accountPerformance": {
-        "aggregateReturn": 238.437713,
+        "aggregateReturn": 145.837713,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": 1.5742369605467106,
+        "annualizedTotalReturn": 0.7648688079069004,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 0.0,
-        "comprehensiveCost": 295.03622870000004,
-        "costBasisResidual": -2.499996298865881e-07,
-        "costBasisXirr": 1.5742369632097102,
+        "comprehensiveCost": 295.0362287,
+        "costBasisResidual": -2.5000008463393897e-07,
+        "costBasisXirr": 0.764868809667681,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
-        "currentCost": 2950.3622870000004,
+        "currentCost": 2950.362287,
         "dividendTotal": 0.0,
         "excludedNoPositionDays": 0,
         "feeTotal": -0.36228725,
-        "holdingCalendarDays": 30,
+        "holdingCalendarDays": 31,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 30,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 31,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20261020",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 0.0,
         "realizedPnlYtd": 0.0,
-        "totalReturn": 0.08081641830246622,
+        "totalReturn": 0.04943044228175693,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 318.88,
+        "closePrice": 309.62,
         "currency": "USD",
-        "dailyPnl": -92.2,
-        "dailyPnlPct": -2.81011887,
-        "marketValue": 3188.8,
-        "portfolioWeightPct": 2.5876289746356917,
+        "dailyPnl": -92.6,
+        "dailyPnlPct": -2.9039137,
+        "marketValue": 3096.2,
+        "portfolioWeightPct": 2.5423004825969215,
         "quantity": 10.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": 238.437713,
-        "valuationDate": "20261119"
+        "unrealizedPnl": 145.837713,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261020",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -5024,12 +5024,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 1,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -5090,29 +5090,29 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20261020",
             "averagePrice": 295.0362287,
             "costBasisMoney": 2950.362287,
             "currency": "USD",
-            "marketPrice": 318.88,
-            "marketValue": 3188.8,
+            "marketPrice": 309.62,
+            "marketValue": 3096.2,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": 238.437713,
-            "totalPnlPct": 0.08081641839397603
+            "totalPnl": 145.837713,
+            "totalPnlPct": 0.0494304423706186
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 2950.362287,
           "quantity": 10.0,
-          "totalPnl": 238.437713,
-          "totalPnlPct": 0.08081641839397603
+          "totalPnl": 145.837713,
+          "totalPnlPct": 0.0494304423706186
         }
       },
       "summary": {
@@ -5132,69 +5132,69 @@
           "totals": {
             "costBasis": 2950.362287,
             "quantity": 10.0,
-            "totalPnl": 238.437713,
-            "totalPnlPct": 0.08081641839397603
+            "totalPnl": 145.837713,
+            "totalPnlPct": 0.0494304423706186
           }
         }
       }
     },
     "GLDM": {
       "accountPerformance": {
-        "aggregateReturn": -666.948806,
+        "aggregateReturn": -851.048806,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": -0.1790036749630881,
+        "annualizedTotalReturn": -0.2269161500220217,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 0.0,
-        "comprehensiveCost": 81.86784008571429,
-        "costBasisResidual": -1.999998858082108e-06,
-        "costBasisXirr": -0.1790036744908332,
+        "comprehensiveCost": 81.86784008571428,
+        "costBasisResidual": -1.99999976757681e-06,
+        "costBasisXirr": -0.2269161495704578,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
-        "currentCost": 5730.7488060000005,
+        "currentCost": 5730.748806,
         "dividendTotal": 0.0,
         "excludedNoPositionDays": 0,
         "feeTotal": -2.648808,
-        "holdingCalendarDays": 413,
+        "holdingCalendarDays": 414,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 413,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 414,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20251002",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 0.0,
         "realizedPnlYtd": 0.0,
-        "totalReturn": -0.2000248510380802,
+        "totalReturn": -0.25317060259097235,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 72.34,
+        "closePrice": 69.71,
         "currency": "USD",
-        "dailyPnl": -92.4,
-        "dailyPnlPct": -1.79201738,
-        "marketValue": 5063.8,
-        "portfolioWeightPct": 4.109143126492793,
+        "dailyPnl": -184.1,
+        "dailyPnlPct": -3.63560962,
+        "marketValue": 4879.7,
+        "portfolioWeightPct": 4.006738474558555,
         "quantity": 70.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": -666.948806,
-        "valuationDate": "20261119"
+        "unrealizedPnl": -851.048806,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261112",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -5202,12 +5202,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 8,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -5604,113 +5604,113 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20251002",
             "averagePrice": 76.2336477,
             "costBasisMoney": 762.336477,
             "currency": "USD",
-            "marketPrice": 72.34,
-            "marketValue": 723.4,
+            "marketPrice": 69.71,
+            "marketValue": 697.1,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -38.936477,
-            "totalPnlPct": -0.05107518553123098
+            "totalPnl": -65.236477,
+            "totalPnlPct": -0.08557438738432557
           },
           {
             "acquisitionDate": "20251021",
             "averagePrice": 82.4936477,
             "costBasisMoney": 824.936477,
             "currency": "USD",
-            "marketPrice": 72.34,
-            "marketValue": 723.4,
+            "marketPrice": 69.71,
+            "marketValue": 697.1,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -101.536477,
-            "totalPnlPct": -0.1230839947449675
+            "totalPnl": -127.836477,
+            "totalPnlPct": -0.15496523740215212
           },
           {
             "acquisitionDate": "20251029",
             "averagePrice": 77.5336477,
             "costBasisMoney": 775.336477,
             "currency": "USD",
-            "marketPrice": 72.34,
-            "marketValue": 723.4,
+            "marketPrice": 69.71,
+            "marketValue": 697.1,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -51.936477,
-            "totalPnlPct": -0.06698572625004975
+            "totalPnl": -78.236477,
+            "totalPnlPct": -0.10090648295398076
           },
           {
             "acquisitionDate": "20260318",
             "averagePrice": 96.4320257,
             "costBasisMoney": 964.320257,
             "currency": "USD",
-            "marketPrice": 72.34,
-            "marketValue": 723.4,
+            "marketPrice": 69.71,
+            "marketValue": 697.1,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -240.920257,
-            "totalPnlPct": -0.24983427989940069
+            "totalPnl": -267.220257,
+            "totalPnlPct": -0.2771073769945704
           },
           {
             "acquisitionDate": "20260610",
             "averagePrice": 81.9686544,
             "costBasisMoney": 409.843272,
             "currency": "USD",
-            "marketPrice": 72.34,
-            "marketValue": 361.7,
+            "marketPrice": 69.71,
+            "marketValue": 348.55,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": -48.143272,
-            "totalPnlPct": -0.11746751816875013
+            "totalPnl": -61.293272,
+            "totalPnlPct": -0.14955295398871402
           },
           {
             "acquisitionDate": "20260624",
             "averagePrice": 78.6670544,
             "costBasisMoney": 393.335272,
             "currency": "USD",
-            "marketPrice": 72.34,
-            "marketValue": 361.7,
+            "marketPrice": 69.71,
+            "marketValue": 348.55,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": -31.635272,
-            "totalPnlPct": -0.08042826121121424
+            "totalPnl": -44.785272,
+            "totalPnlPct": -0.11386029982075953
           },
           {
             "acquisitionDate": "20260928",
             "averagePrice": 82.0320287,
             "costBasisMoney": 820.320287,
             "currency": "USD",
-            "marketPrice": 72.34,
-            "marketValue": 723.4,
+            "marketPrice": 69.71,
+            "marketValue": 697.1,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -96.920287,
-            "totalPnlPct": -0.1181493235458652
+            "totalPnl": -123.220287,
+            "totalPnlPct": -0.1502099715839406
           },
           {
             "acquisitionDate": "20261112",
             "averagePrice": 78.0320287,
             "costBasisMoney": 780.320287,
             "currency": "USD",
-            "marketPrice": 72.34,
-            "marketValue": 723.4,
+            "marketPrice": 69.71,
+            "marketValue": 697.1,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -56.920287,
-            "totalPnlPct": -0.07294477402200361
+            "totalPnl": -83.220287,
+            "totalPnlPct": -0.10664888301180359
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 5730.748806,
           "quantity": 70.0,
-          "totalPnl": -666.9488060000001,
-          "totalPnlPct": -0.11638074335097635
+          "totalPnl": -851.0488059999999,
+          "totalPnlPct": -0.14850569006077632
         }
       },
       "summary": {
@@ -5730,22 +5730,22 @@
           "totals": {
             "costBasis": 5730.748806,
             "quantity": 70.0,
-            "totalPnl": -666.9488060000001,
-            "totalPnlPct": -0.11638074335097635
+            "totalPnl": -851.0488059999999,
+            "totalPnlPct": -0.14850569006077632
           }
         }
       }
     },
     "IBKR": {
       "accountPerformance": {
-        "aggregateReturn": -17.552318,
+        "aggregateReturn": -106.75231799999999,
         "annualizedReturnMethodology": "按获审 canonical 日链中归属于 IBKR 股票奖励的 Grant Activity作为外部资本流，连同逐笔交易、税后股息与期末完成收盘市值计算资金加权年化 XIRR。正 Grant Activity 作为投入，负值作为奖励扣缴／转出；不把股票奖励按零成本误算为投资收益。",
-        "annualizedTotalReturn": 0.1900091118745173,
+        "annualizedTotalReturn": 0.11313760353005126,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 0.0,
         "comprehensiveCost": 76.5276159,
         "costBasisResidual": 536.953884449,
-        "costBasisXirr": -0.03346369591694441,
+        "costBasisXirr": -0.16105381604174474,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -5753,46 +5753,46 @@
         "dividendTotal": 5.260000000000002,
         "excludedNoPositionDays": 0,
         "feeTotal": -0.6877215510000001,
-        "holdingCalendarDays": 734,
+        "holdingCalendarDays": 735,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 734,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 735,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20241115",
         "methodology": "按获审 canonical 日链中归属于 IBKR 股票奖励的 Grant Activity作为外部资本流，连同逐笔交易、税后股息与期末完成收盘市值计算资金加权年化 XIRR。正 Grant Activity 作为投入，负值作为奖励扣缴／转出；不把股票奖励按零成本误算为投资收益。以首笔获审 Grant Activity 至完成收盘日的连续持仓为期间，使用同一组奖励资本流、交易、税后股息与期末市值直接计算非年化资金加权累计收益率；四个旧 V1 缺少 Grant 字段但持仓数量完全未变的交易日按可审计零变动兼容处理。",
         "realizedPnl": 0.0,
         "realizedPnlYtd": 0.0,
-        "totalReturn": 0.4188239862497105,
+        "totalReturn": 0.2408959405748453,
         "totalReturnMethodology": "以首笔获审 Grant Activity 至完成收盘日的连续持仓为期间，使用同一组奖励资本流、交易、税后股息与期末市值直接计算非年化资金加权累计收益率；四个旧 V1 缺少 Grant 字段但持仓数量完全未变的交易日按可审计零变动兼容处理。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 75.65,
+        "closePrice": 71.19,
         "currency": "USD",
-        "dailyPnl": -16.0,
-        "dailyPnlPct": -1.04643558,
-        "marketValue": 1513.0,
-        "portfolioWeightPct": 1.2277604862718896,
+        "dailyPnl": -89.2,
+        "dailyPnlPct": -5.89557171,
+        "marketValue": 1423.8,
+        "portfolioWeightPct": 1.1690870832380005,
         "quantity": 20.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": -22.812318,
-        "valuationDate": "20261119"
+        "unrealizedPnl": -112.012318,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261019",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -5800,12 +5800,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 24,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -11138,305 +11138,305 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20251114",
             "averagePrice": 64.750222124,
             "costBasisMoney": 29.441926,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 34.398055,
+            "marketPrice": 71.19,
+            "marketValue": 32.370093,
             "pnlCurrency": "USD",
             "quantity": 0.4547,
-            "totalPnl": 4.956129,
-            "totalPnlPct": 0.1683357603711116
+            "totalPnl": 2.928167,
+            "totalPnlPct": 0.09945568778346907
           },
           {
             "acquisitionDate": "20251114",
             "averagePrice": 64.8689734,
             "costBasisMoney": 324.344867,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 378.25,
+            "marketPrice": 71.19,
+            "marketValue": 355.95,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": 53.905133,
-            "totalPnlPct": 0.16619696651465737
+            "totalPnl": 31.605133,
+            "totalPnlPct": 0.09744298805259032
           },
           {
             "acquisitionDate": "20251128",
             "averagePrice": 65.020098267,
             "costBasisMoney": 25.143272,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 29.253855,
+            "marketPrice": 71.19,
+            "marketValue": 27.529173,
             "pnlCurrency": "USD",
             "quantity": 0.3867,
-            "totalPnl": 4.110583,
-            "totalPnlPct": 0.16348639906532453
+            "totalPnl": 2.385901,
+            "totalPnlPct": 0.09489222405103044
           },
           {
             "acquisitionDate": "20251128",
             "averagePrice": 65.020123916,
             "costBasisMoney": 26.23562,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 30.524775,
+            "marketPrice": 71.19,
+            "marketValue": 28.725165,
             "pnlCurrency": "USD",
             "quantity": 0.4035,
-            "totalPnl": 4.289155,
-            "totalPnlPct": 0.16348594010738074
+            "totalPnl": 2.489545,
+            "totalPnlPct": 0.09489179215128135
           },
           {
             "acquisitionDate": "20251212",
             "averagePrice": 64.150442338,
             "costBasisMoney": 8.121446,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 9.57729,
+            "marketPrice": 71.19,
+            "marketValue": 9.012654,
             "pnlCurrency": "USD",
             "quantity": 0.1266,
-            "totalPnl": 1.455844,
-            "totalPnlPct": 0.1792592107366102
+            "totalPnl": 0.891208,
+            "totalPnlPct": 0.10973513829926344
           },
           {
             "acquisitionDate": "20251226",
             "averagePrice": 66.160374251,
             "costBasisMoney": 8.839026,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 10.10684,
+            "marketPrice": 71.19,
+            "marketValue": 9.510984,
             "pnlCurrency": "USD",
             "quantity": 0.1336,
-            "totalPnl": 1.267814,
-            "totalPnlPct": 0.14343367696848044
+            "totalPnl": 0.671958,
+            "totalPnlPct": 0.07602172456557997
           },
           {
             "acquisitionDate": "20260106",
             "averagePrice": 72.880037061,
             "costBasisMoney": 33.430073,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 34.700655,
+            "marketPrice": 71.19,
+            "marketValue": 32.654853,
             "pnlCurrency": "USD",
             "quantity": 0.4587,
-            "totalPnl": 1.270582,
-            "totalPnlPct": 0.03800715601189385
+            "totalPnl": -0.77522,
+            "totalPnlPct": -0.02318930024472277
           },
           {
             "acquisitionDate": "20260128",
             "averagePrice": 75.4645,
             "costBasisMoney": 0.150929,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 0.1513,
+            "marketPrice": 71.19,
+            "marketValue": 0.14238,
             "pnlCurrency": "USD",
             "quantity": 0.002,
-            "totalPnl": 0.000371,
-            "totalPnlPct": 0.0024581094421880488
+            "totalPnl": -0.008549,
+            "totalPnlPct": -0.05664252728103942
           },
           {
             "acquisitionDate": "20260212",
             "averagePrice": 73.060046735,
             "costBasisMoney": 53.151184,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 55.035375,
+            "marketPrice": 71.19,
+            "marketValue": 51.790725,
             "pnlCurrency": "USD",
             "quantity": 0.7275,
-            "totalPnl": 1.884191,
-            "totalPnlPct": 0.03544965244800567
+            "totalPnl": -1.360459,
+            "totalPnlPct": -0.025596024351969282
           },
           {
             "acquisitionDate": "20260227",
             "averagePrice": 71.190111391,
             "costBasisMoney": 33.872255,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 35.99427,
+            "marketPrice": 71.19,
+            "marketValue": 33.872202,
             "pnlCurrency": "USD",
             "quantity": 0.4758,
-            "totalPnl": 2.122015,
-            "totalPnlPct": 0.06264758576008594
+            "totalPnl": -5.3e-05,
+            "totalPnlPct": -1.5647024386182733e-06
           },
           {
             "acquisitionDate": "20260326",
             "averagePrice": 66.200177891,
             "costBasisMoney": 20.839816,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 23.81462,
+            "marketPrice": 71.19,
+            "marketValue": 22.410612,
             "pnlCurrency": "USD",
             "quantity": 0.3148,
-            "totalPnl": 2.974804,
-            "totalPnlPct": 0.14274617395854167
+            "totalPnl": 1.570796,
+            "totalPnlPct": 0.07537475378861311
           },
           {
             "acquisitionDate": "20260327",
             "averagePrice": 64.222307692,
             "costBasisMoney": 0.166978,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 0.19669,
+            "marketPrice": 71.19,
+            "marketValue": 0.185094,
             "pnlCurrency": "USD",
             "quantity": 0.0026,
-            "totalPnl": 0.029712,
-            "totalPnlPct": 0.17793960881074153
+            "totalPnl": 0.018116,
+            "totalPnlPct": 0.10849333445124508
           },
           {
             "acquisitionDate": "20260415",
             "averagePrice": 79.75,
             "costBasisMoney": 0.0957,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 0.09078,
+            "marketPrice": 71.19,
+            "marketValue": 0.085428,
             "pnlCurrency": "USD",
             "quantity": 0.0012,
-            "totalPnl": -0.00492,
-            "totalPnlPct": -0.05141065830721003
+            "totalPnl": -0.010272,
+            "totalPnlPct": -0.10733542319749217
           },
           {
             "acquisitionDate": "20260505",
             "averagePrice": 83.91,
             "costBasisMoney": 37.59168,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 33.8912,
+            "marketPrice": 71.19,
+            "marketValue": 31.89312,
             "pnlCurrency": "USD",
             "quantity": 0.448,
-            "totalPnl": -3.70048,
-            "totalPnlPct": -0.09843880347991897
+            "totalPnl": -5.69856,
+            "totalPnlPct": -0.15159099034680015
           },
           {
             "acquisitionDate": "20260703",
             "averagePrice": 91.330008637,
             "costBasisMoney": 42.294927,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 35.033515,
+            "marketPrice": 71.19,
+            "marketValue": 32.968089,
             "pnlCurrency": "USD",
             "quantity": 0.4631,
-            "totalPnl": -7.261412,
-            "totalPnlPct": -0.17168517633332242
+            "totalPnl": -9.326838,
+            "totalPnlPct": -0.22051907076231625
           },
           {
             "acquisitionDate": "20260707",
             "averagePrice": 94.570028002,
             "costBasisMoney": 30.394807,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 24.31391,
+            "marketPrice": 71.19,
+            "marketValue": 22.880466,
             "pnlCurrency": "USD",
             "quantity": 0.3214,
-            "totalPnl": -6.080897,
-            "totalPnlPct": -0.20006368193092985
+            "totalPnl": -7.514341,
+            "totalPnlPct": -0.2472245012116708
           },
           {
             "acquisitionDate": "20260717",
             "averagePrice": 90.530009193,
             "costBasisMoney": 39.389607,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 32.915315,
+            "marketPrice": 71.19,
+            "marketValue": 30.974769,
             "pnlCurrency": "USD",
             "quantity": 0.4351,
-            "totalPnl": -6.474292,
-            "totalPnlPct": -0.1643654885919527
+            "totalPnl": -8.414838,
+            "totalPnlPct": -0.21363092046082105
           },
           {
             "acquisitionDate": "20260807",
             "averagePrice": 87.831149733,
             "costBasisMoney": 3.284885,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 2.82931,
+            "marketPrice": 71.19,
+            "marketValue": 2.662506,
             "pnlCurrency": "USD",
             "quantity": 0.0374,
-            "totalPnl": -0.455575,
-            "totalPnlPct": -0.1386882645815607
+            "totalPnl": -0.622379,
+            "totalPnlPct": -0.18946751560556915
           },
           {
             "acquisitionDate": "20260811",
             "averagePrice": 89.780427227,
             "costBasisMoney": 12.398677,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 10.447265,
+            "marketPrice": 71.19,
+            "marketValue": 9.831339,
             "pnlCurrency": "USD",
             "quantity": 0.1381,
-            "totalPnl": -1.951412,
-            "totalPnlPct": -0.15738872784572097
+            "totalPnl": -2.567338,
+            "totalPnlPct": -0.20706547964754626
           },
           {
             "acquisitionDate": "20260903",
             "averagePrice": 92.950005818,
             "costBasisMoney": 63.903129,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 52.009375,
+            "marketPrice": 71.19,
+            "marketValue": 48.943125,
             "pnlCurrency": "USD",
             "quantity": 0.6875,
-            "totalPnl": -11.893754,
-            "totalPnlPct": -0.18612162168146726
+            "totalPnl": -14.960004,
+            "totalPnlPct": -0.23410440512232195
           },
           {
             "acquisitionDate": "20260930",
             "averagePrice": 85.420078993,
             "costBasisMoney": 34.603674,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 30.645815,
+            "marketPrice": 71.19,
+            "marketValue": 28.839069,
             "pnlCurrency": "USD",
             "quantity": 0.4051,
-            "totalPnl": -3.957859,
-            "totalPnlPct": -0.11437684333750227
+            "totalPnl": -5.764605,
+            "totalPnlPct": -0.16658939163511946
           },
           {
             "acquisitionDate": "20261002",
             "averagePrice": 88.3,
             "costBasisMoney": 63.0462,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 54.0141,
+            "marketPrice": 71.19,
+            "marketValue": 50.82966,
             "pnlCurrency": "USD",
             "quantity": 0.714,
-            "totalPnl": -9.0321,
-            "totalPnlPct": -0.1432616081540204
+            "totalPnl": -12.21654,
+            "totalPnlPct": -0.19377123442808608
           },
           {
             "acquisitionDate": "20261019",
             "averagePrice": 81.998903,
             "costBasisMoney": 573.992321,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 529.55,
+            "marketPrice": 71.19,
+            "marketValue": 498.33,
             "pnlCurrency": "USD",
             "quantity": 7.0,
-            "totalPnl": -44.442321,
-            "totalPnlPct": -0.07742668215939426
+            "totalPnl": -75.662321,
+            "totalPnlPct": -0.13181765370690388
           },
           {
             "acquisitionDate": "20261019",
             "averagePrice": 82.401250869,
             "costBasisMoney": 71.079319,
             "currency": "USD",
-            "marketPrice": 75.65,
-            "marketValue": 65.25569,
+            "marketPrice": 71.19,
+            "marketValue": 61.408494,
             "pnlCurrency": "USD",
             "quantity": 0.8626,
-            "totalPnl": -5.823629,
-            "totalPnlPct": -0.08193141242672852
+            "totalPnl": -9.670825,
+            "totalPnlPct": -0.1360568043709029
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 1535.812318,
           "quantity": 20.0,
-          "totalPnl": -22.812317999999973,
-          "totalPnlPct": -0.014853584472943375
+          "totalPnl": -112.01231800000002,
+          "totalPnlPct": -0.07293359786687166
         }
       },
       "summary": {
@@ -11456,22 +11456,22 @@
           "totals": {
             "costBasis": 1535.812318,
             "quantity": 20.0,
-            "totalPnl": -22.812317999999973,
-            "totalPnlPct": -0.014853584472943375
+            "totalPnl": -112.01231800000002,
+            "totalPnlPct": -0.07293359786687166
           }
         }
       }
     },
     "INTC": {
       "accountPerformance": {
-        "aggregateReturn": -393.48240899999996,
+        "aggregateReturn": -482.282409,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": -0.992956118447907,
+        "annualizedTotalReturn": -0.9974247248944843,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 42.758165,
         "comprehensiveCost": 75.39412045,
         "costBasisResidual": -6.000000212225132e-07,
-        "costBasisXirr": -0.9929574684269911,
+        "costBasisXirr": -0.9974248145807532,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -11479,46 +11479,46 @@
         "dividendTotal": 0.0,
         "excludedNoPositionDays": 639,
         "feeTotal": -1.8824100000000001,
-        "holdingCalendarDays": 700,
+        "holdingCalendarDays": 701,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 61,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 62,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20241219",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 42.758165,
         "realizedPnlYtd": 0.0,
-        "totalReturn": -0.48621416779925497,
+        "totalReturn": -0.5673662110574533,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 55.720000000000006,
+        "closePrice": 51.279999999999994,
         "currency": "USD",
-        "dailyPnl": 21.0,
-        "dailyPnlPct": 1.9206146,
-        "marketValue": 1114.4,
-        "portfolioWeightPct": 0.9043068644424282,
+        "dailyPnl": -88.8,
+        "dailyPnlPct": -7.9684135000000005,
+        "marketValue": 1025.6,
+        "portfolioWeightPct": 0.842123691929269,
         "quantity": 20.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": -436.240574,
-        "valuationDate": "20261119"
+        "unrealizedPnl": -525.040574,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261030",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -11526,12 +11526,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 2,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -11980,41 +11980,41 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20261022",
             "averagePrice": 86.0320287,
             "costBasisMoney": 860.320287,
             "currency": "USD",
-            "marketPrice": 55.72,
-            "marketValue": 557.2,
+            "marketPrice": 51.28,
+            "marketValue": 512.8,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -303.120287,
-            "totalPnlPct": -0.3523342313093682
+            "totalPnl": -347.520287,
+            "totalPnlPct": -0.4039429178310194
           },
           {
             "acquisitionDate": "20261030",
             "averagePrice": 69.0320287,
             "costBasisMoney": 690.320287,
             "currency": "USD",
-            "marketPrice": 55.72,
-            "marketValue": 557.2,
+            "marketPrice": 51.28,
+            "marketValue": 512.8,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -133.120287,
-            "totalPnlPct": -0.19283843964446606
+            "totalPnl": -177.520287,
+            "totalPnlPct": -0.2571564103547778
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 1550.640574,
           "quantity": 20.0,
-          "totalPnl": -436.24057400000004,
-          "totalPnlPct": -0.28132926566901506
+          "totalPnl": -525.040574,
+          "totalPnlPct": -0.338595921455619
         }
       },
       "summary": {
@@ -12034,22 +12034,22 @@
           "totals": {
             "costBasis": 1550.640574,
             "quantity": 20.0,
-            "totalPnl": -436.24057400000004,
-            "totalPnlPct": -0.28132926566901506
+            "totalPnl": -525.040574,
+            "totalPnlPct": -0.338595921455619
           }
         }
       }
     },
     "KHC": {
       "accountPerformance": {
-        "aggregateReturn": -4.786174000000017,
+        "aggregateReturn": 42.21382599999998,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": -0.0008409110151799428,
+        "annualizedTotalReturn": 0.007384151863431122,
         "cashFlowQuality": "complete",
         "closedPositionTotal": -85.778293,
         "comprehensiveCost": 24.96786174,
         "costBasisResidual": -2.000000222324161e-06,
-        "costBasisXirr": -0.052522347229961304,
+        "costBasisXirr": -0.04059296832763694,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -12057,46 +12057,46 @@
         "dividendTotal": 291.59999999999997,
         "excludedNoPositionDays": 0,
         "feeTotal": -3.7861751999999997,
-        "holdingCalendarDays": 720,
+        "holdingCalendarDays": 721,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 720,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 721,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20241129",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": -85.778293,
         "realizedPnlYtd": -90.13095100000001,
-        "totalReturn": -0.0016581050307266938,
+        "totalReturn": 0.014638751137996415,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 24.92,
+        "closePrice": 25.39,
         "currency": "USD",
-        "dailyPnl": -52.0,
-        "dailyPnlPct": -2.04402516,
-        "marketValue": 2492.0,
-        "portfolioWeightPct": 2.022193742094877,
+        "dailyPnl": 47.0,
+        "dailyPnlPct": 1.88603531,
+        "marketValue": 2539.0,
+        "portfolioWeightPct": 2.084781643728953,
         "quantity": 100.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": -210.607881,
-        "valuationDate": "20261119"
+        "unrealizedPnl": -163.607881,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260925",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -12104,12 +12104,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 3,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -17178,53 +17178,53 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20250110",
             "averagePrice": 28.719810233,
             "costBasisMoney": 861.594307,
             "currency": "USD",
-            "marketPrice": 24.92,
-            "marketValue": 747.6,
+            "marketPrice": 25.39,
+            "marketValue": 761.7,
             "pnlCurrency": "USD",
             "quantity": 30.0,
-            "totalPnl": -113.994307,
-            "totalPnlPct": -0.13230624445154326
+            "totalPnl": -99.894307,
+            "totalPnlPct": -0.11594123381318953
           },
           {
             "acquisitionDate": "20250613",
             "averagePrice": 26.367391425,
             "costBasisMoney": 1054.695657,
             "currency": "USD",
-            "marketPrice": 24.92,
-            "marketValue": 996.8,
+            "marketPrice": 25.39,
+            "marketValue": 1015.6,
             "pnlCurrency": "USD",
             "quantity": 40.0,
-            "totalPnl": -57.895657,
-            "totalPnlPct": -0.05489323542364791
+            "totalPnl": -39.095657,
+            "totalPnlPct": -0.03706818809817096
           },
           {
             "acquisitionDate": "20250902",
             "averagePrice": 26.210597233,
             "costBasisMoney": 786.317917,
             "currency": "USD",
-            "marketPrice": 24.92,
-            "marketValue": 747.6,
+            "marketPrice": 25.39,
+            "marketValue": 761.7,
             "pnlCurrency": "USD",
             "quantity": 30.0,
-            "totalPnl": -38.717917,
-            "totalPnlPct": -0.049239520253739816
+            "totalPnl": -24.617917,
+            "totalPnlPct": -0.03130784186366187
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 2702.607881,
           "quantity": 100.0,
-          "totalPnl": -210.60788100000002,
-          "totalPnlPct": -0.07792764998600994
+          "totalPnl": -163.607881,
+          "totalPnlPct": -0.06053703985332232
         }
       },
       "summary": {
@@ -17244,22 +17244,22 @@
           "totals": {
             "costBasis": 2702.607881,
             "quantity": 100.0,
-            "totalPnl": -210.60788100000002,
-            "totalPnlPct": -0.07792764998600994
+            "totalPnl": -163.607881,
+            "totalPnlPct": -0.06053703985332232
           }
         }
       }
     },
     "KO": {
       "accountPerformance": {
-        "aggregateReturn": 1742.903368,
+        "aggregateReturn": 1783.403368,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": 0.35695669853973455,
+        "annualizedTotalReturn": 0.36365501700904956,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 274.972407,
         "comprehensiveCost": 57.35881404444444,
         "costBasisResidual": -2.749999566731276e-06,
-        "costBasisXirr": 0.28365128292177266,
+        "costBasisXirr": 0.2909848393200277,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -17267,46 +17267,46 @@
         "dividendTotal": 119.46,
         "excludedNoPositionDays": 0,
         "feeTotal": -3.1066335699999996,
-        "holdingCalendarDays": 717,
+        "holdingCalendarDays": 718,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 717,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 718,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20241202",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 274.972407,
         "realizedPnlYtd": 0.0,
-        "totalReturn": 0.8214214639907709,
+        "totalReturn": 0.8406888758856992,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 96.09,
+        "closePrice": 96.99000000000001,
         "currency": "USD",
-        "dailyPnl": -90.0,
-        "dailyPnlPct": -2.03894383,
-        "marketValue": 4324.05,
-        "portfolioWeightPct": 3.5088550764467707,
+        "dailyPnl": 40.5,
+        "dailyPnlPct": 0.93662192,
+        "marketValue": 4364.55,
+        "portfolioWeightPct": 3.583747035501064,
         "quantity": 45.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": 1348.470961,
-        "valuationDate": "20261119"
+        "unrealizedPnl": 1388.970961,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261001",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -17314,12 +17314,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 4,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -21231,65 +21231,65 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20250106",
             "averagePrice": 61.2340607,
             "costBasisMoney": 612.340607,
             "currency": "USD",
-            "marketPrice": 96.09,
-            "marketValue": 960.9,
+            "marketPrice": 96.99,
+            "marketValue": 969.9,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": 348.559393,
-            "totalPnlPct": 0.5692246913162824
+            "totalPnl": 357.559393,
+            "totalPnlPct": 0.5839223937013865
           },
           {
             "acquisitionDate": "20250106",
             "averagePrice": 61.4165478,
             "costBasisMoney": 614.165478,
             "currency": "USD",
-            "marketPrice": 96.09,
-            "marketValue": 960.9,
+            "marketPrice": 96.99,
+            "marketValue": 969.9,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": 346.734522,
-            "totalPnlPct": 0.5645620511415329
+            "totalPnl": 355.734522,
+            "totalPnlPct": 0.5792160822168517
           },
           {
             "acquisitionDate": "20250723",
             "averagePrice": 68.73653485,
             "costBasisMoney": 1374.730697,
             "currency": "USD",
-            "marketPrice": 96.09,
-            "marketValue": 1921.8,
+            "marketPrice": 96.99,
+            "marketValue": 1939.8,
             "pnlCurrency": "USD",
             "quantity": 20.0,
-            "totalPnl": 547.069303,
-            "totalPnlPct": 0.3979465245039189
+            "totalPnl": 565.069303,
+            "totalPnlPct": 0.4110399980397033
           },
           {
             "acquisitionDate": "20260210",
             "averagePrice": 74.8684514,
             "costBasisMoney": 374.342257,
             "currency": "USD",
-            "marketPrice": 96.09,
-            "marketValue": 480.45,
+            "marketPrice": 96.99,
+            "marketValue": 484.95,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": 106.107743,
-            "totalPnlPct": 0.2834511493582195
+            "totalPnl": 110.607743,
+            "totalPnlPct": 0.2954722341164919
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 2975.579039,
           "quantity": 45.0,
-          "totalPnl": 1348.470961,
-          "totalPnlPct": 0.4531793453731208
+          "totalPnl": 1388.970961,
+          "totalPnlPct": 0.4667901416145175
         }
       },
       "summary": {
@@ -21309,22 +21309,22 @@
           "totals": {
             "costBasis": 2975.579039,
             "quantity": 45.0,
-            "totalPnl": 1348.470961,
-            "totalPnlPct": 0.4531793453731208
+            "totalPnl": 1388.970961,
+            "totalPnlPct": 0.4667901416145175
           }
         }
       }
     },
     "MCD": {
       "accountPerformance": {
-        "aggregateReturn": 420.300611,
+        "aggregateReturn": 455.900611,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": 0.05512759800477042,
+        "annualizedTotalReturn": 0.05954725900448521,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 549.8145949999999,
         "comprehensiveCost": 261.84248472499996,
         "costBasisResidual": -4.5000015234109014e-06,
-        "costBasisXirr": -0.04609839203980255,
+        "costBasisXirr": -0.040055107759027875,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -21332,46 +21332,46 @@
         "dividendTotal": 149.44000000000003,
         "excludedNoPositionDays": 55,
         "feeTotal": -7.5393941,
-        "holdingCalendarDays": 654,
+        "holdingCalendarDays": 655,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 599,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 600,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20250203",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 549.8145949999999,
         "realizedPnlYtd": 251.646912,
-        "totalReturn": 0.09167699853251235,
+        "totalReturn": 0.09933889216966049,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 272.35,
+        "closePrice": 273.24,
         "currency": "USD",
-        "dailyPnl": -67.2,
-        "dailyPnlPct": -0.6130715600000001,
-        "marketValue": 10894.0,
-        "portfolioWeightPct": 8.840200090843334,
+        "dailyPnl": 35.6,
+        "dailyPnlPct": 0.32678539,
+        "marketValue": 10929.6,
+        "portfolioWeightPct": 8.974332199015347,
         "quantity": 40.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": -278.953984,
-        "valuationDate": "20261119"
+        "unrealizedPnl": -243.353984,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260916",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -21379,12 +21379,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 8,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -25631,113 +25631,113 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20251001",
             "averagePrice": 298.4886734,
             "costBasisMoney": 1492.443367,
             "currency": "USD",
-            "marketPrice": 272.35,
-            "marketValue": 1361.75,
+            "marketPrice": 273.24,
+            "marketValue": 1366.2,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": -130.693367,
-            "totalPnlPct": -0.08757006790998723
+            "totalPnl": -126.243367,
+            "totalPnlPct": -0.08458838023030994
           },
           {
             "acquisitionDate": "20260402",
             "averagePrice": 304.0670514,
             "costBasisMoney": 1520.335257,
             "currency": "USD",
-            "marketPrice": 272.35,
-            "marketValue": 1361.75,
+            "marketPrice": 273.24,
+            "marketValue": 1366.2,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": -158.585257,
-            "totalPnlPct": -0.10430939904197724
+            "totalPnl": -154.135257,
+            "totalPnlPct": -0.10138241305022896
           },
           {
             "acquisitionDate": "20260429",
             "averagePrice": 290.1670514,
             "costBasisMoney": 1450.835257,
             "currency": "USD",
-            "marketPrice": 272.35,
-            "marketValue": 1361.75,
+            "marketPrice": 273.24,
+            "marketValue": 1366.2,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": -89.085257,
-            "totalPnlPct": -0.06140273788507747
+            "totalPnl": -84.635257,
+            "totalPnlPct": -0.05833553919485429
           },
           {
             "acquisitionDate": "20260508",
             "averagePrice": 280.4670544,
             "costBasisMoney": 1402.335272,
             "currency": "USD",
-            "marketPrice": 272.35,
-            "marketValue": 1361.75,
+            "marketPrice": 273.24,
+            "marketValue": 1366.2,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": -40.585272,
-            "totalPnlPct": -0.02894120458235183
+            "totalPnl": -36.135272,
+            "totalPnlPct": -0.02576792634507734
           },
           {
             "acquisitionDate": "20260622",
             "averagePrice": 272.0670544,
             "costBasisMoney": 1360.335272,
             "currency": "USD",
-            "marketPrice": 272.35,
-            "marketValue": 1361.75,
+            "marketPrice": 273.24,
+            "marketValue": 1366.2,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": 1.414728,
-            "totalPnlPct": 0.0010399847957482057
+            "totalPnl": 5.864728,
+            "totalPnlPct": 0.004311237178594602
           },
           {
             "acquisitionDate": "20260715",
             "averagePrice": 265.6670544,
             "costBasisMoney": 1328.335272,
             "currency": "USD",
-            "marketPrice": 272.35,
-            "marketValue": 1361.75,
+            "marketPrice": 273.24,
+            "marketValue": 1366.2,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": 33.414728,
-            "totalPnlPct": 0.025155341956469554
+            "totalPnl": 37.864728,
+            "totalPnlPct": 0.028505399802407714
           },
           {
             "acquisitionDate": "20260804",
             "averagePrice": 261.798403,
             "costBasisMoney": 2356.185627,
             "currency": "USD",
-            "marketPrice": 272.35,
-            "marketValue": 2451.15,
+            "marketPrice": 273.24,
+            "marketValue": 2459.16,
             "pnlCurrency": "USD",
             "quantity": 9.0,
-            "totalPnl": 94.964373,
-            "totalPnlPct": 0.04030428329236218
+            "totalPnl": 102.974373,
+            "totalPnlPct": 0.04370384566478811
           },
           {
             "acquisitionDate": "20260804",
             "averagePrice": 262.14866,
             "costBasisMoney": 262.14866,
             "currency": "USD",
-            "marketPrice": 272.35,
-            "marketValue": 272.35,
+            "marketPrice": 273.24,
+            "marketValue": 273.24,
             "pnlCurrency": "USD",
             "quantity": 1.0,
-            "totalPnl": 10.20134,
-            "totalPnlPct": 0.03891433204350539
+            "totalPnl": 11.09134,
+            "totalPnlPct": 0.04230935225837126
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 11172.953984000002,
           "quantity": 40.0,
-          "totalPnl": -278.95398399999993,
-          "totalPnlPct": -0.02496689634625456
+          "totalPnl": -243.3539839999999,
+          "totalPnlPct": -0.021780630650451972
         }
       },
       "summary": {
@@ -25757,22 +25757,22 @@
           "totals": {
             "costBasis": 11172.953984000002,
             "quantity": 40.0,
-            "totalPnl": -278.95398399999993,
-            "totalPnlPct": -0.02496689634625456
+            "totalPnl": -243.3539839999999,
+            "totalPnlPct": -0.021780630650451972
           }
         }
       }
     },
     "MSFT": {
       "accountPerformance": {
-        "aggregateReturn": 3125.1910390000003,
+        "aggregateReturn": 2780.6910390000003,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": 0.5625428889804518,
+        "annualizedTotalReturn": 0.49439115357703667,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 59.115127,
         "comprehensiveCost": 373.29235844000004,
         "costBasisResidual": -1.4999986888142303e-06,
-        "costBasisXirr": 0.7317920648437808,
+        "costBasisXirr": 0.6355022028809645,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -25780,46 +25780,46 @@
         "dividendTotal": 40.94,
         "excludedNoPositionDays": 0,
         "feeTotal": -2.798963,
-        "holdingCalendarDays": 301,
+        "holdingCalendarDays": 302,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 301,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 302,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20260122",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 59.115127,
         "realizedPnlYtd": 59.115127,
-        "totalReturn": 0.44492390212777944,
+        "totalReturn": 0.3942840969741661,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 498.3,
+        "closePrice": 484.52,
         "currency": "USD",
-        "dailyPnl": -249.75,
-        "dailyPnlPct": -1.96541345,
-        "marketValue": 12457.5,
-        "portfolioWeightPct": 10.108940024938574,
+        "dailyPnl": -344.5,
+        "dailyPnlPct": -2.76540237,
+        "marketValue": 12113.0,
+        "portfolioWeightPct": 9.94602601437133,
         "quantity": 25.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": 3025.135912,
-        "valuationDate": "20261119"
+        "unrealizedPnl": 2680.635912,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
-          "latestEventDate": "20261119",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestEventDate": "20261120",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -25827,12 +25827,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 4,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -26275,6 +26275,30 @@
         }
       ],
       "events": [
+        {
+          "amount": 22.05,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": null,
+            "description": "MICROSOFT CORP",
+            "metadata": {
+              "exDate": "20261119",
+              "payDate": "20261210"
+            },
+            "mtmPnl": null,
+            "price": 0.98,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": 2.45
+          },
+          "eventTime": "20261120",
+          "eventType": "open_dividend_accrual",
+          "quantity": 25.0,
+          "symbol": "MSFT",
+          "tradeDate": "20261120"
+        },
         {
           "amount": 22.05,
           "currency": "USD",
@@ -27912,65 +27936,65 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20260129",
             "averagePrice": 424.0689514,
             "costBasisMoney": 2120.344757,
             "currency": "USD",
-            "marketPrice": 498.3,
-            "marketValue": 2491.5,
+            "marketPrice": 484.52,
+            "marketValue": 2422.6,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": 371.155243,
-            "totalPnlPct": 0.17504476183634132
+            "totalPnl": 302.255243,
+            "totalPnlPct": 0.14255004616685552
           },
           {
             "acquisitionDate": "20260618",
             "averagePrice": 381.0689544,
             "costBasisMoney": 1905.344772,
             "currency": "USD",
-            "marketPrice": 498.3,
-            "marketValue": 2491.5,
+            "marketPrice": 484.52,
+            "marketValue": 2422.6,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": 586.155228,
-            "totalPnlPct": 0.30763735603857423
+            "totalPnl": 517.255228,
+            "totalPnlPct": 0.2714759216291591
           },
           {
             "acquisitionDate": "20260622",
             "averagePrice": 368.0670544,
             "costBasisMoney": 1840.335272,
             "currency": "USD",
-            "marketPrice": 498.3,
-            "marketValue": 2491.5,
+            "marketPrice": 484.52,
+            "marketValue": 2422.6,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": 651.164728,
-            "totalPnlPct": 0.3538294015809093
+            "totalPnl": 582.264728,
+            "totalPnlPct": 0.3163905712502151
           },
           {
             "acquisitionDate": "20260625",
             "averagePrice": 356.6339287,
             "costBasisMoney": 3566.339287,
             "currency": "USD",
-            "marketPrice": 498.3,
-            "marketValue": 4983.0,
+            "marketPrice": 484.52,
+            "marketValue": 4845.2,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": 1416.660713,
-            "totalPnlPct": 0.3972310537485886
+            "totalPnl": 1278.860713,
+            "totalPnlPct": 0.3585919931010759
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 9432.364087999998,
           "quantity": 25.0,
-          "totalPnl": 3025.1359119999997,
-          "totalPnlPct": 0.3207187385661486
+          "totalPnl": 2680.635912,
+          "totalPnlPct": 0.2841955512945421
         }
       },
       "summary": {
@@ -27978,9 +28002,9 @@
         "lifecycle": {
           "displayEventCount": 19,
           "earliestTradeDate": "20260122",
-          "eventCount": 68,
-          "latestTradeDate": "20261119",
-          "returnedEventCount": 68,
+          "eventCount": 69,
+          "latestTradeDate": "20261120",
+          "returnedEventCount": 69,
           "truncated": false
         },
         "positionLots": {
@@ -27990,22 +28014,22 @@
           "totals": {
             "costBasis": 9432.364087999998,
             "quantity": 25.0,
-            "totalPnl": 3025.1359119999997,
-            "totalPnlPct": 0.3207187385661486
+            "totalPnl": 2680.635912,
+            "totalPnlPct": 0.2841955512945421
           }
         }
       }
     },
     "NVDA": {
       "accountPerformance": {
-        "aggregateReturn": -630.0734690000003,
+        "aggregateReturn": -1243.573469,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": -0.1965314812878503,
+        "annualizedTotalReturn": -0.3925140596838146,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 965.9824059999999,
         "comprehensiveCost": 166.98244896666665,
         "costBasisResidual": -1.18000043585198e-05,
-        "costBasisXirr": -0.8208571599174681,
+        "costBasisXirr": -0.9322080968636524,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -28013,46 +28037,46 @@
         "dividendTotal": 5.16,
         "excludedNoPositionDays": 335,
         "feeTotal": -37.23547348000001,
-        "holdingCalendarDays": 661,
+        "holdingCalendarDays": 662,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 326,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 327,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20250127",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 965.9824059999999,
         "realizedPnlYtd": 909.2191620000001,
-        "totalReturn": -0.17290630886701835,
+        "totalReturn": -0.3489878464249321,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 145.98,
+        "closePrice": 125.53,
         "currency": "USD",
-        "dailyPnl": -149.4,
-        "dailyPnlPct": -3.29888712,
-        "marketValue": 4379.4,
-        "portfolioWeightPct": 3.5537701742095917,
+        "dailyPnl": -613.5,
+        "dailyPnlPct": -14.008768320000001,
+        "marketValue": 3765.9,
+        "portfolioWeightPct": 3.092193458888879,
         "quantity": 30.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": -1601.215875,
-        "valuationDate": "20261119"
+        "unrealizedPnl": -2214.715875,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261112",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -28060,12 +28084,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 5,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -36042,77 +36066,77 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20260521",
             "averagePrice": 218.5289544,
             "costBasisMoney": 1092.644772,
             "currency": "USD",
-            "marketPrice": 145.98,
-            "marketValue": 729.9,
+            "marketPrice": 125.53,
+            "marketValue": 627.65,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": -362.744772,
-            "totalPnlPct": -0.331987834743422
+            "totalPnl": -464.994772,
+            "totalPnlPct": -0.4255681113532111
           },
           {
             "acquisitionDate": "20260729",
             "averagePrice": 192.0670544,
             "costBasisMoney": 960.335272,
             "currency": "USD",
-            "marketPrice": 145.98,
-            "marketValue": 729.9,
+            "marketPrice": 125.53,
+            "marketValue": 627.65,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": -230.435272,
-            "totalPnlPct": -0.23995294010194387
+            "totalPnl": -332.685272,
+            "totalPnlPct": -0.3464261718796891
           },
           {
             "acquisitionDate": "20260825",
             "averagePrice": 211.7889544,
             "costBasisMoney": 1058.944772,
             "currency": "USD",
-            "marketPrice": 145.98,
-            "marketValue": 729.9,
+            "marketPrice": 125.53,
+            "marketValue": 627.65,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": -329.044772,
-            "totalPnlPct": -0.3107289262862521
+            "totalPnl": -431.294772,
+            "totalPnlPct": -0.4072873141301084
           },
           {
             "acquisitionDate": "20261022",
             "averagePrice": 213.6689544,
             "costBasisMoney": 1068.344772,
             "currency": "USD",
-            "marketPrice": 145.98,
-            "marketValue": 729.9,
+            "marketPrice": 125.53,
+            "marketValue": 627.65,
             "pnlCurrency": "USD",
             "quantity": 5.0,
-            "totalPnl": -338.444772,
-            "totalPnlPct": -0.31679358655578277
+            "totalPnl": -440.694772,
+            "totalPnlPct": -0.4125023901928169
           },
           {
             "acquisitionDate": "20261108",
             "averagePrice": 180.0346287,
             "costBasisMoney": 1800.346287,
             "currency": "USD",
-            "marketPrice": 145.98,
-            "marketValue": 1459.8,
+            "marketPrice": 125.53,
+            "marketValue": 1255.3,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -340.546287,
-            "totalPnlPct": -0.18915599152175772
+            "totalPnl": -545.046287,
+            "totalPnlPct": -0.30274525014198006
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 5980.6158749999995,
           "quantity": 30.0,
-          "totalPnl": -1601.2158749999999,
-          "totalPnlPct": -0.2677342782861807
+          "totalPnl": -2214.715875,
+          "totalPnlPct": -0.3703156867602703
         }
       },
       "summary": {
@@ -36132,22 +36156,22 @@
           "totals": {
             "costBasis": 5980.6158749999995,
             "quantity": 30.0,
-            "totalPnl": -1601.2158749999999,
-            "totalPnlPct": -0.2677342782861807
+            "totalPnl": -2214.715875,
+            "totalPnlPct": -0.3703156867602703
           }
         }
       }
     },
     "PFE": {
       "accountPerformance": {
-        "aggregateReturn": 1163.26829,
+        "aggregateReturn": 1149.26829,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": 0.1721573379063957,
+        "annualizedTotalReturn": 0.17005166299477575,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 330.794038,
         "comprehensiveCost": 15.9073171,
         "costBasisResidual": -2.5000013010867406e-06,
-        "costBasisXirr": 0.13342941641026723,
+        "costBasisXirr": 0.12877038298009819,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -36155,46 +36179,46 @@
         "dividendTotal": 414.09000000000003,
         "excludedNoPositionDays": 0,
         "feeTotal": -4.67171207,
-        "holdingCalendarDays": 717,
+        "holdingCalendarDays": 718,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 717,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 718,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20241202",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 330.794038,
         "realizedPnlYtd": 287.040817,
-        "totalReturn": 0.36620159768656846,
+        "totalReturn": 0.36197055658119226,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 27.54,
+        "closePrice": 27.4,
         "currency": "USD",
-        "dailyPnl": -52.0,
-        "dailyPnlPct": -1.8531717699999999,
-        "marketValue": 2754.0,
-        "portfolioWeightPct": 2.234799986247709,
+        "dailyPnl": -14.0,
+        "dailyPnlPct": -0.50835149,
+        "marketValue": 2740.0,
+        "portfolioWeightPct": 2.2498234359264795,
         "quantity": 100.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": 418.384252,
-        "valuationDate": "20261119"
+        "unrealizedPnl": 404.384252,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
-          "latestEventDate": "20261119",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestEventDate": "20261120",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -36202,12 +36226,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 4,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -37324,6 +37348,30 @@
         }
       ],
       "events": [
+        {
+          "amount": 38.7,
+          "currency": "USD",
+          "details": {
+            "closePrice": null,
+            "commission": null,
+            "costBasis": null,
+            "description": "PFIZER INC",
+            "metadata": {
+              "exDate": "20261106",
+              "payDate": "20261207"
+            },
+            "mtmPnl": null,
+            "price": 0.43,
+            "proceeds": null,
+            "realizedPnl": null,
+            "taxes": 4.3
+          },
+          "eventTime": "20261120",
+          "eventType": "open_dividend_accrual",
+          "quantity": 100.0,
+          "symbol": "PFE",
+          "tradeDate": "20261120"
+        },
         {
           "amount": 38.7,
           "currency": "USD",
@@ -43223,65 +43271,65 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20250508",
             "averagePrice": 22.547791425,
             "costBasisMoney": 901.911657,
             "currency": "USD",
-            "marketPrice": 27.54,
-            "marketValue": 1101.6,
+            "marketPrice": 27.4,
+            "marketValue": 1096.0,
             "pnlCurrency": "USD",
             "quantity": 40.0,
-            "totalPnl": 199.688343,
-            "totalPnlPct": 0.22140565702877926
+            "totalPnl": 194.088343,
+            "totalPnlPct": 0.21519662318767438
           },
           {
             "acquisitionDate": "20250731",
             "averagePrice": 23.61453485,
             "costBasisMoney": 472.290697,
             "currency": "USD",
-            "marketPrice": 27.54,
-            "marketValue": 550.8,
+            "marketPrice": 27.4,
+            "marketValue": 548.0,
             "pnlCurrency": "USD",
             "quantity": 20.0,
-            "totalPnl": 78.509303,
-            "totalPnlPct": 0.16623089020955245
+            "totalPnl": 75.709303,
+            "totalPnlPct": 0.1603023381169839
           },
           {
             "acquisitionDate": "20250919",
             "averagePrice": 23.85613485,
             "costBasisMoney": 477.122697,
             "currency": "USD",
-            "marketPrice": 27.54,
-            "marketValue": 550.8,
+            "marketPrice": 27.4,
+            "marketValue": 548.0,
             "pnlCurrency": "USD",
             "quantity": 20.0,
-            "totalPnl": 73.677303,
-            "totalPnlPct": 0.15442003380526664
+            "totalPnl": 70.877303,
+            "totalPnlPct": 0.14855152237706268
           },
           {
             "acquisitionDate": "20251030",
             "averagePrice": 24.21453485,
             "costBasisMoney": 484.290697,
             "currency": "USD",
-            "marketPrice": 27.54,
-            "marketValue": 550.8,
+            "marketPrice": 27.4,
+            "marketValue": 548.0,
             "pnlCurrency": "USD",
             "quantity": 20.0,
-            "totalPnl": 66.509303,
-            "totalPnlPct": 0.13733343095789427
+            "totalPnl": 63.709303,
+            "totalPnlPct": 0.13155177952964064
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 2335.615748,
           "quantity": 100.0,
-          "totalPnl": 418.384252,
-          "totalPnlPct": 0.17913231333461618
+          "totalPnl": 404.38425199999995,
+          "totalPnlPct": 0.17313817666552225
         }
       },
       "summary": {
@@ -43289,9 +43337,9 @@
         "lifecycle": {
           "displayEventCount": 48,
           "earliestTradeDate": "20241202",
-          "eventCount": 245,
-          "latestTradeDate": "20261119",
-          "returnedEventCount": 245,
+          "eventCount": 246,
+          "latestTradeDate": "20261120",
+          "returnedEventCount": 246,
           "truncated": false
         },
         "positionLots": {
@@ -43301,22 +43349,22 @@
           "totals": {
             "costBasis": 2335.615748,
             "quantity": 100.0,
-            "totalPnl": 418.384252,
-            "totalPnlPct": 0.17913231333461618
+            "totalPnl": 404.38425199999995,
+            "totalPnlPct": 0.17313817666552225
           }
         }
       }
     },
     "SCHF": {
       "accountPerformance": {
-        "aggregateReturn": 68.897046,
+        "aggregateReturn": 52.497046000000005,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": 0.12913173509617187,
+        "annualizedTotalReturn": 0.09842298980897873,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 0.0,
         "comprehensiveCost": 22.0751477,
         "costBasisResidual": -4.999999987376214e-07,
-        "costBasisXirr": 0.09867384720340892,
+        "costBasisXirr": 0.06856813631051259,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -43324,46 +43372,46 @@
         "dividendTotal": 15.17,
         "excludedNoPositionDays": 0,
         "feeTotal": -0.6729545,
-        "holdingCalendarDays": 443,
+        "holdingCalendarDays": 444,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 443,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 444,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20250902",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 0.0,
         "realizedPnlYtd": 0.0,
-        "totalReturn": 0.1588202225245408,
+        "totalReturn": 0.120969309159113,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 25.52,
+        "closePrice": 24.7,
         "currency": "USD",
-        "dailyPnl": -7.8,
-        "dailyPnlPct": -1.50521034,
-        "marketValue": 510.4,
-        "portfolioWeightPct": 0.4141764389908608,
+        "dailyPnl": -16.4,
+        "dailyPnlPct": -3.21316614,
+        "marketValue": 494.0,
+        "portfolioWeightPct": 0.4056251012217813,
         "quantity": 20.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": 53.727046,
-        "valuationDate": "20261119"
+        "unrealizedPnl": 37.327046,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260629",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -43371,12 +43419,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 2,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -44151,41 +44199,41 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20250902",
             "averagePrice": 22.6336477,
             "costBasisMoney": 226.336477,
             "currency": "USD",
-            "marketPrice": 25.52,
-            "marketValue": 255.2,
+            "marketPrice": 24.7,
+            "marketValue": 247.0,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": 28.863523,
-            "totalPnlPct": 0.1275248399311261
+            "totalPnl": 20.663523,
+            "totalPnlPct": 0.09129559350700683
           },
           {
             "acquisitionDate": "20250925",
             "averagePrice": 23.0336477,
             "costBasisMoney": 230.336477,
             "currency": "USD",
-            "marketPrice": 25.52,
-            "marketValue": 255.2,
+            "marketPrice": 24.7,
+            "marketValue": 247.0,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": 24.863523,
-            "totalPnlPct": 0.10794435741934179
+            "totalPnl": 16.663523,
+            "totalPnlPct": 0.07234426443016231
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 456.672954,
           "quantity": 20.0,
-          "totalPnl": 53.727046,
-          "totalPnlPct": 0.11764884591786007
+          "totalPnl": 37.327046,
+          "totalPnlPct": 0.08173693158977836
         }
       },
       "summary": {
@@ -44205,22 +44253,22 @@
           "totals": {
             "costBasis": 456.672954,
             "quantity": 20.0,
-            "totalPnl": 53.727046,
-            "totalPnlPct": 0.11764884591786007
+            "totalPnl": 37.327046,
+            "totalPnlPct": 0.08173693158977836
           }
         }
       }
     },
     "SIVR": {
       "accountPerformance": {
-        "aggregateReturn": -448.238734,
+        "aggregateReturn": -503.23873399999997,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": -0.5654217833306057,
+        "annualizedTotalReturn": -0.6277511596507692,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 41.01781,
         "comprehensiveCost": 64.0819367,
         "costBasisResidual": -1.249999968422344e-06,
-        "costBasisXirr": -0.6370585520108702,
+        "costBasisXirr": -0.6967004424455816,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -44228,46 +44276,46 @@
         "dividendTotal": 0.0,
         "excludedNoPositionDays": 0,
         "feeTotal": -2.38873579,
-        "holdingCalendarDays": 293,
+        "holdingCalendarDays": 294,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 293,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 294,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20260130",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 41.01781,
         "realizedPnlYtd": 41.01781,
-        "totalReturn": -0.48777264468565573,
+        "totalReturn": -0.5488561050287222,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 41.67,
+        "closePrice": 38.92,
         "currency": "USD",
-        "dailyPnl": -22.2,
-        "dailyPnlPct": -2.59467041,
-        "marketValue": 833.4,
-        "portfolioWeightPct": 0.676282610217444,
+        "dailyPnl": -55.0,
+        "dailyPnlPct": -6.59947204,
+        "marketValue": 778.4,
+        "portfolioWeightPct": 0.6391469206296246,
         "quantity": 20.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": -489.256544,
-        "valuationDate": "20261119"
+        "unrealizedPnl": -544.256544,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261117",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -44275,12 +44323,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 2,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -44629,41 +44677,41 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20260130",
             "averagePrice": 87.4336257,
             "costBasisMoney": 874.336257,
             "currency": "USD",
-            "marketPrice": 41.67,
-            "marketValue": 416.7,
+            "marketPrice": 38.92,
+            "marketValue": 389.2,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -457.636257,
-            "totalPnlPct": -0.5234099047547561
+            "totalPnl": -485.136257,
+            "totalPnlPct": -0.5548623348465349
           },
           {
             "acquisitionDate": "20261117",
             "averagePrice": 44.8320287,
             "costBasisMoney": 448.320287,
             "currency": "USD",
-            "marketPrice": 41.67,
-            "marketValue": 416.7,
+            "marketPrice": 38.92,
+            "marketValue": 389.2,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": -31.620287,
-            "totalPnlPct": -0.07053057360306339
+            "totalPnl": -59.120287,
+            "totalPnlPct": -0.1318706485392663
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 1322.656544,
           "quantity": 20.0,
-          "totalPnl": -489.256544,
-          "totalPnlPct": -0.3699044519300394
+          "totalPnl": -544.256544,
+          "totalPnlPct": -0.411487431464294
         }
       },
       "summary": {
@@ -44683,22 +44731,22 @@
           "totals": {
             "costBasis": 1322.656544,
             "quantity": 20.0,
-            "totalPnl": -489.256544,
-            "totalPnlPct": -0.3699044519300394
+            "totalPnl": -544.256544,
+            "totalPnlPct": -0.411487431464294
           }
         }
       }
     },
     "VGK": {
       "accountPerformance": {
-        "aggregateReturn": 76.603523,
+        "aggregateReturn": 57.003523,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": 0.08803586519191944,
+        "annualizedTotalReturn": 0.06542762558533763,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 0.0,
         "comprehensiveCost": 76.90964770000001,
         "costBasisResidual": -2.4999997094710125e-07,
-        "costBasisXirr": 0.06050069861472489,
+        "costBasisXirr": 0.03822819721963659,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
@@ -44706,46 +44754,46 @@
         "dividendTotal": 23.24,
         "excludedNoPositionDays": 0,
         "feeTotal": -0.33647725,
-        "holdingCalendarDays": 405,
+        "holdingCalendarDays": 406,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 405,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 406,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20251010",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 0.0,
         "realizedPnlYtd": 0.0,
-        "totalReturn": 0.09814302072242356,
+        "totalReturn": 0.07303944072028712,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 84.57000000000001,
+        "closePrice": 82.61,
         "currency": "USD",
-        "dailyPnl": -12.8,
-        "dailyPnlPct": -1.4909726300000001,
-        "marketValue": 845.7,
-        "portfolioWeightPct": 0.6862637430536266,
+        "dailyPnl": -19.6,
+        "dailyPnlPct": -2.31760672,
+        "marketValue": 826.1,
+        "portfolioWeightPct": 0.6783135548973959,
         "quantity": 10.0,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": 53.363523,
-        "valuationDate": "20261119"
+        "unrealizedPnl": 33.763523,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20260922",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -44753,12 +44801,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 1,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -45679,29 +45727,29 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20251010",
             "averagePrice": 79.2336477,
             "costBasisMoney": 792.336477,
             "currency": "USD",
-            "marketPrice": 84.57,
-            "marketValue": 845.7,
+            "marketPrice": 82.61,
+            "marketValue": 826.1,
             "pnlCurrency": "USD",
             "quantity": 10.0,
-            "totalPnl": 53.363523,
-            "totalPnlPct": 0.06734957249734194
+            "totalPnl": 33.763523,
+            "totalPnlPct": 0.04261260711842754
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 792.336477,
           "quantity": 10.0,
-          "totalPnl": 53.363523,
-          "totalPnlPct": 0.06734957249734194
+          "totalPnl": 33.763523,
+          "totalPnlPct": 0.04261260711842754
         }
       },
       "summary": {
@@ -45721,69 +45769,69 @@
           "totals": {
             "costBasis": 792.336477,
             "quantity": 10.0,
-            "totalPnl": 53.363523,
-            "totalPnlPct": 0.06734957249734194
+            "totalPnl": 33.763523,
+            "totalPnlPct": 0.04261260711842754
           }
         }
       }
     },
     "VOO": {
       "accountPerformance": {
-        "aggregateReturn": 6.569766999999999,
+        "aggregateReturn": -135.02023699999998,
         "annualizedReturnMethodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。",
-        "annualizedTotalReturn": 0.0029275549283262394,
+        "annualizedTotalReturn": -0.05941864177489253,
         "cashFlowQuality": "complete",
         "closedPositionTotal": 0.0,
-        "comprehensiveCost": 656.9669639117947,
-        "costBasisResidual": -3.2389998523285612e-06,
-        "costBasisXirr": -0.007497534256886967,
+        "comprehensiveCost": 656.9669645465943,
+        "costBasisResidual": 7.609996828250587e-07,
+        "costBasisXirr": -0.06936227069816647,
         "costBasisXirrMethodology": "按当前仍开放的官方 Lot 取得日与成本基础作为负现金流、期末完成收盘市值作为正现金流计算年化 XIRR；不含已平仓收益与现金股息，因此不是生命周期总回报，也不是 PortfolioAnalyst MWR。",
         "costBasisXirrQuality": "complete",
         "currency": "USD",
-        "currentCost": 4163.170233001,
+        "currentCost": 4163.170237001,
         "dividendTotal": 23.49,
         "excludedNoPositionDays": 0,
         "feeTotal": -10.505786330000003,
-        "holdingCalendarDays": 344,
+        "holdingCalendarDays": 345,
         "holdingClockQuality": "complete",
-        "holdingPeriodDays": 344,
-        "holdingPeriodEndDate": "20261119",
+        "holdingPeriodDays": 345,
+        "holdingPeriodEndDate": "20261120",
         "holdingPeriodStartDate": "20251210",
         "methodology": "逐笔净现金流、税后股息与期末完成收盘市值计算资金加权年化 XIRR。从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
         "realizedPnl": 0.0,
         "realizedPnlYtd": 0.0,
-        "totalReturn": 0.0027588881351887093,
+        "totalReturn": -0.05625622427188262,
         "totalReturnMethodology": "从第一次建仓起保留全部逐笔交易、税后股息和期末完成收盘市值，以交易数量重建持仓时钟并压缩中间零持仓日，直接计算该实际持仓期间的非年化资金加权累计收益率。",
-        "valuationDate": "20261119"
+        "valuationDate": "20261120"
       },
       "currentHolding": {
-        "closePrice": 658.0095854759412,
+        "closePrice": 635.5392623628833,
         "currency": "USD",
-        "dailyPnl": -83.81,
-        "dailyPnlPct": -1.9812009400000001,
-        "marketValue": 4146.250000001,
-        "portfolioWeightPct": 3.3645749611408133,
+        "dailyPnl": -141.59,
+        "dailyPnlPct": -3.41484172,
+        "marketValue": 4004.660000001,
+        "portfolioWeightPct": 3.2882401171239364,
         "quantity": 6.3012,
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "status": "official",
-        "unrealizedPnl": -16.920233,
-        "valuationDate": "20261119"
+        "unrealizedPnl": -158.510237,
+        "valuationDate": "20261120"
       },
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": "20261118",
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": {
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "status": "official",
-          "valuationDate": "20261119"
+          "valuationDate": "20261120"
         },
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_lot",
           "status": "complete"
         }
@@ -45791,12 +45839,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 30,
             "coverageStatus": "complete",
             "sourceMode": "official_activity_flex_lot",
@@ -48143,377 +48191,377 @@
         }
       ],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [
           {
             "acquisitionDate": "20251210",
             "averagePrice": 626.9737285,
             "costBasisMoney": 1253.947457,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 1316.019170952,
+            "marketPrice": 635.54,
+            "marketValue": 1271.078524725,
             "pnlCurrency": "USD",
             "quantity": 2.0,
-            "totalPnl": 62.071714,
-            "totalPnlPct": 0.04950104859138448
+            "totalPnl": 17.131068,
+            "totalPnlPct": 0.013661711186037357
           },
           {
             "acquisitionDate": "20260105",
             "averagePrice": 635.151361621,
             "costBasisMoney": 100.2904,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 103.899713547,
+            "marketPrice": 635.54,
+            "marketValue": 100.351649527,
             "pnlCurrency": "USD",
             "quantity": 0.1579,
-            "totalPnl": 3.609314,
-            "totalPnlPct": 0.03598862902132208
+            "totalPnl": 0.06125,
+            "totalPnlPct": 0.000610726450388073
           },
           {
             "acquisitionDate": "20260120",
             "averagePrice": 628.72910401,
             "costBasisMoney": 100.345165,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 105.018329842,
+            "marketPrice": 635.54,
+            "marketValue": 101.432066273,
             "pnlCurrency": "USD",
             "quantity": 0.1596,
-            "totalPnl": 4.673165,
-            "totalPnlPct": 0.04657090354079342
+            "totalPnl": 1.086901,
+            "totalPnlPct": 0.010831623028374112
           },
           {
             "acquisitionDate": "20260202",
             "averagePrice": 641.267826087,
             "costBasisMoney": 100.294288,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 102.912699168,
+            "marketPrice": 635.54,
+            "marketValue": 99.398340634,
             "pnlCurrency": "USD",
             "quantity": 0.1564,
-            "totalPnl": 2.618411,
-            "totalPnlPct": 0.026107279409571162
+            "totalPnl": -0.895947,
+            "totalPnlPct": -0.008933180721119432
           },
           {
             "acquisitionDate": "20260217",
             "averagePrice": 628.498477444,
             "costBasisMoney": 100.308357,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 105.018329842,
+            "marketPrice": 635.54,
+            "marketValue": 101.432066273,
             "pnlCurrency": "USD",
             "quantity": 0.1596,
-            "totalPnl": 4.709973,
-            "totalPnlPct": 0.04695494115211158
+            "totalPnl": 1.123709,
+            "totalPnlPct": 0.011202546164722845
           },
           {
             "acquisitionDate": "20260304",
             "averagePrice": 632.436551072,
             "costBasisMoney": 100.304437,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 104.360320256,
+            "marketPrice": 635.54,
+            "marketValue": 100.796527011,
             "pnlCurrency": "USD",
             "quantity": 0.1586,
-            "totalPnl": 4.055883,
-            "totalPnlPct": 0.04043572868067641
+            "totalPnl": 0.49209,
+            "totalPnlPct": 0.004905964429071069
           },
           {
             "acquisitionDate": "20260316",
             "averagePrice": 617.791828818,
             "costBasisMoney": 100.329393,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 106.860756681,
+            "marketPrice": 635.54,
+            "marketValue": 103.211576208,
             "pnlCurrency": "USD",
             "quantity": 0.1624,
-            "totalPnl": 6.531364,
-            "totalPnlPct": 0.06509920776656149
+            "totalPnl": 2.882183,
+            "totalPnlPct": 0.028727204598955364
           },
           {
             "acquisitionDate": "20260330",
             "averagePrice": 586.182162478,
             "costBasisMoney": 100.295768,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 112.585440075,
+            "marketPrice": 635.54,
+            "marketValue": 108.74076779,
             "pnlCurrency": "USD",
             "quantity": 0.1711,
-            "totalPnl": 12.289672,
-            "totalPnlPct": 0.12253430274346172
+            "totalPnl": 8.445,
+            "totalPnlPct": 0.08420096050313908
           },
           {
             "acquisitionDate": "20260413",
             "averagePrice": 627.93005632,
             "costBasisMoney": 100.343223,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 105.149931759,
+            "marketPrice": 635.54,
+            "marketValue": 101.559174126,
             "pnlCurrency": "USD",
             "quantity": 0.1598,
-            "totalPnl": 4.806709,
-            "totalPnlPct": 0.047902676994937665
+            "totalPnl": 1.215951,
+            "totalPnlPct": 0.012117918516530012
           },
           {
             "acquisitionDate": "20260427",
             "averagePrice": 658.672626395,
             "costBasisMoney": 100.315841,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 100.214859868,
+            "marketPrice": 635.54,
+            "marketValue": 96.792629658,
             "pnlCurrency": "USD",
             "quantity": 0.1523,
-            "totalPnl": -0.100981,
-            "totalPnlPct": -0.0010066306476960104
+            "totalPnl": -3.523211,
+            "totalPnlPct": -0.03512118290470196
           },
           {
             "acquisitionDate": "20260511",
             "averagePrice": 681.941651937,
             "costBasisMoney": 100.313617,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 96.793210023,
+            "marketPrice": 635.54,
+            "marketValue": 93.487825494,
             "pnlCurrency": "USD",
             "quantity": 0.1471,
-            "totalPnl": -3.520407,
-            "totalPnlPct": -0.03509400922110106
+            "totalPnl": -6.825792,
+            "totalPnlPct": -0.06804452081515514
           },
           {
             "acquisitionDate": "20260526",
             "averagePrice": 692.062213793,
             "costBasisMoney": 100.349021,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 95.411389894,
+            "marketPrice": 635.54,
+            "marketValue": 92.153193043,
             "pnlCurrency": "USD",
             "quantity": 0.145,
-            "totalPnl": -4.937631,
-            "totalPnlPct": -0.049204575697853595
+            "totalPnl": -8.195828,
+            "totalPnlPct": -0.08167322329930853
           },
           {
             "acquisitionDate": "20260608",
             "averagePrice": 684.504331514,
             "costBasisMoney": 100.348335,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 96.464205231,
+            "marketPrice": 635.54,
+            "marketValue": 93.170055862,
             "pnlCurrency": "USD",
             "quantity": 0.1466,
-            "totalPnl": -3.88413,
-            "totalPnlPct": -0.038706471811415705
+            "totalPnl": -7.178279,
+            "totalPnlPct": -0.07153361338780558
           },
           {
             "acquisitionDate": "20260706",
             "averagePrice": 692.24757764,
             "costBasisMoney": 100.306674,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 95.345588935,
+            "marketPrice": 635.54,
+            "marketValue": 92.089639116,
             "pnlCurrency": "USD",
             "quantity": 0.1449,
-            "totalPnl": -4.961085,
-            "totalPnlPct": -0.049459171580148294
+            "totalPnl": -8.217035,
+            "totalPnlPct": -0.08191912534155005
           },
           {
             "acquisitionDate": "20260720",
             "averagePrice": 687.072047945,
             "costBasisMoney": 100.312519,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 96.069399479,
+            "marketPrice": 635.54,
+            "marketValue": 92.788732305,
             "pnlCurrency": "USD",
             "quantity": 0.146,
-            "totalPnl": -4.24312,
-            "totalPnlPct": -0.04229900756454935
+            "totalPnl": -7.523787,
+            "totalPnlPct": -0.07500346990588483
           },
           {
             "acquisitionDate": "20260803",
             "averagePrice": 696.466520833,
             "costBasisMoney": 100.291179,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 94.753380309,
+            "marketPrice": 635.54,
+            "marketValue": 91.51765378,
             "pnlCurrency": "USD",
             "quantity": 0.144,
-            "totalPnl": -5.537799,
-            "totalPnlPct": -0.055217209082764895
+            "totalPnl": -8.773525,
+            "totalPnlPct": -0.08748052508187185
           },
           {
             "acquisitionDate": "20260817",
             "averagePrice": 714.37494302,
             "costBasisMoney": 100.298242,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 92.384545801,
+            "marketPrice": 635.54,
+            "marketValue": 89.229712436,
             "pnlCurrency": "USD",
             "quantity": 0.1404,
-            "totalPnl": -7.913696,
-            "totalPnlPct": -0.07890164216437612
+            "totalPnl": -11.06853,
+            "totalPnlPct": -0.11035617154685523
           },
           {
             "acquisitionDate": "20260826",
             "averagePrice": 706.401007042,
             "costBasisMoney": 100.308943,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 93.437361138,
+            "marketPrice": 635.54,
+            "marketValue": 90.246575256,
             "pnlCurrency": "USD",
             "quantity": 0.142,
-            "totalPnl": -6.871582,
-            "totalPnlPct": -0.06850418112769865
+            "totalPnl": -10.062368,
+            "totalPnlPct": -0.10031376763684968
           },
           {
             "acquisitionDate": "20260902",
             "averagePrice": 705.293129395,
             "costBasisMoney": 100.292683,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 93.568963055,
+            "marketPrice": 635.54,
+            "marketValue": 90.373683108,
             "pnlCurrency": "USD",
             "quantity": 0.1422,
-            "totalPnl": -6.72372,
-            "totalPnlPct": -0.06704098244136115
+            "totalPnl": -9.919,
+            "totalPnlPct": -0.0989005349473002
           },
           {
             "acquisitionDate": "20260909",
             "averagePrice": 703.767775439,
             "costBasisMoney": 100.286908,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 93.76636593,
+            "marketPrice": 635.54,
+            "marketValue": 90.564344887,
             "pnlCurrency": "USD",
             "quantity": 0.1425,
-            "totalPnl": -6.520542,
-            "totalPnlPct": -0.06501887564426655
+            "totalPnl": -9.722563,
+            "totalPnlPct": -0.0969474799242988
           },
           {
             "acquisitionDate": "20260916",
             "averagePrice": 700.264270761,
             "costBasisMoney": 100.34787,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 94.292773599,
+            "marketPrice": 635.54,
+            "marketValue": 91.072776297,
             "pnlCurrency": "USD",
             "quantity": 0.1433,
-            "totalPnl": -6.055096,
-            "totalPnlPct": -0.06034105158385524
+            "totalPnl": -9.275094,
+            "totalPnlPct": -0.09242940582595324
           },
           {
             "acquisitionDate": "20260923",
             "averagePrice": 711.143231751,
             "costBasisMoney": 100.34231,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 92.845152511,
+            "marketPrice": 635.54,
+            "marketValue": 89.674589919,
             "pnlCurrency": "USD",
             "quantity": 0.1411,
-            "totalPnl": -7.497157,
-            "totalPnlPct": -0.07471581030972876
+            "totalPnl": -10.66772,
+            "totalPnlPct": -0.1063132790146051
           },
           {
             "acquisitionDate": "20260930",
             "averagePrice": 707.966831334,
             "costBasisMoney": 100.3189,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 93.239958262,
+            "marketPrice": 635.54,
+            "marketValue": 90.055913477,
             "pnlCurrency": "USD",
             "quantity": 0.1417,
-            "totalPnl": -7.078942,
-            "totalPnlPct": -0.07056439015978046
+            "totalPnl": -10.262987,
+            "totalPnlPct": -0.10230362374388077
           },
           {
             "acquisitionDate": "20261009",
             "averagePrice": 717.286819157,
             "costBasisMoney": 100.348426,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 92.055541008,
+            "marketPrice": 635.54,
+            "marketValue": 88.911942805,
             "pnlCurrency": "USD",
             "quantity": 0.1399,
-            "totalPnl": -8.292885,
-            "totalPnlPct": -0.08264090759131588
+            "totalPnl": -11.436483,
+            "totalPnlPct": -0.11396773677346968
           },
           {
             "acquisitionDate": "20261014",
             "averagePrice": 711.130772502,
             "costBasisMoney": 100.340552,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 92.845152511,
+            "marketPrice": 635.54,
+            "marketValue": 89.674589919,
             "pnlCurrency": "USD",
             "quantity": 0.1411,
-            "totalPnl": -7.495399,
-            "totalPnlPct": -0.07469959902154016
+            "totalPnl": -10.665962,
+            "totalPnlPct": -0.10629762132462656
           },
           {
             "acquisitionDate": "20261021",
             "averagePrice": 711.990943932,
             "costBasisMoney": 100.319524,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 92.713550594,
+            "marketPrice": 635.54,
+            "marketValue": 89.547482067,
             "pnlCurrency": "USD",
             "quantity": 0.1409,
-            "totalPnl": -7.605973,
-            "totalPnlPct": -0.07581747497127278
+            "totalPnl": -10.772042,
+            "totalPnlPct": -0.10737732368028381
           },
           {
             "acquisitionDate": "20261028",
             "averagePrice": 711.196711552,
             "costBasisMoney": 100.349856,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 92.845152511,
+            "marketPrice": 635.54,
+            "marketValue": 89.674589919,
             "pnlCurrency": "USD",
             "quantity": 0.1411,
-            "totalPnl": -7.504703,
-            "totalPnlPct": -0.07478538883005473
+            "totalPnl": -10.675266,
+            "totalPnlPct": -0.10638048150263414
           },
           {
             "acquisitionDate": "20261104",
             "averagePrice": 707.309866008,
             "costBasisMoney": 100.296539,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 93.30575922,
+            "marketPrice": 635.54,
+            "marketValue": 90.119467403,
             "pnlCurrency": "USD",
             "quantity": 0.1418,
-            "totalPnl": -6.99078,
-            "totalPnlPct": -0.06970110902829858
+            "totalPnl": -10.177072,
+            "totalPnlPct": -0.10146982240334336
           },
           {
             "acquisitionDate": "20261111",
             "averagePrice": 700.458065642,
             "costBasisMoney": 100.305595,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 94.22697264,
+            "marketPrice": 635.54,
+            "marketValue": 91.00922237,
             "pnlCurrency": "USD",
             "quantity": 0.1432,
-            "totalPnl": -6.078622,
-            "totalPnlPct": -0.06060102629369778
+            "totalPnl": -9.296373,
+            "totalPnlPct": -0.0926805030168058
           },
           {
             "acquisitionDate": "20261118",
             "averagePrice": 674.634922663,
             "costBasisMoney": 100.318213,
             "currency": "USD",
-            "marketPrice": 658.01,
-            "marketValue": 97.84602536,
+            "marketPrice": 635.54,
+            "marketValue": 94.504688313,
             "pnlCurrency": "USD",
             "quantity": 0.1487,
-            "totalPnl": -2.472188,
-            "totalPnlPct": -0.02464346130248552
+            "totalPnl": -5.813525,
+            "totalPnlPct": -0.057950842884332485
           }
         ],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_lot",
         "status": "complete",
         "summary": {
           "costBasis": 4163.170235,
           "quantity": 6.3012,
-          "totalPnl": -16.92023300000003,
-          "totalPnlPct": -0.004064266423157696
+          "totalPnl": -158.510237,
+          "totalPnlPct": -0.038074406774768844
         }
       },
       "summary": {
@@ -48533,8 +48581,8 @@
           "totals": {
             "costBasis": 4163.170235,
             "quantity": 6.3012,
-            "totalPnl": -16.92023300000003,
-            "totalPnlPct": -0.004064266423157696
+            "totalPnl": -158.510237,
+            "totalPnlPct": -0.038074406774768844
           }
         }
       }
@@ -48572,14 +48620,14 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": null,
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": null,
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_summary",
           "status": "not_applicable"
         }
@@ -48587,12 +48635,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 0,
             "coverageStatus": "not_applicable",
             "sourceMode": "official_activity_flex_summary",
@@ -48603,9 +48651,9 @@
       "eventTimeline": [],
       "events": [],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_summary",
         "status": "not_applicable",
         "summary": {
@@ -48671,14 +48719,14 @@
       "dataAsOf": {
         "lifecycle": {
           "latestEventDate": null,
-          "latestSourceAt": "2026-11-21T05:37:31.574993Z",
+          "latestSourceAt": "2026-11-21T06:43:33.634119Z",
           "statementCoverageStart": "20241112",
-          "statementThrough": "20261119"
+          "statementThrough": "20261120"
         },
         "portfolioClose": null,
         "positionLots": {
-          "asOf": "20261119",
-          "sourceAt": "2026-11-21T05:37:31.574993Z",
+          "asOf": "20261120",
+          "sourceAt": "2026-11-21T06:43:33.634119Z",
           "sourceMode": "official_activity_flex_summary",
           "status": "not_applicable"
         }
@@ -48686,12 +48734,12 @@
       "dataQuality": {
         "domains": {
           "lifecycle": {
-            "ingestionWindows": 92,
+            "ingestionWindows": 93,
             "responseTruncated": false,
             "status": "pass"
           },
           "positionLots": {
-            "asOf": "20261119",
+            "asOf": "20261120",
             "count": 0,
             "coverageStatus": "not_applicable",
             "sourceMode": "official_activity_flex_summary",
@@ -48702,9 +48750,9 @@
       "eventTimeline": [],
       "events": [],
       "positionLots": {
-        "asOf": "20261119",
+        "asOf": "20261120",
         "items": [],
-        "sourceAt": "2026-11-21T05:37:31.574993Z",
+        "sourceAt": "2026-11-21T06:43:33.634119Z",
         "sourceMode": "official_activity_flex_summary",
         "status": "not_applicable",
         "summary": {
@@ -48740,5 +48788,5 @@
   },
   "packageType": "flex",
   "schemaVersion": 1,
-  "valuationDate": "20261119"
+  "valuationDate": "20261120"
 }
