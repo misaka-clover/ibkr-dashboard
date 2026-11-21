@@ -544,7 +544,7 @@ td .sub { display: block; margin-top: 3px; color: var(--muted); font: 10px/1.35 
     <div class="footer-meta-item"><span class="footer-meta-label">回顾范围</span><span class="footer-meta-value" id="footerPeriod">—</span><span class="footer-meta-value" id="footerAnnualCutoff">—</span><span class="footer-meta-value" id="footerBaseline">—</span></div>
     <div class="footer-meta-item"><span class="footer-meta-label">资金与业绩</span><span class="footer-meta-value">美元本位 · 现金流调整 TWR</span><span class="footer-meta-value">收益＝净值变化－净资本流</span></div>
     <div class="footer-meta-item"><span class="footer-meta-label">数据来源</span><span class="footer-meta-value">IBKR Activity Flex</span><span class="footer-meta-value" id="footerTreasuryMethod">—</span></div>
-    <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v8.1.6</span><time class="footer-meta-value" datetime="2026-11-18T12:26:27Z">2026-11-18 12:26 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+    <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v8.2.0</span><time class="footer-meta-value" datetime="2026-11-21T04:21:31Z">2026-11-21 04:21 UTC</time></div><!-- PRODUCT:FOOTER:END -->
   </div>
   <p class="footer-disclaimer">公开家庭版只读取脱敏静态资料；账户日链、利率参照、纪念碑与平仓档案保留独立截止日。本页不连接券商，不构成交易建议。</p>
 </footer>
@@ -621,7 +621,8 @@ function chartPeriodProjection(model, performance, range) {
     const base=full&&model.opening?0:values[baseIndex];
     return dates.map(d=>{const value=values[all.dates.indexOf(d)];return Number.isFinite(base)&&Number.isFinite(value)&&base>-1?(1+value)/(1+base)-1:null;});
   };
-  return {...all,dates,portfolioReturns:rebase(all.portfolioReturns),benchmarks:Object.fromEntries(['SPX','NDX','ACWI'].map(code=>[code,rebase(all.benchmarks[code])]))};
+  const comparisonLength=performance.benchmarkThrough?dates.filter(date=>date<=performance.benchmarkThrough).length:dates.length;
+  return {...all,dates,portfolioReturns:rebase(all.portfolioReturns),benchmarks:Object.fromEntries(['SPX','NDX','ACWI'].map(code=>[code,rebase(all.benchmarks[code]).slice(0,comparisonLength)]))};
 }
 function liquidityRatio(row) {
   const data=row.cash_and_equivalents;
@@ -858,7 +859,8 @@ function syncHistoryChartControls(){
   $('navChartWrap').hidden=perf;$('returnChartWrap').hidden=!perf;$('performanceResult').hidden=!perf;
   $('navTooltip').hidden=liquidity;$('liquidityTooltip').hidden=!liquidity;
   $('historyChartTitle').textContent=perf?'IBKR 投资组合业绩':liquidity?'IBKR 投资组合现金及等价物':'IBKR 投资组合净值';
-  $('historyChartSubtitle').textContent=perf?'账户 TWR 与三个同期指数使用完全相同的完成收盘日期':liquidity?'自定义现金管理口径；左轴占 NAV，右轴美元金额':'完成收盘 NAV、累计净投入本金与按本金流同步建立的 DGS10 复利参照账户';
+  const benchmarkThrough=state.performance?.benchmarkThrough;
+  $('historyChartSubtitle').textContent=perf?(benchmarkThrough&&state.performance.asOf>benchmarkThrough?'账户 TWR 至 '+utcTradeDate(state.performance.asOf)+' · 基准待补（截至 '+utcTradeDate(benchmarkThrough)+'）':'账户 TWR 与三个同期指数使用完全相同的完成收盘日期'):liquidity?'自定义现金管理口径；左轴占 NAV，右轴美元金额':'完成收盘 NAV、累计净投入本金与按本金流同步建立的 DGS10 复利参照账户';
 }
 /* FAMILY:HISTORY_DATE_SELECTION:START */
 async function selectChartDate(raw){if(!raw)return;state.selectedDate=raw;drawChart();}
@@ -1187,9 +1189,12 @@ function drawChart(){
         var benchmark = period && period.benchmarks ? period.benchmarks[benchmarkKey] : null;
         var dates = period && Array.isArray(period.dates) ? period.dates : [];
         var portfolio = period && Array.isArray(period.portfolioReturns) ? period.portfolioReturns.map(Number) : [];
+        var benchmarkThrough = payload.benchmarkThrough;
+        var benchmarkPending = Boolean(benchmarkThrough && dates[dates.length - 1] > benchmarkThrough);
+        var comparisonLength = benchmarkPending ? dates.filter(function (date) { return date <= benchmarkThrough; }).length : dates.length;
         if (!Array.isArray(benchmark) || benchmark.some(function (value) { return asNumber(value) == null; })) throw new Error("同期指数存在缺失值。");
         benchmark = benchmark.map(Number);
-        if (!dates.length || dates.length !== portfolio.length || dates.length !== benchmark.length || portfolio.concat(benchmark).some(function (value) { return !Number.isFinite(value); })) {
+        if (!dates.length || dates.length !== portfolio.length || comparisonLength !== benchmark.length || portfolio.concat(benchmark).some(function (value) { return !Number.isFinite(value); })) {
           throw new Error("Performance period does not match the benchmark sessions.");
         }
         syncHistoryChartControls();
@@ -1198,7 +1203,8 @@ function drawChart(){
         document.getElementById("returnTooltipBenchmarkName").textContent = definition.label;
         document.getElementById("returnTooltipDeltaName").textContent = "相对 " + definition.label;
         var badge = document.getElementById("historyChartBadge");
-        badge.textContent = utcTradeDate(payload.asOf); badge.className = "badge official";
+        badge.textContent = benchmarkPending ? "基准待补" : utcTradeDate(payload.asOf);
+        badge.className = benchmarkPending ? "badge provisional" : "badge official";
         var svg = document.getElementById("returnChart");
         var wrap = document.getElementById("returnChartWrap");
         var tooltip = document.getElementById("returnTooltip");
@@ -1241,13 +1247,15 @@ function drawChart(){
           var xx = x(activeIndex);
           focusLine.setAttribute("x1", xx); focusLine.setAttribute("x2", xx); focusLine.setAttribute("visibility", "visible");
           accountDot.setAttribute("cx", xx); accountDot.setAttribute("cy", y(portfolio[activeIndex])); accountDot.setAttribute("visibility", "visible");
-          benchmarkDot.setAttribute("cx", xx); benchmarkDot.setAttribute("cy", y(benchmark[activeIndex])); benchmarkDot.setAttribute("visibility", "visible");
+          var hasBenchmark = activeIndex < benchmark.length;
+          benchmarkDot.setAttribute("visibility", hasBenchmark ? "visible" : "hidden");
+          if (hasBenchmark) { benchmarkDot.setAttribute("cx", xx); benchmarkDot.setAttribute("cy", y(benchmark[activeIndex])); }
           tooltip.querySelector(".tooltip-date").textContent = displayDate(dates[activeIndex]);
           var accountValue = portfolio[activeIndex];
-          var benchmarkValue = benchmark[activeIndex];
-          var relativeValue = accountValue - benchmarkValue;
+          var benchmarkValue = hasBenchmark ? benchmark[activeIndex] : null;
+          var relativeValue = hasBenchmark ? accountValue - benchmarkValue : null;
           document.getElementById("returnTooltipAccount").textContent = signedPercent(accountValue);
-          document.getElementById("returnTooltipBenchmark").textContent = signedPercent(benchmarkValue);
+          document.getElementById("returnTooltipBenchmark").textContent = hasBenchmark ? signedPercent(benchmarkValue) : "基准待补";
           document.getElementById("returnTooltipDelta").textContent = signedPercentagePoints(relativeValue);
           [
             ["returnTooltipAccount", accountValue],
@@ -1261,7 +1269,7 @@ function drawChart(){
           var svgRect = svg.getBoundingClientRect();
           var wrapRect = wrap.getBoundingClientRect();
           var pointX = svgRect.left - wrapRect.left + xx / width * svgRect.width;
-          var pointY = svgRect.top - wrapRect.top + Math.min(y(accountValue), y(benchmarkValue)) / height * svgRect.height;
+          var pointY = svgRect.top - wrapRect.top + (hasBenchmark ? Math.min(y(accountValue), y(benchmarkValue)) : y(accountValue)) / height * svgRect.height;
           var tw = tooltip.offsetWidth, th = tooltip.offsetHeight, gap = 12;
           var left = wrap.clientWidth - pointX - gap >= tw ? pointX + gap : pointX - gap - tw;
           var top = pointY - th - gap;
@@ -1297,8 +1305,8 @@ function drawChart(){
           event.preventDefault(); show(activeIndex);
         };
         var accountReturn = portfolio[portfolio.length - 1];
-        var benchmarkReturn = benchmark[benchmark.length - 1];
-        var relative = accountReturn - benchmarkReturn;
+        var benchmarkReturn = benchmark.length ? benchmark[benchmark.length - 1] : null;
+        var relative = benchmarkPending ? null : accountReturn - benchmarkReturn;
         var result = document.getElementById("performanceResult"); result.replaceChildren();
         [
           ["IBKR TWR", accountReturn],
@@ -1317,7 +1325,8 @@ function drawChart(){
         var returnLabel = definition.returnType === "net_total_return" ? "净总回报" : "价格回报";
         document.getElementById("historyChartNote").textContent =
           displayDate(dates[0]) + " — " + displayDate(dates[dates.length - 1]) +
-          " · 账户采用 TWR，" + definition.label + " 采用" + returnLabel + "；所有点使用相同完成收盘日期。";
+          " · 账户采用 TWR，" + definition.label + " 采用" + returnLabel +
+          (benchmarkPending ? "；基准待补（截至 " + utcTradeDate(benchmarkThrough) + "）。" : "；所有点使用相同完成收盘日期。");
       }
 
 // Original History modules, scoped by the preview year selection.

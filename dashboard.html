@@ -2090,7 +2090,7 @@
           <span class="footer-meta-label">收益率口径</span>
           <span class="footer-meta-value" id="footerReturnMethod">—</span>
         </div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v8.1.6</span><time class="footer-meta-value" datetime="2026-11-18T12:26:27Z">2026-11-18 12:26 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v8.2.0</span><time class="footer-meta-value" datetime="2026-11-21T04:21:31Z">2026-11-21 04:21 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer">组合事实统一使用完成 RTH 收盘，不以盘中或夜盘补值；挂单另行标注最近验证时间。风险监控不显示保证金。本机只读，不保存账户号、订单 ID、成交 ID 或凭证；不构成交易建议。</p>
     </footer>
@@ -2630,7 +2630,10 @@
 
         var sourceIndex = 0;
         var latestClose = null;
-        var alignedCloses = period.dates.map(function (date) {
+        var comparisonDates = benchmarkHistory.status === "pending"
+          ? period.dates.filter(function (date) { return date <= benchmarkHistory.completedThrough; })
+          : period.dates;
+        var alignedCloses = comparisonDates.map(function (date) {
           while (sourceIndex < source.dates.length && source.dates[sourceIndex] <= date) {
             latestClose = n(source.closes[sourceIndex]);
             sourceIndex += 1;
@@ -2857,6 +2860,10 @@
           focusLine.setAttribute("x2", x(activeIndex));
           focusLine.setAttribute("visibility", "visible");
           focusDots.forEach(function (dot, seriesIndex) {
+            if (activeIndex >= chartSeries[seriesIndex].values.length) {
+              dot.setAttribute("visibility", "hidden");
+              return;
+            }
             dot.setAttribute("cx", x(activeIndex));
             dot.setAttribute("cy", y(chartSeries[seriesIndex].values[activeIndex]));
             dot.setAttribute("visibility", "visible");
@@ -2877,7 +2884,9 @@
           var xScale = svgRect.width / width;
           var yScale = svgRect.height / height;
           var pointX = svgRect.left - wrapRect.left + x(activeIndex) * xScale;
-          var pointYs = chartSeries.map(function (series) {
+          var pointYs = chartSeries.filter(function (series) {
+            return activeIndex < series.values.length;
+          }).map(function (series) {
             return svgRect.top - wrapRect.top + y(series.values[activeIndex]) * yScale;
           });
           var pointTop = Math.min.apply(null, pointYs);
@@ -4712,7 +4721,10 @@
         var benchmarkTooltipName = document.getElementById("returnTooltipBenchmarkName");
         var benchmarkDeltaName = document.getElementById("returnTooltipDeltaName");
         var benchmarkLegendValue = document.getElementById("benchmarkLegendValue");
-        document.getElementById("returnSubtitle").textContent = allBenchmarkCoverageMissing
+        var benchmarkPending = benchmarkHistory.status === "pending";
+        document.getElementById("returnSubtitle").textContent = benchmarkPending
+          ? "账户已更新 · 基准待补（截至 " + fullUtcDate(benchmarkHistory.completedThrough) + "）"
+          : allBenchmarkCoverageMissing
           ? "账户 TWR 自 " + fullUtcDate(period.dates[0]) + "；三指数同期完整历史尚未覆盖"
           : state.period === "ALL"
             ? "账户 TWR 自 " + fullUtcDate(period.dates[0]) + "；三指数已按同期完成收盘对齐"
@@ -4726,7 +4738,7 @@
           benchmarkLegendName.textContent = benchmarkLabel;
           benchmarkTooltipName.textContent = benchmarkLabel;
           benchmarkDeltaName.textContent = "相对指数";
-          benchmarkLegendValue.textContent = allBenchmarkCoverageMissing ? "同期覆盖不足" : "暂无数据";
+          benchmarkLegendValue.textContent = benchmarkPending ? "基准待补" : allBenchmarkCoverageMissing ? "同期覆盖不足" : "暂无数据";
           benchmarkLegendValue.classList.remove("positive", "negative", "neutral");
         }
         var navValue = document.getElementById("navValue");
@@ -4814,13 +4826,13 @@
             var benchmarkValue = document.getElementById("returnTooltipBenchmark");
             var deltaName = document.getElementById("returnTooltipDeltaName");
             var deltaValue = document.getElementById("returnTooltipDelta");
-            if (series[1]) {
+            if (series[1] && index < series[1].values.length) {
               setSignedText(benchmarkValue, series[1].values[index], signedPercent);
               deltaName.textContent = "相对 " + series[1].label;
               setSignedText(deltaValue, series[0].values[index] - series[1].values[index], signedPercentagePoints);
             }
             else {
-              benchmarkValue.textContent = "暂无数据";
+              benchmarkValue.textContent = benchmarkPending ? "基准待补" : "暂无数据";
               benchmarkValue.classList.remove("positive", "negative", "neutral");
               deltaName.textContent = "相对指数";
               deltaValue.textContent = "暂无数据";
