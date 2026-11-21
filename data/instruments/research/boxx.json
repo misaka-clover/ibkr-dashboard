@@ -3,8 +3,8 @@
     "dataAsOf": {
       "research": {
         "latestAsOfDate": "20261103",
-        "providerPublishedDate": "20260929",
-        "providerVerifiedAt": "2026-11-04T03:00:18.339254Z"
+        "providerPublishedDate": "20261027",
+        "providerVerifiedAt": "2026-11-20T06:25:48Z"
       }
     },
     "dataQuality": {
@@ -12,7 +12,7 @@
         "research": {
           "count": 2,
           "message": "Morningstar 中文摘要已按书面许可公开；内容为独立转述，公开链接仅指向 Morningstar 官方股票／研究入口，PDF 不随页面发布。",
-          "status": "warning"
+          "status": "pass"
         }
       }
     },
@@ -20,22 +20,22 @@
       {
         "analyst": {
           "name": "Morningstar Automated Analysis / Lan Anh Tran",
-          "role": "2026-09量化评价 / 2026-01历史Prospects人工专题"
+          "role": "量化评价 / 2026-01 历史 Prospects 人工专题"
         },
         "freshness": {
-          "ageDays": 15.945673405891203,
+          "ageDays": 1.1784698799768518,
           "maximumDays": 7,
-          "status": "stale",
-          "warning": "资料超过七天未重新核验"
+          "status": "current",
+          "warning": null
         },
-        "interpretation": "晨星目前可取得的 BOXX 分析页给出量化衍生的 Neutral，评级日为 2026 年 8 月 31 日、发布日为 9 月 29 日：模型对完整周期相对同类没有明确超额或落后预期。2026 年 1 月 Prospects 是另一份历史人工专题，由 Lan Anh Tran 撰写，数据截至 2025 年底，当时为两星。专题将独特的期权流程作为看点，认可其现金类、潜在税务效率用途，同时明确税务效率没有保证，并提到 2024 年 8 月的资本利得分配。2024 年相关文章解释了箱式价差及税务递延思路，但其当时的分配记录和收益表现不能视作现况。另可取得的 Alpha Architect 公司级 Parent 评价为 Average，不能直接当作 BOXX 的单项支柱分数。当前星级及完整基金支柱分数未取得；这些资料也不构成个股公允价值估值。",
+        "interpretation": "晨星对 BOXX 的量化衍生 Medalist 评级维持中性，2026 年 9 月 30 日评级、10 月 27 日发布。模型对完整市场周期内相对同类的超额或落后表现没有明确预期。Alpha Architect 的公司级 Parent 评价由平均升至高于平均，官网日期为 2026 年 10 月 27 日。BOXX 基金自身三项支柱的具体分数仍缺公开证据。7 月发布的下半年 Prospects 固定收益名单继续收录 BOXX，附表资料截至 2026 年 6 月 30 日。Lan Anh Tran 的 2026 年 1 月人工专题是独立历史资料，指出箱式价差策略可用于寻求潜在税务效率的现金管理，但税务效率取决于条件，并记录了 2024 年 8 月的资本利得分配。2024 年相关文章提供策略背景，其收益和分配资料保留原观察时点。",
         "metrics": {
           "historicalStarRating": 2,
           "historicalStarRatingAsOf": "20251231",
           "managerResearchAnalyst": "Lan Anh Tran",
           "managerResearchAsOf": "20251231",
           "medalistMethod": "quantitatively_derived",
-          "medalistRatedDate": "20260831",
+          "medalistRatedDate": "20260930",
           "medalistRating": "neutral",
           "morningstarCategory": "Ultrashort Bond",
           "researchType": "fund_medalist",
@@ -52,20 +52,30 @@
             },
             {
               "label": "Alpha Architect公司级Parent评价",
-              "publishedAt": "20260929",
+              "publishedAt": "20261027",
               "url": "https://www.morningstar.com/asset-management-companies/alpha-architect-BN00000HCR"
+            },
+            {
+              "asOf": "20260630",
+              "label": "晨星 Prospects 2026 年下半年固定收益观察名单",
+              "publishedAt": "20260727",
+              "url": "https://www.morningstar.com/funds/6-overlooked-funds-morningstars-radar"
             }
           ]
         },
         "provider": "Morningstar",
-        "publishedDate": "20260929",
+        "publishedDate": "20261027",
         "sections": {
+          "coverage": [
+            "BOXX 继续列于 2026 年下半年固定收益 Prospects 观察名单。文章发布于 2026-07-27，附表资料截至 2026-06-30，原表记载首次入选于 2024 年第三季度。",
+            "2026 年 1 月的 BOXX 人工专题沿用作者 Lan Anh Tran 及资料截止 2025-12-31。下半年资料提供名单观察，完整基金支柱分数仍待公开证据。"
+          ],
           "investmentMerit": [
             "晨星历史人工观点认为它可吸引寻找税务效率现金类工具的投资者；这是有条件的产品用途判断。",
             "量化 Neutral 是相对表现预期，不等于否定所有用途，也不是本金或税务保证。"
           ],
           "parent": [
-            "2026-09-29 的公司级量化评价给予 Alpha Architect Average；考察成本、风险调整后的成功率、人员留任及产品淘汰等因素。",
+            "2026-10-27 晨星公布的 Alpha Architect 公司级评价为 Above Average（高于平均）。评价考虑费用、风险调整表现、经理留任及基金淘汰等因素。",
             "该公司级评价与 BOXX 独立 Parent Pillar 的具体取值应分开，后者在本次取得资料中不可用。"
           ],
           "people": [
@@ -87,8 +97,8 @@
         },
         "sourceUrl": "https://www.morningstar.com/etfs/bats/boxx/analysis",
         "title": "BOXX：基金量化评级与历史人工研究",
-        "verifiedAt": "2026-11-04T03:00:18.339254Z",
-        "version": 3
+        "verifiedAt": "2026-11-20T06:25:48Z",
+        "version": 4
       }
     ],
     "publicationStatus": "internal_and_morningstar_research_published",
@@ -400,7 +410,7 @@
       }
     }
   },
-  "generatedAt": "2026-11-20T01:42:02.645351Z",
+  "generatedAt": "2026-11-21T10:48:32.792490Z",
   "packageType": "research",
   "schemaVersion": 1,
   "symbol": "BOXX"
