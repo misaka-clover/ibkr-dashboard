@@ -1061,7 +1061,7 @@
       <div class="footer-meta-item"><span class="footer-meta-label" id="footerAccountLabel">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v9.0.0</span><time class="footer-meta-value" datetime="2026-11-23T02:05:34Z">2026-11-23 02:05 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v9.3.0</span><time class="footer-meta-value" datetime="2026-11-24T03:35:36Z">2026-11-24 03:35 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -4517,6 +4517,9 @@
       function researchVersionBadge(assessment) {
         var presentation = assessment.researchPresentation || assessment.localPresentation || {};
         var version = presentation.researchVersion;
+        if (!version && localEtfView(assessment) && /^v\d+(?:\.\d+){0,2}$/.test(assessment.sourceVersion)) {
+          version = assessment.sourceVersion;
+        }
         if (!version) {
           var matches = [...String(assessment.sourceVersion || "").matchAll(/(?:^|[^A-Za-z0-9.])(v[0-9]+\.[0-9]+(?:\.[0-9]+)?)(?![A-Za-z0-9.])/g)];
           if (matches.length === 1) version = matches[0][1];
@@ -4566,13 +4569,21 @@
         });
         return approved ? approved.title : canonicalResearchTitle(symbol, type, assessment.sourceVersion, completed);
       }
+      /* FAMILY:INSTRUMENT_LOCAL_ETF_SELECTOR:START */
+      function localEtfView() { return null; }
+/* FAMILY:INSTRUMENT_LOCAL_ETF_SELECTOR:END */
       function researchCardMetadata(assessment, detail) {
         var presentation = assessment.researchPresentation || assessment.localPresentation;
-        var legacyTitle = presentation ? "" : verifiedLegacyResearchTitle(detail, assessment);
+        var localEtf = localEtfView(assessment);
+        var localTitle = localEtf && assessment.result?.reportTitle;
+        var vooCurrent = localEtf?.symbol === "VOO" && localEtf.profile === "equity_index"
+          && assessment.asOfDate === "20261120" && assessment.sourceVersion === "v2.0"
+          && localTitle === "VOO 90 日正式复核 · v2.0";
+        var legacyTitle = presentation || localEtf ? "" : verifiedLegacyResearchTitle(detail, assessment);
         var basis = presentation?.basis;
         var basisLabel = basis
           ? (basis.kind === "valuation_date" ? "估值日 " : "研究基准 ") + basis.date
-          : (researchUtcDay(assessment.asOfDate) == null ? "" : (legacyTitle ? "估值日 " : "研究基准 ") + compactToIso(assessment.asOfDate));
+          : (researchUtcDay(assessment.asOfDate) == null ? "" : ((legacyTitle || localEtf) ? "估值日 " : "研究基准 ") + compactToIso(assessment.asOfDate));
         var completed = presentation?.completion;
         var completedLabel = "分析完成时间未核实";
         if (completed?.utc && completed.precision !== "unknown") {
@@ -4586,8 +4597,9 @@
           }
         }
         return {
-          title: presentation?.displayReportName || presentation?.reportTitle || legacyTitle,
-          headline: presentation?.researchHeadline || "",
+          title: presentation?.displayReportName || presentation?.reportTitle || (vooCurrent ? "VOO 90 日正式复核" : localTitle) || legacyTitle,
+          headline: presentation?.researchHeadline
+            || (vooCurrent ? "低费率与长期跟踪支持核心配置，预期回报仍取决于现金流与终值" : ""),
           fiscalLabel: presentation?.fiscalPeriod ? "财报期 " + presentation.fiscalPeriod : "",
           completedLabel: completedLabel,
           basisLabel: basisLabel
@@ -4610,6 +4622,10 @@
         var presentation = assessment.researchPresentation || assessment.localPresentation;
         var reportTitle = presentation?.reportTitle;
         var originalTitle = presentation?.displayReportName && reportTitle !== presentation.displayReportName ? reportTitle : "";
+        if (!presentation && localEtfView(assessment)) {
+          reportTitle = assessment.result?.reportTitle;
+          if (reportTitle && reportTitle !== researchCardMetadata(assessment).title) originalTitle = reportTitle;
+        }
         if (originalTitle) {
           var original = document.createElement("p"); original.className = "section-note";
           original.textContent = "报告原题「" + originalTitle + "」"; details.appendChild(original);
@@ -4670,6 +4686,30 @@
       function morningstarDetailPresentation(symbol, provider) {
         var sections = provider.sections || {}, metrics = provider.metrics || {};
         var original = {sections: sections, interpretation: provider.interpretation};
+        if (symbol === "VOO" && provider.version === 2 && metrics.researchType === "fund_medalist"
+            && metrics.medalistRating === "gold" && metrics.medalistRatedDate === null
+            && provider.publishedDate === "20260427"
+            && provider.sourceUrl === "https://www.morningstar.com/etfs/arcx/voo/analysis") {
+          var dateContext = "晨星在 2026 年 11 月 4 日发表的文章中将美国 VOO 列为 Gold，类别为 Large Blend。Gold 的授予或调整日期待核实。Brendan McCann 的基金分析发表于 2026 年 4 月 27 日，分析页也将当天列为评级日期，公开部分未显示当天的奖牌档位。";
+          var overviewPrefix = dateContext + "该分析";
+          if (typeof provider.interpretation !== "string" || !provider.interpretation.startsWith(overviewPrefix)
+              || !Array.isArray(sections.process) || !Array.isArray(sections.costs)
+              || !Array.isArray(sections.investmentMerit) || !Array.isArray(sections.portfolioRole)) return original;
+          var medalArticle = "2026 年 11 月 4 日，Bella Albrecht 的晨星文章在美国 VOO 条目列出 Gold、Large Blend。这篇文章提供奖牌观察日期。Gold 的授予或调整日期待核实。";
+          var grouped = Object.assign({}, sections, {
+            process: sections.process.concat(sections.costs),
+            investmentMerit: sections.investmentMerit.map(function (item) {
+              return item.startsWith(medalArticle) ? item.slice(medalArticle.length) : item;
+            }).concat(sections.portfolioRole)
+          });
+          delete grouped.costs;
+          delete grouped.portfolioRole;
+          return {
+            sections: grouped,
+            interpretation: "晨星的基金分析" + provider.interpretation.slice(overviewPrefix.length),
+            dateContext: dateContext.replace("晨星在", "晨星作者 Bella Albrecht 在")
+          };
+        }
         if (symbol !== "BOXX" || provider.version !== 4 || metrics.researchType !== "fund_medalist") return original;
         var prospects = (Array.isArray(metrics.supportingSources) ? metrics.supportingSources : []).find(function (entry) {
           return entry?.url === "https://www.morningstar.com/funds/6-overlooked-funds-morningstars-radar"
@@ -4717,6 +4757,8 @@
         var isFundMedalist = metrics.researchType === "fund_medalist";
         var isFundArticle = metrics.researchType === "official_articles";
         var isCoverageStatus = metrics.researchType === "coverage_status";
+        var vooUndatedGold = isFundMedalist && primarySymbol(state.detail) === "VOO"
+          && metrics.medalistRating === "gold" && metrics.medalistRatedDate === null;
         morningstarTitle.textContent = isFundResearch ? "晨星基金研究" : "晨星研报";
         applyFreshnessBadge(freshnessBadge, providerFreshnessState(provider, Date.now()));
         var overview = document.createElement("div"); overview.className = "morningstar-overview";
@@ -4733,7 +4775,7 @@
               ? "晨星覆盖页 ↗"
               : equitySourceLabels.link;
         var reportTitle = document.createElement("div"); reportTitle.className = "section-note";
-        reportTitle.textContent = provider.title;
+        reportTitle.textContent = vooUndatedGold ? "Vanguard S&P 500 ETF 基金分析" : provider.title;
         var analystLine = document.createElement("div"); analystLine.className = "morningstar-analyst";
         analystLine.textContent = isCoverageStatus && !analyst.name
           ? "分析师 · 当前无覆盖"
@@ -4749,7 +4791,9 @@
             ? "覆盖状态核验 " + utcDateOnly(provider.publishedDate)
             : equitySourceLabels.publication + utcDateOnly(provider.publishedDate)
               + (reportAsOf ? " · 完整报告截止 " + reportAsOf : "");
-        overview.append(copy, dateBlock); body.appendChild(overview);
+        overview.appendChild(copy);
+        if (!vooUndatedGold) overview.appendChild(dateBlock);
+        body.appendChild(overview);
 
         var metricRows;
         if (isFundMedalist) {
@@ -4766,8 +4810,8 @@
             ],
             [
               "Medalist Rating",
-              medalistLabels[metrics.medalistRating] || metrics.medalistRating || "—",
-              (medalistMethodLabels[metrics.medalistMethod] || "评级方式未核实")
+              vooUndatedGold ? "Gold" : medalistLabels[metrics.medalistRating] || metrics.medalistRating || "—",
+              vooUndatedGold ? null : (medalistMethodLabels[metrics.medalistMethod] || "评级方式未核实")
                 + " · " + compactToIso(metrics.medalistRatedDate)
             ],
             ["晨星分类", metrics.morningstarCategory || "—", "基金类别，不是信用评级"],
@@ -4854,8 +4898,12 @@
             var gap = document.createElement("span"); gap.className = "morningstar-gap"; gap.textContent = " · " + entry[4];
             setClassBySign(gap, entry[3]); value.appendChild(gap);
           }
-          var note = document.createElement("div"); note.className = "morningstar-metric-note"; note.textContent = entry[2];
-          item.append(label, value, note); metricGrid.appendChild(item);
+          item.append(label, value);
+          if (entry[2]) {
+            var note = document.createElement("div"); note.className = "morningstar-metric-note"; note.textContent = entry[2];
+            item.appendChild(note);
+          }
+          metricGrid.appendChild(item);
         });
         body.appendChild(metricGrid);
         var presentation = morningstarDetailPresentation(primarySymbol(state.detail), provider);
@@ -4871,7 +4919,7 @@
           ? {
               process: "投资流程", people: "团队", parent: "基金公司",
               taxEfficiency: "税务效率", investmentMerit: "投资用途", risks: "主要风险",
-              coverage: "覆盖状态", costs: "成本", liquidity: "流动性",
+              coverage: presentation.dateContext ? "历史星级与覆盖" : "覆盖状态", costs: "成本", liquidity: "流动性",
               portfolioRole: "组合角色", tax: "税务"
             }
           : {
@@ -4897,6 +4945,10 @@
           card.append(title, renderList(presentation.sections[key])); sectionGrid.appendChild(card);
         });
         details.appendChild(sectionGrid);
+        if (presentation.dateContext) {
+          var dateContext = document.createElement("p"); dateContext.className = "section-note";
+          dateContext.textContent = presentation.dateContext; details.appendChild(dateContext);
+        }
         var sourceList = document.createElement("div"); sourceList.className = "source-list";
         var source = document.createElement(sourceHref ? "a" : "div"); source.className = "source-link";
         if (sourceHref) { source.href = sourceHref; source.target = "_blank"; source.rel = "noreferrer"; }
@@ -4908,12 +4960,22 @@
               : equitySourceLabels.source;
         var sourceDate = document.createElement("span"); sourceDate.className = "source-date"; sourceDate.textContent = utcDateOnly(provider.publishedDate);
         source.append(sourceName, sourceDate); sourceList.appendChild(source); details.appendChild(sourceList);
+        var vooSourceLabels = presentation.dateContext ? {
+            "Morningstar · 美国 VOO 的 Gold 与 Large Blend（文章刊发时的观察）": "晨星 · VOO 奖牌与分类",
+            "Morningstar · 美国 VOO 的三项支柱": "晨星 · VOO 三项支柱",
+            "Fidelity/NFS · FactSet 展示，基金评级由 Morningstar, Inc. 提供": "Fidelity/NFS · 晨星各期限星级",
+            "Vanguard · 美国 VOO 发行人页面分发的晨星评级": "Vanguard · VOO 晨星评级",
+            "Morningstar · 旧卡所引分析师覆盖比例的历史观察": "晨星 · 历史覆盖比例"
+          } : {};
         (Array.isArray(metrics.supportingSources) ? metrics.supportingSources : []).forEach(function (entry) {
           if (!entry || !entry.url) return;
+          if (presentation.dateContext && entry.url === sourceHref && entry.publishedAt === provider.publishedDate
+              && entry.label === "Morningstar · 美国 VOO 分析发表日及分析页列示的评级日（当日奖牌档位未公开显示）") return;
           var link = document.createElement("a"); link.className = "source-link";
           link.href = entry.url; link.target = "_blank"; link.rel = "noreferrer";
           var label = document.createElement("span"); label.textContent = entry === presentation.prospects
-            ? "晨星 Prospects 下半年名单" : entry.label || "Morningstar 补充资料";
+            ? "晨星 Prospects 下半年名单"
+            : (Object.hasOwn(vooSourceLabels, entry.label) ? vooSourceLabels[entry.label] : entry.label) || "Morningstar 补充资料";
           var date = document.createElement("span"); date.className = "source-date";
           date.textContent = utcDateOnly(entry.publishedAt || entry.asOf);
           link.append(label, date); sourceList.appendChild(link);
@@ -5193,6 +5255,8 @@
             [
               researchAnalysisTimeLabel(entry),
               researchSourceVersionLabel(entry),
+              localEtfView(assessment) && researchUtcDay(entry.asOfDate) != null
+                ? "研究基准 " + compactToIso(entry.asOfDate) : "",
               entry.legacyReference ? "历史研究参考" : researchLabel(entry.status),
               archivedResult.valuationStateLabelZh || (archivedResult.valuationState ? researchLabel(archivedResult.valuationState) : ""),
               archivedResult.existingPositionAction ? researchLabel(archivedResult.existingPositionAction) : ""
@@ -5341,18 +5405,24 @@
         return null;
       }
       /* FAMILY:INSTRUMENT_PRIVATE_TREASURY_RUNTIME:END */
-      function renderFundResearchDetails(body, assessment, result, model, output) {
+      /* FAMILY:INSTRUMENT_LOCAL_ETF_RESEARCH:START *//* FAMILY:INSTRUMENT_LOCAL_ETF_RESEARCH:END */
+      function renderFundModelExplanation(body, text, originalText) {
         var context = document.createElement("dl"); context.className = "valuation-context";
         var row = document.createElement("div"); row.className = "valuation-context-row";
         var label = document.createElement("dt"); label.className = "valuation-context-label";
         label.textContent = "模型说明";
         var copy = document.createElement("dd"); copy.className = "valuation-context-copy";
-        var original = document.createElement("span"); original.lang = "en";
-        original.textContent = model.structure + " · " + output.qualifier;
-        copy.append(document.createTextNode("情景表列各持有期扣除情景费用后的模拟回报，非保证收益或概率。"),
-          document.createElement("br"), original);
+        copy.appendChild(document.createTextNode(text));
+        if (originalText) {
+          var original = document.createElement("span"); original.lang = "en";
+          original.textContent = originalText;
+          copy.append(document.createElement("br"), original);
+        }
         row.append(label, copy); context.appendChild(row); body.appendChild(context);
-
+      }
+      function renderFundResearchDetails(body, assessment, result, model, output) {
+        renderFundModelExplanation(body, "情景表列各持有期扣除情景费用后的模拟回报，非保证收益或概率。",
+          model.structure + " · " + output.qualifier);
         renderResearchMonitoring(body, result.monitoring);
         var valuationChapter = result.fiveLayerDecisionSummary?.valuationAndPricedExpectations?.summary
           ? "valuationAndPricedExpectations" : "conclusion";
@@ -5385,10 +5455,11 @@
       function renderAssetResearch(body, assessment, detail) {
         var result = assessment.result || {}, asset = result.assetResearch, bond = result.fixedIncomeProjection;
         var fund = assessment.assessmentType === "fund_research";
+        /* FAMILY:INSTRUMENT_LOCAL_ETF_INPUT:START */var localEtf = false;/* FAMILY:INSTRUMENT_LOCAL_ETF_INPUT:END */
         var data = fund ? asset : bond;
         var treasury = preparePrivateTreasuryResearch(result, fund);
-        if (!data || (fund ? (!data.researchObject || data.researchObject.assetKind !== "fund" || data.researchObject.symbol !== "BOXX")
-            : data.formatId !== "ordinary-asset-native-reader-v1" || data.assetKind !== "us_treasury_basket")) {
+        if (!localEtf && (!data || (fund ? (!data.researchObject || data.researchObject.assetKind !== "fund" || data.researchObject.symbol !== "BOXX")
+            : data.formatId !== "ordinary-asset-native-reader-v1" || data.assetKind !== "us_treasury_basket"))) {
           throw new Error("资产研究展示字段不完整，请核对已审阅投影。");
         }
         ["existingPositionDecision", "newMoneyDecision", "recommendedAction"].forEach(function (key) {
@@ -5396,14 +5467,20 @@
         });
         var display = result.reviewedDisplay || {};
         if (display.formatId !== "ordinary-asset-native-reader-v1" || !display.overview || !display.layers) throw new Error("资产研究概述缺失。");
-        renderCurrentResearchHeading(body, assessment, detail, treasury?.holdingTitle);
+        var modelName = localEtf && {
+          equity_index: "指数 ETF 复核",
+          physical_commodity_trust: "实物贵金属信托复核",
+          short_rate_derivatives: "箱式价差基金复核"
+        }[localEtf.profile];
+        var localTitle = localEtf && !result.reportTitle && (localEtf.symbol + "｜" + modelName);
+        renderCurrentResearchHeading(body, assessment, detail, localTitle || treasury?.holdingTitle);
         var badges = document.createElement("div"); badges.className = "badge-row";
         var versionLabel = researchVersionBadge(assessment);
         [fund ? "基金研究" : "固定收益研究", versionLabel, valuationMaturityLabel(result.valuationMaturity), researchLabel(result.researchMaturity)].forEach(function (label) {
           var badge = document.createElement("span"); badge.className = "badge"; badge.textContent = label; badges.appendChild(badge);
         });
         badges.appendChild(researchFreshnessBadge(assessment));
-        if (fund) {
+        if (fund && !localEtf) {
           [["现有持仓", result.existingPositionDecision], ["新增资金", result.newMoneyDecision]].forEach(function (entry) {
             var badge = document.createElement("span");
             var label = researchLabel(entry[1]);
@@ -5461,10 +5538,15 @@
           var card = document.createElement("article"); card.className = "case-card";
           var title = document.createElement("h3"); title.textContent = entry[0]; card.append(title, renderList(entry[1])); cases.appendChild(card);
         }); body.appendChild(cases);
-        var model = fund ? data.model : data.modelInputs, output = data.modelResult;
+        var model = localEtf || (fund ? data.model : data.modelInputs), output = localEtf || data.modelResult;
         if (!model || !output) throw new Error("必要资产模型缺失。");
         var metrics = document.createElement("div"); metrics.className = "morningstar-metrics fixed-income-research-metrics";
-        var entries = fund ? [
+        var entries = localEtf ? [
+          ["每份净值", money(localEtf.navPerShare,"USD",localEtf.profile === "physical_commodity_trust" ? 6 : 2), localEtf.valuationDate],
+          ["交易所收盘", money(localEtf.marketPricePerShare,"USD",2), localEtf.valuationDate],
+          ["溢折价", percent(localEtf.premiumDiscountPct,4), "收盘价相对每份净值"],
+          ["年费用率", percent(localEtf.annualExpensePct,4), "原费用口径"]
+        ] : fund ? [
           ["NAV", money(model.navUsd,"USD",4), model.navAsOf],
           ["市价", money(model.marketPriceUsd,"USD",4), model.marketAsOf],
           ["溢折价", percent(output.premiumDiscountPct,4), "市价相对 NAV"],
