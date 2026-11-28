@@ -95,8 +95,8 @@
     .metric:last-child { border-right: 0; }
     .metric-label { color: var(--muted); font-size: 10px; font-weight: 780; letter-spacing: .05em; }
     .metric-value { margin-top: 8px; color: var(--navy); font: 760 clamp(19px, 2.3vw, 28px) var(--mono); letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
-    .metric-value-pair { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-    .metric-value-pair .metric-value-primary { min-width: 0; flex: 1 1 auto; }
+    .metric-value-pair { display: flex; align-items: baseline; justify-content: space-between; gap: 2px 12px; flex-wrap: wrap; }
+    .metric-value-pair .metric-value-primary { flex: 1 1 auto; }
     .metric-value-secondary {
       flex: 0 0 auto;
       padding-left: 12px;
@@ -109,9 +109,8 @@
     .fundamental-grid { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 1px; border: 1px solid rgba(22,59,89,.13); background: rgba(22,59,89,.11); }
     .fundamental-item { min-width: 0; min-height: 76px; padding: 11px 12px; background: #fff; }
     .fundamental-label { color: var(--muted); font-size: 9px; font-weight: 780; letter-spacing: .05em; }
-    .fundamental-value { margin-top: 5px; overflow: hidden; color: var(--navy); font: 740 16px var(--mono); font-variant-numeric: tabular-nums; text-overflow: ellipsis; white-space: nowrap; }
-    .fundamental-note { margin-top: 4px; overflow: hidden; color: var(--muted); font-size: 8px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
-    .fundamental-item.note-wrap .fundamental-note { overflow: visible; text-overflow: clip; white-space: normal; }
+    .fundamental-value { margin-top: 5px; color: var(--navy); font: 740 16px var(--mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .fundamental-note { margin-top: 4px; color: var(--muted); font-size: 8px; line-height: 1.35; overflow-wrap: anywhere; }
     .corporate-timeline { border: 1px solid rgba(22,59,89,.13); background: rgba(255,255,255,.91); }
     .corporate-group + .corporate-group { border-top: 1px solid rgba(22,59,89,.12); }
     .corporate-group-title { padding: 10px 16px; border-bottom: 1px solid #e4e9ec; background: #f7f9fa; color: var(--muted); font-size: 9px; font-weight: 780; letter-spacing: .08em; text-transform: uppercase; }
@@ -325,19 +324,19 @@
     .records-card { height: 442px; min-width: 0; min-height: 0; overflow: hidden; }
     .table-wrap { overflow-x: auto; }
     .event-ledger-scroll { width: 100%; max-width: 100%; height: 100%; min-width: 0; overflow-x: auto; }
-    .event-ledger-surface { min-width: 760px; }
+    .event-ledger-surface { min-width: 820px; }
     .event-table-wrap { height: 392px; max-height: 392px; overflow-y: auto; scrollbar-gutter: stable; }
     .event-table-wrap th { position: sticky; top: 0; z-index: 2; }
     .event-table { table-layout: fixed; }
-    .event-table th, .event-table td { overflow: hidden; text-overflow: ellipsis; }
-    .event-col-date { width: 14%; }
-    .event-col-type { width: 22%; }
-    .event-col-side { width: 8%; }
-    .event-col-quantity { width: 8%; }
+    .event-table th, .event-table td { white-space: normal; overflow-wrap: anywhere; }
+    .event-col-date { width: 12%; }
+    .event-col-type { width: 19%; }
+    .event-col-side { width: 7%; }
+    .event-col-quantity { width: 12%; }
     .event-col-price { width: 11%; }
     .event-col-amount { width: 14%; }
-    .event-col-fee { width: 10%; }
-    .event-col-realized { width: 13%; }
+    .event-col-fee { width: 9%; }
+    .event-col-realized { width: 16%; }
     table { width: 100%; border-collapse: collapse; font-size: 11px; }
     th, td { padding: 10px 12px; border-bottom: 1px solid #e7ebee; text-align: left; white-space: nowrap; }
     th { color: var(--muted); background: #f6f8f9; font-size: 9px; font-weight: 780; letter-spacing: .05em; }
@@ -346,22 +345,17 @@
     tbody tr:last-child td { border-bottom: 0; }
     tbody tr:hover td { background: #edf3f7; }
     .empty { padding: 24px; color: var(--muted); font-size: 12px; }
-    .event-summary { display: grid; grid-template-columns: 14fr 22fr 8fr 8fr 11fr 14fr 10fr 13fr; min-height: 48px; border-top: 1px solid #dfe5e9; background: #fafbfc; }
-    .event-summary-item { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 3px; min-width: 0; padding: 7px 10px; border-left: 1px solid #e1e6ea; }
+    .event-summary { display: grid; grid-template-columns: 12% 19% 7% 12% 11% 14% 9% 16%; min-height: 48px; overflow-y: hidden; scrollbar-gutter: stable; border-top: 1px solid #dfe5e9; background: #fafbfc; }
+    .event-summary-item { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 3px; min-width: 0; padding: 7px 12px; border-left: 1px solid #e1e6ea; }
     .event-summary-item.holding-total { grid-column: 3 / 5; }
     .event-summary-item.fees-total { grid-column: 6 / 8; }
     .event-summary-item.realized-total { grid-column: 8; }
     .event-summary.bond-view .holding-total { grid-column: 3 / 6; }
     .event-summary.bond-view .fees-total { grid-column: 6 / 8; }
     .event-summary.bond-view .realized-total { grid-column: 8; }
-    .event-summary.bond-view .event-summary-value { overflow: visible; text-overflow: clip; }
     .event-table.bond-view .event-col-realized,
     .event-table.bond-view th:last-child,
     .event-table.bond-view td:last-child { display: none; }
-    .event-summary-label { overflow: hidden; max-width: 100%; color: var(--muted); font-size: 9px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
-    .event-summary-value { max-width: 100%; overflow: hidden; color: var(--navy); font: 730 12px var(--mono); font-variant-numeric: tabular-nums; text-align: right; text-overflow: ellipsis; white-space: nowrap; }
-    .event-summary-item.holding-total .event-summary-value,
-    .tax-lot-summary-item.quantity .tax-lot-summary-value { overflow: visible; text-overflow: clip; }
     .account-kpi-grid { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 1px; margin: 0 0 18px; border: 1px solid #dfe5e9; background: #dfe5e9; }
     .account-kpi { min-height: 74px; padding: 13px 14px; background: #fff; }
     .account-kpi.wide { min-height: 74px; }
@@ -374,7 +368,21 @@
     .tax-lot-title { margin: 0; color: var(--navy); font-size: 17px; font-weight: 750; }
     #taxLotsBody { display: flex; flex: 1 1 auto; min-height: 0; }
     .tax-lot-scroll { display: flex; flex: 1 1 auto; min-width: 0; min-height: 0; overflow-x: auto; overflow-y: hidden; }
-    .tax-lot-surface { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; min-height: 0; }
+    .tax-lot-surface {
+      --lot-date-width: 25%;
+      --lot-price-width: 19%;
+      --lot-quantity-width: 15%;
+      --lot-pnl-width: 25%;
+      --lot-return-width: 16%;
+      display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; min-height: 0;
+    }
+    .tax-lot-surface.bond-view {
+      --lot-date-width: 22%;
+      --lot-price-width: 16%;
+      --lot-quantity-width: 24%;
+      --lot-pnl-width: 21%;
+      --lot-return-width: 17%;
+    }
     .tax-lot-table-wrap { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; scrollbar-gutter: stable; }
     .tax-lot-table { flex: 0 0 auto; min-width: 0; table-layout: fixed; }
     .tax-lot-table th { position: sticky; top: 0; z-index: 2; }
@@ -399,30 +407,32 @@
     .tax-lot-sort-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: -3px; }
     .tax-lot-sort-indicator { min-width: 1em; color: #9aa6af; font-size: 9px; text-align: center; }
     .tax-lot-sort-btn.active .tax-lot-sort-indicator { color: var(--navy); }
-    .tax-lot-table th:first-child, .tax-lot-table td:first-child { width: 22%; }
-    .tax-lot-table th:nth-child(2), .tax-lot-table td:nth-child(2) { width: 20%; }
-    .tax-lot-table th:nth-child(3), .tax-lot-table td:nth-child(3) { width: 16%; }
-    .tax-lot-table th:nth-child(4), .tax-lot-table td:nth-child(4) { width: 23%; }
-    .tax-lot-table th:nth-child(5), .tax-lot-table td:nth-child(5) { width: 19%; }
-    .tax-lot-summary { display: grid; flex: 0 0 auto; grid-template-columns: 22fr 20fr 16fr 23fr 19fr; min-width: 0; min-height: 52px; border-top: 1px solid #dfe5e9; background: #fafbfc; }
+    .tax-lot-table th:first-child, .tax-lot-table td:first-child { width: var(--lot-date-width); }
+    .tax-lot-table th:nth-child(2), .tax-lot-table td:nth-child(2) { width: var(--lot-price-width); }
+    .tax-lot-table th:nth-child(3), .tax-lot-table td:nth-child(3) { width: var(--lot-quantity-width); }
+    .tax-lot-table th:nth-child(4), .tax-lot-table td:nth-child(4) { width: var(--lot-pnl-width); }
+    .tax-lot-table th:nth-child(5), .tax-lot-table td:nth-child(5) { width: var(--lot-return-width); }
+    .tax-lot-summary {
+      display: grid; flex: 0 0 auto;
+      grid-template-columns: var(--lot-date-width) var(--lot-price-width) var(--lot-quantity-width) var(--lot-pnl-width) var(--lot-return-width);
+      min-width: 0; min-height: 52px; overflow-y: hidden; scrollbar-gutter: stable; border-top: 1px solid #dfe5e9; background: #fafbfc;
+    }
     .tax-lot-summary-item { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 3px; min-width: 0; padding: 7px 6px; border-left: 1px solid #e1e6ea; }
     .tax-lot-summary-item.total-cost-basis { grid-column: 1; border-left: 0; }
     .tax-lot-summary-item.cost-basis { grid-column: 2; }
     .tax-lot-summary-item.quantity { grid-column: 3; }
     .tax-lot-summary-item.pnl { grid-column: 4; }
     .tax-lot-summary-item.pnl-rate { grid-column: 5; }
-    .tax-lot-summary-label { overflow: hidden; max-width: 100%; color: var(--muted); font-size: 9px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
-    .tax-lot-summary-value { overflow: hidden; max-width: 100%; color: var(--navy); font: 730 12px var(--mono); font-variant-numeric: tabular-nums; text-align: right; text-overflow: ellipsis; white-space: nowrap; }
-    .tax-lot-summary.bond-view { grid-template-columns: 22fr 16fr 24fr 21fr 17fr; }
-    .tax-lot-summary.bond-view .tax-lot-summary-item { padding-inline: 4px; }
-    .tax-lot-summary.bond-view .tax-lot-summary-value { overflow: visible; text-overflow: clip; }
+    .event-summary-label, .tax-lot-summary-label { max-width: 100%; color: var(--muted); font-size: 9px; font-weight: 750; text-align: right; overflow-wrap: anywhere; }
+    .event-summary-value, .tax-lot-summary-value { max-width: 100%; color: var(--navy); font: 730 12px var(--mono); font-variant-numeric: tabular-nums; text-align: right; overflow-wrap: anywhere; }
+    .tax-lot-surface.bond-view .tax-lot-summary-item { padding-inline: 4px; }
     .badge-row { display: flex; flex-wrap: wrap; gap: 7px; }
     .badge { display: inline-flex; align-items: center; min-height: 26px; padding: 4px 8px; border: 1px solid #d8e3eb; background: var(--blue-soft); color: var(--blue); font-size: 10px; font-weight: 780; white-space: nowrap; }
     .badge.good { border-color: #cce3d6; background: var(--green-soft); color: var(--green); }
     .badge.warn { border-color: #ead9aa; background: var(--amber-soft); color: var(--amber); }
     .badge.risk { border-color: #ecc6ca; background: var(--red-soft); color: var(--red); }
     .research-summary { margin: 18px 0 0; color: #2c3d4b; font-size: 15px; line-height: 1.75; }
-    p.research-summary { white-space: pre-line; }
+    p.research-summary, .research-interpretation p { white-space: pre-line; }
     .research-summary.treasury-overview { line-height: 1.9; white-space: normal; overflow-wrap: anywhere; }
     .research-overview-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 18px; }
     .research-overview-item { min-width: 0; padding: 14px; border: 1px solid #e0e6ea; background: #fbfcfd; }
@@ -498,6 +508,10 @@
     .monitoring-signals strong { color: var(--muted); font-size: 9px; }
     details.research-details { margin-top: 18px; border-top: 1px solid #e2e7ea; }
     details.research-details summary { padding: 13px 0 0; color: var(--blue); font-size: 11px; font-weight: 750; cursor: pointer; }
+    .fundamentals-method-list { padding-inline-start: 18px; line-height: 1.65; }
+    .fundamentals-method-list li + li { margin-top: 5px; }
+    .fundamentals-method-row { display: grid; grid-template-columns: 7em minmax(0, 1fr); column-gap: 10px; align-items: start; }
+    .fundamentals-method-list strong { color: var(--navy); }
     .bill-method-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px; margin-top: 12px; border: 1px solid rgba(22,59,89,.12); background: rgba(22,59,89,.12); }
     .bill-method-item { min-width: 0; padding: 12px 14px; background: #f9fbfc; }
     .bill-method-label { color: var(--muted); font-size: 9px; font-weight: 780; letter-spacing: .04em; }
@@ -805,10 +819,14 @@
 
     <section class="section" id="fundamentalsSection" aria-labelledby="fundamentalsTitle">
       <div class="section-head">
-        <div><p class="section-kicker" id="fundamentalsKicker">Company &amp; Valuation</p><h2 class="section-title" id="fundamentalsTitle">公司与估值概览</h2><p class="section-note" id="fundamentalsNote">公司事实与市场价格保留各自日期；无法可靠取得的字段不会估填。</p></div>
+        <div><p class="section-kicker" id="fundamentalsKicker">Company &amp; Valuation</p><h2 class="section-title" id="fundamentalsTitle">公司与估值概览</h2><p class="section-note" id="fundamentalsNote" hidden></p></div>
         <span class="badge" id="fundamentalsBadge">资料载入中</span>
       </div>
       <div class="fundamental-grid" id="fundamentalGrid" aria-label="公司与估值基础数据"></div>
+      <details class="research-details" id="fundamentalsMethodDetails" hidden>
+        <summary>查看指标口径</summary>
+        <ul class="section-note fundamentals-method-list" id="fundamentalsMethod"></ul>
+      </details>
       <details class="research-details" id="billMethodDetails" hidden>
         <summary>国库券收益率、成本与结算口径</summary>
         <div class="bill-method-grid" id="billMethodGrid"></div>
@@ -980,7 +998,7 @@
       <div class="account-kpi-grid" aria-label="标的账户收益">
         <div class="account-kpi"><div class="account-kpi-label" id="closedPositionTotalLabel">平仓合计</div><div class="account-kpi-value" id="closedPositionTotal">—</div></div>
         <div class="account-kpi"><div class="account-kpi-label" id="dividendTotalLabel">股息合计</div><div class="account-kpi-value" id="dividendTotal">—</div></div>
-        <div class="account-kpi"><div class="account-kpi-label" id="aggregateReturnLabel">归总收益</div><div class="account-kpi-value" id="aggregateReturn">—</div></div>
+        <div class="account-kpi"><div class="account-kpi-label" id="aggregateReturnLabel">归总收益</div><div class="account-kpi-value" id="aggregateReturn">—</div><div class="account-kpi-note" id="reportedAggregateReturn" hidden></div></div>
         <div class="account-kpi wide"><div class="account-kpi-label" id="comprehensiveCostLabel">综合成本</div><div class="account-kpi-value" id="comprehensiveCost">—</div></div>
         <div class="account-kpi"><div class="account-kpi-label" id="annualizedReturnLabel">年化收益</div><div class="account-kpi-value" id="annualizedReturn">—</div><div class="account-kpi-note" id="annualizedReturnNote">资金加权 XIRR</div></div>
         <div class="account-kpi"><div class="account-kpi-label" id="totalReturnLabel">总回报率</div><div class="account-kpi-value" id="totalReturn">—</div><div class="account-kpi-note" id="totalReturnPeriod">非年化累计收益</div></div>
@@ -1061,7 +1079,7 @@
       <div class="footer-meta-item"><span class="footer-meta-label" id="footerAccountLabel">账户事实</span><span class="footer-meta-value" id="footerAccountMethod">最近获审核完成收盘持仓<br>生命周期资料</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerMarketLabel">市场历史</span><span class="footer-meta-value" id="footerMarketMethod">IBKR 日线<br>申报日起生效的基本面事实<br>两者分别保留日期</span></div>
         <div class="footer-meta-item"><span class="footer-meta-label" id="footerResearchLabel">研究资料</span><span class="footer-meta-value" id="footerResearchMethod">外部研报<br>项目独立分析<br>分栏、分版本、分日期</span></div>
-        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v9.3.0</span><time class="footer-meta-value" datetime="2026-11-24T03:35:36Z">2026-11-24 03:35 UTC</time></div><!-- PRODUCT:FOOTER:END -->
+        <!-- PRODUCT:FOOTER:START --><div class="footer-meta-item"><span class="footer-meta-label">产品版本与更新</span><span class="footer-meta-value">Dashboard v9.4.2</span><time class="footer-meta-value" datetime="2026-11-25T05:54:30Z">2026-11-25 05:54 UTC</time></div><!-- PRODUCT:FOOTER:END -->
       </div>
       <p class="footer-disclaimer" id="footerDisclaimer">不同资料域不共用一个虚假的更新时间；缺失字段不会估填。公开家庭版不会发送交易指令，不构成交易建议。</p>
     </footer>
@@ -1341,6 +1359,10 @@
           ready_for_user_review: "可供投资讨论", not_ready: "尚未就绪", not_applicable: "不适用",
           not_applicable_company_only: "不适用（仅公司研究）"
         }[value] || "标签待适配";
+      }
+      function researchDecisionProse(value) {
+        // Decisions can be complete sentences; status codes are single ASCII tokens.
+        return typeof value === "string" && /[\u3400-\u9fff]|\S\s+\S/.test(value);
       }
       function evidenceQualityLabel(value) {
         if (!value) return "—";
@@ -3452,10 +3474,10 @@
           ? finite(performance.currentCost) / holdingQuantity
           : null;
         el("averageCost").textContent = holding ? money(averageCost, holding.currency, 2) : "—";
-        el("averageCostNote").textContent = holding ? "每股 · " + compactToIso(holding.valuationDate) + " 完成收盘持仓" : "当前未持有";
+        el("averageCostNote").textContent = holding ? "每股持仓成本" : "当前未持有";
         el("currentCost").textContent = holding ? money(performance.currentCost, holding.currency, 2) : "—";
         el("currentCostNote").textContent = holding
-          ? "投资组合权重 " + percent(holding.portfolioWeightPct, 2) + " · 同日市值 ÷ 同日 NAV"
+          ? "投资组合权重 " + percent(holding.portfolioWeightPct, 2)
           : "当前未持有";
         el("unrealizedPnl").textContent = holding ? signedMoney(holding.unrealizedPnl, holding.currency) : "—";
         setClassBySign(el("unrealizedPnl"), holding && holding.unrealizedPnl);
@@ -3469,9 +3491,9 @@
           ? "—"
           : signedPercentRatio(unrealizedPnlRatio, 2);
         setClassBySign(el("unrealizedPnlPct"), unrealizedPnlRatio);
-        el("unrealizedPnlNote").textContent = holding ? compactToIso(holding.valuationDate) + " 完成收盘" : "没有当前持仓";
+        el("unrealizedPnlNote").textContent = holding ? "市值减成本" : "当前未持有";
         el("holdingQuantity").textContent = holding ? number(holding.quantity, Math.abs(holding.quantity % 1) > 0 ? 4 : 0) : "0";
-        el("holdingQuantityNote").textContent = holding ? compactToIso(holding.valuationDate) + " 完成收盘数量" : "当前未持有";
+        el("holdingQuantityNote").textContent = holding ? "截至 " + compactToIso(holding.valuationDate) : "当前未持有";
       }
       function renderFundamentals() {
         var facts = state.detail.fundamentals || {}, metrics = facts.metrics || {}, dates = facts.metricDates || {};
@@ -3481,6 +3503,10 @@
         var isBond = isBondDetail();
         var fund = state.detail.fundProfile || {};
         el("billMethodDetails").hidden = true;
+        var overviewNote = el("fundamentalsNote");
+        var methodDetails = el("fundamentalsMethodDetails");
+        methodDetails.hidden = true;
+        overviewNote.hidden = false;
         if (isBond) {
           var bond = state.detail.fixedIncome || {};
           var isBill = bond.instrumentType === "treasury_bill";
@@ -3499,7 +3525,7 @@
           var bondGrid = el("fundamentalGrid");
           bondGrid.replaceChildren();
           bondEntries.forEach(function (entry) {
-            var item = document.createElement("article"); item.className = "fundamental-item note-wrap";
+            var item = document.createElement("article"); item.className = "fundamental-item";
             var label = document.createElement("div"); label.className = "fundamental-label"; label.textContent = entry[0];
             var value = document.createElement("div"); value.className = "fundamental-value"; value.textContent = entry[1];
             var note = document.createElement("div"); note.className = "fundamental-note"; note.textContent = entry[2];
@@ -3508,9 +3534,7 @@
           el("fundamentalsKicker").textContent = "Treasury Contract & Yield";
           el("fundamentalsTitle").textContent = isBill ? "国库券合同与收益概览" : "国债合同与收益概览";
           el("fundamentalGrid").setAttribute("aria-label", "固定收益合同与收益基础数据");
-          el("fundamentalsNote").textContent = isBill
-            ? "主指标显示费后成交日起算有效 XIRR，并明确标作成交日起算估算；计划结算日、实际结算日和各类收益率口径分开保存。"
-            : "实际息率与预计持有到期净收益均按获审核购入现金流和合同条款计算；前者是年化 XIRR，后者是税前名义金额且不计票息再投资。";
+          overviewNote.textContent = isBill ? "收益率按成交日起算" : "合同条款与购入收益";
           var bondBadge = el("fundamentalsBadge");
           bondBadge.className = "badge " + (bond.status === "pass" ? "good" : "warn");
           bondBadge.textContent = bond.status === "pass" ? "合同与购入现金流已勾稽" : "固定收益证据待补";
@@ -3519,72 +3543,116 @@
         }
         var factDate = function (metric, fallback) {
           var row = dates[metric];
-          return row ? "申报期 " + compactToIso(row.periodEnd) : fallback;
+          return row ? "申报期 " + compactToIso(row.periodEnd) : (fallback || "");
         };
+        var priceToBook = finite(metrics.priceToBook);
+        var negativeBookEquity = priceToBook != null && priceToBook < 0;
+        var staleFacts = facts.staleMetrics || [];
+        var sharesGap = staleFacts.includes("shares_outstanding") ? "股本资料已过期" : "缺可比股本";
+        var dividendGap = staleFacts.includes("dividend_ttm") ? "股息资料已过期" : "缺近 12 个月股息";
+        var betaMonth = String(beta.endMonth || "").replace(/^(\d{4})(\d{2})$/, "$1-$2");
+        var betaEntry = ["Beta（5 年）", number(metrics.beta, 2),
+          finite(metrics.beta) == null ? "月度配对不足" : "对比 SPX" + (betaMonth ? " · " + betaMonth : "")];
         var entries = isEtf ? [
-          ["52 周最高", money(metrics.high52Week, currency, 2), "日内高点 · 截至 " + compactToIso(facts.asOfDate)],
-          ["52 周最低", money(metrics.low52Week, currency, 2), "日内低点 · 截至 " + compactToIso(facts.asOfDate)],
+          ["52 周最高", money(metrics.high52Week, currency, 2), "日内高点"],
+          ["52 周最低", money(metrics.low52Week, currency, 2), "日内低点"],
           [
             "费用率",
             finite(fund.expenseRatioPct) == null ? "—" : percent(fund.expenseRatioPct, 2),
-            fund.expenseRatioAsOf ? "发行人资料 · 更新 " + compactToIso(fund.expenseRatioAsOf) : "尚未取得发行人费率"
+            fund.expenseRatioAsOf ? "更新 " + compactToIso(fund.expenseRatioAsOf) : (finite(fund.expenseRatioPct) == null ? "待核验" : "")
           ],
-          ["成立日期", compactToIso(fund.inceptionDate), "基金份额类别成立日"],
-          [
-            "管理方式",
-            fund.isIndex && fund.isEtf ? "Index ETF" : (fund.managementStyle || "—"),
-            fund.isIndex ? "指数化管理 · 交易所交易基金" : "发行人审核的非指数基金／信托结构"
-          ],
-          ["发行人", fund.issuerName || "—", "发行人官方基金资料"],
-          ["跟踪基准", fund.benchmarkName || "—", "接入合同审核的主要基准"],
-          ["Beta（5 年）", finite(metrics.beta) == null ? "未获取到" : number(metrics.beta, 2), finite(metrics.beta) == null ? "完整月度历史不足或 SPX 不可用" : number(beta.returnObservations, 0) + " 个完整月 · 相对 SPX · 截至 " + String(beta.endMonth || "").replace(/^(\d{4})(\d{2})$/, "$1-$2")]
+          ["成立日期", compactToIso(fund.inceptionDate)],
+          ["管理方式", fund.isIndex && fund.isEtf ? "Index ETF" : (fund.managementStyle || "—")],
+          ["发行人", fund.issuerName || "—"],
+          ["跟踪基准", fund.benchmarkName || "—"],
+          betaEntry
         ] : [
-          ["52 周最高", money(metrics.high52Week, currency, 2), "日内高点 · 截至 " + compactToIso(facts.asOfDate)],
-          ["52 周最低", money(metrics.low52Week, currency, 2), "日内低点 · 截至 " + compactToIso(facts.asOfDate)],
-          ["公司市值", compactMoney(metrics.marketCap, currency), factDate("shares_outstanding", "股本事实未获取到")],
+          ["52 周最高", money(metrics.high52Week, currency, 2), "日内高点"],
+          ["52 周最低", money(metrics.low52Week, currency, 2), "日内低点"],
+          ["公司市值", compactMoney(metrics.marketCap, currency),
+            finite(metrics.marketCap) == null ? (dates.shares_outstanding ? "缺合格市值输入" : sharesGap) : factDate("shares_outstanding")],
           [
             "市盈率 TTM",
             peDisplayText({ peTtm: metrics.peTtm, peTtmStatus: metrics.peTtmStatus }),
             metrics.peTtmStatus === "negative_eps"
-              ? "EPS TTM 为负 · 不进入估值统计 · " + factDate("eps_ttm", "TTM EPS 未获取到")
-              : (metrics.peTtmStatus === "zero_eps"
-                ? "EPS TTM 为 0 · 不适用 · " + factDate("eps_ttm", "TTM EPS 未获取到")
-                : factDate("eps_ttm", "TTM EPS 未获取到"))
+              ? "EPS 为负"
+              : factDate("eps_ttm", "缺 TTM EPS")
           ],
-          ["市净率", finite(metrics.priceToBook) == null ? "—" : number(metrics.priceToBook, 2) + "×", factDate("stockholders_equity", "股东权益事实未获取到")],
-          ["Beta（5 年）", finite(metrics.beta) == null ? "未获取到" : number(metrics.beta, 2), finite(metrics.beta) == null ? "完整月度历史不足或 SPX 不可用" : number(beta.returnObservations, 0) + " 个完整月 · 相对 SPX · 截至 " + String(beta.endMonth || "").replace(/^(\d{4})(\d{2})$/, "$1-$2")],
-          ["股息 TTM", money(metrics.dividendTtm, currency, 2) + " / 股", factDate("dividend_ttm", "每股股息事实未获取到")],
-          ["股息率 TTM", finite(metrics.dividendYieldTtmPct) == null ? "—" : percent(metrics.dividendYieldTtmPct, 2), "TTM 股息 ÷ 收盘价 · " + compactToIso(facts.asOfDate), "note-wrap"]
+          ["市净率", negativeBookEquity ? "不适用" : (priceToBook == null ? "—" : number(priceToBook, 2) + "×"),
+            negativeBookEquity ? "股东权益为负" : (priceToBook != null ? factDate("stockholders_equity")
+              : (!dates.shares_outstanding ? sharesGap : "缺可比权益或市值"))],
+          betaEntry,
+          ["股息 TTM", finite(metrics.dividendTtm) == null ? "—" : money(metrics.dividendTtm, currency, 2) + " / 股",
+            factDate("dividend_ttm", dividendGap)],
+          ["股息率 TTM", percent(metrics.dividendYieldTtmPct, 2),
+            finite(metrics.dividendYieldTtmPct) == null ? dividendGap : ""]
         ];
         var grid = el("fundamentalGrid");
         grid.replaceChildren();
         entries.forEach(function (entry) {
-          var item = document.createElement("article"); item.className = "fundamental-item" + (entry[3] ? " " + entry[3] : "");
+          var item = document.createElement("article"); item.className = "fundamental-item";
           var label = document.createElement("div"); label.className = "fundamental-label"; label.textContent = entry[0];
           var value = document.createElement("div"); value.className = "fundamental-value"; value.textContent = entry[1];
-          var note = document.createElement("div"); note.className = "fundamental-note"; note.textContent = entry[2];
-          item.title = entry[2];
-          item.append(label, value, note); grid.appendChild(item);
+          item.append(label, value);
+          if (entry[2]) {
+            var note = document.createElement("div"); note.className = "fundamental-note"; note.textContent = entry[2];
+            item.appendChild(note);
+          }
+          grid.appendChild(item);
         });
         var badge = el("fundamentalsBadge");
-        var missing = (facts.unavailable || []).filter(function (metric) { return metric !== "forwardPe"; });
+        var available = entries.filter(function (entry) { return entry[1] !== "—"; }).length;
+        overviewNote.hidden = !facts.asOfDate;
+        overviewNote.textContent = facts.asOfDate ? "行情截至 " + compactToIso(facts.asOfDate) : "";
         if (isEtf) {
           el("fundamentalsKicker").textContent = "Fund Profile & Market";
           el("fundamentalsTitle").textContent = "基金与市场概览";
           el("fundamentalGrid").setAttribute("aria-label", "基金与市场基础数据");
           badge.className = "badge " + (fund.status === "pass" ? "good" : "warn");
           badge.textContent = fund.status === "pass" ? "发行人资料已核验" : "基金资料待补";
-          el("fundamentalsNote").textContent = fund.methodology || fund.message || "ETF 不套用普通股 Company Facts。";
         } else {
           el("fundamentalsKicker").textContent = "Company & Valuation";
           el("fundamentalsTitle").textContent = "公司与估值概览";
           el("fundamentalGrid").setAttribute("aria-label", "公司与估值基础数据");
-          badge.className = "badge " + (facts.status === "unavailable" ? "" : (missing.length ? "warn" : "good"));
+          badge.className = "badge " + (available === entries.length ? "good" : "warn");
           badge.textContent = facts.status === "unavailable"
-            ? "尚无公司事实"
-            : (8 - missing.length) + " / 8 项可用";
-          el("fundamentalsNote").textContent = facts.methodology || "公司事实与市场价格保留各自日期；无法可靠取得的字段不会估填。";
+            ? "概览资料待补"
+            : available + " / " + entries.length + " 项可用";
         }
+        var rangeMethod = ["52 周高低", "优先使用经拆股校验的股息未调整日线，取近 52 周的盘中最高和最低价。"];
+        var betaMethod = ["Beta（5 年）", "使用经拆股校验的股息调整日线，取五年完整月度收益与 SPX 配对，排除当前未完成月。"];
+        var methods = isEtf ? [
+          ["基金资料", fund.methodology
+            ? "身份、成立日、费率、管理方式与跟踪基准取自经核验的发行人资料。"
+            : fund.message || "发行人资料待核验。"],
+          rangeMethod,
+          betaMethod,
+          ["适用范围", "公司市值、市盈率、市净率与公司股息 TTM 适用于普通股。"]
+        ] : facts.methodology ? [
+          rangeMethod,
+          ["公司市值", "估值日收盘价乘以已公开、口径可比的在外普通股数。"],
+          ["市盈率 TTM", "估值日收盘价除以自申报日起生效的近 12 个月 GAAP 稀释 EPS。2010 年前适用的年报重建点另有标注。"],
+          ["市净率", "公司市值除以口径匹配的股东权益。股东权益为负时标为不适用。"],
+          betaMethod,
+          ["股息 TTM", "按已核验的申报或发行人记录计算近 12 个月每股股息。"],
+          ["股息率 TTM", "每股股息 TTM 除以估值日收盘价。"],
+          ["远期市盈率", "待有可核验的一致预期后显示。"]
+        ] : [];
+        var methodList = el("fundamentalsMethod");
+        methodList.replaceChildren();
+        methods.forEach(function (entry) {
+          var item = document.createElement("li");
+          var row = document.createElement("div");
+          row.className = "fundamentals-method-row";
+          var label = document.createElement("strong");
+          label.textContent = entry[0];
+          var description = document.createElement("span");
+          description.textContent = entry[1];
+          row.append(label, description);
+          item.appendChild(row);
+          methodList.appendChild(item);
+        });
+        methodDetails.hidden = methods.length === 0;
       }
       function corporateStatusLabel(status) {
         return {
@@ -3897,10 +3965,17 @@
         var currency = performance.currency || state.detail.instrument.currency;
         var isBond = isBondDetail(), bond = state.detail.fixedIncome || {};
         var isBill = bond.instrumentType === "treasury_bill";
+        var holdingProfit = !isBond && !state.detail.publicStatic
+          ? finite(performance.holdingProfitFromCashFlows) : null;
+        var reportedAggregate = el("reportedAggregateReturn");
+        reportedAggregate.hidden = holdingProfit == null;
+        reportedAggregate.textContent = holdingProfit == null ? ""
+          : "报表归总 " + signedMoney(performance.aggregateReturn, currency);
         el("closedPositionTotalLabel").textContent = isBond ? "未实现盈亏" : "平仓合计";
         el("dividendTotalLabel").textContent = isBill ? "票息收支" : (isBond ? "已收票息" : "股息合计");
-        el("aggregateReturnLabel").textContent = "归总收益";
-        el("aggregateReturn").title = isBond ? "含期末应计利息 " + money(bond.accruedInterest, currency, 2) + "；未实现盈亏保持报表原值" : "";
+        el("aggregateReturnLabel").textContent = holdingProfit == null ? "归总收益" : "持有收益";
+        el("aggregateReturn").title = isBond ? "含期末应计利息 " + money(bond.accruedInterest, currency, 2)
+          : (holdingProfit == null ? "" : "期末市值 ＋ 买卖净现金流 ＋ 税后股息 − 股票奖励净入账价值");
         el("comprehensiveCostLabel").textContent = isBond ? "实际投入" : "综合成本";
         el("annualizedReturnLabel").textContent = "年化收益";
         el("annualizedReturnNote").textContent = isBill && performance.holdingClockQuality === "same_day_no_elapsed_period"
@@ -3910,7 +3985,7 @@
         [
           ["closedPositionTotal", isBond ? bond.unrealizedPnl : performance.closedPositionTotal, true],
           ["dividendTotal", isBond ? bond.paidInterest : performance.dividendTotal, false],
-          ["aggregateReturn", isBond ? bond.aggregateReturn : performance.aggregateReturn, true]
+          ["aggregateReturn", isBond ? bond.aggregateReturn : (holdingProfit ?? performance.aggregateReturn), true]
         ].forEach(function (entry) {
           el(entry[0]).textContent = entry[2] ? signedMoney(entry[1], currency) : money(entry[1], currency, 2);
           setClassBySign(el(entry[0]), entry[1]);
@@ -3974,7 +4049,7 @@
         var scroll = document.createElement("div");
         scroll.className = "tax-lot-scroll";
         var surface = document.createElement("div");
-        surface.className = "tax-lot-surface";
+        surface.className = "tax-lot-surface" + (isBond ? " bond-view" : "");
         var tableWrap = document.createElement("div");
         tableWrap.className = "tax-lot-table-wrap";
         var table = document.createElement("table");
@@ -4052,7 +4127,7 @@
           ? finite(summary.costBasis) / summaryQuantity * (isBond ? 100 : 1)
           : null;
         var summaryBar = document.createElement("div");
-        summaryBar.className = "tax-lot-summary" + (isBond ? " bond-view" : "");
+        summaryBar.className = "tax-lot-summary";
         [
           ["total-cost-basis", "成本基础", money(summary.costBasis, currency, 2), null],
           ["cost-basis", "平均成本", isBond ? number(summaryAverageCost, 3) : money(summaryAverageCost, currency, 2), null],
@@ -4147,11 +4222,6 @@
           unmapped = unmapped || rendered.unmapped;
         });
         root.setAttribute("data-research-readability", unmapped ? "warning" : "pass");
-        if (unmapped) {
-          var warning = document.createElement("p"); warning.className = "section-note";
-          warning.textContent = "部分研究术语尚未适配，请复核后再使用。";
-          root.prepend(warning);
-        }
       }
       function appendResearchInline(parent, value) {
         var rendered = researchReaderText(value);
@@ -4262,7 +4332,7 @@
           }).filter(function (value) { return String(value || "").trim(); });
         }
         function actionText(prefix, value) {
-          return value ? prefix + researchLabel(value) : null;
+          return value ? prefix + (researchDecisionProse(value) ? value : researchLabel(value)) : null;
         }
         var structuredLayers = result.fiveLayerDecisionSummary || {};
         function layerItems(key, fallback) {
@@ -5064,6 +5134,8 @@
         renderCurrentResearchHeading(body, assessment, state.detail);
         var badges = document.createElement("div"); badges.className = "badge-row";
         var maturity = result.researchMaturity || result.underwritingStatus || "preliminary";
+        var existingDecision = result.existingPositionDecision || result.existingPositionAction;
+        var newDecision = result.newMoneyDecision || result.cashDecision;
         var badgeEntries = [
           { value: "research_version", label: researchVersionBadge(assessment) },
           { value: "review_freshness", freshness: true },
@@ -5072,10 +5144,8 @@
             ? { value: result.valuationMaturity, label: valuationMaturityLabel(result.valuationMaturity) }
             : null,
           { value: result.valuationState, label: result.valuationStateLabelZh || researchLabel(result.valuationState) },
-          { value: (result.existingPositionDecision || result.existingPositionAction) },
-          result.newMoneyDecision
-            ? { value: result.newMoneyDecision, label: researchLabel(result.newMoneyDecision) }
-            : { value: result.cashDecision },
+          researchDecisionProse(existingDecision) ? null : { value: existingDecision },
+          researchDecisionProse(newDecision) ? null : { value: newDecision },
           result.portfolioRole
             ? { value: result.portfolioRole, label: portfolioRoleLabel(result.portfolioRole) }
             : null,
@@ -5611,6 +5681,7 @@
       function renderFixedIncomeResearch() {
         var body = el("researchBody");
         body.replaceChildren();
+        body.removeAttribute("data-research-readability");
         var assessment = (state.detail.research || []).find(function (row) {
           return row.assessmentType === "fixed_income_research";
         });
@@ -5750,6 +5821,13 @@
       }
       function renderQuality() {
         var domains = state.detail.dataQuality.domains || {};
+        var researchDomain = domains.research || {};
+        var researchTermsWarning = el("researchBody").getAttribute("data-research-readability") === "warning";
+        var researchStatus = researchTermsWarning && (!researchDomain.status || researchDomain.status === "pass")
+          ? "warning" : researchDomain.status;
+        var researchNote = researchTermsWarning ? " · 部分术语待适配" : "";
+        var overallStatus = state.detail.dataQuality.status;
+        if (researchTermsWarning && overallStatus === "pass") overallStatus = "warning";
         var qualityGrid = el("qualityGrid");
         qualityGrid.classList.toggle("bond-quality-grid", isBondDetail());
         if (isBondDetail()) {
@@ -5761,7 +5839,7 @@
             ["购入现金流", quality.acquisition, isBill ? "证券净价、佣金、provider 成本与舍入分列" : "成本、手续费与购买应计利息"],
             [isBill ? "结算证据" : "利息现金流", quality.interest, isBill ? "scheduled 与 actual 分离；actual 缺失不补零" : "已收票息与购买应计逐笔归集"],
             ["持仓批次", domains.positionLots && domains.positionLots.status, domains.positionLots && domains.positionLots.asOf ? compactToIso(domains.positionLots.asOf) + " · " + number(domains.positionLots.count, 0) + " 个批次" : "尚未取得 Lot 粒度"],
-            ["固定收益研究", domains.research && domains.research.status, domains.research && domains.research.count ? "当前版本 " + number(domains.research.count, 0) : "尚未建立研究基线"]
+            ["固定收益研究", researchStatus, (researchDomain.count ? "当前版本 " + number(researchDomain.count, 0) : "尚未建立研究基线") + researchNote]
           ];
           var bondGrid = qualityGrid; bondGrid.replaceChildren();
           bondConfigurations.forEach(function (configuration) {
@@ -5773,8 +5851,8 @@
             bondGrid.appendChild(item);
           });
           var bondOverall = el("overallQualityBadge");
-          bondOverall.className = "badge " + (state.detail.dataQuality.status === "pass" ? "good" : "warn");
-          bondOverall.textContent = "整体 " + qualityLabel(state.detail.dataQuality.status);
+          bondOverall.className = "badge " + (overallStatus === "pass" ? "good" : "warn");
+          bondOverall.textContent = "整体 " + qualityLabel(overallStatus);
           return;
         }
         var configurations = [
@@ -5782,7 +5860,7 @@
           ["生命周期", domains.lifecycle, "回填窗口 " + number(domains.lifecycle && domains.lifecycle.ingestionWindows, 0)],
           ["公司事件", domains.corporateEvents, domains.corporateEvents && domains.corporateEvents.updatedAt ? utcDateTime(domains.corporateEvents.updatedAt) : "尚无来源核验"],
             ["持仓批次", domains.positionLots, domains.positionLots && domains.positionLots.asOf ? compactToIso(domains.positionLots.asOf) + " · " + number(domains.positionLots.count, 0) + " 个存续批次" : "尚未取得 Lot 粒度日结"],
-          ["研究", domains.research, "资料记录 " + number(domains.research && domains.research.count, 0) + " 份"]
+          ["研究", { status: researchStatus }, "资料记录 " + number(researchDomain.count, 0) + " 份" + researchNote]
         ];
         var grid = qualityGrid; grid.replaceChildren();
         configurations.forEach(function (configuration) {
@@ -5793,8 +5871,7 @@
           item.querySelector(".quality-note").textContent = configuration[2];
           grid.appendChild(item);
         });
-        var status = state.detail.dataQuality.status;
-        var badge = el("overallQualityBadge"); badge.className = "badge " + (status === "pass" ? "good" : "warn"); badge.textContent = "整体 " + qualityLabel(status);
+        var badge = el("overallQualityBadge"); badge.className = "badge " + (overallStatus === "pass" ? "good" : "warn"); badge.textContent = "整体 " + qualityLabel(overallStatus);
         var market = domains.market || {}, marketBadge = el("marketQualityBadge");
         marketBadge.className = "badge " + (market.status === "pass" ? "good" : "warn");
         marketBadge.textContent = "行情质量 " + qualityLabel(market.status);
